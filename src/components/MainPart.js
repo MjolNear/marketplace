@@ -66,26 +66,7 @@ export default function MainPart() {
 
             {/*</div>*/}
             <div>
-                {window.walletConnection.isSignedIn() ? (
-                    <>
-                        <div className="rounded-md shadow">
-                            <a
-                                onClick={logout}
-                                className="w-full flex items-center justify-center text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
-                                Sign out
-                            </a>
-                        </div>
-                        <p >{window.accountId}</p>
-                    </>
-                ) : (
-                    <div className="rounded-md shadow">
-                        <a
-                            onClick={login}
-                            className="w-full flex items-center justify-center text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
-                           Sign in
-                        </a>
-                    </div>
-                )}
+                <p >{window.accountId}</p>
             </div>
 
 
