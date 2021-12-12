@@ -31,6 +31,81 @@ function openTab(tabName) {
     }
 }
 
+function NavItemWithDrop(props){
+    return (
+        <Popover className="relative">
+            {({open}) => (
+                <>
+                    <Popover.Button
+                        className={classNames(
+                            open ? 'text-gray-900' : 'text-gray-500',
+                            'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                        )}
+                    >
+                        <span>{props.name}</span>
+                        <ChevronDownIcon
+                            className={classNames(
+                                open ? 'text-gray-600' : 'text-gray-400',
+                                'ml-2 h-5 w-5 group-hover:text-gray-500'
+                            )}
+                            aria-hidden="true"
+                        />
+                    </Popover.Button>
+
+                    <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
+                    >
+                        <Popover.Panel
+                            className={classNames(
+                                props.isProfile ? '-ml-20' : '-ml-4',
+                                "absolute z-10 -ml-4 mt-3 transform px-2"
+                            )}>
+                            <div
+                                className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                                    {props.data.map((item) => (
+                                        <a
+                                            key={item.name}
+                                            onClick={() => openTab(item.name)}
+                                            className="cursor-pointer -m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
+                                        >
+                                            <div className="ml-4">
+                                                <p className="text-base font-medium text-gray-900">{item.name}</p>
+                                            </div>
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
+                        </Popover.Panel>
+                    </Transition>
+                </>
+            )}
+        </Popover>
+    )
+}
+
+function NavSmallItem(props){
+    return (
+        <div className="grid grid-cols-2 gap-y-4 gap-x-8">
+            {props.data.map((item) => (
+                <a
+                    key={item.name}
+                    onClick={() => openTab(item.name)}
+                    className="cursor-pointer text-base font-medium text-gray-900 hover:text-gray-500"
+                >
+                    {item.name}
+                </a>
+            ))}
+        </div>
+    )
+}
+
 
 export default function NavBar() {
     return (
@@ -56,107 +131,9 @@ export default function NavBar() {
                         </Popover.Button>
                     </div>
                     <Popover.Group as="nav" className="hidden md:flex space-x-10">
-                        <Popover className="relative">
-                            {({open}) => (
-                                <>
-                                    <Popover.Button
-                                        className={classNames(
-                                            open ? 'text-gray-900' : 'text-gray-500',
-                                            'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-                                        )}
-                                    >
-                                        <span>Explore</span>
-                                        <ChevronDownIcon
-                                            className={classNames(
-                                                open ? 'text-gray-600' : 'text-gray-400',
-                                                'ml-2 h-5 w-5 group-hover:text-gray-500'
-                                            )}
-                                            aria-hidden="true"
-                                        />
-                                    </Popover.Button>
 
-                                    <Transition
-                                        as={Fragment}
-                                        enter="transition ease-out duration-200"
-                                        enterFrom="opacity-0 translate-y-1"
-                                        enterTo="opacity-100 translate-y-0"
-                                        leave="transition ease-in duration-150"
-                                        leaveFrom="opacity-100 translate-y-0"
-                                        leaveTo="opacity-0 translate-y-1"
-                                    >
-                                        <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2">
-                                            <div
-                                                className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                                                <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                                                    {exploreTabs.map((item) => (
-                                                        <a
-                                                            key={item.name}
-                                                            onClick={() => openTab(item.name)}
-                                                            className="cursor-pointer -m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
-                                                        >
-                                                            <div className="ml-4">
-                                                                <p className="text-base font-medium text-gray-900">{item.name}</p>
-                                                            </div>
-                                                        </a>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        </Popover.Panel>
-                                    </Transition>
-                                </>
-                            )}
-                        </Popover>
-
-                        <Popover className="relative">
-                            {({open}) => (
-                                <>
-                                    <Popover.Button
-                                        className={classNames(
-                                            open ? 'text-gray-900' : 'text-gray-500',
-                                            'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-                                        )}
-                                    >
-                                        <span>Create</span>
-                                        <ChevronDownIcon
-                                            className={classNames(
-                                                open ? 'text-gray-600' : 'text-gray-400',
-                                                'ml-2 h-5 w-5 group-hover:text-gray-500'
-                                            )}
-                                            aria-hidden="true"
-                                        />
-                                    </Popover.Button>
-
-                                    <Transition
-                                        as={Fragment}
-                                        enter="transition ease-out duration-200"
-                                        enterFrom="opacity-0 translate-y-1"
-                                        enterTo="opacity-100 translate-y-0"
-                                        leave="transition ease-in duration-150"
-                                        leaveFrom="opacity-100 translate-y-0"
-                                        leaveTo="opacity-0 translate-y-1"
-                                    >
-                                        <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2">
-                                            <div
-                                                className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                                                <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                                                    {createTabs.map((item) => (
-                                                        <a
-                                                            key={item.name}
-                                                            onClick={() => openTab(item.name)}
-                                                            className="cursor-pointer -m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
-                                                        >
-                                                            <div className="ml-4">
-                                                                <p className="text-base font-medium text-gray-900">{item.name}</p>
-                                                            </div>
-                                                        </a>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        </Popover.Panel>
-                                    </Transition>
-                                </>
-                            )}
-                        </Popover>
+                        <NavItemWithDrop name="Explore" data={exploreTabs} isProfile={false}/>
+                        <NavItemWithDrop name="Create" data={createTabs} isProfile={false}/>
                         {singleTabs.map((item) => (
                             <a
                                 key={item.name}
@@ -172,57 +149,7 @@ export default function NavBar() {
                     </Popover.Group>
                     {window.walletConnection.isSignedIn() ? (
                         <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-                            <Popover className="relative">
-                                {({open}) => (
-                                    <>
-                                        <Popover.Button
-                                            className={classNames(
-                                                open ? 'text-gray-900' : 'text-gray-500',
-                                                'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-                                            )}
-                                        >
-                                            <span>Profile</span>
-                                            <ChevronDownIcon
-                                                className={classNames(
-                                                    open ? 'text-gray-600' : 'text-gray-400',
-                                                    'ml-2 h-5 w-5 group-hover:text-gray-500'
-                                                )}
-                                                aria-hidden="true"
-                                            />
-                                        </Popover.Button>
-
-                                        <Transition
-                                            as={Fragment}
-                                            enter="transition ease-out duration-200"
-                                            enterFrom="opacity-0 translate-y-1"
-                                            enterTo="opacity-100 translate-y-0"
-                                            leave="transition ease-in duration-150"
-                                            leaveFrom="opacity-100 translate-y-0"
-                                            leaveTo="opacity-0 translate-y-1"
-                                        >
-                                            <Popover.Panel className="absolute z-10 -ml-20 mt-3 transform px-2">
-                                                <div
-                                                    className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                                                    <div
-                                                        className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-6">
-                                                        {profileTabs.map((item) => (
-                                                            <a
-                                                                key={item.name}
-                                                                onClick={() => openTab(item.name)}
-                                                                className="cursor-pointer -m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
-                                                            >
-                                                                <div className="ml-4">
-                                                                    <p className="text-base font-medium text-gray-900">{item.name}</p>
-                                                                </div>
-                                                            </a>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            </Popover.Panel>
-                                        </Transition>
-                                    </>
-                                )}
-                            </Popover>
+                            <NavItemWithDrop name="Profile" data={profileTabs} isProfile={true}/>
                         </div>
                     ) : (
                         <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
@@ -271,44 +198,14 @@ export default function NavBar() {
                         </div>
                         <div className="py-6 px-5 space-y-6">
                             <div className="text-indigo-500">Explore:</div>
-                            <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                                {exploreTabs.map((item) => (
-                                    <a
-                                        key={item.name}
-                                        onClick={() => openTab(item.name)}
-                                        className="cursor-pointer text-base font-medium text-gray-900 hover:text-gray-500"
-                                    >
-                                        {item.name}
-                                    </a>
-                                ))}
-                            </div>
+                            <NavSmallItem data={exploreTabs}/>
                         </div>
                         <div className="py-6 px-5 space-y-6">
                             <div className="text-indigo-500">Create:</div>
-                            <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                                {createTabs.map((item) => (
-                                    <a
-                                        key={item.name}
-                                        onClick={() => openTab(item.name)}
-                                        className="cursor-pointer text-base font-medium text-gray-900 hover:text-gray-500"
-                                    >
-                                        {item.name}
-                                    </a>
-                                ))}
-                            </div>
+                            <NavSmallItem data={createTabs}/>
                         </div>
                         <div className="py-6 px-5 space-y-6">
-                            <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                                {singleTabs.map((item) => (
-                                    <a
-                                        key={item.name}
-                                        onClick={() => openTab(item.name)}
-                                        className="cursor-pointer text-base font-medium text-gray-900 hover:text-gray-500"
-                                    >
-                                        {item.name}
-                                    </a>
-                                ))}
-                            </div>
+                            <NavSmallItem data={singleTabs}/>
                             {window.walletConnection.isSignedIn() ? (
                                 <>
                                 <div className="grid grid-cols-2 gap-y-4 gap-x-8">
