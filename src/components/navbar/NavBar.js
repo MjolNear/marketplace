@@ -3,21 +3,27 @@ import {Popover, Transition} from '@headlessui/react'
 import {MenuIcon, XIcon} from '@heroicons/react/outline'
 import {ChevronDownIcon} from '@heroicons/react/solid'
 import {login, logout} from "../../utils/contract-utils";
+import {Link} from "react-router-dom";
 
 const exploreTabs = [
-    {name: 'NFTs'}, {name: 'Collections'}
+    {name: 'NFTs', path: '/nft'},
+    {name: 'Collections', path: 'collections'},
 ];
 
 const createTabs = [
-    {name: 'NFT'}, {name: 'Collection'}
+    {name: 'NFT', path: '/create-nft'},
+    {name: 'Collection', path: '/create-collection'}
 ];
 
 const profileTabs = [
-    {name: 'My NFTs'}, {name: 'My Collections'}, {name: 'Sign out'}
+    {name: 'My NFTs', path: '/my-nft'},
+    {name: 'My Collections', path: '/my-collection'},
+    {name: 'Sign out', path: '/logout'}
 ];
 
 const singleTabs = [
-    {name: 'Launchpad'}, {name: 'Docs'}
+    {name: 'Launchpad', path: '/launchpad'},
+    {name: 'Docs', path: '/docs'}
 ];
 
 function classNames(...classes) {
@@ -31,7 +37,7 @@ function openTab(tabName) {
     }
 }
 
-function NavItemWithDrop(props) {
+function NavItemWithDrop({name, tabs, isProfile}) {
     return (
         <Popover className="relative">
             {({open}) => (
@@ -42,7 +48,7 @@ function NavItemWithDrop(props) {
                             'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                         )}
                     >
-                        <span>{props.name}</span>
+                        <span>{name}</span>
                         <ChevronDownIcon
                             className={classNames(
                                 open ? 'text-gray-600' : 'text-gray-400',
@@ -63,22 +69,23 @@ function NavItemWithDrop(props) {
                     >
                         <Popover.Panel
                             className={classNames(
-                                props.isProfile ? '-ml-20' : '-ml-4',
+                                isProfile ? '-ml-20' : '-ml-4',
                                 "absolute z-10 -ml-4 mt-3 transform px-2"
                             )}>
                             <div
                                 className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                                 <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                                    {props.data.map((item) => (
-                                        <a
-                                            key={item.name}
-                                            onClick={() => openTab(item.name)}
+                                    {tabs.map((item) => (
+                                        <div
                                             className="cursor-pointer -m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
+                                            key={item.name}
                                         >
                                             <div className="ml-4">
-                                                <p className="text-base font-medium text-gray-900">{item.name}</p>
+                                                <Link to={item.path}>
+                                                    <p className="text-base font-medium text-gray-900">{item.name}</p>
+                                                </Link>
                                             </div>
-                                        </a>
+                                        </div>
                                     ))}
                                 </div>
                             </div>
@@ -90,10 +97,10 @@ function NavItemWithDrop(props) {
     )
 }
 
-function NavSmallItem(props) {
+function NavSmallItem({tabs}) {
     return (
         <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-            {props.data.map((item) => (
+            {tabs.map((item) => (
                 <a
                     key={item.name}
                     onClick={() => openTab(item.name)}
@@ -131,10 +138,18 @@ export default function NavBar() {
                         </Popover.Button>
                     </div>
                     <Popover.Group as="nav" className="hidden md:flex space-x-10">
-
-                        <NavItemWithDrop name="Explore" data={exploreTabs} isProfile={false}/>
-                        <NavItemWithDrop name="Create" data={createTabs} isProfile={false}/>
+                        <NavItemWithDrop name="Explore" tabs={exploreTabs} isProfile={false}/>
+                        <NavItemWithDrop name="Create" tabs={createTabs} isProfile={false}/>
                         {singleTabs.map((item) => (
+                            // <div
+                            //     className={classNames(
+                            //         item.name === "Launchpad" ? 'cursor-not-allowed' : 'cursor-pointer',
+                            //         "text-base font-medium text-gray-500 hover:text-gray-900"
+                            //     )}
+                            //     key={item.name}
+                            // >
+                            //     <Link to={item.path}>{item.name}</Link>
+                            // </div>
                             <a
                                 key={item.name}
                                 onClick={() => openTab(item.name)}
@@ -149,7 +164,7 @@ export default function NavBar() {
                     </Popover.Group>
                     {window.walletConnection.isSignedIn() ? (
                         <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-                            <NavItemWithDrop name="Profile" data={profileTabs} isProfile={true}/>
+                            <NavItemWithDrop name="Profile" tabs={profileTabs} isProfile={true}/>
                         </div>
                     ) : (
                         <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
@@ -198,21 +213,21 @@ export default function NavBar() {
                         </div>
                         <div className="py-6 px-5 space-y-6">
                             <div className="text-indigo-500">Explore:</div>
-                            <NavSmallItem data={exploreTabs}/>
+                            <NavSmallItem tabs={exploreTabs}/>
                         </div>
                         <div className="py-6 px-5 space-y-6">
                             <div className="text-indigo-500">Create:</div>
-                            <NavSmallItem data={createTabs}/>
+                            <NavSmallItem tabs={createTabs}/>
                         </div>
                         <div className="py-6 px-5 space-y-6">
-                            <NavSmallItem data={singleTabs}/>
+                            <NavSmallItem tabs={singleTabs}/>
                             {window.walletConnection.isSignedIn() ? (
                                 <>
                                     <div className="grid grid-cols-2 gap-y-4 gap-x-8">
                                         {profileTabs.filter(item => item.name !== 'Sign out').map((item) => (
                                             <a
                                                 key={item.name}
-                                                onClick={() => openTab(item.name)}
+                                                // onClick={() => openTab(item.name)}
                                                 className="cursor-pointer text-base font-medium text-gray-900 hover:text-gray-500"
                                             >
                                                 {item.name}

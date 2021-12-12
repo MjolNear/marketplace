@@ -8,11 +8,13 @@ import ExploreCollections from "../pages/ExploreCollections";
 import NotFound from "../pages/NotFound";
 import CreateNFT from "../pages/CreateNFT";
 import CreateCollection from "../pages/CreateCollection";
+import Main from "../pages/Main";
 
 
 const AppRouter = () => {
     return (
         <Routes>
+            <Route path="/" element={<Main/>}/>
             <Route path="/nft" element={<ExploreNFT/>}/>
             <Route path="/collections" element={<ExploreCollections/>}/>
             <Route path="/create-nft" element={<CreateNFT/>}/>
