@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 
 const exploreTabs = [
     {name: 'NFTs', path: '/nft'},
-    {name: 'Collections', path: 'collections'},
+    {name: 'Collections', path: '/collections'},
 ];
 
 const createTabs = [
@@ -37,7 +37,7 @@ function openTab(tabName) {
     }
 }
 
-function NavItemWithDrop({name, tabs, isProfile}) {
+function TabsDropDownMenu({name, tabs, isProfile}) {
     return (
         <Popover className="relative">
             {({open}) => (
@@ -45,10 +45,12 @@ function NavItemWithDrop({name, tabs, isProfile}) {
                     <Popover.Button
                         className={classNames(
                             open ? 'text-gray-900' : 'text-gray-500',
-                            'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                            'group bg-white rounded-md inline-flex items-center ' +
+                            'text-base font-medium hover:text-gray-900 focus:outline-none ' +
+                            'focus:ring-2 focus:ring-offset-4 focus:ring-indigo-500'
                         )}
                     >
-                        <span>{name}</span>
+                        {name}
                         <ChevronDownIcon
                             className={classNames(
                                 open ? 'text-gray-600' : 'text-gray-400',
@@ -72,20 +74,17 @@ function NavItemWithDrop({name, tabs, isProfile}) {
                                 isProfile ? '-ml-20' : '-ml-4',
                                 "absolute z-10 -ml-4 mt-3 transform px-2"
                             )}>
-                            <div
-                                className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+                            <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                                 <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                                     {tabs.map((item) => (
-                                        <div
-                                            className="cursor-pointer -m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
-                                            key={item.name}
-                                        >
-                                            <div className="ml-4">
-                                                <Link to={item.path}>
-                                                    <p className="text-base font-medium text-gray-900">{item.name}</p>
-                                                </Link>
+                                        <Link to={item.path}>
+                                            <div
+                                                className="cursor-pointer -m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
+                                                key={item.name}
+                                            >
+                                                <p className="text-base font-medium text-gray-900">{item.name}</p>
                                             </div>
-                                        </div>
+                                        </Link>
                                     ))}
                                 </div>
                             </div>
@@ -138,8 +137,8 @@ export default function NavBar() {
                         </Popover.Button>
                     </div>
                     <Popover.Group as="nav" className="hidden md:flex space-x-10">
-                        <NavItemWithDrop name="Explore" tabs={exploreTabs} isProfile={false}/>
-                        <NavItemWithDrop name="Create" tabs={createTabs} isProfile={false}/>
+                        <TabsDropDownMenu name="Explore" tabs={exploreTabs} isProfile={false}/>
+                        <TabsDropDownMenu name="Create" tabs={createTabs} isProfile={false}/>
                         {singleTabs.map((item) => (
                             // <div
                             //     className={classNames(
@@ -164,7 +163,7 @@ export default function NavBar() {
                     </Popover.Group>
                     {window.walletConnection.isSignedIn() ? (
                         <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-                            <NavItemWithDrop name="Profile" tabs={profileTabs} isProfile={true}/>
+                            <TabsDropDownMenu name="Profile" tabs={profileTabs} isProfile={true}/>
                         </div>
                     ) : (
                         <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
