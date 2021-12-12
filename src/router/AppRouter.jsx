@@ -14,14 +14,14 @@ import Main from "../pages/Main";
 const AppRouter = () => {
     return (
         <Routes>
-            <Route path="/" element={<Main/>}/>
-            <Route path="/nft" element={<ExploreNFT/>}/>
-            <Route path="/collections" element={<ExploreCollections/>}/>
-            <Route path="/create-nft" element={<CreateNFT/>}/>
-            <Route path="/create-collection" element={<CreateCollection/>}/>
-            <Route path="/my-nft" element={<UserNFT/>}/>
-            <Route path="/my-collection" element={<UserNFTCollections/>}/>
-            <Route path="*" element={<NotFound/>}/>
+            <Route path="/" element={<Main/>} key="1"/>
+            <Route path="/nft" element={<ExploreNFT/>} key="2"/>
+            <Route path="/collections" element={<ExploreCollections/>} key="3"/>
+            <Route path="/create-nft" element={<CreateNFT/>} key="4"/>
+            <Route path="/create-collection" element={<CreateCollection/>} key="5"/>
+            <Route path="/my-nft" element={<UserNFT/>} key="6"/>
+            <Route path="/my-collection" element={<UserNFTCollections/>} key="7"/>
+            <Route path="*" element={<NotFound/>} key="8"/>
         </Routes>
     );
 };

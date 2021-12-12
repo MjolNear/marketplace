@@ -1,7 +1,6 @@
 import React from 'react'
-import NavBar from "./components/navbar/NavBar";
 import AppRouter from "./router/AppRouter";
-
+import NavBar from "./components/navbar/NavBar";
 
 export default function App() {
     return (
