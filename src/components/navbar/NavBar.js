@@ -2,7 +2,7 @@ import {Fragment} from 'react'
 import {Popover, Transition} from '@headlessui/react'
 import {MenuIcon, XIcon} from '@heroicons/react/outline'
 import {ChevronDownIcon} from '@heroicons/react/solid'
-import {login, logout} from "../utils/contract-utils";
+import {login, logout} from "../../utils/contract-utils";
 
 const exploreTabs = [
     {name: 'NFTs'}, {name: 'Collections'}
@@ -31,7 +31,7 @@ function openTab(tabName) {
     }
 }
 
-function NavItemWithDrop(props){
+function NavItemWithDrop(props) {
     return (
         <Popover className="relative">
             {({open}) => (
@@ -90,7 +90,7 @@ function NavItemWithDrop(props){
     )
 }
 
-function NavSmallItem(props){
+function NavSmallItem(props) {
     return (
         <div className="grid grid-cols-2 gap-y-4 gap-x-8">
             {props.data.map((item) => (
@@ -208,23 +208,23 @@ export default function NavBar() {
                             <NavSmallItem data={singleTabs}/>
                             {window.walletConnection.isSignedIn() ? (
                                 <>
-                                <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                                    {profileTabs.filter(item => item.name !== 'Sign out').map((item) => (
+                                    <div className="grid grid-cols-2 gap-y-4 gap-x-8">
+                                        {profileTabs.filter(item => item.name !== 'Sign out').map((item) => (
+                                            <a
+                                                key={item.name}
+                                                onClick={() => openTab(item.name)}
+                                                className="cursor-pointer text-base font-medium text-gray-900 hover:text-gray-500"
+                                            >
+                                                {item.name}
+                                            </a>
+                                        ))}
                                         <a
-                                            key={item.name}
-                                            onClick={() => openTab(item.name)}
-                                            className="cursor-pointer text-base font-medium text-gray-900 hover:text-gray-500"
+                                            onClick={logout}
+                                            className="cursor-pointer col-span-2 text-center font-medium text-gray-500 hover:text-gray-700"
                                         >
-                                            {item.name}
+                                            Log out
                                         </a>
-                                    ))}
-                                    <a
-                                        onClick={logout}
-                                        className="cursor-pointer col-span-2 text-center font-medium text-gray-500 hover:text-gray-700"
-                                    >
-                                        Log out
-                                    </a>
-                                </div>
+                                    </div>
                                 </>
                             ) : (
                                 <div>
@@ -236,7 +236,6 @@ export default function NavBar() {
                                     </a>
                                 </div>
                             )}
-
                         </div>
                     </div>
                 </Popover.Panel>
