@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Main = () => {
+const UserNFT = () => {
     return (
         <div>
-            Main page
+            My NFT
         </div>
     );
 };
 
-export default Main;
+export default UserNFT;

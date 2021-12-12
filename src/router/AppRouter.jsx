@@ -1,14 +1,24 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
+
+import UserNFT from "../pages/UserNFT";
+import UserNFTCollections from "../pages/UserNFTCollections";
+import ExploreNFT from "../pages/ExploreNFTs";
+import ExploreCollections from "../pages/ExploreCollections";
 import NotFound from "../pages/NotFound";
-import UserNft from "../pages/UserNft";
-import UserNftCollection from "../pages/UserNftCollection";
+import CreateNFT from "../pages/CreateNFT";
+import CreateCollection from "../pages/CreateCollection";
+
 
 const AppRouter = () => {
     return (
         <Routes>
-            <Route path="my-nft" element={<UserNft/>}/>
-            <Route path="my-collection" element={<UserNftCollection/>}/>
+            <Route path="/nft" element={<ExploreNFT/>}/>
+            <Route path="/collections" element={<ExploreCollections/>}/>
+            <Route path="/create-nft" element={<CreateNFT/>}/>
+            <Route path="/create-collection" element={<CreateCollection/>}/>
+            <Route path="/my-nft" element={<UserNFT/>}/>
+            <Route path="/my-collection" element={<UserNFTCollections/>}/>
             <Route path="*" element={<NotFound/>}/>
         </Routes>
     );
