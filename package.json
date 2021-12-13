@@ -28,6 +28,7 @@
     "@headlessui/react": "^1.4.2",
     "@heroicons/react": "^1.0.5",
     "autoprefixer": "^9.8.8",
+    "is-ipfs": "^6.0.2",
     "near-api-js": "~0.43.1",
     "postcss": "^7.0.39",
     "react": "~17.0.1",

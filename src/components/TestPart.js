@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import {getNfts, getMintedNumber} from "../utils/mocks.js";
 import * as nearAPI from "near-api-js";
-import {login, logout} from "../utils/contract-utils";
+import {getNFTs} from "../utils/get-nfts";
 
 export const {
     utils: {
@@ -12,7 +11,7 @@ export const {
 } = nearAPI;
 
 
-export default function MainPart() {
+export default function TestPart() {
 
     const giveApprove = () => {
         console.log("GIVE approve");
@@ -45,6 +44,17 @@ export default function MainPart() {
         )
     };
 
+    if (window.walletConnection.isSignedIn()) {
+        getNFTs(window.accountId).then(myNFTs => {
+            for (let nft of myNFTs) {
+                nft.then(
+                    resolve => console.log(resolve),
+                    error => console.log("Error:" + error)
+                );
+            }
+        });
+    }
+
     return (
         <>
             {/*<div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">*/}
@@ -66,7 +76,7 @@ export default function MainPart() {
 
             {/*</div>*/}
             <div>
-                <p >{window.accountId}</p>
+                <p>{window.accountId}</p>
             </div>
 
 
