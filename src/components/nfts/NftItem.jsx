@@ -1,9 +1,9 @@
 import React from 'react';
 
-const NftItem = () => {
+const NftItem = (nft) => {
     return (
-        <div className="rounded">
-            ROUNDED BOX
+        <div className="border-2 border-green-100">
+            D
         </div>
     );
 };
