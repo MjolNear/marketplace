@@ -1,31 +1,57 @@
-module.exports = {getNFTs};
+import {getJsonByURL, convertStandardNFT, getMintbaseNFT} from "./nft-converter";
 const nearApi = require("near-api-js");
 
-async function getNFTContractsByWallet(accountId) {
-    try {
-        const res = await fetch('https://helper.' + (accountId.substr(-5) === '.near' ? 'mainnet' : 'testnet')
-            + '.near.org/account/' + accountId + '/likelyNFTs', {timeout: 30000});
-        if (res.status < 199 || res.status > 299) {
-            return {error: res.statusText + ' (' + res.status + ')'}
-        }
-        const text = await res.text();
+
+
+
+async function getNFTsByContractAndAccount(account, contractId, accountId) {
+    const limit = 20;
+    let allNfts = [], curNfts = [];
+    do {
         try {
-            return JSON.parse(text)
-        } catch (err) {
-            return {error: text}
+            curNfts = await account.viewFunction(contractId, 'nft_tokens_for_owner', {
+                account_id: accountId,
+                from_index: allNfts.length.toString(),
+                limit: limit
+            });
+        } catch (e) {
+            break
         }
-    } catch (err) {
-        return {error: err}
-    }
+        allNfts = allNfts.concat(curNfts);
+    } while (curNfts.length >= limit);
+
+    return allNfts;
 }
 
-async function getNFTs(accountId) {
-    const res = await getNFTContractsByWallet(accountId);
-    if (res.error){
+async function getNFTinfo(account, contractId, nft) {
+    if (contractId.substr(-14) === 'mintbase1.near') {
+        return getMintbaseNFT(account, contractId, nft)
+    }
+    return convertStandardNFT(contractId, nft)
+}
+
+
+export async function getNFTs(accountId) {
+    const accountURL = 'https://helper.' + (accountId.substr(-5) === '.near' ? 'mainnet' : 'testnet')
+        + '.near.org/account/' + accountId + '/likelyNFTs';
+    const nftContracts = await getJsonByURL(accountURL);
+    const network = accountId.substr(-5) === '.near' ? 'mainnet' : 'testnet';
+    const provider = new nearApi.providers.JsonRpcProvider('https://rpc.' + network + '.near.org');
+    const account = new nearApi.Account({provider: provider});
+
+    if (nftContracts.error) {
         console.log("ERROR");
-        return
+        return []
     }
-    console.log(res);
-}
+    let resNFTs = [];
+    for (let contractId of nftContracts) {
+        const nfts = await getNFTsByContractAndAccount(account, contractId, accountId);
+        for (let nft of nfts) {
+            resNFTs.push(getNFTinfo(account, contractId, nft))
+        }
 
-getNFTs('turk.near');
+    }
+
+    return resNFTs
+
+}

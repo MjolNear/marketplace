@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import MainPart from "./MainPart";
+import TestPart from "./TestPart";
 import NavBar from "./NavBar";
 
 
@@ -8,7 +8,7 @@ export default function App() {
         <>
             <Fragment>
                 <NavBar />
-                <MainPart />
+                <TestPart />
             </Fragment>
         </>
     )
