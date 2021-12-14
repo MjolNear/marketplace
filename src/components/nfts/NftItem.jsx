@@ -6,8 +6,8 @@ import NftFooter from "./NftFooter";
 const NftItem = ({nft}) => {
     return (
         <ExploreNftContainer>
-            <NftImage path={nft.url}/>
-            <NftFooter title={nft.title} price={0.342}/>
+            <NftImage path={nft.media_url}/>
+            <NftFooter nft={nft}/>
         </ExploreNftContainer>
     );
 };
