@@ -1,10 +1,14 @@
 import React from 'react';
+import NftImage from "./NftImage";
+import ExploreNftContainer from "./ExploreNftContainer";
+import NftFooter from "./NftFooter";
 
-const NftItem = (nft) => {
+const NftItem = ({nft}) => {
     return (
-        <div className="border-2 border-green-100">
-            D
-        </div>
+        <ExploreNftContainer>
+            <NftImage path={nft.url}/>
+            <NftFooter title={nft.title} price={0.342}/>
+        </ExploreNftContainer>
     );
 };
 
