@@ -88,7 +88,7 @@ const UserNFT = () => {
     ]
 
     return (
-        <div className="bg-white">
+        <div className="bg-white m-5 sm:m-8">
             <NftCollectionContainer>
                 {nfts.map(nft =>
                     <NftItem nft={nft} key={nft.title}/>
