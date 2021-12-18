@@ -83,8 +83,8 @@ export default function NavBar() {
     ]
 
     const profileTabs = [
-        {name: 'My NFTs', path: '/my-nft'},
-        {name: 'My Collections', path: '/my-collection'},
+        {name: 'My NFTs', path: '/profile-nft'},
+        {name: 'My Collections', path: '/profile-collection'},
         {name: 'Sign out', path: '/logout'}
     ]
 

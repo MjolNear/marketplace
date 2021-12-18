@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 const NftMintedLink = ({mintedName, mintedLink}) => {
     return (
-        <div className="text-pink-200 text-xs underline float-right">
+        <div className="text-purple-600 text-xs underline float-right hover:text-pink-900">
             <Link to={mintedLink}>Minted on {mintedName}</Link>
         </div>
     );
