@@ -20,9 +20,7 @@ const NavigationBar = () => {
                 My NFTs
             </div>
             <div className="text-center">
-                <div className="inline-flex flex-col gap-1
-                                xs:flex-row xs:gap-4 md:gap-5 md:text-lg
-                                "
+                <div className="inline-flex flex-col gap-1 xs:flex-row xs:gap-4 md:gap-5 md:text-lg"
                 >
                     {tabBarPages.map(page =>
                         <DarkButton link={page.link} title={page.name}/>

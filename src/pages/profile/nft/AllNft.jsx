@@ -5,7 +5,7 @@ import UserNFT from "../../UserNFT";
 const AllNft = () => {
     console.log("HERR")
     return (
-        <div className="bg-light_white">
+        <div className="bg-light_white pb-5">
             <NavigationBar/>
             <UserNFT/>
         </div>
