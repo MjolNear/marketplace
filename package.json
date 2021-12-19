@@ -27,6 +27,7 @@
     "@craco/craco": "^6.4.3",
     "@headlessui/react": "^1.4.2",
     "@heroicons/react": "^1.0.5",
+    "@tailwindcss/forms": "^0.4.0",
     "autoprefixer": "^9.8.8",
     "is-ipfs": "^6.0.2",
     "near-api-js": "~0.43.1",
