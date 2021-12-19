@@ -1,17 +1,7 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import DarkButton from "../../../components/ui/buttons/DarkButton";
 
-const ProfileNavigationBar = () => {
-
-    const tabBarPages = useMemo(
-        () => [
-            {name: 'My NFT', link: '/profile-nft/all'},
-            {name: 'My Listed NFT', link: '/profile-nft/listed'},
-            {name: 'My Minted NFT', link: '/profile-nft/minted'},
-            {name: 'My History', link: '/profile-nft/history'},
-        ], []
-    )
-
+const ProfileNavigationBar = ({setActiveTab, activeTab, tabItems}) => {
     return (
         <div className="bg-light_white space-y-2 xs:space-y-8 xs:p-2">
             <div
@@ -20,10 +10,15 @@ const ProfileNavigationBar = () => {
                 My NFTs
             </div>
             <div className="text-center">
-                <div className="inline-flex flex-col gap-1 xs:flex-row xs:gap-4 md:gap-5 md:text-lg"
+                <div className="inline-flex flex-col gap-2 xs:flex-row xs:gap-4 md:gap-5 md:text-lg"
                 >
-                    {tabBarPages.map(page =>
-                        <DarkButton link={page.link} title={page.name}/>
+                    {tabItems.map(item =>
+                        <DarkButton key={item.title}
+                                    link={item.link}
+                                    title={item.title}
+                                    isActive={item.title === activeTab}
+                                    onClick={() => setActiveTab(item.title)}
+                        />
                     )}
                 </div>
             </div>

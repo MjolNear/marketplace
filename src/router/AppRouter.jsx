@@ -8,10 +8,6 @@ import CreateNFT from "../pages/CreateNFT";
 import CreateCollection from "../pages/CreateCollection";
 import Main from "../pages/Main";
 import Profile from "../pages/profile/Profile";
-import AllNft from "../pages/profile/nft/AllNft";
-import ListedNft from "../pages/profile/nft/ListedNft";
-import MintedNft from "../pages/profile/nft/MintedNft";
-import History from "../pages/profile/nft/History";
 
 
 const AppRouter = () => {
@@ -24,10 +20,10 @@ const AppRouter = () => {
             <Route path="/create-collection" element={<CreateCollection/>} key="5"/>
 
             <Route path="/profile-nft" element={<Profile/>} key="6"/>
-            <Route path="/profile-nft/all" element={<AllNft/>} key="7"/>
-            <Route path="/profile-nft/listed" element={<ListedNft/>} key="8"/>
-            <Route path="/profile-nft/minted" element={<MintedNft/>} key="9"/>
-            <Route path="/profile-nft/history" element={<History/>} key="10"/>
+            <Route path="/profile-nft/all" element={<Profile/>} key="7"/>
+            <Route path="/profile-nft/listed" element={<Profile/>} key="8"/>
+            <Route path="/profile-nft/minted" element={<Profile/>} key="9"/>
+            <Route path="/profile-nft/history" element={<Profile/>} key="10"/>
 
             <Route path="/profile-collection" element={<UserNFTCollections/>} key="11"/>
             <Route path="*" element={<NotFound/>} key="12"/>

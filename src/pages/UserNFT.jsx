@@ -14,7 +14,7 @@ const UserNFT = () => {
             null,
             'https://media.giphy.com/media/xxBBZgE1XpreXSsNPz/giphy.gif'),
         new NFT('1',
-            '1',
+            '2',
             'x.near',
             "Crypto Punk",
             "Crypto punk collection",
@@ -22,7 +22,7 @@ const UserNFT = () => {
             null,
             'https://media.giphy.com/media/ho0xXatV7b3Fo1ZRXN/giphy.gif'),
         new NFT('1',
-            '1',
+            '3',
             'x.near',
             "Cock",
             "Fruit cock collections",
@@ -32,7 +32,7 @@ const UserNFT = () => {
         ),
         new NFT(
             '1',
-            '1',
+            '4',
             'x.near',
             "Crypto Punk",
             "Crypto punk collection",
@@ -40,7 +40,7 @@ const UserNFT = () => {
             null,
             'https://media.giphy.com/media/ho0xXatV7b3Fo1ZRXN/giphy.gif'),
         new NFT('1',
-            '1',
+            '5',
             'x.near',
             "Cock",
             "Fruit cock collections",
@@ -50,7 +50,7 @@ const UserNFT = () => {
         ),
         new NFT(
             '1',
-            '1',
+            '6',
             'x.near',
             "Crypto Punk",
             "Crypto punk collection",
@@ -59,7 +59,7 @@ const UserNFT = () => {
             'https://media.giphy.com/media/ho0xXatV7b3Fo1ZRXN/giphy.gif'),
         new NFT(
             '1',
-            '1',
+            '7',
             'x.near',
             "Cock",
             "Fruit cock collection",
@@ -67,7 +67,7 @@ const UserNFT = () => {
             null,
             'https://media.giphy.com/media/xxBBZgE1XpreXSsNPz/giphy.gif'),
         new NFT('1',
-            '1',
+            '8',
             'x.near',
             "Crypto Punk",
             "Crypto punk collection",
@@ -77,7 +77,7 @@ const UserNFT = () => {
         ),
         new NFT(
             '1',
-            '1',
+            '9',
             'x.near',
             "Very very very long Cock name",
             "Fruit cock collection",
@@ -87,7 +87,7 @@ const UserNFT = () => {
         ),
         new NFT(
             '1',
-            '1',
+            '10',
             'x.near',
             "Very very very long Cock name",
             "Fruit cock collection",
@@ -96,7 +96,7 @@ const UserNFT = () => {
             'https://media.giphy.com/media/xxBBZgE1XpreXSsNPz/giphy.gif'
         ), new NFT(
             '1',
-            '1',
+            '11',
             'x.near',
             "Cock name",
             "Fruit cock collection",
@@ -110,7 +110,8 @@ const UserNFT = () => {
         <div className="bg-transparent m-5 sm:m-8">
             <NftCollectionContainer>
                 {nfts.map(nft =>
-                    <NftItem nft={nft} key={nft.title}/>
+                    <NftItem key={nft.token_id}
+                             nft={nft}/>
                 )}
             </NftCollectionContainer>
         </div>

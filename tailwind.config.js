@@ -56,7 +56,8 @@ module.exports = {
     },
     variants: {
         extend: {
-            ringWidth: ['hover', 'active']
+            ringWidth: ['hover', 'active'],
+            ringColor: ['hover', 'active']
         },
     },
     plugins: [],
