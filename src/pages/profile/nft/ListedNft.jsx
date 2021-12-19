@@ -1,11 +1,11 @@
 import React from 'react';
-import NavigationBar from "../ui/NavigationBar";
+import ProfileNavigationBar from "../ui/ProfileNavigationBar";
 import UserNFT from "../../UserNFT";
 
 const ListedNft = () => {
     return (
         <div className="bg-light_white pb-5">
-            <NavigationBar/>
+            <ProfileNavigationBar/>
             <UserNFT/>
         </div>
     );

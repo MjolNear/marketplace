@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import DarkButton from "../../../components/ui/buttons/DarkButton";
 
-const NavigationBar = () => {
+const ProfileNavigationBar = () => {
 
     const tabBarPages = useMemo(
         () => [
@@ -31,4 +31,4 @@ const NavigationBar = () => {
     );
 };
 
-export default NavigationBar;
+export default ProfileNavigationBar;
