@@ -4,11 +4,10 @@ import AllNft from "./nft/AllNft";
 import ListedNft from "./nft/ListedNft";
 import MintedNft from "./nft/MintedNft";
 import History from "./nft/History";
-import GreetingFooter from "./ui/GreetingFooter";
 
 const Profile = () => {
 
-    const [activeTab, setActiveTab] = useState('Not selected')
+    const [activeTab, setActiveTab] = useState('My NFT')
 
     const tabItems = useMemo(
         () => [
@@ -20,7 +19,6 @@ const Profile = () => {
     )
 
     const activePage = {
-        'Not selected': <GreetingFooter/>,
         'My NFT': <AllNft/>,
         'My Listed NFT': <ListedNft/>,
         'My Minted NFT': <MintedNft/>,

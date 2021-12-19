@@ -11,7 +11,11 @@ const DarkButton = ({link, title, isActive, onClick}) => {
                       : "bg-gradient-to-br from-white to-white ring-1 ring-inset ring-black hover:to-black hover:from-black",
                   "group rounded-3xl pl-5 pr-5 pt-2 pb-2")}
         >
-            <div className="text-black text-extrabold text-md lg:text-xl font-mono group-hover:text-white">
+            <div className={classNames(!isActive
+                    ? "group-hover:text-white"
+                    : "",
+                "text-black text-extrabold text-md lg:text-xl font-mono")
+            }>
                 {title}
             </div>
         </Link>
