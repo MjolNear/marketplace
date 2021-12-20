@@ -6,8 +6,13 @@ module.exports = {
             'xs': '500px',
             // => @media (min-width: 500px) { ... }
 
+            // 'sm630': '630px',
+
             'sm': '640px',
             // => @media (min-width: 640px) { ... }
+
+            'md670': '670px',
+
 
             'md': '768px',
             // => @media (min-width: 768px) { ... }
@@ -22,6 +27,15 @@ module.exports = {
             // => @media (min-width: 1536px) { ... }
         },
         extend: {
+
+            gridTemplateColumns: {
+                '1nft-300': 'repeat(1, 300px)',
+                '2nft-280': 'repeat(2, 280px)',
+                '2nft-300': 'repeat(2, 300px)',
+                '3nft-300': 'repeat(3, 300px)',
+                '4nft-350': 'repeat(4, 350px)',
+            },
+
             colors: {
                 light_white: '#f4f7fc',
                 light_blue: '#4391ff',

@@ -1,10 +1,8 @@
 import React from 'react';
 
-const NftBorderLine = ({children, ...props}) => {
+const NftBorderLine = ({children}) => {
     return (
-        <hr {...props}>
-            {children}
-        </hr>
+        <hr>{children}</hr>
     );
 };
 

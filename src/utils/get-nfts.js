@@ -1,7 +1,6 @@
-import {getJsonByURL, convertStandardNFT, getMintbaseNFT} from "./nft-converter";
+import {convertStandardNFT, getJsonByURL, getMintbaseNFT} from "./nft-converter";
+
 const nearApi = require("near-api-js");
-
-
 
 
 async function getNFTsByContractAndAccount(account, contractId, accountId) {
@@ -23,7 +22,7 @@ async function getNFTsByContractAndAccount(account, contractId, accountId) {
     return allNfts;
 }
 
-async function getNFTinfo(account, contractId, nft) {
+async function getNftInfo(account, contractId, nft) {
     if (contractId.substr(-14) === 'mintbase1.near') {
         return getMintbaseNFT(account, contractId, nft)
     }
@@ -47,11 +46,9 @@ export async function getNFTs(accountId) {
     for (let contractId of nftContracts) {
         const nfts = await getNFTsByContractAndAccount(account, contractId, accountId);
         for (let nft of nfts) {
-            resNFTs.push(getNFTinfo(account, contractId, nft))
+            resNFTs.push(getNftInfo(account, contractId, nft))
         }
-
     }
 
     return resNFTs
-
 }

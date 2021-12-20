@@ -6,9 +6,9 @@ const TitleCollectionGroup = ({nft}) => {
     return (
         <div className="py-1 space-y-1">
             <NftTitle title={nft.title}/>
-            <NftCollectionLink collectionLogoLink="https://media.giphy.com/media/ho0xXatV7b3Fo1ZRXN/giphy.gif"
+            <NftCollectionLink collectionLogoLink="https://lh3.googleusercontent.com/LWhywvNVMddohKKZbuKEGV6D92TE6gjA5FCHDZhPgRDdn9HPIFB4x07mFJrZJrZPDSuZQhNqEyGLZM-BfBMcnMvu-IeLq_VedKyZEg=w600"
                                collectionLink='https://google.com/'
-                               collectionName={nft.description}
+                               collectionName="Mock collection"
             />
         </div>
     );

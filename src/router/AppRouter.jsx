@@ -20,10 +20,10 @@ const AppRouter = () => {
             <Route path="/create-collection" element={<CreateCollection/>} key="5"/>
 
             <Route path="/profile-nft" element={<Profile/>} key="6"/>
-            <Route path="/profile-nft/all" element={<Profile/>} key="7"/>
-            <Route path="/profile-nft/listed" element={<Profile/>} key="8"/>
-            <Route path="/profile-nft/minted" element={<Profile/>} key="9"/>
-            <Route path="/profile-nft/history" element={<Profile/>} key="10"/>
+            {/*<Route path="/profile-nft/all" element={<Profile/>} key="7"/>*/}
+            {/*<Route path="/profile-nft/listed" element={<Profile/>} key="8"/>*/}
+            {/*<Route path="/profile-nft/minted" element={<Profile/>} key="9"/>*/}
+            {/*<Route path="/profile-nft/history" element={<Profile/>} key="10"/>*/}
 
             <Route path="/profile-collection" element={<UserNFTCollections/>} key="11"/>
             <Route path="*" element={<NotFound/>} key="12"/>

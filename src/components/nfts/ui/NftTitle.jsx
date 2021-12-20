@@ -2,7 +2,8 @@ import React from 'react';
 
 const NftTitle = ({title}) => {
     return (
-        <div className="text-md md:text-lg xl:text-2xl 2xl:text-3xl font-mono font-extrabold text-black">
+        <div className="font-mono font-extrabold text-black truncate
+                        text-sm md:text-md xl:text-lg 2xl:text-2xl">
             {title}
         </div>
     );

@@ -6,7 +6,6 @@ import MintedNft from "./nft/MintedNft";
 import History from "./nft/History";
 
 const Profile = () => {
-
     const [activeTab, setActiveTab] = useState('My NFT')
 
     const tabItems = useMemo(

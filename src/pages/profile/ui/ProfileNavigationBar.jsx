@@ -14,7 +14,6 @@ const ProfileNavigationBar = ({setActiveTab, activeTab, tabItems}) => {
                 >
                     {tabItems.map(item =>
                         <DarkButton key={item.title}
-                                    link={item.link}
                                     title={item.title}
                                     isActive={item.title === activeTab}
                                     onClick={() => setActiveTab(item.title)}
