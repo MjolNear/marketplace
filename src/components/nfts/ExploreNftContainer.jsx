@@ -1,12 +1,11 @@
 import React from 'react';
 
-const ExploreNftContainer = ({children, styles = ""}) => {
+
+const ExploreNftContainer = ({children}) => {
     return (
-            <div className={
-                ["flex flex-col justify-between w-full h-full rounded-3xl ring-inset ring-2 ring-light_blue bg-white", styles].join(' ')
-            }>
-                {children}
-            </div>
+        <div className="rounded-3xl ring-inset ring-2 ring-light_blue bg-white">
+            {children}
+        </div>
     );
 };
 

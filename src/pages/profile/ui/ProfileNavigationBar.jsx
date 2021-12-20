@@ -10,7 +10,7 @@ const ProfileNavigationBar = ({setActiveTab, activeTab, tabItems}) => {
                 My NFTs
             </div>
             <div className="text-center">
-                <div className="inline-flex flex-col gap-2 xs:flex-row xs:gap-4 md:gap-5 md:text-lg"
+                <div className="inline-flex flex-col gap-2 sm:flex-row sm:gap-5 md:text-lg"
                 >
                     {tabItems.map(item =>
                         <DarkButton key={item.title}
