@@ -2,6 +2,7 @@ import React from 'react';
 import {NFT} from "../utils/classes";
 import NftCollectionContainer from "../components/nfts/NftCollectionContainer";
 import NftItem from "../components/nfts/NftItem";
+import TestPart from "../components/TestPart";
 
 const UserNFT = () => {
     const nfts = [
@@ -89,6 +90,7 @@ const UserNFT = () => {
 
     return (
         <div className="bg-white m-5 sm:m-8">
+            <TestPart/>
             <NftCollectionContainer>
                 {nfts.map(nft =>
                     <NftItem nft={nft} key={nft.title}/>

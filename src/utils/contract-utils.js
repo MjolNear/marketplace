@@ -1,8 +1,10 @@
-import { connect, Contract, keyStores, WalletConnection } from 'near-api-js'
+import {connect, Contract, keyStores, WalletConnection, utils} from 'near-api-js'
 import getConfig from '../config'
 import Buffer from 'buffer'
 const nearConfig = getConfig('mainnet');
 
+
+const GAS = "300000000000000";
 
 // Initialize contract & set global variables
 export async function initContract() {
@@ -40,4 +42,25 @@ export function login() {
   // the private key in localStorage.
   console.log("SIGN IN");
   window.walletConnection.requestSignIn(nearConfig.contractName)
+}
+
+export function mintToCommonCollection(token_metadata, payout){
+  const common_contract_id = 'mjol.near';
+  const token_id = 'token-' + new Date().getTime();
+
+  const data = {
+    token_id: token_id,
+    token_owner_id: window.accountId,
+    token_metadata: token_metadata,
+  };
+  if (payout !== null){
+    data["payout"] = payout
+  }
+  window.walletConnection.account().functionCall(
+      common_contract_id,
+      'nft_mint',
+      data,
+      GAS,
+      utils.format.parseNearAmount('0.1')
+  )
 }
