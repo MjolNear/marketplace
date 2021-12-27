@@ -1,13 +1,13 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
-import MainPage from "../react-components/pages/main/MainPage";
-import ProfilePage from "../react-components/pages/profile/ProfilePage";
-import ProfileNftCollectionsPage from "../react-components/pages/profile/collection/ProfileNftCollectionsPage";
-import NotFoundPage from "../react-components/pages/not-found/NotFoundPage";
-import CreateCollectionPage from "../react-components/pages/create/collection/CreateCollectionPage";
-import CreateNftPage from "../react-components/pages/create/nft/CreateNftPage";
-import ExploreCollectionsPage from "../react-components/pages/explore/collection/ExploreCollectionsPage";
-import ExploreNftPage from "../react-components/pages/explore/nft/ExploreNftPage";
+import MainPage from "../components/pages/main/MainPage";
+import ProfilePage from "../components/pages/profile/ProfilePage";
+import ProfileNftCollectionsPage from "../components/pages/profile/collection/ProfileNftCollectionsPage";
+import NotFoundPage from "../components/pages/not-found/NotFoundPage";
+import CreateCollectionPage from "../components/pages/create/collection/CreateCollectionPage";
+import CreateNftPage from "../components/pages/create/nft/CreateNftPage";
+import ExploreCollectionsPage from "../components/pages/explore/collection/ExploreCollectionsPage";
+import ExploreNftPage from "../components/pages/explore/nft/ExploreNftPage";
 
 
 const AppRouter = ({state}) => {

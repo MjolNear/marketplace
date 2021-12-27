@@ -8,7 +8,6 @@ import {state} from "./redux/state";
 
 
 const rootElement = document.getElementById("root");
-console.log('here')
 window.nearInitPromise = initContract()
     .then(() => {
         ReactDOM.render(
