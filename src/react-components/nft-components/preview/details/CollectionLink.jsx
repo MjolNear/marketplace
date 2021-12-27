@@ -1,0 +1,17 @@
+import React from 'react';
+import {Link} from "react-router-dom";
+import ShareIcon from "../../../ui/icons/ShareIcon";
+
+const CollectionLink = ({name, link}) => {
+    return (
+        <div className="flex flex-row justify-between">
+            <div
+                className="text-md md:text-lg font-mono font-bold text-nft_collection_purple hover:underline">
+                <Link to={link}>{name}</Link>
+            </div>
+            <ShareIcon/>
+        </div>
+    );
+};
+
+export default CollectionLink;
