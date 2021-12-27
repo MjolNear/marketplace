@@ -100,5 +100,5 @@ module.exports = {
             ringColor: ['hover', 'active']
         },
     },
-    plugins: [],
+    plugins: [require('@tailwindcss/forms')],
 }

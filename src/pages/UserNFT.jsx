@@ -3,6 +3,7 @@ import NftCollectionContainer from "../components/nfts/NftCollectionContainer";
 import mockNFTs from "../api/__mock__";
 import NftLoading from "../components/ui/loaders/NftLoading";
 import NftItem from "../components/nfts/NftItem";
+import TestPart from "../components/TestPart";
 
 const UserNFT = () => {
 
@@ -41,6 +42,7 @@ const UserNFT = () => {
 
     return (
         <div className="bg-transparent m-10">
+
             <NftCollectionContainer>
                 {isLoading
                     ? loadings.map((i, idx) => <NftLoading key={idx} width={295} height={455}/>)
