@@ -1,13 +1,10 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import NftCollectionContainer from "../../../nft-components/NftCollectionContainer";
-import mockNFTs from "../../../../api/__mock__";
+import NftCollectionContainer from "../../../collection-components/NftCollectionContainer";
+import mockNFTs from "../../../../busines-layer/api/mocks";
 import NftLoading from "../../../ui/loaders/NftLoading";
 import NftItem from "../../../nft-components/NftItem";
 
 const UserNFT = () => {
-
-    // Uncommnet for mocked variant
-    // const nfts = mockNFTs();
 
     const [nfts, setNfts] = useState([])
     const [isLoading, setLoading] = useState(true)

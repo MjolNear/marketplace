@@ -1,4 +1,4 @@
-import {NFT} from "../utils/classes";
+import {NFT} from "../models/NFT";
 
 export default function mockNFTs() {
     return [

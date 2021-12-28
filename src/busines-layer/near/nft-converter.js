@@ -1,4 +1,4 @@
-import {NFT} from "./classes";
+import {NFT} from "../models/NFT";
 
 const isIPFS = require('is-ipfs');
 

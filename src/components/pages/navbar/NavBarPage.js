@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
 import {Popover, Transition} from '@headlessui/react'
-import {login, logout} from "../../../utils/contract-utils";
-import classNames from "../../../utils/utils";
+import {login, logout} from "../../../busines-layer/near/contract";
+import classNames from "../../../busines-layer/css-utils";
 import {CloseMenuButton, DropDownButton, MenuButton} from "../../ui/navbar/buttons";
 import {Link} from "react-router-dom";
 

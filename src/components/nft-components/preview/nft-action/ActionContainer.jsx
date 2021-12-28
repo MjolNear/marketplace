@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Container = ({children}) => {
+const ActionContainer = ({children}) => {
     return (
         <div className="rounded-lg bg-gray-200">
             {children}
@@ -8,4 +8,4 @@ const Container = ({children}) => {
     );
 };
 
-export default Container;
+export default ActionContainer;

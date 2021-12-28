@@ -1,10 +1,10 @@
 import React from 'react';
 import MjolGradientButton from "../../../ui/buttons/MjolGradientButton";
 
-const SellNft = () => {
+const SellNftButton = (props) => {
     return (
-        <MjolGradientButton title="Sell NFT"/>
+        <MjolGradientButton title="Sell NFT" {...props}/>
     );
 };
 
-export default SellNft;
+export default SellNftButton;

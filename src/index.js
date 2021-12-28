@@ -1,7 +1,7 @@
 import './index.css';
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {initContract} from './utils/contract-utils'
+import {initContract} from './busines-layer/near/contract'
 import AppRouter from "./app-router/App";
 import {BrowserRouter} from "react-router-dom";
 import {state} from "./redux/state";

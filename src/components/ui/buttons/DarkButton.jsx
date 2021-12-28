@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from "../../../utils/utils";
+import classNames from "../../../busines-layer/css-utils";
 
 const DarkButton = ({title, isActive, onClick}) => {
 

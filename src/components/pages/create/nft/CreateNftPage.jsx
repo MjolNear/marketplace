@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {mintToCommonCollection} from "../../../../utils/contract-utils";
+import {mintToCommonCollection} from "../../../../busines-layer/near/contract";
 import SingleLineContainer from "./upload/containers/SingleLineContainer";
 import MultiLineContainer from "./upload/containers/MultiLineContainer";
 import OptionInputContainer from "./upload/containers/OptionInputContainer";
 import PropertyInput from "./upload/lines/PropertyInput";
 import UploadFileInput from "./upload/UploadFileInput";
+import {makeNftLink, storeNFT} from "../../../../busines-layer/ipfs/upload";
 
 const CreateNftPage = () => {
     const MIN_TITLE_LEN = 3;
@@ -56,8 +57,8 @@ const CreateNftPage = () => {
                     file,
                     {}).then(res => {
                     console.log(res);
-                    const ipfsMedia = make_ref(res.data.image.href);
-                    const ipfsRef = make_ref(res.url);
+                    const ipfsMedia = makeNftLink(res.data.image.href);
+                    const ipfsRef = makeNftLink(res.url);
                     let token_metadata = {
                         title: title,
                         description: description,

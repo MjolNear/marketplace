@@ -1,6 +1,6 @@
 import React from 'react'
 import * as nearAPI from "near-api-js";
-import {getNFTs} from "./get-nfts";
+import {nfts} from "./near/get-nfts";
 
 export const {
     utils: {
@@ -45,7 +45,7 @@ export default function TestPart() {
     };
 
     if (window.walletConnection.isSignedIn()) {
-        getNFTs(window.accountId).then(myNFTs => {
+        nfts(window.accountId).then(myNFTs => {
             for (let nft of myNFTs) {
                 nft.then(
                     resolve => console.log(resolve),

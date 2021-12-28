@@ -1,5 +1,5 @@
 import {connect, Contract, keyStores, utils, WalletConnection} from 'near-api-js'
-import getConfig from '../config'
+import getConfig from '../../config'
 import Buffer from 'buffer'
 
 const nearConfig = getConfig('mainnet');
@@ -12,11 +12,15 @@ export async function initContract() {
     // Initialize connection to the NEAR testnet
 
     window.Buffer = Buffer;
-    const near = await connect(Object.assign({deps: {keyStore: new keyStores.BrowserLocalStorageKeyStore()}}, nearConfig));
+
+    const near = await connect(Object.assign(
+        {
+            deps: {keyStore: new keyStores.BrowserLocalStorageKeyStore()}
+        }, nearConfig));
 
     // Initializing Wallet based Account. It can work with NEAR testnet wallet that
     // is hosted at https://wallet.testnet.near.org
-    window.walletConnection = new WalletConnection(near);
+    window.walletConnection = new WalletConnection(near, 'mjol-app');
 
     // Getting the Account ID. If still unauthorized, it's just empty string
     window.accountId = window.walletConnection.getAccountId();
@@ -42,7 +46,11 @@ export function login() {
     // This works by creating a new access key for the user's account and storing
     // the private key in localStorage.
     console.log("SIGN IN");
+    console.log(nearConfig.contractName)
+    console.log(window.Buffer.from)
     window.walletConnection.requestSignIn(nearConfig.contractName)
+        .then(() => console.log('logged'))
+        .catch(e => console.log(e))
 }
 
 export function mintToCommonCollection(token_metadata, payout) {

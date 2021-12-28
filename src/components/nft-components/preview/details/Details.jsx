@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import Title from "../Title";
 import CollectionLink from "./CollectionLink";
-import SellNft from "../nft-action/SellNft";
+import SellNftButton from "../nft-action/SellNft";
 import DropDownMjolButton from "../../../ui/buttons/DropDownMjolButton";
 
 const Details = ({nft}) => {
@@ -17,7 +17,7 @@ const Details = ({nft}) => {
                 <Title title={nft.title}/>
                 <CollectionLink name={nft.description} link=""/>
             </div>
-            <SellNft/>
+            <SellNftButton/>
             <div className="space-y-3">
                 {Object.keys(tabs).map(key => (
                         <DropDownMjolButton title={key}>

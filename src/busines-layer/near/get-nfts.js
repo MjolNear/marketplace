@@ -30,7 +30,7 @@ async function getNftInfo(account, contractId, nft) {
 }
 
 
-export async function getNFTs(accountId) {
+export async function getNfts(accountId) {
     const accountURL = 'https://helper.' + (accountId.substr(-5) === '.near' ? 'mainnet' : 'testnet')
         + '.near.org/account/' + accountId + '/likelyNFTs';
     const nftContracts = await getJsonByURL(accountURL);
