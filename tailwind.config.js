@@ -1,6 +1,6 @@
 module.exports = {
-    content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-    media: false, // or 'media' or 'class'
+    purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+    darkTheme: false, // or 'media' or 'class'
     theme: {
         screens: {
             'xxs': '310px',
