@@ -19,7 +19,7 @@ const AppRouter = ({state}) => {
             <Route path="/create-nft" element={<CreateNftPage/>} key="4"/>
             <Route path="/create-collection" element={<CreateCollectionPage/>} key="5"/>
 
-            <Route path="/profile-nft" element={<ProfilePage profilePage={state.profilePage}/>} key="6"/>
+            <Route path="/profile-nft" element={<ProfilePage profilePage={state.profile}/>} key="6"/>
             {/*<Route path="/profile-nft/all" element={<Profile/>} key="7"/>*/}
             {/*<Route path="/profile-nft/listed" element={<Profile/>} key="8"/>*/}
             {/*<Route path="/profile-nft/minted" element={<Profile/>} key="9"/>*/}

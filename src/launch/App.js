@@ -5,7 +5,7 @@ import AppRouter from "./AppRouter";
 export default function App({state}) {
     return (
         <>
-            <NavBarPage state={state.navigationBar}/>
+            <NavBarPage state={state.navbar}/>
             <AppRouter state={state}/>
         </>
     )
