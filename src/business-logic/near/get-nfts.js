@@ -38,6 +38,8 @@ export async function getNfts(accountId) {
     const provider = new nearApi.providers.JsonRpcProvider('https://rpc.' + network + '.near.org');
     const account = new nearApi.Account({provider: provider});
 
+    console.log(nftContracts);
+
     if (nftContracts.error) {
         console.log("ERROR");
         return []
