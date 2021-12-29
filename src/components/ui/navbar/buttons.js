@@ -1,7 +1,7 @@
 import {Popover} from "@headlessui/react";
 import {MenuIcon, XIcon} from "@heroicons/react/outline";
 import React from "react";
-import classNames from "../../utils";
+import classNames from "../../../busines-layer/css-utils";
 import {ChevronDownIcon} from "@heroicons/react/solid";
 
 export const CloseMenuButton = () => {
