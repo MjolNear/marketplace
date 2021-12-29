@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import {mintToCommonCollection} from "../../../../busines-layer/near/contract";
+import {mintToCommonCollection} from "../../../../business-logic/near/contract";
 import SingleLineContainer from "./upload/containers/SingleLineContainer";
 import MultiLineContainer from "./upload/containers/MultiLineContainer";
 import OptionInputContainer from "./upload/containers/OptionInputContainer";
 import PropertyInput from "./upload/lines/PropertyInput";
 import UploadFileInput from "./upload/UploadFileInput";
-import {makeNftLink, storeNFT} from "../../../../busines-layer/ipfs/upload";
+import {makeNftLink, storeNFT} from "../../../../business-logic/ipfs/upload";
 
 const CreateNftPage = () => {
     const MIN_TITLE_LEN = 3;

@@ -6,7 +6,6 @@ export default function App({state}) {
     return (
         <>
             <NavBarPage state={state.navigationBar}/>
-            {/*<PreviewNft nft={mockNFTs()[4]}/>*/}
             <AppRouter state={state}/>
         </>
     )

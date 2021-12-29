@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from "../../../busines-layer/css-utils";
+import classNames from "../../../business-logic/css-utils";
 import {Popover} from '@headlessui/react'
 
 const PopoverPanel = React.forwardRef(({isProfile, tabs}) => {

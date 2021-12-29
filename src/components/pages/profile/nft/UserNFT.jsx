@@ -1,8 +1,8 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import NftCollectionContainer from "../../../collection-components/NftCollectionContainer";
-import mockNFTs from "../../../../busines-layer/api/mocks";
+import NftCollectionContainer from "../../../nft-collection/NftCollectionContainer";
+import mockNFTs from "../../../../business-logic/api/mocks";
 import NftLoading from "../../../ui/loaders/NftLoading";
-import NftItem from "../../../nft-components/NftItem";
+import NftItem from "../../../nft-item/NftItem";
 
 const UserNFT = () => {
 

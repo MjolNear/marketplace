@@ -1,5 +1,5 @@
 import {connect, Contract, keyStores, utils, WalletConnection} from 'near-api-js'
-import getConfig from '../../near-config'
+import getConfig from './config'
 import Buffer from 'buffer'
 
 const nearConfig = getConfig('mainnet');
