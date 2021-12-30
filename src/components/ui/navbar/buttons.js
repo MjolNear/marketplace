@@ -19,9 +19,9 @@ export const DropDownButton = ({isOpen, tabName}) => {
         <Popover.Button
             className={classNames(
                 isOpen ? 'text-gray-900' : 'text-gray-500',
-                'group bg-white rounded-md inline-flex items-center ' +
+                'group bg-cyan-100 rounded-md inline-flex items-center ' +
                 'text-lg font-medium hover:text-gray-900 focus:outline-none ' +
-                'focus:ring-2 focus:ring-offset-4 focus:ring-indigo-500'
+                'focus:bg-cyan-100'
             )}
         >
             {tabName}

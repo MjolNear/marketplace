@@ -1,6 +1,6 @@
 import {NFT} from "../models/NFT";
 
-export default function mockNFTs() {
+export function mockNFTs() {
     return [
         new NFT('1',
             '1',
@@ -89,4 +89,11 @@ export default function mockNFTs() {
             'https://i.guim.co.uk/img/media/3c90fbf9666d4e73be1122eb33afed235db41b1f/0_0_5000_3000/master/5000.jpg?width=465&quality=45&auto=format&fit=max&dpr=2&s=3f8c0729394152d5c02098a0eb76defb'
         ),
     ];
+}
+
+export function mockGetPricesByKeys(accountId) {
+    return {
+        'mjol.near:token-1640883579129': 2,
+        'x.paras.near:56178:34': 0.239
+    }
 }

@@ -21,32 +21,51 @@ export async function getJsonByURL(url) {
 }
 
 
-function getMediaUrl(media, media_hash) {
-    if (media) {
-        if (media.substr(0, 4) === "http") {
-            return media;
-        } else if (isIPFS.cid(media)) {
-            return 'https://ipfs.fleek.co/ipfs/' + media;
+function getRealUrl(url, url_hash, contract_id) {
+    let storage_link = 'https://ipfs.fleek.co/ipfs/';
+    if (contract_id.substr(-14) === 'mintbase1.near') {
+        storage_link = 'https://arweave.net/';
+    }
+
+    if (url) {
+        if (url.substr(0, 4) === "http") {
+            return url;
+        } else if (isIPFS.cid(url)) {
+            return storage_link + url;
         }
     }
-    if (media_hash && isIPFS.cid(media_hash)) {
-        return 'https://ipfs.fleek.co/ipfs/' + media_hash;
+    if (url_hash && isIPFS.cid(url_hash)) {
+        return storage_link + url_hash;
     }
+    return null;
 }
 
-function getExternalLink(nft, contractId) {
+function getNftMintedSiteInfo(nft, contractId) {
     if (contractId === 'x.paras.near') {
         const part = nft.token_id.split(':')[0];
-        return 'https://paras.id/token/x.paras.near::' + part + '/' + nft.token_id;
+        return {
+            'title': 'Paras',
+            'nft_link': 'https://paras.id/token/x.paras.near::' + part + '/' + nft.token_id
+        }
     }
     if (contractId.substr(-14) === 'mintbase1.near') {
-        return 'https://www.mintbase.io/thing/' + nft.metadata.reference + ':' + contractId
+        return {
+            'title': 'Mintbase',
+            'nft_link': 'https://www.mintbase.io/thing/' + nft.metadata.reference + ':' + contractId
+        }
     }
-
     if (contractId === 'pluminite.near') {
-        return 'https://pluminite.com/#/gem/' + nft.token_id
+        return {
+            'title': 'Pluminite',
+            'nft_link': 'https://pluminite.com/#/gem/' + nft.token_id
+        }
     }
-
+    if (contractId.substr(-9) === 'mjol.near') {
+        return {
+            'title': 'MjolNear',
+            'nft_link': 'https://mjolnear.com/collections/' + contractId + '/' + nft.token_id
+        }
+    }
 
     return null;
 }
@@ -71,7 +90,7 @@ function getExternalLink(nft, contractId) {
 //   reference_hash: null
 // },
 // approved_account_ids: {}
-export function convertStandardNFT(contractId, nft) {
+export function convertStandardNFT(contractId, nft, listedNftKeys) {
     try {
         const metadata = nft.metadata;
 
@@ -82,9 +101,10 @@ export function convertStandardNFT(contractId, nft) {
             metadata.title,
             metadata.description,
             metadata.copies,
-            metadata.extra,
-            getMediaUrl(metadata.media, metadata.media_hash),
-            getExternalLink(nft, contractId)
+            getRealUrl(metadata.media, metadata.media_hash, contractId),
+            getRealUrl(metadata.reference, metadata.reference_hash, contractId),
+            getNftMintedSiteInfo(nft, contractId),
+            listedNftKeys[contractId + ':' + nft.token_id] === undefined ? null : listedNftKeys[contractId + ':' + nft.token_id]
         )
     } catch (e) {
         return null
@@ -147,7 +167,7 @@ export function convertStandardNFT(contractId, nft) {
 // store: 'nuniversity.mintbase1.near',
 // external_url: 'https://near.university/',
 // type: 'NEP171'
-export async function getMintbaseNFT(account, contractId, nft) {
+export async function getMintbaseNFT(account, contractId, nft, listedNftKeys) {
     try {
         const metadata = nft.metadata;
         return account.viewFunction(contractId, 'nft_token_uri', {
@@ -160,12 +180,14 @@ export async function getMintbaseNFT(account, contractId, nft) {
                 resJson.title,
                 resJson.description,
                 metadata.copies,
-                metadata.extra,
-                getMediaUrl(resJson.media, resJson.media_hash),
-                getExternalLink(nft, contractId)
+                getRealUrl(resJson.media, resJson.media_hash, contractId),
+                getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId),
+                getNftMintedSiteInfo(nft, contractId),
+                listedNftKeys[contractId + ':' + nft.id] === undefined ? null : listedNftKeys[contractId + ':' + nft.id]
             )
         )
     } catch (e) {
+        console.log("Error while parsing mintbase NFT", contractId);
         return null
     }
 }
