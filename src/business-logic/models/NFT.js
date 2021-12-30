@@ -1,18 +1,5 @@
 export class NFT {
-<<<<<<< HEAD
-    constructor(contract_id,
-                token_id,
-                owner_id,
-                title,
-                description,
-                copies,
-                extra,
-                media_url,
-                external_url
-    ) {
-=======
     constructor(contract_id, token_id, owner_id, title, description, copies, media_url, reference_url, mint_site_info, price) {
->>>>>>> 944d92fbfa3a3d69d23d114112185db7cdca8b82
         this.contract_id = contract_id;
         this.token_id = token_id;
         this.owner_id = owner_id;
