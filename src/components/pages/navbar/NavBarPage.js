@@ -60,12 +60,21 @@ function SmallNavBar({tabs}) {
     return (
         <div className="grid grid-cols-2 gap-y-4 gap-x-8">
             {tabs.map(({path, name}) => (
-                <Link to={path} key={name}>
-                    <div
-                        className="cursor-pointer text-base font-medium text-gray-900 hover:text-gray-500">
-                        {name}
-                    </div>
-                </Link>
+                <>
+                    {name === "Launchpad" || name === "Docs" ? (
+                        <div
+                            className="cursor-not-allowed text-base font-medium text-gray-900 hover:text-gray-500">
+                            {name}
+                        </div>
+                    ) : (
+                        <Link to={path} key={name}>
+                            <div
+                                className="cursor-pointer text-base font-medium text-gray-900 hover:text-gray-500">
+                                {name}
+                            </div>
+                        </Link>
+                    )}
+                </>
             ))}
         </div>
     )
@@ -78,13 +87,12 @@ export default function NavBarPage({state}) {
     const singleTabs = state.tabs.single
 
     return (
-        <Popover className="relative bg-white">
+        <Popover className="bg-cyan-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
                 <div
                     className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
                     <div className="flex justify-start lg:w-0 lg:flex-1">
                         <Link to="/">
-                            <span className="sr-only">Workflow</span>
                             <img
                                 className="h-8 w-auto sm:h-10"
                                 src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
@@ -99,15 +107,15 @@ export default function NavBarPage({state}) {
                         <TabsDropDownMenu key="Explore" name="Explore" tabs={exploreTabs} isProfile={false}/>
                         <TabsDropDownMenu key="Create" name="Create" tabs={createTabs} isProfile={false}/>
                         {singleTabs.map(({name, path}) => (
-                            <Link to={path} key={name}>
-                                <div
-                                    className={classNames(
-                                        name === "Launchpad" ? 'cursor-not-allowed' : 'cursor-pointer',
-                                        "text-lg font-medium text-gray-500 hover:text-gray-900"
-                                    )}>
-                                    {name}
-                                </div>
-                            </Link>
+                            //<Link to={path} key={name}>
+                            <div
+                                className={classNames(
+                                    name === "Launchpad" || name === "Docs" ? 'cursor-not-allowed' : 'cursor-pointer',
+                                    "text-lg font-medium text-gray-500 hover:text-gray-900"
+                                )}>
+                                {name}
+                            </div>
+                            //</Link>
                         ))}
                     </Popover.Group>
                     {window.walletConnection.isSignedIn() ? (
@@ -147,7 +155,6 @@ export default function NavBarPage({state}) {
                                         <img
                                             className="h-8 w-auto"
                                             src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                                            alt="Workflow"
                                         />
                                     </Link>
                                 </div>
