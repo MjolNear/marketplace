@@ -15,7 +15,7 @@ const NftItem = ({nft, previewPath}) => {
                                           collectionName={"Mock"}
                                           collectionLink={"Mock collection"}
                     />
-                    {nft.price !== null && <NftPrice price={nft.price}/>}
+                    <NftPrice price={nft.price}/>
                 </div>
             </div>
             <div
