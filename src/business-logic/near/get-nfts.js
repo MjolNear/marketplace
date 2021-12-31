@@ -3,12 +3,12 @@ import {mockGetPricesByKeys} from '../api/mocks'
 
 const nearApi = require("near-api-js");
 
-class NftFetcher {
+class NftAPI {
     constructor(limit = 20) {
         this.limit = limit;
     }
 
-    static async buildAccount(accountId) {
+    static async buildAccountInfo(accountId) {
         const network = accountId.endsWith('.near')
             ? 'mainnet'
             : 'testnet';
@@ -50,7 +50,7 @@ async function getNftInfo(account, contractId, nft, listedNftKeys) {
 
 
 export async function getNfts(accountId) {
-    const accountInfo = await NftFetcher.buildAccount(accountId)
+    const accountInfo = await NftAPI.buildAccountInfo(accountId)
     const account = accountInfo.account
     const nftContracts = accountInfo.nftContracts
 
