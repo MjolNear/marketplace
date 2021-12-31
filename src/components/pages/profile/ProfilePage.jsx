@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileNavigationBar from "./ui/ProfileNavigationBar";
+import ProfileNavigationBar from "./navbar/ProfileNavigationBar";
 import MyNfts from "./nft/MyNfts";
 
 const ProfilePage = ({profile, changeProfileTab}) => {

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import {initContract} from './business-logic/near/contract'
 import AppRouter from "./launch/App";
 import {BrowserRouter} from "react-router-dom";
-import {store} from "./redux/store";
+import {store} from "./state/store";
 import {Provider} from "react-redux";
 
 const render = () =>

@@ -1,14 +1,13 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import MainPage from "../components/pages/main/MainPage";
-import ProfilePage from "../components/pages/profile/ProfilePage";
 import ProfileNftCollectionsPage from "../components/pages/profile/collection/ProfileNftCollectionsPage";
 import NotFoundPage from "../components/pages/not-found/NotFoundPage";
 import CreateCollectionPage from "../components/pages/create/collection/CreateCollectionPage";
 import CreateNftPage from "../components/pages/create/nft/CreateNftPage";
 import ExploreCollectionsPage from "../components/pages/explore/collection/ExploreCollectionsPage";
 import ExploreNftPage from "../components/pages/explore/nft/ExploreNftPage";
-import {ProfilePageContainer} from "../components/pages/profile/ProfilePageContainer";
+import {ProfilePageContainer} from "../hoc/profile/ProfilePageContainer";
 
 
 const AppRouter = ({state}) => {
@@ -20,7 +19,7 @@ const AppRouter = ({state}) => {
             <Route path="/create-nft" element={<CreateNftPage/>} key="4"/>
             <Route path="/create-collection" element={<CreateCollectionPage/>} key="5"/>
 
-            <Route path="/me/nft" element={<ProfilePageContainer/>} key="6"/>
+            <Route path="/profile/nfts" element={<ProfilePageContainer/>} key="6"/>
             {/*<Route path="/profile-nft/all" element={<Profile/>} key="7"/>*/}
             {/*<Route path="/profile-nft/listed" element={<Profile/>} key="8"/>*/}
             {/*<Route path="/profile-nft/minted" element={<Profile/>} key="9"/>*/}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {changeProfileTab, pushNFT, setFetching, setHistory, setNfts} from "../../../redux/actions/profile";
+import {changeProfileTab, pushNFT, setFetching, setHistory, setNfts} from "../../state/actions/profile";
 import ProfileFetchContainer from "./ProfileFetchContainer";
 
 

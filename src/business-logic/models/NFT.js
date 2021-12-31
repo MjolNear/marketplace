@@ -13,10 +13,10 @@ export class NFT {
         this.price = price //null if NFT is not listed
     }
 
+
     getKey() {
         return this.contract_id + ':' + this.token_id
     }
-
 
     getTraits() {
         //async GET json from this.reference_url

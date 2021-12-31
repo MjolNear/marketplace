@@ -6,9 +6,9 @@ const MY_HISTORY_TAB = "My History"
 
 const initialState = {
     tabs: [
-        {name: MY_NFT_TAB, path: '/me/nfts'},
-        {name: MY_LISTED_TAB, path: '/me/listed'},
-        {name: MY_HISTORY_TAB, path: '/me/history'},
+        {name: MY_NFT_TAB, path: '/profile/nfts'},
+        {name: MY_LISTED_TAB, path: '/profile/listed'},
+        {name: MY_HISTORY_TAB, path: '/profile/history'},
     ],
     activeTab: MY_NFT_TAB,
     fetching: false,

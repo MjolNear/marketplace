@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
-import {getNfts} from "../../../business-logic/near/get-nfts";
-import ProfilePage from "./ProfilePage";
-import {useFetching} from "../../../hooks/useFetching";
+import {getNfts} from "../../business-logic/near/get-nfts";
+import ProfilePage from "../../components/pages/profile/ProfilePage";
+import {useFetching} from "../../hooks/useFetching";
 
 const ProfileFetchContainer = ({profile, changeProfileTab, pushNFT, setFetching, setNfts, setHistory}) => {
     useEffect(() => {
