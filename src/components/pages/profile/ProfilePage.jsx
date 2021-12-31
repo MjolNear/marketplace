@@ -1,14 +1,15 @@
 import React from 'react';
 import ProfileNavigationBar from "./ui/ProfileNavigationBar";
-import UserNfts from "./nft/UserNfts";
+import MyNfts from "./nft/MyNfts";
 
-const ProfilePage = ({profile, changeProfileTab, fetchNfts, fetchHistory}) => {
+const ProfilePage = ({profile, changeProfileTab}) => {
     return (
         <div className="bg-light_white space-y-10 pb-10">
             <ProfileNavigationBar onChangeTab={changeProfileTab}
                                   activeTab={profile.activeTab}
                                   tabs={profile.tabs}/>
-            {<UserNfts/>}
+
+            <MyNfts nfts={profile.tags} fetching={profile.fetching}/>
         </div>
     );
 };

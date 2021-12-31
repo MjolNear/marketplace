@@ -1,13 +1,19 @@
-import {CHANGE_PROFILE_TAB, FETCH_HISTORY, FETCH_MY_NFTS} from "../actions/profile";
+import {CHANGE_PROFILE_TAB, PUSH_NFT, SET_FETCHING, SET_HISTORY, SET_MY_NFTS} from "../actions/profile";
+
+const MY_NFT_TAB = "My NFT"
+const MY_LISTED_TAB = "My Listed NFT"
+const MY_HISTORY_TAB = "My History"
 
 const initialState = {
     tabs: [
-        {name: 'My NFT', path: '/me/nfts'},
-        {name: 'My Listed NFT', path: '/me/listed'},
-        {name: 'My History', path: '/me/history'},
+        {name: MY_NFT_TAB, path: '/me/nfts'},
+        {name: MY_LISTED_TAB, path: '/me/listed'},
+        {name: MY_HISTORY_TAB, path: '/me/history'},
     ],
-    activeTab: 'My NFT',
+    activeTab: MY_NFT_TAB,
+    fetching: false,
     nfts: [],
+    tags: [],
     history: []
 }
 
@@ -16,14 +22,37 @@ export const profileReducer = (state = initialState, action) => {
         case CHANGE_PROFILE_TAB:
             return {
                 ...state,
-                activeTab: action.tab
+                activeTab: action.tab,
+                tags: [...state.nfts.filter(nft => {
+                        switch (action.tab) {
+                            case MY_LISTED_TAB:
+                                return nft.price !== null
+                            case MY_NFT_TAB:
+                                return true
+                            default:
+                                return false
+                        }
+                    }
+                )]
             }
-        case FETCH_MY_NFTS:
+        case PUSH_NFT:
             return {
                 ...state,
-                nfts: action.nfts
+                nfts: [...state.nfts, action.nft],
+                tags: [...state.nfts, action.nft]
             }
-        case FETCH_HISTORY:
+        case SET_FETCHING:
+            return {
+                ...state,
+                fetching: action.fetching
+            }
+        case SET_MY_NFTS:
+            return {
+                ...state,
+                nfts: action.nfts,
+                tags: action.nfts
+            }
+        case SET_HISTORY:
             return {
                 ...state,
                 history: action.history

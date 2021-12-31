@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
-import ProfilePage from "./ProfilePage";
-import {changeProfileTab, fetchHistory, fetchNfts} from "../../../redux/actions/profile";
+import {changeProfileTab, pushNFT, setFetching, setHistory, setNfts} from "../../../redux/actions/profile";
+import ProfileFetchContainer from "./ProfileFetchContainer";
+
 
 const mapStateToProps = (state) => ({
     profile: state.profile
@@ -9,8 +10,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     changeProfileTab,
-    fetchNfts,
-    fetchHistory
+    pushNFT,
+    setFetching,
+    setNfts,
+    setHistory
 }
 
-export const ProfilePageContainer = connect(mapStateToProps, mapDispatchToProps)(ProfilePage)
+export const ProfilePageContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileFetchContainer)

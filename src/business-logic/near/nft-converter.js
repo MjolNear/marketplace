@@ -93,7 +93,6 @@ function getNftMintedSiteInfo(nft, contractId) {
 export function convertStandardNFT(contractId, nft, listedNftKeys) {
     try {
         const metadata = nft.metadata;
-
         return new NFT(
             contractId,
             nft.token_id,
@@ -104,7 +103,9 @@ export function convertStandardNFT(contractId, nft, listedNftKeys) {
             getRealUrl(metadata.media, metadata.media_hash, contractId),
             getRealUrl(metadata.reference, metadata.reference_hash, contractId),
             getNftMintedSiteInfo(nft, contractId),
-            listedNftKeys[contractId + ':' + nft.token_id] === undefined ? null : listedNftKeys[contractId + ':' + nft.token_id]
+            listedNftKeys[contractId + ':' + nft.token_id] === undefined
+                ? null
+                : listedNftKeys[contractId + ':' + nft.token_id]
         )
     } catch (e) {
         return null
@@ -170,21 +171,27 @@ export function convertStandardNFT(contractId, nft, listedNftKeys) {
 export async function getMintbaseNFT(account, contractId, nft, listedNftKeys) {
     try {
         const metadata = nft.metadata;
-        return account.viewFunction(contractId, 'nft_token_uri', {
-            token_id: nft.id.toString()
-        }).then(url => getJsonByURL(url)).then(resJson =>
-            new NFT(
-                contractId,
-                nft.id,
-                nft.owner_id.Account,
-                resJson.title,
-                resJson.description,
-                metadata.copies,
-                getRealUrl(resJson.media, resJson.media_hash, contractId),
-                getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId),
-                getNftMintedSiteInfo(nft, contractId),
-                listedNftKeys[contractId + ':' + nft.id] === undefined ? null : listedNftKeys[contractId + ':' + nft.id]
-            )
+        const url = await account.viewFunction(
+            contractId,
+            'nft_token_uri',
+            {
+                token_id: nft.id.toString()
+            }
+        )
+        const jsonNFT = await getJsonByURL(url)
+        return new NFT(
+            contractId,
+            nft.id,
+            nft.owner_id.Account,
+            jsonNFT.title,
+            jsonNFT.description,
+            metadata.copies,
+            getRealUrl(jsonNFT.media, jsonNFT.media_hash, contractId),
+            getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId),
+            getNftMintedSiteInfo(nft, contractId),
+            listedNftKeys[contractId + ':' + nft.id] === undefined
+                ? null
+                : listedNftKeys[contractId + ':' + nft.id]
         )
     } catch (e) {
         console.log("Error while parsing mintbase NFT", contractId);
