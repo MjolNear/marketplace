@@ -3,7 +3,7 @@ import {getNfts} from "../../business-logic/near/get-nfts";
 import ProfilePage from "../../components/pages/profile/ProfilePage";
 import {useFetching} from "../../hooks/useFetching";
 
-const ProfileFetchContainer = ({profile, changeProfileTab, pushNFT, setFetching, setNfts, setHistory}) => {
+const ProfileFetchHOC = ({profile, changeProfileTab, pushNFT, setFetching, setNfts, setHistory}) => {
     useEffect(() => {
         if (window.walletConnection.isSignedIn()) {
             useFetching(setFetching, (onFetch) =>
@@ -24,4 +24,4 @@ const ProfileFetchContainer = ({profile, changeProfileTab, pushNFT, setFetching,
     return <ProfilePage profile={profile} changeProfileTab={changeProfileTab}/>
 };
 
-export default ProfileFetchContainer;
+export default ProfileFetchHOC;

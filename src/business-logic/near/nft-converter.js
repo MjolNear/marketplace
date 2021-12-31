@@ -1,72 +1,73 @@
 import {NFT} from "../models/NFT";
+import {MintSite} from "../models/MintSite";
 
 const isIPFS = require('is-ipfs');
 
 
 export async function getJsonByURL(url) {
     try {
-        const res = await fetch(url, {timeout: 30000});
-        if (res.status < 199 || res.status > 299) {
-            return {error: res.statusText + ' (' + res.status + ')'}
+        const response = await fetch(url, {timeout: 30000});
+        if (!response.ok) {
+            return {error: response.statusText + ' (' + response.status + ')'}
         }
-        const text = await res.text();
         try {
-            return JSON.parse(text)
+            return await response.json();
         } catch (err) {
-            return {error: text}
+            return {error: 'Unable to parse NFT json response'}
         }
-    } catch (err) {
-        return {error: err}
+    } catch (error) {
+        return {error}
     }
 }
 
 
-function getRealUrl(url, url_hash, contract_id) {
-    let storage_link = 'https://ipfs.fleek.co/ipfs/';
-    if (contract_id.substr(-14) === 'mintbase1.near') {
-        storage_link = 'https://arweave.net/';
+function getRealUrl(url, urlHash, contractId) {
+    let storageLink = 'https://ipfs.fleek.co/ipfs/';
+
+    if (contractId.endsWith('mintbase1.near')) {
+        storageLink = 'https://arweave.net/';
     }
 
     if (url) {
-        if (url.substr(0, 4) === "http") {
+        if (url.startsWith("http")) {
             return url;
         } else if (isIPFS.cid(url)) {
-            return storage_link + url;
+            return storageLink + url;
         }
     }
-    if (url_hash && isIPFS.cid(url_hash)) {
-        return storage_link + url_hash;
+    if (urlHash && isIPFS.cid(urlHash)) {
+        return storageLink + urlHash;
     }
     return null;
 }
 
 function getNftMintedSiteInfo(nft, contractId) {
     if (contractId === 'x.paras.near') {
-        const part = nft.token_id.split(':')[0];
-        return {
-            'title': 'Paras',
-            'nft_link': 'https://paras.id/token/x.paras.near::' + part + '/' + nft.token_id
-        }
+        const holder = nft.token_id.split(':')[0];
+        return new MintSite(
+            'Paras',
+            `https://paras.id/token/x.paras.near::${holder}/${nft.token_id}`
+        )
     }
-    if (contractId.substr(-14) === 'mintbase1.near') {
-        return {
-            'title': 'Mintbase',
-            'nft_link': 'https://www.mintbase.io/thing/' + nft.metadata.reference + ':' + contractId
-        }
+    if (contractId.endsWith('mintbase1.near')) {
+        return new MintSite(
+            'Mintbase',
+            `https://www.mintbase.io/thing/${nft.metadata.reference}:${contractId}`
+        )
+
     }
     if (contractId === 'pluminite.near') {
-        return {
-            'title': 'Pluminite',
-            'nft_link': 'https://pluminite.com/#/gem/' + nft.token_id
-        }
+        return new MintSite(
+            'Pluminite',
+            `https://pluminite.com/#/gem/${nft.token_id}`
+        )
     }
-    if (contractId.substr(-9) === 'mjol.near') {
-        return {
-            'title': 'MjolNear',
-            'nft_link': 'https://mjolnear.com/collections/' + contractId + '/' + nft.token_id
-        }
+    if (contractId.endsWith('mjol.near')) {
+        return new MintSite(
+            'MjolNear',
+            `https://mjolnear.com/collections/${contractId}/${nft.token_id}`
+        )
     }
-
     return null;
 }
 

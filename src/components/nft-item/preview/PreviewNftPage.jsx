@@ -1,8 +1,10 @@
 import React from 'react';
-import NftInfo from "./details/Details";
+
 import PreviewNftImage from "./image/PreviewNftImage";
+import NftInfo from "./details/NftInfo";
 
 const PreviewNftPage = ({nft}) => {
+    return <div>MOCK</div>
     return (
         <div className="bg-light_white
                         grid md:grid-cols-2 gap-10

@@ -1,8 +1,8 @@
 import React, {useMemo} from 'react';
-import Title from "../Title";
 import CollectionLink from "./CollectionLink";
-import SellNftButton from "../nft-action/SellNft";
 import DropDownMjolButton from "../../../ui/buttons/DropDownMjolButton";
+import SellNftButton from "../nft-action/SellNftButton";
+import NftTitle from "../../details/title/NftTitle";
 
 const NftInfo = ({nft}) => {
 
@@ -14,7 +14,7 @@ const NftInfo = ({nft}) => {
     return (
         <div className="space-y-5">
             <div>
-                <Title title={nft.title}/>
+                <NftTitle title={nft.title}/>
                 <CollectionLink name={nft.description} link=""/>
             </div>
             <SellNftButton/>

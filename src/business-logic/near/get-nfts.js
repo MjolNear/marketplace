@@ -3,6 +3,23 @@ import {mockGetPricesByKeys} from '../api/mocks'
 
 const nearApi = require("near-api-js");
 
+class NftFetcher {
+    constructor(limit = 20) {
+        this.limit = limit;
+    }
+
+    static async buildAccount(accountId) {
+        const network = accountId.endsWith('.near')
+            ? 'mainnet'
+            : 'testnet';
+
+        const accountURL = `https://helper.${network}.near.org/account/${accountId}/likelyNFTs`;
+        let nftContracts = await getJsonByURL(accountURL);
+        const provider = new nearApi.providers.JsonRpcProvider(`https://rpc.${network}.near.org`);
+        const account = new nearApi.Account({provider: provider});
+        return {account, nftContracts}
+    }
+}
 
 async function getNFTsByContractAndAccount(account, contractId, accountId) {
     const limit = 20;
@@ -25,7 +42,7 @@ async function getNFTsByContractAndAccount(account, contractId, accountId) {
 }
 
 async function getNftInfo(account, contractId, nft, listedNftKeys) {
-    if (contractId.substr(-14) === 'mintbase1.near') {
+    if (contractId.endsWith('mintbase1.near')) {
         return getMintbaseNFT(account, contractId, nft, listedNftKeys)
     }
     return convertStandardNFT(contractId, nft, listedNftKeys)
@@ -33,18 +50,14 @@ async function getNftInfo(account, contractId, nft, listedNftKeys) {
 
 
 export async function getNfts(accountId) {
-    const accountURL = 'https://helper.' + (accountId.substr(-5) === '.near' ? 'mainnet' : 'testnet')
-        + '.near.org/account/' + accountId + '/likelyNFTs';
-    let nftContracts = await getJsonByURL(accountURL);
-    const network = accountId.substr(-5) === '.near' ? 'mainnet' : 'testnet';
-    const provider = new nearApi.providers.JsonRpcProvider('https://rpc.' + network + '.near.org');
-    const account = new nearApi.Account({provider: provider});
+    const accountInfo = await NftFetcher.buildAccount(accountId)
+    const account = accountInfo.account
+    const nftContracts = accountInfo.nftContracts
 
-    console.log(nftContracts);
     nftContracts.push('mjol.near');
 
     if (nftContracts.error) {
-        console.log("ERROR");
+        console.log("Account error found");
         return []
     }
     const listedNftKeys = mockGetPricesByKeys(account);
