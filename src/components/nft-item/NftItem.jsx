@@ -5,7 +5,8 @@ import TitleCollectionGroup from "./details/ui/TitleCollectionGroup";
 import NftPrice from "./details/price/NftPrice";
 import NftMintedLink from "./details/minted/NftMintedLink";
 
-const NftItem = ({nft, previewPath}) => {
+const NftItem = ({nft}) => {
+    const previewPath = `/nft/${nft.contractId}/${nft.tokenId}`
     return (
         <NftBoxContainer>
             <div>

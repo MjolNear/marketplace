@@ -4,7 +4,10 @@ import PreviewNftImage from "./image/PreviewNftImage";
 import NftInfo from "./details/NftInfo";
 
 const PreviewNftPage = ({nft}) => {
-    return <div>MOCK</div>
+    console.log("nft")
+    if (!nft) {
+        return <div>LOADING</div>
+    }
     return (
         <div className="bg-light_white
                         grid md:grid-cols-2 gap-10
@@ -12,7 +15,7 @@ const PreviewNftPage = ({nft}) => {
                         items-start
                         h-screen"
         >
-            <PreviewNftImage link={nft.media_url}/>
+            <PreviewNftImage link={nft.mediaURL}/>
             <NftInfo nft={nft}/>
         </div>
     );

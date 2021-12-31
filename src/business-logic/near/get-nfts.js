@@ -4,20 +4,25 @@ import {mockGetPricesByKeys} from '../api/mocks'
 const nearApi = require("near-api-js");
 
 class NftAPI {
-    constructor(limit = 20) {
-        this.limit = limit;
-    }
 
-    static async buildAccountInfo(accountId) {
-        const network = accountId.endsWith('.near')
+    static getNetwork(accountId) {
+        return accountId.endsWith('.near')
             ? 'mainnet'
             : 'testnet';
+    }
 
-        const accountURL = `https://helper.${network}.near.org/account/${accountId}/likelyNFTs`;
-        let nftContracts = await getJsonByURL(accountURL);
+    static buildAccountInfo(accountId) {
+        const network = NftAPI.getNetwork(accountId)
         const provider = new nearApi.providers.JsonRpcProvider(`https://rpc.${network}.near.org`);
-        const account = new nearApi.Account({provider: provider});
-        return {account, nftContracts}
+        return new nearApi.Account(
+            {provider: provider}
+        )
+    }
+
+    static async buildContractInfo(accountId) {
+        const network = NftAPI.getNetwork(accountId)
+        const accountURL = `https://helper.${network}.near.org/account/${accountId}/likelyNFTs`;
+        return await getJsonByURL(accountURL)
     }
 }
 
@@ -48,11 +53,23 @@ async function getNftInfo(account, contractId, nft, listedNftKeys) {
     return convertStandardNFT(contractId, nft, listedNftKeys)
 }
 
+export async function getNFTsByContractAndTokenId(accountId, contractId, tokenId) {
+    const account = NftAPI.buildAccountInfo(accountId)
+    try {
+        const nft = await account.viewFunction(contractId, 'nft_token', {
+            token_id: tokenId
+        });
+        const listedNftKeys = mockGetPricesByKeys(account);
+        return getNftInfo(account, contractId, nft, listedNftKeys)
+    } catch (e) {
+        console.log(e);
+    }
+    return null
+}
 
 export async function getNfts(accountId) {
-    const accountInfo = await NftAPI.buildAccountInfo(accountId)
-    const account = accountInfo.account
-    const nftContracts = accountInfo.nftContracts
+    const account = NftAPI.buildAccountInfo(accountId)
+    const nftContracts = await NftAPI.buildContractInfo(accountId)
 
     nftContracts.push('mjol.near');
 

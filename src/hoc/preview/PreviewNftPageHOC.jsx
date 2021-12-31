@@ -1,17 +1,18 @@
-import React, {useEffect} from 'react';
-import PreviewNftPage from "../../components/nft-item/preview/PreviewNftPage";
-import {useParams} from "react-router";
+import {buyNFT, sellNFT, setFetching, setNFT} from "../../state/actions/preview";
+import PreviewNftFetchHOC from "./PreviewNftFetchHOC";
+import {connect} from "react-redux";
 
-const PreviewNftPageHOC = () => {
+const mapStateToProps = (state) => ({
+    preview: state.preview
+})
 
-    const token = useParams().token
-    console.log(token)
+const mapDispatchToProps = ({
+    buyNFT,
+    setFetching,
+    sellNFT,
+    setNFT
+})
 
-    useEffect(() => {
-
-    }, [])
-
-    return <PreviewNftPage nft={undefined}/>
-};
+const PreviewNftPageHOC = connect(mapStateToProps, mapDispatchToProps)(PreviewNftFetchHOC)
 
 export default PreviewNftPageHOC;

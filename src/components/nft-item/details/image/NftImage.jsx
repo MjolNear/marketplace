@@ -1,10 +1,9 @@
 import React from 'react';
 import NftBorderLine from "../ui/NftBorderLine";
-import {Link} from "react-router-dom";
 
 const NftImage = ({path, previewPath}) => {
     return (
-        <Link to={'ddd'}>
+        <a href={previewPath}>
             <div className="px-6 py-3 space-y-1 group transform ease-out duration-1000 hover:scale-105">
                 <div className="xs:h-72 2xl:h-80 grid place-items-center">
                     <img src={path}
@@ -14,7 +13,7 @@ const NftImage = ({path, previewPath}) => {
                 </div>
                 <NftBorderLine className="group-hover:bg-purple-400"/>
             </div>
-        </Link>
+        </a>
     );
 };
 

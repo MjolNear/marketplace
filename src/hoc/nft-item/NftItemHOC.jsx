@@ -3,7 +3,9 @@ import NftItem from "../../components/nft-item/NftItem";
 
 
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        nft: state.preview.nft
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
