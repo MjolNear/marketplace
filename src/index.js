@@ -5,16 +5,18 @@ import {initContract} from './business-logic/near/contract'
 import AppRouter from "./launch/App";
 import {BrowserRouter} from "react-router-dom";
 import {store} from "./redux/store";
+import {Provider} from "react-redux";
 
-
-const rootElement = document.getElementById("root");
-window.nearInitPromise = initContract()
-    .then(() => {
-        ReactDOM.render(
-            <BrowserRouter>
+const render = () =>
+    ReactDOM.render(
+        <BrowserRouter>
+            <Provider store={store}>
                 <AppRouter state={store.getState()}/>
-            </BrowserRouter>,
-            rootElement
-        );
-    })
+            </Provider>
+        </BrowserRouter>,
+        document.getElementById("root")
+    )
+
+window.nearInitPromise = initContract()
+    .then(render)
     .catch(console.error);

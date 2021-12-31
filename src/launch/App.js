@@ -1,12 +1,14 @@
 import React from 'react'
-import NavBarPage from "../components/pages/navbar/NavBarPage";
 import AppRouter from "./AppRouter";
+import {NavbarContainer} from "../components/pages/navbar/NavbarContainer";
+import FooterPage from "../components/pages/footer/FooterPage";
 
 export default function App({state}) {
     return (
-        <>
-            <NavBarPage state={state.navbar}/>
+        <div>
+            <NavbarContainer/>
             <AppRouter state={state}/>
-        </>
+            <FooterPage/>
+        </div>
     )
 }

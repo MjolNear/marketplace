@@ -4,7 +4,7 @@ import CollectionLink from "./CollectionLink";
 import SellNftButton from "../nft-action/SellNft";
 import DropDownMjolButton from "../../../ui/buttons/DropDownMjolButton";
 
-const Details = ({nft}) => {
+const NftInfo = ({nft}) => {
 
     const tabs = useMemo(() => ({
         'Collection': nft.description,
@@ -37,4 +37,4 @@ const Details = ({nft}) => {
     );
 };
 
-export default Details;
+export default NftInfo;

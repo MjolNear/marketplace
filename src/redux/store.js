@@ -1,4 +1,6 @@
 import {createStore} from "redux";
-import {reducers} from "./reducers";
+import {rootReducers} from "./root-reducers";
 
-export const store = createStore(reducers)
+export const store = createStore(rootReducers)
+
+window.store = store

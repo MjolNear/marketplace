@@ -9,8 +9,8 @@ const initialState = {
             {name: 'Collection', path: '/create-collection'}
         ],
         profile: [
-            {name: 'My NFTs', path: '/profile-nft'},
-            {name: 'My Collections', path: '/profile-collection'},
+            {name: 'My NFTs', path: '/me/nft'},
+            {name: 'My Collections', path: '/me/collection'},
             {name: 'Sign out', path: '/logout'}
         ],
         single: [

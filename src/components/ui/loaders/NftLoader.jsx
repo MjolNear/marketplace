@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentLoader from "react-content-loader";
 
-const NftLoading = ({width, height, speed = 2}) => {
+const NftLoader = ({width, height, speed = 2}) => {
     return (
         <ContentLoader
             speed={speed}
@@ -16,4 +16,4 @@ const NftLoading = ({width, height, speed = 2}) => {
     );
 };
 
-export default NftLoading;
+export default NftLoader;

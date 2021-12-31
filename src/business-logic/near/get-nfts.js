@@ -47,12 +47,13 @@ export async function getNfts(accountId) {
         console.log("ERROR");
         return []
     }
-    const listedNftKeys = await mockGetPricesByKeys(account);
+    const listedNftKeys = mockGetPricesByKeys(account);
     let resNFTs = [];
     for (let contractId of nftContracts) {
         const nfts = await getNFTsByContractAndAccount(account, contractId, accountId);
         for (let nft of nfts) {
-            resNFTs.push(getNftInfo(account, contractId, nft, listedNftKeys))
+            const nftInfoPromise = getNftInfo(account, contractId, nft, listedNftKeys)
+            resNFTs.push(nftInfoPromise)
         }
     }
 
