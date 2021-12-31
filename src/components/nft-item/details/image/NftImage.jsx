@@ -1,5 +1,5 @@
 import React from 'react';
-import NftBorderLine from "./ui/NftBorderLine";
+import NftBorderLine from "../ui/NftBorderLine";
 
 const NftImage = ({path}) => {
     return (

@@ -8,6 +8,7 @@ import CreateCollectionPage from "../components/pages/create/collection/CreateCo
 import CreateNftPage from "../components/pages/create/nft/CreateNftPage";
 import ExploreCollectionsPage from "../components/pages/explore/collection/ExploreCollectionsPage";
 import ExploreNftPage from "../components/pages/explore/nft/ExploreNftPage";
+import {ProfilePageContainer} from "../components/pages/profile/ProfilePageContainer";
 
 
 const AppRouter = ({state}) => {
@@ -19,7 +20,7 @@ const AppRouter = ({state}) => {
             <Route path="/create-nft" element={<CreateNftPage/>} key="4"/>
             <Route path="/create-collection" element={<CreateCollectionPage/>} key="5"/>
 
-            <Route path="/profile-nft" element={<ProfilePage profilePage={state.profile}/>} key="6"/>
+            <Route path="/me/nft" element={<ProfilePageContainer/>} key="6"/>
             {/*<Route path="/profile-nft/all" element={<Profile/>} key="7"/>*/}
             {/*<Route path="/profile-nft/listed" element={<Profile/>} key="8"/>*/}
             {/*<Route path="/profile-nft/minted" element={<Profile/>} key="9"/>*/}

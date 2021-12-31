@@ -2,59 +2,10 @@ import React, {Fragment} from 'react'
 import {Popover, Transition} from '@headlessui/react'
 import {login, logout} from "../../../business-logic/near/contract";
 import classNames from "../../../business-logic/css-utils";
-import {CloseMenuButton, DropDownButton, MenuButton} from "../../ui/navbar/buttons";
+import {CloseMenuButton, MenuButton} from "../../ui/navbar/buttons";
 import {Link} from "react-router-dom";
+import {TabsDropDownMenu} from "./menu/TabDropDownMenu";
 
-
-function TabsDropDownMenu({name, tabs, isProfile}) {
-    return (
-        <Popover className="relative">
-            {({isOpen}) => (
-                <div key={name}>
-                    <DropDownButton isOpen={isOpen} tabName={name}/>
-                    <Transition
-                        as={Fragment}
-                        enter="transition ease-out duration-200"
-                        enterFrom="opacity-0 translate-y-1"
-                        enterTo="opacity-100 translate-y-0"
-                        leave="transition ease-in duration-150"
-                        leaveFrom="opacity-100 translate-y-0"
-                        leaveTo="opacity-0 translate-y-1"
-                    >
-                        <Popover.Panel
-                            className={classNames(
-                                isProfile ? '-ml-20' : '-ml-4',
-                                "absolute z-10 -ml-4 mt-3 transform px-2"
-                            )}>
-                            <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                                <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                                    {tabs.map(({path, name}) => (
-                                        name === "Sign out"
-                                            ? <Link to='/' key={name} onClick={logout}>
-                                                <div className={classNames(
-                                                    name === "Launchpad" ? 'cursor-not-allowed' : 'cursor-pointer',
-                                                    "text-medium font-medium text-gray-500 hover:text-gray-900"
-                                                )}>
-                                                    {name}
-                                                </div>
-                                            </Link>
-                                            : <Link key={name} to={path}>
-                                                <div
-                                                    className="cursor-pointer -m-3 p-3 flex items-start rounded-lg hover:bg-gray-100"
-                                                >
-                                                    <p className="text-medium font-medium text-gray-900">{name}</p>
-                                                </div>
-                                            </Link>
-                                    ))}
-                                </div>
-                            </div>
-                        </Popover.Panel>
-                    </Transition>
-                </div>
-            )}
-        </Popover>
-    )
-}
 
 function SmallNavBar({tabs}) {
     return (
@@ -80,11 +31,11 @@ function SmallNavBar({tabs}) {
     )
 }
 
-export default function NavBarPage({state}) {
-    const exploreTabs = state.tabs.explore
-    const createTabs = state.tabs.create
-    const profileTabs = state.tabs.profile
-    const singleTabs = state.tabs.single
+export default function Navbar({navbar}) {
+    const exploreTabs = navbar.tabs.explore
+    const createTabs = navbar.tabs.create
+    const profileTabs = navbar.tabs.profile
+    const singleTabs = navbar.tabs.single
 
     return (
         <Popover className="bg-cyan-100">
@@ -107,7 +58,6 @@ export default function NavBarPage({state}) {
                         <TabsDropDownMenu key="Explore" name="Explore" tabs={exploreTabs} isProfile={false}/>
                         <TabsDropDownMenu key="Create" name="Create" tabs={createTabs} isProfile={false}/>
                         {singleTabs.map(({name, path}) => (
-                            //<Link to={path} key={name}>
                             <div
                                 className={classNames(
                                     name === "Launchpad" || name === "Docs" ? 'cursor-not-allowed' : 'cursor-pointer',
@@ -115,7 +65,6 @@ export default function NavBarPage({state}) {
                                 )}>
                                 {name}
                             </div>
-                            //</Link>
                         ))}
                     </Popover.Group>
                     {window.walletConnection.isSignedIn() ? (
@@ -155,7 +104,7 @@ export default function NavBarPage({state}) {
                                         <img
                                             className="h-8 w-auto"
                                             src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                                        />
+                                            alt="logo"/>
                                     </Link>
                                 </div>
                                 <div className="-mr-2">

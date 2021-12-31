@@ -1,26 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ProfileNavigationBar from "./ui/ProfileNavigationBar";
-import AllNft from "./nft/AllNft";
-import ListedNft from "./nft/ListedNft";
-import MintedNft from "./nft/MintedNft";
-import History from "./nft/History";
+import UserNfts from "./nft/UserNfts";
 
-const ProfilePage = ({profilePage}) => {
-    const [activeTab, setActiveTab] = useState('My NFT')
-
-    const activePage = {
-        'My NFT': <AllNft/>,
-        'My Listed NFT': <ListedNft/>,
-        'My Minted NFT': <MintedNft/>,
-        'My History': <History/>
-    }
-
+const ProfilePage = ({profile, changeProfileTab, fetchNfts, fetchHistory}) => {
     return (
-        <div className="bg-light_white space-y-10">
-            <ProfileNavigationBar setActiveTab={setActiveTab}
-                                  activeTab={activeTab}
-                                  tabs={profilePage.tabs}/>
-            {activePage[activeTab]}
+        <div className="bg-light_white space-y-10 pb-10">
+            <ProfileNavigationBar onChangeTab={changeProfileTab}
+                                  activeTab={profile.activeTab}
+                                  tabs={profile.tabs}/>
+            {<UserNfts/>}
         </div>
     );
 };

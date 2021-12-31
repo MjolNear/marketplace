@@ -1,6 +1,6 @@
 import React from 'react';
 
-import logo from '../../../resources/logo-black.svg';
+import logo from '../../../../resources/logo-black.svg';
 
 const NftPrice = ({price}) => {
     return (

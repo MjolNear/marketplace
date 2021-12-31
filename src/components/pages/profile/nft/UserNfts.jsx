@@ -5,7 +5,7 @@ import NftLoading from "../../../ui/loaders/NftLoading";
 import NftItem from "../../../nft-item/NftItem";
 import {getNfts} from "../../../../business-logic/near/get-nfts";
 
-const UserNFT = () => {
+const UserNfts = () => {
 
     const [nfts, setNfts] = useState([])
     const [isLoading, setLoading] = useState(true)
@@ -51,4 +51,4 @@ const UserNFT = () => {
     );
 };
 
-export default UserNFT;
+export default UserNfts;
