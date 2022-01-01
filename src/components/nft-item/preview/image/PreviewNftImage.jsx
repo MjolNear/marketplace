@@ -2,10 +2,10 @@ import React from 'react';
 
 const PreviewNftImage = ({link}) => {
     return (
-        <div className="flex flex-row justify-center">
+        <div className="justify-self-center md:justify-self-end">
             <img src={link}
                  alt="loading..."
-                 className="rounded-3xl max-h-96"
+                 className="rounded-3xl max-h-xl"
             />
         </div>
     );

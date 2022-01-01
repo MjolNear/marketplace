@@ -56,7 +56,6 @@ async function getNftInfo(account, contractId, nft, listedNftKeys) {
 
 export async function getNFTsByContractAndTokenId(accountId, contractId, tokenId) {
     const account = NftAPI.buildAccountInfo(accountId)
-
     const nft = await account.viewFunction(contractId, 'nft_token', {
         token_id: tokenId
     });

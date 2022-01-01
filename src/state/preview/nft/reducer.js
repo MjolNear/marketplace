@@ -2,8 +2,8 @@ import {BUY_NFT, SELL_NFT, SET_ERROR, SET_FETCHING, SET_NFT} from "./actions";
 
 const initialState = {
     nft: null,
-    error: null,
-    fetching: false
+    isError: false,
+    isFetching: false
 }
 
 export const previewNftReducer = (state = initialState, action) => {
@@ -20,12 +20,12 @@ export const previewNftReducer = (state = initialState, action) => {
         case SET_FETCHING:
             return {
                 ...state,
-                fetching: action.payload
+                isFetching: action.payload
             }
         case SET_ERROR:
             return {
                 ...state,
-                error: action.payload
+                isError: action.payload
             }
         default:
             return state

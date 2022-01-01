@@ -1,7 +1,7 @@
 import React from 'react';
 import NftCollectionContainer from "../../../nft-collection/NftCollectionContainer";
 import NftItem from "../../../nft-item/NftItem";
-import NftLoader from "../../../ui/loaders/NftLoader";
+import SmallNftLoader from "../../../ui/loaders/SmallNftLoader";
 
 const MyNfts = ({nfts, fetching}) => {
 
@@ -12,7 +12,7 @@ const MyNfts = ({nfts, fetching}) => {
     const loaders = Array(12)
         .fill(0)
         .map((i, idx) =>
-            <NftLoader key={idx} width={295} height={455}/>
+            <SmallNftLoader key={idx} width={295} height={455}/>
         )
 
     return (

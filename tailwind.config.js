@@ -30,6 +30,14 @@ module.exports = {
         },
         extend: {
 
+            maxHeight: {
+                'md': '28rem',
+                'lg': '32rem',
+                'xl': '36rem',
+                '2xl': '42rem',
+                '3xl': '48rem',
+            },
+
             gridTemplateColumns: {
                 '1nft-300': 'repeat(1, 300px)',
                 '2nft-280': 'repeat(2, 280px)',

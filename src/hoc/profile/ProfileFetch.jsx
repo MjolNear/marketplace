@@ -11,7 +11,9 @@ const ProfileFetch = ({profile, changeProfileTab, pushNFT, setFetching, setNfts,
                     .then(nfts => nfts
                         .map(nftPromise =>
                             nftPromise
-                                .then(pushNFT))
+                                .then(pushNFT)
+                                .catch(() => console.log('not found'))
+                        )
                     )
                     .finally(onFetch))
         }

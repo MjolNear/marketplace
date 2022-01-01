@@ -22,7 +22,7 @@ export const profileReducer = (state = initialState, action) => {
         case CHANGE_PROFILE_TAB:
             return {
                 ...state,
-                activeTab: action.tab,
+                activeTab: action.payload,
                 tags: [...state.nfts.filter(nft => {
                         switch (action.payload) {
                             case MY_LISTED_TAB:

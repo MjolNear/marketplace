@@ -1,10 +1,10 @@
 import React from 'react';
-import {Navigate} from "react-router-dom";
+import WalletConnectionPage from "../components/pages/auth/WalletConnectionPage";
 
 
 const withWalletConnection = (Component) => (props) => {
     if (!window.walletConnection.isSignedIn()) {
-        return <Navigate to="/login"/>
+        return <WalletConnectionPage/>
     }
     return <Component {...props}/>
 };
