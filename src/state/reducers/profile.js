@@ -6,10 +6,11 @@ const MY_HISTORY_TAB = "My History"
 
 const initialState = {
     tabs: [
-        {name: MY_NFT_TAB, path: '/me/nfts'},
-        {name: MY_LISTED_TAB, path: '/me/listed'},
-        {name: MY_HISTORY_TAB, path: '/me/history'},
+        {name: MY_NFT_TAB, path: '/profile/nfts'},
+        {name: MY_LISTED_TAB, path: '/profile/listed'},
+        {name: MY_HISTORY_TAB, path: '/profile/history'},
     ],
+    accountId: null,
     activeTab: MY_NFT_TAB,
     fetching: false,
     nfts: [],
@@ -24,7 +25,7 @@ export const profileReducer = (state = initialState, action) => {
                 ...state,
                 activeTab: action.tab,
                 tags: [...state.nfts.filter(nft => {
-                        switch (action.tab) {
+                        switch (action.payload) {
                             case MY_LISTED_TAB:
                                 return nft.price !== null
                             case MY_NFT_TAB:
@@ -38,24 +39,24 @@ export const profileReducer = (state = initialState, action) => {
         case PUSH_NFT:
             return {
                 ...state,
-                nfts: [...state.nfts, action.nft],
-                tags: [...state.nfts, action.nft]
+                nfts: [...state.nfts, action.payload],
+                tags: [...state.nfts, action.payload]
             }
         case SET_FETCHING:
             return {
                 ...state,
-                fetching: action.fetching
+                fetching: action.payload
             }
         case SET_MY_NFTS:
             return {
                 ...state,
-                nfts: action.nfts,
-                tags: action.nfts
+                nfts: action.payload,
+                tags: action.payload
             }
         case SET_HISTORY:
             return {
                 ...state,
-                history: action.history
+                history: action.payload
             }
         default:
             return state

@@ -1,20 +1,23 @@
 import React, {useMemo} from 'react';
-import Title from "../Title";
 import CollectionLink from "./CollectionLink";
-import SellNftButton from "../nft-action/SellNft";
 import DropDownMjolButton from "../../../ui/buttons/DropDownMjolButton";
+import SellNftButton from "../nft-action/SellNftButton";
+import NftPreviewTitle from "./NftPreviewTitle";
 
 const NftInfo = ({nft}) => {
 
     const tabs = useMemo(() => ({
-        'Collection': nft.description,
-        'Attributes': nft.owner_id
+        'Description': nft.description,
+        'Mint info': `owner:    ${nft.ownerId} 
+                      contract: ${nft.contractId}
+                      token:    ${nft.tokenId}
+                      `
     }), [])
 
     return (
         <div className="space-y-5">
             <div>
-                <Title title={nft.title}/>
+                <NftPreviewTitle title={nft.title}/>
                 <CollectionLink name={nft.description} link=""/>
             </div>
             <SellNftButton/>
