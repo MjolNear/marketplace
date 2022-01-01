@@ -1,11 +1,11 @@
-import {BUY_NFT, SELL_NFT, SET_FETCHING, SET_NFT} from "../actions/preview";
+import {BUY_NFT, SELL_NFT, SET_FETCHING, SET_NFT} from "./actions";
 
 const initialState = {
     nft: null,
     fetching: false
 }
 
-export const previewReducer = (state = initialState, action) => {
+export const previewNftReducer = (state = initialState, action) => {
     switch (action.type) {
         case BUY_NFT:
             return state

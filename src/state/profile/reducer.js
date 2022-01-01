@@ -1,4 +1,4 @@
-import {CHANGE_PROFILE_TAB, PUSH_NFT, SET_FETCHING, SET_HISTORY, SET_MY_NFTS} from "../actions/profile";
+import {CHANGE_PROFILE_TAB, PUSH_NFT, SET_FETCHING, SET_HISTORY, SET_MY_NFTS} from "./actions";
 
 const MY_NFT_TAB = "My NFT"
 const MY_LISTED_TAB = "My Listed NFT"

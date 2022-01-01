@@ -1,4 +1,4 @@
-import {buyNFT, sellNFT, setFetching, setNFT} from "../../state/actions/preview";
+import {buyNFT, sellNFT, setFetching, setNFT} from "../../state/preview/nft/actions";
 import PreviewNftFetchHOC from "./PreviewNftFetchHOC";
 import {connect} from "react-redux";
 
