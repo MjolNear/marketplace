@@ -3,6 +3,7 @@ import {mockGetPricesByKeys} from '../api/mocks'
 
 const nearApi = require("near-api-js");
 
+// TODO:- Rewrite logic of getting nft with readable errors for UI.
 class NftAPI {
 
     static getNetwork(accountId) {
