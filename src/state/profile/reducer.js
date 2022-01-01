@@ -10,7 +10,6 @@ const initialState = {
         {name: MY_LISTED_TAB, path: '/profile/listed'},
         {name: MY_HISTORY_TAB, path: '/profile/history'},
     ],
-    accountId: null,
     activeTab: MY_NFT_TAB,
     fetching: false,
     nfts: [],

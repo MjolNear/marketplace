@@ -1,24 +1,40 @@
+import {getNFTsByContractAndTokenId} from "../../../business-logic/near/get-nfts";
+
 export const BUY_NFT = "BUY_NFT"
 export const SELL_NFT = "SELL_NFT"
 export const SET_NFT = "SET_NFT"
+export const SET_ERROR = "SET_ERROR"
 export const SET_FETCHING = "SET_FETCHING"
 
-export const buyNFT = (id) => ({
+export const buyNft = (id) => ({
     action: BUY_NFT,
     payload: id
 })
 
-export const sellNFT = (id) => ({
+export const sellNft = (id) => ({
     action: SELL_NFT,
     payload: id
 })
 
-export const setNFT = (nft) => ({
+export const setNft = (nft) => ({
     type: SET_NFT,
     payload: nft
 })
 
-export const setFetching = (fetching) => ({
-    type: SET_FETCHING,
-    payload: fetching
+export const setError = (error) => ({
+    type: SET_ERROR,
+    payload: error
 })
+
+export const setFetching = (fetching) => ({
+    type: SET_FETCHING, payload: fetching
+})
+
+export const fetchNft = (accountId, contractId, tokenId) => (dispatch) => {
+    dispatch(setFetching(true))
+    getNFTsByContractAndTokenId(accountId, contractId, tokenId)
+        .then(nft => dispatch(setNft(nft)))
+        .catch(() => dispatch(setError(true)))
+        .finally(() => dispatch(setFetching(false)))
+}
+

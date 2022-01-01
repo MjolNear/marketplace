@@ -7,7 +7,7 @@ import CreateCollectionPage from "../components/pages/create/collection/CreateCo
 import CreateNftPage from "../components/pages/create/nft/CreateNftPage";
 import ExploreCollectionsPage from "../components/pages/explore/collection/ExploreCollectionsPage";
 import ExploreNftPage from "../components/pages/explore/nft/ExploreNftPage";
-import ProfilePageHOC from "../hoc/profile/ProfilePageHOC";
+import ProfilePageHoc from "../hoc/profile/ProfilePageHoc";
 import PreviewNftHoc from "../hoc/preview/nft/PreviewNftHoc";
 
 
@@ -20,7 +20,7 @@ const AppRouter = () => {
             <Route path="/collections" element={<ExploreCollectionsPage/>} key="3"/>
             <Route path="/create-nft" element={<CreateNftPage/>} key="4"/>
             <Route path="/create-collection" element={<CreateCollectionPage/>} key="5"/>
-            <Route path="/profile/nfts" element={<ProfilePageHOC/>} key="6"/>
+            <Route path="/profile/nfts" element={<ProfilePageHoc/>} key="6"/>
             <Route path="/profile-collection" element={<ProfileNftCollectionsPage/>} key="11"/>
             <Route path="*" element={<NotFoundPage/>} key="12"/>
         </Routes>

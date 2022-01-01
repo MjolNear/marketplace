@@ -23,7 +23,7 @@ const NftInfo = ({nft}) => {
             <SellNftButton/>
             <div className="space-y-3">
                 {Object.keys(tabs).map(key => (
-                        <DropDownMjolButton title={key}>
+                        <DropDownMjolButton key={key} title={key}>
                             <div className="
                                 px-4 py-2 rounded-lg w-full
                                 text-blue-500 font-medium

@@ -4,9 +4,8 @@ import PreviewNftImage from "./image/PreviewNftImage";
 import NftInfo from "./details/NftInfo";
 
 const PreviewNftPage = ({nft}) => {
-    console.log("nft")
     if (!nft) {
-        return <div>LOADING</div>
+        return <div className="text-center">Loading</div>
     }
     return (
         <div className="bg-light_white

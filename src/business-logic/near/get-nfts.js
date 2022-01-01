@@ -56,12 +56,36 @@ async function getNftInfo(account, contractId, nft, listedNftKeys) {
 
 export async function getNFTsByContractAndTokenId(accountId, contractId, tokenId) {
     const account = NftAPI.buildAccountInfo(accountId)
+
+    const nft = await account.viewFunction(contractId, 'nft_token', {
+        token_id: tokenId
+    });
+    const listedNftKeys = mockGetPricesByKeys(account);
+    return getNftInfo(account, contractId, nft, listedNftKeys)
+}
+
+export async function getNftPayouts(accountId, contractId, tokenId) {
+    const account = NftAPI.buildAccountInfo(accountId)
+    const TREASURY_PERCENT = 2;
     try {
-        const nft = await account.viewFunction(contractId, 'nft_token', {
-            token_id: tokenId
-        });
-        const listedNftKeys = mockGetPricesByKeys(account);
-        return getNftInfo(account, contractId, nft, listedNftKeys)
+        return account.viewFunction(contractId, 'nft_payout', {
+            token_id: tokenId,
+            balance: '10000',
+            max_len_payout: 10
+        }).then(payouts => {
+            let royalties = {'treasury': TREASURY_PERCENT};
+            let highestPayout = null;
+            for (let payoutKey in payouts['payout']) {
+                const payoutVal = parseInt(payouts['payout'][payoutKey]) / 100;
+                if (!highestPayout || highestPayout[1] < payoutVal) {
+                    highestPayout = [payoutKey, payoutVal]
+                }
+                royalties[payoutKey] = payoutVal
+            }
+            delete royalties[highestPayout[0]]
+
+            return royalties
+        })
     } catch (e) {
         console.log(e);
     }

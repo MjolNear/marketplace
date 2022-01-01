@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {changeProfileTab, pushNFT, setFetching, setHistory, setNfts} from "../../state/profile/actions";
-import ProfileFetchHOC from "./ProfileFetchHOC";
+import ProfileFetch from "./ProfileFetch";
 
 
 const mapStateToProps = (state) => ({
@@ -16,6 +16,4 @@ const mapDispatchToProps = {
     setHistory
 }
 
-const ProfilePageHOC = connect(mapStateToProps, mapDispatchToProps)(ProfileFetchHOC)
-
-export default ProfilePageHOC;
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileFetch)

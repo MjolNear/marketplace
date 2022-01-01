@@ -37,7 +37,7 @@ export async function initContract() {
 export function logout() {
     window.walletConnection.signOut();
     // reload page
-    // window.location.replace(window.location.origin + window.location.pathname)
+    window.location.replace(window.location.origin + window.location.pathname)
 }
 
 export function login() {
@@ -48,7 +48,7 @@ export function login() {
     console.log("SIGN IN");
     console.log(nearConfig.contractName)
     window.walletConnection.requestSignIn(nearConfig.contractName)
-        .then(() => console.log('logged'))
+        .then(() => console.log(window.walletConnection.getAccountId()))
         .catch(e => console.log(e))
 }
 
