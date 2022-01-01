@@ -7,6 +7,6 @@ import {authReducer} from "./auth/reducer";
 export const rootReducers = combineReducers({
     profile: profileReducer,
     navbar: navbarReducer,
-    preview: previewNftReducer,
+    previewNft: previewNftReducer,
     auth: authReducer
 })

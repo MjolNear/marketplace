@@ -1,4 +1,4 @@
-import {connect, Contract, keyStores, utils, WalletConnection} from 'near-api-js'
+import {connect as connectWallet, Contract, keyStores, utils, WalletConnection} from 'near-api-js'
 import getConfig from './config'
 import Buffer from 'buffer'
 
@@ -13,7 +13,7 @@ export async function initContract() {
 
     window.Buffer = Buffer;
 
-    const near = await connect(Object.assign(
+    const near = await connectWallet(Object.assign(
         {
             deps: {keyStore: new keyStores.BrowserLocalStorageKeyStore()}
         }, nearConfig));
@@ -37,7 +37,7 @@ export async function initContract() {
 export function logout() {
     window.walletConnection.signOut();
     // reload page
-    window.location.replace(window.location.origin + window.location.pathname)
+    // window.location.replace(window.location.origin + window.location.pathname)
 }
 
 export function login() {
