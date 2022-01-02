@@ -2,8 +2,9 @@ import React from 'react';
 import {connect} from "react-redux";
 import {changeProfileTab, pushNFT, setFetching, setHistory, setNfts} from "../../state/profile/actions";
 import ProfileFetch from "./ProfileFetch";
-import withWalletConnection from "../withWalletConnection";
+import withAuthentication from "../withAuthentication";
 import {compose} from "redux";
+import withAccountId from "../withAccountId";
 
 
 const mapStateToProps = (state) => ({
@@ -19,6 +20,8 @@ const mapDispatchToProps = {
 }
 
 export default compose(
-    withWalletConnection,
+    withAccountId,
+    withAuthentication,
     connect(mapStateToProps, mapDispatchToProps)
-)(ProfileFetch)
+)
+(ProfileFetch)

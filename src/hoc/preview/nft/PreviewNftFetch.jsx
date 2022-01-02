@@ -8,7 +8,7 @@ import RoundLoader from "../../../components/ui/loaders/RoundLoader";
 import {NFT_STATE} from "../../../state/preview/nft/reducer";
 
 
-const PreviewNftFetch = ({previewNft, fetchNft}) => {
+const PreviewNftFetch = ({previewNft, fetchNft, accountId}) => {
     const {contractId, tokenId} = useParams()
 
     useEffect(() =>
@@ -23,7 +23,7 @@ const PreviewNftFetch = ({previewNft, fetchNft}) => {
         return <RoundLoader/>
     }
 
-    const {state, ...props} = previewNft.resolveButtonState(window.accountId, previewNft.nft)
+    const {state, ...props} = previewNft.resolveButtonState(accountId, previewNft.nft)
 
     let activeElement = <MjolGradientButton {...props}>{state}</MjolGradientButton>
     switch (state) {
@@ -35,7 +35,7 @@ const PreviewNftFetch = ({previewNft, fetchNft}) => {
             break
         case NFT_STATE.NOT_LISTED:
             activeElement = <PriceButtonContainer isListed={false}
-                                                  text="Nft not listed on market"/>
+                                                  text="NFT not listed on market"/>
             break
     }
 
