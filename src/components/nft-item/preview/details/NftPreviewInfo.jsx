@@ -1,27 +1,50 @@
-import React, {useMemo} from 'react';
 import CollectionLink from "./CollectionLink";
 import DropDownMjolButton from "../../../ui/buttons/DropDownMjolButton";
 import NftPreviewTitle from "./NftPreviewTitle";
+import PreviewAttributes from "./attributes/PreviewAttributes";
 
-const NftPreviewInfo = ({nft, accountId}) => {
+const NftPreviewInfo = ({nft, payouts, accountId}) => {
 
-    const tabs = useMemo(() => ({
-        'Description': nft.description,
-        'Attributes': `owner:    ${nft.ownerId} 
-                      contract: ${nft.contractId}
-                      token:    ${nft.tokenId}
-                      `
-    }), [])
+    const tabs = [
+        {
+            name: "Description",
+            element: nft.description
+        },
+        {
+            name: "Attributes",
+            element:
+                <PreviewAttributes attributes={
+                    [
+                        {name: "owner", value: nft.ownerId},
+                        {name: "token", value: nft.tokenId},
+                        {name: "contract", value: nft.contractId}
+                    ]}
+                />
+        }
+    ]
 
-    const info = Object.keys(tabs).map(key => (
-        <DropDownMjolButton key={key} title={key}>
-            <div className="
-                                px-4 py-2 rounded-lg w-full
-                                text-blue-500 font-medium
-                                text-md md:text-lg
-                                ring-blue-200 ring-1 ring-inset
-                        ">
-                {tabs[key]}
+    if (payouts) {
+        tabs.push({
+            name: "Royalties",
+            element:
+                <PreviewAttributes
+                    attributes={
+                        Object.keys(payouts).map(key => ({
+                            name: key, value: `${payouts[key]}%`
+                        }))
+                    }
+                />
+        })
+    }
+
+    const info = tabs.map(tab => (
+        <DropDownMjolButton key={tab.name} title={tab.name}>
+            <div className="px-4 py-2 rounded-lg w-full
+                            text-blue-500 font-medium
+                            text-md md:text-lg
+                            ring-blue-200 ring-1 ring-inset"
+            >
+                {tab.element}
             </div>
         </DropDownMjolButton>
     ))

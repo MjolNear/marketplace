@@ -18,7 +18,7 @@ const PreviewNftFetch = ({previewNft, fetchNft}) => {
     if (previewNft.isFetching || !previewNft.nft) {
         return <div className="text-center text-5xl">Fetching</div>
     }
-    return <PreviewNftPage nft={previewNft.nft}/>
+    return <PreviewNftPage nft={previewNft.nft} payouts={previewNft.payouts}/>
 };
 
 export default PreviewNftFetch;
