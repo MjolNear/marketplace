@@ -1,10 +1,27 @@
 import {BUY_NFT, SELL_NFT, SET_ERROR, SET_FETCHING, SET_NFT, SET_PAYOUTS} from "./actions";
+import {login} from "../../../business-logic/near/contract";
 
 const initialState = {
     nft: null,
-    payouts: null,
+    payouts: [],
     isError: false,
-    isFetching: false
+    isFetching: false,
+
+    resolveButtonState: (accountId, nft) => {
+        if (!accountId) {
+            return {text: "Connect Wallet", onClick: login}
+        }
+        if (nft.isListed() && accountId === nft.ownerId) {
+            return {text: "Unlist", onClick: () => alert('unlisted')}
+        }
+        if (nft.isListed()) {
+            return {text: "Buy", onClick: () => alert("buy")}
+        }
+        if (accountId === nft.ownerId) {
+            return {text: "Sell", onClick: () => alert("sell")}
+        }
+        return {text: 'Not listed', onClick: () => alert('not listed'), disabled: true}
+    }
 }
 
 export const previewNftReducer = (state = initialState, action) => {
@@ -21,7 +38,12 @@ export const previewNftReducer = (state = initialState, action) => {
         case SET_PAYOUTS:
             return {
                 ...state,
-                payouts: action.payload
+                payouts: Object
+                    .entries(action.payload)
+                    .map(kv => {
+                        const [name, royalty] = kv
+                        return {name, value: `${royalty}%`}
+                    })
             }
         case SET_FETCHING:
             return {

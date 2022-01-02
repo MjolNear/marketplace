@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import PreviewNftPage from "../../../components/pages/preview/nft/PreviewNftPage";
 import {useParams} from "react-router";
 import NotFoundPage from "../../../components/pages/not-found/NotFoundPage";
+import MjolGradientButton from "../../../components/ui/buttons/MjolGradientButton";
 
 
 const PreviewNftFetch = ({previewNft, fetchNft}) => {
@@ -18,7 +19,14 @@ const PreviewNftFetch = ({previewNft, fetchNft}) => {
     if (previewNft.isFetching || !previewNft.nft) {
         return <div className="text-center text-5xl">Fetching</div>
     }
-    return <PreviewNftPage nft={previewNft.nft} payouts={previewNft.payouts}/>
+
+    const {text, ...props} = previewNft.resolveButtonState(window.accountId, previewNft.nft)
+    const activeButton = <MjolGradientButton {...props}>{text}</MjolGradientButton>
+
+    return <PreviewNftPage nft={previewNft.nft}
+                           payouts={previewNft.payouts}
+                           activeButton={activeButton}
+    />
 };
 
 export default PreviewNftFetch;
