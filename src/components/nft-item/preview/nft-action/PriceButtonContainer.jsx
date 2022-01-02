@@ -1,10 +1,15 @@
 import React from 'react';
 import PreviewNftPrice from "../../details/price/PreviewNftPrice";
+import styles from "./PriceContainer.module.css"
 
 const PriceButtonContainer = ({price, isListed, button}) => {
     return (
-        <div className="rounded-lg bg-blue-100 px-2 pb-3 pt-1 space-y-2">
+        <div className={styles.background}>
             <PreviewNftPrice price={price} isListed={isListed}/>
+            {/*<PreviewNftPrice price={price} isListed={isListed}/>*/}
+            {/*<PreviewNftPrice price={price} isListed={isListed}/>*/}
+            {/*<PreviewNftPrice price={price} isListed={isListed}/>*/}
+            {/*<PreviewNftPrice price={price} isListed={isListed}/>*/}
             {button}
         </div>
     );
