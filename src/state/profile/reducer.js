@@ -26,10 +26,10 @@ export const profileReducer = (state = initialState, action) => {
                 tags: [...state.nfts.filter(nft => {
                         switch (action.payload) {
                             case MY_LISTED_TAB:
-                                return nft.price !== null
+                                return nft.isListed()
                             case MY_NFT_TAB:
                                 return true
-                            default:
+                            case MY_HISTORY_TAB:
                                 return false
                         }
                     }

@@ -3,6 +3,7 @@ import PreviewNftPage from "../../../components/pages/preview/nft/PreviewNftPage
 import {useParams} from "react-router";
 import NotFoundPage from "../../../components/pages/not-found/NotFoundPage";
 import MjolGradientButton from "../../../components/ui/buttons/MjolGradientButton";
+import PriceButtonContainer from "../../../components/nft-item/preview/nft-action/PriceButtonContainer";
 
 
 const PreviewNftFetch = ({previewNft, fetchNft}) => {
@@ -21,7 +22,13 @@ const PreviewNftFetch = ({previewNft, fetchNft}) => {
     }
 
     const {text, ...props} = previewNft.resolveButtonState(window.accountId, previewNft.nft)
-    const activeButton = <MjolGradientButton {...props}>{text}</MjolGradientButton>
+
+    let activeButton = <MjolGradientButton {...props}>{text}</MjolGradientButton>
+    if (text !== "Sell" || text !== "Unlist") {
+        activeButton = <PriceButtonContainer price={previewNft.nft.price}
+                                             isListed={previewNft.nft.isListed()}
+                                             button={activeButton}/>
+    }
 
     return <PreviewNftPage nft={previewNft.nft}
                            payouts={previewNft.payouts}

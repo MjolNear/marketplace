@@ -1,6 +1,7 @@
 import {BUY_NFT, SELL_NFT, SET_ERROR, SET_FETCHING, SET_NFT, SET_PAYOUTS} from "./actions";
 import {login} from "../../../business-logic/near/contract";
 
+
 const initialState = {
     nft: null,
     payouts: [],
