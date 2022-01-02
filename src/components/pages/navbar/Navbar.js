@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
 import {Popover, Transition} from '@headlessui/react'
 import {login, logout} from "../../../business-logic/near/contract";
-import classNames from "../../../business-logic/css-utils";
+import classNames from "../../../utils/css-utils";
 import {CloseMenuButton, MenuButton} from "../../ui/navbar/buttons";
 import {Link} from "react-router-dom";
 import {TabsDropDownMenu} from "./menu/TabDropDownMenu";

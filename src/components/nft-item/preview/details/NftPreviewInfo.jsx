@@ -13,14 +13,14 @@ const NftPreviewInfo = ({nft, payouts, actionButton}) => {
     ]
 
     const tabs = [
-        {name: "Description", element: nft.description},
+        {name: "Description", element: nft.description ? nft.description : "Not found"},
         {name: "Attributes", element: <PreviewAttributes attributes={ownerAttributes}/>},
         {name: "Royalties", element: <PreviewAttributes attributes={payouts}/>}
     ]
 
     const info = tabs.map(tab => (
         <DropDownMjolButton key={tab.name} title={tab.name}>
-            <div className="px-4 py-2 rounded-lg w-full text-blue-500 font-medium text-md md:text-lg
+            <div className="px-4 py-2 rounded-lg w-full text-blue-500 font-medium text-sm md:text-md
                             ring-blue-200 ring-1 ring-inset"
             >
                 {tab.element}
