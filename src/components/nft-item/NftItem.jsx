@@ -6,17 +6,18 @@ import SmallNftPrice from "./details/price/SmallNftPrice";
 import NftMintedLink from "./details/minted/NftMintedLink";
 
 const NftItem = ({nft}) => {
-    const previewPath = `/nft/${nft.contractId}/${nft.tokenId}`
+    const previewLink = `/nft/${nft.contractId}/${nft.tokenId}`
+    const isListed = nft.isListed()
     return (
         <NftBoxContainer>
             <div>
-                <NftImage path={nft.mediaURL} previewPath={previewPath}/>
+                <NftImage path={nft.mediaURL} previewLink={previewLink}/>
                 <div className="pl-4 pr-4 md:pl-6 pt-2 space-y-4">
                     <TitleCollectionGroup title={nft.title}
                                           collectionName={"Mock"}
                                           collectionLink={"Mock collection"}
                     />
-                    <SmallNftPrice price={nft.price} isListed={nft.isListed()}/>
+                    <SmallNftPrice price={nft.price} isListed={isListed}/>
                 </div>
             </div>
             <div

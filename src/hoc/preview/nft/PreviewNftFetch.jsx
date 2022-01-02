@@ -11,10 +11,9 @@ import {NFT_STATE} from "../../../state/preview/nft/reducer";
 const PreviewNftFetch = ({previewNft, fetchNft, accountId}) => {
     const {contractId, tokenId} = useParams()
 
-    useEffect(() =>
-            fetchNft('turk.near', contractId, tokenId),
-        []
-    )
+    useEffect(() => {
+        fetchNft('turk.near', contractId, tokenId)
+    }, [])
 
     if (previewNft.isError) {
         return <NotFoundPage/>

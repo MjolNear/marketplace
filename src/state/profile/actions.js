@@ -3,9 +3,8 @@ import {getNfts} from "../../business-logic/near/get-nfts";
 export const CHANGE_PROFILE_TAB = "CHANGE_PROFILE_TAB"
 export const SET_MY_NFTS = "SET_MY_NFTS"
 export const SET_HISTORY = "SET_HISTORY"
-export const ADD_NFT = "PUSH_NFT"
-export const SET_FETCHING = "SET_FETCHING"
-export const SET_PROFILE = "SET_PROFILE"
+export const ADD_PROFILE_NFT = "ADD_PROFILE_NFT"
+export const SET_FETCHING_PROFILE_NFT = "SET_FETCHING_PROFILE_NFT"
 
 export const changeProfileTab = (tab) => ({
     type: CHANGE_PROFILE_TAB,
@@ -13,23 +12,18 @@ export const changeProfileTab = (tab) => ({
 })
 
 export const addNft = (nft) => ({
-    type: ADD_NFT,
+    type: ADD_PROFILE_NFT,
     payload: nft
 })
 
 export const setFetching = (fetching) => ({
-    type: SET_FETCHING,
+    type: SET_FETCHING_PROFILE_NFT,
     payload: fetching
 })
 
 export const setNfts = (nfts) => ({
     type: SET_MY_NFTS,
     payload: nfts
-})
-
-export const setProfile = (profileId) => ({
-    type: SET_PROFILE,
-    payload: profileId
 })
 
 export const setHistory = (history) => ({
@@ -48,5 +42,5 @@ export const fetchMyNfts = (accountId) => (dispatch) => {
             )
         )
         .catch(() => dispatch(setNfts([])))
-        .finally(dispatch(setFetching(false)))
+        .finally(() => dispatch(setFetching(false)))
 }
