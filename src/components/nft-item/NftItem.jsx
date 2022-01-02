@@ -2,7 +2,7 @@ import React from 'react';
 import NftImage from "./details/image/NftImage";
 import NftBoxContainer from "./NftBoxContainer";
 import TitleCollectionGroup from "./details/ui/TitleCollectionGroup";
-import NftPrice from "./details/price/NftPrice";
+import SmallNftPrice from "./details/price/SmallNftPrice";
 import NftMintedLink from "./details/minted/NftMintedLink";
 
 const NftItem = ({nft}) => {
@@ -16,7 +16,7 @@ const NftItem = ({nft}) => {
                                           collectionName={"Mock"}
                                           collectionLink={"Mock collection"}
                     />
-                    <NftPrice price={nft.price}/>
+                    <SmallNftPrice price={nft.price} isListed={nft.isListed()}/>
                 </div>
             </div>
             <div

@@ -92,26 +92,21 @@ function getNftMintedSiteInfo(nft, contractId) {
 // },
 // approved_account_ids: {}
 export function convertStandardNFT(contractId, nft, listedNftKeys) {
-    try {
-        const metadata = nft.metadata;
-        return new NFT(
-            contractId,
-            nft.token_id,
-            nft.owner_id,
-            metadata.title,
-            metadata.description,
-            metadata.copies,
-            getRealUrl(metadata.media, metadata.media_hash, contractId),
-            getRealUrl(metadata.reference, metadata.reference_hash, contractId),
-            getNftMintedSiteInfo(nft, contractId),
-            listedNftKeys[contractId + ':' + nft.token_id] === undefined
-                ? null
-                : listedNftKeys[contractId + ':' + nft.token_id]
-        )
-    } catch (e) {
-        return null
-    }
-
+    const metadata = nft.metadata;
+    return new NFT(
+        contractId,
+        nft.token_id,
+        nft.owner_id,
+        metadata.title,
+        metadata.description,
+        metadata.copies,
+        getRealUrl(metadata.media, metadata.media_hash, contractId),
+        getRealUrl(metadata.reference, metadata.reference_hash, contractId),
+        getNftMintedSiteInfo(nft, contractId),
+        listedNftKeys[contractId + ':' + nft.token_id] === undefined
+            ? null
+            : listedNftKeys[contractId + ':' + nft.token_id]
+    )
 }
 
 // nft example
@@ -170,32 +165,27 @@ export function convertStandardNFT(contractId, nft, listedNftKeys) {
 // external_url: 'https://near.university/',
 // type: 'NEP171'
 export async function getMintbaseNFT(account, contractId, nft, listedNftKeys) {
-    try {
-        const metadata = nft.metadata;
-        const url = await account.viewFunction(
-            contractId,
-            'nft_token_uri',
-            {
-                token_id: nft.id.toString()
-            }
-        )
-        const jsonNFT = await getJsonByURL(url)
-        return new NFT(
-            contractId,
-            nft.id,
-            nft.owner_id.Account,
-            jsonNFT.title,
-            jsonNFT.description,
-            metadata.copies,
-            getRealUrl(jsonNFT.media, jsonNFT.media_hash, contractId),
-            getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId),
-            getNftMintedSiteInfo(nft, contractId),
-            listedNftKeys[contractId + ':' + nft.id] === undefined
-                ? null
-                : listedNftKeys[contractId + ':' + nft.id]
-        )
-    } catch (e) {
-        console.log("Error while parsing mintbase NFT", contractId);
-        return null
-    }
+    const metadata = nft.metadata;
+    const url = await account.viewFunction(
+        contractId,
+        'nft_token_uri',
+        {
+            token_id: nft.id.toString()
+        }
+    )
+    const jsonNFT = await getJsonByURL(url)
+    return new NFT(
+        contractId,
+        nft.id,
+        nft.owner_id.Account,
+        jsonNFT.title,
+        jsonNFT.description,
+        metadata.copies,
+        getRealUrl(jsonNFT.media, jsonNFT.media_hash, contractId),
+        getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId),
+        getNftMintedSiteInfo(nft, contractId),
+        listedNftKeys[contractId + ':' + nft.id] === undefined
+            ? null
+            : listedNftKeys[contractId + ':' + nft.id]
+    )
 }

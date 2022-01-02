@@ -35,6 +35,10 @@ export class NFT {
         this.price = price;
     }
 
+    isListed() {
+        return this.price !== null
+    }
+
     // Returns primary key for NFT,
     // 'contractId/tokenId'
     getKey() {

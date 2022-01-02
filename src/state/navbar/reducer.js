@@ -20,6 +20,6 @@ const initialState = {
     }
 }
 
-export const navbarReducer = (state = initialState, action) => {
+export const navbarReducer = (state = initialState, _) => {
     return state
 }

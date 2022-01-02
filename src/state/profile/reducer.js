@@ -1,4 +1,4 @@
-import {CHANGE_PROFILE_TAB, PUSH_NFT, SET_FETCHING, SET_HISTORY, SET_MY_NFTS} from "../actions/profile";
+import {CHANGE_PROFILE_TAB, PUSH_NFT, SET_FETCHING, SET_HISTORY, SET_MY_NFTS} from "./actions";
 
 const MY_NFT_TAB = "My NFT"
 const MY_LISTED_TAB = "My Listed NFT"
@@ -10,7 +10,6 @@ const initialState = {
         {name: MY_LISTED_TAB, path: '/profile/listed'},
         {name: MY_HISTORY_TAB, path: '/profile/history'},
     ],
-    accountId: null,
     activeTab: MY_NFT_TAB,
     fetching: false,
     nfts: [],
@@ -23,14 +22,14 @@ export const profileReducer = (state = initialState, action) => {
         case CHANGE_PROFILE_TAB:
             return {
                 ...state,
-                activeTab: action.tab,
+                activeTab: action.payload,
                 tags: [...state.nfts.filter(nft => {
                         switch (action.payload) {
                             case MY_LISTED_TAB:
-                                return nft.price !== null
+                                return nft.isListed()
                             case MY_NFT_TAB:
                                 return true
-                            default:
+                            case MY_HISTORY_TAB:
                                 return false
                         }
                     }
