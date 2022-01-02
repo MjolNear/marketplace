@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from "../../../../resources/logo-black.svg";
 
-const NearLogo = () => {
+const BlackNearIcon = () => {
     return (
         <div className="w-8 lg:w-10">
             <img src={logo} alt="near"/>
@@ -9,4 +9,4 @@ const NearLogo = () => {
     );
 };
 
-export default NearLogo;
+export default BlackNearIcon;
