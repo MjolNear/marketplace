@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {changeProfileTab, pushNFT, setFetching, setHistory, setNfts} from "../../state/profile/actions";
 import ProfileFetch from "./ProfileFetch";
 import withWalletConnection from "../withWalletConnection";
+import {compose} from "redux";
 
 
 const mapStateToProps = (state) => ({
@@ -17,4 +18,7 @@ const mapDispatchToProps = {
     setHistory
 }
 
-export default withWalletConnection(connect(mapStateToProps, mapDispatchToProps)(ProfileFetch))
+export default compose(
+    withWalletConnection,
+    connect(mapStateToProps, mapDispatchToProps)
+)(ProfileFetch)
