@@ -11,7 +11,7 @@ const NftImage = ({path, previewLink}) => {
                          className="rounded-2xl xs:max-h-72 2xl:max-h-80"
                     />
                 </div>
-                <NftBorderLine className="group-hover:bg-purple-400"/>
+                <NftBorderLine className="bg-blue-900 group-hover:bg-purple-900"/>
             </div>
         </a>
     );

@@ -2,6 +2,10 @@ module.exports = {
     purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
     darkTheme: false, // or 'media' or 'class'
     theme: {
+        boxShadow: {
+            "purple": "0px 6px 6px 4px rgba(0, 19, 224, 0.2)",
+            "light-blue": "0px 5px 7px 4px rgba(120, 192, 233, 0.3)"
+        },
         screens: {
             'xxs': '310px',
 
@@ -51,6 +55,11 @@ module.exports = {
                 light_blue: '#4391ff',
                 light_green: '#2dfd87',
                 nft_collection_purple: '#25155299',
+                'super-light-blue': 'rgb(120, 192, 233)',
+                'dark-blue': 'rgb(40, 108, 149)',
+                'light-blue': 'rgba(120, 192, 233, 0.3)',
+                'dark-purple': '#251552',
+                'price-cyan': '#18b3cc',
                 teal: {
                     50: '#f0fdfa',
                     100: '#ccfbf1',

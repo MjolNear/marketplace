@@ -5,6 +5,7 @@ export const SET_MY_NFTS = "SET_MY_NFTS"
 export const SET_HISTORY = "SET_HISTORY"
 export const ADD_PROFILE_NFT = "ADD_PROFILE_NFT"
 export const SET_FETCHING_PROFILE_NFT = "SET_FETCHING_PROFILE_NFT"
+export const CLEAR_PROFILE_DATA = "CLEAR_PROFILE_DATA"
 
 export const changeProfileTab = (tab) => ({
     type: CHANGE_PROFILE_TAB,
@@ -29,6 +30,10 @@ export const setNfts = (nfts) => ({
 export const setHistory = (history) => ({
     type: SET_HISTORY,
     payload: history
+})
+
+export const clearProfileData = () => ({
+    type: CLEAR_PROFILE_DATA
 })
 
 export const fetchMyNfts = (accountId) => (dispatch) => {

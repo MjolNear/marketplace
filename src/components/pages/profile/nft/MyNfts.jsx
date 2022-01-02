@@ -8,7 +8,7 @@ const MyNfts = ({nfts, fetching}) => {
     const loaders = useMemo(() => Array(12)
         .fill(0)
         .map((i, idx) =>
-            <SmallNftLoader key={idx} width={295} height={455}/>
+            <SmallNftLoader key={idx} width={300} height={450}/>
         ), [])
 
     if (fetching) {

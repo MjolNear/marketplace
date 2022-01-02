@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {changeProfileTab, fetchMyNfts} from "../../state/profile/actions";
+import {changeProfileTab, clearProfileData, fetchMyNfts} from "../../state/profile/actions";
 import ProfileFetch from "./ProfileFetch";
 import withAuthentication from "../withAuthentication";
 import {compose} from "redux";
@@ -14,6 +14,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     changeProfileTab,
     fetchMyNfts,
+    clearProfileData
 }
 
 export default compose(

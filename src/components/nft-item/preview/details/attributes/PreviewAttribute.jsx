@@ -6,8 +6,8 @@ const PreviewAttribute = ({name, value}) => {
     let shrinkValue = shortenString(value)
     return (
         <div className="flex flex-row justify-between">
-            <div>{name}</div>
-            <p className="cursor-pointer"
+            <div className="text-gray-900 font-semibold">{name}</div>
+            <p className="cursor-pointer text-gray-900"
                data-tip={value}
                onClick={() => navigator.clipboard.writeText(value)}
             >

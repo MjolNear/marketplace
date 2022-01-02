@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentLoader from "react-content-loader";
 
-const SmallNftLoader = ({width, height, speed = 2}) => {
+const SmallNftLoader = ({width, height, speed = 1.5}) => {
     return (
         <ContentLoader
             speed={speed}
