@@ -8,8 +8,8 @@ const SingleLineContainer = (props) => {
         <div className="grid grid-cols-3 gap-6">
             <div className="sm:col-span-2 col-span-3">
                 <label
-                    className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-gray-700">
-                    {props.name}
+                    className="block font-bold text-sm text-gray-700">
+                    {props.name}{props.required ? <b className="text-sm font-large text-red-500">*</b>:<></>}
                 </label>
                 <div className="mt-1 flex rounded-md shadow-sm">
                     {props.type === 'text' ? (

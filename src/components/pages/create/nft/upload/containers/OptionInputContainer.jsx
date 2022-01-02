@@ -4,13 +4,13 @@ const OptionInputContainer = (props) => {
     return (
         <div className="grid grid-cols-6 gap-6">
             <div className="col-span-6 sm:col-span-2">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-bold text-gray-700">
                     {props.name}
                 </label>
                 <select
                     id={props.id}
                     name={props.id}
-                    className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-cyan-500 sm:text-sm"
                     onChange={(e) => props.setCurCollection(e.target.value)}
                 >
                     {props.myCollections.map(name => (

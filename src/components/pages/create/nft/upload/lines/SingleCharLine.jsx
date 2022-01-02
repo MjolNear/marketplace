@@ -4,7 +4,7 @@ const SingleCharLine = (props) => {
             type={props.type}
             name={props.id}
             id={props.id}
-            className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300"
+            className="focus:border-cyan-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300"
             placeholder={props.text}
             minLength={props.minLength}
             maxLength={props.maxLength}
