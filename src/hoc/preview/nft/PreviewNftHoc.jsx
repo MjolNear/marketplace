@@ -11,5 +11,4 @@ const mapStateToProps = (state) => ({
 export default compose(
     withAccountId,
     connect(mapStateToProps, {fetchNft, buyNft, sellNft}),
-)
-(PreviewNftFetch)
+)(PreviewNftFetch)

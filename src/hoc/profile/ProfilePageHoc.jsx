@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {changeProfileTab, pushNFT, setFetching, setHistory, setNfts} from "../../state/profile/actions";
+import {changeProfileTab, fetchMyNfts} from "../../state/profile/actions";
 import ProfileFetch from "./ProfileFetch";
 import withAuthentication from "../withAuthentication";
 import {compose} from "redux";
@@ -13,15 +13,11 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     changeProfileTab,
-    pushNFT,
-    setFetching,
-    setNfts,
-    setHistory
+    fetchMyNfts,
 }
 
 export default compose(
-    withAccountId,
     withAuthentication,
+    withAccountId,
     connect(mapStateToProps, mapDispatchToProps)
-)
-(ProfileFetch)
+)(ProfileFetch)

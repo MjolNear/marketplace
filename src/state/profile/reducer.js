@@ -1,8 +1,17 @@
-import {CHANGE_PROFILE_TAB, PUSH_NFT, SET_FETCHING, SET_HISTORY, SET_MY_NFTS} from "./actions";
+import {CHANGE_PROFILE_TAB, ADD_NFT, SET_FETCHING, SET_HISTORY, SET_MY_NFTS} from "./actions";
+import {combineReducers} from "redux";
+import {profileNftsReducer} from "./my-nfts/reducers";
+import {profileHistoryReducer} from "./history/reducers";
 
 const MY_NFT_TAB = "My NFT"
 const MY_LISTED_TAB = "My Listed NFT"
 const MY_HISTORY_TAB = "My History"
+
+
+combineReducers({
+    nfts: profileNftsReducer,
+    history: profileHistoryReducer
+})
 
 const initialState = {
     tabs: [
@@ -11,9 +20,8 @@ const initialState = {
         {name: MY_HISTORY_TAB, path: '/profile/history'},
     ],
     activeTab: MY_NFT_TAB,
-    fetching: false,
-    nfts: [],
     tags: [],
+    nfts: [],
     history: []
 }
 
@@ -35,11 +43,12 @@ export const profileReducer = (state = initialState, action) => {
                     }
                 )]
             }
-        case PUSH_NFT:
+        case ADD_NFT:
             return {
                 ...state,
                 nfts: [...state.nfts, action.payload],
-                tags: [...state.nfts, action.payload]
+                // TODO: Fix if tab been changed
+                tags: [...state.tags, action.payload]
             }
         case SET_FETCHING:
             return {
@@ -50,7 +59,6 @@ export const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 nfts: action.payload,
-                tags: action.payload
             }
         case SET_HISTORY:
             return {
