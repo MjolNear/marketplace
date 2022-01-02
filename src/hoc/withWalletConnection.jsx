@@ -6,7 +6,7 @@ const withWalletConnection = (Component) => (props) => {
     if (!window.walletConnection.isSignedIn()) {
         return <WalletConnectionPage/>
     }
-    return <Component {...props}/>
+    return <Component {...props} accountId={window.walletConnection.getAccountId()}/>
 };
 
 export default withWalletConnection;

@@ -5,18 +5,16 @@ import {useFetching} from "../../hooks/useFetching";
 
 const ProfileFetch = ({profile, changeProfileTab, pushNFT, setFetching, setNfts, setHistory}) => {
     useEffect(() => {
-        if (window.walletConnection.isSignedIn()) {
-            useFetching(setFetching, (onFetch) =>
-                getNfts("turk.near")
-                    .then(nfts => nfts
-                        .map(nftPromise =>
-                            nftPromise
-                                .then(pushNFT)
-                                .catch(() => console.log('not found'))
-                        )
+        useFetching(setFetching, (onFetch) =>
+            getNfts("turk.near")
+                .then(nfts => nfts
+                    .map(nftPromise =>
+                        nftPromise
+                            .then(pushNFT)
+                            .catch(() => console.log('not found'))
                     )
-                    .finally(onFetch))
-        }
+                )
+                .finally(onFetch))
         return () => {
             setNfts([])
             setHistory([])

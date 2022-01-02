@@ -45,11 +45,9 @@ export function login() {
     // user's behalf.
     // This works by creating a new access key for the user's account and storing
     // the private key in localStorage.
-    console.log("SIGN IN");
-    console.log(nearConfig.contractName)
     window.walletConnection.requestSignIn(nearConfig.contractName)
-        .then(() => console.log(window.walletConnection.getAccountId()))
-        .catch(e => console.log(e))
+        .then(() => console.log("sheesh"))
+        .catch(e => console.log("error" + e))
 }
 
 export function mintToCommonCollection(token_metadata, payout) {
