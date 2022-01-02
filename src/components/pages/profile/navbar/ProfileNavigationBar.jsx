@@ -1,5 +1,6 @@
 import React from 'react';
 import DarkButton from "../../../ui/buttons/DarkButton";
+import DarkBlueTitle from "../../../ui/text/DarkBlueTitle";
 
 const ProfileNavigationBar = ({onChangeTab, activeTab, tabs}) => {
 
@@ -11,12 +12,8 @@ const ProfileNavigationBar = ({onChangeTab, activeTab, tabs}) => {
         />)
 
     return (
-        <div className="pt-0 space-y-2 xs:space-y-8 xs:p-2">
-            <div
-                className="pb-2 text-3xl text-center font-extrabold text-transparent bg-clip-text
-                           md:text-6xl bg-gradient-to-br from-green-900 to-light_blue">
-                My NFTs
-            </div>
+        <div className="space-y-2 xs:space-y-8 xs:p-2">
+            <DarkBlueTitle title="My NFTs"/>
             <div className="text-center">
                 <div className="inline-flex flex-col gap-2 sm:flex-row sm:gap-5 md:text-lg"
                 >
