@@ -4,6 +4,7 @@ import {useParams} from "react-router";
 import NotFoundPage from "../../../components/pages/not-found/NotFoundPage";
 import MjolGradientButton from "../../../components/ui/buttons/MjolGradientButton";
 import PriceButtonContainer from "../../../components/nft-item/preview/nft-action/PriceButtonContainer";
+import RoundLoader from "../../../components/ui/loaders/RoundLoader";
 
 
 const PreviewNftFetch = ({previewNft, fetchNft}) => {
@@ -18,7 +19,7 @@ const PreviewNftFetch = ({previewNft, fetchNft}) => {
         return <NotFoundPage/>
     }
     if (previewNft.isFetching || !previewNft.nft) {
-        return <div className="text-center text-5xl">Fetching</div>
+        return <RoundLoader/>
     }
 
     const {text, ...props} = previewNft.resolveButtonState(window.accountId, previewNft.nft)

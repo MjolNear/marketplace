@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {mintToCommonCollection} from "../../../../business-logic/near/contract";
 import SingleLineContainer from "./upload/containers/SingleLineContainer";
 import MultiLineContainer from "./upload/containers/MultiLineContainer";
@@ -6,24 +6,8 @@ import OptionInputContainer from "./upload/containers/OptionInputContainer";
 import PropertyInput from "./upload/lines/PropertyInput";
 import UploadFileInput from "./upload/UploadFileInput";
 import {makeNftLink, storeNFT} from "../../../../business-logic/ipfs/upload";
-import Lottie from 'react-lottie-player';
-import lottieJson from '../../../../resources/loading.json';
-
-
-const LoadingAnimation = () => {
-    return (
-        <div className="flex h-screen bg-light_white justify-center">
-            <div className="my-auto">
-                <Lottie
-                    loop
-                    animationData={lottieJson}
-                    play
-                    style={{width: 200, height: 200}}
-                />
-            </div>
-        </div>
-    )
-}
+import DarkBlueTitle from "../../../ui/text/DarkBlueTitle";
+import RoundLoader from "../../../ui/loaders/RoundLoader";
 
 
 const LineAlert = ({state, setState}) => {
@@ -141,108 +125,104 @@ const CreateNftPage = () => {
 
     return (
         <>
-            {isLoading ? (
-                <LoadingAnimation/>
-            ) : (
-                <div className="bg-light_white">
-                    <div
-                        className="pb-2 text-3xl text-center font-extrabold text-transparent bg-clip-text
-                           md:text-6xl bg-gradient-to-br from-green-900 to-light_blue">
-                        Create NFT
-                    </div>
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                        <form onSubmit={submitForm}>
-                            <div className="shadow rounded-md overflow-hidden">
-                                <div className="px-4 py-5 bg-white space-y-6 p-6">
-                                    <SingleLineContainer name={'Title'}
-                                                         required={true}
-                                                         text={'My NFT'}
-                                                         type={'text'}
-                                                         minLength={MIN_TITLE_LEN}
-                                                         maxLength={MAX_TITLE_LEN}
-                                                         id={'mint-title'}
-                                                         setState={setTitle}
-                                    />
-                                    <MultiLineContainer name={'Description'}
-                                                        text={'Brief description for your NFT'}
-                                                        maxLength={MAX_DESC_LEN}
-                                                        rows={3}
-                                                        id={'mint-desc'}
-                                                        setState={setDescription}
-                                    />
-                                    <SingleLineContainer name={'Royalty'}
-                                                         text={'Royalties on secondary sales(%), number from 0-50'}
-                                                         type={'number'}
-                                                         min={MIN_ROYALTY}
-                                                         max={MAX_ROYALTY}
-                                                         id={'mint-royalty'}
-                                                         setState={setRoyalty}
-                                    />
-                                    <OptionInputContainer name={'Collection'}
-                                                          myCollections={myCollections}
-                                                          id={'mint-collection'}
-                                                          curCollection={curCollection}
-                                                          setCurCollection={setCurCollection}
-                                    />
-                                    {curCollection !== 'None' ? (
-                                        <div className="grid grid-cols-6 gap-6">
-                                            <label className="col-span-6 text-sm font-medium text-gray-700">
-                                                Properties:
-                                                <button
-                                                    type="button"
-                                                    onClick={addProperty}
-                                                    className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                                >
-                                                    +
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    onClick={delProperty}
-                                                    className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                                >
-                                                    -
-                                                </button>
-                                            </label>
-                                            {propertiesNum.map(ind => (
-                                                <>
-                                                    <PropertyInput name={'Key #' + ind}
-                                                                   type={'text'}
-                                                                   minLength={MIN_TRAITS_LEN}
-                                                                   maxLength={MAX_TRAITS_LEN}
-                                                                   id={'mint-key-' + ind}
-                                                    />
-                                                    <PropertyInput name={'Value #' + ind}
-                                                                   type={'text'}
-                                                                   minLength={MIN_TRAITS_LEN}
-                                                                   maxLength={MAX_TRAITS_LEN}
-                                                                   id={'mint-value-' + ind}
-                                                    />
-                                                </>
-                                            ))}
-                                        </div>
-                                    ) : (
-                                        <></>
-                                    )}
-                                    <UploadFileInput state={file} setState={setFile}/>
-                                    {alertText !== "" ? (
-                                        <LineAlert state={alertText} setState={setAlertText}/>
-                                    ) : (
-                                        <></>
-                                    )}
+            {isLoading
+                ? <RoundLoader/>
+                : (
+                    <div className="bg-light_white">
+                        <DarkBlueTitle title="Create NFT"/>
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                            <form onSubmit={submitForm}>
+                                <div className="shadow rounded-md overflow-hidden">
+                                    <div className="px-4 py-5 bg-white space-y-6 p-6">
+                                        <SingleLineContainer name={'Title'}
+                                                             required={true}
+                                                             text={'My NFT'}
+                                                             type={'text'}
+                                                             minLength={MIN_TITLE_LEN}
+                                                             maxLength={MAX_TITLE_LEN}
+                                                             id={'mint-title'}
+                                                             setState={setTitle}
+                                        />
+                                        <MultiLineContainer name={'Description'}
+                                                            text={'Brief description for your NFT'}
+                                                            maxLength={MAX_DESC_LEN}
+                                                            rows={3}
+                                                            id={'mint-desc'}
+                                                            setState={setDescription}
+                                        />
+                                        <SingleLineContainer name={'Royalty'}
+                                                             text={'Royalties on secondary sales(%), number from 0-50'}
+                                                             type={'number'}
+                                                             min={MIN_ROYALTY}
+                                                             max={MAX_ROYALTY}
+                                                             id={'mint-royalty'}
+                                                             setState={setRoyalty}
+                                        />
+                                        <OptionInputContainer name={'Collection'}
+                                                              myCollections={myCollections}
+                                                              id={'mint-collection'}
+                                                              curCollection={curCollection}
+                                                              setCurCollection={setCurCollection}
+                                        />
+                                        {curCollection !== 'None' ? (
+                                            <div className="grid grid-cols-6 gap-6">
+                                                <label className="col-span-6 text-sm font-medium text-gray-700">
+                                                    Properties:
+                                                    <button
+                                                        type="button"
+                                                        onClick={addProperty}
+                                                        className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                    >
+                                                        +
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={delProperty}
+                                                        className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                    >
+                                                        -
+                                                    </button>
+                                                </label>
+                                                {propertiesNum.map(ind => (
+                                                    <>
+                                                        <PropertyInput name={'Key #' + ind}
+                                                                       type={'text'}
+                                                                       minLength={MIN_TRAITS_LEN}
+                                                                       maxLength={MAX_TRAITS_LEN}
+                                                                       id={'mint-key-' + ind}
+                                                        />
+                                                        <PropertyInput name={'Value #' + ind}
+                                                                       type={'text'}
+                                                                       minLength={MIN_TRAITS_LEN}
+                                                                       maxLength={MAX_TRAITS_LEN}
+                                                                       id={'mint-value-' + ind}
+                                                        />
+                                                    </>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <></>
+                                        )}
+                                        <UploadFileInput state={file} setState={setFile}/>
+                                        {alertText !== "" ? (
+                                            <LineAlert state={alertText} setState={setAlertText}/>
+                                        ) : (
+                                            <></>
+                                        )}
+                                    </div>
+                                    <div className="px-4 py-3 bg-gray-50 text-left sm:px-6">
+                                        <button
+                                            type="submit"
+                                            className="inline-flex justify-center py-2 px-6 font-bold text-lg hover:text-gray-900 font-large rounded-md text-white bg-gradient-to-br from-light_blue to-green-200"
+                                        >
+                                            Mint
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="px-4 py-3 bg-gray-50 text-left sm:px-6">
-                                    <button
-                                        type="submit"
-                                        className="inline-flex justify-center py-2 px-6 font-bold text-lg hover:text-gray-900 font-large rounded-md text-white bg-gradient-to-br from-light_blue to-green-200"
-                                    >
-                                        Mint
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            )
+                )
             }
         </>
     )
