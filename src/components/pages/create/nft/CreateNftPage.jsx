@@ -131,7 +131,7 @@ const CreateNftPage = () => {
     return (
         <>
             {isLoading ? (
-                <LoadingAnimation/>
+                <RoundLoader/>
             ) : (
                 <div className="bg-light_white">
                     <div
@@ -219,10 +219,19 @@ const CreateNftPage = () => {
                                         <></>
                                     )}
                                 </div>
-                            </form>
-                        </div>
+                                <div className="px-4 py-3 bg-gray-50 text-left sm:px-6">
+                                    <button
+                                        type="submit"
+                                        className="inline-flex justify-center py-2 px-6 font-bold text-lg hover:text-gray-900 font-large rounded-md text-white bg-gradient-to-br from-light_blue to-green-200"
+                                    >
+                                        Mint
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                )
+                </div>
+            )
             }
         </>
     )
