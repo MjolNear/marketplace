@@ -39,7 +39,7 @@ const initialState = {
         }
         if (accountId === nft.ownerId) {
             return {
-                text: NFT_STATE.SELL,
+                state: NFT_STATE.SELL,
                 onClick: () => alert("sell")
             }
         }
