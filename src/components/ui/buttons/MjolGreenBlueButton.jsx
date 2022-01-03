@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MjolGradientButton = ({children, ...props}) => {
+const MjolGreenBlueButton = ({children, ...props}) => {
     return (
         <button {...props} className="px-4 py-2 rounded-lg w-full
                            bg-gradient-to-r from-light_blue to-green-200
@@ -13,4 +13,4 @@ const MjolGradientButton = ({children, ...props}) => {
     );
 };
 
-export default MjolGradientButton;
+export default MjolGreenBlueButton;

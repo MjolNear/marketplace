@@ -1,5 +1,4 @@
 import React from 'react';
-import NftBorderLine from "../ui/NftBorderLine";
 import {Link} from "react-router-dom";
 
 const NftImage = ({path, previewLink}) => {
