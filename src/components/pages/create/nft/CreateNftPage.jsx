@@ -222,7 +222,7 @@ const CreateNftPage = () => {
                                 <div className="px-4 py-3 bg-gray-50 text-left sm:px-6">
                                     <button
                                         type="submit"
-                                        className="inline-flex justify-center py-2 px-6 font-bold text-lg hover:text-gray-900 font-large rounded-md text-white bg-gradient-to-br from-light_blue to-green-200"
+                                        className="inline-flex justify-center py-2 px-6 font-bold text-lg hover:text-gray-900 font-large rounded-md text-white bg-gradient-to-br from-light_blue to-green-200  hover:from-green-200 hover:to-light_blue"
                                     >
                                         Mint
                                     </button>

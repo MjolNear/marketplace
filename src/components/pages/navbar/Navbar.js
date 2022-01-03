@@ -82,9 +82,9 @@ export default function Navbar({navbar}) {
                         <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
                             <Link to="/"
                                   onClick={login}
-                                  className="cursor-pointer ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white"
+                                  className="inline-flex justify-center py-1.5 px-4 font-bold text-lg font-large rounded-md text-white bg-gradient-to-br from-light_blue to-green-200 hover:text-gray-900 hover:from-green-200 hover:to-light_blue"
                             >
-                                Sign in
+                                  Sign in
                             </Link>
                         </div>
                     )}
@@ -152,7 +152,7 @@ export default function Navbar({navbar}) {
                                 <div>
                                     <Link to="/"
                                           onClick={login}
-                                          className="cursor-pointer w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white"
+                                          className="cursor-pointer w-full py-2 flex items-center justify-center font-bold text-lg font-large rounded-md text-white bg-gradient-to-br from-light_blue to-green-200 hover:text-gray-900 hover:from-green-200 hover:to-light_blue"
                                     >
                                         Sign in
                                     </Link>
