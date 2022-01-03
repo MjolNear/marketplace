@@ -9,8 +9,8 @@ const NftItem = ({nft}) => {
     const previewLink = `/nft/${nft.contractId}/${nft.tokenId}`
     const isListed = nft.isListed()
     return (
-        <NftBoxContainer previewLink={previewLink}>
-            <NftImage path={nft.mediaURL}/>
+        <NftBoxContainer>
+            <NftImage path={nft.mediaURL} previewLink={previewLink}/>
             <div className="px-4 md:pl-6 py-2 space-y-1">
                 <TitleCollectionGroup title={nft.title}
                                       collectionName={"Mock"}
