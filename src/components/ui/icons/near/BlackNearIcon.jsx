@@ -2,11 +2,7 @@ import React from 'react';
 import logo from "../../../../resources/logo-black.svg";
 
 const BlackNearIcon = () => {
-    return (
-        <div className="w-8 lg:w-10">
-            <img src={logo} alt="near"/>
-        </div>
-    );
+    return <img src={logo} alt="near" className="w-7"/>
 };
 
 export default BlackNearIcon;

@@ -19,8 +19,6 @@ const MyNfts = ({nfts, fetching}) => {
         <NftItem key={nft.getKey()} nft={nft}/>
     )
 
-    console.log('render')
-
     return (
         <div className="bg-transparent m-10">
             <NftCollectionContainer>
