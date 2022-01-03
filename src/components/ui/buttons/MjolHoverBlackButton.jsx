@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from "../../../utils/css-utils";
 
-const DarkButton = ({title, isActive, onClick}) => {
+const MjolHoverBlackButton = ({title, isActive, onClick}) => {
 
     return (
         <button onClick={onClick}
@@ -21,4 +21,4 @@ const DarkButton = ({title, isActive, onClick}) => {
     );
 };
 
-export default DarkButton;
+export default MjolHoverBlackButton;
