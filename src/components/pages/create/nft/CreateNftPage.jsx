@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {mintToCommonCollection} from "../../../../business-logic/near/contract";
 import SingleLineContainer from "./upload/containers/SingleLineContainer";
 import MultiLineContainer from "./upload/containers/MultiLineContainer";
@@ -6,24 +6,8 @@ import OptionInputContainer from "./upload/containers/OptionInputContainer";
 import PropertyInput from "./upload/lines/PropertyInput";
 import UploadFileInput from "./upload/UploadFileInput";
 import {makeNftLink, storeNFT} from "../../../../business-logic/ipfs/upload";
-import Lottie from 'react-lottie-player';
-import lottieJson from '../../../../resources/loading.json';
-
-
-const LoadingAnimation = () => {
-    return (
-        <div className="flex h-screen bg-light_white justify-center">
-            <div className="my-auto">
-                <Lottie
-                    loop
-                    animationData={lottieJson}
-                    play
-                    style={{width: 200, height: 200}}
-                />
-            </div>
-        </div>
-    )
-}
+import DarkBlueTitle from "../../../ui/text/DarkBlueTitle";
+import RoundLoader from "../../../ui/loaders/RoundLoader";
 
 
 const LineAlert = ({state, setState}) => {
@@ -31,12 +15,17 @@ const LineAlert = ({state, setState}) => {
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
             <span className="block sm:inline">{state}</span>
             <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
-                                           <svg className="fill-current h-6 w-6 text-red-500" role="button"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20"
-                                                onClick={() => setState("")}><title>Close</title><path
-                                               d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-                                        </span>
+                <svg className="fill-current h-6 w-6 text-red-500" role="button"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 20 20"
+                     onClick={() => setState("")}>
+                    <title>Close</title>
+                    <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1
+                    1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1
+                    1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+                    />
+                </svg>
+            </span>
         </div>
     )
 };
@@ -230,19 +219,10 @@ const CreateNftPage = () => {
                                         <></>
                                     )}
                                 </div>
-                                <div className="px-4 py-3 bg-gray-50 text-left sm:px-6">
-                                    <button
-                                        type="submit"
-                                        className="inline-flex justify-center py-2 px-6 font-bold text-lg hover:text-gray-900 font-large rounded-md text-white bg-gradient-to-br from-light_blue to-green-200"
-                                    >
-                                        Mint
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            )
+                )
             }
         </>
     )

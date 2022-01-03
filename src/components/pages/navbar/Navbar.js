@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import {Popover, Transition} from '@headlessui/react'
-import {login, logout} from "../../../business-logic/near/contract";
+import {login} from "../../../business-logic/near/contract";
 import classNames from "../../../utils/css-utils";
 import {CloseMenuButton, MenuButton} from "../../ui/navbar/buttons";
 import {Link} from "react-router-dom";
@@ -141,8 +141,7 @@ export default function Navbar({navbar}) {
                                                 </div>
                                             </Link>
                                         ))}
-                                        <Link to="/"
-                                              onClick={logout}
+                                        <Link to="/logout"
                                               className="cursor-pointer col-span-2 text-center font-medium text-gray-500 hover:text-gray-700"
                                         >
                                             Log out

@@ -3,7 +3,6 @@ import {DropDownButton} from "../../../ui/navbar/buttons";
 import React, {Fragment} from "react";
 import classNames from "../../../../utils/css-utils";
 import {Link} from "react-router-dom";
-import {logout} from "../../../../business-logic/near/contract";
 
 export const TabsDropDownMenu = ({name, tabs, isProfile}) => {
     return (
@@ -28,22 +27,13 @@ export const TabsDropDownMenu = ({name, tabs, isProfile}) => {
                             <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                                 <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                                     {tabs.map(({path, name}) => (
-                                        name === "Sign out"
-                                            ? <Link to='/' key={name} onClick={logout}>
-                                                <div className={classNames(
-                                                    name === "Launchpad" ? 'cursor-not-allowed' : 'cursor-pointer',
-                                                    "text-medium font-medium text-gray-500 hover:text-gray-900"
-                                                )}>
-                                                    {name}
-                                                </div>
-                                            </Link>
-                                            : <Link key={name} to={path}>
-                                                <div
-                                                    className="cursor-pointer -m-3 p-3 flex items-start rounded-lg hover:bg-gray-100"
-                                                >
-                                                    <p className="text-medium font-medium text-gray-900">{name}</p>
-                                                </div>
-                                            </Link>
+                                        <Link key={name} to={path}>
+                                            <div
+                                                className="cursor-pointer -m-3 p-3 flex items-start rounded-lg hover:bg-gray-100"
+                                            >
+                                                <p className="text-medium font-medium text-gray-900">{name}</p>
+                                            </div>
+                                        </Link>
                                     ))}
                                 </div>
                             </div>

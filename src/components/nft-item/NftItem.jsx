@@ -6,26 +6,24 @@ import SmallNftPrice from "./details/price/SmallNftPrice";
 import NftMintedLink from "./details/minted/NftMintedLink";
 
 const NftItem = ({nft}) => {
-    const previewPath = `/nft/${nft.contractId}/${nft.tokenId}`
+    const previewLink = `/nft/${nft.contractId}/${nft.tokenId}`
+    const isListed = nft.isListed()
     return (
-        <NftBoxContainer>
-            <div>
-                <NftImage path={nft.mediaURL} previewPath={previewPath}/>
-                <div className="pl-4 pr-4 md:pl-6 pt-2 space-y-4">
-                    <TitleCollectionGroup title={nft.title}
-                                          collectionName={"Mock"}
-                                          collectionLink={"Mock collection"}
-                    />
-                    <SmallNftPrice price={nft.price} isListed={nft.isListed()}/>
-                </div>
-            </div>
-            <div
-                className="rounded-b-3xl bg-gradient-to-t from-blue-900 to-light_blue
-                           grid place-items-end mt-1 py-1 pr-4"
-            >
-                <NftMintedLink mintedName={nft.mintSite.name}
-                               mintedLink={nft.mintSite.nftLink}
+        <NftBoxContainer previewLink={previewLink}>
+            <NftImage path={nft.mediaURL}/>
+            <div className="px-4 md:pl-6 py-2 space-y-1">
+                <TitleCollectionGroup title={nft.title}
+                                      collectionName={"Mock"}
+                                      collectionLink={"Mock collection"}
                 />
+                <div className="pb-3">
+                    <div className="grid place-items-end">
+                        <NftMintedLink mintedName={nft.mintSite.name}
+                                       mintedLink={nft.mintSite.nftLink}/>
+                    </div>
+                    <hr className="ring-1 ring-dark-purple border-none"/>
+                </div>
+                <SmallNftPrice price={nft.price} isListed={isListed}/>
             </div>
         </NftBoxContainer>
     );

@@ -4,35 +4,43 @@ import {useParams} from "react-router";
 import NotFoundPage from "../../../components/pages/not-found/NotFoundPage";
 import MjolGradientButton from "../../../components/ui/buttons/MjolGradientButton";
 import PriceButtonContainer from "../../../components/nft-item/preview/nft-action/PriceButtonContainer";
+import RoundLoader from "../../../components/ui/loaders/RoundLoader";
+import {NFT_STATE} from "../../../state/preview/nft/reducer";
 
 
-const PreviewNftFetch = ({previewNft, fetchNft}) => {
+const PreviewNftFetch = ({previewNft, fetchNft, accountId}) => {
     const {contractId, tokenId} = useParams()
 
-    useEffect(() =>
-            fetchNft('turk.near', contractId, tokenId),
-        []
-    )
+    useEffect(() => {
+        fetchNft('turk.near', contractId, tokenId)
+    }, [])
 
     if (previewNft.isError) {
         return <NotFoundPage/>
     }
     if (previewNft.isFetching || !previewNft.nft) {
-        return <div className="text-center text-5xl">Fetching</div>
+        return <RoundLoader/>
     }
 
-    const {text, ...props} = previewNft.resolveButtonState(window.accountId, previewNft.nft)
+    const {state, ...props} = previewNft.resolveButtonState(accountId, previewNft.nft)
 
-    let activeButton = <MjolGradientButton {...props}>{text}</MjolGradientButton>
-    if (text !== "Sell" || text !== "Unlist") {
-        activeButton = <PriceButtonContainer price={previewNft.nft.price}
-                                             isListed={previewNft.nft.isListed()}
-                                             button={activeButton}/>
+    let activeElement = <MjolGradientButton {...props}>{state}</MjolGradientButton>
+    switch (state) {
+        case NFT_STATE.BUY:
+        case NFT_STATE.UNLIST:
+            activeElement = <PriceButtonContainer price={previewNft.nft.price}
+                                                  isListed={true}
+                                                  button={activeElement}/>
+            break
+        case NFT_STATE.NOT_LISTED:
+            activeElement = <PriceButtonContainer isListed={false}
+                                                  text="NFT not listed on market"/>
+            break
     }
 
     return <PreviewNftPage nft={previewNft.nft}
                            payouts={previewNft.payouts}
-                           activeButton={activeButton}
+                           actionElement={activeElement}
     />
 };
 

@@ -4,7 +4,7 @@ import NftPreviewTitle from "./NftPreviewTitle";
 import PreviewAttributes from "./attributes/PreviewAttributes";
 
 
-const NftPreviewInfo = ({nft, payouts, actionButton}) => {
+const NftPreviewInfo = ({nft, payouts, actionElement}) => {
 
     const ownerAttributes = [
         {name: "owner", value: nft.ownerId},
@@ -20,7 +20,7 @@ const NftPreviewInfo = ({nft, payouts, actionButton}) => {
 
     const info = tabs.map(tab => (
         <DropDownMjolButton key={tab.name} title={tab.name}>
-            <div className="px-4 py-2 rounded-lg w-full text-blue-500 font-medium text-sm md:text-md
+            <div className="px-4 py-2 rounded-lg w-full text-dark-purple font-medium text-sm md:text-md
                             ring-blue-200 ring-1 ring-inset"
             >
                 {tab.element}
@@ -34,7 +34,7 @@ const NftPreviewInfo = ({nft, payouts, actionButton}) => {
                 <NftPreviewTitle title={nft.title}/>
                 <CollectionLink name={"MOCK"} link=""/>
             </div>
-            {actionButton}
+            {actionElement}
             <div className="space-y-3">
                 {info}
             </div>
