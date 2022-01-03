@@ -5,6 +5,8 @@ import classNames from "../../../utils/css-utils";
 import {CloseMenuButton, MenuButton} from "../../ui/navbar/buttons";
 import {Link} from "react-router-dom";
 import {TabsDropDownMenu} from "./menu/TabDropDownMenu";
+import imgLogo from "../../../resources/hammer.png"
+import imgLabel from "../../../resources/label.png"
 
 
 function SmallNavBar({tabs}) {
@@ -38,15 +40,20 @@ export default function Navbar({navbar}) {
     const singleTabs = navbar.tabs.single
 
     return (
-        <Popover className="bg-cyan-100">
+        <Popover className="bg-light_white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
                 <div
-                    className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+                    className="flex justify-between items-center border-b-2 border-gray-200 py-6 md:justify-start md:space-x-10">
                     <div className="flex justify-start lg:w-0 lg:flex-1">
                         <Link to="/">
                             <img
-                                className="h-8 w-auto sm:h-10"
-                                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                                className="inline-block h-8 w-auto sm:h-10"
+                                src={imgLogo}
+                                alt=""
+                            />
+                            <img
+                                className="inline-block h-8 w-auto sm:h-10"
+                                src={imgLabel}
                                 alt=""
                             />
                         </Link>
@@ -61,7 +68,7 @@ export default function Navbar({navbar}) {
                             <div
                                 className={classNames(
                                     name === "Launchpad" || name === "Docs" ? 'cursor-not-allowed' : 'cursor-pointer',
-                                    "text-lg font-medium text-gray-500 hover:text-gray-900"
+                                    "text-lg font-extrabold text-cyan-500 hover:text-gray-900"
                                 )}>
                                 {name}
                             </div>
@@ -75,7 +82,7 @@ export default function Navbar({navbar}) {
                         <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
                             <Link to="/"
                                   onClick={login}
-                                  className="cursor-pointer ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                                  className="cursor-pointer ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white"
                             >
                                 Sign in
                             </Link>
@@ -100,10 +107,10 @@ export default function Navbar({navbar}) {
                         <div className="pt-5 pb-6 px-5">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <Link to="/e">
+                                    <Link to="/">
                                         <img
                                             className="h-8 w-auto"
-                                            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                                            src={imgLogo}
                                             alt="logo"/>
                                     </Link>
                                 </div>
@@ -113,11 +120,11 @@ export default function Navbar({navbar}) {
                             </div>
                         </div>
                         <div key="Explore" className="py-6 px-5 space-y-6">
-                            <div className="text-indigo-500">Explore:</div>
+                            <div className="text-cyan-500">Explore:</div>
                             <SmallNavBar tabs={exploreTabs}/>
                         </div>
                         <div key="Create" className="py-6 px-5 space-y-6">
-                            <div className="text-indigo-500">Create:</div>
+                            <div className="text-cyan-500">Create:</div>
                             <SmallNavBar tabs={createTabs}/>
                         </div>
                         <div className="py-6 px-5 space-y-6">
@@ -146,7 +153,7 @@ export default function Navbar({navbar}) {
                                 <div>
                                     <Link to="/"
                                           onClick={login}
-                                          className="cursor-pointer w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                                          className="cursor-pointer w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white"
                                     >
                                         Sign in
                                     </Link>

@@ -146,11 +146,11 @@ const CreateNftPage = () => {
             ) : (
                 <div className="bg-light_white">
                     <div
-                        className="pb-2 text-3xl text-center font-extrabold text-transparent bg-clip-text
+                        className="pb-2 py-5 text-3xl text-center font-extrabold text-transparent bg-clip-text
                            md:text-6xl bg-gradient-to-br from-green-900 to-light_blue">
                         Create NFT
                     </div>
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 h-screen">
                         <form onSubmit={submitForm}>
                             <div className="shadow rounded-md overflow-hidden">
                                 <div className="px-4 py-5 bg-white space-y-6 p-6">
