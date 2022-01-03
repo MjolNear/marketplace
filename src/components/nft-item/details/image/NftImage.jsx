@@ -3,7 +3,7 @@ import NftBorderLine from "../ui/NftBorderLine";
 
 const NftImage = ({path}) => {
     return (
-        <div className="px-3 py-1 space-y-1">
+        <div className="p-2 space-y-1">
             <div className="xs:h-72 2xl:h-80 grid place-items-center">
                 <img src={path}
                      alt="not found...😔"
