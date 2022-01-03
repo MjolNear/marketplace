@@ -6,7 +6,7 @@ import {CloseMenuButton, MenuButton} from "../../ui/navbar/buttons";
 import {Link} from "react-router-dom";
 import {TabsDropDownMenu} from "./menu/TabDropDownMenu";
 import imgLogo from "../../../resources/hammer.png"
-import imgLabel from "../../../resources/label.png"
+import imgLabel from "../../../resources/label6.png"
 
 
 function SmallNavBar({tabs}) {
@@ -68,7 +68,7 @@ export default function Navbar({navbar}) {
                             <div
                                 className={classNames(
                                     name === "Launchpad" || name === "Docs" ? 'cursor-not-allowed' : 'cursor-pointer',
-                                    "text-lg font-extrabold text-cyan-500 hover:text-gray-900"
+                                    "text-lg font-extrabold text-cyan-700 hover:text-gray-900"
                                 )}>
                                 {name}
                             </div>
@@ -120,11 +120,11 @@ export default function Navbar({navbar}) {
                             </div>
                         </div>
                         <div key="Explore" className="py-6 px-5 space-y-6">
-                            <div className="text-cyan-500">Explore:</div>
+                            <div className="text-cyan-700">Explore:</div>
                             <SmallNavBar tabs={exploreTabs}/>
                         </div>
                         <div key="Create" className="py-6 px-5 space-y-6">
-                            <div className="text-cyan-500">Create:</div>
+                            <div className="text-cyan-700">Create:</div>
                             <SmallNavBar tabs={createTabs}/>
                         </div>
                         <div className="py-6 px-5 space-y-6">

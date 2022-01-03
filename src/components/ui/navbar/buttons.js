@@ -18,7 +18,7 @@ export const DropDownButton = ({isOpen, tabName}) => {
     return (
         <Popover.Button
             className={classNames(
-                isOpen ? 'text-gray-900' : 'text-cyan-500',
+                isOpen ? 'text-gray-900' : 'text-cyan-700',
                 'group bg-light_white rounded-md inline-flex items-center ' +
                 'text-lg font-extrabold hover:text-gray-900 focus:outline-none ' +
                 'focus:bg-light_white'
@@ -27,7 +27,7 @@ export const DropDownButton = ({isOpen, tabName}) => {
             {tabName}
             <ChevronDownIcon
                 className={classNames(
-                    isOpen ? 'text-gray-900' : 'text-cyan-500',
+                    isOpen ? 'text-gray-900' : 'text-cyan-700',
                     'ml-2 h-5 w-5 group-hover:text-gray-900'
                 )}
                 aria-hidden="true"
