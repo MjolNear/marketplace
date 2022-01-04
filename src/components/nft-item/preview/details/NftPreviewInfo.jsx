@@ -1,7 +1,7 @@
 import CollectionLink from "./CollectionLink";
 import DropDownMjolBlueButton from "../../../ui/buttons/DropDownMjolBlueButton";
 import NftPreviewTitle from "./NftPreviewTitle";
-import PreviewAttributes from "./attributes/PreviewAttributes";
+import PreviewAttributes from "../attributes/PreviewAttributes";
 
 
 const NftPreviewInfo = ({nft, payouts, actionElement}) => {

@@ -1,8 +1,7 @@
 import React from 'react';
 import classNames from "../../../utils/css-utils";
-import styles from "../../../css/animation.module.css"
 
-const MjolHoverBlackButton = ({title, isActive, onClick}) => {
+const MjolBlueGradientButton = ({title, isActive, onClick}) => {
 
     return (
         <button onClick={onClick}
@@ -26,4 +25,4 @@ const MjolHoverBlackButton = ({title, isActive, onClick}) => {
     );
 };
 
-export default MjolHoverBlackButton;
+export default MjolBlueGradientButton;

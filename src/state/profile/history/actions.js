@@ -19,5 +19,5 @@ const setProfileHistoryFetching = (isFetching) => ({
 
 const fetchHistory = (accountId) => (dispatch) => {
     dispatch(setProfileHistoryFetching(true))
-    // query
+    // search
 }

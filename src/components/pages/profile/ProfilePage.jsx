@@ -4,7 +4,7 @@ import MyNfts from "./nft/MyNfts";
 
 const ProfilePage = ({profile, changeProfileTab}) => {
     return (
-        <div className="bg-mjol-white space-y-10 pb-4 min-h-screen">
+        <div className="bg-mjol-white space-y-8 pb-4 min-h-screen">
             <ProfileNavigationBar onChangeTab={changeProfileTab}
                                   activeTab={profile.activeTab}
                                   tabs={profile.tabs}/>

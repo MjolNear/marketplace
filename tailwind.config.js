@@ -58,6 +58,7 @@ module.exports = {
             "mjol-base-blue-lg": "0px 7px 9px 6px  rgba(120, 192, 233, 0.3)",
             "mjol-base-blue-xl": "0px 9px 11px 8px rgba(120, 192, 233, 0.3)"
         },
+
         screens: {
             'xxs': '310px',
             'xs': '500px',
@@ -68,7 +69,15 @@ module.exports = {
             'xl': '1280px',
             '2xl': '1536px',
         },
+
         extend: {
+            // Sizes
+            width: {
+                '84': '21rem',
+                '88': '22rem',
+                '92': '23rem',
+            },
+
             maxHeight: {
                 'md': '28rem',
                 'lg': '32rem',
@@ -77,6 +86,7 @@ module.exports = {
                 '3xl': '48rem',
             },
 
+            // Grid
             gridTemplateColumns: {
                 '1nft-300': 'repeat(1, 300px)',
                 '2nft-280': 'repeat(2, 280px)',
@@ -85,8 +95,8 @@ module.exports = {
                 '4nft-350': 'repeat(4, 350px)'
             },
 
+            // Colors
             colors: {
-
                 mjol: {
                     black: 'rgb(0, 0, 0)',
                     white: '#f4f7fc',
