@@ -3,7 +3,6 @@ import {NftAPI} from "./get-utils";
 import {getNftPricesByUser} from "./get-nfts-market";
 
 
-
 async function getNFTsByContractAndAccount(account, contractId, accountId) {
     const limit = 20;
     let allNfts = [], curNfts = [];
@@ -15,7 +14,7 @@ async function getNFTsByContractAndAccount(account, contractId, accountId) {
                 limit: limit
             });
         } catch (e) {
-            console.log(e);
+            console.log("No more NFT for user.");
             break
         }
         allNfts = allNfts.concat(curNfts);

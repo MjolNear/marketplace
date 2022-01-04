@@ -1,20 +1,22 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {changeProfileTab, clearProfileData, fetchMyNfts} from "../../../state/profile/actions"
 import {compose} from "redux";
 import ExploreNftsFetchHoc from "./ExploreNftsFetchHoc";
+import {clearExploreNftState, fetchMarketNfts} from "../../../state/explore/nft/actions";
+import withAccountId from "../../withAccountId";
 
 
 const mapStateToProps = (state) => ({
-    profile: state.profile
+    nfts: state.exploreNft.nfts,
+    fetching: state.exploreNft.fetching
 })
 
 const mapDispatchToProps = {
-    changeProfileTab,
-    fetchMyNfts,
-    clearProfileData
+    fetchMarketNfts,
+    clearExploreNftState
 }
 
 export default compose(
+    withAccountId,
     connect(mapStateToProps, mapDispatchToProps)
 )(ExploreNftsFetchHoc)

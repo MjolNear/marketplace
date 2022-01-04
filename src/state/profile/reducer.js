@@ -6,6 +6,7 @@ import {
     SET_MY_NFTS,
     CLEAR_PROFILE_DATA
 } from "./actions";
+
 import {combineReducers} from "redux";
 import {profileNftsReducer} from "./my-nfts/reducers";
 import {profileHistoryReducer} from "./history/reducers";
@@ -75,7 +76,6 @@ export const profileReducer = (state = initialState, action) => {
             }
         case CLEAR_PROFILE_DATA:
             return {
-                ...state,
                 activeTab: MY_NFT_TAB,
                 nfts: [],
                 tags: [],

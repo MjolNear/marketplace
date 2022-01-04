@@ -49,7 +49,10 @@ async function getNFT(account, contractId, tokenId, price) {
         return account.viewFunction(contractId, 'nft_token', {
             token_id: tokenId
         }).then((res) => {
-                return getConvertedNFT(account, contractId, res, {[contractId + ":" + tokenId]: price})
+                return getConvertedNFT(account,
+                    contractId,
+                    res,
+                    {[contractId + ":" + tokenId]: utils.format.formatNearAmount(price.toString())})
             }
         ).catch((e) => {
             console.log("Get solo NFT error", e);
@@ -61,8 +64,8 @@ async function getNFT(account, contractId, tokenId, price) {
     }
 }
 
-export async function getMarketNfts(from=0, limit=10) {
-    const account = NftAPI.buildAccountInfo()
+export async function getMarketNfts(accountId, from = 0, limit = 10) {
+    const account = NftAPI.buildAccountInfo(accountId)
     const marketNfts = await getMarketNftsPrices(account, from, limit);
     let resNFTs = [];
     for (let marketNft of marketNfts) {
