@@ -3,10 +3,11 @@ import WalletConnectionPage from "../components/pages/auth/WalletConnectionPage"
 
 
 const withAuthentication = (Component) => (props) => {
-    if (!window.walletConnection.isSignedIn()) {
+    const wallet = window.walletConnection
+    if (!wallet.isSignedIn()) {
         return <WalletConnectionPage/>
     }
-    return <Component {...props}/>
+    return <Component {...props} accountId={wallet.getAccountId()}/>
 };
 
 export default withAuthentication;

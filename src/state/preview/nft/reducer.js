@@ -1,4 +1,4 @@
-import {BUY_NFT, SELL_NFT, SET_ERROR, SET_FETCHING, SET_NFT, SET_PAYOUTS} from "./actions";
+import {SET_ERROR, SET_FETCHING, SET_NFT, SET_PAYOUTS} from "./actions";
 import {login} from "../../../business-logic/near/contract";
 
 
@@ -53,10 +53,6 @@ const initialState = {
 
 export const previewNftReducer = (state = initialState, action) => {
     switch (action.type) {
-        case BUY_NFT:
-            return state
-        case SELL_NFT:
-            return state
         case SET_NFT:
             return {
                 ...state,

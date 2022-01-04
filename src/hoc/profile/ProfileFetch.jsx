@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import ProfilePage from "../../components/pages/profile/ProfilePage";
 
-const ProfileFetch = ({profile, changeProfileTab, fetchMyNfts, clearProfileData}) => {
+const ProfileFetch = ({profile, changeProfileTab, fetchMyNfts, clearProfileData, accountId}) => {
 
     useEffect(() => {
-        fetchMyNfts('turk.near')
+        fetchMyNfts(accountId)
         return () => clearProfileData()
     }, [])
 

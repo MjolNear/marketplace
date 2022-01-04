@@ -4,8 +4,6 @@ import {changeProfileTab, clearProfileData, fetchMyNfts} from "../../state/profi
 import ProfileFetch from "./ProfileFetch";
 import withAuthentication from "../withAuthentication";
 import {compose} from "redux";
-import withAccountId from "../withAccountId";
-
 
 const mapStateToProps = (state) => ({
     profile: state.profile
@@ -19,6 +17,5 @@ const mapDispatchToProps = {
 
 export default compose(
     withAuthentication,
-    withAccountId,
     connect(mapStateToProps, mapDispatchToProps)
 )(ProfileFetch)

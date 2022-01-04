@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from "../../../utils/css-utils";
 
-const MjolBlueGradientButton = ({title, isActive, onClick}) => {
+const MjolBlueGradientButton = ({title, onClick, isActive = true}) => {
 
     return (
         <button onClick={onClick}
