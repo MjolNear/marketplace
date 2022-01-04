@@ -1,6 +1,7 @@
 import getConfig from "./config";
 import {utils} from 'near-api-js'
 import {getConvertedNFT} from "./nft-converter";
+import {NftAPI} from "./get-utils";
 
 const nearConfig = getConfig('mainnet');
 
@@ -25,7 +26,6 @@ export async function getNftPricesByUser(account, accountId) {
         console.log("Connection Error when get user NFT prices", e);
         return res
     }
-
 }
 
 async function getMarketNftsPrices(account, from, limit) {
@@ -61,7 +61,8 @@ async function getNFT(account, contractId, tokenId, price) {
     }
 }
 
-export async function getMarketNfts(account, from, limit) {
+export async function getMarketNfts(from=0, limit=10) {
+    const account = NftAPI.buildAccountInfo()
     const marketNfts = await getMarketNftsPrices(account, from, limit);
     let resNFTs = [];
     for (let marketNft of marketNfts) {
