@@ -8,7 +8,7 @@ const NftImage = ({path, previewLink}) => {
                 <Link to={previewLink}>
                     <img src={path}
                          alt="not found...😔"
-                         className="rounded-2xl xs:max-h-72 2xl:max-h-80"
+                         className="rounded-2xl max-h-64 xs:max-h-72 2xl:max-h-80"
                     />
                 </Link>
             </div>

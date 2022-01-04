@@ -2,13 +2,15 @@ import {Disclosure, Transition} from '@headlessui/react'
 import {ChevronUpIcon} from '@heroicons/react/solid'
 import {Fragment} from "react";
 
-export default function DropDownMjolButton({title, children}) {
+export default function DropDownMjolBlueButton({title, children}) {
     return (
         <Disclosure>
             {({open}) => (
                 <>
                     <Disclosure.Button
-                        className="flex justify-between w-full px-4 py-2 text-md font-medium text-left text-black bg-blue-100 rounded-lg hover:bg-blue-200">
+                        className="flex justify-between w-full px-4 py-2 text-md font-medium text-left text-black
+                                   bg-blue-100 rounded-lg hover:bg-blue-200"
+                    >
                         <span>{title}</span>
                         <ChevronUpIcon
                             className={`${open ? 'rotate-180' : ''} transform duration-200 w-6 h-6 text-blue-500`}

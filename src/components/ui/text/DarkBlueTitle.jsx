@@ -4,7 +4,8 @@ const DarkBlueTitle = ({title}) => {
     return (
         <div
             className="pb-2 text-3xl text-center font-extrabold text-transparent bg-clip-text
-                           md:text-6xl bg-gradient-to-br from-green-900 to-light_blue"
+                            bg-gradient-to-br from-teal-900 to-mjol-blue-base
+                            md:text-6xl bg-black"
         >
             {title}
         </div>

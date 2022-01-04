@@ -12,7 +12,7 @@ const ProfileNavigationBar = ({onChangeTab, activeTab, tabs}) => {
         />)
 
     return (
-        <div className="space-y-2 xs:space-y-8 xs:p-2">
+        <div className="bg-white shadow-mjol-base-blue-xl pb-10 space-y-10">
             <DarkBlueTitle title="My NFTs"/>
             <div className="text-center">
                 <div className="inline-flex flex-col gap-2 sm:flex-row sm:gap-5 md:text-lg"

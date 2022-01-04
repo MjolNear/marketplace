@@ -1,19 +1,24 @@
 import React from 'react';
 import classNames from "../../../utils/css-utils";
+import styles from "../../../css/animation.module.css"
 
 const MjolHoverBlackButton = ({title, isActive, onClick}) => {
 
     return (
         <button onClick={onClick}
-                className={classNames(isActive
-                        ? "bg-gradient-to-br from-light_blue to-green-200"
-                        : "bg-gradient-to-br from-white to-white ring-1 ring-inset ring-black hover:to-black hover:from-black",
-                    "group rounded-3xl pl-5 pr-5 pt-2 pb-2")}
+                className={
+                    classNames(isActive
+                            ? "from-blue-500 to-blue-800"
+                            : "hover:shadow-mjol-blue-button hover:ring-1 hover:ring-inset hover:ring-blue-400"
+                        , "bg-gradient-to-l from-white to-white rounded-3xl group px-10 py-2 transform duration-200"
+                    )
+                }
         >
             <div className={classNames(!isActive
-                    ? "group-hover:text-white"
-                    : "",
-                "text-black text-extrabold text-md lg:text-xl font-mono")
+                    ? ""
+                    : "text-white",
+                "text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-bl from-blue-500 to-blue-800"
+            )
             }>
                 {title}
             </div>
