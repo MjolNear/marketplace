@@ -50,36 +50,33 @@ module.exports = {
         },
 
         boxShadow: {
-            "purple": "0px 6px 6px 4px rgba(0, 19, 224, 0.2)",
-            "light-blue": "0px 5px 7px 4px rgba(120, 192, 233, 0.3)"
+            "mjol-base-purple": "0px 6px 6px 4px  rgba(0,   19,  224, 0.2)",
+            "mjol-base-purple-lg": "0px 7px 9px 6px  rgba(0,   19,  224, 0.2)",
+            "mjol-base-purple-xl": "0px 9px 11px 8px rgba(0,   19,  224, 0.2)",
+            "mjol-blue-button": "0px 0px 4px 2px  rgba(120, 192, 233, 0.3)",
+            "mjol-base-blue": "0px 5px 7px 4px  rgba(120, 192, 233, 0.3)",
+            "mjol-base-blue-lg": "0px 7px 9px 6px  rgba(120, 192, 233, 0.3)",
+            "mjol-base-blue-xl": "0px 9px 11px 8px rgba(120, 192, 233, 0.3)"
         },
+
         screens: {
             'xxs': '310px',
-
             'xs': '500px',
-            // => @media (min-width: 500px) { ... }
-
-            // 'sm630': '630px',
-
             'sm': '640px',
-            // => @media (min-width: 640px) { ... }
-
             'md670': '670px',
-
-
             'md': '768px',
-            // => @media (min-width: 768px) { ... }
-
             'lg': '1024px',
-            // => @media (min-width: 1024px) { ... }
-
             'xl': '1280px',
-            // => @media (min-width: 1280px) { ... }
-
             '2xl': '1536px',
-            // => @media (min-width: 1536px) { ... }
         },
+
         extend: {
+            // Sizes
+            width: {
+                '84': '21rem',
+                '88': '22rem',
+                '92': '23rem',
+            },
 
             maxHeight: {
                 'md': '28rem',
@@ -89,6 +86,7 @@ module.exports = {
                 '3xl': '48rem',
             },
 
+            // Grid
             gridTemplateColumns: {
                 '1nft-300': 'repeat(1, 300px)',
                 '2nft-280': 'repeat(2, 280px)',
@@ -97,16 +95,32 @@ module.exports = {
                 '4nft-350': 'repeat(4, 350px)'
             },
 
+            // Colors
             colors: {
-                light_white: '#f4f7fc',
-                light_blue: '#4391ff',
-                light_green: '#2dfd87',
-                nft_collection_purple: '#25155299',
-                'super-light-blue': 'rgb(120, 192, 233)',
-                'dark-blue': 'rgb(40, 108, 149)',
-                'light-blue': 'rgba(120, 192, 233, 0.3)',
-                'dark-purple': '#251552',
-                'price-cyan': '#18b3cc',
+                mjol: {
+                    black: 'rgb(0, 0, 0)',
+                    white: '#f4f7fc',
+                    purple: {
+                        base: '#7e22ce',
+                        dark: '#251552',
+                        'dark-t': '#25155299'
+                    },
+                    blue: {
+                        shadow: 'rgb(224, 240, 250)',
+                        button: 'rgb(0, 152, 201)',
+                        light: 'rgb(120, 192, 233)',
+                        base: '#4391ff'
+                    },
+                    green: {
+                        light: '#1EFF7F',
+                        middle: '#1effab',
+                        base: '#2dfd87'
+                    },
+                    cyan: {
+                        base: "#18b3cc"
+                    }
+                },
+
                 teal: {
                     50: '#f0fdfa',
                     100: '#ccfbf1',

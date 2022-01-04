@@ -1,12 +1,12 @@
 import React from 'react';
-import DarkBlueTitle from "../../../ui/text/DarkBlueTitle";
-import QueryLine from "../../../filters/QueryLine";
+import NftFilters from "./NftFilters";
+import MyNfts from "../../profile/nft/MyNfts";
 
-const ExploreNftPage = () => {
+const ExploreNftPage = ({profile}) => {
     return (
-        <div>
-            <DarkBlueTitle title="Explore NFTs"/>
-            <QueryLine/>
+        <div className="bg-mjol-white space-y-6">
+            <NftFilters/>
+            <MyNfts nfts={profile.tags} fetching={profile.fetching}/>
         </div>
     );
 };

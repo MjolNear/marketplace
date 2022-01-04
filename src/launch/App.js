@@ -8,7 +8,7 @@ export default function App() {
         <div>
             <NavbarContainer/>
             <AppRouter/>
-            {/*<FooterPage/>*/}
+            <FooterPage/>
         </div>
     )
 }

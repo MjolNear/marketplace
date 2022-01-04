@@ -20,7 +20,7 @@ const MyNfts = ({nfts, fetching}) => {
     )
 
     return (
-        <div className="bg-transparent m-10">
+        <div className="bg-mjol-white p-5 md:p-10">
             <NftCollectionContainer>
                 {nftItems.length === 0
                     ? <div>No nfts found</div>

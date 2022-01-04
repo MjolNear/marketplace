@@ -1,7 +1,7 @@
 import CollectionLink from "./CollectionLink";
-import DropDownMjolButton from "../../../ui/buttons/DropDownMjolButton";
+import DropDownMjolBlueButton from "../../../ui/buttons/DropDownMjolBlueButton";
 import NftPreviewTitle from "./NftPreviewTitle";
-import PreviewAttributes from "./attributes/PreviewAttributes";
+import PreviewAttributes from "../attributes/PreviewAttributes";
 
 
 const NftPreviewInfo = ({nft, payouts, actionElement}) => {
@@ -19,13 +19,13 @@ const NftPreviewInfo = ({nft, payouts, actionElement}) => {
     ]
 
     const info = tabs.map(tab => (
-        <DropDownMjolButton key={tab.name} title={tab.name}>
-            <div className="px-4 py-2 rounded-lg w-full text-dark-purple font-medium text-sm md:text-md
-                            ring-blue-200 ring-1 ring-inset"
+        <DropDownMjolBlueButton key={tab.name} title={tab.name}>
+            <div className="px-4 py-2 rounded-lg w-full text-mjol-purple-dark font-medium text-sm md:text-md
+                            bg-blue-50"
             >
                 {tab.element}
             </div>
-        </DropDownMjolButton>
+        </DropDownMjolBlueButton>
     ))
 
     return (

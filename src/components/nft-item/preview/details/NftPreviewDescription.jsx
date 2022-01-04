@@ -1,7 +1,6 @@
 import React from 'react';
 
 const NftPreviewDescription = ({text}) => {
-    console.log("text")
     return (
         <div className="px-4 py-2 rounded-lg w-full
                         text-gray-900 font-light

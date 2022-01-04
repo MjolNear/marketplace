@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-const NftCollectionLink = ({collectionName, collectionLink}) => {
+const NftCollection = ({collectionName, collectionLink}) => {
     return (
         <Link className="text-xs xs:text-sm lg:text-md font-mono font-medium truncate
-                             text-nft_collection_purple hover:underline"
+                         text-mjol-purple-dark-t hover:underline"
               to={collectionLink}
         >
             {collectionName}
@@ -12,4 +12,4 @@ const NftCollectionLink = ({collectionName, collectionLink}) => {
     );
 };
 
-export default NftCollectionLink;
+export default NftCollection;

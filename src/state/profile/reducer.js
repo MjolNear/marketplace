@@ -10,9 +10,9 @@ import {combineReducers} from "redux";
 import {profileNftsReducer} from "./my-nfts/reducers";
 import {profileHistoryReducer} from "./history/reducers";
 
-const MY_NFT_TAB = "My NFT"
-const MY_LISTED_TAB = "My Listed NFT"
-const MY_HISTORY_TAB = "My History"
+const MY_NFT_TAB = "All NFTs"
+const MY_LISTED_TAB = "Listed NFTs"
+const MY_HISTORY_TAB = "History"
 
 
 combineReducers({

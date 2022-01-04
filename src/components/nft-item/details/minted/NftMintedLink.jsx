@@ -2,7 +2,7 @@ import React from 'react';
 
 const NftMintedLink = ({mintedName, mintedLink}) => {
     return (
-        <a className="text-tiny-3 truncate text-dark-purple font-semibold hover:text-purple-600"
+        <a className="text-mjol-purple-dark font-semibold hover:text-mjol-purple-base"
            href={mintedLink}
            target="_blank"
         >

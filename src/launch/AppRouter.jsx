@@ -11,6 +11,7 @@ import ProfilePageHoc from "../hoc/profile/ProfilePageHoc";
 import PreviewNftHoc from "../hoc/preview/nft/PreviewNftHoc";
 import Logout from "../hoc/auth/Logout";
 import {logout} from "../business-logic/near/contract";
+import ExploreNftsPageHoc from "../hoc/explore/nft/ExploreNftsPageHoc";
 
 
 const AppRouter = () => {
@@ -18,7 +19,7 @@ const AppRouter = () => {
         <Routes>
             <Route path="/" element={<MainPage/>} key="1"/>
             <Route path="/logout" element={<Logout logout={logout}/>}/>
-            <Route path="/nft" element={<ExploreNftPage/>} key="2"/>
+            <Route path="/nft" element={<ExploreNftsPageHoc/>} key="2"/>
             <Route path="/nft/:contractId/:tokenId" element={<PreviewNftHoc/>} key="30"/>
             <Route path="/collections" element={<ExploreCollectionsPage/>} key="3"/>
             <Route path="/create-nft" element={<CreateNftPage/>} key="4"/>
