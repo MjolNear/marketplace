@@ -1,4 +1,4 @@
-const CONTRACT_NAME = 'jpn.near';
+const CONTRACT_NAME = 'market.mjol.near';
 
 function getConfig(env) {
   switch (env) {
