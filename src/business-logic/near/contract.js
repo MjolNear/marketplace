@@ -51,29 +51,29 @@ export function login() {
         .catch(e => console.log("error" + e))
 }
 
-export function giveApprove(nft, price) {
-    const price_formatted = utils.format.parseNearAmount(price.toString());
+export async function giveApprove(contractId, tokenId, price) {
+    const priceFormatted = utils.format.parseNearAmount(price.toString());
     window.walletConnection.account().functionCall(
-        nft.contractId,
+        contractId,
         'nft_approve',
         {
-            token_id: nft.tokenId,
+            token_id: tokenId,
             account_id: nearConfig.contractName,
-            msg: `{\"price\":\"${price_formatted}\"}`
+            msg: JSON.stringify({price: priceFormatted})
         },
         GAS,
         SM_DEPOSIT
     )
 }
 
-export function buyNftWithPayouts(nft) {
-    const price_formatted = utils.format.parseNearAmount(nft.price.toString());
+export async function buyNftWithPayouts(contractId, tokenId, price) {
+    const priceFormatted = utils.format.parseNearAmount(price.toString());
     window.contract.buy_with_payouts(
         {
-            nft_contract_id: nft.contractId,
-            token_id: nft.tokenId
+            nft_contract_id: contractId,
+            token_id: tokenId
         },
         GAS,
-        price_formatted
+        priceFormatted
     )
 }

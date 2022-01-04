@@ -6,14 +6,13 @@ import MjolGreenBlueButton from "../../../components/ui/buttons/MjolGreenBlueBut
 import PriceContainer from "../../../components/nft-item/preview/action/PriceContainer";
 import RoundLoader from "../../../components/ui/loaders/RoundLoader";
 import {NFT_STATE} from "../../../state/preview/nft/reducer";
-import {buyNftWithPayouts, giveApprove} from "../../../business-logic/near/contract";
-
 
 const PreviewNftFetch = ({previewNft, fetchNft, accountId}) => {
     const {contractId, tokenId} = useParams()
+    const nft = previewNft.nft
 
     useEffect(() => {
-        fetchNft('turk.near', contractId, tokenId)
+        fetchNft(accountId, contractId, tokenId)
     }, [])
 
     if (previewNft.isError) {
@@ -23,13 +22,13 @@ const PreviewNftFetch = ({previewNft, fetchNft, accountId}) => {
         return <RoundLoader/>
     }
 
-    const {state, ...props} = previewNft.resolveButtonState(accountId, previewNft.nft)
+    const {state, ...props} = previewNft.resolveButtonState(accountId, nft)
 
     let activeElement = <MjolGreenBlueButton {...props}>{state}</MjolGreenBlueButton>
     switch (state) {
         case NFT_STATE.BUY:
         case NFT_STATE.UNLIST:
-            activeElement = <PriceContainer price={previewNft.nft.price}
+            activeElement = <PriceContainer price={nft.price}
                                             isListed={true}
                                             element={activeElement}/>
             break
@@ -39,23 +38,11 @@ const PreviewNftFetch = ({previewNft, fetchNft, accountId}) => {
             break
     }
 
-    const sell = () => {
-        console.log("sell")
-        giveApprove(previewNft.nft, 0.0005)
-    }
-
-    const buy = () => {
-        console.log("buy")
-        buyNftWithPayouts(previewNft.nft)
-    }
-
-
     return <>
-        <button onClick={sell}>Sell</button> | <button onClick={buy}>Buy</button>
         <PreviewNftPage nft={previewNft.nft}
-                           payouts={previewNft.payouts}
-                           actionElement={activeElement}
-    />
+                        payouts={previewNft.payouts}
+                        actionElement={activeElement}
+        />
     </>
 };
 
