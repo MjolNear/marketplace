@@ -11,7 +11,9 @@ const PreviewNftPage = ({nft, payouts, actionElement}) => {
                         md:items-start"
         >
             <PreviewNftImage link={nft.mediaURL}/>
-            <NftPreviewInfo nft={nft} payouts={payouts} actionElement={actionElement}/>
+            <NftPreviewInfo nft={nft}
+                            payouts={payouts}
+            />
         </div>
     );
 };

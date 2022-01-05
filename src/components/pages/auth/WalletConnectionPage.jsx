@@ -1,5 +1,5 @@
 import React from 'react';
-import {login} from "../../../business-logic/near/contract";
+import {login} from "../../../business-logic/api/near/contract/contract";
 import MjolGreenBlueButton from "../../ui/buttons/MjolGreenBlueButton";
 
 const WalletConnectionPage = () => {

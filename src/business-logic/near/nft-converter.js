@@ -93,7 +93,7 @@ function convertStandardNFT(contractId, nft, listedNftKeys) {
     )
 }
 
-// nft example
+// nfts example
 // id: 68,
 // owner_id: { Account: 'turk.near' },
 // approvals: {},

@@ -34,7 +34,7 @@ const NftPreviewInfo = ({nft, payouts, actionElement}) => {
                 <NftPreviewTitle title={nft.title}/>
                 <CollectionLink name={"MOCK"} link=""/>
             </div>
-            {actionElement}
+            {/*{actionElement}*/}
             <div className="space-y-3">
                 {info}
             </div>

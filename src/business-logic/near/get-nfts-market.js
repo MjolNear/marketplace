@@ -1,9 +1,10 @@
-import getConfig from "./config";
+import {getConfig} from "../api/near/enviroment/config";
 import {utils} from 'near-api-js'
 import {getConvertedNFT} from "./nft-converter";
 import {NftAPI} from "./get-utils";
+import {NetworkEnv} from "../api/near/enviroment/network";
 
-const nearConfig = getConfig('mainnet');
+const nearConfig = getConfig(NetworkEnv.MAINNET);
 
 
 export async function getNftPricesByUser(account, accountId) {

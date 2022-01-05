@@ -20,7 +20,7 @@ export class NFT {
         // Amount of NFT copies
         this.copies = copies;
 
-        // Link to nft media url.
+        // Link to nfts media url.
         this.mediaURL = mediaURL;
 
         // Link to JSON file with extra information about NFT, like

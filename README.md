@@ -68,7 +68,7 @@ Each account on NEAR can have at most one contract deployed to it. If you've alr
 Step 2: set contract name in code
 ---------------------------------
 
-Modify the line in `src/config.js` that sets the account name of the contract. Set it to the account id you used above.
+Modify the line in `src/config.ts` that sets the account name of the contract. Set it to the account id you used above.
 
     const CONTRACT_NAME = process.env.CONTRACT_NAME || 'marketplace.YOUR-NAME.testnet'
 

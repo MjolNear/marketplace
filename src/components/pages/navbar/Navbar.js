@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import {Popover, Transition} from '@headlessui/react'
-import {login} from "../../../business-logic/near/contract";
+import {login} from "../../../business-logic/api/near/contract/contract";
 import classNames from "../../../utils/css-utils";
 import {CloseMenuButton, MenuButton} from "../../ui/navbar/buttons";
 import {Link} from "react-router-dom";
@@ -33,11 +33,11 @@ function SmallNavBar({tabs}) {
     )
 }
 
-export default function Navbar({navbar}) {
-    const exploreTabs = navbar.tabs.explore
-    const createTabs = navbar.tabs.create
-    const profileTabs = navbar.tabs.profile
-    const singleTabs = navbar.tabs.single
+export default function Navbar({tabs}) {
+    const exploreTabs = tabs.explore
+    const createTabs = tabs.create
+    const profileTabs = tabs.profile
+    const singleTabs = tabs.single
 
     return (
         <Popover className="bg-light_white">
@@ -84,7 +84,7 @@ export default function Navbar({navbar}) {
                                   onClick={login}
                                   className="inline-flex justify-center py-1.5 px-4 font-bold text-lg font-large rounded-md text-white bg-gradient-to-br from-light_blue to-green-200 hover:text-gray-900 hover:from-green-200 hover:to-light_blue"
                             >
-                                  Sign in
+                                Sign in
                             </Link>
                         </div>
                     )}

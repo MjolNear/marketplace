@@ -1,4 +1,4 @@
-import {GAS, SM_DEPOSIT} from "./contract";
+import {GAS, SM_DEPOSIT} from "../api/near/contract/contract";
 
 
 

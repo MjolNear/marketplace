@@ -1,11 +1,13 @@
+import {createReducer, createSlice} from "@reduxjs/toolkit";
+
 const initialState = {
     tabs: {
         explore: [
-            {name: 'NFTs', path: '/nft'},
+            {name: 'NFTs', path: '/nfts'},
             {name: 'Collections', path: '/collections'},
         ],
         create: [
-            {name: 'NFT', path: '/create-nft'},
+            {name: 'NFT', path: '/create-nfts'},
             {name: 'Collection', path: '/create-collection'}
         ],
         profile: [
@@ -20,6 +22,10 @@ const initialState = {
     }
 }
 
-export const navbarReducer = (state = initialState, _) => {
-    return state
-}
+export const navbarSlice = createSlice({
+    name: "navbar",
+    initialState,
+    reducers: {}
+})
+
+export const navbarReducer = navbarSlice.reducer

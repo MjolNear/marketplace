@@ -1,22 +1,21 @@
-import React from 'react';
-import {connect} from "react-redux";
-import {compose} from "redux";
-import ExploreNftsFetchHoc from "./ExploreNftsFetchHoc";
-import {clearExploreNftState, fetchMarketNfts} from "../../../state/explore/nft/actions";
-import withAccountId from "../../withAccountId";
+import React, {useEffect} from 'react';
+import ExploreNftsPage from "../../../components/pages/explore/nft/ExploreNftPage";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
+import {exploreNftsSlice} from "../../../state/explore/nfts/slice";
+import {fetchMarketNfts} from "../../../state/explore/nfts/thunk";
 
-const mapStateToProps = (state) => ({
-    nfts: state.exploreNft.nfts,
-    fetching: state.exploreNft.fetching
-})
+const ExploreNftsPageHoc = () => {
 
-const mapDispatchToProps = {
-    fetchMarketNfts,
-    clearExploreNftState
-}
+    const {nfts, fetching} = useAppSelector(state => state.explore.nfts)
+    const dispatch = useAppDispatch()
 
-export default compose(
-    withAccountId,
-    connect(mapStateToProps, mapDispatchToProps)
-)(ExploreNftsFetchHoc)
+    useEffect(() => {
+        dispatch(fetchMarketNfts('mainnet.near'))
+        return () => dispatch(exploreNftsSlice.actions.reset())
+    }, [])
+
+    return <ExploreNftsPage nfts={nfts} fetching={fetching}/>
+};
+
+export default ExploreNftsPageHoc;

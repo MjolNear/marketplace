@@ -1,11 +1,13 @@
 import './index.css';
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {initContract} from './business-logic/near/contract'
+import {initContract} from './business-logic/api/near/contract/contract'
 import {BrowserRouter} from "react-router-dom";
-import {store} from "./state/store";
 import {Provider} from "react-redux";
 import App from "./launch/App";
+import {setupStore} from "./state/store";
+
+const store = setupStore()
 
 const render = () =>
     ReactDOM.render(

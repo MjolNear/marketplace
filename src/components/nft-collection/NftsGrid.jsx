@@ -1,9 +1,9 @@
-import React, {useMemo} from 'react';
-import NftCollectionContainer from "../../../nft-collection/NftCollectionContainer";
-import SmallNftLoader from "../../../ui/loaders/SmallNftLoader";
-import NftItem from "../../../nft-item/NftItem";
+import SmallNftLoader from "../ui/loaders/SmallNftLoader";
+import NftCollectionContainer from "./NftCollectionContainer";
+import NftItem from "../nft-item/NftItem";
+import React from "react";
 
-const MyNfts = ({nfts, fetching}) => {
+const NftsGrid = ({nfts, fetching}) => {
     const loaders = Array(12)
         .fill(0)
         .map((i, idx) =>
@@ -30,4 +30,4 @@ const MyNfts = ({nfts, fetching}) => {
     );
 };
 
-export default MyNfts;
+export default NftsGrid;

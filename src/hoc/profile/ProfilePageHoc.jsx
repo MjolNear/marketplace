@@ -1,21 +1,29 @@
 import React from 'react';
-import {connect} from "react-redux";
-import {changeProfileTab, clearProfileState, fetchMyNfts} from "../../state/profile/actions";
-import ProfileFetch from "./ProfileFetch";
-import withAuthentication from "../withAuthentication";
-import {compose} from "redux";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import withAccountId from "../withAccountId";
+import {PROFILE_TAB, profileSlice} from "../../state/profile/slice";
+import ProfileHistoryFetch from "./ProfileHistoryFetch";
+import ProfileNftsFetch from "./ProfileNftsFetch";
+import ProfilePage from "../../components/pages/profile/ProfilePage";
 
-const mapStateToProps = (state) => ({
-    profile: state.profile
-})
+const ProfileFetch = ({accountId}) => {
+    const {activeTab, tabs} = useAppSelector(state => state.profile)
+    const dispatch = useAppDispatch()
 
-const mapDispatchToProps = {
-    changeProfileTab,
-    fetchMyNfts,
-    clearProfileState
-}
+    const render = (children) =>
+        <ProfilePage tabs={tabs}
+                     activeTab={activeTab}
+                     onTabChange={tab => dispatch(profileSlice.actions.changeTab(tab))}>
+            {children}
+        </ProfilePage>
 
-export default compose(
-    withAuthentication,
-    connect(mapStateToProps, mapDispatchToProps)
-)(ProfileFetch)
+    switch (activeTab) {
+        case PROFILE_TAB.ALL_NFTS:
+        case PROFILE_TAB.LISTED_NFTS:
+            return render(<ProfileNftsFetch accountId={accountId}/>)
+        case PROFILE_TAB.HISTORY:
+            return render(<ProfileHistoryFetch accountId={accountId}/>)
+    }
+};
+
+export default withAccountId(ProfileFetch);
