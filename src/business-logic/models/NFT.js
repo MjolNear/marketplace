@@ -45,7 +45,7 @@ export class NFT {
         return this.contractId + '/' + this.tokenId
     }
 
-    // Returns trains for NFT,
+    // Returns traits for NFT,
     // If traits not provided returns `null`
     getTraits() {
         //async GET json from this.reference_url

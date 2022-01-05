@@ -2,9 +2,9 @@ import {
     CHANGE_PROFILE_TAB,
     ADD_PROFILE_NFT,
     SET_FETCHING_PROFILE_NFT,
-    SET_HISTORY,
-    SET_MY_NFTS,
-    CLEAR_PROFILE_DATA
+    SET_PROFILE_HISTORY,
+    SET_PROFILE_NFTS,
+    CLEAR_PROFILE_STATE
 } from "./actions";
 
 import {combineReducers} from "redux";
@@ -64,19 +64,21 @@ export const profileReducer = (state = initialState, action) => {
                 ...state,
                 fetching: action.payload
             }
-        case SET_MY_NFTS:
+        case SET_PROFILE_NFTS:
             return {
                 ...state,
                 nfts: action.payload,
             }
-        case SET_HISTORY:
+        case SET_PROFILE_HISTORY:
             return {
                 ...state,
                 history: action.payload
             }
-        case CLEAR_PROFILE_DATA:
+        case CLEAR_PROFILE_STATE:
             return {
+                ...state,
                 activeTab: MY_NFT_TAB,
+                fetching: false,
                 nfts: [],
                 tags: [],
                 history: [],

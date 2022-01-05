@@ -6,7 +6,7 @@ const initialState = {
 
 export const profileHistoryReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_HISTORY:
+        case SET_PROFILE_HISTORY:
             return {
                 ...state,
                 history: action.payload

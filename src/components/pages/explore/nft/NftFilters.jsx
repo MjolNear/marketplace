@@ -12,11 +12,6 @@ const NftFilters = () => {
                 <div className="flex justify-center">
                     <SearchInput placeholder="Search by NFT name"/>
                 </div>
-                <div>
-                    <ToggleFilter text="verified"/>
-                    <ToggleFilter text="nft"/>
-                    <ToggleFilter text="fuck"/>
-                </div>
             </div>
         </BlueShadowContainer>
     );

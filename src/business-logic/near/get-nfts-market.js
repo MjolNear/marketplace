@@ -45,23 +45,17 @@ async function getMarketNftsPrices(account, from, limit) {
 }
 
 async function getNFT(account, contractId, tokenId, price) {
-    try {
-        return account.viewFunction(contractId, 'nft_token', {
-            token_id: tokenId
-        }).then((res) => {
-                return getConvertedNFT(account,
-                    contractId,
-                    res,
-                    {[contractId + ":" + tokenId]: utils.format.formatNearAmount(price.toString())})
-            }
-        ).catch((e) => {
-            console.log("Get solo NFT error", e);
-            return null
-        })
-    } catch (e) {
-        console.log("Connection Error when get solo NFT", e);
-        return null
-    }
+    const response = await account.viewFunction(contractId, 'nft_token', {
+        token_id: tokenId
+    })
+    return getConvertedNFT(
+        account,
+        contractId,
+        response,
+        {
+            [contractId + ":" + tokenId]: utils.format.formatNearAmount(price.toString())
+        }
+    )
 }
 
 export async function getMarketNfts(accountId, from = 0, limit = 10) {
@@ -69,7 +63,24 @@ export async function getMarketNfts(accountId, from = 0, limit = 10) {
     const marketNfts = await getMarketNftsPrices(account, from, limit);
     let resNFTs = [];
     for (let marketNft of marketNfts) {
-        resNFTs.push(getNFT(account, marketNft.nft_contract_id, marketNft.token_id, marketNft.price))
+
+        const contractId = marketNft.nft_contract_id
+        const tokenId = marketNft.token_id
+        const price = marketNft.price
+
+        const response = await account.viewFunction(contractId, 'nft_token', {
+            token_id: tokenId
+        })
+
+        const nftPromise = getConvertedNFT(
+            account,
+            contractId,
+            response,
+            {
+                [contractId + ":" + tokenId]: utils.format.formatNearAmount(price.toString())
+            }
+        )
+        resNFTs.push(nftPromise)
     }
     return resNFTs
 }

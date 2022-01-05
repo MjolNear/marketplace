@@ -1,4 +1,6 @@
 import {getMarketNfts} from "../../../business-logic/near/get-nfts-market";
+import {getNfts} from "../../../business-logic/near/get-nfts";
+import {addNft, setFetchingProfileNft, setProfileNfts} from "../../profile/actions";
 
 export const SET_PAGINATION_INDEX = "SET_PAGINATION_INDEX"
 export const SET_FETCHING_EXPLORE_NFT = "SET_FETCHING_EXPLORE_NFT"
@@ -21,7 +23,7 @@ const setFetchingExploreNfts = (fetching) => ({
     payload: fetching
 })
 
-const addNft = (nft) => ({
+const addExploreNft = (nft) => ({
     type: ADD_EXPLORE_NFT,
     payload: nft
 })
@@ -31,16 +33,15 @@ export const clearExploreNftState = () => ({
     type: CLEAR_EXPLORE_NFT_STATE
 })
 
-export const fetchMarketNfts = (from, limit) => async (dispatch) => {
+export const fetchMarketNfts = (accountId, from, limit) => (dispatch) => {
     dispatch(setFetchingExploreNfts(true))
-    getMarketNfts(from, limit)
+    getMarketNfts(accountId)
         .then(nfts => nfts
             .map(nftPromise =>
                 nftPromise
-                    .then(nft => dispatch(addNft(nft)))
+                    .then(nft => dispatch(addExploreNft(nft)))
                     .catch(() => console.log('NFT not found'))
-            )
-        )
-        .catch(() => dispatch(setExploreNfts([])))
+            ))
+        .catch(() => dispatch(setFetchingExploreNfts([])))
         .finally(() => dispatch(setFetchingExploreNfts(false)))
 }

@@ -4,12 +4,11 @@ import SmallNftLoader from "../../../ui/loaders/SmallNftLoader";
 import NftItem from "../../../nft-item/NftItem";
 
 const MyNfts = ({nfts, fetching}) => {
-
-    const loaders = useMemo(() => Array(12)
+    const loaders = Array(12)
         .fill(0)
         .map((i, idx) =>
             <SmallNftLoader key={idx} width={300} height={450}/>
-        ), [])
+        )
 
     if (fetching) {
         return <NftCollectionContainer>{loaders}</NftCollectionContainer>

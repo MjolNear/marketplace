@@ -2,7 +2,7 @@ import {ADD_EXPLORE_NFT, CLEAR_EXPLORE_NFT_STATE, SET_FETCHING_EXPLORE_NFT, SET_
 
 const initialState = {
     index: 0,
-    fetching: false,
+    fetching: true,
     nfts: []
 }
 

@@ -1,11 +1,11 @@
 import {getNfts} from "../../business-logic/near/get-nfts";
 
 export const CHANGE_PROFILE_TAB = "CHANGE_PROFILE_TAB"
-export const SET_MY_NFTS = "SET_MY_NFTS"
-export const SET_HISTORY = "SET_HISTORY"
+export const SET_PROFILE_NFTS = "SET_PROFILE_NFTS"
+export const SET_PROFILE_HISTORY = "SET_PROFILE_HISTORY"
 export const ADD_PROFILE_NFT = "ADD_PROFILE_NFT"
 export const SET_FETCHING_PROFILE_NFT = "SET_FETCHING_PROFILE_NFT"
-export const CLEAR_PROFILE_DATA = "CLEAR_PROFILE_DATA"
+export const CLEAR_PROFILE_STATE = "CLEAR_PROFILE_DATA"
 
 export const changeProfileTab = (tab) => ({
     type: CHANGE_PROFILE_TAB,
@@ -17,27 +17,27 @@ export const addNft = (nft) => ({
     payload: nft
 })
 
-export const setFetching = (fetching) => ({
+export const setFetchingProfileNft = (fetching) => ({
     type: SET_FETCHING_PROFILE_NFT,
     payload: fetching
 })
 
-export const setNfts = (nfts) => ({
-    type: SET_MY_NFTS,
+export const setProfileNfts = (nfts) => ({
+    type: SET_PROFILE_NFTS,
     payload: nfts
 })
 
-export const setHistory = (history) => ({
-    type: SET_HISTORY,
+export const setProfileHistory = (history) => ({
+    type: SET_PROFILE_HISTORY,
     payload: history
 })
 
-export const clearProfileData = () => ({
-    type: CLEAR_PROFILE_DATA
+export const clearProfileState = () => ({
+    type: CLEAR_PROFILE_STATE
 })
 
 export const fetchMyNfts = (accountId) => (dispatch) => {
-    dispatch(setFetching(true))
+    dispatch(setFetchingProfileNft(true))
     getNfts(accountId)
         .then(nfts => nfts
             .map(nftPromise =>
@@ -46,6 +46,6 @@ export const fetchMyNfts = (accountId) => (dispatch) => {
                     .catch(() => console.log('NFT not found'))
             )
         )
-        .catch(() => dispatch(setNfts([])))
-        .finally(() => dispatch(setFetching(false)))
+        .catch(() => dispatch(setProfileNfts([])))
+        .finally(() => dispatch(setFetchingProfileNft(false)))
 }
