@@ -15,7 +15,7 @@ async function getNFTsByContractAndAccount(account, contractId, accountId) {
                 limit: limit
             });
         } catch (e) {
-            console.log(e);
+            console.log("break");
             break
         }
         allNfts = allNfts.concat(curNfts);
@@ -62,10 +62,22 @@ export async function getNftPayouts(accountId, contractId, tokenId) {
     return null
 }
 
+function addExtraContracts(curContracts){
+    const extraContracts = ['mjol.near'];
+    for (let contract of extraContracts){
+        if (!curContracts.includes(contract)) {
+            curContracts.push('mjol.near');
+        }
+    }
+    return curContracts
+}
+
 export async function getNfts(accountId) {
     const account = NftAPI.buildAccountInfo(accountId)
-    const nftContracts = await NftAPI.buildContractInfo(accountId)
-    nftContracts.push('mjol.near');
+    let nftContracts = await NftAPI.buildContractInfo(accountId)
+    nftContracts = addExtraContracts(nftContracts)
+    console.log(nftContracts)
+
 
     if (nftContracts.error) {
         console.log("Account error found");
