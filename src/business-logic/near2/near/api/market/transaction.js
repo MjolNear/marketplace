@@ -29,3 +29,14 @@ export async function buyNftWithPayouts(contractId, tokenId, price) {
         yoctoNearAmount
     )
 }
+
+export async function unlistNFT(contractId, tokenId) {
+    return await window.contract.remove_from_market(
+        {
+            nft_contract_id: contractId,
+            token_id: tokenId
+        },
+        GAS,
+        SM_DEPOSIT
+    )
+}
