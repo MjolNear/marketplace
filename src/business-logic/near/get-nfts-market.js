@@ -1,11 +1,7 @@
-import {getConfig} from "../near2/near/enviroment/config";
 import {utils} from 'near-api-js'
 import {getConvertedNFT} from "./nft-converter";
 import {NftAPI} from "./get-utils";
-import {NetworkEnv} from "../near2/near/enviroment/network";
 import {contract} from '../near2/near/setup/near'
-
-const nearConfig = getConfig(NetworkEnv.MAINNET);
 
 
 function formatPrice(x) {

@@ -3,7 +3,7 @@ import {useAppDispatch} from "../../../hooks/redux";
 import {ItemMarketStatus} from "../../../state/transaction/state";
 import BuyNftContainer from "../../../components/nft-item/preview/status/actions/BuyNftContainer";
 import {useNftMarketStatus} from "../../../hooks/useNftMarketStatus";
-import {buyNft, sellNft} from "../../../state/transaction/nft/thunk";
+import {buyNft, sellNft, unlistNft} from "../../../state/transaction/nft/thunk";
 import SellNftContainer from "../../../components/nft-item/preview/status/actions/SellNftContainer";
 import UnlistNftContainer from "../../../components/nft-item/preview/status/actions/UnlistNftContainer";
 import NotListedNftContainer from "../../../components/nft-item/preview/status/NotListedNftContainer";
@@ -22,19 +22,19 @@ const NftStatusHoc: React.FC<PropTypes> = ({accountId, nft}) => {
         dispatch(buyNft(nft.contractId, nft.tokenId, nft.price || ''))
     }
 
-    const sell = () => {
-        dispatch(sellNft(nft.contractId, nft.tokenId, nft.price || ''))
+    const sell = (price: string) => {
+        dispatch(sellNft(nft.contractId, nft.tokenId, price))
     }
 
     const unlist = () => {
-        alert('Not implemented')
+        dispatch(unlistNft(nft.contractId, nft.tokenId))
     }
 
     switch (status) {
         case ItemMarketStatus.CAN_BUY:
             return <BuyNftContainer price={nft.price} onClick={buy}/>
         case ItemMarketStatus.CAN_SELL:
-            return <SellNftContainer price={nft.price} onClick={sell}/>
+            return <SellNftContainer onClick={sell}/>
         case ItemMarketStatus.LISTED:
             return <UnlistNftContainer price={nft.price} onClick={unlist}/>
         case ItemMarketStatus.FREE:

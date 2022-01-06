@@ -1,13 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import withPriceContainer from "./withPriceContainer";
 import MjolGreenBlueButton from "../../../../ui/buttons/MjolGreenBlueButton";
+import InputPriceModal from "../../../../ui/modal/InputPriceModal";
 
-const SellNftContainer = (props) => {
+const SellNftContainer = ({onClick}) => {
+
+    const [visible, setVisible] = useState(false)
+
     return (
-        <MjolGreenBlueButton {...props}>
-            Sell NFT
-        </MjolGreenBlueButton>
+        <div>
+            <MjolGreenBlueButton onClick={() => setVisible(true)}>
+                Sell NFT
+            </MjolGreenBlueButton>
+            <InputPriceModal hidden={!visible} setVisible={setVisible} onClick={onClick}/>
+        </div>
     );
 };
 
-export default withPriceContainer(SellNftContainer);
+export default SellNftContainer;
