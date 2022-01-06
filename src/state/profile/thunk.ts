@@ -3,7 +3,7 @@ import {getNfts} from "../../business-logic/near/get-nfts";
 import {AppDispatch} from "../store";
 import {profileSlice} from "./slice";
 
-export const fetchMyNfts = (accountId: number) => async (dispatch: AppDispatch) => {
+export const fetchMyNfts = (accountId: string) => async (dispatch: AppDispatch) => {
     dispatch(profileSlice.actions.startFetching())
     getNfts(accountId)
         .then(nfts => {
