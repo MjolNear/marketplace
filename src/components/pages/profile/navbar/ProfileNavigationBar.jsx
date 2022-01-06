@@ -3,13 +3,13 @@ import MjolBlueGradientButton from "../../../ui/buttons/MjolBlueGradientButton";
 import DarkBlueTitle from "../../../ui/text/DarkBlueTitle";
 import BlueShadowContainer from "../../../ui/shadow/BlueShadowContainer";
 
-const ProfileNavigationBar = ({onChangeTab, activeTab, tabs}) => {
+const ProfileNavigationBar = ({onTabChange, activeTab, tabs}) => {
 
     const navbar = tabs.map(item =>
-        <MjolBlueGradientButton key={item.name}
-                                title={item.name}
-                                isActive={item.name === activeTab}
-                                onClick={() => onChangeTab(item.name)}
+        <MjolBlueGradientButton key={item}
+                                title={item}
+                                isActive={item === activeTab}
+                                onClick={() => onTabChange(item)}
         />)
 
     return (

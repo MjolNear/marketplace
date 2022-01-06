@@ -1,7 +1,6 @@
 import {getConvertedNFT} from "./nft-converter";
 import {NftAPI} from "./get-utils";
-import {getNftPricesByUser} from "./get-nfts-market";
-
+import {getNftPriceByTokenUID, getNftPricesByUser} from "./get-nfts-market";
 
 
 async function getNFTsByContractAndAccount(account, contractId, accountId) {
@@ -15,7 +14,7 @@ async function getNFTsByContractAndAccount(account, contractId, accountId) {
                 limit: limit
             });
         } catch (e) {
-            console.log("break");
+            console.log("No more NFT for user.");
             break
         }
         allNfts = allNfts.concat(curNfts);
@@ -30,7 +29,7 @@ export async function getNFTsByContractAndTokenId(accountId, contractId, tokenId
     const nft = await account.viewFunction(contractId, 'nft_token', {
         token_id: tokenId
     });
-    const listedNftKeys = await getNftPricesByUser(account, accountId);
+    const listedNftKeys = await getNftPriceByTokenUID(contractId, tokenId);
     return getConvertedNFT(account, contractId, nft, listedNftKeys)
 }
 
@@ -74,6 +73,7 @@ function addExtraContracts(curContracts){
 
 export async function getNfts(accountId) {
     const account = NftAPI.buildAccountInfo(accountId)
+
     let nftContracts = await NftAPI.buildContractInfo(accountId)
     nftContracts = addExtraContracts(nftContracts)
     console.log(nftContracts)
@@ -83,7 +83,8 @@ export async function getNfts(accountId) {
         console.log("Account error found");
         return []
     }
-    const listedNftKeys = await getNftPricesByUser(account, accountId);
+    const listedNftKeys = await getNftPricesByUser(accountId);
+    console.log(listedNftKeys)
     let resNFTs = [];
     for (let contractId of nftContracts) {
         const nfts = await getNFTsByContractAndAccount(account, contractId, accountId);

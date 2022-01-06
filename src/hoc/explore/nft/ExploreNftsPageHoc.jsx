@@ -1,20 +1,21 @@
-import React from 'react';
-import {connect} from "react-redux";
-import {changeProfileTab, clearProfileData, fetchMyNfts} from "../../../state/profile/actions"
-import {compose} from "redux";
-import ExploreNftsFetchHoc from "./ExploreNftsFetchHoc";
+import React, {useEffect} from 'react';
+import ExploreNftsPage from "../../../components/pages/explore/nft/ExploreNftPage";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
+import {exploreNftsSlice} from "../../../state/explore/nfts/slice";
+import {fetchMarketNfts} from "../../../state/explore/nfts/thunk";
 
-const mapStateToProps = (state) => ({
-    profile: state.profile
-})
+const ExploreNftsPageHoc = () => {
 
-const mapDispatchToProps = {
-    changeProfileTab,
-    fetchMyNfts,
-    clearProfileData
-}
+    const {nfts, fetching} = useAppSelector(state => state.explore.nfts)
+    const dispatch = useAppDispatch()
 
-export default compose(
-    connect(mapStateToProps, mapDispatchToProps)
-)(ExploreNftsFetchHoc)
+    useEffect(() => {
+        dispatch(fetchMarketNfts('mainnet.near'))
+        return () => dispatch(exploreNftsSlice.actions.reset())
+    }, [])
+
+    return <ExploreNftsPage nfts={nfts} fetching={fetching}/>
+};
+
+export default ExploreNftsPageHoc;

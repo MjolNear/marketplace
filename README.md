@@ -25,7 +25,7 @@ Exploring The Code
 1. The "backend" code lives in the `/contract` folder. See the README there for
    more info.
 2. The frontend code lives in the `/src` folder. `/src/index.html` is a great
-   place to start exploring. Note that it loads in `/src/index.js`, where you
+   place to start exploring. Note that it loads in `/src/index.tsx`, where you
    can learn how the frontend connects to the NEAR blockchain.
 3. Tests: there are different kinds of tests for the frontend and the smart
    contract. See `contract/README` for info about how it's tested. The frontend
@@ -68,7 +68,7 @@ Each account on NEAR can have at most one contract deployed to it. If you've alr
 Step 2: set contract name in code
 ---------------------------------
 
-Modify the line in `src/config.js` that sets the account name of the contract. Set it to the account id you used above.
+Modify the line in `src/config.ts` that sets the account name of the contract. Set it to the account id you used above.
 
     const CONTRACT_NAME = process.env.CONTRACT_NAME || 'marketplace.YOUR-NAME.testnet'
 

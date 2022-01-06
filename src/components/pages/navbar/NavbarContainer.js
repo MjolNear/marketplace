@@ -1,8 +1,12 @@
-import {connect} from "react-redux";
 import Navbar from "./Navbar";
 
-const mapStateToProps = (state) => ({
-    navbar: state.navbar
-})
+import React from 'react';
+import {useAppSelector} from "../../../hooks/redux";
 
-export const NavbarContainer = connect(mapStateToProps)(Navbar)
+const NavbarContainer = () => {
+    const tabs = useAppSelector(state => state.navbar.tabs)
+
+    return <Navbar tabs={tabs}/>;
+};
+
+export default NavbarContainer;

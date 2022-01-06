@@ -1,13 +1,13 @@
 import React from 'react';
-import WhiteNearIcon from "../../../ui/icons/near/WhiteNearIcon";
+import BlackNearIcon from "../../../ui/icons/near/BlackNearIcon";
 
 const PreviewNftPrice = ({price}) => {
     return (
-        <div className="flex items-center">
-            <p className="text-blue-100 font-extrabold text-lg lg:text-2xl">
+        <div className="flex items-center text-lg lg:text-2xl">
+            <p className="text-gray-900 font-extrabold">
                 {price}
             </p>
-            <WhiteNearIcon/>
+            <BlackNearIcon/>
         </div>
     );
 };

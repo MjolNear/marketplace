@@ -25,7 +25,7 @@ export class NftAPI {
     }
 
     static buildAccountInfo(accountId) {
-        const network = NftAPI.getNetwork(accountId)
+        const network = 'mainnet'
         const provider = new nearApi.providers.JsonRpcProvider(`https://rpc.${network}.near.org`);
         return new nearApi.Account(
             {provider: provider}

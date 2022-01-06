@@ -4,7 +4,8 @@ import {FaSearch} from 'react-icons/fa'
 const SearchInput = ({placeholder, isTyping, onCancel, onSearch}) => {
     return (
         <div className="flex text-xs xs:text-md">
-            <input className="rounded-l-3xl w-full sm:w-88 focus:ring-none outline-none py-2 px-5 ring-1 ring-inset ring-blue-100"
+            <input className="rounded-l-3xl w-full sm:w-88
+                              focus:outline-0 outline-none py-2 px-5 ring-1 ring-inset ring-blue-100"
                    placeholder={placeholder}
                    type="search"
             />

@@ -1,6 +1,4 @@
-import {GAS, SM_DEPOSIT} from "./contract";
-
-
+import {GAS, SM_DEPOSIT} from "../near2/near/constants";
 
 export function mintToCommonCollection(token_metadata, payout) {
     const common_contract_id = 'mjol.near';
