@@ -17,8 +17,10 @@ export const exploreNftsSlice = createSlice({
     name: "explore-nfts",
     initialState,
     reducers: {
-        addNft: (state, action: PayloadAction<NFT>) => {
-            state.nfts.push(action.payload)
+        addNft: (state, action: PayloadAction<NFT | null>) => {
+            if (action.payload) {
+                state.nfts.push(action.payload)
+            }
         },
         startFetching: (state) => {
             state.fetching = true

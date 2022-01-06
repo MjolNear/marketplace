@@ -23,9 +23,13 @@ export const previewNftSlice = createSlice({
         startFetching: (state) => {
             state.fetching = true
         },
-        success: (state, action: PayloadAction<NFT>) => {
-            state.nft = action.payload
-            state.success = true
+        success: (state, action: PayloadAction<NFT | null>) => {
+            if (action.payload) {
+                state.nft = action.payload
+                state.success = true
+            } else {
+                state.success = false
+            }
             state.fetching = false
         },
         fetchPayouts: (state, action) => {
