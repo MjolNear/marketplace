@@ -1,6 +1,6 @@
 import {getConvertedNFT} from "./nft-converter";
 import {NftAPI} from "./get-utils";
-import {getNftPricesByUser} from "./get-nfts-market";
+import {getNftPriceByTokenUID, getNftPricesByUser} from "./get-nfts-market";
 
 
 async function getNFTsByContractAndAccount(account, contractId, accountId) {
@@ -29,7 +29,7 @@ export async function getNFTsByContractAndTokenId(accountId, contractId, tokenId
     const nft = await account.viewFunction(contractId, 'nft_token', {
         token_id: tokenId
     });
-    const listedNftKeys = await getNftPricesByUser(account, accountId);
+    const listedNftKeys = await getNftPriceByTokenUID(contractId, tokenId);
     return getConvertedNFT(account, contractId, nft, listedNftKeys)
 }
 
@@ -64,13 +64,13 @@ export async function getNftPayouts(accountId, contractId, tokenId) {
 export async function getNfts(accountId) {
     const account = NftAPI.buildAccountInfo(accountId)
     const nftContracts = await NftAPI.buildContractInfo(accountId)
-    nftContracts.push('mjol.near');
+    //nftContracts.push('mjol.near');
 
     if (nftContracts.error) {
         console.log("Account error found");
         return []
     }
-    const listedNftKeys = await getNftPricesByUser(account, accountId);
+    const listedNftKeys = await getNftPricesByUser(accountId);
     console.log(listedNftKeys)
     let resNFTs = [];
     for (let contractId of nftContracts) {

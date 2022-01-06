@@ -3,19 +3,45 @@ import {utils} from 'near-api-js'
 import {getConvertedNFT} from "./nft-converter";
 import {NftAPI} from "./get-utils";
 import {NetworkEnv} from "../near2/near/enviroment/network";
+import {contract} from '../near2/near/setup/near'
 
 const nearConfig = getConfig(NetworkEnv.MAINNET);
 
 
-export async function getNftPricesByUser(account, accountId) {
+function formatPrice(x) {
+    const price = x.toLocaleString('fullwide', {useGrouping: false});
+    return utils.format.formatNearAmount(price)
+}
+
+export async function getNftPriceByTokenUID(contractId, tokenId) {
+    const nft_uid = contractId + ":" + tokenId;
+    try {
+        return contract.get_nft_price({
+            nft_uid: nft_uid,
+        }).then((price) => {
+                if (price === 0){
+                    return {}
+                }
+                return {[nft_uid] : formatPrice(price)}
+            }
+        ).catch((e) => {
+            console.log("Get NFT price error", e);
+            return {}
+        });
+    } catch (e) {
+        console.log("Connection Error when get NFT price", e);
+        return {}
+    }
+}
+
+export async function getNftPricesByUser(accountId) {
     let res = {};
     try {
-        return account.viewFunction(nearConfig.contractName, 'get_user_nfts', {
+        return contract.get_user_nfts({
             owner_id: accountId,
         }).then((vec) => {
                 for (let pairIdAndPrice of vec) {
-                    const price = pairIdAndPrice[1].toLocaleString('fullwide', {useGrouping: false});
-                    res[pairIdAndPrice[0]] = utils.format.formatNearAmount(price)
+                    res[pairIdAndPrice[0]] = formatPrice(pairIdAndPrice[1])
                 }
                 return res
             }
@@ -32,7 +58,7 @@ export async function getNftPricesByUser(account, accountId) {
 async function getMarketNftsPrices(account, from, limit) {
     let res = [];
     try {
-        return account.viewFunction(nearConfig.contractName, 'get_nfts', {
+        return contract.get_nfts({
             from: from,
             limit: limit
         }).catch((e) => {
@@ -54,7 +80,7 @@ async function getNFT(account, contractId, tokenId, price) {
         contractId,
         response,
         {
-            [contractId + ":" + tokenId]: utils.format.formatNearAmount(price.toString())
+            [contractId + ":" + tokenId]: formatPrice(price)
         }
     )
 }
@@ -78,7 +104,7 @@ export async function getMarketNfts(accountId, from = 0, limit = 10) {
             contractId,
             response,
             {
-                [contractId + ":" + tokenId]: utils.format.formatNearAmount(price.toString())
+                [contractId + ":" + tokenId]: formatPrice(price)
             }
         )
         resNFTs.push(nftPromise)
