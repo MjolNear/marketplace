@@ -8,6 +8,8 @@ import UploadFileInput from "./upload/UploadFileInput";
 import {makeNftLink, storeNFT} from "../../../../business-logic/ipfs/upload";
 import DarkBlueTitle from "../../../ui/text/DarkBlueTitle";
 import RoundLoader from "../../../ui/loaders/RoundLoader";
+import BlueShadowContainer from "../../../ui/shadow/BlueShadowContainer";
+import {wallet} from "../../../../business-logic/near2/near/setup/near";
 
 
 const LineAlert = ({state, setState}) => {
@@ -40,7 +42,7 @@ const CreateNftPage = () => {
     const MAX_TRAITS_LEN = 20;
 
 
-    let myCollections = ['Collection#1', 'Collection#2', 'Collection#3'];
+    let myCollections = [] //['Collection#1', 'Collection#2', 'Collection#3'];
     myCollections = ['None'].concat(myCollections);
 
     const [curCollection, setCurCollection] = useState('None');
@@ -70,7 +72,7 @@ const CreateNftPage = () => {
     const submitForm = (e) => {
         e.preventDefault();
         setAlertText("");
-        if (!window.walletConnection.isSignedIn()) {
+        if (!wallet.isSignedIn()) {
             return
         }
         if (!(title.length <= MAX_TITLE_LEN && title.length >= MIN_TITLE_LEN)) {
@@ -133,9 +135,13 @@ const CreateNftPage = () => {
             {isLoading ? (
                 <RoundLoader/>
             ) : (
-                <div className="bg-light_white">
-                    <DarkBlueTitle title="Create NFT"/>
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 h-screen">
+                <div className="bg-mjol-white">
+                    <BlueShadowContainer>
+                        <div className="pb-10 px-4 space-y-8">
+                            <DarkBlueTitle title="Create NFT"/>
+                        </div>
+                    </BlueShadowContainer>
+                    <div className="max-w-7xl py-10 mx-auto px-4 sm:px-6">
                         <form onSubmit={submitForm}>
                             <div className="shadow rounded-md overflow-hidden">
                                 <div className="px-4 py-5 bg-white space-y-6 p-6">
@@ -218,7 +224,7 @@ const CreateNftPage = () => {
                                 <div className="px-4 py-3 bg-gray-50 text-left sm:px-6">
                                     <button
                                         type="submit"
-                                        className="inline-flex justify-center py-2 px-6 font-bold text-lg hover:text-gray-900 font-large rounded-md text-white bg-gradient-to-br from-light_blue to-green-200  hover:from-green-200 hover:to-light_blue"
+                                        className="inline-flex justify-center py-2 px-6 font-bold text-lg hover:text-gray-900 font-large rounded-md text-white bg-gradient-to-br from-mjol-blue-base to-green-200 hover:from-green-200 hover:to-mjol-blue-base"
                                     >
                                         Mint
                                     </button>

@@ -1,6 +1,6 @@
 import {config, wallet, contract} from "../../setup/near";
 import {utils} from "near-api-js";
-import {GAS, SM_DEPOSIT} from "../../constants";
+import {GAS, SM_DEPOSIT, YOCTO_NEAR} from "../../constants";
 
 
 export async function giveApprove(contractId, tokenId, price) {
@@ -37,6 +37,6 @@ export async function unlistNFT(contractId, tokenId) {
             token_id: tokenId
         },
         GAS,
-        SM_DEPOSIT
+        YOCTO_NEAR
     )
 }

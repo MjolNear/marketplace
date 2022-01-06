@@ -82,7 +82,7 @@ export default function Navbar({tabs}) {
                         <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
                             <Link to="/"
                                   onClick={signIn}
-                                  className="inline-flex justify-center py-1.5 px-4 font-bold text-lg font-large rounded-md text-white bg-gradient-to-br from-light_blue to-green-200 hover:text-gray-900 hover:from-green-200 hover:to-light_blue"
+                                  className="inline-flex justify-center py-1.5 px-4 font-bold text-lg font-large rounded-md text-white bg-gradient-to-br from-mjol-blue-base to-green-200 hover:from-green-200 hover:to-mjol-blue-base"
                             >
                                 Sign in
                             </Link>
@@ -152,7 +152,7 @@ export default function Navbar({tabs}) {
                                 <div>
                                     <Link to="/"
                                           onClick={signIn}
-                                          className="cursor-pointer w-full py-2 flex items-center justify-center font-bold text-lg font-large rounded-md text-white bg-gradient-to-br from-light_blue to-green-200 hover:text-gray-900 hover:from-green-200 hover:to-light_blue"
+                                          className="cursor-pointer w-full py-2 flex items-center justify-center font-bold text-lg font-large rounded-md text-white bg-gradient-to-br from-mjol-blue-base to-green-200 hover:from-green-200 hover:to-mjol-blue-base"
                                     >
                                         Sign in
                                     </Link>
