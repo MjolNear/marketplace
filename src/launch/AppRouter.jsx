@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Routes} from "react-router";
-import MainPage from "../components/pages/main/MainPage";
+import LandingPage from "../components/pages/landing/LandingPage";
 // import ProfileNftCollectionsPage from "../components/pages/profile/collection/ProfileNftCollectionsPage";
 import NotFoundPage from "../components/pages/not-found/NotFoundPage";
 import CreateCollectionPage from "../components/pages/create/collection/CreateCollectionPage";
@@ -16,7 +16,7 @@ import {signOut} from "../business-logic/near2/near/setup/near";
 const AppRouter = () => {
     return (
         <Routes>
-            <Route path="/" element={<MainPage/>} key="1"/>
+            <Route path="/" element={<LandingPage/>} key="1"/>
             <Route path="/logout" element={<Logout logout={signOut}/>}/>
             <Route path="/nfts" element={<ExploreNftsPageHoc/>} key="2"/>
             <Route path="/nft/:contractId/:tokenId" element={<PreviewNftHoc/>} key="30"/>

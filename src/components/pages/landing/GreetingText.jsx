@@ -4,8 +4,8 @@ const GreetingText = () => {
     return (
         <div className="w-1/2 space-y-14">
             <div
-                className="text-3xl text-left md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-indigo-600 to-pink-500 flex-end">
-                Welcome to Nea Sea
+                className="text-3xl text-left md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-indigo-600 to-pink-500 flex-end">
+                Welcome to MJOL NEAR
             </div>
             <div className="text-sm md:text-lg font-mono">
                 The first NFT marketplace that enables creators to choose and embed licenses when they mint NFTs.
