@@ -1,6 +1,5 @@
 import {NetworkEnv} from "./network";
 import {NearConfig} from "near-api-js/lib/near";
-
 const CONTRACT_NAME = 'market.mjol.near';
 
 export interface Config extends NearConfig {
@@ -68,4 +67,5 @@ export const getConfig = (env: NetworkEnv): Config => {
     }
 }
 
+// Why do we need that?
 // module.exports = getConfig;

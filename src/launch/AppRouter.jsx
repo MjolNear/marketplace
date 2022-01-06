@@ -9,15 +9,15 @@ import ExploreCollectionsPage from "../components/pages/explore/collection/Explo
 import ProfilePageHoc from "../hoc/profile/ProfilePageHoc";
 import PreviewNftHoc from "../hoc/preview/nft/PreviewNftPageHoc";
 import Logout from "../hoc/auth/Logout";
-import {logout} from "../business-logic/api/near/contract/contract";
 import ExploreNftsPageHoc from "../hoc/explore/nft/ExploreNftsPageHoc";
+import {signOut} from "../business-logic/near2/near/setup/near";
 
 
 const AppRouter = () => {
     return (
         <Routes>
             <Route path="/" element={<MainPage/>} key="1"/>
-            <Route path="/logout" element={<Logout logout={logout}/>}/>
+            <Route path="/logout" element={<Logout logout={signOut}/>}/>
             <Route path="/nfts" element={<ExploreNftsPageHoc/>} key="2"/>
             <Route path="/nft/:contractId/:tokenId" element={<PreviewNftHoc/>} key="30"/>
             <Route path="/collections" element={<ExploreCollectionsPage/>} key="3"/>

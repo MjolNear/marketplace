@@ -1,12 +1,12 @@
 import React, {Fragment} from 'react'
 import {Popover, Transition} from '@headlessui/react'
-import {login} from "../../../business-logic/api/near/contract/contract";
 import classNames from "../../../utils/css-utils";
 import {CloseMenuButton, MenuButton} from "../../ui/navbar/buttons";
 import {Link} from "react-router-dom";
 import {TabsDropDownMenu} from "./menu/TabDropDownMenu";
 import imgLogo from "../../../resources/hammer.png"
 import imgLabel from "../../../resources/label6.png"
+import {signIn, wallet} from "../../../business-logic/near2/near/setup/near";
 
 
 function SmallNavBar({tabs}) {
@@ -74,14 +74,14 @@ export default function Navbar({tabs}) {
                             </div>
                         ))}
                     </Popover.Group>
-                    {window.walletConnection.isSignedIn() ? (
+                    {wallet.isSignedIn() ? (
                         <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
                             <TabsDropDownMenu name="Profile" tabs={profileTabs} isProfile={true}/>
                         </div>
                     ) : (
                         <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
                             <Link to="/"
-                                  onClick={login}
+                                  onClick={signIn}
                                   className="inline-flex justify-center py-1.5 px-4 font-bold text-lg font-large rounded-md text-white bg-gradient-to-br from-light_blue to-green-200 hover:text-gray-900 hover:from-green-200 hover:to-light_blue"
                             >
                                 Sign in
@@ -129,7 +129,7 @@ export default function Navbar({tabs}) {
                         </div>
                         <div className="py-6 px-5 space-y-6">
                             <SmallNavBar tabs={singleTabs}/>
-                            {window.walletConnection.isSignedIn() ? (
+                            {wallet.isSignedIn() ? (
                                 <>
                                     <div className="grid grid-cols-2 gap-y-4 gap-x-8">
                                         {profileTabs.filter(item => item.name !== 'Sign out').map(({name, path}) => (
@@ -141,7 +141,7 @@ export default function Navbar({tabs}) {
                                                 </div>
                                             </Link>
                                         ))}
-                                        <Link to="/logout"
+                                        <Link to="/signOut"
                                               className="cursor-pointer col-span-2 text-center font-medium text-gray-500 hover:text-gray-700"
                                         >
                                             Log out
@@ -151,7 +151,7 @@ export default function Navbar({tabs}) {
                             ) : (
                                 <div>
                                     <Link to="/"
-                                          onClick={login}
+                                          onClick={signIn}
                                           className="cursor-pointer w-full py-2 flex items-center justify-center font-bold text-lg font-large rounded-md text-white bg-gradient-to-br from-light_blue to-green-200 hover:text-gray-900 hover:from-green-200 hover:to-light_blue"
                                     >
                                         Sign in

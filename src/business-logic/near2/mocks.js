@@ -1,4 +1,4 @@
-import {NFT} from "../models/NFT";
+import {NFT} from "../models/nft";
 
 export function mockNFTs() {
     return [

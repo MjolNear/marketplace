@@ -1,8 +1,8 @@
-import {getConfig} from "../api/near/enviroment/config";
+import {getConfig} from "../near2/near/enviroment/config";
 import {utils} from 'near-api-js'
 import {getConvertedNFT} from "./nft-converter";
 import {NftAPI} from "./get-utils";
-import {NetworkEnv} from "../api/near/enviroment/network";
+import {NetworkEnv} from "../near2/near/enviroment/network";
 
 const nearConfig = getConfig(NetworkEnv.MAINNET);
 
@@ -36,11 +36,11 @@ async function getMarketNftsPrices(account, from, limit) {
             from: from,
             limit: limit
         }).catch((e) => {
-            console.log("Get market NFTs error", e);
+            console.log("Get transaction NFTs error", e);
             return res
         })
     } catch (e) {
-        console.log("Connection Error when get market NFTs", e);
+        console.log("Connection Error when get transaction NFTs", e);
         return res
     }
 }

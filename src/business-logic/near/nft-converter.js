@@ -1,6 +1,5 @@
-import {NFT} from "../models/NFT";
-import {MintSite} from "../models/MintSite";
 import {NftAPI} from "./get-utils";
+import {MintSite, NFT} from "../models/nft";
 
 const isIPFS = require('is-ipfs');
 

@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {NFT} from "../../business-logic/models/NFT";
+import {NFT} from "../../business-logic/models/nft";
 
 export enum PROFILE_TAB {
     ALL_NFTS = "All NFTs",

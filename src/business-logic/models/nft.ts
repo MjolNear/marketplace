@@ -1,8 +1,49 @@
-import {NftCollection} from "./NftCollection";
+export class NftCollection {
+    collection: string
+
+    constructor(collection: string = "") {
+        this.collection = collection
+    }
+}
+
+export class MintSite {
+    name: string
+    nftLink: string
+
+    constructor(name: string = "", nftLink: string = "") {
+        this.name = name
+        this.nftLink = nftLink
+    }
+}
+
 
 export class NFT {
-    constructor(contractId, tokenId, ownerId, title, description, copies, mediaURL, referenceURL, mintSite, price) {
-        // NFT contract id
+
+    contractId: string
+    tokenId: string
+    ownerId: string
+    title: string
+    description: string
+    copies: number
+    mediaURL: string
+    referenceURL : string | undefined
+    mintSite: MintSite | undefined
+    price: string | undefined
+
+
+    constructor(
+        contractId: string,
+        tokenId: string,
+        ownerId: string,
+        title: string,
+        description: string,
+        copies: number,
+        mediaURL: string,
+        referenceURL?: string,
+        mintSite?: MintSite,
+        price?: string
+    ) {
+        // NFT setup id
         this.contractId = contractId;
 
         // NFT token id
@@ -24,13 +65,13 @@ export class NFT {
         this.mediaURL = mediaURL;
 
         // Link to JSON file with extra information about NFT, like
-        // traits, history and etc.
+        // traits, history etc.
         this.referenceURL = referenceURL;
 
-        // Contains information about mint on external market.
+        // Contains information about mint on external transaction.
         this.mintSite = mintSite;
 
-        // Listed NFT market price,
+        // Listed NFT transaction price,
         // `null` if NFT not listed
         this.price = price;
     }

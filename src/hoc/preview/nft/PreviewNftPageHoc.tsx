@@ -7,26 +7,43 @@ import RoundLoader from "../../../components/ui/loaders/RoundLoader";
 import NotFoundPage from "../../../components/pages/not-found/NotFoundPage";
 import {previewNftSlice} from "../../../state/preview/nft/slice";
 import {useParams} from "react-router";
+import NftStatusHoc from "./NftStatusHoc";
 
-const PreviewNftPageHoc = ({accountId}) => {
-    const {contractId, tokenId} = useParams()
+interface PropTypes {
+    accountId: string
+}
+
+type ParamTypes = {
+    contractId: string,
+    tokenId: string
+}
+
+const PreviewNftPageHoc: React.FC<PropTypes> = ({accountId}) => {
+    const {contractId, tokenId} = useParams<ParamTypes>()
     const {nft, success, fetching, payouts} = useAppSelector(state => state.preview.nft)
     const dispatch = useAppDispatch()
 
-    useEffect(() => {
+    useEffect((): any => {
         dispatch(fetchNft(accountId, contractId, tokenId))
         return () => dispatch(previewNftSlice.actions.reset())
-    }, [])
+    }, [accountId])
 
-    if (fetching) {
+    if (fetching || !nft) {
         return <RoundLoader/>
     }
-
     if (!success) {
         return <NotFoundPage/>
     }
 
-    return <PreviewNftPage nft={nft} payouts={payouts}/>
+    return (
+        <PreviewNftPage nft={nft}
+                        payouts={payouts}
+                        statusElement={
+                            <NftStatusHoc nft={nft}
+                                          accountId={accountId}
+                            />
+                        }
+        />)
 };
 
 export default withAccountId(PreviewNftPageHoc);
