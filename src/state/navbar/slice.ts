@@ -1,4 +1,4 @@
-import {createReducer, createSlice} from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     tabs: {
@@ -7,7 +7,7 @@ const initialState = {
             {name: 'Collections', path: '/collections'},
         ],
         create: [
-            {name: 'NFT', path: '/create-nfts'},
+            {name: 'NFT', path: '/create-nft'},
             {name: 'Collection', path: '/create-collection'}
         ],
         profile: [
