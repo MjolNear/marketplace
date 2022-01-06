@@ -9,7 +9,10 @@ export const fetchMyNfts = (accountId: number) => async (dispatch: AppDispatch) 
         .then(nfts => {
                 nfts.map(nftPromise =>
                     nftPromise
-                        .then(nft => dispatch(profileSlice.actions.addNft(nft)))
+                        .then(nft => {
+                            //console.log(nft)
+                            dispatch(profileSlice.actions.addNft(nft))
+                        })
                         .catch(() => console.log('NFT not found'))
                 )
                 dispatch(profileSlice.actions.success())

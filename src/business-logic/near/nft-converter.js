@@ -39,19 +39,19 @@ function getNftMintedSiteInfo(nft, contractId) {
         )
 
     }
-    if (contractId === 'pluminite.near') {
-        return new MintSite(
-            'Pluminite',
-            `https://pluminite.com/#/gem/${nft.token_id}`
-        )
-    }
+    // if (contractId === 'pluminite.near') {
+    //     return new MintSite(
+    //         'Pluminite',
+    //         `https://pluminite.com/#/gem/${nft.token_id}`
+    //     )
+    // }
     if (contractId.endsWith('mjol.near')) {
         return new MintSite(
             'MjolNear',
             `https://mjolnear.com/nft/${contractId}/${nft.token_id}`
         )
     }
-    return null;
+    return new MintSite('Non-verified contract', '');
 }
 
 
