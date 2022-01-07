@@ -52,10 +52,7 @@ export async function getNftPayouts(accountId, contractId, tokenId) {
                 royalties[payoutKey] = payoutVal
             }
             delete royalties[highestPayout[0]]
-            if (royalties['undefined'] !== undefined){
-                royalties[highestPayout[0]] = royalties['undefined']
-                delete royalties['undefined']
-            }
+            delete royalties['undefined']
 
             return royalties
         })
