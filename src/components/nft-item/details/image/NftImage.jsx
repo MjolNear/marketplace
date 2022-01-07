@@ -3,15 +3,15 @@ import {Link} from "react-router-dom";
 
 const NftImage = ({path, previewLink}) => {
     return (
-        <div className="p-2 space-y-1">
-            <div className="xs:h-72 2xl:h-80 grid place-items-center">
-                <Link to={previewLink}>
-                    <img src={path}
-                         alt="not found...😔"
-                         className="rounded-2xl max-h-64 xs:max-h-72 2xl:max-h-80"
-                    />
-                </Link>
-            </div>
+        <div className="aspect-w-1 aspect-h-1 mb-1">
+        <Link to={previewLink}
+              className="flex justify-center"
+        >
+            <img src={path}
+                 alt="not found...😔"
+                 className="object-contain"
+            />
+        </Link>
         </div>
     );
 };

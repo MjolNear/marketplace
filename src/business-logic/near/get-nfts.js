@@ -61,9 +61,9 @@ export async function getNftPayouts(accountId, contractId, tokenId) {
     return null
 }
 
-function addExtraContracts(curContracts){
+function addExtraContracts(curContracts) {
     const extraContracts = ['mjol.near'];
-    for (let contract of extraContracts){
+    for (let contract of extraContracts) {
         if (!curContracts.includes(contract)) {
             curContracts.push('mjol.near');
         }
