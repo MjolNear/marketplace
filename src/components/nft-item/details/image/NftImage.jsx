@@ -1,17 +1,12 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 
-const NftImage = ({path, previewLink}) => {
+const NftImage = ({path}) => {
     return (
-        <div className="aspect-w-1 aspect-h-1 mb-1">
-        <Link to={previewLink}
-              className="flex justify-center"
-        >
+        <div className="aspect-w-1 aspect-h-1 mb-1 аlex justify-center">
             <img src={path}
-                 alt="not found...😔"
+                 alt="media not supported"
                  className="object-contain"
             />
-        </Link>
         </div>
     );
 };
