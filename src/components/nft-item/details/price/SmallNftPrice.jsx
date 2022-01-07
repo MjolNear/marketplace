@@ -1,7 +1,7 @@
 import React from 'react';
 
-import BlackNearIcon from "../../../ui/icons/near/BlackNearIcon";
 import ReactTooltip from "react-tooltip";
+import NearSVG from "../../../ui/icons/near/NearSVG";
 
 const SmallNftPrice = ({price, isListed}) => {
     return (
@@ -11,7 +11,7 @@ const SmallNftPrice = ({price, isListed}) => {
             </p>
             {isListed &&
                 <div>
-                    <div data-tip='NEAR coin'><BlackNearIcon/></div>
+                    <div data-tip='NEAR coin'><NearSVG/></div>
                     <ReactTooltip place='right' delayShow={100}/>
                 </div>
             }

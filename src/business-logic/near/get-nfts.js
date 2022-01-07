@@ -91,6 +91,7 @@ export async function getNfts(accountId) {
         for (let nft of nfts) {
             const nftInfoPromise = getConvertedNFT(account, contractId, nft, listedNftKeys)
             resNFTs.push(nftInfoPromise)
+            break
         }
     }
 
