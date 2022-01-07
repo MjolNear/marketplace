@@ -9,7 +9,7 @@ import {makeNftLink, storeNFT} from "../../../../business-logic/ipfs/upload";
 import DarkBlueTitle from "../../../ui/text/DarkBlueTitle";
 import RoundLoader from "../../../ui/loaders/RoundLoader";
 import BlueShadowContainer from "../../../ui/shadow/BlueShadowContainer";
-import {wallet} from "../../../../business-logic/near2/near/setup/near";
+import {getAccountId, wallet} from "../../../../business-logic/near2/near/setup/near";
 
 
 const LineAlert = ({state, setState}) => {
@@ -113,7 +113,7 @@ const CreateNftPage = () => {
                     payout = {
                         payout: {}
                     };
-                    payout["payout"][window.accountId] = (100 * royalty).toString();
+                    payout["payout"][getAccountId()] = (100 * royalty).toString();
                 }
                 mintToCommonCollection(token_metadata, payout);
                 setIsLoading(false);
