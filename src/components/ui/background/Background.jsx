@@ -1,15 +1,20 @@
 import React from 'react';
 
-import bg from '../../../resources/background/lights.gif'
+import bg from '../../../resources/background/paras-bg.jpg'
 
 const Background = ({children}) => {
     return (
-        <div className="fixed filter blur-lg opacity-80 inset-0"
-             style={{
-                 backgroundImage: `url(${bg})`,
-                 backgroundSize: 'cover',
-                 backgroundRepeat: 'no-repeat'
-             }}>
+        <div
+            className="bg-gradient-to-br from-purple-300 to-blue-400"
+        //     style={{
+        //     backgroundImage: `url(${bg})`,
+        //     zIndex: -1,
+        //     height: '100vh',
+        //     backgroundPosition: 'center',
+        //     backgroundRepeat: 'no-repeat',
+        //     backgroundSize: 'cover',
+        // }}
+        >
             {children}
         </div>
     );

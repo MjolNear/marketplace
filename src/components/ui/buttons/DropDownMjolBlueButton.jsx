@@ -1,35 +1,42 @@
-import {Disclosure, Transition} from '@headlessui/react'
 import {ChevronUpIcon} from '@heroicons/react/solid'
-import {Fragment} from "react";
+import React, {useState} from "react";
+import classNames from "../../../utils/css-utils";
+import Hr from "../borders/Hr";
 
-export default function DropDownMjolBlueButton({title, children}) {
+export default function DropDownMjolBlueButton({buttonContent, children, initialVisible = true}) {
+
+    const [visible, setVisible] = useState(initialVisible)
+
     return (
-        <Disclosure>
-            {({open}) => (
-                <>
-                    <Disclosure.Button
-                        className="flex justify-between w-full px-4 py-2 text-md font-medium text-left text-black
-                                   bg-blue-100 rounded-lg hover:bg-blue-200"
-                    >
-                        <span>{title}</span>
-                        <ChevronUpIcon
-                            className={`${open ? '' : 'rotate-180'} transform duration-200 w-6 h-6 text-blue-500`}
-                        />
-                    </Disclosure.Button>
-                    <Transition
-                        show={open}
-                        as={Fragment}
-                        enter="transition ease-out duration-100"
-                        enterFrom="opacity-0 translate-y-10"
-                        enterTo="opacity-100 translate-y-0"
-                        leave="transition ease-in duration-100"
-                        leaveFrom="opacity-100 translate-y-0"
-                        leaveTo="opacity-0 translate-y-10"
-                    >
-                        {children}
-                    </Transition>
-                </>
-            )}
-        </Disclosure>
+        <div>
+            <button onClick={() => setVisible(!visible)}
+                    className={
+                        classNames(visible
+                                ? "rounded-t-lg"
+                                : "rounded-lg",
+                            "group flex justify-between p-5 w-full text-md font-semibold text-left bg-blue-100"
+                        )
+                    }
+            >
+                {buttonContent}
+                <ChevronUpIcon
+                    className={
+                        classNames(visible
+                                ? ""
+                                : "rotate-180",
+                            "transform duration-200 w-6 h-6 text-gray-500 group-hover:text-black"
+                        )
+                    }
+                />
+            </button>
+            {visible &&
+                <div>
+                    <div className="px-2 bg-blue-100">
+                        <Hr color="bg-gray-600"/>
+                    </div>
+                    {children}
+                </div>
+            }
+        </div>
     )
 }

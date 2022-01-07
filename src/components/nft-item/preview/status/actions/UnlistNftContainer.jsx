@@ -1,13 +1,9 @@
 import React from 'react';
 import withPriceContainer from "./withPriceContainer";
-import MjolGreenBlueButton from "../../../../ui/buttons/MjolGreenBlueButton";
+import DarkBlueGradientButton from "../../../../ui/buttons/DarkBlueGradientButton";
 
 const UnlistNftContainer = (props) => {
-    return (
-        <MjolGreenBlueButton {...props}>
-            Unlist NFT
-        </MjolGreenBlueButton>
-    );
+    return <DarkBlueGradientButton title="Unlist NFT" {...props}/>;
 };
 
 export default withPriceContainer(UnlistNftContainer);

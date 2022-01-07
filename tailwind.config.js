@@ -55,10 +55,16 @@ module.exports = {
             "mjol-base-purple-xl": "0px 9px 11px 8px rgba(0,   19,  224, 0.2)",
             "mjol-blue-button": "0px 0px 4px 2px  rgba(120, 192, 233, 0.3)",
             "mjol-base-blue": "0px 5px 7px 4px  rgba(120, 192, 233, 0.3)",
-            "mjol-base-blue-lg": "0px 7px 9px 6px  rgba(120, 192, 233, 0.3)",
-            "mjol-base-blue-xl": "0px 9px 11px 8px rgba(120, 192, 233, 0.3)",
-            "mjol-blue-all-md": "0px 0px 6px 6px rgba(120, 192, 233, 0.5)",
-            "mjol-blue-all-xs": "0px 0px 3px 3px rgba(120, 192, 233, 0.3)"
+            "mjol-base-blue-lg" : "0px 7px 9px 6px  rgba(120, 192, 233, 0.3)",
+            "mjol-base-blue-xl" : "0px 9px 11px 8px rgba(120, 192, 233, 0.3)",
+
+            "mjol-blue-all-md"  : "0px 0px 6px 6px rgba(120, 192, 233, 0.5)",
+            "mjol-blue-all-xs"  : "0px 0px 3px 3px rgba(120, 192, 233, 0.3)",
+
+            "mjol-dark-blue-xs" : "0px 0px 3px 3px rgba(67, 145, 255, 0.8)",
+            "mjol-dark-blue-md" : "0px 0px 6px 6px rgba(67, 145, 255, 0.8)",
+
+            "mjol-gray-xs" : "0px 0px 1px 1px rgba(0, 0, 0, 0.1)"
         },
 
         screens: {
@@ -126,7 +132,7 @@ module.exports = {
                         shadow: 'rgb(224, 240, 250)',
                         button: 'rgb(0, 152, 201)',
                         light: 'rgb(120, 192, 233)',
-                        base: '#4391ff'
+                        base: '#4391ff',
                     },
                     green: {
                         light: '#1EFF7F',
