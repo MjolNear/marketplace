@@ -26,19 +26,6 @@ const NftPreviewInfo = ({nft, payouts, statusElement}) => {
         {name: "Traits", element: "Not found", icon: <BiDna/>}
     ]
 
-    const info = tabs.map(tab => (
-        <DropDownMjolBlueButton key={tab.name}
-                                initialVisible={tab.name === 'Description'}
-                                buttonContent={
-                                    <IconText icon={tab.icon}
-                                              text={tab.name}
-                                    />
-                                }>
-            <div className="rounded-b-lg w-full bg-blue-100 text-black font-medium text-sm px-5 py-2">
-                {tab.element}
-            </div>
-        </DropDownMjolBlueButton>
-    ))
 
     return (
         <div className="space-y-5 md:max-w-xl">
@@ -48,7 +35,18 @@ const NftPreviewInfo = ({nft, payouts, statusElement}) => {
             </div>
             {statusElement}
             <div className="space-y-3">
-                {info}
+                {tabs.map(tab => (
+                    <DropDownMjolBlueButton key={tab.name}
+                                            buttonContent={
+                                                <IconText icon={tab.icon}
+                                                          text={tab.name}
+                                                />
+                                            }>
+                        <div className="rounded-b-lg w-full bg-blue-100 text-black font-medium text-sm px-5 py-2">
+                            {tab.element}
+                        </div>
+                    </DropDownMjolBlueButton>
+                ))}
             </div>
         </div>
     );
