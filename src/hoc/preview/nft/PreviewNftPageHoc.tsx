@@ -28,10 +28,12 @@ const PreviewNftPageHoc: React.FC<PropTypes> = ({accountId}) => {
         return () => dispatch(previewNftSlice.actions.reset())
     }, [accountId])
 
-    if (fetching || !nft) {
+    if (fetching) {
         return <RoundLoader/>
     }
-    if (!success) {
+
+
+    if (!success || !nft) {
         return <NotFoundPage/>
     }
 

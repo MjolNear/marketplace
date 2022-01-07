@@ -25,7 +25,12 @@ const NftItem = ({nft}) => {
                         <div className="inline-flex space-x-1 text-tiny-2 xs:text-tiny-3 2xl:text-tiny-4 items-center">
                             <NftMintedLink mintedName={nft.mintSite.name}
                                            mintedLink={nft.mintSite.nftLink}/>
-                            <NftVerifiedStatus/>
+                            {nft.mintSite.name === 'Non-verified contract' ? (
+                                <></>
+                            ) : (
+                                <NftVerifiedStatus/>
+                            )
+                            }
                         </div>
                     </div>
                     <hr className="ring-1 ring-mjol-purple-dark border-none"/>

@@ -84,7 +84,6 @@ export async function getNfts(accountId) {
         return []
     }
     const listedNftKeys = await getNftPricesByUser(accountId);
-    console.log(listedNftKeys)
     let resNFTs = [];
     for (let contractId of nftContracts) {
         const nfts = await getNFTsByContractAndAccount(account, contractId, accountId);
