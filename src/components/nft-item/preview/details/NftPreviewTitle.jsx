@@ -2,7 +2,7 @@ import React from 'react';
 
 const NftPreviewTitle = ({title}) => {
     return (
-        <div className="font-mono font-extrabold text-mjol-purple-dark text-lg md:text-xl">
+        <div className="font-extrabold text-mjol-purple-dark text-lg md:text-xl">
             {title}
         </div>
     );

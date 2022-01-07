@@ -55,15 +55,22 @@ module.exports = {
             "mjol-base-purple-xl": "0px 9px 11px 8px rgba(0,   19,  224, 0.2)",
             "mjol-blue-button": "0px 0px 4px 2px  rgba(120, 192, 233, 0.3)",
             "mjol-base-blue": "0px 5px 7px 4px  rgba(120, 192, 233, 0.3)",
-            "mjol-base-blue-lg": "0px 7px 9px 6px  rgba(120, 192, 233, 0.3)",
-            "mjol-base-blue-xl": "0px 9px 11px 8px rgba(120, 192, 233, 0.3)"
+            "mjol-base-blue-lg" : "0px 7px 9px 6px  rgba(120, 192, 233, 0.3)",
+            "mjol-base-blue-xl" : "0px 9px 11px 8px rgba(120, 192, 233, 0.3)",
+
+            "mjol-blue-all-md"  : "0px 0px 6px 6px rgba(120, 192, 233, 0.5)",
+            "mjol-blue-all-xs"  : "0px 0px 3px 3px rgba(120, 192, 233, 0.3)",
+
+            "mjol-dark-blue-xs" : "0px 0px 3px 3px rgba(67, 145, 255, 0.8)",
+            "mjol-dark-blue-md" : "0px 0px 6px 6px rgba(67, 145, 255, 0.8)",
+
+            "mjol-gray-xs" : "0px 0px 1px 1px rgba(0, 0, 0, 0.1)"
         },
 
         screens: {
-            'xxs': '310px',
+            'xxs': '300px',
             'xs': '500px',
             'sm': '640px',
-            'md670': '670px',
             'md': '768px',
             'lg': '1024px',
             'xl': '1280px',
@@ -71,6 +78,18 @@ module.exports = {
         },
 
         extend: {
+            zIndex: {
+                '-10': '-10'
+            },
+
+            transitionTimingFunction: {
+                'border-timing': 'cubic-bezier(.445,.05,.55,.95)'
+            },
+
+            aspectRatio: {
+                'square': '1 / 1',
+            },
+
             // Sizes
             width: {
                 '84': '21rem',
@@ -88,11 +107,12 @@ module.exports = {
 
             // Grid
             gridTemplateColumns: {
-                '1nft-300': 'repeat(1, 300px)',
+                '1nft-280': 'repeat(1, 280px)',
                 '2nft-280': 'repeat(2, 280px)',
-                '2nft-300': 'repeat(2, 300px)',
-                '3nft-300': 'repeat(3, 300px)',
-                '4nft-350': 'repeat(4, 350px)'
+                '3nft-260': 'repeat(3, 260px)',
+                '3nft-280': 'repeat(3, 280px)',
+                '4nft-280': 'repeat(4, 280px)',
+                '4nft-300': 'repeat(4, 300px)'
             },
 
             // Colors
@@ -100,6 +120,9 @@ module.exports = {
                 mjol: {
                     black: 'rgb(0, 0, 0)',
                     white: '#f4f7fc',
+                    gray: {
+                        border: 'rgb(229,231,235)'
+                    },
                     purple: {
                         base: '#7e22ce',
                         dark: '#251552',
@@ -109,7 +132,7 @@ module.exports = {
                         shadow: 'rgb(224, 240, 250)',
                         button: 'rgb(0, 152, 201)',
                         light: 'rgb(120, 192, 233)',
-                        base: '#4391ff'
+                        base: '#4391ff',
                     },
                     green: {
                         light: '#1EFF7F',
@@ -174,9 +197,13 @@ module.exports = {
     },
     variants: {
         extend: {
+            visibility: ['hover', 'focus'],
             ringWidth: ['hover', 'active'],
             ringColor: ['hover', 'active']
         },
     },
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/aspect-ratio')
+    ],
 }

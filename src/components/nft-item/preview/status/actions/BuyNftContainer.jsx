@@ -1,13 +1,9 @@
 import React from 'react';
 import withPriceContainer from "./withPriceContainer";
-import MjolGreenBlueButton from "../../../../ui/buttons/MjolGreenBlueButton";
+import DarkBlueGradientButton from "../../../../ui/buttons/DarkBlueGradientButton";
 
 const BuyNftContainer = (props) => {
-    return (
-        <MjolGreenBlueButton {...props}>
-            Buy NFT
-        </MjolGreenBlueButton>
-    );
+    return <DarkBlueGradientButton title="Buy NFT" {...props}/>;
 };
 
 export default withPriceContainer(BuyNftContainer);

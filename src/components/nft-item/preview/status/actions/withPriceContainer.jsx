@@ -3,11 +3,9 @@ import PreviewNftPrice from "../../../details/price/PreviewNftPrice";
 
 const withPriceContainer = (Component) => ({price, ...props}) => {
     return (
-        <div className="bg-mjol-white ring-1 ring-inset rounded-lg p-2">
-            <div>
-                <PreviewNftPrice price={price}/>
-                <Component {...props}/>
-            </div>
+        <div className="rounded-lg px-5 py-2 space-y-2 bg-blue-100">
+            <PreviewNftPrice price={price}/>
+            <Component {...props}/>
         </div>
     );
 };

@@ -7,23 +7,19 @@ const NftsGrid = ({nfts, fetching}) => {
     const loaders = Array(12)
         .fill(0)
         .map((i, idx) =>
-            <SmallNftLoader key={idx} width={300} height={450}/>
+            <SmallNftLoader key={idx} width={280} height={410}/>
         )
 
-    if (fetching) {
-        return <NftCollectionContainer>{loaders}</NftCollectionContainer>
-    }
-
-    const nftItems = nfts.map(nft =>
-        <NftItem key={nft.getKey()} nft={nft}/>
-    )
-
     return (
-        <div className="bg-mjol-white p-5 md:p-10">
+        <div className="p-5 md:p-10">
             <NftCollectionContainer>
-                {nftItems.length === 0
-                    ? <div>No nfts found</div>
-                    : nftItems
+                {fetching
+                    ? loaders
+                    : nfts.length === 0
+                        ? <div className="text-center">No nfts found</div>
+                        : nfts.map(nft =>
+                            <NftItem key={nft.getKey()} nft={nft}/>
+                        )
                 }
             </NftCollectionContainer>
         </div>

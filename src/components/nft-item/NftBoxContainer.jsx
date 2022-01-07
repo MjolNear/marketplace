@@ -2,8 +2,13 @@ import React from 'react';
 
 const NftBoxContainer = ({children}) => {
     return (
-        <div className="group flex flex-col justify-between rounded-3xl ring-2 ring-mjol-blue-base
-                        shadow-mjol-base-blue bg-white hover:shadow-mjol-base-purple hover:ring-indigo-400">
+        <div className="group flex flex-col overflow-hidden justify-between
+                        rounded-xl bg-white ring-1 ring-blue-200
+                        select-none
+                        shadow-mjol-blue-all-xs
+                        transform duration-300 ease-border-timing
+                        hover:shadow-mjol-blue-all-md hover:ring-blue-400"
+        >
             {children}
         </div>
     );
