@@ -39,19 +39,23 @@ export async function getNftPayouts(accountId, contractId, tokenId) {
     try {
         return account.viewFunction(contractId, 'nft_payout', {
             token_id: tokenId,
-            balance: '10000',
+            balance: '100000000',
             max_len_payout: 10
         }).then(payouts => {
             let royalties = {'treasury': TREASURY_PERCENT};
             let highestPayout = null;
             for (let payoutKey in payouts['payout']) {
-                const payoutVal = parseInt(payouts['payout'][payoutKey]) / 100;
+                const payoutVal = parseInt(payouts['payout'][payoutKey]) / 1000000;
                 if (!highestPayout || highestPayout[1] < payoutVal) {
                     highestPayout = [payoutKey, payoutVal]
                 }
                 royalties[payoutKey] = payoutVal
             }
             delete royalties[highestPayout[0]]
+            if (royalties['undefined'] !== undefined){
+                royalties[highestPayout[0]] = royalties['undefined']
+                delete royalties['undefined']
+            }
 
             return royalties
         })
