@@ -13,7 +13,7 @@ export default function DropDownMjolBlueButton({title, children}) {
                     >
                         <span>{title}</span>
                         <ChevronUpIcon
-                            className={`${open ? 'rotate-180' : ''} transform duration-200 w-6 h-6 text-blue-500`}
+                            className={`${open ? '' : 'rotate-180'} transform duration-200 w-6 h-6 text-blue-500`}
                         />
                     </Disclosure.Button>
                     <Transition

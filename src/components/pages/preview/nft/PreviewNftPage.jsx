@@ -7,7 +7,7 @@ const PreviewNftPage = ({nft, payouts, statusElement}) => {
     return (
         <div className="bg-light_white
                         grid md:grid-cols-2 gap-8
-                        p-5 lg:p-10
+                        p-5 xs:p-10
                         md:items-start"
         >
             <PreviewNftImage link={nft.mediaURL}/>

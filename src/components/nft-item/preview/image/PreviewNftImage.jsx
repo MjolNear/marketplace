@@ -4,8 +4,8 @@ const PreviewNftImage = ({link}) => {
     return (
         <div className="justify-self-center md:justify-self-end">
             <img src={link}
-                 alt="loading..."
-                 className="rounded-3xl max-h-xl"
+                 alt="media not supported"
+                 className="max-h-xl"
             />
         </div>
     );

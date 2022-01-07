@@ -6,7 +6,7 @@ const CollectionLink = ({name, link}) => {
     return (
         <div className="flex flex-row justify-between">
             <div
-                className="text-md md:text-lg font-mono font-bold text-mjol-purple-dark-t hover:underline">
+                className="text-md md:text-lg font-bold text-mjol-purple-dark-t hover:underline text-center">
                 <Link to={link}>{name}</Link>
             </div>
             <ShareIcon/>

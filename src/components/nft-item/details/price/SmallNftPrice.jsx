@@ -12,7 +12,7 @@ const SmallNftPrice = ({price, isListed}) => {
             {isListed &&
                 <div>
                     <div data-tip='NEAR coin'><BlackNearIcon/></div>
-                    <ReactTooltip place='bottom' delayShow={100}/>
+                    <ReactTooltip place='right' delayShow={100}/>
                 </div>
             }
         </div>

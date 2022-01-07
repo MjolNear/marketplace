@@ -191,6 +191,7 @@ module.exports = {
     },
     variants: {
         extend: {
+            visibility: ['hover', 'focus'],
             ringWidth: ['hover', 'active'],
             ringColor: ['hover', 'active']
         },
