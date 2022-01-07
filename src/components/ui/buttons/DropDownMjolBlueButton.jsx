@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import classNames from "../../../utils/css-utils";
 import Hr from "../borders/Hr";
 
-export default function DropDownMjolBlueButton({buttonContent, children, initialVisible = true}) {
+export default function DropDownMjolBlueButton({buttonContent, children, initialVisible = false}) {
 
     const [visible, setVisible] = useState(initialVisible)
 

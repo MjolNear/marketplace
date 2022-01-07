@@ -13,13 +13,13 @@ import {BiDna} from 'react-icons/bi'
 const NftPreviewInfo = ({nft, payouts, statusElement}) => {
 
     const ownerAttributes = [
-        {name: "Owner ID", value: nft.ownerId},
-        {name: "Token ID", value: nft.tokenId},
-        {name: "Contract", value: nft.contractId}
+        {name: "Owner ID", value: nft.ownerId || "Not found"},
+        {name: "Token ID", value: nft.tokenId || "Not found"},
+        {name: "Contract", value: nft.contractId || "Not found"}
     ]
 
     const tabs = [
-        {name: "Description", element: nft.description ? nft.description : "Not found", icon: <BsList/>},
+        {name: "Description", element: nft.description || "Not found", icon: <BsList/>},
         {name: "Attributes", element: <PreviewAttributes attributes={ownerAttributes}/>, icon: <MdAcc/>},
         {name: "Royalties", element: <PreviewAttributes attributes={payouts}/>, icon: <GrMoney/>},
         {name: "History", element: "Not found", icon: <GiBuyCard/>},
@@ -28,6 +28,7 @@ const NftPreviewInfo = ({nft, payouts, statusElement}) => {
 
     const info = tabs.map(tab => (
         <DropDownMjolBlueButton key={tab.name}
+                                initialVisible={tab.name === 'Description'}
                                 buttonContent={
                                     <IconText icon={tab.icon}
                                               text={tab.name}
@@ -43,7 +44,7 @@ const NftPreviewInfo = ({nft, payouts, statusElement}) => {
         <div className="space-y-5 md:max-w-xl">
             <div>
                 <NftPreviewTitle title={nft.title}/>
-                <CollectionLink name={"MOCK"} link=""/>
+                <CollectionLink name="MOCK" link=""/>
             </div>
             {statusElement}
             <div className="space-y-3">
