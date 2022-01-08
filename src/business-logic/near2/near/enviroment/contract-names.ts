@@ -1,0 +1,1 @@
+export const MJOL_MARKET_CONTRACT_ID = 'market.mjol.near'
