@@ -14,7 +14,7 @@ const NftItem = ({nft}) => {
     const isListed = nft.isListed()
     return (
         <NftBoxContainer>
-            <Link to={previewLink}>
+            <Link to={previewLink} className="pb-1">
                 <NftImage path={nft.mediaURL}/>
             </Link>
             <div className="px-5">
@@ -25,14 +25,12 @@ const NftItem = ({nft}) => {
                                collectionLink="MOCK"
                                collectionName="MOCK"/>
                 <div className="grid place-items-end">
-                    <div className="inline-flex space-x-1 text-tiny-2 xs:text-tiny-3 2xl:text-tiny-4 items-center">
+                    <div className="inline-flex space-x-1 text-tiny-4 items-center">
                         <NftMintedLink mintedName={nft.mintSite.name}
                                        mintedLink={nft.mintSite.nftLink}/>
                         {nft.mintSite.name === 'Non-verified contract' ? (
                             <></>
-                        ) : (
-                            <NftVerifiedStatus/>
-                        )
+                        ) : (<NftVerifiedStatus/>)
                         }
                     </div>
                 </div>

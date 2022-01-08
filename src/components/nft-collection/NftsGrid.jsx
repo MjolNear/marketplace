@@ -7,7 +7,7 @@ const NftsGrid = ({nfts, fetching}) => {
     const loaders = Array(12)
         .fill(0)
         .map((i, idx) =>
-            <SmallNftLoader key={idx} width={280} height={410}/>
+            <SmallNftLoader key={idx} width={280} height={390}/>
         )
 
     return (

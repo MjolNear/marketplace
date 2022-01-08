@@ -8,7 +8,7 @@ const NftCollectionContainer = ({children}) => {
                         sm:grid-cols-2nft-280
                         lg:grid-cols-3nft-280
                         xl:grid-cols-4nft-280
-                        2xl:grid-cols-4nft-300">
+                        2xl:grid-cols-5nft-280">
             {children}
         </div>
     );

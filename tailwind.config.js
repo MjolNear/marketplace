@@ -109,10 +109,10 @@ module.exports = {
             gridTemplateColumns: {
                 '1nft-280': 'repeat(1, 280px)',
                 '2nft-280': 'repeat(2, 280px)',
-                '3nft-260': 'repeat(3, 260px)',
                 '3nft-280': 'repeat(3, 280px)',
                 '4nft-280': 'repeat(4, 280px)',
-                '4nft-300': 'repeat(4, 300px)'
+                '4nft-300': 'repeat(4, 300px)',
+                '5nft-280': 'repeat(5, 280px)'
             },
 
             // Colors
