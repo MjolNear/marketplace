@@ -14,9 +14,9 @@ const SmallNftLoader = ({width, height, speed = 1.5}) => {
                 foregroundColor="#f5f5f5"
             >
                 <rect x="0" y="0" width="280" height="280"/>
-                <rect x="20" y="286" rx="5" ry="5" width="240" height="20"/>
+                <rect x="20" y="290" rx="5" ry="5" width="240" height="17"/>
                 <rect x="20" y="318" rx="5" ry="5" width="240" height="15"/>
-                <rect x="20" y="362" rx="5" ry="5" width="240" height="20"/>
+                <rect x="20" y="367" rx="5" ry="5" width="240" height="17"/>
             </ContentLoader>
         </div>
     )
