@@ -1,4 +1,4 @@
-export interface IMarketNft {
+export interface MarketNft {
     approval_id: number
     nft_contract_id: string
     owner_id: string
