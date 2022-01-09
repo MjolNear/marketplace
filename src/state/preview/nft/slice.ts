@@ -1,8 +1,8 @@
-import {NFT} from "../../../business-logic/models/nft";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {Nft} from "../../../business-logic/models/nft";
 
 export interface PreviewNftState {
-    nft: NFT | null,
+    nft: Nft | null,
     payouts: Array<any>,
     fetching: boolean,
     success: boolean | undefined
@@ -23,7 +23,7 @@ export const previewNftSlice = createSlice({
         startFetching: (state) => {
             state.fetching = true
         },
-        success: (state, action: PayloadAction<NFT | null>) => {
+        success: (state, action: PayloadAction<Nft | null>) => {
             if (action.payload) {
                 state.nft = action.payload
                 state.success = true

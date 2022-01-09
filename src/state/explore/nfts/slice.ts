@@ -1,8 +1,8 @@
-import {NFT} from "../../../business-logic/models/nft";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {Nft} from "../../../business-logic/models/nft";
 
 export interface ExploreNftsState {
-    nfts: Array<NFT>,
+    nfts: Array<Nft>,
     fetching: boolean,
     success: boolean | undefined
 }
@@ -17,7 +17,7 @@ export const exploreNftsSlice = createSlice({
     name: "explore-nfts",
     initialState,
     reducers: {
-        addNft: (state, action: PayloadAction<NFT | null>) => {
+        addNft: (state, action: PayloadAction<Nft | null>) => {
             if (action.payload) {
                 state.nfts.push(action.payload)
             }

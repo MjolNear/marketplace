@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {NFT} from "../../business-logic/models/nft";
+import {Nft, NFT} from "../../business-logic/models/nft";
 
 export enum PROFILE_TAB {
     ALL_NFTS = "All NFTs",
@@ -12,7 +12,7 @@ export interface ProfileState {
     activeTab: PROFILE_TAB,
     fetching: boolean,
     success: boolean | undefined,
-    nfts: Array<NFT>,
+    nfts: Array<Nft>,
     history: []
 }
 
@@ -32,7 +32,7 @@ export const profileSlice = createSlice({
         changeTab: (state, action: PayloadAction<PROFILE_TAB>) => {
             state.activeTab = action.payload
         },
-        addNft: (state, action: PayloadAction<NFT | null>) => {
+        addNft: (state, action: PayloadAction<Nft | null>) => {
             if (action.payload) {
                 state.nfts.push(action.payload)
             }

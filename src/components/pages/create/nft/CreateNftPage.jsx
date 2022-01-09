@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {mintToCommonCollection} from "../../../../business-logic/near/contract-nft";
+import {mintToCommonCollection} from "../../../../business-logic/near2/near/api/nfts/mint";
 import SingleLineContainer from "./upload/containers/SingleLineContainer";
 import MultiLineContainer from "./upload/containers/MultiLineContainer";
 import OptionInputContainer from "./upload/containers/OptionInputContainer";

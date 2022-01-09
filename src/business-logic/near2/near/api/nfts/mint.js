@@ -1,6 +1,6 @@
-import {GAS, SM_DEPOSIT} from "../near2/near/constants";
-import {getAccountId} from "../near2/near/setup/near";
-import {functionCall} from "../near2/near/api/rpc";
+import {GAS, SM_DEPOSIT} from "../../constants";
+import {getAccountId} from "../../setup/near";
+import {functionCall} from "../rpc";
 
 export function mintToCommonCollection(tokenMetadata, payout) {
     const commonContactId = 'mjol.near';

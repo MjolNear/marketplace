@@ -1,6 +1,5 @@
 import {utils} from 'near-api-js'
-import {getConvertedNFT} from "../../../../near/nft-converter";
-import {NftAPI} from "../../../../near/get-utils";
+import {getConvertedNFT} from "../nfts/nft-converter";
 import {mjolViewFunction, viewFunction} from "../rpc";
 
 function formatPrice(x: number) {
@@ -44,7 +43,7 @@ export async function getNftPricesByUser(accountId: string) {
     })
 }
 
-async function getMarketNftsPrices(account: any, from: number, limit: number) {
+async function getMarketNftsPrices(from: number, limit: number) {
     return mjolViewFunction({
             methodName: 'get_nfts',
             args: {
@@ -59,9 +58,8 @@ async function getMarketNftsPrices(account: any, from: number, limit: number) {
     })
 }
 
-export async function getMarketNfts(accountId: number, from = 0, limit = 10) {
-    const account = NftAPI.buildAccountInfo(accountId)
-    const marketNfts = await getMarketNftsPrices(account, from, limit);
+export async function getMarketNfts(from = 0, limit = 10) {
+    const marketNfts = await getMarketNftsPrices(from, limit);
     let resNFTs = [];
     for (let marketNft of marketNfts) {
 
@@ -78,7 +76,6 @@ export async function getMarketNfts(accountId: number, from = 0, limit = 10) {
         })
 
         const nftPromise = getConvertedNFT(
-            account,
             contractId,
             response,
             {

@@ -11,7 +11,7 @@ import {Link} from "react-router-dom";
 
 const NftItem = ({nft}) => {
     const previewLink = `/nft/${nft.contractId}/${nft.tokenId}`
-    const isListed = nft.isListed()
+    const isListed = nft.price !== null
     return (
         <NftBoxContainer>
             <Link to={previewLink} className="pb-1">
