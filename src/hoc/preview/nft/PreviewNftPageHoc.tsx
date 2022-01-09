@@ -20,18 +20,18 @@ type ParamTypes = {
 
 const PreviewNftPageHoc: React.FC<PropTypes> = ({accountId}) => {
     const {contractId, tokenId} = useParams<ParamTypes>()
+
     const {nft, success, fetching, payouts} = useAppSelector(state => state.preview.nft)
     const dispatch = useAppDispatch()
 
     useEffect((): any => {
-        dispatch(fetchNft(accountId, contractId, tokenId))
+        dispatch(fetchNft(contractId, tokenId))
         return () => dispatch(previewNftSlice.actions.reset())
     }, [accountId])
 
     if (fetching) {
         return <RoundLoader/>
     }
-
 
     if (!success || !nft) {
         return <NotFoundPage/>

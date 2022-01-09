@@ -16,7 +16,7 @@ const ProfileNftsFetch = ({accountId}) => {
     return (
         <NftsGrid fetching={fetching}
                   nfts={activeTab === PROFILE_TAB.LISTED_NFTS
-                      ? nfts.filter(nft => nft.isListed())
+                      ? nfts.filter(nft => nft.price !== null)
                       : nfts
                   }
         />

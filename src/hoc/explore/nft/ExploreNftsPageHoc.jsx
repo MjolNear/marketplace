@@ -11,7 +11,7 @@ const ExploreNftsPageHoc = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(fetchMarketNfts('mainnet.near'))
+        dispatch(fetchMarketNfts())
         return () => dispatch(exploreNftsSlice.actions.reset())
     }, [])
 

@@ -16,6 +16,31 @@ export class MintSite {
     }
 }
 
+export interface BaseNft {
+    contractId: string,
+    tokenId: string,
+    ownerId: string,
+    title: string,
+    mediaURL: string,
+    description?: string,
+    price: string | null
+}
+
+export interface NftMetadata {
+    referenceURL: string | null,
+    copies: number | null
+}
+
+export interface MintInfo {
+    mintSite?: {
+        name: string,
+        nftLink: string
+    }
+}
+
+export interface Nft extends BaseNft, MintInfo, NftMetadata {
+}
+
 
 export class NFT {
 
@@ -26,7 +51,7 @@ export class NFT {
     description: string
     copies: number
     mediaURL: string
-    referenceURL : string | undefined
+    referenceURL: string | undefined
     mintSite: MintSite | undefined
     price: string | undefined
 

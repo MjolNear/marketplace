@@ -1,9 +1,9 @@
-import {NFT} from "../business-logic/models/nft";
 import {ItemMarketStatus} from "../state/transaction/state";
+import {Nft} from "../business-logic/models/nft";
 
-export const useNftMarketStatus = (accountId: string, nft: NFT): ItemMarketStatus => {
+export const useNftMarketStatus = (accountId: string, nft: Nft): ItemMarketStatus => {
 
-    const isListed = nft.isListed()
+    const isListed = nft.price !== null
 
     return (accountId === nft.ownerId) ?
         isListed
