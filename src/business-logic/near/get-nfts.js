@@ -4,8 +4,7 @@ import {viewFunction} from "../near2/near/api/rpc";
 import {fetchNftContracts} from "../near2/near/api/nft-contracts";
 
 
-function getNFTsByContractAndAccount(contractId, accountId) {
-    const limit = 20, from = 0
+function getNFTsByContractAndAccount(contractId, accountId, limit = 20, from = 0) {
     return viewFunction({
         contractId,
         methodName: 'nft_tokens_for_owner',
