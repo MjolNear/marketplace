@@ -1,23 +1,24 @@
 import {GAS, SM_DEPOSIT} from "../near2/near/constants";
-import {wallet, getAccountId} from "../near2/near/setup/near";
+import {getAccountId} from "../near2/near/setup/near";
+import {functionCall} from "../near2/near/api/rpc";
 
-export function mintToCommonCollection(token_metadata, payout) {
-    const common_contract_id = 'mjol.near';
-    const token_id = 'token-' + new Date().getTime();
+export function mintToCommonCollection(tokenMetadata, payout) {
+    const commonContactId = 'mjol.near';
+    const tokenId = 'token-' + new Date().getTime();
 
-    const data = {
-        token_id: token_id,
+    const args = {
+        token_id: tokenId,
         token_owner_id: getAccountId(),
-        token_metadata: token_metadata,
+        token_metadata: tokenMetadata,
     };
     if (payout !== null) {
-        data["payout"] = payout
+        args["payout"] = payout
     }
-    wallet.account().functionCall(
-        common_contract_id,
-        'nft_mint',
-        data,
-        GAS,
-        SM_DEPOSIT
-    )
+    return functionCall({
+        contractId: commonContactId,
+        methodName: 'nft_mint',
+        args,
+        gas: GAS,
+        attachedDeposit: SM_DEPOSIT
+    })
 }
