@@ -3,7 +3,10 @@ import {Navigate} from 'react-router-dom'
 
 const Logout = ({logout}) => {
 
-    useEffect(logout, [])
+    useEffect(() => {
+        logout()
+        window.location.reload()
+    })
 
     return <Navigate to="/"/>
 };
