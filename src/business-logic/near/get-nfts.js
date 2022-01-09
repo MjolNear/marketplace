@@ -1,6 +1,7 @@
 import {getConvertedNFT} from "./nft-converter";
 import {NftAPI} from "./get-utils";
 import {getNftPriceByTokenUID, getNftPricesByUser} from "./get-nfts-market";
+import {viewFunction} from "../near2/near/api/rpc";
 
 
 async function getNFTsByContractAndAccount(account, contractId, accountId) {
@@ -26,9 +27,14 @@ async function getNFTsByContractAndAccount(account, contractId, accountId) {
 
 export async function getNFTsByContractAndTokenId(accountId, contractId, tokenId) {
     const account = NftAPI.buildAccountInfo(accountId)
-    const nft = await account.viewFunction(contractId, 'nft_token', {
-        token_id: tokenId
-    });
+    const nft = await viewFunction({
+        contractId,
+        methodName: 'nft_token',
+        args: {
+            token_id:
+            tokenId
+        }
+    })
     const listedNftKeys = await getNftPriceByTokenUID(contractId, tokenId);
     return getConvertedNFT(account, contractId, nft, listedNftKeys)
 }
