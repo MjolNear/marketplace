@@ -8,6 +8,8 @@ import SellNftContainer from "../../../components/nft-item/preview/status/action
 import UnlistNftContainer from "../../../components/nft-item/preview/status/actions/UnlistNftContainer";
 import NotListedNftContainer from "../../../components/nft-item/preview/status/NotListedNftContainer";
 import {NFT} from "../../../business-logic/models/nft";
+import {signIn} from "../../../business-logic/near2/near/setup/near";
+import ConnectWallet from "../../../components/nft-item/preview/status/actions/ConnectWallet";
 
 interface PropTypes {
     accountId: string,
@@ -15,6 +17,11 @@ interface PropTypes {
 }
 
 const NftStatusHoc: React.FC<PropTypes> = ({accountId, nft}) => {
+
+    if (!accountId) {
+        return <ConnectWallet price={nft.price} onClick={signIn}/>
+    }
+
     const status = useNftMarketStatus(accountId, nft)
     const dispatch = useAppDispatch()
 

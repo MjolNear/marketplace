@@ -32,7 +32,6 @@ const PreviewNftPageHoc: React.FC<PropTypes> = ({accountId}) => {
         return <RoundLoader/>
     }
 
-
     if (!success || !nft) {
         return <NotFoundPage/>
     }
