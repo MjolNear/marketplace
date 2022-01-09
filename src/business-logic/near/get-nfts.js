@@ -1,6 +1,6 @@
 import {getConvertedNFT} from "./nft-converter";
 import {NftAPI} from "./get-utils";
-import {getNftPriceByTokenUID, getNftPricesByUser} from "./get-nfts-market";
+import {getNftPriceByTokenUID, getNftPricesByUser} from "../near2/near/api/market/get-nfts-market";
 import {viewFunction} from "../near2/near/api/rpc";
 
 

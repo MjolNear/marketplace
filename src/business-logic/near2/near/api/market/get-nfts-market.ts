@@ -1,9 +1,7 @@
 import {utils} from 'near-api-js'
-import {getConvertedNFT} from "./nft-converter";
-import {NftAPI} from "./get-utils";
-import {mjolViewFunction, viewFunction} from "../near2/near/api/rpc";
-import {PayableToken} from "../near2/near/api/types";
-
+import {getConvertedNFT} from "../../../../near/nft-converter";
+import {NftAPI} from "../../../../near/get-utils";
+import {mjolViewFunction, viewFunction} from "../rpc";
 
 function formatPrice(x: number) {
     const price = x.toLocaleString('fullwide', {useGrouping: false});
