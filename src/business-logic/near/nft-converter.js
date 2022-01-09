@@ -76,8 +76,8 @@ function getNftMintedSiteInfo(nft, contractId) {
 // approved_account_ids: {}
 function convertStandardNFT(contractId, nft, listedNftKeys) {
     const metadata = nft.metadata;
-    const mediaUrl =  getRealUrl(metadata.media, metadata.media_hash, contractId);
-    if (!mediaUrl){
+    const mediaUrl = getRealUrl(metadata.media, metadata.media_hash, contractId);
+    if (!mediaUrl) {
         return null
     }
     return new NFT(
@@ -162,7 +162,7 @@ async function getMintbaseNFT(account, contractId, nft, listedNftKeys) {
     )
     const jsonNFT = await NftAPI.getJsonByURL(url)
     const mediaUrl = getRealUrl(jsonNFT.media, jsonNFT.media_hash, contractId)
-    if (!mediaUrl){
+    if (!mediaUrl) {
         return null
     }
     return new NFT(
