@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import AppRouter from "./AppRouter";
 import NavbarContainer from "../components/pages/navbar/NavbarContainer";
-import {viewMethods} from "../business-logic/near2/near/near-contract-parser/view-code";
+import {viewMethods} from "../business-logic/near2/near/contract-parser/view-code";
 
 export default function App() {
 
