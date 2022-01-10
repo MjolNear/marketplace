@@ -12,16 +12,12 @@ export function getProbableInterfaces(methodNames: string[]): {
     probableInterfaces: StandardInterfaceId[];
     byMethod: Record<string, StandardInterfaceId[]>;
 } {
-    const probableInterfaces: StandardInterfaceId[] = Object.entries(interfaces).filter(entry => {
-            const [_, standardInterface] = entry
+    const probableInterfaces: StandardInterfaceId[] = Object.values(interfaces).filter(standardInterface => {
             return standardInterface.methods.every(
                 method => methodNames.includes(method.name)
             )
         }
-    ).map(entry => {
-        const [_, standardInterface] = entry
-        return standardInterface.id
-    })
+    ).map(standardInterface => standardInterface.id)
 
     const byMethod: Record<string, StandardInterfaceId[]> = {};
     methodNames.forEach(methodName => {
