@@ -6,5 +6,5 @@ export enum NftContractMethod {
     NftMetadata = 1 << 4,
 }
 
-const contactSatisfies = (mask: number, methods: NftContractMethod[]) =>
-    methods.every(methodMask => (methodMask & mask) === 1)
+const contactSatisfies = (contractMask: number, methods: NftContractMethod[]) =>
+    methods.every(methodMask => (methodMask & contractMask) === 1)
