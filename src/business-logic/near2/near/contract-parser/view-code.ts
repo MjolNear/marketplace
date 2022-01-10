@@ -6,7 +6,13 @@ interface ViewCode extends QueryResponseKind {
     code_base64: string
 }
 
-// Reverses WASM contract and extract methods
+/**
+ * Extracts exported functions from smart contract
+ *
+ * @param contractId near contract id
+ *
+ * @returns Promise<ParsedContract>
+ */
 export const viewMethods = (contractId: string) =>
     new JsonRpcProvider('https://rpc.mainnet.near.org/')
         .query<ViewCode>({
