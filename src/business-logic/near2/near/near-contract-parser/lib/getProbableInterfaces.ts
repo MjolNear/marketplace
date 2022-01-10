@@ -1,4 +1,4 @@
-import {StandardInterfaceId, interfaces} from './interfaces';
+import {StandardInterfaceId, interfaces} from './interfaces'
 
 /**
  * Guesses which standards a contract _probably_ implements based on exported
@@ -12,19 +12,19 @@ export function getProbableInterfaces(methodNames: string[]): {
     probableInterfaces: StandardInterfaceId[];
     byMethod: Record<string, StandardInterfaceId[]>;
 } {
-    const probableInterfaces: StandardInterfaceId[] = Object.values(interfaces).filter(standardInterface => {
-            return standardInterface.methods.every(
-                method => methodNames.includes(method.name)
-            )
-        }
-    ).map(standardInterface => standardInterface.id)
+    const probableInterfaces: StandardInterfaceId[] = Object
+        .values(interfaces)
+        .filter(standardInterface => standardInterface.methods.every(
+            method => methodNames.includes(method.name)
+        ))
+        .map(standardInterface => standardInterface.id)
 
     const byMethod: Record<string, StandardInterfaceId[]> = {};
     methodNames.forEach(methodName => {
         byMethod[methodName] = probableInterfaces.filter(
-            i => interfaces[i].methods.map(m => m.name).indexOf(methodName) !== -1,
-        );
-    });
+            i => interfaces[i].methods.map(m => m.name).indexOf(methodName) !== -1
+        )
+    })
 
-    return {probableInterfaces, byMethod};
+    return {probableInterfaces, byMethod}
 }
