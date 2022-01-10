@@ -6,6 +6,7 @@ const NftImage = ({path}) => {
             <img src={path}
                  alt="media not supported"
                  className="object-contain"
+                 onLoad={() => console.log(path)}
             />
         </div>
     );
