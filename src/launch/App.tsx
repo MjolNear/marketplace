@@ -1,8 +1,16 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import AppRouter from "./AppRouter";
 import NavbarContainer from "../components/pages/navbar/NavbarContainer";
+import {viewMethods} from "../business-logic/near2/near/contract/view-code";
 
 export default function App() {
+
+    useEffect(() => {
+        viewMethods('x.paras.near')
+            .then(x => console.log(x))
+            .catch(() => console.log("VIEW FAILURE"))
+    }, [])
+
     return (
         <div>
             <NavbarContainer/>

@@ -1,10 +1,14 @@
 import React from 'react';
+import Background from "../background/Background";
 
 const BlueShadowContainer = ({children}) => {
     return (
-        <div className="bg-white shadow-mjol-base-blue-xl pt-4">
-            {children}
-        </div>
+        // <Background>
+            <div className="shadow-mjol-base-blue-drop-xl pt-10"
+            >
+                {children}
+            </div>
+        // </Background>
     );
 };
 
