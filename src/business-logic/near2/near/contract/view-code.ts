@@ -6,6 +6,7 @@ interface ViewCode extends QueryResponseKind {
     code_base64: string
 }
 
+// Reverses WASM contract and extract methods
 export const viewMethods = async (contractId: string) => {
     const near = wallet._near
     return near.connection.provider.query<ViewCode>({
