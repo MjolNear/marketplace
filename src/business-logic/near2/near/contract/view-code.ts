@@ -1,6 +1,6 @@
-import {parseContract} from "near-contract-parser";
 import {QueryResponseKind} from "near-api-js/lib/providers/provider";
 import {JsonRpcProvider} from "near-api-js/lib/providers";
+import {parseContract} from "../near-contract-parser-main";
 
 interface ViewCode extends QueryResponseKind {
     code_base64: string
