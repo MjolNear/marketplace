@@ -1,4 +1,3 @@
-import {wallet} from "../setup/near";
 import {parseContract} from "near-contract-parser";
 import {QueryResponseKind} from "near-api-js/lib/providers/provider";
 import {JsonRpcProvider} from "near-api-js/lib/providers";
