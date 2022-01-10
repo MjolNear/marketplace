@@ -22,7 +22,7 @@ export function getProbableInterfaces(methodNames: string[]): {
     const byMethod: Record<string, StandardInterfaceId[]> = {};
     methodNames.forEach(methodName => {
         byMethod[methodName] = probableInterfaces.filter(
-            i => interfaces[i].methods.map(m => m.name).indexOf(methodName) !== -1
+            id => interfaces[id].methods.map(m => m.name).indexOf(methodName) !== -1
         )
     })
 
