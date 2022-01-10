@@ -6,7 +6,7 @@ import {viewMethods} from "../business-logic/near2/near/contract-parser/view-cod
 export default function App() {
 
     useEffect(() => {
-        viewMethods('market.mjol.near')
+        viewMethods('x.paras.near')
             .then(x => console.log(x))
             .catch(() => console.log("VIEW FAILURE"))
     }, [])
