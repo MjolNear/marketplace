@@ -2,7 +2,7 @@ import Lottie from "react-lottie-player";
 import lottieJson from "../../../resources/loading.json";
 import React from "react";
 
-const RoundLoader = () => {
+const RoundLoader = ({width = 200, height = 200}) => {
     return (
         <div className="flex h-screen bg-light_white justify-center">
             <div className="my-auto">
@@ -10,7 +10,7 @@ const RoundLoader = () => {
                     loop
                     animationData={lottieJson}
                     play
-                    style={{width: 200, height: 200}}
+                    style={{width, height}}
                 />
             </div>
         </div>
