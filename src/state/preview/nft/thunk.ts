@@ -4,18 +4,16 @@ import {getNftPayouts, getNFTsByContractAndTokenId} from "../../../business-logi
 
 export const fetchNft = (contractId?: string, tokenId?: string) =>
     async (dispatch: AppDispatch) => {
-        dispatch(previewNftSlice.actions.startFetching())
-        getNFTsByContractAndTokenId(contractId, tokenId)
-            .then(nft => {
-                //console.log(nft)
-                dispatch(previewNftSlice.actions.success(nft))
-            })
-            .catch(() => {
-                console.log("Nft loading error")
-                dispatch(previewNftSlice.actions.failure())
-            })
 
-        getNftPayouts(contractId, tokenId)
-            .then(payouts => dispatch(previewNftSlice.actions.fetchPayouts(payouts)))
-            .catch(() => console.log("Payouts not found"))
+        dispatch(previewNftSlice.actions.toggleFetching(true))
+
+        Promise.all([
+                getNFTsByContractAndTokenId(contractId, tokenId)
+                    .then(nft => dispatch(previewNftSlice.actions.success(nft)))
+                    .catch(() => dispatch(previewNftSlice.actions.failure())),
+
+                getNftPayouts(contractId, tokenId)
+                    .then(p => dispatch(previewNftSlice.actions.setPayouts(p)))
+            ]
+        ).finally(() => dispatch(previewNftSlice.actions.toggleFetching(false)))
     }

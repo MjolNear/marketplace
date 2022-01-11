@@ -61,7 +61,9 @@ async function getMarketNftsPrices(from: number, limit: number) {
 export async function getMarketNfts(from = 0, limit = 10) {
     const marketNfts = await getMarketNftsPrices(from, limit);
     let resNFTs = [];
+
     for (let marketNft of marketNfts) {
+
 
         const contractId = marketNft.nft_contract_id
         const tokenId = marketNft.token_id
@@ -84,6 +86,7 @@ export async function getMarketNfts(from = 0, limit = 10) {
         )
         resNFTs.push(nftPromise)
     }
+
     return resNFTs
 }
 
