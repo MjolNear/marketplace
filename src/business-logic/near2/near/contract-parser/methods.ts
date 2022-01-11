@@ -1,13 +1,13 @@
-export enum NftContractMethod {
-    NftApprove = 1 << 0,
-    NftTransfer = 1 << 1,
-    NftTransferCall = 1 << 2,
-    NftToken = 1 << 3,
-    NftMetadata = 1 << 4,
+import {ParsedContract, StandardInterfaceId} from "./lib";
+
+export const contractAccordance = (parsedContract: ParsedContract) => {
+    const fullStandards: StandardInterfaceId[] = ['nep171', 'nep177', 'nep178', 'nep181', 'nep199'];
+    const lostStandards = fullStandards.filter(x => !parsedContract.probableInterfaces.includes(x));
+    const lostPayouts : StandardInterfaceId[] = ['nep199'];
+    const isAccordance = lostStandards.length === 0 || lostStandards === lostPayouts;
+    return {
+        isCorrect: isAccordance,
+        hasPayouts: lostStandards.length === 0,
+        lostStandards: lostStandards
+    }
 }
-
-export const contactSatisfiesAll = (contractMask: number, methods: NftContractMethod[]) =>
-    methods.every(methodMask => contractSatisfiesMethod(contractMask, methodMask))
-
-export const contractSatisfiesMethod = (contractMask: number, method: NftContractMethod) =>
-    (method & contractMask) === 1

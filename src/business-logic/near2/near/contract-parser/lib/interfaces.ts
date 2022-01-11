@@ -1,11 +1,11 @@
 import {JsonType} from './JsonType';
 
 export type StandardInterfaceId =
-    | 'nep141'
-    | 'nep148'
     | 'nep171'
     | 'nep177'
     | 'nep178'
+    | 'nep181'
+    | 'nep199'
 
 
 /**
@@ -38,47 +38,6 @@ export interface StandardInterfaceMethod {
  * Mapping interface ID to interface specification
  */
 export const interfaces: Readonly<Record<StandardInterfaceId, StandardInterface>> = Object.freeze({
-    nep141: {
-        id: "nep141",
-        name: 'FT Core (NEP-141)',
-        methods: [
-            {
-                name: 'ft_transfer',
-                args: [
-                    {name: 'receiver_id', type: 'string'},
-                    {name: 'amount', type: 'string'},
-                    {name: 'memo', type: ['string', 'null']},
-                ],
-            },
-            {
-                name: 'ft_transfer_call',
-                args: [
-                    {name: 'receiver_id', type: 'string'},
-                    {name: 'amount', type: 'string'},
-                    {name: 'memo', type: ['string', 'null']},
-                    {name: 'msg', type: 'string'},
-                ],
-            },
-            {
-                name: 'ft_total_supply',
-                args: [],
-            },
-            {
-                name: 'ft_balance_of',
-                args: [{name: 'account_id', type: 'string'}],
-            },
-        ],
-    },
-    nep148: {
-        id: "nep148",
-        name: 'FT Metadata (NEP-148)',
-        methods: [
-            {
-                name: 'ft_metadata',
-                args: [],
-            },
-        ],
-    },
     nep171: {
         id: "nep171",
         name: 'NFT Core (NEP-171)',
@@ -147,6 +106,59 @@ export const interfaces: Readonly<Record<StandardInterfaceId, StandardInterface>
                     {name: 'token_id', type: 'string'},
                     {name: 'approved_account_id', type: 'string'},
                     {name: 'approval_id', type: ['number', 'null']},
+                ],
+            },
+        ],
+    },
+    nep181: {
+        id: "nep181",
+        name: 'Non-Fungible Token Enumeration (NEP-181)',
+        methods: [
+            {
+                name: 'nft_total_supply',
+                args: [],
+            },
+            {
+                name: 'nft_tokens',
+                args: [
+                    {name: 'from_index', type: ['string', 'null']},
+                    {name: 'limit', type: ['number', 'null']},
+                ],
+            },
+            {
+                name: 'nft_supply_for_owner',
+                args: [{name: 'account_id', type: 'string'}],
+            },
+            {
+                name: 'nft_tokens_for_owner',
+                args: [
+                    {name: 'account_id', type: 'string'},
+                    {name: 'from_index', type: ['string', 'null']},
+                    {name: 'limit', type: ['number', 'null']},
+                ],
+            },
+        ],
+    },
+    nep199: {
+        id: "nep199",
+        name: 'Standard for a Multiple-Recipient-Payout mechanic on NFT Contracts (NEP-199)',
+        methods: [
+            {
+                name: 'nft_payout',
+                args: [
+                    {name: 'token_id', type: 'string'},
+                    {name: 'balance', type: 'U128'},
+                    {name: 'max_len_payout', type: 'u32'},
+                ],
+            },
+            {
+                name: 'nft_transfer_payout',
+                args: [
+                    {name: 'receiver_id', type: 'AccountId'},
+                    {name: 'token_id', type: 'string'},
+                    {name: 'approval_id', type: 'u64'},
+                    {name: 'balance', type: 'U128'},
+                    {name: 'max_len_payout', type: 'u32'},
                 ],
             },
         ],

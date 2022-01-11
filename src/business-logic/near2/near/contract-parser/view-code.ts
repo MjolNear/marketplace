@@ -1,6 +1,7 @@
 import {QueryResponseKind} from "near-api-js/lib/providers/provider";
 import {JsonRpcProvider} from "near-api-js/lib/providers";
 import {parseContract} from "./lib";
+import {contractAccordance} from "./methods";
 
 interface ViewCode extends QueryResponseKind {
     code_base64: string
@@ -11,7 +12,11 @@ interface ViewCode extends QueryResponseKind {
  *
  * @param contractId near contract id
  *
- * @returns Promise<ParsedContract>
+ * @returns {
+ *     isCorrect: bool,
+ *     hasPayouts: bool,
+ *     lostStandards: string[]
+ * }
  */
 export const viewMethods = (contractId: string) =>
     new JsonRpcProvider('https://rpc.mainnet.near.org/')
@@ -20,4 +25,4 @@ export const viewMethods = (contractId: string) =>
             finality: 'final',
             request_type: 'view_code'
         })
-        .then(response => parseContract(response.code_base64))
+        .then(response => contractAccordance(parseContract(response.code_base64)))

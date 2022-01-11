@@ -7,4 +7,8 @@ export type JsonType =
     | 'object'
     | 'array'
     | 'boolean'
+    | 'u32'
+    | 'u64'
+    | 'U128'
+    | 'AccountId'
     | 'null';

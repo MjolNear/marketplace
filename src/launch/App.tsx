@@ -6,7 +6,7 @@ import {viewMethods} from "../business-logic/near2/near/contract-parser/view-cod
 export default function App() {
 
     useEffect(() => {
-        viewMethods('x.paras.near')
+        viewMethods('mjol.near') //nuniversity.mintbase1.near
             .then(x => console.log(x))
             .catch(() => console.log("VIEW FAILURE"))
     }, [])
