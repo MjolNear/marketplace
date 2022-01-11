@@ -11,12 +11,6 @@ interface ViewCode extends QueryResponseKind {
  * Extracts exported functions from smart contract
  *
  * @param contractId near contract id
- *
- * @returns {
- *     isCorrect: bool,
- *     hasPayouts: bool,
- *     lostStandards: string[]
- * }
  */
 export const viewMethods = (contractId: string) =>
     new JsonRpcProvider('https://rpc.mainnet.near.org/')
