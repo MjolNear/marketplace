@@ -9,7 +9,7 @@ import UnlistNftContainer from "../../../components/nft-item/preview/status/acti
 import NotListedNftContainer
     from "../../../components/nft-item/preview/status/actions/not-listed/NotListedNftContainer";
 import {Nft} from "../../../business-logic/models/nft";
-import {signIn} from "../../../business-logic/near2/near/setup/near";
+import {signIn} from "../../../business-logic/near/setup/near";
 import ConnectWalletButton
     from "../../../components/nft-item/preview/status/actions/connect-wallet/ConnectWalletButton";
 import NftContractNotSupported

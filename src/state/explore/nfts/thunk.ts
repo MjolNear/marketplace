@@ -1,6 +1,6 @@
 import {AppDispatch} from "../../store";
 import {exploreNftsSlice} from "./slice";
-import {getMarketNfts} from "../../../business-logic/near2/near/api/market/get-nfts-market";
+import {getMarketNfts} from "../../../business-logic/near/api/market/get-nfts-market";
 
 export const fetchMarketNfts = (from: number, limit: number) =>
     async (dispatch: AppDispatch) => {

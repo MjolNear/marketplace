@@ -1,6 +1,6 @@
-import {NftAPI} from "../../../../near/get-utils";
+import {NftAPI} from "../../get-utils";
 import {viewFunction} from "../rpc";
-import {Nft} from "../../../../models/nft";
+import {Nft} from "../../../models/nft";
 
 const isIPFS = require('is-ipfs')
 

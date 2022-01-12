@@ -1,4 +1,4 @@
-import {getNfts} from "../../business-logic/near2/near/api/nfts/get-nfts";
+import {getNfts} from "../../business-logic/near/api/nfts/get-nfts";
 
 import {AppDispatch} from "../store";
 import {profileSlice} from "./slice";
