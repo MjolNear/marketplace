@@ -13,23 +13,24 @@ export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenI
 
 export async function getNftPayouts(contractId: string, tokenId: string) {
     const TREASURY_PERCENT = 2;
-    return nftAPI.fetchTokenPayouts(contractId, tokenId).then(payouts => {
-        let royalties: Record<string, number> = {'treasury': TREASURY_PERCENT};
-        let highestPayout = null;
-        for (let payoutKey in payouts['payout']) {
-            const payoutVal = parseInt(payouts['payout'][payoutKey]) / 1000000;
-            if (!highestPayout || highestPayout[1] < payoutVal) {
-                highestPayout = [payoutKey, payoutVal]
+    return nftAPI.fetchTokenPayouts(contractId, tokenId)
+        .then(payouts => {
+            let royalties: Record<string, number> = {'treasury': TREASURY_PERCENT};
+            let highestPayout = null;
+            for (let payoutKey in payouts['payout']) {
+                const payoutVal = parseInt(payouts['payout'][payoutKey]) / 1000000;
+                if (!highestPayout || highestPayout[1] < payoutVal) {
+                    highestPayout = [payoutKey, payoutVal]
+                }
+                royalties[payoutKey] = payoutVal
             }
-            royalties[payoutKey] = payoutVal
-        }
-        if (highestPayout) {
-            delete royalties[highestPayout[0]]
-        }
-        delete royalties['undefined']
+            if (highestPayout) {
+                delete royalties[highestPayout[0]]
+            }
+            delete royalties['undefined']
 
-        return royalties
-    })
+            return royalties
+        })
 }
 
 function addExtraContracts(curContracts: string[]) {

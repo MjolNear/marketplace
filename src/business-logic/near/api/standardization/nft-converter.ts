@@ -3,7 +3,7 @@ import {viewFunction} from "../rpc";
 import {Nft} from "../../../models/nft";
 import {TokenPrices} from "../market/api";
 import {buildUID, getPrice} from "../utils";
-import {Marketplace} from "../contracts/marketplaces";
+import {Marketplace} from "../contracts";
 
 const isIPFS = require('is-ipfs')
 
