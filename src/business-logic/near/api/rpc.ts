@@ -49,19 +49,19 @@ export const functionCall = ({
     })
 }
 
-export function mjolViewFunction<T = any>({methodName, args}: MjolViewFunctionOptions): Promise<T> {
+export function mjolViewFunction<T = any>({methodName, args}: MjolViewFunctionOptions) {
     return viewFunction<T>({
         contractId: MJOL_MARKET_CONTRACT_ID, methodName, args
     })
 }
 
 export const mjolFunctionCall = ({
-                                     methodName,
-                                     args,
-                                     gas = GAS,
-                                     attachedDeposit = SM_DEPOSIT,
-                                     walletCallbackUrl
-                                 }: MjolFunctionCallOptions) => {
+    methodName,
+    args,
+    gas = GAS,
+    attachedDeposit = SM_DEPOSIT,
+    walletCallbackUrl
+}: MjolFunctionCallOptions) => {
     return functionCall({
         contractId: MJOL_MARKET_CONTRACT_ID,
         methodName,

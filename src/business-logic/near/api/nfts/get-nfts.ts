@@ -1,37 +1,19 @@
 import {getConvertedNFT} from "./nft-converter";
-import {getNftPriceByTokenUID, getNftPricesByUser} from "../market/get-nfts-market";
-import {viewFunction} from "../rpc";
 import {fetchNftContracts} from "../nft-contracts";
 import {nftAPI} from "./api";
+import {marketAPI} from "../market";
+import {AccountId, ContractId, TokenId} from "../types";
 
 
-const getNFTsByContractAndAccount = (
-    contractId: string,
-    accountId: string,
-    limit = 20,
-    from = 0
-): Promise<any[]> => {
-    return viewFunction({
-        contractId,
-        methodName: 'nft_tokens_for_owner',
-        args: {
-            account_id: accountId,
-            from_index: from.toString(),
-            limit: limit
-        }
-    })
-}
-
-
-export async function getNFTsByContractAndTokenId(contractId: string, tokenId: string) {
-    const nft = await nftAPI.fetchByContractAndToken(contractId, tokenId)
-    const listedNftKeys = await getNftPriceByTokenUID(contractId, tokenId);
-    return getConvertedNFT(contractId, nft, listedNftKeys)
+export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenId: TokenId) => {
+    const nft = await nftAPI.fetchNft(contractId, tokenId)
+    const tokenPrice = await marketAPI.fetchTokenPrice(contractId, tokenId);
+    return getConvertedNFT(contractId, nft, tokenPrice)
 }
 
 export async function getNftPayouts(contractId: string, tokenId: string) {
     const TREASURY_PERCENT = 2;
-    return nftAPI.fetchPayouts(contractId, tokenId).then(payouts => {
+    return nftAPI.fetchTokenPayouts(contractId, tokenId).then(payouts => {
         let royalties: Record<string, number> = {'treasury': TREASURY_PERCENT};
         let highestPayout = null;
         for (let payoutKey in payouts['payout']) {
@@ -60,17 +42,17 @@ function addExtraContracts(curContracts: string[]) {
     return curContracts
 }
 
-export async function getNfts(accountId: string) {
+export async function getNfts(accountId: AccountId) {
 
     let nftContracts = await fetchNftContracts(accountId)
     nftContracts = addExtraContracts(nftContracts)
 
-    const listedNftKeys = await getNftPricesByUser(accountId);
+    const tokenPrices = await marketAPI.fetchUserTokenPrices(accountId);
     return nftContracts.map(contractId =>
-        getNFTsByContractAndAccount(contractId, accountId)
+        nftAPI.fetchUserTokens(contractId, accountId)
             .then(nfts =>
                 nfts.map((nft: any) =>
-                    getConvertedNFT(contractId, nft, listedNftKeys)
+                    getConvertedNFT(contractId, nft, tokenPrices)
                 )
             )
     )

@@ -3,9 +3,10 @@ import {GAS, SM_DEPOSIT, YOCTO_NEAR} from "../../constants";
 import {functionCall, mjolFunctionCall} from "../rpc";
 import BN from "bn.js";
 import {MJOL_MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
+import {ContractId, StringAmount, TokenId} from "../types";
 
 
-export function giveApprove(contractId: string, tokenId: string, stringPrice: string) {
+export function giveApprove(contractId: ContractId, tokenId: TokenId, stringPrice: StringAmount) {
     const price = utils.format.parseNearAmount(stringPrice.toString());
     return functionCall({
         contractId,
@@ -20,7 +21,7 @@ export function giveApprove(contractId: string, tokenId: string, stringPrice: st
     })
 }
 
-export function buyNftWithPayouts(contractId: string, tokenId: string, price: string) {
+export function buyNftWithPayouts(contractId: ContractId, tokenId: TokenId, price: StringAmount) {
     const nearAmount = utils.format.parseNearAmount(price) || "0";
     return mjolFunctionCall({
         methodName: 'buy_with_payouts',
@@ -33,7 +34,7 @@ export function buyNftWithPayouts(contractId: string, tokenId: string, price: st
     })
 }
 
-export function unlistNFT(contractId: string, tokenId: string) {
+export function unlistNFT(contractId: ContractId, tokenId: TokenId) {
     return mjolFunctionCall({
         methodName: 'remove_from_market',
         args: {

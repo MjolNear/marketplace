@@ -1,6 +1,7 @@
 import {NftAPI} from "../../get-utils";
 import {viewFunction} from "../rpc";
 import {Nft} from "../../../models/nft";
+import {TokenPrices} from "../market/api";
 
 const isIPFS = require('is-ipfs')
 
@@ -77,7 +78,7 @@ function getNftMintedSiteInfo(nft: any, contractId: string) {
 //   reference_hash: null
 // },
 // approved_account_ids: {}
-function convertStandardNFT(contractId: string, nft: any, listedNftKeys: any): Promise<Nft> {
+function convertStandardNFT(contractId: string, nft: any, listedNftKeys: TokenPrices): Promise<Nft> {
     const metadata = nft.metadata;
     const mediaUrl = getRealUrl(metadata.media, metadata.media_hash, contractId);
     if (!mediaUrl) {
@@ -154,7 +155,7 @@ function convertStandardNFT(contractId: string, nft: any, listedNftKeys: any): P
 // store: 'nuniversity.mintbase1.near',
 // external_url: 'https://near.university/',
 // type: 'NEP171'
-async function getMintbaseNFT(contractId: string, nft: any, listedNftKeys: any): Promise<Nft> {
+async function getMintbaseNFT(contractId: string, nft: any, listedNftKeys: TokenPrices): Promise<Nft> {
     const metadata = nft.metadata;
     const url = await viewFunction({
             contractId,
@@ -185,7 +186,7 @@ async function getMintbaseNFT(contractId: string, nft: any, listedNftKeys: any):
     })
 }
 
-export async function getConvertedNFT(contractId: string, nft: any, listedNftKeys: any) {
+export async function getConvertedNFT(contractId: string, nft: any, listedNftKeys: TokenPrices) {
     if (contractId.endsWith('mintbase1.near')) {
         return getMintbaseNFT(contractId, nft, listedNftKeys)
     }
