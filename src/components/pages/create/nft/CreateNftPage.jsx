@@ -9,7 +9,7 @@ import {makeNftLink, storeNFT} from "../../../../business-logic/ipfs/upload";
 import DarkBlueTitle from "../../../ui/text/DarkBlueTitle";
 import RoundLoader from "../../../ui/loaders/RoundLoader";
 import BlueShadowContainer from "../../../ui/shadow/BlueShadowContainer";
-import {getAccountId, wallet} from "../../../../business-logic/near/setup/near";
+import {getAccountId, wallet} from "../../../../business-logic/near/enviroment/near";
 
 
 const LineAlert = ({state, setState}) => {

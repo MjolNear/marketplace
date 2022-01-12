@@ -1,5 +1,5 @@
 import BN from "bn.js";
-import {wallet} from "../setup/near";
+import {wallet} from "../enviroment/near";
 import {MJOL_MARKET_CONTRACT_ID} from "../enviroment/contract-names";
 import {GAS, SM_DEPOSIT} from "../constants";
 import {ContractId} from "../../models/types";

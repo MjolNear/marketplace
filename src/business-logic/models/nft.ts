@@ -1,21 +1,3 @@
-export class NftCollection {
-    collection: string
-
-    constructor(collection: string = "") {
-        this.collection = collection
-    }
-}
-
-export class MintSite {
-    name: string
-    nftLink: string
-
-    constructor(name: string = "", nftLink: string = "") {
-        this.name = name
-        this.nftLink = nftLink
-    }
-}
-
 export interface BaseNft {
     contractId: string,
     tokenId: string,
