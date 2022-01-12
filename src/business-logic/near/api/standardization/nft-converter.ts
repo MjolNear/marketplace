@@ -2,6 +2,7 @@ import {NftAPI} from "../../get-utils";
 import {viewFunction} from "../rpc";
 import {Nft} from "../../../models/nft";
 import {TokenPrices} from "../market/api";
+import {buildUID, getPrice} from "../utils";
 
 const isIPFS = require('is-ipfs')
 
@@ -58,7 +59,6 @@ function getNftMintedSiteInfo(nft: any, contractId: string) {
     }
 }
 
-
 // Input example:
 //
 // token_id: '56178:34',
@@ -84,6 +84,7 @@ function convertStandardNFT(contractId: string, nft: any, tokenPrices: TokenPric
     if (!mediaUrl) {
         return Promise.reject("Standard NFT has no media URL")
     }
+    const uid = buildUID(contractId, nft.token_id)
     return Promise.resolve({
         contractId,
         tokenId: nft.token_id || nft.id,
@@ -94,9 +95,7 @@ function convertStandardNFT(contractId: string, nft: any, tokenPrices: TokenPric
         mediaURL: mediaUrl,
         referenceURL: getRealUrl(metadata.reference, metadata.reference_hash, contractId),
         mintSite: getNftMintedSiteInfo(nft, contractId),
-        price: tokenPrices[contractId + ':' + nft.token_id] === undefined
-            ? null
-            : tokenPrices[contractId + ':' + nft.token_id]
+        price: getPrice(uid, tokenPrices)
     })
 }
 
@@ -170,6 +169,7 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: TokenPr
     if (!mediaUrl) {
         return Promise.reject("Mintbase NFT has no media URL")
     }
+    const uid = buildUID(contractId, nft.id.toString())
     return Promise.resolve({
         contractId,
         tokenId: nft.id.toString(),
@@ -180,9 +180,7 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: TokenPr
         mediaURL: mediaUrl,
         referenceURL: getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId),
         mintSite: getNftMintedSiteInfo(nft, contractId),
-        price: tokenPrices[contractId + ':' + nft.id] === undefined
-            ? null
-            : tokenPrices[contractId + ':' + nft.id]
+        price: getPrice(uid, tokenPrices)
     })
 }
 

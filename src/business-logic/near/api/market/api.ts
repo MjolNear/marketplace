@@ -77,11 +77,7 @@ export const marketAPI = {
                 }
             }
         ).then(price => ({
-                [tokenUID]: formatOptionalPrice(price)
-            })
-        ).catch(() => ({
-                [tokenUID]: null
-            })
-        )
+            [tokenUID]: formatOptionalPrice(price)
+        }))
     }
 }

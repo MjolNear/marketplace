@@ -1,11 +1,18 @@
-import {ContractId, NumberAmount, Optional, TokenId, TokenUID} from "../../models/types";
+import {ContractId, NumberAmount, Optional, StringAmount, TokenId, TokenUID} from "../../models/types";
 import {utils} from "near-api-js";
+import {TokenPrices} from "./market/api";
 
-export const formatOptionalPrice = (price: Optional<NumberAmount>): Optional<string> => {
-    if (!price) {
-        return null
-    }
-    return formatPrice(price)
+export const formatOptionalPrice = (price: Optional<NumberAmount>): Optional<StringAmount> => {
+    return price === null
+        ? null
+        : formatPrice(price)
+}
+
+export const getPrice = (uid: TokenUID, tokenPrices: TokenPrices): Optional<StringAmount> => {
+    const price = tokenPrices[uid]
+    return price === undefined
+        ? null
+        : price
 }
 
 export const formatPrice = (price: NumberAmount): string => {
