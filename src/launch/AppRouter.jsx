@@ -12,18 +12,16 @@ import ExploreNftsPageHoc from "../hoc/explore/nft/ExploreNftsPageHoc";
 import {signOut} from "../business-logic/near2/near/setup/near";
 
 const AppRouter = () => {
-    const PUBLIC_URL = 'mjolnear.github.io'
-
     return (
         <Routes>
-            <Route path={PUBLIC_URL + "/"} exact element={<LandingPage/>} key="1"/>
-            <Route path={PUBLIC_URL + "/logout"} exact element={<Logout logout={signOut}/>}/>
-            <Route path={PUBLIC_URL + "/nfts"} exact element={<ExploreNftsPageHoc/>} key="2"/>
-            <Route path={PUBLIC_URL + "/nft/:contractId/:tokenId"} exact element={<PreviewNftHoc/>} key="30"/>
-            <Route path={PUBLIC_URL + "/collections"} element={<ExploreCollectionsPage/>} key="3"/>
-            <Route path={PUBLIC_URL + "/create-nft"} element={<CreateNftPage/>} key="4"/>
-            <Route path={PUBLIC_URL + "/create-collection"} element={<CreateCollectionPage/>} key="5"/>
-            <Route path={PUBLIC_URL + "/profile/nfts"} element={<ProfilePageHoc/>} key="6"/>
+            <Route path="/" exact element={<LandingPage/>} key="1"/>
+            <Route path="logout" exact element={<Logout logout={signOut}/>}/>
+            <Route path="nfts" exact element={<ExploreNftsPageHoc/>} key="2"/>
+            <Route path="nft/:contractId/:tokenId" exact element={<PreviewNftHoc/>} key="30"/>
+            <Route path="collections" element={<ExploreCollectionsPage/>} key="3"/>
+            <Route path="create-nft" element={<CreateNftPage/>} key="4"/>
+            <Route path="create-collection" element={<CreateCollectionPage/>} key="5"/>
+            <Route path="profile/nfts" element={<ProfilePageHoc/>} key="6"/>
             {/*<Route path="/profile-collection" element={<ProfileNftCollectionsPage/>} key="11"/>*/}
             <Route path="*" element={<NotFoundPage/>} key="12"/>
         </Routes>
