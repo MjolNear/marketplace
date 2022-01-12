@@ -1,4 +1,4 @@
-import {getConvertedNFT} from "./nft-converter";
+import {getConvertedNFT} from "../standardization/nft-converter";
 import {fetchNftContracts} from "../nft-contracts";
 import {nftAPI} from "./api";
 import {marketAPI} from "../market";

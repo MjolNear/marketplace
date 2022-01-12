@@ -78,7 +78,7 @@ function getNftMintedSiteInfo(nft: any, contractId: string) {
 //   reference_hash: null
 // },
 // approved_account_ids: {}
-function convertStandardNFT(contractId: string, nft: any, listedNftKeys: TokenPrices): Promise<Nft> {
+function convertStandardNFT(contractId: string, nft: any, tokenPrices: TokenPrices): Promise<Nft> {
     const metadata = nft.metadata;
     const mediaUrl = getRealUrl(metadata.media, metadata.media_hash, contractId);
     if (!mediaUrl) {
@@ -94,9 +94,9 @@ function convertStandardNFT(contractId: string, nft: any, listedNftKeys: TokenPr
         mediaURL: mediaUrl,
         referenceURL: getRealUrl(metadata.reference, metadata.reference_hash, contractId),
         mintSite: getNftMintedSiteInfo(nft, contractId),
-        price: listedNftKeys[contractId + ':' + nft.token_id] === undefined
+        price: tokenPrices[contractId + ':' + nft.token_id] === undefined
             ? null
-            : listedNftKeys[contractId + ':' + nft.token_id]
+            : tokenPrices[contractId + ':' + nft.token_id]
     })
 }
 
@@ -155,7 +155,7 @@ function convertStandardNFT(contractId: string, nft: any, listedNftKeys: TokenPr
 // store: 'nuniversity.mintbase1.near',
 // external_url: 'https://near.university/',
 // type: 'NEP171'
-async function getMintbaseNFT(contractId: string, nft: any, listedNftKeys: TokenPrices): Promise<Nft> {
+async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: TokenPrices): Promise<Nft> {
     const metadata = nft.metadata;
     const url = await viewFunction({
             contractId,
@@ -180,15 +180,15 @@ async function getMintbaseNFT(contractId: string, nft: any, listedNftKeys: Token
         mediaURL: mediaUrl,
         referenceURL: getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId),
         mintSite: getNftMintedSiteInfo(nft, contractId),
-        price: listedNftKeys[contractId + ':' + nft.id] === undefined
+        price: tokenPrices[contractId + ':' + nft.id] === undefined
             ? null
-            : listedNftKeys[contractId + ':' + nft.id]
+            : tokenPrices[contractId + ':' + nft.id]
     })
 }
 
-export async function getConvertedNFT(contractId: string, nft: any, listedNftKeys: TokenPrices) {
+export async function getConvertedNFT(contractId: string, nft: any, tokenPrices: TokenPrices) {
     if (contractId.endsWith('mintbase1.near')) {
-        return getMintbaseNFT(contractId, nft, listedNftKeys)
+        return getMintbaseNFT(contractId, nft, tokenPrices)
     }
-    return convertStandardNFT(contractId, nft, listedNftKeys)
+    return convertStandardNFT(contractId, nft, tokenPrices)
 }

@@ -58,8 +58,7 @@ export const nftAPI = {
      * @param tokenId NFT token
      */
     fetchTokenPayouts: (contractId: ContractId, tokenId: TokenId) =>
-        viewFunction<Payouts>
-        ({
+        viewFunction<Payouts>({
             contractId,
             methodName: 'nft_payout',
             args: {
