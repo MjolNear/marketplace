@@ -1,8 +1,8 @@
 import {AccountId, ContractId} from "../../../models/types";
 import {QueryResponseKind} from "near-api-js/lib/providers/provider";
 import {JsonRpcProvider} from "near-api-js/lib/providers";
-import {contractAccordance} from "./contract-parser/methods";
-import {parseContract} from "./contract-parser/lib";
+import {contractAccordance} from "./parser/methods";
+import {parseContract} from "./parser/lib";
 
 
 interface ViewCode extends QueryResponseKind {
