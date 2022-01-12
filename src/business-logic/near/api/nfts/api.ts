@@ -66,5 +66,9 @@ export const nftAPI = {
                 balance: '100000000',
                 max_len_payout: 10
             }
-        })
+        }),
+
+    fetchMintbaseNft: (url: string) => {
+
+    }
 }

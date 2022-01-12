@@ -1,14 +1,14 @@
 import {getConvertedNFT} from "../standardization/nft-converter";
-import {fetchNftContracts} from "../nft-contracts";
 import {nftAPI} from "./api";
 import {marketAPI} from "../market";
 import {AccountId, ContractId, TokenId} from "../../../models/types";
+import {contractAPI} from "../contracts/api";
 
 
 export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenId: TokenId) => {
-    const nft = await nftAPI.fetchNft(contractId, tokenId)
+    const jsonNft = await nftAPI.fetchNft(contractId, tokenId)
     const tokenPrice = await marketAPI.fetchTokenPrice(contractId, tokenId);
-    return getConvertedNFT(contractId, nft, tokenPrice)
+    return getConvertedNFT(contractId, jsonNft, tokenPrice)
 }
 
 export async function getNftPayouts(contractId: string, tokenId: string) {
@@ -44,7 +44,7 @@ function addExtraContracts(curContracts: string[]) {
 
 export async function getNfts(accountId: AccountId) {
 
-    let nftContracts = await fetchNftContracts(accountId)
+    let nftContracts = await contractAPI.fetchUserTokenContracts(accountId)
     nftContracts = addExtraContracts(nftContracts)
 
     const tokenPrices = await marketAPI.fetchUserTokenPrices(accountId);

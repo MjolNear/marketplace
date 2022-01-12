@@ -3,6 +3,7 @@ import {viewFunction} from "../rpc";
 import {Nft} from "../../../models/nft";
 import {TokenPrices} from "../market/api";
 import {buildUID, getPrice} from "../utils";
+import {Marketplace} from "../contracts/marketplaces";
 
 const isIPFS = require('is-ipfs')
 
@@ -27,7 +28,7 @@ function getRealUrl(url: string, urlHash?: string, contractId?: string) {
 }
 
 function getNftMintedSiteInfo(nft: any, contractId: string) {
-    if (contractId === 'x.paras.near') {
+    if (contractId === Marketplace.PARAS) {
         const holder = nft.token_id.split(':')[0];
         return {
             name: 'Paras',
@@ -184,9 +185,9 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: TokenPr
     })
 }
 
-export async function getConvertedNFT(contractId: string, nft: any, tokenPrices: TokenPrices) {
+export async function getConvertedNFT(contractId: string, jsonNft: any, tokenPrices: TokenPrices) {
     if (contractId.endsWith('mintbase1.near')) {
-        return getMintbaseNFT(contractId, nft, tokenPrices)
+        return getMintbaseNFT(contractId, jsonNft, tokenPrices)
     }
-    return convertStandardNFT(contractId, nft, tokenPrices)
+    return convertStandardNFT(contractId, jsonNft, tokenPrices)
 }
