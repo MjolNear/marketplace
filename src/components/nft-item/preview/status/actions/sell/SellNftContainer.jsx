@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
 import DarkBlueGradientButton from "../../../../../ui/buttons/DarkBlueGradientButton";
-import Modal from "../../../../../ui/modal/Modal";
-import useComponentVisible from "../../../../../../hooks/useComponentVisible";
+import InputPriceModal from "../../../../../ui/modal/InputPriceModal";
+
 
 const SellNftContainer = ({onClick}) => {
 
-    const {ref, visible, setVisible} = useComponentVisible(false)
+    const [visible, setVisible] = useState(false)
 
     return (
         <div>
             <DarkBlueGradientButton title="Sell NFT" onClick={() => setVisible(true)}/>
-            <Modal ref={ref} visible={visible}/>
+            <InputPriceModal hidden={!visible} setVisible={setVisible} onClick={onClick}/>
         </div>
     );
 };

@@ -1,5 +1,3 @@
-const nearApi = require("near-api-js");
-
 export class NftAPI {
 
     static async getJsonByURL(url) {
@@ -16,25 +14,5 @@ export class NftAPI {
         } catch (error) {
             return {error}
         }
-    }
-
-    static getNetwork(accountId) {
-        return accountId.endsWith('.near')
-            ? 'mainnet'
-            : 'testnet';
-    }
-
-    static buildAccountInfo(accountId) {
-        const network = 'mainnet'
-        const provider = new nearApi.providers.JsonRpcProvider(`https://rpc.${network}.near.org`);
-        return new nearApi.Account(
-            {provider: provider}
-        )
-    }
-
-    static async buildContractInfo(accountId) {
-        const network = NftAPI.getNetwork(accountId)
-        const accountURL = `https://helper.${network}.near.org/account/${accountId}/likelyNFTs`;
-        return await NftAPI.getJsonByURL(accountURL)
     }
 }

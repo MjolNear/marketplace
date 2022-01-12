@@ -22,6 +22,10 @@ type ParamTypes = {
 const PreviewNftPageHoc: React.FC<PropTypes> = ({accountId}) => {
     const {contractId, tokenId} = useParams<ParamTypes>()
 
+    if (!contractId || !tokenId) {
+        return <NotFoundPage/>
+    }
+
     const {nft, fetching, payouts} = useAppSelector(state => state.preview.nft)
     const dispatch = useAppDispatch()
 

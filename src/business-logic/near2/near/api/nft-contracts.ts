@@ -3,7 +3,7 @@ export const fetchNftContracts = async (accountId: string): Promise<string[]> =>
     if (!response.ok) {
         return []
     }
-    return await response
+    return response
         .json()
         .catch(() => [])
 }

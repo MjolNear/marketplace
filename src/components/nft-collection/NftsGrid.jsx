@@ -15,11 +15,9 @@ const NftsGrid = ({nfts, fetching}) => {
             <NftCollectionContainer>
                 {fetching
                     ? loaders
-                    : nfts.length === 0
-                        ? <div className="text-center">No nfts found</div>
-                        : nfts.map(nft =>
-                            <NftItem key={nft.tokenId + nft.contractId} nft={nft}/>
-                        )
+                    : nfts.map(nft =>
+                        <NftItem key={nft.tokenId + nft.contractId} nft={nft}/>
+                    )
                 }
             </NftCollectionContainer>
         </div>

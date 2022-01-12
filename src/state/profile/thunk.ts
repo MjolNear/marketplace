@@ -1,15 +1,18 @@
-import {getNfts} from "../../business-logic/near/get-nfts";
+import {getNfts} from "../../business-logic/near2/near/api/nfts/get-nfts";
 
 import {AppDispatch} from "../store";
 import {profileSlice} from "./slice";
 
 export const fetchMyNfts = (accountId: string) => async (dispatch: AppDispatch) => {
-    dispatch(profileSlice.actions.toggleFetching(true))
+    dispatch(profileSlice.actions.toggleFetching(false))
     getNfts(accountId)
-        .then(promises => promises
-            .forEach(promise =>
-                promise.then(nft => dispatch(profileSlice.actions.addNft(nft)))
+        .then(contracts => contracts
+            .forEach(contractNfts =>
+                contractNfts.then(nfts =>
+                    nfts.forEach(promiseNft =>
+                        promiseNft.then(nft => dispatch(profileSlice.actions.addNft(nft)))
+                    )
+                )
             )
         )
-        .finally(() => dispatch(profileSlice.actions.toggleFetching(false)))
 }
