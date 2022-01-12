@@ -1,4 +1,4 @@
-import {marketAPI} from "../market";
+import {contractAPI} from "./api";
 import {Marketplace} from "./marketplaces";
 
-export {marketAPI, Marketplace}
+export {contractAPI, Marketplace}

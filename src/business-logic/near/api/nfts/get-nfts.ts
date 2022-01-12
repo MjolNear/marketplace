@@ -1,8 +1,8 @@
-import {getConvertedNFT} from "../standardization/nft-converter";
+import {getConvertedNFT} from "../standardization";
 import {nftAPI} from "./api";
 import {marketAPI} from "../market";
 import {AccountId, ContractId, TokenId} from "../../../models/types";
-import {contractAPI} from "../contracts/api";
+import {contractAPI} from "../contracts";
 
 
 export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenId: TokenId) => {
