@@ -1,5 +1,5 @@
 import {mjolViewFunction} from "../rpc";
-import {AccountId, ContractId, NumberAmount, Optional, StringAmount, TokenId, TokenUID} from "../types";
+import {AccountId, ContractId, NumberAmount, Optional, StringAmount, TokenId, TokenUID} from "../../../models/types";
 import {buildUID, formatOptionalPrice, formatPrice} from "../utils";
 
 export interface MarketToken {

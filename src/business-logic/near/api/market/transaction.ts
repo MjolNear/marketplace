@@ -3,7 +3,7 @@ import {GAS, SM_DEPOSIT, YOCTO_NEAR} from "../../constants";
 import {functionCall, mjolFunctionCall} from "../rpc";
 import BN from "bn.js";
 import {MJOL_MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
-import {ContractId, StringAmount, TokenId} from "../types";
+import {ContractId, StringAmount, TokenId} from "../../../models/types";
 
 
 export function giveApprove(contractId: ContractId, tokenId: TokenId, stringPrice: StringAmount) {

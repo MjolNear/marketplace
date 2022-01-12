@@ -1,5 +1,5 @@
 import {viewFunction} from "../rpc";
-import {AccountId, ContractId, StringAmount, TokenId} from "../types";
+import {AccountId, ContractId, StringAmount, TokenId} from "../../../models/types";
 
 export interface Payouts {
     payout: Record<AccountId, StringAmount>

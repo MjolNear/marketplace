@@ -1,4 +1,4 @@
-import {ContractId, NumberAmount, Optional, TokenId, TokenUID} from "./types";
+import {ContractId, NumberAmount, Optional, TokenId, TokenUID} from "../../models/types";
 import {utils} from "near-api-js";
 
 export const formatOptionalPrice = (price: Optional<NumberAmount>): Optional<string> => {
