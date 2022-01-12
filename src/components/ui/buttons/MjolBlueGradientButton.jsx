@@ -10,7 +10,7 @@ const MjolBlueGradientButton = ({title, onClick, isActive = true}) => {
                     classNames(isActive
                             ? "from-blue-500 to-blue-800"
                             : "hover:shadow-mjol-blue-button hover:ring-1 hover:ring-inset hover:ring-blue-400"
-                        , "bg-gradient-to-l from-white to-white rounded-3xl group px-10 py-2 transform duration-200"
+                        , "bg-gradient-to-l from-transparent to-transparent rounded-3xl group px-10 py-2 transform duration-200"
                     )
                 }
         >

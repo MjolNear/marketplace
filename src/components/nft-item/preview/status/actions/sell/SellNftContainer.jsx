@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import InputPriceModal from "../../../../ui/modal/InputPriceModal";
-import DarkBlueGradientButton from "../../../../ui/buttons/DarkBlueGradientButton";
+import DarkBlueGradientButton from "../../../../../ui/buttons/DarkBlueGradientButton";
+import InputPriceModal from "../../../../../ui/modal/InputPriceModal";
+
 
 const SellNftContainer = ({onClick}) => {
 

@@ -4,17 +4,13 @@ import {getMarketNfts} from "../../../business-logic/near2/near/api/market/get-n
 
 export const fetchMarketNfts = (from: number, limit: number) =>
     async (dispatch: AppDispatch) => {
-        dispatch(exploreNftsSlice.actions.startFetching())
+        dispatch(exploreNftsSlice.actions.toggleFetching(true))
         getMarketNfts(from, limit)
-            .then(nfts => {
-                    nfts.map(nftPromise =>
-                        nftPromise
-                            .then(nft => dispatch(exploreNftsSlice.actions.addNft(nft)))
-                            .catch(() => console.log('NFT not found'))
+            .then(promises => {
+                    promises.forEach(promise =>
+                        promise.then(nft => dispatch(exploreNftsSlice.actions.addNft(nft)))
                     )
-                    dispatch(exploreNftsSlice.actions.success())
+                    dispatch(exploreNftsSlice.actions.toggleFetching(false))
                 }
             )
-            .catch(() => dispatch(exploreNftsSlice.actions.failure()))
-            .finally(() => dispatch(exploreNftsSlice.actions.success()))
     }

@@ -1,12 +1,6 @@
-export interface MarketNft {
-    approval_id: number
-    nft_contract_id: string
-    owner_id: string
-    price: number
-    token_id: string
-}
-
-export interface PayableToken {
-    tokenUID: string,
-    price: string
-}
+export type AccountId = string
+export type ContractId = string
+export type TokenId = string
+export type StringAmount = string
+export type NumberAmount = number
+export type TokenUID = string

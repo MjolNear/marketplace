@@ -4,34 +4,22 @@ import {Nft} from "../../../business-logic/models/nft";
 export interface ExploreNftsState {
     nfts: Array<Nft>,
     fetching: boolean,
-    success: boolean | undefined
 }
 
 const initialState: ExploreNftsState = {
     nfts: [],
-    fetching: true,
-    success: undefined
+    fetching: true
 }
 
 export const exploreNftsSlice = createSlice({
     name: "explore-nfts",
     initialState,
     reducers: {
-        addNft: (state, action: PayloadAction<Nft | null>) => {
-            if (action.payload) {
-                state.nfts.push(action.payload)
-            }
+        addNft: (state, action: PayloadAction<Nft>) => {
+            state.nfts.push(action.payload)
         },
-        startFetching: (state) => {
-            state.fetching = true
-        },
-        success: (state) => {
-            state.success = true
-            state.fetching = false
-        },
-        failure: (state) => {
-            state.success = false
-            state.fetching = false
+        toggleFetching: (state, action: PayloadAction<boolean>) => {
+            state.fetching = action.payload
         },
         reset: () => initialState
     }

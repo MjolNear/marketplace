@@ -136,11 +136,13 @@ const CreateNftPage = () => {
                 <RoundLoader/>
             ) : (
                 <div className="bg-mjol-white">
-                    <BlueShadowContainer>
-                        <div className="pb-10 px-4 space-y-8">
-                            <DarkBlueTitle title="Create NFT"/>
-                        </div>
-                    </BlueShadowContainer>
+                    <div className="bg-white">
+                        <BlueShadowContainer>
+                            <div className="pb-10 px-4 space-y-8">
+                                <DarkBlueTitle title="Create NFT"/>
+                            </div>
+                        </BlueShadowContainer>
+                    </div>
                     <div className="max-w-7xl py-10 mx-auto px-4 sm:px-6">
                         <form onSubmit={submitForm}>
                             <div className="shadow rounded-md overflow-hidden">

@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {Nft, NFT} from "../../business-logic/models/nft";
+import {Nft} from "../../business-logic/models/nft";
 
 export enum PROFILE_TAB {
     ALL_NFTS = "All NFTs",
@@ -11,7 +11,6 @@ export interface ProfileState {
     tabs: Array<PROFILE_TAB>,
     activeTab: PROFILE_TAB,
     fetching: boolean,
-    success: boolean | undefined,
     nfts: Array<Nft>,
     history: []
 }
@@ -20,7 +19,6 @@ const initialState: ProfileState = {
     tabs: [PROFILE_TAB.ALL_NFTS, PROFILE_TAB.LISTED_NFTS, PROFILE_TAB.HISTORY],
     activeTab: PROFILE_TAB.ALL_NFTS,
     fetching: true,
-    success: undefined,
     nfts: [],
     history: []
 }
@@ -32,26 +30,15 @@ export const profileSlice = createSlice({
         changeTab: (state, action: PayloadAction<PROFILE_TAB>) => {
             state.activeTab = action.payload
         },
-        addNft: (state, action: PayloadAction<Nft | null>) => {
-            if (action.payload) {
-                state.nfts.push(action.payload)
-            }
+        addNft: (state, action: PayloadAction<any>) => {
+            state.nfts.push(action.payload)
         },
-        startFetching: (state) => {
-            state.fetching = true
-        },
-        success: (state) => {
-            state.success = true
-            state.fetching = false
-        },
-        failure: (state) => {
-            state.success = false
-            state.fetching = false
+        toggleFetching: (state, action: PayloadAction<boolean>) => {
+            state.fetching = action.payload
         },
         resetNfts: (state) => {
             state.nfts = []
             state.fetching = true
-            state.success = undefined
         }
     }
 })

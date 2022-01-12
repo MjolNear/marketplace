@@ -56,7 +56,7 @@ module.exports = {
             "mjol-blue-button": "0px 0px 4px 2px  rgba(120, 192, 233, 0.3)",
             "mjol-base-blue": "0px 5px 7px 4px  rgba(120, 192, 233, 0.3)",
             "mjol-base-blue-lg" : "0px 7px 9px 6px  rgba(120, 192, 233, 0.3)",
-            "mjol-base-blue-xl" : "0px 9px 11px 8px rgba(120, 192, 233, 0.3)",
+            "mjol-base-blue-drop-xl" : "0px 15px 14px 0px rgba(120, 192, 233, 0.3)",
 
             "mjol-blue-all-md"  : "0px 0px 6px 6px rgba(120, 192, 233, 0.5)",
             "mjol-blue-all-xs"  : "0px 0px 3px 3px rgba(120, 192, 233, 0.3)",

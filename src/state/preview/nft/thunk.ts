@@ -1,21 +1,21 @@
 import {AppDispatch} from "../../store";
 import {previewNftSlice} from "./slice";
-import {getNftPayouts, getNFTsByContractAndTokenId} from "../../../business-logic/near/get-nfts";
+import {getNftPayouts, getNFTsByContractAndTokenId} from "../../../business-logic/near2/near/api/nfts/get-nfts";
 
-export const fetchNft = (contractId?: string, tokenId?: string) =>
+export const fetchNft = (contractId: string, tokenId: string) =>
     async (dispatch: AppDispatch) => {
-        dispatch(previewNftSlice.actions.startFetching())
-        getNFTsByContractAndTokenId(contractId, tokenId)
-            .then(nft => {
-                //console.log(nft)
-                dispatch(previewNftSlice.actions.success(nft))
-            })
-            .catch(() => {
-                console.log("Nft loading error")
-                dispatch(previewNftSlice.actions.failure())
-            })
 
-        getNftPayouts(contractId, tokenId)
-            .then(payouts => dispatch(previewNftSlice.actions.fetchPayouts(payouts)))
-            .catch(() => console.log("Payouts not found"))
+        dispatch(previewNftSlice.actions.toggleFetching(true))
+
+        Promise.all([
+                getNFTsByContractAndTokenId(contractId, tokenId)
+                    .then(nft => dispatch(previewNftSlice.actions.success(nft)))
+                    .catch(() => dispatch(previewNftSlice.actions.failure()))
+                    .finally(() => dispatch(previewNftSlice.actions.toggleFetching(false))),
+
+                getNftPayouts(contractId, tokenId)
+                    .then(p => dispatch(previewNftSlice.actions.setPayouts(p)))
+            ]
+        ).then()
+        // ).finally(() => dispatch(previewNftSlice.actions.toggleFetching(false)))
     }
