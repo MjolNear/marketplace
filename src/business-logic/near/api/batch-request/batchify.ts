@@ -9,26 +9,27 @@ export interface BatchResult<R> {
  *
  * @param batch list of elements to process
  * @param {Function} request (returns Promise)
+ *
  */
-export function batchRequest<T, R = any>(batch: T[], request: ((data: T) => Promise<R>)) {
-    return new Promise<BatchResult<R>>(async resolve => {
-            let values = new Array<R>()
-            let errors = new Array<any>()
+export async function batchRequest<T, R = any>(
+    batch: T[],
+    request: ((data: T) => Promise<R>)
+): Promise<BatchResult<R>> {
+    let values: R[] = []
+    let errors: any[] = []
 
-            const results = await Promise.all(
-                batch.map(data =>
-                    request(data)
-                        .then(value => ({value}))
-                        .catch(error => ({error}))
-                )
-            )
-
-            results.forEach(result => 'error' in result
-                ? errors.push(result.error)
-                : values.push(result.value)
-            )
-
-            resolve({values, errors})
-        }
+    const results = await Promise.all(
+        batch.map(data =>
+            request(data)
+                .then(value => ({value}))
+                .catch(error => ({error}))
+        )
     )
+
+    results.forEach(result => 'error' in result
+        ? errors.push(result.error)
+        : values.push(result.value)
+    )
+
+    return {values, errors}
 }
