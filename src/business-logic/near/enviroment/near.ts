@@ -1,6 +1,6 @@
 import {Contract, keyStores, Near, WalletConnection} from "near-api-js";
-import {getConfig} from "../enviroment/config";
-import {NetworkEnv} from "../enviroment/network";
+import {getConfig} from "./config";
+import {NetworkEnv} from "./network";
 
 export const network = NetworkEnv.MAINNET
 export const config = getConfig(network)

@@ -68,12 +68,12 @@ module.exports = {
         },
 
         screens: {
-            'xxs': '300px',
+            'xxs': '310px',
             'xs': '500px',
-            'sm': '640px',
+            'sm': '660px',
             'md': '768px',
-            'lg': '1024px',
-            'xl': '1280px',
+            'lg': '990px',
+            'xl': '1320px',
             '2xl': '1536px',
         },
 
@@ -107,12 +107,11 @@ module.exports = {
 
             // Grid
             gridTemplateColumns: {
-                '1nft-280': 'repeat(1, 280px)',
-                '2nft-280': 'repeat(2, 280px)',
-                '3nft-280': 'repeat(3, 280px)',
-                '4nft-280': 'repeat(4, 280px)',
+                '1nft-300': 'repeat(1, 300px)',
+                '2nft-300': 'repeat(2, 300px)',
+                '3nft-300': 'repeat(3, 300px)',
                 '4nft-300': 'repeat(4, 300px)',
-                '5nft-280': 'repeat(5, 280px)'
+                '5nft-300': 'repeat(5, 300px)'
             },
 
             // Colors

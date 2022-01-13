@@ -1,5 +1,5 @@
 import {GAS, SM_DEPOSIT} from "../../constants";
-import {getAccountId} from "../../setup/near";
+import {getAccountId} from "../../enviroment/near";
 import {functionCall} from "../rpc";
 
 export function mintToCommonCollection(tokenMetadata, payout) {

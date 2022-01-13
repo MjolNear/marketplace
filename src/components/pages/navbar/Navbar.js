@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import {TabsDropDownMenu} from "./menu/TabDropDownMenu";
 import imgLogo from "../../../resources/hammer.png"
 import imgLabel from "../../../resources/label6.png"
-import {signIn, wallet} from "../../../business-logic/near2/near/setup/near";
+import {signIn, wallet} from "../../../business-logic/near/enviroment/near";
 
 
 function SmallNavBar({tabs}) {

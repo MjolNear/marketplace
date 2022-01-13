@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {mintToCommonCollection} from "../../../../business-logic/near2/near/api/nfts/mint";
+import {mintToCommonCollection} from "../../../../business-logic/near/api/nfts/mint";
 import SingleLineContainer from "./upload/containers/SingleLineContainer";
 import MultiLineContainer from "./upload/containers/MultiLineContainer";
 import OptionInputContainer from "./upload/containers/OptionInputContainer";
@@ -9,7 +9,7 @@ import {makeNftLink, storeNFT} from "../../../../business-logic/ipfs/upload";
 import DarkBlueTitle from "../../../ui/text/DarkBlueTitle";
 import RoundLoader from "../../../ui/loaders/RoundLoader";
 import BlueShadowContainer from "../../../ui/shadow/BlueShadowContainer";
-import {getAccountId, wallet} from "../../../../business-logic/near2/near/setup/near";
+import {getAccountId, wallet} from "../../../../business-logic/near/enviroment/near";
 
 
 const LineAlert = ({state, setState}) => {

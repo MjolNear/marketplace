@@ -30,6 +30,9 @@ export const profileSlice = createSlice({
         changeTab: (state, action: PayloadAction<PROFILE_TAB>) => {
             state.activeTab = action.payload
         },
+        setNfts: (state, action: PayloadAction<Nft[]>) => {
+            state.nfts = action.payload
+        },
         addNft: (state, action: PayloadAction<any>) => {
             state.nfts.push(action.payload)
         },

@@ -9,7 +9,7 @@ import ProfilePageHoc from "../hoc/profile/ProfilePageHoc";
 import PreviewNftHoc from "../hoc/preview/nft/PreviewNftPageHoc";
 import Logout from "../hoc/auth/Logout";
 import ExploreNftsPageHoc from "../hoc/explore/nft/ExploreNftsPageHoc";
-import {signOut} from "../business-logic/near2/near/setup/near";
+import {signOut} from "../business-logic/near/enviroment/near";
 
 const AppRouter = () => {
     return (
