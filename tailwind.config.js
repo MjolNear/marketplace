@@ -16,6 +16,9 @@ module.exports = {
             'xs-2': ['0.81rem',{
                 'line-height': '1rem'
             }],
+            'xs-3': ['0.875', {
+                'line-height': '1rem'
+            }],
             'sm': ['0.875rem', {
                 'line-height': '1.25rem'
             }],
