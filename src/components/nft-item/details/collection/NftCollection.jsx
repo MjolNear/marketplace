@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 const NftCollection = ({collectionName, collectionLink}) => {
     return (
-        <Link className="text-sm font-medium truncate text-mjol-purple-dark-t hover:underline"
+        <Link className="text-xs-2 font-bold truncate text-mjol-purple-dark-t hover:underline"
               to={collectionLink}
         >
             {collectionName}

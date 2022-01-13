@@ -6,9 +6,14 @@ module.exports = {
             'tiny-1': '.4rem',
             'tiny-2': '.5rem',
             'tiny-3': '.6rem',
+            'tiny-3.5': '.64rem',
             'tiny-4': '.68rem',
+            'tiny-5': '.71rem',
 
             'xs': ['0.75rem', {
+                'line-height': '1rem'
+            }],
+            'xs-2': ['0.81rem',{
                 'line-height': '1rem'
             }],
             'sm': ['0.875rem', {

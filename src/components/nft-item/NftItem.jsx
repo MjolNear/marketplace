@@ -18,24 +18,21 @@ const NftItem = ({nft}) => {
                 <NftImage path={nft.mediaURL}/>
             </Link>
             <div className="px-5">
-                <Link to={previewLink}>
-                    <NftTitle title={nft.title}/>
-                </Link>
-                <NftCollection collectionLogoLink="MOCK"
-                               collectionLink="MOCK"
-                               collectionName="MOCK"/>
-                <div className="grid place-items-end">
-                    <div className="inline-flex space-x-1 text-tiny-4 items-center">
+                <div className="flex flex-col">
+                    <NftTitle title={nft.title} previewLink={previewLink}/>
+                    <NftCollection collectionLogoLink="MOCK"
+                                   collectionLink="MOCK"
+                                   collectionName="Mock collection"/>
+                </div>
+                <div className="grid items-end">
+                    <div className="inline-flex space-x-1 items-center pt-4 pb-1">
+                        <NftVerifiedStatus isVerified={nft.mintSite.name !== 'unsupported contract'}/>
                         <NftMintedLink mintedName={nft.mintSite.name}
                                        mintedLink={nft.mintSite.nftLink}/>
-                        {nft.mintSite.name === 'Non-verified contract' ? (
-                            <></>
-                        ) : (<NftVerifiedStatus/>)
-                        }
                     </div>
                 </div>
-                <hr className="ring-1 ring-mjol-purple-dark border-none"/>
-                <div className="py-2">
+                <hr className="border-mjol-purple-dark"/>
+                <div className="py-2 grid place-items-end">
                     <SmallNftPrice price={nft.price} isListed={isListed}/>
                 </div>
             </div>

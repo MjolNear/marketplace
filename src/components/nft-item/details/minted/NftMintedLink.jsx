@@ -2,11 +2,11 @@ import React from 'react';
 
 const NftMintedLink = ({mintedName, mintedLink}) => {
     return (
-        <a className="text-mjol-purple-dark font-semibold hover:text-mjol-purple-base"
+        <a className="text-mjol-purple-dark font-bold text-tiny-4 hover:text-mjol-purple-base"
            href={mintedLink}
            target="_blank"
         >
-            Minted on {mintedName}
+            { mintedName === 'unsupported contract' ? 'Not verified' : `Minted on ${mintedName}`}
         </a>
     );
 };

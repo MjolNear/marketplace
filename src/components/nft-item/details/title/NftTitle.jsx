@@ -1,10 +1,13 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
-const NftTitle = ({title}) => {
+const NftTitle = ({title, previewLink}) => {
     return (
-        <div className="font-extrabold text-mjol-purple-dark truncate text-lg">
+        <Link
+            to={previewLink}
+            className="font-black text-mjol-purple-dark truncate text-lg">
             {title}
-        </div>
+        </Link>
     );
 };
 

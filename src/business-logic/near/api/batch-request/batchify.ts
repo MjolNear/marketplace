@@ -4,12 +4,10 @@ export interface BatchResult<R> {
 }
 
 /**
- * Batch async requests, throttled with a delay
- * to avoid hammering the network
+ * Batch async requests
  *
  * @param batch list of elements to process
- * @param {Function} request (returns Promise)
- *
+ * @param request any function that accepts value and returns {@link Promise}
  */
 export async function batchRequest<T, R = any>(
     batch: T[],

@@ -8,6 +8,12 @@ export interface BaseNft {
     price: string | null
 }
 
+export enum MintedContract {
+    Verified,
+    Unverfied,
+    NotSupported
+}
+
 export interface NftMetadata {
     referenceURL: string | null,
     copies: number | null

@@ -11,7 +11,7 @@ const NftsGrid = ({nfts, fetching}) => {
         )
 
     return (
-        <div className="p-5 md:p-10">
+        <div className="p-5">
             <NftCollectionContainer>
                 {fetching
                     ? loaders

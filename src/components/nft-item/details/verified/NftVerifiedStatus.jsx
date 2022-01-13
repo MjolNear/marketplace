@@ -1,10 +1,10 @@
 import React from 'react';
-import {BsFillCheckCircleFill} from 'react-icons/bs'
+import {GoVerified, GoUnverified} from 'react-icons/go'
 
 const NftVerifiedStatus = ({isVerified = true}) => {
     return isVerified
-        ? <BsFillCheckCircleFill color="#18b3cc"/>
-        : <></>
+        ? <GoVerified size={14} color="#18b3cc"/>
+        : <GoUnverified size={14} color=""/>
 };
 
 export default NftVerifiedStatus;
