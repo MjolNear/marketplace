@@ -3,7 +3,7 @@ import MjolBlueGradientButton from "../../../ui/buttons/MjolBlueGradientButton";
 import DarkBlueTitle from "../../../ui/text/DarkBlueTitle";
 import BlueShadowContainer from "../../../ui/shadow/BlueShadowContainer";
 
-const ProfileNavigationBar = ({onTabChange, activeTab, tabs}) => {
+const ProfileNavigationBar = React.memo(({onTabChange, activeTab, tabs}) => {
 
     const navbar = tabs.map(item =>
         <MjolBlueGradientButton key={item}
@@ -25,6 +25,6 @@ const ProfileNavigationBar = ({onTabChange, activeTab, tabs}) => {
             </div>
         </BlueShadowContainer>
     );
-};
+});
 
 export default ProfileNavigationBar;

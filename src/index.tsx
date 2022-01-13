@@ -10,10 +10,12 @@ import {setupStore} from "./state/store";
 const store = setupStore()
 
 ReactDOM.render(
-    <HashRouter>
-        <Provider store={store}>
-            <App/>
-        </Provider>
-    </HashRouter>,
+    <React.StrictMode>
+        <HashRouter>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </HashRouter>
+    </React.StrictMode>,
     document.getElementById("root")
 )

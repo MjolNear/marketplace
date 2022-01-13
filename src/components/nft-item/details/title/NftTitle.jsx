@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-const NftTitle = ({title, previewLink}) => {
+const NftTitle = React.memo(({title, previewLink}) => {
     return (
         <Link
             to={previewLink}
@@ -9,6 +9,6 @@ const NftTitle = ({title, previewLink}) => {
             {title}
         </Link>
     );
-};
+});
 
 export default NftTitle;

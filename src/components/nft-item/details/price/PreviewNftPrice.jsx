@@ -1,14 +1,14 @@
 import React from 'react';
 import DarkBlueMjolText from "../../../ui/text/DarkBlueMjolText";
-import NearSVG from "../../../ui/icons/near/NearSVG";
+import NearBlackLogo from "../../../ui/icons/near/NearBlackLogo";
 
-const PreviewNftPrice = ({price}) => {
+const PreviewNftPrice = React.memo(({price}) => {
     return (
         <div className="flex items-center text-xl">
             <DarkBlueMjolText text={price}/>
-            <NearSVG/>
+            <NearBlackLogo/>
         </div>
     );
-};
+});
 
 export default PreviewNftPrice;
