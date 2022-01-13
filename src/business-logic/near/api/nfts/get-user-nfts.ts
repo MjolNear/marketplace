@@ -3,6 +3,8 @@ import {nftAPI} from "./api";
 import {marketAPI} from "../market";
 import {AccountId, ContractId, TokenId} from "../../../models/types";
 import {contractAPI} from "../contracts";
+import {batchRequest} from "../batch-request";
+import {Nft} from "../../../models/nft";
 
 
 export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenId: TokenId) => {
@@ -43,20 +45,20 @@ function addExtraContracts(curContracts: string[]) {
     return curContracts
 }
 
-export async function getNfts(accountId: AccountId) {
+export async function getUserNfts(accountId: AccountId) {
 
     let nftContracts = await contractAPI.fetchUserTokenContracts(accountId)
     nftContracts = addExtraContracts(nftContracts)
-
     const tokenPrices = await marketAPI.fetchUserTokenPrices(accountId);
-    return nftContracts.map(contractId =>
+
+    const fetchNfts = (contractId: ContractId) =>
         nftAPI.fetchUserTokens(contractId, accountId)
-            .then(nfts =>
-                nfts.map((nft: any) =>
-                    getConvertedNFT(contractId, nft, tokenPrices)
-                )
+            .then(nfts => batchRequest(nfts,
+                token => getConvertedNFT(contractId, token, tokenPrices)).then(result => result.values)
             )
-    )
+
+    return batchRequest(nftContracts, fetchNfts)
+        .then(result => result.values.flat())
 }
 
 

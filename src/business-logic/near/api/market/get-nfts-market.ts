@@ -1,33 +1,26 @@
 import {getConvertedNFT} from "../standardization";
 import {viewFunction} from "../rpc";
-import {marketAPI} from "./api";
+import {marketAPI, MarketToken} from "./api";
 import {buildUID, formatOptionalPrice} from "../utils";
+import {batchRequest} from "../batch-request";
+import {Nft} from "../../../models/nft";
 
 
 export async function getMarketNfts(from = 0, limit = 50) {
     const marketNfts = await marketAPI.fetchTokens(from, limit);
-    let resNFTs = [];
-
-    for (let marketNft of marketNfts.tokens) {
-
-        const {price, token_id, nft_contract_id: contractId} = marketNft
-
-
-        const nftPromise = viewFunction({
-            contractId,
-            methodName: 'nft_token',
-            args: {token_id}
-        }).then(response => getConvertedNFT(
-            contractId,
-            response,
-            {
-                [buildUID(contractId, token_id)]: formatOptionalPrice(price)
+    return batchRequest<MarketToken, Nft>(marketNfts.tokens, async token => {
+        const {price, token_id, nft_contract_id: contractId} = token
+        return viewFunction({
+                contractId,
+                methodName: 'nft_token',
+                args: {token_id}
             }
-        ))
-
-        resNFTs.push(nftPromise)
-    }
-
-    return resNFTs
+        ).then(response => {
+                const uid = buildUID(contractId, token_id)
+                const tokenPrice = {[uid]: formatOptionalPrice(price)}
+                return getConvertedNFT(contractId, response, tokenPrice)
+            }
+        )
+    }).then(result => result.values)
 }
 
