@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import ImageLoader from "../../../ui/loaders/ImageLoader";
+import MjolLoader from "../../../ui/loaders/MjolLoader";
 
 const NftImage = ({path}) => {
 
@@ -14,7 +14,7 @@ const NftImage = ({path}) => {
             />
             {loading &&
                 <div className="flex items-center justify-center">
-                    <ImageLoader/>
+                    <MjolLoader/>
                 </div>
             }
         </div>

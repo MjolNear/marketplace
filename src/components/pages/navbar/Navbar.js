@@ -33,7 +33,7 @@ function SmallNavBar({tabs}) {
     )
 }
 
-export default function Navbar({tabs}) {
+const Navbar = React.memo(({tabs}) => {
     const exploreTabs = tabs.explore
     const createTabs = tabs.create
     const profileTabs = tabs.profile
@@ -164,4 +164,6 @@ export default function Navbar({tabs}) {
             </Transition>
         </Popover>
     )
-}
+})
+
+export default Navbar;

@@ -5,7 +5,7 @@ const NftTitle = React.memo(({title, previewLink}) => {
     return (
         <Link
             to={previewLink}
-            className="font-black text-mjol-purple-dark truncate text-lg">
+            className="font-bold text-mjol-purple-dark truncate text-md">
             {title}
         </Link>
     );

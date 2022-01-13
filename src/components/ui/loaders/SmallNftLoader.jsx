@@ -14,8 +14,8 @@ const SmallNftLoader = React.memo(({width, height, speed = 1.5}) => {
             >
                 <rect x="0" y="0" width={width} height={width}/>
                 <rect x="20" y="310" rx="5" ry="5" width={width - 40} height="17"/>
-                <rect x="20" y="338" rx="5" ry="5" width={width - 40} height="15"/>
-                <rect x="20" y="387" rx="5" ry="5" width={width - 40} height="17"/>
+                <rect x="20" y="333" rx="5" ry="5" width={width - 40} height="15"/>
+                <rect x="20" y="392" rx="5" ry="5" width={width - 40} height="17"/>
             </ContentLoader>
         </div>
     )

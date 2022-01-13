@@ -32,7 +32,7 @@ const NftItem = ({nft}) => {
                     </div>
                 </div>
                 <hr className="border-mjol-purple-dark"/>
-                <div className="py-2 grid place-items-end">
+                <div className="pt-2 pb-1 grid place-items-end">
                     <SmallNftPrice price={nft.price} isListed={isListed}/>
                 </div>
             </div>
