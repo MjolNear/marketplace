@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import {Transition} from "@headlessui/react";
 
-const MjolLoader = React.memo(({width = 30, height = 30, isShowing = true, duration = 100}) => {
+const MjolLoader = React.memo(({width = 30, height = 30}) => {
     return (
         <div>
             {/*<Transition*/}

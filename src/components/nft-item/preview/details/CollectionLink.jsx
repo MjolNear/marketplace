@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import ShareIcon from "../../../ui/icons/ShareIcon";
 
-const CollectionLink = ({name, link}) => {
+const CollectionLink = React.memo(({name, link}) => {
     return (
         <div className="flex flex-row justify-between">
             <div
@@ -12,6 +12,6 @@ const CollectionLink = ({name, link}) => {
             <ShareIcon/>
         </div>
     );
-};
+});
 
 export default CollectionLink;
