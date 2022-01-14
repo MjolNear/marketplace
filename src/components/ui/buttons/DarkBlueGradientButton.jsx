@@ -7,7 +7,10 @@ const DarkBlueGradientButton = ({title, ...props}) => {
                            bg-gradient-to-l from-blue-500 to-blue-800 rounded-lg px-10 py-2
                            hover:from-blue-600
                            hover:to-blue-800
-                           hover:shadow-mjol-gray-xs"
+                           hover:shadow-mjol-gray-xs
+                           disabled:opacity-50
+                           disabled:cursor-not-allowed
+                           "
         >
             {title}
         </button>

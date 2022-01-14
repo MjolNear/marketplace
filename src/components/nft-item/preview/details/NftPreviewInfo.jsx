@@ -18,10 +18,15 @@ const NftPreviewInfo = ({nft, payouts, statusElement}) => {
         {name: "Contract", value: nft.contractId || "Not found"}
     ]
 
+    const formattedPayouts = Object.entries(payouts).map(kv => {
+        const [name, value] = kv
+        return {name, value: `${value}%`}
+    })
+
     const tabs = [
         {name: "Description", element: nft.description || "Not found", icon: <BsList/>},
         {name: "Attributes", element: <PreviewAttributes attributes={ownerAttributes}/>, icon: <MdAcc/>},
-        {name: "Royalties", element: <PreviewAttributes attributes={payouts}/>, icon: <GrMoney/>},
+        {name: "Royalties", element: <PreviewAttributes attributes={formattedPayouts}/>, icon: <GrMoney/>},
         {name: "History", element: "Not found", icon: <GiBuyCard/>},
         {name: "Traits", element: "Not found", icon: <BiDna/>}
     ]

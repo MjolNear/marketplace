@@ -1,15 +1,23 @@
-import React from 'react';
-import useComponentVisible from "../../../hooks/useComponentVisible";
+import {Transition} from '@headlessui/react'
+import {Fragment} from 'react'
 
-const Modal = ({ref, visible}) => {
-
+export default function MyModal({visible, children}) {
     return (
-        <div className={"bg-red-300 " + visible ? "" : "hidden"}>
-            <div className="w-1/2 h-1/2" ref={ref}>
-                HI
+        <Transition appear
+                    show={visible}
+                    as={Fragment}
+                    enter="ease-out duration-200"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+        >
+            <div className="w-screen h-screen fixed inset-0 bg-opacity-60 bg-black z-10
+                            overflow-y-auto grid items-center justify-center"
+            >
+                {children}
             </div>
-        </div>
-    );
-};
-
-export default Modal;
+        </Transition>
+    )
+}

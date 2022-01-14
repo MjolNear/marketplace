@@ -8,7 +8,6 @@ import NotFoundPage from "../../../components/pages/not-found/NotFoundPage";
 import {previewNftSlice} from "../../../state/preview/nft/slice";
 import {useParams} from "react-router";
 import NftStatusHoc from "./NftStatusHoc";
-import useDelayUnmount from "../../../hooks/useDelayUnmount";
 
 interface PropTypes {
     accountId: string
@@ -47,6 +46,7 @@ const PreviewNftPageHoc: React.FC<PropTypes> = ({accountId}) => {
                         payouts={payouts}
                         statusElement={
                             <NftStatusHoc nft={nft}
+                                          payouts={payouts}
                                           accountId={accountId}
                             />
                         }

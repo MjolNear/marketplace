@@ -17,10 +17,11 @@ import NftContractNotSupported
 
 interface PropTypes {
     accountId: string,
-    nft: Nft
+    nft: Nft,
+    payouts: Record<string, number>
 }
 
-const NftStatusHoc: React.FC<PropTypes> = ({accountId, nft}) => {
+const NftStatusHoc: React.FC<PropTypes> = ({accountId, nft, payouts}) => {
 
     if (!accountId) {
         return <ConnectWalletButton onClick={signIn}/>
@@ -45,7 +46,7 @@ const NftStatusHoc: React.FC<PropTypes> = ({accountId, nft}) => {
         case ItemMarketStatus.CAN_BUY:
             return <BuyNftContainer price={nft.price} onClick={buy}/>
         case ItemMarketStatus.CAN_SELL:
-            return <SellNftContainer onClick={sell}/>
+            return <SellNftContainer onClick={sell} payouts={payouts}/>
         case ItemMarketStatus.LISTED:
             return <UnlistNftContainer price={nft.price} onClick={unlist}/>
         case ItemMarketStatus.FREE:

@@ -4,7 +4,7 @@ import NearBlackLogo from "../../../ui/icons/near/NearBlackLogo";
 
 const PreviewNftPrice = React.memo(({price}) => {
     return (
-        <div className="flex items-center text-xl">
+        <div className="flex items-center gap-1 text-xl">
             <DarkBlueMjolText text={price}/>
             <NearBlackLogo/>
         </div>
