@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import MyModal from "../../../../../ui/modal/Modal";
+import GrayModal from "../../../../../ui/modal/Modal";
 import DarkBlueGradientButton from "../../../../../ui/buttons/DarkBlueGradientButton";
 import {AiOutlineClose} from 'react-icons/ai'
 import PayoutsPreview from "./recieve/PayoutsPreview";
@@ -38,16 +38,16 @@ const InputPriceModal = ({visible, setVisible, onClick, payouts}) => {
         const price = watch("price")
 
         return (
-            <MyModal visible={visible} setVisible={setVisible}>
+            <GrayModal visible={visible} setVisible={setVisible}>
                 <div className="max-w-sm p-4 bg-gray-100 mx-2 xs:mx-auto rounded-md relative">
                     <div className="absolute right-0 top-0 pr-4 pt-4">
                         <AiOutlineClose onClick={closeModal} className="cursor-pointer" size={20}/>
                     </div>
                     <div>
-                        <DarkBlueMjolText text="NFT Listing" classes="text-2xl text-left font-black"/>
+                        <DarkBlueMjolText text="List NFT for sale" classes="text-2xl text-left font-black"/>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="mt-4">
-                                <div className="text-sm text-gray-900 mb-2">
+                                <div className="text-sm text-gray-900 font-bold mb-2">
                                     Price
                                 </div>
                                 <div className="flex justify-between gap-3 pb-2">
@@ -79,9 +79,6 @@ const InputPriceModal = ({visible, setVisible, onClick, payouts}) => {
                                     />
                                     <NearBlackLogo/>
                                 </div>
-                                {/*<div className="text-tiny-5 text-red-500 text-center">*/}
-                                {/*    {errors?.price?.message}*/}
-                                {/*</div>*/}
                                 <PayoutsPreview price={price} payouts={payouts}/>
                                 <p className="text-black mt-4 text-sm text-center opacity-60">
                                     You will be redirected to
@@ -89,12 +86,12 @@ const InputPriceModal = ({visible, setVisible, onClick, payouts}) => {
                                 </p>
                             </div>
                             <div className="mt-6">
-                                <DarkBlueGradientButton title="List" disabled={!isValid}/>
+                                <DarkBlueGradientButton title="Complete listing" disabled={!isValid}/>
                             </div>
                         </form>
                     </div>
                 </div>
-            </MyModal>
+            </GrayModal>
         );
     }
 ;

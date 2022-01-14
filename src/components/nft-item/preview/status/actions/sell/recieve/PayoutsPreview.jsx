@@ -9,7 +9,7 @@ const PayoutsPreview = ({price, payouts}) => {
     const receive = 100 - treasury - royalties
 
     return (
-        <div>
+        <div className="py-3">
             <SinglePayout name="Receive:" value={getStringPercentage(price, receive)}/>
             <SinglePayout name="Fee:" value={getStringPercentage(price, treasury)}/>
             <SinglePayout name="Royalty:" value={getStringPercentage(price, royalties)}/>
