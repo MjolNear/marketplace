@@ -11,8 +11,8 @@ const PayoutsPreview = ({price, payouts}) => {
     return (
         <div>
             <SinglePayout name="Receive:" value={getStringPercentage(price, receive)}/>
-            <SinglePayout name="Royalty:" value={getStringPercentage(price, royalties)}/>
             <SinglePayout name="Fee:" value={getStringPercentage(price, treasury)}/>
+            <SinglePayout name="Royalty:" value={getStringPercentage(price, royalties)}/>
         </div>
     );
 };
