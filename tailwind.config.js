@@ -86,6 +86,9 @@ module.exports = {
         },
 
         extend: {
+            outline: {
+                0: ['0 solid white', '0']
+            },
             zIndex: {
                 '-10': '-10'
             },
@@ -209,7 +212,8 @@ module.exports = {
             visibility: ['hover', 'focus', 'active'],
             ringWidth: ['hover', 'active'],
             ringColor: ['hover', 'active'],
-            cursor: ['disabled']
+            cursor: ['disabled'],
+            outline: ["focus"]
         },
     },
     plugins: [

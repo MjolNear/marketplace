@@ -21,7 +21,7 @@ const InputPriceModal = ({visible, setVisible, onClick, payouts}) => {
             handleSubmit,
             reset,
             formState: {
-                isValid
+                isValid, errors
             }
         } = useForm({
             mode: "onChange",
@@ -39,7 +39,7 @@ const InputPriceModal = ({visible, setVisible, onClick, payouts}) => {
 
         return (
             <MyModal visible={visible} setVisible={setVisible}>
-                <div className="max-w-sm w-full p-4 bg-gray-100 mx-2 rounded-md relative">
+                <div className="max-w-sm p-4 bg-gray-100 mx-2 xs:mx-auto rounded-md relative">
                     <div className="absolute right-0 top-0 pr-4 pt-4">
                         <AiOutlineClose onClick={closeModal} className="cursor-pointer" size={20}/>
                     </div>
@@ -47,27 +47,41 @@ const InputPriceModal = ({visible, setVisible, onClick, payouts}) => {
                         <DarkBlueMjolText text="NFT Listing" classes="text-2xl text-left font-black"/>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="mt-4">
-                                <div className="block text-sm text-gray-900 mb-2">
+                                <div className="text-sm text-gray-900 mb-2">
                                     Price
                                 </div>
-                                <div className="flex justify-between gap-1 pb-2">
+                                <div className="flex justify-between gap-3 pb-2">
                                     <input
-                                        className="w-full px-3 py-2 rounded-lg border-transparent text-black text-base
+                                        min="0"
+                                        className="
+                                               w-full
+                                               px-3 py-2 rounded-lg border-transparent text-gray-800 text-base
                                                bg-black bg-opacity-5
                                                focus:bg-opacity-10
+                                               focus:text-black
                                                focus:border-transparent
+                                               focus:ring-0
                                                "
                                         type="number"
                                         step="any"
                                         placeholder="NFT price"
                                         {...register("price", {
-                                            required: true,
-                                            max: MAX_ITEM_PRICE,
-                                            min: 0,
+                                            required: "Please enter price",
+                                            max: {
+                                                value: MAX_ITEM_PRICE,
+                                                message: `Maximum price is ${MAX_ITEM_PRICE} Ⓝ`
+                                            },
+                                            min: {
+                                                value: 0,
+                                                message: "Minimum price is 0 Ⓝ"
+                                            },
                                         })}
                                     />
                                     <NearBlackLogo/>
                                 </div>
+                                {/*<div className="text-tiny-5 text-red-500 text-center">*/}
+                                {/*    {errors?.price?.message}*/}
+                                {/*</div>*/}
                                 <PayoutsPreview price={price} payouts={payouts}/>
                                 <p className="text-black mt-4 text-sm text-center opacity-60">
                                     You will be redirected to
