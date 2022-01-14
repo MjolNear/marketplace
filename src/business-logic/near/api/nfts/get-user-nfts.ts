@@ -4,8 +4,6 @@ import {marketAPI} from "../market";
 import {AccountId, ContractId, TokenId} from "../../../models/types";
 import {contractAPI} from "../contracts";
 import {batchRequest} from "../batch-request";
-import {Nft} from "../../../models/nft";
-
 
 export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenId: TokenId) => {
     const jsonNft = await nftAPI.fetchNft(contractId, tokenId)
