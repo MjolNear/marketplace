@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {PROFILE_TAB, profileSlice} from "../../state/profile/slice";
 import {fetchMyNfts} from "../../state/profile/thunk";
-import NftsGrid from "../../components/nft-collection/NftsGrid";
+import NftsGrid from "../../components/Collection/NftsGrid";
 
 const ProfileNftsFetch = ({accountId}) => {
     const {nfts, fetching, activeTab} = useAppSelector(state => state.profile)

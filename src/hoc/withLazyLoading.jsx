@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import MjolLoader from "../components/ui/loaders/MjolLoader";
+import MjolLoader from "../components/Common/loaders/MjolLoader";
 
 const withLazyLoading = (Component) => {
     return (props) => (

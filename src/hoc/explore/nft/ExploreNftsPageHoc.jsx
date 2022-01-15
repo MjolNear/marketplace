@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import ExploreNftsPage from "../../../components/pages/explore/nft/ExploreNftPage";
+import ExploreNftsPage from "../../../components/Pages/explore/nft/ExploreNftPage";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
 import {exploreNftsSlice} from "../../../state/explore/nfts/slice";

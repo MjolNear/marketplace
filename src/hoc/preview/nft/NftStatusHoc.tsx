@@ -1,19 +1,19 @@
 import React from 'react';
 import {useAppDispatch} from "../../../hooks/redux";
 import {ItemMarketStatus} from "../../../state/transaction/state";
-import BuyNftContainer from "../../../components/nft-item/preview/status/actions/buy/BuyNftContainer";
+import BuyNftContainer from "../../../components/Preview/Status/BuyNftContainer";
 import {useNftMarketStatus} from "../../../hooks/useNftMarketStatus";
 import {buyNft, sellNft, unlistNft} from "../../../state/transaction/nft/thunk";
-import SellNftContainer from "../../../components/nft-item/preview/status/actions/sell/SellNftContainer";
-import UnlistNftContainer from "../../../components/nft-item/preview/status/actions/unlist/UnlistNftContainer";
+import SellNftContainer from "../../../components/Preview/Status/sell/SellNftContainer";
+import UnlistNftContainer from "../../../components/Preview/Status/unlist/UnlistNftContainer";
 import NotListedNftContainer
-    from "../../../components/nft-item/preview/status/actions/not-listed/NotListedNftContainer";
+    from "../../../components/Preview/Status/NotListedNftContainer";
 import {Nft} from "../../../business-logic/models/nft";
 import {signIn} from "../../../business-logic/near/enviroment/near";
 import ConnectWalletButton
-    from "../../../components/nft-item/preview/status/actions/connect-wallet/ConnectWalletButton";
+    from "../../../components/Preview/Status/connect-wallet/ConnectWalletButton";
 import NftContractNotSupported
-    from "../../../components/nft-item/preview/status/actions/not-supported/NftContractNotSupported";
+    from "../../../components/Preview/Status/NftContractNotSupported";
 
 interface PropTypes {
     accountId: string,
