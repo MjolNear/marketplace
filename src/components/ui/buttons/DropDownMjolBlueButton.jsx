@@ -30,12 +30,12 @@ export default function DropDownMjolBlueButton({buttonContent, children, initial
                 />
             </button>
             {visible &&
-                <div>
+                <>
                     <div className="px-2 bg-blue-100">
                         <Hr color="bg-gray-600"/>
                     </div>
                     {children}
-                </div>
+                </>
             }
         </div>
     )

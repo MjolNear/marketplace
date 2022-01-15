@@ -3,6 +3,7 @@ import {QueryResponseKind} from "near-api-js/lib/providers/provider";
 import {JsonRpcProvider} from "near-api-js/lib/providers";
 import {contractAccordance} from "./parser/methods";
 import {parseContract} from "./parser/lib";
+import {fetchWithTimeout} from "../core";
 
 
 interface ViewCode extends QueryResponseKind {
@@ -17,9 +18,11 @@ export const contractAPI = {
      * @param accountId NEAR valid account
      */
     fetchUserTokenContracts: (accountId: AccountId): Promise<ContractId[]> =>
-        fetch(`https://helper.mainnet.near.org/account/${accountId}/likelyNFts`)
-            .then(response => response.json())
-            .catch(() => []),
+        fetchWithTimeout(
+            `https://helper.mainnet.near.org/account/${accountId}/likelyNFts`,
+            {timeout: 8000}
+        ).then(response => response.json()
+        ).catch(() => []),
 
     /**
      * Extracts exported functions from NEAR smart contract
