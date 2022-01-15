@@ -15,7 +15,7 @@ const initialState: ExploreNftsState = {
     nfts: [],
     fetching: false,
     from: 0,
-    limit: 4,
+    limit: 12,
     hasMore: true,
     total: 0
 }
