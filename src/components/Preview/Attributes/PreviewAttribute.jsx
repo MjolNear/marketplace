@@ -2,7 +2,7 @@ import React from 'react';
 import {shortenString} from "../../../utils/string";
 import ReactTooltip from 'react-tooltip';
 
-const PreviewAttribute = React.memo(function ({name, value}) {
+const PreviewAttribute = React.memo(({name, value}) => {
     let shrinkValue = shortenString(value)
     return (
         <div className="flex flex-row justify-between">

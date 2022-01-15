@@ -4,7 +4,7 @@ import DarkBlueTitle from "../../../Common/text/DarkBlueTitle";
 import SearchInput from "../../../Filter/search/SearchInput";
 import ToggleFilter from "../../../Filter/toggle/ToggleFilter";
 
-const NftFilters = () => {
+const NftFilters = ({total}) => {
     return (
         <BlueShadowContainer>
             <div className="pb-10 px-4 space-y-8">

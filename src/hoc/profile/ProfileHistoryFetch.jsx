@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import DarkBlueMjolText from "../../components/Common/text/DarkBlueMjolText";
 
 const ProfileHistoryFetch = ({accountId}) => {
 
@@ -7,9 +8,7 @@ const ProfileHistoryFetch = ({accountId}) => {
     }, [accountId])
 
     return (
-        <div>
-            HISTORY
-        </div>
+        <DarkBlueMjolText text="History"/>
     );
 };
 

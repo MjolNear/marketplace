@@ -26,8 +26,8 @@ const Modal = ({
         }
     }, [])
 
-    const _bgClick = (e) => {
-        if (e.target === modalRef.current && closeOnBgClick) {
+    const _bgClick = (event) => {
+        if (closeOnBgClick && event.target === modalRef.current) {
             close()
         }
     }
@@ -35,10 +35,10 @@ const Modal = ({
     return (
         <div
             ref={modalRef}
-            onClick={(e) => _bgClick(e)}
+            onClick={_bgClick}
             className="fixed inset-0 z-50 flex items-center p-4"
             style={{
-                backgroundColor: `rgba(0, 0, 0, 0.86)`,
+                backgroundColor: `rgba(0, 0, 0, 0.8)`,
                 ...style,
             }}
         >

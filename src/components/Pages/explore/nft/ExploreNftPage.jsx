@@ -1,12 +1,13 @@
 import React from 'react';
 import NftFilters from "./NftFilters";
-import NftsGrid from "../../../Collection/NftsGrid";
+import CardGrid from "../../../CardList/CardGrid";
+import CardList from "../../../CardList/CardList";
 
-const ExploreNftPage = ({nfts, fetching}) => {
+const ExploreNftPage = ({nfts, hasMore, fetchNext}) => {
     return (
         <div className="space-y-6">
             <NftFilters/>
-            <NftsGrid nfts={nfts} fetching={fetching}/>
+            <CardList tokens={nfts} hasMore={true}/>
         </div>
     );
 };

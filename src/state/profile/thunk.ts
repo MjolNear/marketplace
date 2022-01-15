@@ -7,6 +7,6 @@ export const fetchMyNfts = (accountId: string) =>
     async (dispatch: AppDispatch) => {
         dispatch(profileSlice.actions.toggleFetching(true))
         getUserNfts(accountId)
-            .then(nfts => dispatch(profileSlice.actions.setNfts(nfts)))
+            .then(nfts => dispatch(profileSlice.actions.setPageData(nfts)))
             .finally(() => dispatch(profileSlice.actions.toggleFetching(false)))
     }

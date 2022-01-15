@@ -6,8 +6,7 @@ import {useNftMarketStatus} from "../../../hooks/useNftMarketStatus";
 import {buyNft, sellNft, unlistNft} from "../../../state/transaction/nft/thunk";
 import SellNftContainer from "../../../components/Preview/Status/sell/SellNftContainer";
 import UnlistNftContainer from "../../../components/Preview/Status/unlist/UnlistNftContainer";
-import NotListedNftContainer
-    from "../../../components/Preview/Status/NotListedNftContainer";
+import NotListedNftContainer from "../../../components/Preview/Status/NotListedNftContainer";
 import {Nft} from "../../../business-logic/models/nft";
 import {signIn} from "../../../business-logic/near/enviroment/near";
 import ConnectWalletButton
