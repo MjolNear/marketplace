@@ -1,11 +1,17 @@
 import CardLoader from "./CardLoader";
+import React from "react";
 
-const CardListLoader = ({length = 12}) => (
+
+interface PropTypes {
+    length: number
+}
+
+const CardListLoader = React.memo<PropTypes>(({length = 12}) => (
     <>
         <div className="hidden md:flex md:flex-wrap">
-            {[...Array(length).keys()].map((k) => {
+            {Array(length).map((_, index) => {
                 return (
-                    <CardLoader key={k}/>
+                    <CardLoader key={index}/>
                 )
             })}
         </div>
@@ -15,6 +21,6 @@ const CardListLoader = ({length = 12}) => (
             </div>
         </div>
     </>
-)
+));
 
 export default CardListLoader

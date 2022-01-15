@@ -2,7 +2,12 @@ import React, {useState} from 'react';
 import MjolLoader from "../../Common/loaders/MjolLoader";
 import {Link} from "react-router-dom";
 
-const ImageBlock = ({path, previewLink}) => {
+interface PropTypes {
+    path: string,
+    previewLink: string
+}
+
+const ImageBlock: React.FC<PropTypes> = ({path, previewLink}) => {
 
     const [loading, setLoading] = useState(true)
 

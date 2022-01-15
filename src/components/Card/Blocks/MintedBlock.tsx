@@ -1,19 +1,25 @@
 import React from 'react';
 import {GoUnverified, GoVerified} from "react-icons/go";
 
-const MintedBlock = React.memo(({mintedName: marketName, mintedLink}) => {
+
+interface PropsTypes {
+    market?: string,
+    link?: string
+}
+
+const MintedBlock = React.memo<PropsTypes>(({market, link}) => {
     return (
         <>
             <div className="flex gap-1">
-                {marketName !== 'unsupported contract'
+                {market !== 'unsupported contract'
                     ? <GoVerified size={14} color="#18b3cc"/>
                     : <GoUnverified size={14} color=""/>
                 }
                 <a className="text-mjol-purple-dark font-bold text-tiny-4 hover:opacity-80"
-                   href={mintedLink}
+                   href={link}
                    target="_blank"
                 >
-                    {marketName === 'unsupported contract' ? 'Not verified' : `Minted on ${marketName}`}
+                    {market === 'unsupported contract' ? 'Not verified' : `Minted on ${market}`}
                 </a>
             </div>
             <hr className="border-mjol-purple-dark"/>
