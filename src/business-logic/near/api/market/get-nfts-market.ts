@@ -5,9 +5,16 @@ import {buildUID, formatOptionalPrice} from "../utils";
 import {batchRequest} from "../batch-request";
 import {Nft} from "../../../models/nft";
 
+export interface MarketPage {
+    tokens: Nft[],
+    hasMore: boolean,
+    total: number
 
-export async function getMarketNfts(from = 0, limit = 50) {
-    const marketNfts = await marketAPI.fetchTokens(from, limit);
+}
+
+
+export async function getMarketNfts(from = 0, limit = 50): Promise<MarketPage> {
+    const marketNfts = await marketAPI.fetchTokens(from, limit)
     return batchRequest<MarketToken, Nft>(marketNfts.tokens, async token => {
         const {price, token_id, nft_contract_id: contractId} = token
         return viewFunction({
@@ -21,6 +28,10 @@ export async function getMarketNfts(from = 0, limit = 50) {
                 return getConvertedNFT(contractId, response, tokenPrice)
             }
         )
-    }).then(result => result.values)
+    }).then(result => ({
+        tokens: result.values,
+        hasMore: marketNfts.has_next_batch,
+        total: marketNfts.total_count
+    }))
 }
 

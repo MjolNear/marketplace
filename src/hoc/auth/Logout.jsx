@@ -6,7 +6,7 @@ const Logout = ({logout}) => {
     useEffect(() => {
         logout()
         window.location.reload()
-    })
+    }, [])
 
     return <Navigate to="/"/>
 };

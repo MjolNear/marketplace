@@ -6,6 +6,6 @@ export const fetchMarketNfts = (from: number, limit: number) =>
     async (dispatch: AppDispatch) => {
         dispatch(exploreNftsSlice.actions.toggleFetching(true))
         getMarketNfts(from, limit)
-            .then(nfts => dispatch(exploreNftsSlice.actions.setNfts(nfts)))
+            .then(data => dispatch(exploreNftsSlice.actions.setPageData(data)))
             .finally(() => dispatch(exploreNftsSlice.actions.toggleFetching(false)))
     }

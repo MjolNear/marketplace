@@ -1,26 +1,26 @@
 import React from 'react';
 import {useAppDispatch} from "../../../hooks/redux";
 import {ItemMarketStatus} from "../../../state/transaction/state";
-import BuyNftContainer from "../../../components/nft-item/preview/status/actions/buy/BuyNftContainer";
+import BuyNftContainer from "../../../components/Preview/Status/BuyNftContainer";
 import {useNftMarketStatus} from "../../../hooks/useNftMarketStatus";
 import {buyNft, sellNft, unlistNft} from "../../../state/transaction/nft/thunk";
-import SellNftContainer from "../../../components/nft-item/preview/status/actions/sell/SellNftContainer";
-import UnlistNftContainer from "../../../components/nft-item/preview/status/actions/unlist/UnlistNftContainer";
-import NotListedNftContainer
-    from "../../../components/nft-item/preview/status/actions/not-listed/NotListedNftContainer";
+import SellNftContainer from "../../../components/Preview/Status/sell/SellNftContainer";
+import UnlistNftContainer from "../../../components/Preview/Status/unlist/UnlistNftContainer";
+import NotListedNftContainer from "../../../components/Preview/Status/NotListedNftContainer";
 import {Nft} from "../../../business-logic/models/nft";
 import {signIn} from "../../../business-logic/near/enviroment/near";
 import ConnectWalletButton
-    from "../../../components/nft-item/preview/status/actions/connect-wallet/ConnectWalletButton";
+    from "../../../components/Preview/Status/connect-wallet/ConnectWalletButton";
 import NftContractNotSupported
-    from "../../../components/nft-item/preview/status/actions/not-supported/NftContractNotSupported";
+    from "../../../components/Preview/Status/NftContractNotSupported";
 
 interface PropTypes {
     accountId: string,
-    nft: Nft
+    nft: Nft,
+    payouts: Record<string, number>
 }
 
-const NftStatusHoc: React.FC<PropTypes> = ({accountId, nft}) => {
+const NftStatusHoc: React.FC<PropTypes> = ({accountId, nft, payouts}) => {
 
     if (!accountId) {
         return <ConnectWalletButton onClick={signIn}/>
@@ -45,7 +45,7 @@ const NftStatusHoc: React.FC<PropTypes> = ({accountId, nft}) => {
         case ItemMarketStatus.CAN_BUY:
             return <BuyNftContainer price={nft.price} onClick={buy}/>
         case ItemMarketStatus.CAN_SELL:
-            return <SellNftContainer onClick={sell}/>
+            return <SellNftContainer onClick={sell} payouts={payouts} imgSrc={nft.mediaURL}/>
         case ItemMarketStatus.LISTED:
             return <UnlistNftContainer price={nft.price} onClick={unlist}/>
         case ItemMarketStatus.FREE:

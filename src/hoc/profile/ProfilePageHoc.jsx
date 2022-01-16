@@ -4,7 +4,7 @@ import withAccountId from "../withAccountId";
 import {PROFILE_TAB, profileSlice} from "../../state/profile/slice";
 import ProfileHistoryFetch from "./ProfileHistoryFetch";
 import ProfileNftsFetch from "./ProfileNftsFetch";
-import ProfilePage from "../../components/pages/profile/ProfilePage";
+import ProfilePage from "../../components/Pages/profile/ProfilePage";
 
 const ProfileFetch = ({accountId}) => {
     const {activeTab, tabs} = useAppSelector(state => state.profile)

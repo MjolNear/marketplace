@@ -55,7 +55,7 @@ function getNftMintedSiteInfo(nft: any, contractId: string) {
         }
     }
     return {
-        name: 'Non-verified contract',
+        name: 'unsupported contract',
         nftLink: ''
     }
 }

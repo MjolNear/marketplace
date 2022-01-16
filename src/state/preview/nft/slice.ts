@@ -1,16 +1,17 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Nft} from "../../../business-logic/models/nft";
+import {act} from "react-dom/test-utils";
 
 export interface PreviewNftState {
     fetching: boolean,
     success?: boolean,
     nft?: Nft,
-    payouts: Array<any>
+    payouts: Record<string, number>
 }
 
 
 const initialState: PreviewNftState = {
-    payouts: [],
+    payouts: {},
     fetching: true,
 }
 
@@ -27,11 +28,8 @@ export const previewNftSlice = createSlice({
         toggleFetching: (state, action: PayloadAction<boolean>) => {
             state.fetching = action.payload
         },
-        setPayouts: (state, action) => {
-            state.payouts = Object.entries(action.payload).map(kv => {
-                const [name, royalty] = kv
-                return {name, value: `${royalty}%`}
-            })
+        setPayouts: (state, action: PayloadAction<Record<string, number>>) => {
+            state.payouts = action.payload
         },
         reset: () => initialState
     }

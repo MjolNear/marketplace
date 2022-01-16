@@ -6,9 +6,17 @@ module.exports = {
             'tiny-1': '.4rem',
             'tiny-2': '.5rem',
             'tiny-3': '.6rem',
+            'tiny-3.5': '.64rem',
             'tiny-4': '.68rem',
+            'tiny-5': '.71rem',
 
             'xs': ['0.75rem', {
+                'line-height': '1rem'
+            }],
+            'xs-2': ['0.81rem', {
+                'line-height': '1rem'
+            }],
+            'xs-3': ['0.875', {
                 'line-height': '1rem'
             }],
             'sm': ['0.875rem', {
@@ -55,16 +63,18 @@ module.exports = {
             "mjol-base-purple-xl": "0px 9px 11px 8px rgba(0,   19,  224, 0.2)",
             "mjol-blue-button": "0px 0px 4px 2px  rgba(120, 192, 233, 0.3)",
             "mjol-base-blue": "0px 5px 7px 4px  rgba(120, 192, 233, 0.3)",
-            "mjol-base-blue-lg" : "0px 7px 9px 6px  rgba(120, 192, 233, 0.3)",
-            "mjol-base-blue-drop-xl" : "0px 15px 14px 0px rgba(120, 192, 233, 0.3)",
+            "mjol-base-blue-lg": "0px 7px 9px 6px  rgba(120, 192, 233, 0.3)",
+            "mjol-base-blue-drop-xl": "0px 15px 14px 0px rgba(120, 192, 233, 0.3)",
 
-            "mjol-blue-all-md"  : "0px 0px 6px 6px rgba(120, 192, 233, 0.5)",
-            "mjol-blue-all-xs"  : "0px 0px 3px 3px rgba(120, 192, 233, 0.3)",
+            "mjol-blue-all-md": "0px 0px 6px 6px rgba(120, 192, 233, 0.5)",
+            "mjol-blue-all-xs": "0px 0px 3px 3px rgba(120, 192, 233, 0.3)",
 
-            "mjol-dark-blue-xs" : "0px 0px 3px 3px rgba(67, 145, 255, 0.8)",
-            "mjol-dark-blue-md" : "0px 0px 6px 6px rgba(67, 145, 255, 0.8)",
+            "mjol-medium-blue-all-xs": "0px 0px 3px 3px rgba(120, 192, 233, 0.5)",
 
-            "mjol-gray-xs" : "0px 0px 1px 1px rgba(0, 0, 0, 0.1)"
+            "mjol-dark-blue-xs": "0px 0px 3px 3px rgba(67, 145, 255, 0.8)",
+            "mjol-dark-blue-md": "0px 0px 6px 6px rgba(67, 145, 255, 0.8)",
+
+            "mjol-gray-xs": "0px 0px 3px 3px rgba(0, 0, 0, 0.1)"
         },
 
         screens: {
@@ -78,6 +88,9 @@ module.exports = {
         },
 
         extend: {
+            outline: {
+                0: ['0 solid white', '0']
+            },
             zIndex: {
                 '-10': '-10'
             },
@@ -128,6 +141,8 @@ module.exports = {
                         'dark-t': '#25155299'
                     },
                     blue: {
+                        opensea: 'rgb(59, 129, 219)',
+                        'opensea-dark':'rgb(46,104,177)',
                         shadow: 'rgb(224, 240, 250)',
                         button: 'rgb(0, 152, 201)',
                         light: 'rgb(120, 192, 233)',
@@ -196,9 +211,13 @@ module.exports = {
     },
     variants: {
         extend: {
-            visibility: ['hover', 'focus'],
+            backgroundColor: ['active', 'disabled', 'hover'],
+            opacity: ['disabled', 'active'],
+            visibility: ['hover', 'focus', 'active'],
             ringWidth: ['hover', 'active'],
-            ringColor: ['hover', 'active']
+            ringColor: ['hover', 'active'],
+            cursor: ['disabled'],
+            outline: ["focus"]
         },
     },
     plugins: [

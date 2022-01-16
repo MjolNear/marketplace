@@ -1,10 +1,10 @@
 import React from 'react';
 import {Route, Routes} from "react-router";
-import LandingPage from "../components/pages/landing/LandingPage";
-import NotFoundPage from "../components/pages/not-found/NotFoundPage";
-import CreateCollectionPage from "../components/pages/create/collection/CreateCollectionPage";
-import CreateNftPage from "../components/pages/create/nft/CreateNftPage";
-import ExploreCollectionsPage from "../components/pages/explore/collection/ExploreCollectionsPage";
+import LandingPage from "../components/Pages/landing/LandingPage";
+import NotFoundPage from "../components/Pages/not-found/NotFoundPage";
+import CreateCollectionPage from "../components/Pages/create/collection/CreateCollectionPage";
+import CreateNftPage from "../components/Pages/create/nft/CreateNftPage";
+import ExploreCollectionsPage from "../components/Pages/explore/collection/ExploreCollectionsPage";
 import ProfilePageHoc from "../hoc/profile/ProfilePageHoc";
 import PreviewNftHoc from "../hoc/preview/nft/PreviewNftPageHoc";
 import Logout from "../hoc/auth/Logout";
