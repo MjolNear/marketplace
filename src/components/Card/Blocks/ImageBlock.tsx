@@ -21,8 +21,9 @@ const ImageBlock: React.FC<PropTypes> = ({path, scrollPosition}) => {
                            scrollPosition={scrollPosition}
                            afterLoad={() => setLoading(false)}
                            style={{
+                               width: "100%",
+                               height: "100%",
                                objectFit: "contain",
-                               aspectRatio: "1/1",
                            }}
             />
             {loading &&
