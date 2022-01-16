@@ -11,7 +11,11 @@ const SellNftContainer = ({onClick, payouts, imgSrc}) => {
         <div>
             <DarkBlueGradientButton title="Sell NFT" onClick={() => setVisible(!visible)}/>
             {visible &&
-                <InputPriceModal close={() => setVisible(false)} onClick={onClick} payouts={payouts} imgSrc={imgSrc}/>
+                <InputPriceModal close={() => setVisible(false)}
+                                 onClick={onClick}
+                                 payouts={payouts}
+                                 imgSrc={imgSrc}
+                />
             }
         </div>
     );

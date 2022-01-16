@@ -14,7 +14,7 @@ const ExploreNftsPageHoc = () => {
     return (
         <>
             <NftFilters total={total}/>
-            <div className="my-5 ml-10 font-mono text-center text-gray-600">
+            <div className="my-5 font-mono text-center text-gray-600">
                 Total items: {total}
             </div>
             <CardList/>

@@ -81,7 +81,10 @@ const InputPriceModal = ({close, onClick, payouts, imgSrc}) => {
                                         <NearBlackLogo/>
                                     </div>
                                     {!isValid &&
-                                        <div className="pt-1 text-center text-gray-700 text-xs font-semibold">
+                                        <div
+                                            className="hidden md:block pt-1
+                                                       text-center text-gray-700 text-xs font-semibold"
+                                        >
                                             {errors?.price?.message}
                                         </div>
                                     }
