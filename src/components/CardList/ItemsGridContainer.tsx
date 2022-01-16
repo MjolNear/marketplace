@@ -1,5 +1,4 @@
 import React from 'react';
-import {animated} from "react-spring";
 
 const ItemsGridContainer: React.FC = ({children}) => {
     return (

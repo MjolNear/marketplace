@@ -10,12 +10,10 @@ export const fetchNft = (contractId: string, tokenId: string) =>
         Promise.all([
                 getNFTsByContractAndTokenId(contractId, tokenId)
                     .then(nft => dispatch(previewNftSlice.actions.success(nft)))
-                    .catch(() => dispatch(previewNftSlice.actions.failure()))
-                    .finally(() => dispatch(previewNftSlice.actions.toggleFetching(false))),
+                    .catch(() => dispatch(previewNftSlice.actions.failure())),
 
                 getNftPayouts(contractId, tokenId)
                     .then(p => dispatch(previewNftSlice.actions.setPayouts(p)))
             ]
-        ).then()
-        // ).finally(() => dispatch(previewNftSlice.actions.toggleFetching(false)))
+        ).finally(() => dispatch(previewNftSlice.actions.toggleFetching(false)))
     }
