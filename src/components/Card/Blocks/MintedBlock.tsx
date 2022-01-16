@@ -11,7 +11,7 @@ interface PropsTypes {
 const MintedBlock = React.memo<PropsTypes>(({market, link}) => {
     return (
         <>
-            <div className="flex gap-1">
+            <div className="flex gap-1 items-center">
                 {market !== 'unsupported contract'
                     ? <GoVerified size={14} color="#18b3cc"/>
                     : <GoUnverified size={14} color=""/>
