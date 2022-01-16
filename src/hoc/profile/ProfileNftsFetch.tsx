@@ -25,7 +25,7 @@ const ProfileNftsFetch: React.FC<PropTypes> = ({accountId}) => {
     return (
         <>
             {fetching
-                ? <CardListLoader length={12}/>
+                ? <CardListLoader/>
                 : <CardGrid nfts={activeTab === PROFILE_TAB.LISTED_NFTS
                     ? nfts.filter(nft => nft.price !== null)
                     : nfts

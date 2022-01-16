@@ -45,7 +45,7 @@ const NftStatusHoc: React.FC<PropTypes> = ({accountId, nft, payouts}) => {
         case ItemMarketStatus.CAN_BUY:
             return <BuyNftContainer price={nft.price} onClick={buy}/>
         case ItemMarketStatus.CAN_SELL:
-            return <SellNftContainer onClick={sell} payouts={payouts}/>
+            return <SellNftContainer onClick={sell} payouts={payouts} imgSrc={nft.mediaURL}/>
         case ItemMarketStatus.LISTED:
             return <UnlistNftContainer price={nft.price} onClick={unlist}/>
         case ItemMarketStatus.FREE:

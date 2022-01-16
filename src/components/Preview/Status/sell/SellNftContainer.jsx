@@ -3,7 +3,7 @@ import DarkBlueGradientButton from "../../../Common/buttons/DarkBlueGradientButt
 import InputPriceModal from "./InputPriceModal";
 
 
-const SellNftContainer = ({onClick, payouts}) => {
+const SellNftContainer = ({onClick, payouts, imgSrc}) => {
 
     const [visible, setVisible] = useState(false)
 
@@ -11,7 +11,7 @@ const SellNftContainer = ({onClick, payouts}) => {
         <div>
             <DarkBlueGradientButton title="Sell NFT" onClick={() => setVisible(!visible)}/>
             {visible &&
-                <InputPriceModal close={() => setVisible(false)} onClick={onClick} payouts={payouts}/>
+                <InputPriceModal close={() => setVisible(false)} onClick={onClick} payouts={payouts} imgSrc={imgSrc}/>
             }
         </div>
     );

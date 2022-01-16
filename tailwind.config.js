@@ -69,10 +69,12 @@ module.exports = {
             "mjol-blue-all-md": "0px 0px 6px 6px rgba(120, 192, 233, 0.5)",
             "mjol-blue-all-xs": "0px 0px 3px 3px rgba(120, 192, 233, 0.3)",
 
+            "mjol-medium-blue-all-xs": "0px 0px 3px 3px rgba(120, 192, 233, 0.5)",
+
             "mjol-dark-blue-xs": "0px 0px 3px 3px rgba(67, 145, 255, 0.8)",
             "mjol-dark-blue-md": "0px 0px 6px 6px rgba(67, 145, 255, 0.8)",
 
-            "mjol-gray-xs": "0px 0px 1px 1px rgba(0, 0, 0, 0.1)"
+            "mjol-gray-xs": "0px 0px 3px 3px rgba(0, 0, 0, 0.1)"
         },
 
         screens: {
@@ -139,6 +141,8 @@ module.exports = {
                         'dark-t': '#25155299'
                     },
                     blue: {
+                        opensea: 'rgb(59, 129, 219)',
+                        'opensea-dark':'rgb(46,104,177)',
                         shadow: 'rgb(224, 240, 250)',
                         button: 'rgb(0, 152, 201)',
                         light: 'rgb(120, 192, 233)',

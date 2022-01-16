@@ -36,8 +36,8 @@ const CardList: React.FC<PropTypes> = ({scrollPosition}) => {
             next={fetchNextTokens}
             scrollThreshold="100px"
             hasMore={hasMore}
-            className={nfts.length !== 0 ? "space-y-6 lg:space-y-7 2xl:space-y-10" : ""}
-            loader={<CardListLoader length={4}/>}
+            className={"py-2 " + (nfts.length !== 0 ? "space-y-6 lg:space-y-7 2xl:space-y-10" : "")}
+            loader={<CardListLoader/>}
             dataLength={nfts.length}
             endMessage={<DarkBlueMjolText text="No more items on market"/>}
         >

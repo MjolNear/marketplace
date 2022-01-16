@@ -12,13 +12,13 @@ const ExploreNftsPageHoc = () => {
     const {total} = useAppSelector(state => state.explore.nfts)
 
     return (
-        <div>
+        <>
             <NftFilters total={total}/>
             <div className="my-5 ml-10 font-mono text-center text-gray-600">
                 Total items: {total}
             </div>
             <CardList/>
-        </div>
+        </>
     )
 
 };

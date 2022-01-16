@@ -17,9 +17,9 @@ const Card: React.FC<PropTypes> = ({nft, scrollPosition}) => {
 
     const previewLink = `/nft/${nft.contractId}/${nft.tokenId}`
     return (
-        <div className=" flex flex-col justify-between overflow-hidden w-full rounded-xl bg-white
-                        ring-1 ring-blue-200 select-none shadow-mjol-blue-all-xs
-                        transform duration-300 hover:ring-blue-400"
+        <div className="flex flex-col justify-between overflow-hidden w-full rounded-xl
+                        ring-1 ring-blue-300 select-none
+                        transform hover:shadow-mjol-medium-blue-all-xs"
         >
             <Link to={previewLink}>
                 <ImageBlock path={nft.mediaURL} scrollPosition={scrollPosition}/>

@@ -2,18 +2,13 @@ import CardLoader from "./CardLoader";
 import React from "react";
 import ItemsGridContainer from "../CardList/ItemsGridContainer";
 
-
-interface PropTypes {
-    length: number
-}
-
-const CardListLoader = React.memo<PropTypes>(({length = 12}) => {
+const CardListLoader = React.memo(() => {
     return (
         <ItemsGridContainer>
-            {Array(length)
-                .fill(0)
-                .map((_, index) => (<CardLoader key={index}/>))
-            }
+            <CardLoader/>
+            <CardLoader className="hidden sm:block"/>
+            <CardLoader className="hidden lg:block"/>
+            <CardLoader className="hidden xl:block"/>
         </ItemsGridContainer>
     )
 });
