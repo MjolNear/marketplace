@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import InfiniteScroll from "react-infinite-scroll-component";
-import CardListLoader from "../Card/CardListLoader";
+import CardListLoader from "./CardListLoader";
 import CardGrid from "./CardGrid";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {fetchMarketNfts} from "../../state/explore/nfts/thunk";

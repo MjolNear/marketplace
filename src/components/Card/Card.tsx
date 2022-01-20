@@ -14,7 +14,6 @@ interface PropTypes {
 }
 
 const Card: React.FC<PropTypes> = ({nft, scrollPosition}) => {
-
     const previewLink = `/nft/${nft.contractId}/${nft.tokenId}`
     return (
         <div className="flex flex-col justify-between overflow-hidden w-full rounded-xl
@@ -26,8 +25,12 @@ const Card: React.FC<PropTypes> = ({nft, scrollPosition}) => {
             </Link>
             <div className="px-2 xxs:px-5 mt-1">
                 <div className="flex flex-col mb-4">
-                    <TitleBlock title={nft.title} previewLink={previewLink}/>
-                    <CollectionBlock link="MOCK" name="Mock collection"/>
+                    <Link to={previewLink}>
+                        <TitleBlock title={nft.title}/>
+                    </Link>
+                    <Link to="MOCK">
+                        <CollectionBlock name="Mock collection"/>
+                    </Link>
                 </div>
                 <MintedBlock market={nft.mintSite?.name} link={nft.mintSite?.nftLink}/>
                 <PriceBlock price={nft.price}/>

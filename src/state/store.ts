@@ -1,9 +1,9 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {combineReducers} from "redux";
-import {profileReducer} from "./profile/slice";
 import {previewReducer} from "./preview/reducer";
 import {navbarReducer} from "./navbar/slice";
 import {exploreReducer} from "./explore/reducer";
+import {profileReducer} from "./profile/reducer";
 
 
 export const rootReducer = combineReducers({

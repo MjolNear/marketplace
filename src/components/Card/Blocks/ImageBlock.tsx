@@ -1,3 +1,4 @@
+import {motion} from 'framer-motion';
 import React, {useState} from 'react';
 import {LazyLoadImage, ScrollPosition} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';

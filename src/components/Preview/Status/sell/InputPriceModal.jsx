@@ -104,9 +104,14 @@ const InputPriceModal = ({close, onClick, payouts, imgSrc}) => {
                             NEAR Web Wallet to confirm your transaction.
                         </p>
                         <div className="mt-6">
-                            <DarkBlueGradientButton title="Complete listing" disabled={!isValid} style={{
-                                width: "300px"
-                            }}/>
+                            <DarkBlueGradientButton
+                                title="Complete listing"
+                                disabled={!isValid}
+                                onClick={onClick}
+                                style={{
+                                    width: "300px"
+                                }}
+                            />
                         </div>
                     </div>
                 </div>
