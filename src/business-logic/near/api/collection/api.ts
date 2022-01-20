@@ -1,16 +1,12 @@
 import {mjolViewFunction} from "../rpc";
 
 export const collectionAPI = {
-    fetchMarketCollections: (from: number, limit: number) =>
-        mjolViewFunction({
-            methodName: 'get_market_collections',
-            args: {
-                from,
-                limit,
-            }
-        }),
 
-    fetchNftsFrom: (collectionId: number, from: number, limit: number) =>
+
+    // get_nfts_from_collection(&self, collection_id: CollectionId,
+    // limit: u64, from: u64) -> CollectionData
+
+    fetchNfts: (collectionId: number, from: number, limit: number) =>
         mjolViewFunction({
             methodName: 'get_nfts_from_collection',
             args: {

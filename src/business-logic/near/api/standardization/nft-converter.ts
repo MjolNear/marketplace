@@ -1,9 +1,9 @@
 import {NftAPI} from "../../get-utils";
 import {viewFunction} from "../rpc";
 import {Nft} from "../../../models/nft";
-import {TokenPrices} from "../market/api";
 import {buildUID, getPrice} from "../utils";
 import {Marketplace} from "../contracts";
+import {TokenPrices} from "../types/response/market";
 
 const isIPFS = require('is-ipfs')
 
