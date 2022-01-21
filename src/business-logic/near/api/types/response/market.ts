@@ -17,5 +17,5 @@ export interface MarketToken {
     token_id: TokenId
 }
 
-export type MarketData = TokensResponse<MarketToken>
+export type MarketTokens = TokensResponse<MarketToken>
 export type TokenPrices = Record<TokenUID, Optional<StringAmount>>
