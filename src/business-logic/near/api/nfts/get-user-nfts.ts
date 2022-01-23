@@ -13,6 +13,18 @@ export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenI
 
 export async function getNftPayouts(contractId: string, tokenId: string) {
     const TREASURY_PERCENT = 2;
+
+    if (contractId === "mjol.near"){
+        return nftAPI.fetchTokenRoyalties(contractId, tokenId).then(rawRoyalties => {
+            let royalties: Record<string, number> = {'treasury': TREASURY_PERCENT};
+            for (let payoutKey in rawRoyalties) {
+                royalties[payoutKey] = parseInt(rawRoyalties[payoutKey]) / 100
+            }
+            delete royalties['undefined'] //delete bad minted Nfts
+            return royalties
+        })
+    }
+
     return nftAPI.fetchTokenPayouts(contractId, tokenId)
         .then(payouts => {
             let royalties: Record<string, number> = {'treasury': TREASURY_PERCENT};
@@ -27,7 +39,7 @@ export async function getNftPayouts(contractId: string, tokenId: string) {
             if (highestPayout) {
                 delete royalties[highestPayout[0]]
             }
-            delete royalties['undefined']
+            delete royalties['undefined'] //delete bad minted Nfts
 
             return royalties
         })
