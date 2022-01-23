@@ -1,22 +1,7 @@
 import {mjolViewFunction} from "../rpc";
-import {AccountId, ContractId, NumberAmount, Optional, StringAmount, TokenId, TokenUID} from "../../../models/types";
+import {AccountId, ContractId, NumberAmount, Optional, TokenId} from "../../../models/types";
 import {buildUID, formatOptionalPrice, formatPrice} from "../utils";
-
-export interface MarketToken {
-    approval_id: number,
-    nft_contract_id: ContractId,
-    owner_id: AccountId,
-    price: NumberAmount,
-    token_id: TokenId
-}
-
-export interface MarketData {
-    tokens: MarketToken[],
-    has_next_batch: boolean,
-    total_count: number
-}
-
-export type TokenPrices = Record<TokenUID, Optional<StringAmount>>
+import {MarketTokens, MarketToken, TokenPrices} from "../types/response/market";
 
 
 export const marketAPI = {
@@ -27,8 +12,8 @@ export const marketAPI = {
      * @param from  start index for fetching
      * @param limit maximum amount of fetched tokens
      */
-    fetchTokens: (from: number, limit: number): Promise<MarketData> =>
-        mjolViewFunction<MarketData>({
+    fetchTokens: (from: number, limit: number): Promise<MarketTokens> =>
+        mjolViewFunction<MarketTokens>({
                 methodName: 'get_nfts',
                 args: {
                     from,

@@ -1,15 +1,15 @@
 import {getConvertedNFT} from "../standardization";
 import {viewFunction} from "../rpc";
-import {marketAPI, MarketToken} from "./api";
+import {marketAPI} from "./api";
 import {buildUID, formatOptionalPrice} from "../utils";
 import {batchRequest} from "../batch-request";
 import {Nft} from "../../../models/nft";
+import {MarketToken} from "../types/response/market";
 
 export interface MarketPage {
     tokens: Nft[],
     hasMore: boolean,
     total: number
-
 }
 
 
