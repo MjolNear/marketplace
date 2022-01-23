@@ -8,6 +8,15 @@ import {useParams} from "react-router";
 import MjolLoader from "../../../components/Common/loaders/MjolLoader";
 import PreviewNftImage from "../../../components/Preview/PreviewNftImage";
 import NftPreviewInfo from "../../../components/Preview/Blocks/NftPreviewInfo";
+import {useNftMarketStatus} from "../../../hooks/useNftMarketStatus";
+import ConnectWalletButton from "../../../components/Preview/Status/connect-wallet/ConnectWalletButton";
+import {ItemMarketStatus} from "../../../state/transaction/state";
+import BuyNftContainer from "../../../components/Preview/Status/BuyNftContainer";
+import {buyNft, sellNft, unlistNft} from "../../../state/transaction/nft/thunk";
+import SellNftContainer from "../../../components/Preview/Status/sell/SellNftContainer";
+import UnlistNftContainer from "../../../components/Preview/Status/UnlistNftContainer";
+import NftContractNotSupported from "../../../components/Preview/Status/NftContractNotSupported";
+import NotListedNftContainer from "../../../components/Preview/Status/NotListedNftContainer";
 
 interface PropTypes extends SignedInProps {
 }
@@ -40,12 +49,45 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
         return <NotFoundPage/>
     }
 
+    const getStatus = () => {
+        if (!accountId) {
+            return <ConnectWalletButton/>
+        }
+
+        const nftStatus = useNftMarketStatus(accountId, nft)
+        switch (nftStatus) {
+            case ItemMarketStatus.CAN_BUY:
+                return <BuyNftContainer price={nft.price}
+                                        onClick={
+                                            () => dispatch(buyNft(contractId, tokenId, nft.price || ''))
+                                        }
+                />
+            case ItemMarketStatus.CAN_SELL:
+                return <SellNftContainer imgSrc={nft.mediaURL}
+                                         payouts={payouts}
+                                         onClick={
+                                             (price: string) => dispatch(sellNft(contractId, tokenId, price, nft))
+                                         }
+                />
+            case ItemMarketStatus.LISTED:
+                return <UnlistNftContainer price={nft.price}
+                                           onClick={
+                                               () => dispatch(unlistNft(contractId, tokenId))
+                                           }/>
+            case ItemMarketStatus.NOT_SUPPORTED:
+                return <NftContractNotSupported/>
+            case ItemMarketStatus.FREE:
+                return <NotListedNftContainer/>
+        }
+    }
+
+
     return (
         <div className="grid md:grid-cols-2 gap-8 min-h-screen bg-mjol-white p-5 xs:p-10 md:items-start">
             <PreviewNftImage link={nft.mediaURL}/>
             <NftPreviewInfo nft={nft}
                             payouts={payouts}
-                            statusElement={undefined}
+                            statusElement={getStatus()}
             />
         </div>
     )

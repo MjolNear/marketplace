@@ -1,8 +1,9 @@
 import React from 'react';
 import DarkBlueGradientButton from "../../../Common/buttons/DarkBlueGradientButton";
+import {signIn} from "../../../../business-logic/near/enviroment/near";
 
-const ConnectWalletButton = ({onClick}) => {
-    return <DarkBlueGradientButton title="Connect to NEAR" onClick={onClick}/>
+const ConnectWalletButton = () => {
+    return <DarkBlueGradientButton title="Connect to NEAR" onClick={signIn}/>
 };
 
 export default ConnectWalletButton

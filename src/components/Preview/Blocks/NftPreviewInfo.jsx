@@ -8,6 +8,7 @@ import {BiDna} from 'react-icons/bi'
 import PreviewAttributes from "../Attributes/PreviewAttributes";
 import NftPreviewTitle from "./NftPreviewTitle";
 import NftPreviewCollectionLink from "./NftPreviewCollectionLink";
+import {Nft} from "../../../business-logic/models/nft";
 
 
 const NftPreviewInfo = ({nft, payouts, statusElement}) => {

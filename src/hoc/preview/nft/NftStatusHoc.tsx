@@ -5,7 +5,7 @@ import BuyNftContainer from "../../../components/Preview/Status/BuyNftContainer"
 import {useNftMarketStatus} from "../../../hooks/useNftMarketStatus";
 import {buyNft, sellNft, unlistNft} from "../../../state/transaction/nft/thunk";
 import SellNftContainer from "../../../components/Preview/Status/sell/SellNftContainer";
-import UnlistNftContainer from "../../../components/Preview/Status/unlist/UnlistNftContainer";
+import UnlistNftContainer from "../../../components/Preview/Status/UnlistNftContainer";
 import NotListedNftContainer from "../../../components/Preview/Status/NotListedNftContainer";
 import {Nft} from "../../../business-logic/models/nft";
 import {signIn} from "../../../business-logic/near/enviroment/near";
@@ -23,7 +23,7 @@ interface PropTypes {
 const NftStatusHoc: React.FC<PropTypes> = ({accountId, nft, payouts}) => {
 
     if (!accountId) {
-        return <ConnectWalletButton onClick={signIn}/>
+        return <ConnectWalletButton/>
     }
 
     const status = useNftMarketStatus(accountId, nft)
