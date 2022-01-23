@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {mintToCommonCollection} from "../../../../business-logic/near/api/nfts/mint";
 import SingleLineContainer from "./upload/containers/SingleLineContainer";
 import MultiLineContainer from "./upload/containers/MultiLineContainer";
 import OptionInputContainer from "./upload/containers/OptionInputContainer";
-import PropertyInput from "./upload/lines/PropertyInput";
 import UploadFileInput from "./upload/UploadFileInput";
 import {makeNftLink, storeNFT} from "../../../../business-logic/ipfs/upload";
 import DarkBlueTitle from "../../../ui/text/DarkBlueTitle";
 import RoundLoader from "../../../ui/loaders/RoundLoader";
 import BlueShadowContainer from "../../../ui/shadow/BlueShadowContainer";
 import {getAccountId, wallet} from "../../../../business-logic/near/enviroment/near";
+import {getUserContracts} from "../../../../business-logic/near/api/collections/get-user-collections";
+import {getTraitsFromCollectionsLinks} from "../../../../business-logic/near/api/collections/get-collections-traits";
+import OptionInput from "./upload/lines/OptionInput";
 
 
 const LineAlert = ({state, setState}) => {
@@ -35,15 +37,13 @@ const LineAlert = ({state, setState}) => {
 const CreateNftPage = () => {
     const MIN_TITLE_LEN = 3;
     const MAX_TITLE_LEN = 30;
-    const MAX_DESC_LEN = 120;
+    const MAX_DESC_LEN = 250;
     const MIN_ROYALTY = 0;
     const MAX_ROYALTY = 50;
-    const MIN_TRAITS_LEN = 1;
-    const MAX_TRAITS_LEN = 20;
 
-
-    let myCollections = [] //['Collection#1', 'Collection#2', 'Collection#3'];
-    myCollections = ['None'].concat(myCollections);
+    let [myCollections, setMyCollections] = useState([])
+    let [collectionTraits, setCollectionTraits] = useState({})
+    let [nftTraits, setNftTraits] = useState([])
 
     const [curCollection, setCurCollection] = useState('None');
     const [title, setTitle] = useState('');
@@ -53,21 +53,40 @@ const CreateNftPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [alertText, setAlertText] = useState("");
 
-
-    const [propertiesNum, setPropertiesNum] = useState([1]);
-    const [fetchProperties, setFetchProperties] = useState(false);
-    const addProperty = () => {
-        setPropertiesNum(propertiesNum.concat(propertiesNum[propertiesNum.length - 1] + 1));
-        setFetchProperties(!fetchProperties);
-    };
-    const delProperty = () => {
-        if (propertiesNum.length !== 1) {
-            const tmpNum = propertiesNum;
-            tmpNum.pop();
-            setPropertiesNum(tmpNum);
-            setFetchProperties(!fetchProperties);
+    useEffect(() => {
+        if (wallet.isSignedIn()) {
+            getUserContracts(getAccountId()).then(myColls => {
+                console.log(myColls)
+                getTraitsFromCollectionsLinks(myColls).then(traitsDict => {
+                    setCollectionTraits(traitsDict)
+                })
+                setMyCollections([['None', 'None']].concat([].map.call(myColls, (obj) => {
+                    console.log(obj.title, obj.collection_id)
+                    return [obj.title, obj.collection_id];
+                })))
+            });
         }
-    };
+    }, []);
+
+    useEffect(() => {
+        console.log("CUR")
+        console.log(curCollection)
+        setNftTraits([])
+    }, [curCollection])
+
+
+    const preprocessTraits = () => {
+        let traits = {}
+        for (let dictWithOneKey of nftTraits) {
+            let tmpKey = Object.keys(dictWithOneKey)[0];
+            if (dictWithOneKey[tmpKey] === 'None'){
+                delete traits[tmpKey]
+            } else {
+                traits[tmpKey] = dictWithOneKey[tmpKey]
+            }
+        }
+        return traits
+    }
 
     const submitForm = (e) => {
         e.preventDefault();
@@ -92,40 +111,38 @@ const CreateNftPage = () => {
             return
         }
 
-        if (curCollection === 'None') {
-            setIsLoading(true);
-            storeNFT(title,
-                description,
-                file,
-                {}).then(res => {
-                console.log(res);
-                const ipfsMedia = makeNftLink(res.data.image.href);
-                const ipfsRef = makeNftLink(res.url);
-                let token_metadata = {
-                    title: title,
-                    description: description,
-                    media: ipfsMedia,
-                    reference: ipfsRef,
-                    copies: 1
+        setIsLoading(true);
+        storeNFT(title,
+            description,
+            file,
+            preprocessTraits()).then(res => {
+            console.log(res);
+            const ipfsMedia = makeNftLink(res.data.image.href);
+            const ipfsRef = makeNftLink(res.url);
+            let token_metadata = {
+                title: title,
+                description: description,
+                media: ipfsMedia,
+                reference: ipfsRef,
+                copies: 1
+            };
+            let payout = null;
+            if (royalty !== 0) {
+                payout = {
+                    payout: {}
                 };
-                let payout = null;
-                if (royalty !== 0) {
-                    payout = {
-                        payout: {}
-                    };
-                    payout["payout"][getAccountId()] = (100 * royalty).toString();
-                }
-                mintToCommonCollection(token_metadata, payout);
+                payout["payout"][getAccountId()] = (100 * royalty).toString();
+            }
+            let collectionId = curCollection === 'None' ? null : curCollection;
+            mintToCommonCollection(token_metadata, payout, collectionId);
+            setIsLoading(false);
+        }).catch((e) => {
+                setAlertText(`Error: Can't upload file to ipfs, try again or contact to our support`);
                 setIsLoading(false);
-            }).catch((e) => {
-                    setAlertText(`Error: Can't upload file to ipfs, try again or contact to our support`);
-                    setIsLoading(false);
-                    console.log(e);
-                }
-            )
-        } else {
-            setAlertText('Only common collection available now');
-        }
+                console.log(e);
+            }
+        )
+
 
     };
 
@@ -177,46 +194,39 @@ const CreateNftPage = () => {
                                                           curCollection={curCollection}
                                                           setCurCollection={setCurCollection}
                                     />
-                                    {curCollection !== 'None' ? (
-                                        <div className="grid grid-cols-6 gap-6">
-                                            <label className="col-span-6 text-sm font-medium text-gray-700">
-                                                Properties:
-                                                <button
-                                                    type="button"
-                                                    onClick={addProperty}
-                                                    className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                                >
-                                                    +
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    onClick={delProperty}
-                                                    className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                                >
-                                                    -
-                                                </button>
+                                    {curCollection !== 'None' && Object.keys(collectionTraits[curCollection]).length > 0 ? (
+                                        <div>
+                                            <label className="block text-sm font-bold text-gray-700">
+                                                Traits:
                                             </label>
-                                            {propertiesNum.map(ind => (
-                                                <>
-                                                    <PropertyInput name={'Key #' + ind}
-                                                                   type={'text'}
-                                                                   minLength={MIN_TRAITS_LEN}
-                                                                   maxLength={MAX_TRAITS_LEN}
-                                                                   id={'mint-key-' + ind}
-                                                    />
-                                                    <PropertyInput name={'Value #' + ind}
-                                                                   type={'text'}
-                                                                   minLength={MIN_TRAITS_LEN}
-                                                                   maxLength={MAX_TRAITS_LEN}
-                                                                   id={'mint-value-' + ind}
-                                                    />
-                                                </>
-                                            ))}
+                                            <div className="py-2 grid grid-cols-4 gap-4">
+                                                {Object.keys(collectionTraits[curCollection]).map(traitKey => (
+                                                    <div className={"sm:col-span-1 col-span-4"}>
+                                                        <p className={"px-2 text-sm font-bold text-gray-700"}>{traitKey}</p>
+                                                        <OptionInput
+                                                            name={traitKey}
+                                                            values={["None"].concat(collectionTraits[curCollection][traitKey])}
+                                                            id={traitKey}
+                                                            choosenValues={nftTraits}
+                                                            setCurValues={setNftTraits}
+                                                        />
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
+
                                     ) : (
                                         <></>
                                     )}
-                                    <UploadFileInput state={file} setState={setFile}/>
+                                    <UploadFileInput text="Upload artwork file"
+                                                     required={true}
+                                                     type="image"
+                                                     file_text="PNG, JPG, GIF up to 10MB"
+                                                     accept="image/gif, image/jpeg, image/png"
+                                                     state={file}
+                                                     setState={setFile}
+                                                     id="upload-file"
+                                    />
                                     {alertText !== "" ? (
                                         <LineAlert state={alertText} setState={setAlertText}/>
                                     ) : (

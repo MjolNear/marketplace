@@ -14,7 +14,7 @@ const OptionInputContainer = (props) => {
                     onChange={(e) => props.setCurCollection(e.target.value)}
                 >
                     {props.myCollections.map(name => (
-                        <option key={name} value={name}>{name}</option>
+                        <option key={name[1]} value={name[1]}>{name[0]}</option>
                     ))}
                 </select>
                 <p className="mt-2 text-sm text-gray-500">If you want to mint NFT as part of your collection, you can

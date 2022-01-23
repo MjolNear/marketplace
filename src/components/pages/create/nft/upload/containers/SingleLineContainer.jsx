@@ -10,6 +10,7 @@ const SingleLineContainer = (props) => {
                 <label
                     className="block font-bold text-sm text-gray-700">
                     {props.name}{props.required ? <b className="text-sm font-large text-red-500">*</b>:<></>}
+                    {props.extra_name ? <span className={"font-normal text-gray-400"}>{props.extra_name}</span>:<></>}
                 </label>
                 <div className="mt-1 flex rounded-md shadow-sm">
                     {props.type === 'text' ? (

@@ -12,7 +12,7 @@ const MultiLineContainer = (props) => {
                           name={props.id}
                           rows={props.rows}
                           className="shadow-sm focus:ring-indigo-500 focus:border-cyan-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                          placeholder="Brief description for your NFT"
+                          placeholder={props.text}
                           defaultValue={''}
                           maxLength={props.maxLength}
                           onChange={(e) => props.setState(e.target.value)}
