@@ -16,10 +16,16 @@ export function giveApprove(contractId: ContractId, tokenId: TokenId, stringPric
         "owner_id": nft.ownerId,
         "title": nft.title,
         "description": nft.description,
-        "copies": nft.copies,
+        "copies": nft.copies ? (nft.copies).toString() : "1",
         "media_url": nft.mediaURL,
         "reference_url": nft.referenceURL,
-        "mint_site": nft.mintSite,
+        "mint_site": nft.mintSite ? {
+            "name": nft.mintSite.name,
+            "nft_link": nft.mintSite.nftLink
+        } : {
+            "name": "",
+            "nft_link": ""
+        },
         "price":price
     }
 
@@ -31,7 +37,7 @@ export function giveApprove(contractId: ContractId, tokenId: TokenId, stringPric
         args: {
             token_id: tokenId,
             account_id: MJOL_MARKET_CONTRACT_ID,
-            msg: JSON.stringify({price})
+            msg: JSON.stringify({json_nft})
         },
         gas: GAS,
         attachedDeposit: SM_DEPOSIT
