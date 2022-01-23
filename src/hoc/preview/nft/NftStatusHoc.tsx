@@ -34,7 +34,7 @@ const NftStatusHoc: React.FC<PropTypes> = ({accountId, nft, payouts}) => {
     }
 
     const sell = (price: string) => {
-        dispatch(sellNft(nft.contractId, nft.tokenId, price))
+        dispatch(sellNft(nft.contractId, nft.tokenId, price, nft))
     }
 
     const unlist = () => {

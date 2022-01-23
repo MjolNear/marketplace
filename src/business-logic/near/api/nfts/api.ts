@@ -68,6 +68,22 @@ export const nftAPI = {
             }
         }),
 
+    /**
+     * Fetches MjolNear NFT royalties.
+     *
+     * @param contractId NEAR contract where NFT is stored.
+     * @param tokenId NFT token
+     */
+    fetchTokenRoyalties: (contractId: ContractId, tokenId: TokenId) =>
+        viewFunction({
+            contractId,
+            methodName: 'nft_royalties',
+            args: {
+                token_id: tokenId,
+                max_len_payout: 10
+            }
+        }),
+
     fetchMintbaseNft: (url: string) => {
 
     }

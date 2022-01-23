@@ -1,11 +1,12 @@
 import {AppDispatch} from "../../store";
 import {marketNftTransactionSlice} from "./slice";
 import {buyNftWithPayouts, giveApprove, unlistNFT} from "../../../business-logic/near/api/market/transaction";
+import {Nft} from "../../../business-logic/models/nft";
 
-export const sellNft = (contractId: string, tokenId: string, price: string) =>
+export const sellNft = (contractId: string, tokenId: string, price: string, nft: Nft) =>
     async (dispatch: AppDispatch) => {
         dispatch(marketNftTransactionSlice.actions.commit())
-        giveApprove(contractId, tokenId, price)
+        giveApprove(contractId, tokenId, price, nft)
             .then(() => dispatch(marketNftTransactionSlice.actions.success()))
             .catch(() => dispatch(marketNftTransactionSlice.actions.failure()))
     }
