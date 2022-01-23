@@ -4,10 +4,27 @@ import {functionCall, mjolFunctionCall} from "../rpc";
 import BN from "bn.js";
 import {MJOL_MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
 import {ContractId, StringAmount, TokenId} from "../../../models/types";
+import {Nft} from "../../../models/nft";
 
 
-export function giveApprove(contractId: ContractId, tokenId: TokenId, stringPrice: StringAmount) {
+export function giveApprove(contractId: ContractId, tokenId: TokenId, stringPrice: StringAmount, nft: Nft) {
     const price = utils.format.parseNearAmount(stringPrice.toString());
+
+    const json_nft = {
+        "contract_id": nft.contractId,
+        "token_id": nft.tokenId,
+        "owner_id": nft.ownerId,
+        "title": nft.title,
+        "description": nft.description,
+        "copies": nft.copies,
+        "media_url": nft.mediaURL,
+        "reference_url": nft.referenceURL,
+        "mint_site": nft.mintSite,
+        "price":price
+    }
+
+    console.log(JSON.stringify({json_nft}));
+
     return functionCall({
         contractId,
         methodName: 'nft_approve',
