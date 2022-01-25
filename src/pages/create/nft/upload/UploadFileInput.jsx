@@ -1,5 +1,5 @@
 import React from "react";
-import docFileImg from "../../../../../resources/doc-img.png";
+import docFileImg from "../../../../resources/doc-img.png";
 
 const UploadFileInput = (props) => {
     return (

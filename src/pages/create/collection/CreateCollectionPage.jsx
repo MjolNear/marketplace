@@ -1,17 +1,13 @@
 import React, {useState} from 'react';
-import RoundLoader from "../../../ui/loaders/RoundLoader";
-import BlueShadowContainer from "../../../ui/shadow/BlueShadowContainer";
-import DarkBlueTitle from "../../../ui/text/DarkBlueTitle";
+import DarkBlueTitle from "../../../components/Common/text/DarkBlueTitle";
+import MjolLoader from "../../../components/Common/loaders/MjolLoader";
+import BlueShadowContainer from "../../../components/Common/shadow/BlueShadowContainer";
 import SingleLineContainer from "../nft/upload/containers/SingleLineContainer";
 import MultiLineContainer from "../nft/upload/containers/MultiLineContainer";
-import OptionInputContainer from "../nft/upload/containers/OptionInputContainer";
-import PropertyInput from "../nft/upload/lines/PropertyInput";
 import UploadFileInput from "../nft/upload/UploadFileInput";
-import {wallet} from "../../../../business-logic/near/enviroment/near";
-import exampleJsonFIle from "../../../../resources/traits_example.json";
-import {Link} from "react-router-dom";
-import {makeNftLink, storeCollection, storeNFT} from "../../../../business-logic/ipfs/upload";
-import {createCollection} from "../../../../business-logic/near/api/nfts/mint";
+import {wallet} from "../../../business-logic/near/enviroment/near";
+import {makeNftLink, storeCollection, storeNFT} from "../../../business-logic/ipfs/upload";
+import {createCollection} from "../../../business-logic/near/api/nfts/mint";
 
 const LineAlert = ({state, setState}) => {
     return (
@@ -106,7 +102,7 @@ const CreateCollectionPage = () => {
     return (
         <>
             {isLoading ? (
-                <RoundLoader/>
+                <MjolLoader size={50}/>
             ) : (
                 <div className="bg-mjol-white">
                     <div className="bg-white">

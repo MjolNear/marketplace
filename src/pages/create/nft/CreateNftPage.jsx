@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {mintToCommonCollection} from "../../../../business-logic/near/api/nfts/mint";
+import {mintToCommonCollection} from "../../../business-logic/near/api/nfts/mint";
 import SingleLineContainer from "./upload/containers/SingleLineContainer";
 import MultiLineContainer from "./upload/containers/MultiLineContainer";
 import OptionInputContainer from "./upload/containers/OptionInputContainer";
 import UploadFileInput from "./upload/UploadFileInput";
-import {makeNftLink, storeNFT} from "../../../../business-logic/ipfs/upload";
-import DarkBlueTitle from "../../../ui/text/DarkBlueTitle";
-import RoundLoader from "../../../ui/loaders/RoundLoader";
-import BlueShadowContainer from "../../../ui/shadow/BlueShadowContainer";
-import {getAccountId, wallet} from "../../../../business-logic/near/enviroment/near";
-import {getUserContracts} from "../../../../business-logic/near/api/collections/get-user-collections";
-import {getTraitsFromCollectionsLinks} from "../../../../business-logic/near/api/collections/get-collections-traits";
+import {makeNftLink, storeNFT} from "../../../business-logic/ipfs/upload";
+import DarkBlueTitle from "../../../components/Common/text/DarkBlueTitle";
+import MjolLoader from "../../../components/Common/loaders/MjolLoader";
+import BlueShadowContainer from "../../../components/Common/shadow/BlueShadowContainer";
+import {getAccountId, wallet} from "../../../business-logic/near/enviroment/near";
+import {getUserContracts} from "../../../business-logic/near/api/collections/get-user-collections";
+import {getTraitsFromCollectionsLinks} from "../../../business-logic/near/api/collections/get-collections-traits";
 import OptionInput from "./upload/lines/OptionInput";
 
 
@@ -188,7 +188,7 @@ const CreateNftPage = () => {
                                                          id={'mint-royalty'}
                                                          setState={setRoyalty}
                                     />
-                                    <OptionInputContainer name={'NftCollection'}
+                                    <OptionInputContainer name={'Collection of NFT'}
                                                           myCollections={myCollections}
                                                           id={'mint-collection'}
                                                           curCollection={curCollection}
