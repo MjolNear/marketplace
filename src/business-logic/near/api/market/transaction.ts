@@ -1,8 +1,8 @@
 import {utils} from "near-api-js";
 import {GAS, SM_DEPOSIT, YOCTO_NEAR} from "../../constants";
-import {functionCall, mjolFunctionCall} from "../rpc";
+import {functionCall, marketFunctionCall} from "../rpc";
 import BN from "bn.js";
-import {MJOL_MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
+import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
 import {ContractId, StringAmount, TokenId} from "../../../models/types";
 import {Nft} from "../../../models/nft";
 
@@ -36,7 +36,7 @@ export function giveApprove(contractId: ContractId, tokenId: TokenId, stringPric
         methodName: 'nft_approve',
         args: {
             token_id: tokenId,
-            account_id: MJOL_MARKET_CONTRACT_ID,
+            account_id: MARKET_CONTRACT_ID,
             msg: JSON.stringify({json_nft})
         },
         gas: GAS,
@@ -46,7 +46,7 @@ export function giveApprove(contractId: ContractId, tokenId: TokenId, stringPric
 
 export function buyNftWithPayouts(contractId: ContractId, tokenId: TokenId, price: StringAmount) {
     const nearAmount = utils.format.parseNearAmount(price) || "0";
-    return mjolFunctionCall({
+    return marketFunctionCall({
         methodName: 'buy_with_payouts',
         args: {
             nft_contract_id: contractId,
@@ -58,7 +58,7 @@ export function buyNftWithPayouts(contractId: ContractId, tokenId: TokenId, pric
 }
 
 export function unlistNFT(contractId: ContractId, tokenId: TokenId) {
-    return mjolFunctionCall({
+    return marketFunctionCall({
         methodName: 'remove_from_market',
         args: {
             nft_contract_id: contractId,

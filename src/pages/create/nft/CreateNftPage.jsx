@@ -9,9 +9,9 @@ import DarkBlueTitle from "../../../components/Common/text/DarkBlueTitle";
 import MjolLoader from "../../../components/Common/loaders/MjolLoader";
 import BlueShadowContainer from "../../../components/Common/shadow/BlueShadowContainer";
 import {getAccountId, wallet} from "../../../business-logic/near/enviroment/near";
-import {getUserContracts} from "../../../business-logic/near/api/collections/get-user-collections";
 import {getTraitsFromCollectionsLinks} from "../../../business-logic/near/api/collections/get-collections-traits";
 import OptionInput from "./upload/lines/OptionInput";
+import {collectionAPI} from "../../../business-logic/near/api/collections/api";
 
 
 const LineAlert = ({state, setState}) => {
@@ -55,7 +55,7 @@ const CreateNftPage = () => {
 
     useEffect(() => {
         if (wallet.isSignedIn()) {
-            getUserContracts(getAccountId()).then(myColls => {
+            collectionAPI.fetchUserCollections(getAccountId()).then(myColls => {
                 console.log(myColls)
                 getTraitsFromCollectionsLinks(myColls).then(traitsDict => {
                     setCollectionTraits(traitsDict)
