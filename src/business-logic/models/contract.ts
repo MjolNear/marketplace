@@ -1,5 +1,5 @@
 export enum MintedContract {
     Verified = "Verified",
-    Unverfied = "Not verified",
+    Unverified = "Not verified",
     NotSupported = "Not supported"
 }
