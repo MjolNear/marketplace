@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import DarkBlueTitle from "../../../components/Common/text/DarkBlueTitle";
 import MjolLoader from "../../../components/Common/loaders/MjolLoader";
 import BlueShadowContainer from "../../../components/Common/shadow/BlueShadowContainer";
@@ -6,8 +6,11 @@ import SingleLineContainer from "../nft/upload/containers/SingleLineContainer";
 import MultiLineContainer from "../nft/upload/containers/MultiLineContainer";
 import UploadFileInput from "../nft/upload/UploadFileInput";
 import {wallet} from "../../../business-logic/near/enviroment/near";
-import {makeNftLink, storeCollection, storeNFT} from "../../../business-logic/ipfs/upload";
+import {makeNftLink, storeCollection} from "../../../business-logic/ipfs/upload";
 import {createCollection} from "../../../business-logic/near/api/nfts/mint";
+import classNames from "../../../utils/css-utils";
+import PropertyInput from "../nft/upload/lines/PropertyInput";
+import CreateLoader from "../../../components/Common/loaders/CreateLoader";
 
 const LineAlert = ({state, setState}) => {
     return (
@@ -33,6 +36,8 @@ const CreateCollectionPage = () => {
     const MIN_TITLE_LEN = 3;
     const MAX_TITLE_LEN = 30;
     const MAX_DESC_LEN = 250;
+    const MIN_TRAITS_LEN = 1;
+    const MAX_TRAITS_LEN = 20;
 
 
     const [title, setTitle] = useState('');
@@ -42,6 +47,50 @@ const CreateCollectionPage = () => {
     const [fileTraits, setFileTraits] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [alertText, setAlertText] = useState("");
+
+    const [hasTraits, setHasTraits] = useState(false);
+    const [toggleTraits, setToggleTraits] = useState("from UI");
+    const [propertiesNum, setPropertiesNum] = useState([["", [""]]]);
+    const [fetchProperties, setFetchProperties] = useState(false);
+    const changeToggleMode = (newMode) => {
+        setPropertiesNum([["", [""]]]);
+        setToggleTraits(newMode)
+    };
+    const addPropertyBlock = () => {
+        setPropertiesNum(propertiesNum.concat([["", [""]]]));
+        setFetchProperties(!fetchProperties)
+    };
+    const delPropertyBlock = () => {
+        if (propertiesNum.length !== 1) {
+            const tmpNum = propertiesNum;
+            tmpNum.pop();
+            setPropertiesNum(tmpNum);
+            setFetchProperties(!fetchProperties)
+        }
+    };
+    const addProperty = (block) => {
+        const tmpNum = propertiesNum;
+        tmpNum[block][1].push("");
+        setPropertiesNum(tmpNum);
+        setFetchProperties(!fetchProperties)
+    };
+    const delProperty = (block) => {
+        const tmpNum = propertiesNum;
+        if (tmpNum[block][1].length !== 1) {
+            tmpNum[block][1].pop();
+            setPropertiesNum(tmpNum);
+            setFetchProperties(!fetchProperties)
+        }
+    };
+    const setProperty = (blockInd, ind, el) => {
+        const tmpNum = propertiesNum;
+        if (ind === -1) {
+            tmpNum[blockInd][0] = el;
+        } else {
+            tmpNum[blockInd][1][ind] = el;
+        }
+        setPropertiesNum(tmpNum);
+    };
 
     const submitForm = (e) => {
         e.preventDefault();
@@ -64,20 +113,49 @@ const CreateCollectionPage = () => {
         }
 
         console.log("Create Collection")
-        setIsLoading(true);
-        if (fileTraits !== null) {
-            let reader = new FileReader();
-            reader.onload = function (event) {
-                let jsonTraits = JSON.parse(event.target.result);
+        if (hasTraits) {
+            if (toggleTraits === 'from File') {
+                if (fileTraits === null) {
+                    setAlertText(`Please upload your traits json file`);
+                    return;
+                }
+                let reader = new FileReader();
+                reader.onload = function (event) {
+                    let jsonTraits = JSON.parse(event.target.result);
+                    setIsLoading(true);
+                    storeCollection(title, description, fileIcon, fileBanner, jsonTraits).then(res => {
+                        prepareCollection(res)
+                        setIsLoading(false);
+                    })
+                }
+                reader.readAsText(fileTraits);
+            } else if (toggleTraits === 'from UI') {
+                let jsonTraits = {};
+                for (let pairObj of propertiesNum) {
+                    let key = pairObj[0];
+                    let valuesArray = pairObj[1];
+                    if (key === "") {
+                        setAlertText(`Please fill in all the traits fields or disable collection's NFTs traits`);
+                        return
+                    }
+                    for (let value of valuesArray) {
+                        if (value === "") {
+                            setAlertText(`Please fill in all the traits fields or disable collection's NFTs traits`);
+                            return
+                        }
+                    }
+                    jsonTraits[key] = valuesArray;
+                }
+                setIsLoading(true);
                 storeCollection(title, description, fileIcon, fileBanner, jsonTraits).then(res => {
-                    prepareCollection(res)
+                    prepareCollection(res);
                     setIsLoading(false);
                 })
             }
-            reader.readAsText(fileTraits);
         } else {
+            setIsLoading(true);
             storeCollection(title, description, fileIcon, fileBanner, fileTraits).then(res => {
-                prepareCollection(res)
+                prepareCollection(res);
                 setIsLoading(false);
             })
         }
@@ -86,7 +164,6 @@ const CreateCollectionPage = () => {
     const prepareCollection = (res) => {
         console.log(res);
         const ipfsMedia = makeNftLink(res.data.image.href);
-        const ipfsBannerMedia = makeNftLink(res.data.bannerImage.href);
         const ipfsRef = makeNftLink(res.url);
         const collectionMetadata = {
             title: title,
@@ -102,7 +179,7 @@ const CreateCollectionPage = () => {
     return (
         <>
             {isLoading ? (
-                <MjolLoader size={50}/>
+                <CreateLoader/>
             ) : (
                 <div className="bg-mjol-white">
                     <div className="bg-white">
@@ -154,15 +231,109 @@ const CreateCollectionPage = () => {
                                                      setState={setFileBanner}
                                                      id="upload-banner"
                                     />
-                                    <UploadFileInput text="Upload trait's JSON file"
-                                                     required={false}
-                                                     type="file"
-                                                     file_text="JSON up to 10MB"
-                                                     accept="application/JSON"
-                                                     state={fileTraits}
-                                                     setState={setFileTraits}
-                                                     id="upload-traits"
-                                    />
+                                    <div>
+                                        <input id="has-traits" name="has-traits" type="checkbox"
+                                               className="focus:ring-indigo-500 h-4 w-4 text-blue-500 border-gray-300"
+                                               onChange={e => setHasTraits(e.target.checked)}/>
+                                        <label className="mx-1 inline-flex text-sm font-bold text-gray-700">NFTs from
+                                            collection have traits</label>
+                                    </div>
+                                    {hasTraits ? (
+                                        <div>
+                                            <label className="inline-flex text-sm font-bold text-gray-700">Upload
+                                                Traits</label>
+                                            <div className="my-1">
+                                                <a onClick={() => changeToggleMode("from UI")}
+                                                   className={classNames(toggleTraits === "from UI" ? "bg-gray-700 text-white" : "text-gray-700",
+                                                       "cursor-pointer inline-flex items-center justify-center px-4 py-1 border text-base font-medium rounded-l-lg border-gray-700")}>
+                                                    from UI
+                                                </a>
+                                                <a onClick={() => changeToggleMode("from File")}
+                                                   className={classNames(toggleTraits === "from File" ? "bg-gray-700 text-white" : "text-gray-700",
+                                                       "cursor-pointer inline-flex items-center justify-center px-4 py-1 border text-base font-medium rounded-r-lg border-gray-700")}>
+                                                    from File
+                                                </a>
+                                            </div>
+                                            {toggleTraits === "from UI" ? (
+                                                <div>
+                                                    <div className="my-4">
+                                                        <button
+                                                            type="button"
+                                                            id="add"
+                                                            onClick={addPropertyBlock}
+                                                            className="border px-3 py-1 rounded-md hover:bg-gray-100"
+                                                        >
+                                                            +
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            id="del"
+                                                            onClick={delPropertyBlock}
+                                                            className="mx-2 border px-3 py-1 rounded-md hover:bg-gray-100"
+                                                        >
+                                                            -
+                                                        </button>
+                                                    </div>
+                                                    {propertiesNum.map((curProps, blockInd) => (
+                                                        <div className={"border my-4"}>
+                                                            <div className={"mx-2 col-span-6 grid grid-cols-6 gap-6"}>
+                                                                <PropertyInput name={'Key #' + (blockInd + 1)}
+                                                                               type={'text'}
+                                                                               text={'e.g. Eyes'}
+                                                                               minLength={MIN_TRAITS_LEN}
+                                                                               maxLength={MAX_TRAITS_LEN}
+                                                                               ind={-1}
+                                                                               blockInd={blockInd}
+                                                                               setState={setProperty}
+                                                                               id={'mint-key-' + blockInd}
+                                                                />
+                                                                <div className={"col-span-6 sm:col-span-3"}>
+                                                                    {curProps[1].map((el, ind) => (
+                                                                        <PropertyInput name={'Value #' + (ind + 1)}
+                                                                                       type={'text'}
+                                                                                       text={'e.g. Green'}
+                                                                                       minLength={MIN_TRAITS_LEN}
+                                                                                       maxLength={MAX_TRAITS_LEN}
+                                                                                       blockInd={blockInd}
+                                                                                       ind={ind}
+                                                                                       setState={setProperty}
+                                                                                       id={'mint-value-' + blockInd + '-' + ind}
+                                                                        />
+                                                                    ))}
+                                                                    <button
+                                                                        type="button"
+                                                                        onClick={() => addProperty(blockInd)}
+                                                                        className="my-2 border px-3 py-1 rounded-md hover:bg-gray-100"
+                                                                    >
+                                                                        +
+                                                                    </button>
+                                                                    <button
+                                                                        type="button"
+                                                                        onClick={() => delProperty(blockInd)}
+                                                                        className="my-2 mx-2 border px-3 py-1 rounded-md hover:bg-gray-100"
+                                                                    >
+                                                                        -
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            ) : (
+                                                <UploadFileInput text=""
+                                                                 required={false}
+                                                                 type="file"
+                                                                 file_text="JSON up to 10MB"
+                                                                 accept="application/JSON"
+                                                                 state={fileTraits}
+                                                                 setState={setFileTraits}
+                                                                 id="upload-traits"
+                                                />
+                                            )
+                                            }
+                                        </div>) : (
+                                        <></>
+                                    )}
 
                                     {alertText !== "" ? (
                                         <LineAlert state={alertText} setState={setAlertText}/>
