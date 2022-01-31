@@ -194,7 +194,7 @@ const CreateNftPage = () => {
                                                           curCollection={curCollection}
                                                           setCurCollection={setCurCollection}
                                     />
-                                    {curCollection !== 'None' && Object.keys(collectionTraits[curCollection]).length > 0 ? (
+                                    {curCollection !== 'None' && (curCollection in collectionTraits) && Object.keys(collectionTraits[curCollection]).length > 0 ? (
                                         <div>
                                             <label className="block text-sm font-bold text-gray-700">
                                                 Traits:

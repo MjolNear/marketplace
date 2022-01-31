@@ -8,8 +8,10 @@ const PropertyInput = (props) => {
                 type={props.type}
                 name={props.id}
                 id={props.id}
+                placeholder={props.text}
                 maxLength={props.maxLength}
                 className="mt-1 focus:ring-indigo-500 focus:border-cyan-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                onChange={(e) => props.setState(props.blockInd, props.ind, e.target.value)}
             />
         </div>
     )

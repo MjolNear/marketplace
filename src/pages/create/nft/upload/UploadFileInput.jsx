@@ -1,12 +1,21 @@
 import React from "react";
 import docFileImg from "../../../../resources/doc-img.png";
+import exampleJSON from "../../../../resources/traits_example";
 
 const UploadFileInput = (props) => {
+    let jsonText;
+    if (props.type === "file"){
+        jsonText = window.URL.createObjectURL(
+            new Blob([JSON.stringify(exampleJSON, null, '\t')],
+                {type: 'text/json'})
+        );
+    }
     return (
         <div>
             <label className="block text-sm font-bold text-gray-700">
                 {props.text}{props.required ? <b className="text-sm font-large text-red-500">*</b> : <></>}
                 {props.extra_text ? <span className={"font-normal text-gray-400"}>{props.extra_text}</span> : <></>}
+                {props.type === "file" ?  <a className={"hover:underline font-normal text-gray-400"} href={jsonText} download={"example.json"}>Download traits_example.json</a>: <></>}
             </label>
 
             {props.state === null ? (
