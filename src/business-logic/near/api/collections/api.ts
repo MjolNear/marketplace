@@ -9,12 +9,15 @@ export const collectionAPI = {
      *
      * @param accountId User
      */
-    fetchUserCollections: (accountId: AccountId) =>
+    fetchUserCollections: (accountId: AccountId): Promise<Collection[]> =>
         mjolViewFunction<Collection[]>({
             methodName: 'get_collections_by_owner_id',
             args: {
                 owner_id: accountId
             }
+        }).catch(e => {
+            console.log(e)
+            return []
         }),
 
 
@@ -25,7 +28,7 @@ export const collectionAPI = {
      * @param from  start index for fetching
      * @param limit maximum amount of fetched tokens
      */
-    fetchNfts: (collectionId: CollectionId, from: number, limit: number) =>
+    fetchNfts: (collectionId: CollectionId, from: number, limit: number): Promise<CollectionTokens> =>
         mjolViewFunction<CollectionTokens>({
             methodName: 'get_nfts_from_collection',
             args: {
@@ -33,9 +36,16 @@ export const collectionAPI = {
                 from,
                 limit
             }
+        }).catch(e => {
+            console.log(e)
+            return {
+                tokens: [],
+                total_count: 0,
+                has_next_batch: false
+            }
         }),
 
-    fetchCollections: (from: number, limit: number) =>
+    fetchCollections: (from: number, limit: number): Promise<CollectionBatch> =>
         mjolViewFunction<CollectionBatch>({
                 methodName: 'get_collections',
                 args: {
@@ -43,6 +53,13 @@ export const collectionAPI = {
                     limit,
                 }
             }
-        )
+        ).catch(e => {
+            console.log(e)
+            return {
+                collections: [],
+                total_count: 0,
+                has_next_batch: false
+            }
+        })
 
 }

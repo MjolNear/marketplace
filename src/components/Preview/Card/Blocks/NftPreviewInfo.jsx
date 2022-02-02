@@ -1,4 +1,4 @@
-import DropDownMjolBlueButton from "../../../Common/buttons/DropDownMjolBlueButton";
+import DropDownMjolBlueButton from "../../../Common/Buttons/DropDownMjolBlueButton";
 import IconText from "../../../Icons/IconText";
 import {BsList} from 'react-icons/bs';
 import {MdAccountBalanceWallet as MdAcc} from 'react-icons/md'

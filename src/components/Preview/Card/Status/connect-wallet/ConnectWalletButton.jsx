@@ -1,5 +1,5 @@
 import React from 'react';
-import DarkBlueGradientButton from "../../../../Common/buttons/DarkBlueGradientButton";
+import DarkBlueGradientButton from "../../../../Common/Buttons/DarkBlueGradientButton";
 import {signIn} from "../../../../../business-logic/near/enviroment/near";
 
 const ConnectWalletButton = () => {

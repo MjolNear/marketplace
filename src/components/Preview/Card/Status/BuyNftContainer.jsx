@@ -1,5 +1,5 @@
 import React from 'react';
-import DarkBlueGradientButton from "../../../Common/buttons/DarkBlueGradientButton";
+import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
 import withPriceContainer from "./withPriceContainer";
 
 const BuyNftContainer = (props) => {

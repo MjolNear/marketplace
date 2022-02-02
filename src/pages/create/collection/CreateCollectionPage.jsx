@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import DarkBlueTitle from "../../../components/Common/text/DarkBlueTitle";
-import BlueShadowContainer from "../../../components/Common/shadow/BlueShadowContainer";
+import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
+import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import SingleLineContainer from "../nft/upload/containers/SingleLineContainer";
 import MultiLineContainer from "../nft/upload/containers/MultiLineContainer";
 import UploadFileInput from "../nft/upload/UploadFileInput";
@@ -9,7 +9,7 @@ import {makeNftLink, storeCollection} from "../../../business-logic/ipfs/upload"
 import {createCollection} from "../../../business-logic/near/api/nfts/mint";
 import classNames from "../../../utils/css-utils";
 import PropertyInput from "../nft/upload/lines/PropertyInput";
-import CreateLoader from "../../../components/Common/loaders/CreateLoader";
+import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
 
 const LineAlert = ({state, setState}) => {
     return (

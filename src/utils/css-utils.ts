@@ -10,3 +10,6 @@ export const grayGradient = (direction: "left" | "right") => {
 export const gridRepeat = (times: number, size: number) => {
     return new Array(times).fill(`${size}px`).join('_')
 }
+
+export type ObjectFit =
+    "contain" | "cover" | "fill" | "none" | "scale-down" | "-moz-initial" | "inherit" | "initial" | "revert" | "unset"

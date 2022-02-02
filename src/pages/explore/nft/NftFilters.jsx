@@ -1,6 +1,6 @@
 import React from 'react';
-import BlueShadowContainer from "../../../components/Common/shadow/BlueShadowContainer";
-import DarkBlueTitle from "../../../components/Common/text/DarkBlueTitle";
+import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
+import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
 import SearchInput from "../../../components/Filter/search/SearchInput";
 
 const NftFilters = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import DarkBlueMjolText from "../../../Common/text/DarkBlueMjolText";
+import DarkBlueMjolText from "../../../Common/Text/DarkBlueMjolText";
 import NearBlackLogo from "../../../Icons/near/NearBlackLogo";
 
 interface PriceProps {

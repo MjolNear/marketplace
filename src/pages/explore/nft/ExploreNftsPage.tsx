@@ -12,13 +12,12 @@ const ExploreNftsPage = () => {
     return (
         <>
             <NftFilters/>
-            <div className="my-5 font-mono text-center text-gray-600">
+            <div className="mb-5 font-mono text-center text-gray-600">
                 Total items: {totalItems}
             </div>
             <CardList/>
         </>
     )
-
 };
 
 export default ExploreNftsPage;

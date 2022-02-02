@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import DarkBlueGradientButton from "../../../../Common/buttons/DarkBlueGradientButton";
+import DarkBlueGradientButton from "../../../../Common/Buttons/DarkBlueGradientButton";
 import InputPriceModal from "./InputPriceModal";
 
 

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import DarkBlueMjolText from "../../../components/Common/text/DarkBlueMjolText";
+import DarkBlueMjolText from "../../../components/Common/Text/DarkBlueMjolText";
 
 
 interface PropTypes {

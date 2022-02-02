@@ -5,7 +5,7 @@ import withAuthData, {SignedInProps} from "../../../hoc/withAuthData";
 import NotFoundPage from "../../not-found/NotFoundPage";
 import {previewNftSlice} from "../../../state/preview/nft/slice";
 import {useParams} from "react-router";
-import MjolLoader from "../../../components/Common/loaders/MjolLoader";
+import MjolLoader from "../../../components/Common/Loaders/MjolLoader";
 import PreviewNftImage from "../../../components/Preview/Card/PreviewNftImage";
 import NftPreviewInfo from "../../../components/Preview/Card/Blocks/NftPreviewInfo";
 import {getNftMarketStatus} from "../../../hooks/getNftMarketStatus";

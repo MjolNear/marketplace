@@ -25,7 +25,7 @@ const ProfileCollectionsFetch: React.FC<PropTypes> = ({accountId}) => {
 
     return (
         <>
-            {fetching
+            { fetching
                 ? <CollectionListLoader/>
                 : collections.length === 0
                     ? <EmptyCollectionList/>

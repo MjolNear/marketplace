@@ -1,7 +1,7 @@
 import React from 'react';
 import {Collection} from "../../business-logic/models/collection";
 import CollectionCard from "../Collection/CollectionCard";
-import CardsGridContainer from "../CardList/CardsGridContainer";
+import CardsGridContainer from "../Common/Grid/CardsGridContainer";
 
 interface PropTypes {
     collections: Collection[]

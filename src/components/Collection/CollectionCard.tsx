@@ -1,5 +1,6 @@
 import React from 'react';
 import {Collection} from "../../business-logic/models/collection";
+import ImageBlock from "../Card/Blocks/ImageBlock";
 
 interface PropTypes {
     collection: Collection
@@ -17,13 +18,7 @@ const CollectionCard: React.FC<PropTypes> = ({collection}) => {
                       "
            href={previewLink}
         >
-            <img className="rounded-2xl"
-                 src={collection.media}
-                 alt="loading..."
-                 style={{
-                     aspectRatio: "1/1"
-                 }}
-            />
+            <ImageBlock path={collection.media} objectFit="fill" className="bg-white rounded-2xl"/>
             <div className="flex flex-col p-1 justify-between w-full">
                 <div className="font-black font-archivo text-2xl text-center group-hover:text-white">
                     {collection.title}
@@ -37,7 +32,7 @@ const CollectionCard: React.FC<PropTypes> = ({collection}) => {
                             : collection.desc
                         }
                     </div>
-                    <hr className="group-hover:border-пкфн-500"/>
+                    <hr/>
                     <div className="w-full font-bold font-archivo text-right text-tiny-4 pr-2 group-hover:text-white">
                         {collection.owner_id}
                     </div>

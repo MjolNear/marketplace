@@ -1,7 +1,7 @@
 import {ChevronUpIcon} from '@heroicons/react/solid'
 import React, {useState} from "react";
 import classNames from "../../../utils/css-utils";
-import Hr from "../borders/Hr";
+import Hr from "../Borders/Hr";
 
 export default function DropDownMjolBlueButton({buttonContent, children, initialVisible = false}) {
 
@@ -14,7 +14,7 @@ export default function DropDownMjolBlueButton({buttonContent, children, initial
                         classNames(visible
                                 ? "rounded-t-lg"
                                 : "rounded-lg",
-                            "group flex justify-between p-5 w-full text-md font-semibold text-left bg-blue-100"
+                            "group flex justify-between p-5 w-full Text-md font-semibold Text-left bg-blue-100"
                         )
                     }
             >
@@ -24,7 +24,7 @@ export default function DropDownMjolBlueButton({buttonContent, children, initial
                         classNames(visible
                                 ? ""
                                 : "rotate-180",
-                            "transform duration-200 w-6 h-6 text-gray-500 group-hover:text-black"
+                            "transform duration-200 w-6 h-6 Text-gray-500 group-hover:Text-black"
                         )
                     }
                 />

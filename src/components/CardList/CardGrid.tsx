@@ -1,7 +1,7 @@
 import Card from "../Card/Card";
 import React from "react";
 import {Nft} from "../../business-logic/models/nft";
-import CardsGridContainer from "./CardsGridContainer";
+import CardsGridContainer from "../Common/Grid/CardsGridContainer";
 import {ScrollPosition} from "react-lazy-load-image-component";
 import {buildUID} from "../../business-logic/near/api/utils";
 

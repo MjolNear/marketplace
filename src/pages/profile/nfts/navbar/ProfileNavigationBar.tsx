@@ -1,7 +1,7 @@
 import React from 'react';
-import MjolBlueGradientButton from "../../../../components/Common/buttons/MjolBlueGradientButton";
-import DarkBlueTitle from "../../../../components/Common/text/DarkBlueTitle";
-import BlueShadowContainer from "../../../../components/Common/shadow/BlueShadowContainer";
+import MjolBlueGradientButton from "../../../../components/Common/Buttons/MjolBlueGradientButton";
+import DarkBlueTitle from "../../../../components/Common/Text/DarkBlueTitle";
+import BlueShadowContainer from "../../../../components/Common/Shadow/BlueShadowContainer";
 import {ProfileNftsTab} from "../../../../state/profile/nfts/slice";
 
 interface PropTypes {
