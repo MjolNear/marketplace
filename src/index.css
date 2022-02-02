@@ -4,55 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/*@layer base {*/
-/*    @font-face {*/
-/*        font-family: Archivo;*/
-/*        font-weight: 100;*/
-/*        src: url(./resources/fonts/Archivo/Thin.ttf) format("ttf");*/
-/*    }*/
-/*    @font-face {*/
-/*        font-family: Archivo;*/
-/*        font-weight: 200;*/
-/*        src: url(./resources/fonts/Archivo/ExtraLight.ttf) format("ttf");*/
-/*    }*/
-/*    @font-face {*/
-/*        font-family: Archivo;*/
-/*        font-weight: 300;*/
-/*        src: url(./resources/fonts/Archivo/Light.ttf) format("ttf");*/
-/*    }*/
-/*    @font-face {*/
-/*        font-family: Archivo;*/
-/*        font-weight: 400;*/
-/*        src: url(./resources/fonts/Archivo/Regular.ttf) format("ttf");*/
-/*    }*/
-/*    @font-face {*/
-/*        font-family: Archivo;*/
-/*        font-weight: 500;*/
-/*        src: url(./resources/fonts/Archivo/Medium.ttf) format("ttf");*/
-/*    }*/
-/*    @font-face {*/
-/*        font-family: Archivo;*/
-/*        font-weight: 600;*/
-/*        src: url(./resources/fonts/Archivo/SemiBold.ttf) format("ttf");*/
-/*    }*/
-/*    @font-face {*/
-/*        font-family: Archivo;*/
-/*        font-weight: 700;*/
-/*        src: url(./resources/fonts/Archivo/Bold.ttf) format("ttf");*/
-/*    }*/
-/*    @font-face {*/
-/*        font-family: Archivo;*/
-/*        font-weight: 800;*/
-/*        src: url(./resources/fonts/Archivo/ExtraBold.ttf) format("ttf");*/
-/*    }*/
-/*    @font-face {*/
-/*        font-family: Archivo;*/
-/*        font-weight: 900;*/
-/*        src: url(./resources/fonts/Archivo/Black.ttf) format("ttf");*/
-/*    }*/
-/*}*/
-
-
 /* For hiding stepper in input forms. */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
