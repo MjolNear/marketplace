@@ -17,7 +17,7 @@ const Card: React.FC<PropTypes> = ({nft, scrollPosition}) => {
     const previewLink = `/nft/${nft.contractId}/${nft.tokenId}`
     return (
         <div className="flex flex-col justify-between overflow-hidden w-full rounded-xl
-                        ring-1 ring-blue-300 select-none
+                        ring-1 ring-blue-300 select-none group
                         transform hover:shadow-mjol-medium-blue-all-xs"
         >
             <Link to={previewLink}>

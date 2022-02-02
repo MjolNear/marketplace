@@ -1,6 +1,7 @@
 import React from 'react';
 import {Collection} from "../../business-logic/models/collection";
 import CollectionCard from "../Collection/CollectionCard";
+import CardsGridContainer from "../CardList/CardsGridContainer";
 
 interface PropTypes {
     collections: Collection[]
@@ -8,13 +9,7 @@ interface PropTypes {
 
 const CollectionList: React.FC<PropTypes> = ({collections}) => {
     return (
-        <div className="grid justify-center gap-6
-                        grid-cols-1
-                        xxs:grid-cols-[330px]
-                        md:grid-cols-[330px_330px]
-                        xl:grid-cols-[330px_330px_330px]
-                        "
-        >
+        <CardsGridContainer>
             {collections.map(
                 collection => (
                     <CollectionCard collection={collection}
@@ -22,7 +17,7 @@ const CollectionList: React.FC<PropTypes> = ({collections}) => {
                     />
                 ))
             }
-        </div>
+        </CardsGridContainer>
     )
 }
 

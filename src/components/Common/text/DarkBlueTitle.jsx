@@ -4,9 +4,9 @@ const DarkBlueTitle = ({title, classes = undefined}) => {
     return (
         <div
             className={
-                "font-extrabold text-transparent bg-clip-text " +
+                "font-extrabold font-archivo text-transparent bg-clip-text " +
                 "bg-gradient-to-br from-teal-900 to-mjol-blue-base " +
-                (classes ? classes : "text-center text-5xl md:text-6xl lg:text-7xl")
+                (classes ? classes : "text-center text-3xl md:text-5xl lg:text-6xl")
             }
         >
             {title}

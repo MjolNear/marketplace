@@ -10,7 +10,7 @@ const PriceBlock = React.memo<PropTypes>(({price}) => {
     return (
         <div className="mt-2 mb-1 grid place-items-end">
             <div className="flex items-center gap-2">
-                <p className="text-mjol-cyan-base font-black text-lg">
+                <p className="text-mjol-cyan-base font-black font-archivo text-lg">
                     {isListed ? price : "Not listed"}
                 </p>
                 {isListed && <NearBlackLogo/>}

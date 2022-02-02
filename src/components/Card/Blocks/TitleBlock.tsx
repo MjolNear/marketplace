@@ -6,7 +6,7 @@ interface PropTypes {
 
 const TitleBlock = React.memo<PropTypes>(({title}) => {
     return (
-        <div className="font-bold text-mjol-purple-dark truncate text-md">
+        <div className="font-bold font-archivo text-black truncate text-md">
             {title}
         </div>
     );

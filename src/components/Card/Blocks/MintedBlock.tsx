@@ -14,7 +14,7 @@ const MintedBlock = React.memo<PropsTypes>(({market, link}) => {
                     ? <GoVerified size={14} color="#18b3cc"/>
                     : <GoUnverified size={14} color=""/>
                 }
-                <a className="text-mjol-purple-dark opacity-80 font-bold text-tiny-4 hover:opacity-90"
+                <a className="text-black opacity-80 font-archivo font-bold text-tiny-4 hover:opacity-90"
                    href={link}
                    target="_blank"
                    rel="noreferrer"
