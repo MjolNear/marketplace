@@ -1,6 +1,7 @@
-import {AccountId, CollectionId, ContractId} from "../../../models/types";
-import {marketViewFunction, mjolViewFunction, viewFunction} from "../rpc";
-import {CollectionTokens} from "../types/response/collection";
+import {AccountId, CollectionId} from "../../../models/types";
+import {mjolViewFunction} from "../rpc";
+import {CollectionBatch, CollectionTokens} from "../types/response/collection";
+import {Collection} from "../../../models/collection";
 
 export const collectionAPI = {
     /**
@@ -8,8 +9,8 @@ export const collectionAPI = {
      *
      * @param accountId User
      */
-    fetchUserCollections: ( accountId: AccountId) =>
-        mjolViewFunction({
+    fetchUserCollections: (accountId: AccountId) =>
+        mjolViewFunction<Collection[]>({
             methodName: 'get_collections_by_owner_id',
             args: {
                 owner_id: accountId
@@ -18,7 +19,7 @@ export const collectionAPI = {
 
 
     /**
-     * Fetches NFTs from collection.<br>
+     * Fetches NFTs from collection.
      *
      * @param collectionId valid collection id
      * @param from  start index for fetching
@@ -33,5 +34,15 @@ export const collectionAPI = {
                 limit
             }
         }),
+
+    fetchCollections: (from: number, limit: number) =>
+        mjolViewFunction<CollectionBatch>({
+                methodName: 'get_collections',
+                args: {
+                    from,
+                    limit,
+                }
+            }
+        )
 
 }

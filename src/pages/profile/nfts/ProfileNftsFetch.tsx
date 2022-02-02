@@ -19,7 +19,7 @@ const ProfileNftsFetch: React.FC<PropTypes> = ({accountId}) => {
         return () => {
             dispatch(profileNftsSlice.actions.resetNfts())
         }
-    }, [accountId])
+    }, [accountId, dispatch])
 
     return (
         <>

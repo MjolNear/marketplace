@@ -1,6 +1,5 @@
 import React from 'react';
 import NearBlackLogo from "../../Icons/near/NearBlackLogo";
-import DarkBlueMjolText from "../../Common/text/DarkBlueMjolText";
 
 interface PropTypes {
     price: string | null

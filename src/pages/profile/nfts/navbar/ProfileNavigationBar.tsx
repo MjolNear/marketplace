@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import MjolBlueGradientButton from "../../../../components/Common/buttons/MjolBlueGradientButton";
 import DarkBlueTitle from "../../../../components/Common/text/DarkBlueTitle";
 import BlueShadowContainer from "../../../../components/Common/shadow/BlueShadowContainer";

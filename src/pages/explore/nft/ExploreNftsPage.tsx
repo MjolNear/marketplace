@@ -3,7 +3,7 @@ import {useAppSelector} from "../../../hooks/redux";
 
 
 import NftFilters from "./NftFilters";
-import CardList from "../../../components/CardList/CardList";
+import CardList from "../../../components/CardList/ExploreCardList";
 
 const ExploreNftsPage = () => {
 

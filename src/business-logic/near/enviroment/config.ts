@@ -20,6 +20,7 @@ export const getConfig = (env: NetworkEnv): Config => {
                 walletUrl: 'https://wallet.near.org',
                 helperUrl: 'https://helper.mainnet.near.org',
                 explorerUrl: 'https://explorer.mainnet.near.org',
+                headers: {}
             };
         case NetworkEnv.DEVELOPMENT:
         case NetworkEnv.TESTNET:
@@ -30,6 +31,7 @@ export const getConfig = (env: NetworkEnv): Config => {
                 walletUrl: 'https://wallet.testnet.near.org',
                 helperUrl: 'https://helper.testnet.near.org',
                 explorerUrl: 'https://explorer.testnet.near.org',
+                headers: {}
             };
         case NetworkEnv.BETANET:
             return {
@@ -39,6 +41,7 @@ export const getConfig = (env: NetworkEnv): Config => {
                 walletUrl: 'https://wallet.betanet.near.org',
                 helperUrl: 'https://helper.betanet.near.org',
                 explorerUrl: 'https://explorer.betanet.near.org',
+                headers: {}
             };
         case NetworkEnv.LOCAL:
             return {
@@ -47,6 +50,7 @@ export const getConfig = (env: NetworkEnv): Config => {
                 keyPath: `${process.env.HOME}/.near/validator_key.json`,
                 walletUrl: 'http://localhost:4000/wallet',
                 contractName: MARKET_CONTRACT_ID,
+                headers: {}
             };
         case NetworkEnv.TEST:
         case NetworkEnv.CI:
@@ -55,6 +59,7 @@ export const getConfig = (env: NetworkEnv): Config => {
                 nodeUrl: 'https://rpc.ci-testnet.near.org',
                 contractName: MARKET_CONTRACT_ID,
                 masterAccount: 'test.near',
+                headers: {}
             };
         case NetworkEnv.CI_BETANET:
             return {
@@ -62,6 +67,7 @@ export const getConfig = (env: NetworkEnv): Config => {
                 nodeUrl: 'https://rpc.ci-betanet.near.org',
                 contractName: MARKET_CONTRACT_ID,
                 masterAccount: 'test.near',
+                headers: {}
             };
         default:
             throw Error(`Unconfigured environment '${env}'. Can be configured in src/config.js.`)

@@ -1,8 +1,8 @@
-import BN from "bn.js";
 import {wallet} from "../enviroment/near";
 import {MARKET_CONTRACT_ID, MJOL_CONTRACT_ID} from "../enviroment/contract-names";
 import {GAS, SM_DEPOSIT} from "../constants";
 import {ContractId} from "../../models/types";
+import BN from "bn.js";
 
 export interface ViewFunctionOptions {
     contractId: ContractId,

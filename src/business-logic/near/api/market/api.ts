@@ -20,11 +20,14 @@ export const marketAPI = {
                     limit
                 }
             }
-        ).catch(() => ({
-            tokens: [],
-            has_next_batch: false,
-            total_count: 0
-        })),
+        ).catch((e) => {
+            console.log(e)
+            return {
+                tokens: [],
+                has_next_batch: false,
+                total_count: 0
+            }
+        }),
 
     /**
      * Fetches market NFTs prices for given user
@@ -47,7 +50,10 @@ export const marketAPI = {
                 )
                 return prices
             }
-        ).catch(() => prices)
+        ).catch((e) => {
+            console.log(e)
+            return prices
+        })
     },
 
     /**

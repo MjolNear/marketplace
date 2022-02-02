@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Navigate, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import {signOut} from "../../business-logic/near/enviroment/near";
 import MjolLoader from "../../components/Common/loaders/MjolLoader";
 
@@ -8,7 +8,7 @@ const Logout = () => {
     useEffect(() => {
         signOut()
         navigate("/")
-    }, [])
+    })
 
     return <MjolLoader/>
 };
