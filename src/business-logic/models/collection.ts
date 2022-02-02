@@ -19,6 +19,10 @@ export interface IPFSMetadata {
     "image": string
 }
 
+export interface CollectionInfo extends Collection {
+    metadata: IPFSMetadata
+}
+
 export interface ExternalLinks {
     website?: string,
     twitter?: string,

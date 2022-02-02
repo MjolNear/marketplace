@@ -1,7 +1,8 @@
-import {AccountId, CollectionId} from "../../../models/types";
+import {AccountId, CollectionId, Optional} from "../../../models/types";
 import {mjolViewFunction} from "../rpc";
 import {CollectionBatch, CollectionTokens} from "../types/response/collection";
-import {Collection} from "../../../models/collection";
+import {Collection, CollectionInfo, IPFSMetadata} from "../../../models/collection";
+import {fetchWithTimeout} from "../core";
 
 export const collectionAPI = {
     /**
@@ -43,6 +44,51 @@ export const collectionAPI = {
                 total_count: 0,
                 has_next_batch: false
             }
+        }),
+
+    fetchCollection: (collectionId: CollectionId): Promise<Optional<Collection>> =>
+        mjolViewFunction<Optional<Collection>>({
+            methodName: 'get_collection_info',
+            args: {
+                collection_id: collectionId
+            }
+        }).catch(e => {
+            console.log(e)
+            return null
+        }),
+
+    fetchCollectionMetadata: (ipfsLink: string): Promise<IPFSMetadata> =>
+        fetchWithTimeout(
+            ipfsLink,
+            {timeout: 8000}
+        ).then(response => response.json()
+        ).catch(() => []),
+
+
+    fetchCollectionInfo: (collectionId: CollectionId): Promise<Optional<CollectionInfo>> =>
+        collectionAPI.fetchCollection(collectionId)
+            .then(collection => {
+                    if (collection === null || collection.reference === null) {
+                        return null
+                    }
+                    return collectionAPI.fetchCollectionMetadata(collection.reference)
+                        .then(metadata => ({
+                            owner_id: collection.owner_id,
+                            collection_id: collection.collection_id,
+                            title: collection.title,
+                            desc: collection.desc,
+                            media: collection.media,
+                            reference: collection.reference,
+                            metadata: metadata
+                        }))
+                        .catch((e) => {
+                            console.log(e)
+                            return null
+                        })
+                }
+            ).catch(e => {
+            console.log(e)
+            return null
         }),
 
     fetchCollections: (from: number, limit: number): Promise<CollectionBatch> =>

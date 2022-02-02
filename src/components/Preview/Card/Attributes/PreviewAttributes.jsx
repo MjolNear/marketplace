@@ -5,7 +5,7 @@ const PreviewAttributes = ({attributes}) => {
     return (
         <div>
             {attributes.length === 0
-                ? <div>Not found</div>
+                ? <div className="font-archivo">Not found</div>
                 : attributes.map(attribute =>
                     <PreviewAttribute key={attribute.name}
                                       name={attribute.name}

@@ -10,24 +10,33 @@ import Logout from "./hoc/auth/Logout";
 import ExploreNftsPage from "./pages/explore/nft/ExploreNftsPage";
 import ProfileCollectionsPage from "./pages/profile/collections/ProfileCollectionsPage";
 import ProfileNftsPage from "./pages/profile/nfts/ProfileNftsPage";
+import PreviewCollectionPage from "./pages/preview/collection/PreviewCollectionPage";
 
 const AppRouter = () => {
     return (
         <Routes>
+
+            {/* Landing & auth block*/}
             <Route path="/" element={<LandingPage/>}/>
             <Route path="logout" element={<Logout/>}/>
+
+            {/* Nfts block */}
             <Route path="nfts" element={<ExploreNftsPage/>}/>
-            <Route path="nft/:contractId/:tokenId" element={<PreviewNftPage/>}/>
+            <Route path="nfts/:contractId/:tokenId" element={<PreviewNftPage/>}/>
+
+            {/* Collections block */}
+            <Route path="collections/:collectionId" element={<PreviewCollectionPage/>}/>
             <Route path="collections" element={<ExploreCollectionsPage/>}/>
 
+            {/* Creation block */}
             <Route path="create-nft" element={<CreateNftPage/>}/>
             <Route path="create-collection" element={<CreateCollectionPage/>}/>
 
-            {/*<Route path="profile/">*/}
+            {/* Profile block */}
             <Route path="profile/nfts" element={<ProfileNftsPage/>}/>
             <Route path="profile/collections" element={<ProfileCollectionsPage/>}/>
-            {/*</Route>*/}
 
+            {/* Not found block */}
             <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
     );

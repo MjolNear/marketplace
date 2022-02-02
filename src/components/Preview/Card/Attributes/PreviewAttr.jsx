@@ -6,8 +6,8 @@ const PreviewAttribute = React.memo(({name, value}) => {
     let shrinkValue = shortenString(value)
     return (
         <div className="flex flex-row justify-between">
-            <div className="font-semibold">{name}</div>
-            <p className="cursor-pointer"
+            <div className="font-semibold font-archivo">{name}</div>
+            <p className="cursor-pointer font-archivo"
                data-tip={value}
                onClick={() => navigator.clipboard.writeText(value)}
             >

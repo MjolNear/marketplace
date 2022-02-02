@@ -7,7 +7,7 @@ interface PropTypes {
 const NftPreviewDescription = React.memo<PropTypes>(({text}) => {
     return (
         <div className="px-4 py-2 rounded-lg w-full
-                        text-gray-900 font-light
+                        text-gray-900 font-light font-archivo
                         text-md md:text-lg
                         bg-blue-100"
         >

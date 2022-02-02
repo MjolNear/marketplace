@@ -11,7 +11,7 @@ interface PropTypes {
     scrollPosition?: ScrollPosition,
 }
 
-const ImageBlock: React.FC<PropTypes> = ({
+const SquareImageBlock: React.FC<PropTypes> = ({
     path,
     objectFit = 'contain',
     scrollPosition = undefined,
@@ -44,4 +44,4 @@ const ImageBlock: React.FC<PropTypes> = ({
     );
 };
 
-export default ImageBlock;
+export default SquareImageBlock;

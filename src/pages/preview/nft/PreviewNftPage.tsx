@@ -21,13 +21,13 @@ import NotListedNftContainer from "../../../components/Preview/Card/Status/NotLi
 interface PropTypes extends SignedInProps {
 }
 
-type ParamTypes = {
+type NftRouteParams = {
     contractId: string,
     tokenId: string,
 }
 
 const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
-    const {contractId, tokenId} = useParams<ParamTypes>()
+    const {contractId, tokenId} = useParams<NftRouteParams>()
     const {nft, fetching, payouts} = useAppSelector(state => state.preview.nft)
     const dispatch = useAppDispatch()
 

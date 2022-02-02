@@ -6,7 +6,7 @@ interface PropTypes {
 
 const NftPreviewTitle = React.memo<PropTypes>(({title}) => {
     return (
-        <div className="font-extrabold text-mjol-purple-dark text-lg md:text-xl">
+        <div className="font-extrabold font-archivo text-black text-lg md:text-xl">
             {title}
         </div>
     );
