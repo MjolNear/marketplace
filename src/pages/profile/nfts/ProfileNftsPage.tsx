@@ -29,7 +29,7 @@ const ProfileFetch: React.FC<PropTypes> = ({accountId}) => {
     }, [activeTab, accountId])
 
     return (
-        <div className="space-y-8 pb-4 min-h-screen">
+        <div className="space-y-8 pb-4 min-h-screen max-w-screen-2xl mx-auto">
             <ProfileNavigationBar changeTab={changeTab}
                                   activeTab={activeTab}
                                   tabs={tabs}/>

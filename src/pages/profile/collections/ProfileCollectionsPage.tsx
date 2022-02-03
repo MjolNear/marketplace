@@ -5,7 +5,7 @@ import ProfileCollectionsFetch from "./ProfileCollectionsFetch";
 
 const ProfileCollectionsPage = () => {
     return (
-        <>
+        <div className="max-w-screen-2xl mx-auto">
             <div className="bg-white">
                 <BlueShadowContainer>
                     <div className="pb-10 px-4 space-y-8">
@@ -14,7 +14,7 @@ const ProfileCollectionsPage = () => {
                 </BlueShadowContainer>
             </div>
             <ProfileCollectionsFetch/>
-        </>
+        </div>
     );
 };
 

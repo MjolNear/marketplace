@@ -56,11 +56,11 @@ const EmptyCardList: React.FC<PropTypes> = React.memo(({width = 160, height = 22
             </div>
 
             {/* Footer */}
-            <div className="text-sm font-archivo items-center text-center space-y-2">
-                <div className="text-black text-2xl font-archivo font-extrabold">
+            <div className="text-sm font-archivo items-center text-center space-y-2 px-1">
+                <div className="text-black text-xl font-archivo font-extrabold">
                     No items found.
                 </div>
-                <div className="text-lg inline-flex gap-1">
+                <div className="text-md flex flex-row flex-wrap gap-1 justify-center">
                     <div className="text-gray-700">
                         Browse something for you on our
                     </div>

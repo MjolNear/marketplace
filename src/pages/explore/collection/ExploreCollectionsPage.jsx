@@ -10,7 +10,7 @@ const ExploreCollectionsPage = () => {
     const totalCollections = useAppSelector(state => state.explore.collections.total)
 
     return (
-        <>
+        <div className="max-w-screen-2xl mx-auto">
             <BlueShadowContainer>
                 <div className="pb-10 px-4 space-y-8">
                     <DarkBlueTitle title="Explore Collections"/>
@@ -23,7 +23,7 @@ const ExploreCollectionsPage = () => {
                 Total collections: {totalCollections}
             </div>
             <ExploreCollectionList/>
-        </>
+        </div>
     )
 };
 

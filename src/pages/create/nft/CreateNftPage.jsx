@@ -11,7 +11,7 @@ import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowCon
 import {getAccountId, wallet} from "../../../business-logic/near/enviroment/near";
 import {getTraitsFromCollectionsLinks} from "../../../business-logic/near/api/collections/get-collections-traits";
 import OptionInput from "./upload/lines/OptionInput";
-import {collectionAPI} from "../../../business-logic/near/api/collections/api";
+import {collectionAPI} from "../../../business-logic/near/api/collections";
 
 
 const LineAlert = ({state, setState}) => {

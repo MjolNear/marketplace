@@ -51,7 +51,7 @@ const PreviewCollectionPage: React.FC = () => {
     const hasBanner = !!collection.metadata?.bannerImage
 
     return (
-        <>
+        <div className="max-w-screen-2xl mx-auto">
             <BlueShadowContainer>
                 <div className="flex flex-col items-center">
                     <CollectionBanner bannerLink={collection.metadata?.bannerImage}/>
@@ -81,7 +81,7 @@ const PreviewCollectionPage: React.FC = () => {
                     :
                     <CollectionNftList/>
             }
-        </>
+        </div>
     );
 };
 
