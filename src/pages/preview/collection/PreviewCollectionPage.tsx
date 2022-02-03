@@ -61,10 +61,10 @@ const PreviewCollectionPage: React.FC = () => {
                     <CollectionTitleDescription title={collection.title}
                                                 description={collection.desc}
                     />
-                    <div className="flex flex-col items-center gap-6 mt-[30px] justify-start">
+                    <div className="flex flex-col items-center gap-6 mt-[20px] justify-start">
                         <Stats floar={0.4} items={total} owners={23} volume={234.54}/>
                         <CollectionMedia/>
-                        <div className="mt-[40px]">
+                        <div className="mt-[30px]">
                             <ItemsActivity activeTab={filterTab}/>
                         </div>
                     </div>
