@@ -4,6 +4,9 @@ import {Nft} from "../../../models/nft";
 import {buildUID, getPrice} from "../utils";
 import {Marketplace} from "../contracts";
 import {TokenPrices} from "../types/response/market";
+import {CoreToken, Token} from "../types/token";
+import {marketAPI} from "../market";
+import {ContractId} from "../../../models/types";
 
 const isIPFS = require('is-ipfs')
 
@@ -51,7 +54,7 @@ function getNftMintedSiteInfo(nft: any, contractId: string) {
     if (contractId.endsWith('mjol.near')) {
         return {
             name: 'MjolNear',
-            nftLink: `https://mjolnear.com/nft/${contractId}/${nft.token_id}`
+            nftLink: `https://mjolnear.com/nfts/${contractId}/${nft.token_id}`
         }
     }
     return {
@@ -98,6 +101,14 @@ function convertStandardNFT(contractId: string, nft: any, tokenPrices: TokenPric
         mintSite: getNftMintedSiteInfo(nft, contractId),
         price: getPrice(uid, tokenPrices)
     })
+}
+
+
+export async function mapTokenToNFT(contractId: ContractId, token: Token) {
+    const price = await marketAPI.fetchTokenPrice(contractId, token.token_id)
+    const uid = buildUID(contractId, token.token_id)
+    const wrappedPrice = {[uid]: price}
+    return getConvertedNFT(contractId, token, wrappedPrice)
 }
 
 // nfts example

@@ -1,6 +1,6 @@
 import React from "react";
 import docFileImg from "../../../../resources/doc-img.png";
-import exampleJSON from "../../../../resources/traits_example";
+import exampleJSON from "../../../../resources/traits_example.json";
 
 const UploadFileInput = (props) => {
     let jsonText;
@@ -65,7 +65,7 @@ const UploadFileInput = (props) => {
                         { props.type === "file" ? (
                             <img width="100px" src={docFileImg} alt="file"/>
                         ):(
-                            <img width="100px" src={URL.createObjectURL(props.state)} alt="nft image"/>
+                            <img width="100px" src={URL.createObjectURL(props.state)} alt="loading..."/>
                         )
                         }
                         <button

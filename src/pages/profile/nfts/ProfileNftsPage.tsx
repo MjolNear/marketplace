@@ -26,7 +26,7 @@ const ProfileFetch: React.FC<PropTypes> = ({accountId}) => {
             case ProfileNftsTab.History:
                 return <ProfileHistoryFetch accountId={accountId}/>
         }
-    }, [activeTab])
+    }, [activeTab, accountId])
 
     return (
         <div className="space-y-8 pb-4 min-h-screen">

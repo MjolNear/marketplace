@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import DarkBlueTitle from "../../../components/Common/text/DarkBlueTitle";
-import MjolLoader from "../../../components/Common/loaders/MjolLoader";
-import BlueShadowContainer from "../../../components/Common/shadow/BlueShadowContainer";
+import React, {useState} from 'react';
+import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
+import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import SingleLineContainer from "../nft/upload/containers/SingleLineContainer";
 import MultiLineContainer from "../nft/upload/containers/MultiLineContainer";
 import UploadFileInput from "../nft/upload/UploadFileInput";
@@ -10,7 +9,7 @@ import {makeNftLink, storeCollection} from "../../../business-logic/ipfs/upload"
 import {createCollection} from "../../../business-logic/near/api/nfts/mint";
 import classNames from "../../../utils/css-utils";
 import PropertyInput from "../nft/upload/lines/PropertyInput";
-import CreateLoader from "../../../components/Common/loaders/CreateLoader";
+import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
 
 const LineAlert = ({state, setState}) => {
     return (
@@ -243,16 +242,16 @@ const CreateCollectionPage = () => {
                                             <label className="inline-flex text-sm font-bold text-gray-700">Upload
                                                 Traits</label>
                                             <div className="my-1">
-                                                <a onClick={() => changeToggleMode("from UI")}
+                                                <button onClick={() => changeToggleMode("from UI")}
                                                    className={classNames(toggleTraits === "from UI" ? "bg-gray-700 text-white" : "text-gray-700",
                                                        "cursor-pointer inline-flex items-center justify-center px-4 py-1 border text-base font-medium rounded-l-lg border-gray-700")}>
                                                     from UI
-                                                </a>
-                                                <a onClick={() => changeToggleMode("from File")}
+                                                </button>
+                                                <button onClick={() => changeToggleMode("from File")}
                                                    className={classNames(toggleTraits === "from File" ? "bg-gray-700 text-white" : "text-gray-700",
                                                        "cursor-pointer inline-flex items-center justify-center px-4 py-1 border text-base font-medium rounded-r-lg border-gray-700")}>
                                                     from File
-                                                </a>
+                                                </button>
                                             </div>
                                             {toggleTraits === "from UI" ? (
                                                 <div>

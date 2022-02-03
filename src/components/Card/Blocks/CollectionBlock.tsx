@@ -5,7 +5,7 @@ interface PropTypes {
 
 const CollectionBlock = React.memo<PropTypes>(({name}) => {
     return (
-        <div className="text-xs-2 font-semibold truncate text-mjol-purple-dark opacity-75 hover:opacity-90">
+        <div className="text-xs-2 font-semibold font-archivo truncate text-black opacity-75 hover:opacity-90">
             {name}
         </div>
     );

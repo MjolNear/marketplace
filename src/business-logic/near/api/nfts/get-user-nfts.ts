@@ -4,11 +4,14 @@ import {marketAPI} from "../market";
 import {AccountId, ContractId, TokenId} from "../../../models/types";
 import {contractAPI} from "../contracts";
 import {batchRequest} from "../batch-request";
+import {buildUID} from "../utils";
 
 export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenId: TokenId) => {
     const jsonNft = await nftAPI.fetchNft(contractId, tokenId)
     const tokenPrice = await marketAPI.fetchTokenPrice(contractId, tokenId);
-    return getConvertedNFT(contractId, jsonNft, tokenPrice)
+    const uid = buildUID(contractId, tokenId)
+    const tokenWrapper = { [uid] : tokenPrice}
+    return getConvertedNFT(contractId, jsonNft, tokenWrapper)
 }
 
 export async function getNftPayouts(contractId: string, tokenId: string) {

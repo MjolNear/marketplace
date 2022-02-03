@@ -6,14 +6,14 @@ import {batchRequest} from "../batch-request";
 import {Nft} from "../../../models/nft";
 import {MarketToken} from "../types/response/market";
 
-export interface MarketPage {
+export interface TokensBatch {
     tokens: Nft[],
     hasMore: boolean,
     total: number
 }
 
 
-export async function getMarketNfts(from = 0, limit = 50): Promise<MarketPage> {
+export async function getMarketNfts(from = 0, limit = 50): Promise<TokensBatch> {
     const marketNfts = await marketAPI.fetchTokens(from, limit)
     return batchRequest<MarketToken, Nft>(marketNfts.tokens, async token => {
         const {price, token_id, nft_contract_id: contractId} = token

@@ -1,6 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Nft} from "../../../business-logic/models/nft";
-import {act} from "react-dom/test-utils";
 
 export interface PreviewNftState {
     fetching: boolean,

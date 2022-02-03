@@ -1,5 +1,5 @@
 import React from 'react';
-import NearConnectButton from "../../components/Common/buttons/NearConnectButton";
+import NearConnectButton from "../../components/Common/Buttons/NearConnectButton";
 import light from '../../resources/light.jpeg'
 
 const WalletConnectionPage = () => {

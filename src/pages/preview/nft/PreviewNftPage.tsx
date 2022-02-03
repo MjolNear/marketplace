@@ -5,42 +5,45 @@ import withAuthData, {SignedInProps} from "../../../hoc/withAuthData";
 import NotFoundPage from "../../not-found/NotFoundPage";
 import {previewNftSlice} from "../../../state/preview/nft/slice";
 import {useParams} from "react-router";
-import MjolLoader from "../../../components/Common/loaders/MjolLoader";
-import PreviewNftImage from "../../../components/Preview/PreviewNftImage";
-import NftPreviewInfo from "../../../components/Preview/Blocks/NftPreviewInfo";
-import {useNftMarketStatus} from "../../../hooks/useNftMarketStatus";
-import ConnectWalletButton from "../../../components/Preview/Status/connect-wallet/ConnectWalletButton";
+import MjolLoader from "../../../components/Common/Loaders/MjolLoader";
+import PreviewNftImage from "../../../components/Preview/Card/PreviewNftImage";
+import NftPreviewInfo from "../../../components/Preview/Card/Blocks/NftPreviewInfo";
+import {getNftMarketStatus} from "../../../hooks/getNftMarketStatus";
+import ConnectWalletButton from "../../../components/Preview/Card/Status/connect-wallet/ConnectWalletButton";
 import {ItemMarketStatus} from "../../../state/transaction/state";
-import BuyNftContainer from "../../../components/Preview/Status/BuyNftContainer";
+import BuyNftContainer from "../../../components/Preview/Card/Status/BuyNftContainer";
 import {buyNft, sellNft, unlistNft} from "../../../state/transaction/nft/thunk";
-import SellNftContainer from "../../../components/Preview/Status/sell/SellNftContainer";
-import UnlistNftContainer from "../../../components/Preview/Status/UnlistNftContainer";
-import NftContractNotSupported from "../../../components/Preview/Status/NftContractNotSupported";
-import NotListedNftContainer from "../../../components/Preview/Status/NotListedNftContainer";
+import SellNftContainer from "../../../components/Preview/Card/Status/sell/SellNftContainer";
+import UnlistNftContainer from "../../../components/Preview/Card/Status/UnlistNftContainer";
+import NftContractNotSupported from "../../../components/Preview/Card/Status/NftContractNotSupported";
+import NotListedNftContainer from "../../../components/Preview/Card/Status/NotListedNftContainer";
 
 interface PropTypes extends SignedInProps {
 }
 
-type ParamTypes = {
+type NftRouteParams = {
     contractId: string,
     tokenId: string,
 }
 
 const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
-    const {contractId, tokenId} = useParams<ParamTypes>()
+    const {contractId, tokenId} = useParams<NftRouteParams>()
     const {nft, fetching, payouts} = useAppSelector(state => state.preview.nft)
     const dispatch = useAppDispatch()
 
-    if (!contractId || !tokenId) {
-        return <NotFoundPage/>
-    }
-
     useEffect(() => {
+        if (!contractId || !tokenId) {
+            return
+        }
         dispatch(fetchNft(contractId, tokenId))
         return () => {
             dispatch(previewNftSlice.actions.reset())
         }
-    }, [accountId])
+    }, [accountId, contractId, dispatch, tokenId])
+
+    if (!contractId || !tokenId) {
+        return <NotFoundPage/>
+    }
 
     if (fetching) {
         return <MjolLoader/>
@@ -54,7 +57,7 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
             return <ConnectWalletButton/>
         }
 
-        const nftStatus = useNftMarketStatus(accountId, nft)
+        const nftStatus = getNftMarketStatus(accountId, nft)
         switch (nftStatus) {
             case ItemMarketStatus.CAN_BUY:
                 return <BuyNftContainer price={nft.price}

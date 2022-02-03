@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageBlock from "./Blocks/ImageBlock";
+import SquareImageBlock from "./Blocks/SquareImageBlock";
 import MintedBlock from "./Blocks/MintedBlock";
 import TitleBlock from "./Blocks/TitleBlock";
 import CollectionBlock from "./Blocks/CollectionBlock";
@@ -14,14 +14,14 @@ interface PropTypes {
 }
 
 const Card: React.FC<PropTypes> = ({nft, scrollPosition}) => {
-    const previewLink = `/nft/${nft.contractId}/${nft.tokenId}`
+    const previewLink = `/nfts/${nft.contractId}/${nft.tokenId}`
     return (
         <div className="flex flex-col justify-between overflow-hidden w-full rounded-xl
-                        ring-1 ring-blue-300 select-none
+                        ring-1 ring-blue-300 select-none group
                         transform hover:shadow-mjol-medium-blue-all-xs"
         >
             <Link to={previewLink}>
-                <ImageBlock path={nft.mediaURL} scrollPosition={scrollPosition}/>
+                <SquareImageBlock path={nft.mediaURL} scrollPosition={scrollPosition}/>
             </Link>
             <div className="px-2 xxs:px-5 mt-1">
                 <div className="flex flex-col mb-4">

@@ -5,13 +5,13 @@ import {grayGradient} from "../../utils/css-utils";
 
 interface PropTypes {
     width?: number,
-    height?: number
+    height?: number,
 }
 
 /**
  * Returns empty card list animated component
  */
-const EmptyCardList: React.FC<PropTypes> = React.memo(({width = 150, height = 190}) => {
+const EmptyCardList: React.FC<PropTypes> = React.memo(({width = 160, height = 220}) => {
     return (
         <div className="w-full flex flex-col justify-center items-center gap-10">
             <div className="inline-flex place-items-end gap-4">
@@ -54,13 +54,20 @@ const EmptyCardList: React.FC<PropTypes> = React.memo(({width = 150, height = 19
                 >
                 </motion.div>
             </div>
-            <div className="inline-flex gap-1 items-baseline text-sm">
-                <div className="text-gray-600">
-                    No items found. You can buy NFTs on
+
+            {/* Footer */}
+            <div className="text-sm font-archivo items-center text-center space-y-2">
+                <div className="text-black text-2xl font-archivo font-extrabold">
+                    No items found.
                 </div>
-                <Link to="/nfts" className="text-blue-600 font-black">
-                    market
-                </Link>
+                <div className="text-lg inline-flex gap-1">
+                    <div className="text-gray-700">
+                        Browse something for you on our
+                    </div>
+                    <Link to="/nfts" className="text-blue-600 font-extrabold">
+                        marketplace
+                    </Link>
+                </div>
             </div>
         </div>
     );

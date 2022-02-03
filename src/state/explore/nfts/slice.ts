@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Nft} from "../../../business-logic/models/nft";
-import {MarketPage} from "../../../business-logic/near/api/market/get-nfts-market";
+import {TokensBatch} from "../../../business-logic/near/api/market/get-nfts-market";
 
 export interface ExploreNftsState {
     nfts: Nft[],
@@ -24,7 +24,7 @@ export const exploreNftsSlice = createSlice({
     name: "explore-nfts",
     initialState,
     reducers: {
-        setPageData: (state, action: PayloadAction<MarketPage>) => {
+        setPageData: (state, action: PayloadAction<TokensBatch>) => {
             state.nfts = state.nfts.concat(action.payload.tokens)
             state.total = action.payload.total
             state.hasMore = action.payload.hasMore

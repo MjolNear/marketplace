@@ -1,18 +1,18 @@
 import React from 'react';
 import {useAppDispatch} from "../../../hooks/redux";
 import {ItemMarketStatus} from "../../../state/transaction/state";
-import BuyNftContainer from "../../../components/Preview/Status/BuyNftContainer";
-import {useNftMarketStatus} from "../../../hooks/useNftMarketStatus";
+import BuyNftContainer from "../../../components/Preview/Card/Status/BuyNftContainer";
+import {getNftMarketStatus} from "../../../hooks/getNftMarketStatus";
 import {buyNft, sellNft, unlistNft} from "../../../state/transaction/nft/thunk";
-import SellNftContainer from "../../../components/Preview/Status/sell/SellNftContainer";
-import UnlistNftContainer from "../../../components/Preview/Status/UnlistNftContainer";
-import NotListedNftContainer from "../../../components/Preview/Status/NotListedNftContainer";
+import SellNftContainer from "../../../components/Preview/Card/Status/sell/SellNftContainer";
+import UnlistNftContainer from "../../../components/Preview/Card/Status/UnlistNftContainer";
+import NotListedNftContainer from "../../../components/Preview/Card/Status/NotListedNftContainer";
 import {Nft} from "../../../business-logic/models/nft";
 import {signIn} from "../../../business-logic/near/enviroment/near";
 import ConnectWalletButton
-    from "../../../components/Preview/Status/connect-wallet/ConnectWalletButton";
+    from "../../../components/Preview/Card/Status/connect-wallet/ConnectWalletButton";
 import NftContractNotSupported
-    from "../../../components/Preview/Status/NftContractNotSupported";
+    from "../../../components/Preview/Card/Status/NftContractNotSupported";
 
 interface PropTypes {
     accountId: string,
@@ -26,7 +26,7 @@ const NftStatusHoc: React.FC<PropTypes> = ({accountId, nft, payouts}) => {
         return <ConnectWalletButton/>
     }
 
-    const status = useNftMarketStatus(accountId, nft)
+    const status = getNftMarketStatus(accountId, nft)
     const dispatch = useAppDispatch()
 
     const buy = () => {

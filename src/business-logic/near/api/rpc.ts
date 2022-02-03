@@ -1,8 +1,8 @@
-import BN from "bn.js";
 import {wallet} from "../enviroment/near";
-import {MJOL_MARKET_CONTRACT_ID} from "../enviroment/contract-names";
+import {MARKET_CONTRACT_ID, MJOL_CONTRACT_ID} from "../enviroment/contract-names";
 import {GAS, SM_DEPOSIT} from "../constants";
 import {ContractId} from "../../models/types";
+import BN from "bn.js";
 
 export interface ViewFunctionOptions {
     contractId: ContractId,
@@ -49,9 +49,15 @@ export const functionCall = ({
     })
 }
 
+export function marketViewFunction<T = any>({methodName, args}: MjolViewFunctionOptions) {
+    return viewFunction<T>({
+        contractId: MARKET_CONTRACT_ID, methodName, args
+    })
+}
+
 export function mjolViewFunction<T = any>({methodName, args}: MjolViewFunctionOptions) {
     return viewFunction<T>({
-        contractId: MJOL_MARKET_CONTRACT_ID, methodName, args
+        contractId: MJOL_CONTRACT_ID, methodName, args
     })
 }
 
@@ -63,7 +69,24 @@ export const mjolFunctionCall = ({
     walletCallbackUrl
 }: MjolFunctionCallOptions) => {
     return functionCall({
-        contractId: MJOL_MARKET_CONTRACT_ID,
+        contractId: MJOL_CONTRACT_ID,
+        methodName,
+        args,
+        gas,
+        attachedDeposit,
+        walletCallbackUrl
+    })
+}
+
+export const marketFunctionCall = ({
+    methodName,
+    args,
+    gas = GAS,
+    attachedDeposit = SM_DEPOSIT,
+    walletCallbackUrl
+}: MjolFunctionCallOptions) => {
+    return functionCall({
+        contractId: MARKET_CONTRACT_ID,
         methodName,
         args,
         gas,

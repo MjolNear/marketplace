@@ -17,7 +17,7 @@ const CardLoader = React.memo<PropTypes>(({size = 300, ...props}) => {
                 {/* Image block */}
                 <div style={{
                     width: size,
-                    height: size,
+                    aspectRatio: "1/1",
                     background: gradient('right')
                 }}>
                 </div>

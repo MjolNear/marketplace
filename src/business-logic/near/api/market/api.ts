@@ -1,5 +1,5 @@
-import {mjolViewFunction} from "../rpc";
-import {AccountId, ContractId, NumberAmount, Optional, TokenId} from "../../../models/types";
+import {marketViewFunction} from "../rpc";
+import {AccountId, ContractId, NumberAmount, Optional, StringAmount, TokenId} from "../../../models/types";
 import {buildUID, formatOptionalPrice, formatPrice} from "../utils";
 import {MarketTokens, MarketToken, TokenPrices} from "../types/response/market";
 
@@ -13,18 +13,21 @@ export const marketAPI = {
      * @param limit maximum amount of fetched tokens
      */
     fetchTokens: (from: number, limit: number): Promise<MarketTokens> =>
-        mjolViewFunction<MarketTokens>({
+        marketViewFunction<MarketTokens>({
                 methodName: 'get_nfts',
                 args: {
                     from,
                     limit
                 }
             }
-        ).catch(() => ({
-            tokens: [],
-            has_next_batch: false,
-            total_count: 0
-        })),
+        ).catch((e) => {
+            console.log(e)
+            return {
+                tokens: [],
+                has_next_batch: false,
+                total_count: 0
+            }
+        }),
 
     /**
      * Fetches market NFTs prices for given user
@@ -33,7 +36,7 @@ export const marketAPI = {
      */
     fetchUserTokenPrices: (accountId: AccountId): Promise<TokenPrices> => {
         const prices: TokenPrices = {}
-        return mjolViewFunction<MarketToken[]>({
+        return marketViewFunction<MarketToken[]>({
                 methodName: 'get_user_nfts',
                 args: {
                     owner_id: accountId
@@ -47,22 +50,27 @@ export const marketAPI = {
                 )
                 return prices
             }
-        ).catch(() => prices)
+        ).catch((e) => {
+            console.log(e)
+            return prices
+        })
     },
 
     /**
      * Retrieves NFT price if NFT listed on market, otherwise returns null
      */
-    fetchTokenPrice: (contractId: ContractId, tokenId: TokenId): Promise<TokenPrices> => {
+    fetchTokenPrice: (contractId: ContractId, tokenId: TokenId): Promise<Optional<StringAmount>> => {
         const tokenUID = buildUID(contractId, tokenId)
-        return mjolViewFunction<Optional<NumberAmount>>({
+        return marketViewFunction<Optional<NumberAmount>>({
                 methodName: 'get_nft_price',
                 args: {
                     token_uid: tokenUID
                 }
             }
-        ).then(price => ({
-            [tokenUID]: formatOptionalPrice(price)
-        }))
+        ).then(price => formatOptionalPrice(price)
+        ).catch(e => {
+            console.log(e)
+            return null
+        })
     }
 }

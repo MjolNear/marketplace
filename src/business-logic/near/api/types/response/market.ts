@@ -8,13 +8,12 @@ import {
     TokenUID
 } from "../../../../models/types";
 import {TokensResponse} from "./core";
+import {CoreToken} from "../token";
 
-export interface MarketToken {
+export interface MarketToken extends CoreToken {
     approval_id: number,
     nft_contract_id: ContractId,
-    owner_id: AccountId,
     price: NumberAmount,
-    token_id: TokenId
 }
 
 export type MarketTokens = TokensResponse<MarketToken>
