@@ -41,7 +41,7 @@ module.exports = {
             '3xl': ['1.875rem', {
                 'line-height': '2.25rem'
             }],
-            '4xl': ['2.25', {
+            '4xl': ['2.25rem', {
                 'line-height': '2.5rem'
             }],
             '5xl': ['3rem', {

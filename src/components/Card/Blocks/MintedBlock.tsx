@@ -11,10 +11,10 @@ const MintedBlock = React.memo<PropsTypes>(({market, link}) => {
         <>
             <div className="flex gap-1 items-center">
                 {market !== 'unsupported contract'
-                    ? <GoVerified size={14} color="#18b3cc"/>
-                    : <GoUnverified size={14} color=""/>
+                    ? <GoVerified size={15} color="rgb(0, 163, 255)"/>
+                    : <GoUnverified size={15} color=""/>
                 }
-                <a className="text-black opacity-80 font-archivo font-bold text-tiny-4 hover:opacity-90"
+                <a className="text-black opacity-80 font-archivo font-bold text-tiny-5 hover:opacity-90"
                    href={link}
                    target="_blank"
                    rel="noreferrer"
@@ -22,7 +22,7 @@ const MintedBlock = React.memo<PropsTypes>(({market, link}) => {
                     {market === 'unsupported contract' ? 'Not verified' : `Minted on ${market}`}
                 </a>
             </div>
-            <hr className="border-mjol-purple-dark"/>
+            <div className="h-[1px] bg-blue-200 mt-[3px] rounded-lg"/>
         </>
     );
 });
