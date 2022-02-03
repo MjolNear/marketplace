@@ -2,6 +2,7 @@ import React, {MouseEventHandler} from 'react';
 import {AnimatePresence, motion} from "framer-motion";
 import classNames from "../../../utils/css-utils";
 import {Link} from "react-router-dom";
+import AnimatedBlueUnderline from "../Animation/AnimatedBlueUnderline";
 
 interface PropTypes {
     title: string,
@@ -24,21 +25,7 @@ const BlackUnderlineButton: React.FC<PropTypes> = ({title, onClick, isActive}) =
             >
                 {title}
             </button>
-            <AnimatePresence initial={false}>
-                {
-                    isActive && <motion.div
-                        initial={{
-                            width: 0
-                        }} animate={{
-                        width: "100%"
-                    }}
-                        transition={{
-                            duration: 0.2
-                        }}
-                        className="hidden sm:block h-[2px] bg-blue-500 rounded-t-[2px]"
-                    />
-                }
-            </AnimatePresence>
+            <AnimatedBlueUnderline isActive={isActive}/>
         </div>
     );
 };
