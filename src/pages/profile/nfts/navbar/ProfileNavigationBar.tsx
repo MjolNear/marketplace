@@ -13,7 +13,7 @@ interface PropTypes {
 const ProfileNavigationBar: React.FC<PropTypes> = ({changeTab, activeTab, tabs}) => {
     return (
         <BlueShadowContainer>
-            <div className="space-y-14 pb-5">
+            <div className="space-y-14">
                 <DarkBlueTitle title="My NFTs"/>
                 <div className="text-center">
                     <div className="inline-flex flex-col gap-2 sm:flex-row sm:gap-5 md:text-lg">
