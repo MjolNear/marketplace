@@ -4,7 +4,7 @@ import {Nft} from "../../../models/nft";
 import {buildUID, getPrice} from "../utils";
 import {Marketplace} from "../contracts";
 import {TokenPrices} from "../types/response/market";
-import {CoreToken, Token} from "../types/token";
+import {Token} from "../types/token";
 import {marketAPI} from "../market";
 import {ContractId} from "../../../models/types";
 

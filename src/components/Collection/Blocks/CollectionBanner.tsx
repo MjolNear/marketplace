@@ -11,7 +11,9 @@ const CollectionBanner = React.memo<PropTypes>(({bannerLink}) => {
     }
     return (
         <img className="w-full h-[250px] object-cover object-top"
-             src={`https://ipfs.io/${bannerLink.replace(":/", "")}`}
+             alt="loading..."
+             src={`https://ipfs.io/${bannerLink.replace(":/", "")}`
+        }
         />
     );
 });

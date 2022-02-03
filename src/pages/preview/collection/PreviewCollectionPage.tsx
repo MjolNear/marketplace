@@ -4,7 +4,6 @@ import {fetchCollection} from "../../../state/preview/collection/thunk";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import NotFoundPage from "../../not-found/NotFoundPage";
 import MjolLoader from "../../../components/Common/Loaders/MjolLoader";
-import SquareImageBlock from "../../../components/Card/Blocks/SquareImageBlock";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import Stats from "../../../components/Collection/Stats/Stats";
 import CollectionNftList from "./CollectionNftList";
