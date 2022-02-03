@@ -5,7 +5,7 @@ const DarkBlueTitle = ({title, classes = undefined}) => {
         <div
             className={
                 "font-extrabold font-archivo text-transparent bg-clip-text " +
-                "bg-gradient-to-r from-[#48B3EF] to-[#135D86] " +
+                "bg-gradient-to-r from-mjol-light-blue to-mjol-dark-blue " +
                 (classes ? classes : "text-center text-3xl md:text-5xl lg:text-6xl")
             }
         >

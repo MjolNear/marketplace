@@ -152,6 +152,10 @@ module.exports = {
                         light: 'rgb(120, 192, 233)',
                         base: '#4391ff',
                     },
+
+                    'light-blue': '#48B3EF',
+                    'dark-blue': '#135D86',
+
                     green: {
                         light: '#1EFF7F',
                         middle: '#1effab',
