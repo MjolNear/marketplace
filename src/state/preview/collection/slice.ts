@@ -1,8 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {CollectionInfo} from "../../../business-logic/models/collection";
 import {Optional} from "../../../business-logic/models/types";
-import {CollectionTokens} from "../../../business-logic/near/api/types/response/collection";
-import {mapMjolTokenToNFT, Nft} from "../../../business-logic/models/nft";
+import {Nft} from "../../../business-logic/models/nft";
 import {TokensBatch} from "../../../business-logic/near/api/market/get-nfts-market";
 
 export interface CollectionNftsState {
@@ -44,8 +43,7 @@ export const previewCollectionSlice = createSlice({
             state.collection = action.payload
         },
         setNftsBatch: (state, action: PayloadAction<TokensBatch>) => {
-            console.log(action.payload)
-            state.nftsState.nfts = action.payload.tokens
+            state.nftsState.nfts = state.nftsState.nfts.concat(action.payload.tokens)
             state.nftsState.hasMore = action.payload.hasMore
             state.nftsState.total = action.payload.total
             state.nftsState.from += state.nftsState.limit

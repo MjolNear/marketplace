@@ -20,7 +20,7 @@ export interface IPFSMetadata {
 }
 
 export interface CollectionInfo extends Collection {
-    metadata: IPFSMetadata
+    metadata?: IPFSMetadata
 }
 
 export interface ExternalLinks {

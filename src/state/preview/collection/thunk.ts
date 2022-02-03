@@ -2,7 +2,8 @@ import {AppDispatch} from "../../store";
 import {CollectionId} from "../../../business-logic/models/types";
 import {collectionAPI} from "../../../business-logic/near/api/collections";
 import {previewCollectionSlice} from "./slice";
-import {mapMjolTokenToNFT} from "../../../business-logic/models/nft";
+import {mapTokenToNFT} from "../../../business-logic/near/api/standardization/nft-converter";
+import {MJOL_CONTRACT_ID} from "../../../business-logic/near/enviroment/contract-names";
 
 export const fetchCollection = (collectionId: CollectionId) =>
     async (dispatch: AppDispatch) => {
@@ -16,7 +17,7 @@ export const fetchCollectionNfts = (collectionId: CollectionId, from: number, li
     async (dispatch: AppDispatch) => {
         dispatch(previewCollectionSlice.actions.toggleNftsFetching(true))
         collectionAPI.fetchNfts(collectionId, from, limit)
-            .then(response => Promise.all(response.tokens.map(mapMjolTokenToNFT))
+            .then(response => Promise.all(response.tokens.map(token => mapTokenToNFT(MJOL_CONTRACT_ID, token)))
                 .then(nfts =>
                     dispatch(previewCollectionSlice.actions.setNftsBatch({
                         tokens: nfts,

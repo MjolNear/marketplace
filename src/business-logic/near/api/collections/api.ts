@@ -62,28 +62,22 @@ export const collectionAPI = {
             ipfsLink,
             {timeout: 8000}
         ).then(response => response.json()
-        ).catch(() => []),
+        ).catch(e => {
+            console.log(e)
+        }),
 
 
     fetchCollectionInfo: (collectionId: CollectionId): Promise<Optional<CollectionInfo>> =>
         collectionAPI.fetchCollection(collectionId)
             .then(collection => {
                     if (collection === null || collection.reference === null) {
-                        return null
+                        return collection
                     }
                     return collectionAPI.fetchCollectionMetadata(collection.reference)
-                        .then(metadata => ({
-                            owner_id: collection.owner_id,
-                            collection_id: collection.collection_id,
-                            title: collection.title,
-                            desc: collection.desc,
-                            media: collection.media,
-                            reference: collection.reference,
-                            metadata: metadata
-                        }))
+                        .then(metadata => ({...collection, metadata}))
                         .catch((e) => {
                             console.log(e)
-                            return null
+                            return collection
                         })
                 }
             ).catch(e => {

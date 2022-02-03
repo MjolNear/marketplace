@@ -6,20 +6,26 @@ import NotFoundPage from "../../not-found/NotFoundPage";
 import MjolLoader from "../../../components/Common/Loaders/MjolLoader";
 import SquareImageBlock from "../../../components/Card/Blocks/SquareImageBlock";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
-import Stats from "../../../components/Preview/Collection/Block/Stats";
+import Stats from "../../../components/Collection/Stats/Stats";
 import CollectionNftList from "./CollectionNftList";
-import {profileCollectionsSlice} from "../../../state/profile/collections/slice";
 import {previewCollectionSlice} from "../../../state/preview/collection/slice";
+import CollectionLogo from "../../../components/Collection/Blocks/CollectionLogo";
+import CollectionTitleDescription from "../../../components/Collection/Blocks/CollectionTitleDescription";
+import CollectionBanner from "../../../components/Collection/Blocks/CollectionBanner";
+import ItemsActivity from "../../../components/Collection/Filters/ItemsActivity";
+import CollectionMedia from "../../../components/Collection/Media/CollectionMedia";
 
 type CollectionRouteParams = {
     collectionId: string
+    filterTab: "Items" | "Activity"
 }
 
 const PreviewCollectionPage: React.FC = () => {
 
-    const {collectionId} = useParams<CollectionRouteParams>()
+    const {collectionId, filterTab} = useParams<CollectionRouteParams>()
     const dispatch = useAppDispatch()
     const {collection, fetching} = useAppSelector(state => state.preview.collection)
+    const total = useAppSelector(state => state.preview.collection.nftsState.total)
 
     useEffect(() => {
         if (!collectionId) {
@@ -31,7 +37,7 @@ const PreviewCollectionPage: React.FC = () => {
         }
     }, [collectionId, dispatch])
 
-    if (!collectionId) {
+    if (!collectionId || !filterTab) {
         return <NotFoundPage/>
     }
 
@@ -42,24 +48,26 @@ const PreviewCollectionPage: React.FC = () => {
         return <NotFoundPage/>
     }
 
+    const hasBanner = !!collection.metadata?.bannerImage
+
     return (
         <>
             <BlueShadowContainer>
                 <div className="flex flex-col items-center">
-                    {collection.metadata.bannerImage &&
-                        <img className="w-full h-[250px] object-cover object-top"
-                             src={`https://ipfs.io/${collection.metadata.bannerImage.replace(":/", "")}`}
-                        />
-                    }
-                    <div
-                        className={"w-[120px] h-[120px] relative " + (collection.metadata.bannerImage ? "-mt-[64px]" : "")}>
-                        <SquareImageBlock path={collection.media} className="rounded-full ring-8 ring-white "/>
+                    <CollectionBanner bannerLink={collection.metadata?.bannerImage}/>
+                    <CollectionLogo hasBanner={hasBanner}
+                                    logoLink={collection.media}
+                    />
+                    <CollectionTitleDescription title={collection.title}
+                                                description={collection.desc}
+                    />
+                    <div className="flex flex-col items-center gap-6 mt-[30px] justify-start">
+                        <Stats floar={0.4} items={total} owners={23} volume={234.54}/>
+                        <CollectionMedia/>
+                        <div className="mt-[40px]">
+                            <ItemsActivity activeTab={filterTab}/>
+                        </div>
                     </div>
-                    <div className="flex flex-col text-center items-center my-2 space-y-3 px-2">
-                        <div className="font-archivo font-black text-5xl">{collection.title}</div>
-                        <div className="font-archivo font-bold text-xl opacity-80">{collection.desc}</div>
-                    </div>
-                    <Stats floar={0.4} listed={50} owners={23} volume={234.54}/>
                 </div>
             </BlueShadowContainer>
             <CollectionNftList/>

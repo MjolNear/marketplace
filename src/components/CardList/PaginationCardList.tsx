@@ -8,7 +8,6 @@ import {Nft} from "../../business-logic/models/nft";
 
 
 interface PropTypes {
-    scrollPosition: ScrollPosition
     nfts: Nft[],
     hasMore: boolean,
     fetching: boolean,
@@ -16,6 +15,7 @@ interface PropTypes {
     limit: number,
     fetcher: (from: number, limit: number) => any,
     reset: () => any
+    scrollPosition: ScrollPosition
 }
 
 const PaginationCardList: React.FC<PropTypes> = ({
@@ -53,7 +53,7 @@ const PaginationCardList: React.FC<PropTypes> = ({
             loader={<CardListLoader/>}
             dataLength={nfts.length}
         >
-            <CardGrid nfts={nfts} scrollPosition={scrollPosition}/>
+            <CardGrid nfts={nfts} scrollPosition={scrollPosition} fetching={fetching}/>
         </InfiniteScroll>
     );
 };

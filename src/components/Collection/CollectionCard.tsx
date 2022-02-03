@@ -9,7 +9,7 @@ interface PropTypes {
 
 const CollectionCard: React.FC<PropTypes> = ({collection}) => {
 
-    const previewLink = `/collections/${collection.collection_id}`
+    const previewLink = `/collections/${collection.collection_id}/items`
 
     return (
         <Link className="flex flex-col justify-start rounded-2xl

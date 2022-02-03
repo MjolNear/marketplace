@@ -27,7 +27,7 @@ const ProfileNftsFetch: React.FC<PropTypes> = ({accountId}) => {
                 ? <CardListLoader/>
                 : nfts.length === 0
                     ? <EmptyCardList/>
-                    : <CardGrid nfts={
+                    : <CardGrid fetching={fetching} nfts={
                         activeTab === ProfileNftsTab.Listed
                             ? nfts.filter(nft => nft.price !== null)
                             : nfts
