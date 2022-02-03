@@ -53,7 +53,7 @@ const PaginationCardList: React.FC<PropTypes> = ({
             loader={<CardListLoader/>}
             dataLength={nfts.length}
         >
-            <CardGrid nfts={nfts} scrollPosition={scrollPosition} fetching={fetching}/>
+            <CardGrid nfts={nfts} fetching={fetching} scrollPosition={scrollPosition}/>
         </InfiniteScroll>
     );
 };

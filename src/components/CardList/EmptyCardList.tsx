@@ -54,8 +54,8 @@ const EmptyCardList: React.FC<PropTypes> = React.memo(({width = 180, height = 23
                 >
                 </motion.div>
             </div>
-            {/*No items found*/}
-            {/*Come back soon! Or try to browse something for you on our marketplace*/}
+
+            {/* Footer */}
             <div className="text-sm font-archivo items-center text-center space-y-2">
                 <div className="text-black text-2xl font-archivo font-extrabold">
                     No items found.

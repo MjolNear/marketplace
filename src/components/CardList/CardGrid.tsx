@@ -19,7 +19,7 @@ interface PropTypes {
  * @param fetching boolean value which determines fetching status
  * @param scrollPosition
  */
-const CardGrid: React.FC<PropTypes> = ({nfts, scrollPosition, fetching}) => {
+const CardGrid: React.FC<PropTypes> = ({nfts, fetching, scrollPosition}) => {
 
     return (
         <>

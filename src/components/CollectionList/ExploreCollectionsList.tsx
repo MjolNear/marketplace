@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {ScrollPosition, trackWindowScroll} from "react-lazy-load-image-component";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {exploreNftsSlice} from "../../state/explore/nfts/slice";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {fetchCollections} from "../../state/explore/collections/thunk";
 import CollectionList from "./CollectionList";
