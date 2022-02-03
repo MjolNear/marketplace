@@ -10,7 +10,7 @@ interface PropTypes {
 const StatBox = React.memo<PropTypes>(({name, value, priceValue }) => {
     return (
         <div className="flex grow flex-col ring-blue-300 ring-[0.5px] px-10 py-3 items-center">
-            <div className="font-archivo font-medium opacity-80 text-sm-2">{name}</div>
+            <div className="font-archivo font-medium opacity-80 text-sm">{name}</div>
             {priceValue
                 ? <div className="inline-flex gap-3">
                     <NearBlackLogo size={16}/>

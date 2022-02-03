@@ -14,6 +14,7 @@ import CollectionTitleDescription from "../../../components/Collection/Blocks/Co
 import CollectionBanner from "../../../components/Collection/Blocks/CollectionBanner";
 import ItemsActivity from "../../../components/Collection/Filters/ItemsActivity";
 import CollectionMedia from "../../../components/Collection/Media/CollectionMedia";
+import TraitsFilter from "../../../components/Collection/Filters/TraitsFilter";
 
 type CollectionRouteParams = {
     collectionId: string
@@ -70,7 +71,17 @@ const PreviewCollectionPage: React.FC = () => {
                     </div>
                 </div>
             </BlueShadowContainer>
-            <CollectionNftList/>
+            {
+                collection.metadata?.traits
+                    ?
+                    <TraitsFilter traits={collection.metadata?.traits}>
+                        <div className="w-full">
+                            <CollectionNftList/>
+                        </div>
+                    </TraitsFilter>
+                    :
+                    <CollectionNftList/>
+            }
         </>
     );
 };

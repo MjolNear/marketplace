@@ -11,7 +11,7 @@ interface PropTypes {
 /**
  * Returns empty card list animated component
  */
-const EmptyCardList: React.FC<PropTypes> = React.memo(({width = 180, height = 230}) => {
+const EmptyCardList: React.FC<PropTypes> = React.memo(({width = 160, height = 220}) => {
     return (
         <div className="w-full flex flex-col justify-center items-center gap-10">
             <div className="inline-flex place-items-end gap-4">

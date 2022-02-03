@@ -3,7 +3,6 @@ import PaginationCardList from "../../../components/CardList/PaginationCardList"
 import {useAppSelector} from "../../../hooks/redux";
 import NotFoundPage from "../../not-found/NotFoundPage";
 import {fetchCollectionNfts} from "../../../state/preview/collection/thunk";
-import previewCollectionPage from "./PreviewCollectionPage";
 import {previewCollectionSlice} from "../../../state/preview/collection/slice";
 
 const CollectionNftList = () => {
