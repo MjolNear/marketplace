@@ -33,7 +33,7 @@ const BlackUnderlineButton: React.FC<PropTypes> = ({title, onClick, isActive}) =
                         transition={{
                             duration: 0.2
                         }}
-                        className="h-[1.5px] bg-mjol-light-blue rounded-2xl"
+                        className="hidden sm:block h-[1.5px] bg-mjol-light-blue rounded-2xl"
                     />
                 }
             </AnimatePresence>
