@@ -1,23 +1,25 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import {ProfileNftsTab, profileNftsSlice} from "../../../state/profile/nfts/slice";
-import {fetchMyNfts} from "../../../state/profile/nfts/thunk";
+import {ProfileNftsTab} from "../../../state/profile/nfts/slice";
+import {fetchMyNfts} from "../../../state/profile/nfts/tokens/thunk";
 import CardGrid from "../../../components/CardList/CardGrid";
 import CardListLoader from "../../../components/CardList/CardListLoader";
 import EmptyCardList from "../../../components/CardList/EmptyCardList";
+import {profileTokensSlice} from "../../../state/profile/nfts/tokens/slice";
 
 interface PropTypes {
     accountId: string
 }
 
 const ProfileNftsFetch: React.FC<PropTypes> = ({accountId}) => {
-    const {nfts, fetching, activeTab} = useAppSelector(state => state.profile.nfts)
+    const activeTab = useAppSelector(state => state.profile.nfts.tabs.activeTab)
+    const {nfts, fetching} = useAppSelector(state => state.profile.nfts.tokens)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(fetchMyNfts(accountId))
         return () => {
-            dispatch(profileNftsSlice.actions.resetNfts())
+            dispatch(profileTokensSlice.actions.reset())
         }
     }, [accountId, dispatch])
 

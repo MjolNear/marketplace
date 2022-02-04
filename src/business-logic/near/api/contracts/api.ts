@@ -4,6 +4,7 @@ import {JsonRpcProvider} from "near-api-js/lib/providers";
 import {contractAccordance} from "./parser/methods";
 import {parseContract} from "./parser/lib";
 import {fetchWithTimeout} from "../core";
+import {ContractInfo} from "../../../models/contract";
 
 
 interface ViewCode extends QueryResponseKind {
@@ -36,5 +37,9 @@ export const contractAPI = {
                 finality: 'final',
                 request_type: 'view_code'
             })
-            .then(response => contractAccordance(parseContract(response.code_base64)))
+            .then(response => contractAccordance(parseContract(response.code_base64))),
+
+    // fetchContractsInfo: (contracts: ContractId[]): Promise<Contra[]> =>
+    //     Promise.all(contracts.map(contractAPI.fetchContractsInfo)).then(accor)
+
 }

@@ -1,7 +1,7 @@
-import React, {useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import withAuthData, {SignedInProps} from "../../../hoc/withAuthData";
-import {ProfileNftsTab, profileNftsSlice} from "../../../state/profile/nfts/slice";
+import {ProfileNftsTab, profileTabsSlice} from "../../../state/profile/nfts/slice";
 import ProfileHistoryFetch from "./ProfileHistoryFetch";
 import ProfileNftsFetch from "./ProfileNftsFetch";
 import ProfileNavigationBar from "./navbar/ProfileNavigationBar";
@@ -10,13 +10,19 @@ interface PropTypes extends SignedInProps {
 }
 
 
-const ProfileFetch: React.FC<PropTypes> = ({accountId}) => {
-    const {activeTab, tabs} = useAppSelector(state => state.profile.nfts)
+const ProfileNftsPage: React.FC<PropTypes> = ({accountId}) => {
+    const {activeTab, tabs} = useAppSelector(state => state.profile.nfts.tabs)
     const dispatch = useAppDispatch()
 
     const changeTab = (tab: ProfileNftsTab) => {
-        dispatch(profileNftsSlice.actions.changeTab(tab))
+        dispatch(profileTabsSlice.actions.changeTab(tab))
     }
+
+    useEffect(() => {
+        return () => {
+            dispatch(profileTabsSlice.actions.reset())
+        }
+    }, [])
 
     const child = useMemo(() => {
         switch (activeTab) {
@@ -39,4 +45,4 @@ const ProfileFetch: React.FC<PropTypes> = ({accountId}) => {
     )
 };
 
-export default withAuthData(ProfileFetch);
+export default withAuthData(ProfileNftsPage);
