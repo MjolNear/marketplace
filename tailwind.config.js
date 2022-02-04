@@ -70,8 +70,10 @@ module.exports = {
             "mjol-base-blue-lg": "0px 7px 9px 6px  rgba(120, 192, 233, 0.3)",
             "mjol-base-blue-drop-xl": "0px 15px 14px 0px rgba(120, 192, 233, 0.3)",
 
-            "mjol-blue-all-md": "0px 0px 5px 3px rgba(120, 192, 233, 0.5)",
+            "mjol-blue-all-md": "0px 0px 5px 3px rgba(120, 192, 233, 1)",
             "mjol-blue-all-xs": "0px 0px 3px 3px rgba(120, 192, 233, 0.3)",
+
+            "mjol-blue-300-md": "0px 0px 5px 3px #93c5fd",
 
             "mjol-medium-blue-all-xs": "0px 0px 3px 3px rgba(120, 192, 233, 0.5)",
 
