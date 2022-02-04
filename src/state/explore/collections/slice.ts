@@ -13,7 +13,7 @@ export interface ExploreCollectionsState {
 
 const initialState: ExploreCollectionsState = {
     collections: [],
-    fetching: false,
+    fetching: true,
     from: 0,
     limit: 12,
     hasMore: true,

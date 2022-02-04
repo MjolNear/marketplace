@@ -17,7 +17,7 @@ const ExploreCollectionList: React.FC<PropTypes> = ({scrollPosition}) => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(fetchCollections(from, limit)).then()
+        dispatch(fetchCollections(from, limit))
         return () => {
             dispatch(exploreCollectionsSlice.actions.reset())
         }

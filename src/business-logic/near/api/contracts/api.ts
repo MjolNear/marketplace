@@ -1,10 +1,11 @@
 import {AccountId, ContractId} from "../../../models/types";
 import {QueryResponseKind} from "near-api-js/lib/providers/provider";
 import {JsonRpcProvider} from "near-api-js/lib/providers";
-import {contractAccordance} from "./parser/methods";
+import {contractAccordance, INCORRECT_STANDARD} from "./parser/methods";
 import {parseContract} from "./parser/lib";
 import {fetchWithTimeout} from "../core";
 import {ContractInfo} from "../../../models/contract";
+import {batchRequest} from "../batch-request";
 
 
 interface ViewCode extends QueryResponseKind {
@@ -30,16 +31,36 @@ export const contractAPI = {
      *
      * @param contractId NEAR contract
      */
-    viewMethods: (contractId: ContractId) =>
-        new JsonRpcProvider('https://rpc.mainnet.near.org/')
+    viewMethods: (contractId: ContractId) => {
+        if (contractId.endsWith('mintbase1.near')) {
+            console.log(contractId)
+            return Promise.resolve(INCORRECT_STANDARD)
+        }
+
+        // https://rpc.ankr.com/near
+        // https://rpc.mainnet.near.org/
+        return new JsonRpcProvider('https://rpc.mainnet.near.org/')
             .query<ViewCode>({
                 account_id: contractId,
                 finality: 'final',
                 request_type: 'view_code'
             })
-            .then(response => contractAccordance(parseContract(response.code_base64))),
+            .then(response => contractAccordance(parseContract(response.code_base64)))
+            .catch(e => {
+                console.log(e)
+                return INCORRECT_STANDARD
+            })
+    },
 
-    // fetchContractsInfo: (contracts: ContractId[]): Promise<Contra[]> =>
-    //     Promise.all(contracts.map(contractAPI.fetchContractsInfo)).then(accor)
+    fetchUserTokenContractsInfo: (accountId: AccountId) =>
+        contractAPI
+            .fetchUserTokenContracts(accountId)
+            .then(contractAPI.fetchContractsInfo),
 
+    fetchContractsInfo: (contracts: ContractId[]): Promise<ContractInfo[]> =>
+        batchRequest(contracts, contractAPI.viewMethods)
+            .then(result => result.values.map((accordance, i) => ({
+                contractId: contracts[i],
+                accordance
+            })))
 }

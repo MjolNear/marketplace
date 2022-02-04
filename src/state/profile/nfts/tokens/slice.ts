@@ -11,19 +11,20 @@ export interface ProfileTokensState {
 const initialState: ProfileTokensState = {
     nfts: [],
     contracts: [],
-    fetching: false
+    fetching: true
 }
 
 export const profileTokensSlice = createSlice({
     name: "profile-nfts-tokens",
     initialState,
     reducers: {
-        setPageData: (state, action: PayloadAction<Nft[]>) => {
+        setContracts: (state, action:PayloadAction<ContractInfo[]>) => {
+            state.contracts = action.payload
+        },
+        setNfts: (state, action: PayloadAction<Nft[]>) => {
             state.nfts = action.payload
         },
-        addNft: (state, action: PayloadAction<Nft>) => {
-            state.nfts.push(action.payload)
-        },
+
         toggleFetching: (state, action: PayloadAction<boolean>) => {
             state.fetching = action.payload
         },
