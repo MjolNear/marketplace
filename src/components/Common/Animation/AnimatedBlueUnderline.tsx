@@ -18,7 +18,7 @@ const AnimatedBlueUnderline = React.memo<PropTypes>(({isActive})=> {
                     transition={{
                         duration: 0.2
                     }}
-                    className="hidden sm:block h-[2px] bg-blue-500 rounded-t-[2px]"
+                    className="hidden sm:block h-[2.5px] bg-mjol-blue-base rounded-t-[3px]"
                 />
             }
         </AnimatePresence>

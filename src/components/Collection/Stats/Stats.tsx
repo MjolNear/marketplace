@@ -10,7 +10,7 @@ interface PropTypes {
 
 const Stats = React.memo<PropTypes>(({floar, items, owners, volume}) => {
     return (
-        <div className="flex flex-row flex-wrap rounded-2xl overflow-hidden ring-[1px] ring-blue-300 mx-2"
+        <div className="flex flex-row flex-wrap rounded-2xl overflow-hidden ring-[1px] ring-mjol-blue-base mx-2"
         >
             <StatBox name="floar price" value={floar.toString()} priceValue={true}/>
             <StatBox name="items" value={items.toString()}/>
