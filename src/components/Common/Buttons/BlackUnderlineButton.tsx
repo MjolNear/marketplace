@@ -10,13 +10,13 @@ interface PropTypes {
     isActive: boolean
 }
 
-const BlackUnderlineButton: React.FC<PropTypes> = ({title, onClick, isActive}) => {
+const BlackUnderlineButton = React.memo<PropTypes>( ({title, onClick, isActive}) => {
 
     return (
         <div className="flex flex-col gap-1">
             <button onClick={onClick}
                     className={
-                        classNames("mx-5 my-1 font-archivo text-md font-bold hover:opacity-100",
+                        classNames("mx-1 sm:mx-5 my-1 font-archivo text-md font-bold hover:opacity-100",
                             isActive
                                 ? "opacity-100"
                                 : "opacity-60"
@@ -28,6 +28,6 @@ const BlackUnderlineButton: React.FC<PropTypes> = ({title, onClick, isActive}) =
             <AnimatedBlueUnderline isActive={isActive}/>
         </div>
     );
-};
+});
 
 export default BlackUnderlineButton;

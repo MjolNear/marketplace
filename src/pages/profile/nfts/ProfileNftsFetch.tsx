@@ -6,10 +6,9 @@ import CardGrid from "../../../components/CardList/CardGrid";
 import CardListLoader from "../../../components/CardList/CardListLoader";
 import EmptyCardList from "../../../components/CardList/EmptyCardList";
 import {profileTokensSlice} from "../../../state/profile/nfts/tokens/slice";
+import {SignedInProps} from "../../../hoc/withAuthData";
 
-interface PropTypes {
-    accountId: string
-}
+interface PropTypes extends SignedInProps {}
 
 const ProfileNftsFetch: React.FC<PropTypes> = ({accountId}) => {
     const activeTab = useAppSelector(state => state.profile.nfts.tabs.activeTab)
@@ -21,7 +20,7 @@ const ProfileNftsFetch: React.FC<PropTypes> = ({accountId}) => {
         return () => {
             dispatch(profileTokensSlice.actions.reset())
         }
-    }, [accountId, dispatch])
+    }, [accountId])
 
     return (
         <>
