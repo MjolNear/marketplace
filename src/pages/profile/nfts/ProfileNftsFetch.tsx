@@ -7,9 +7,10 @@ import CardListLoader from "../../../components/CardList/CardListLoader";
 import EmptyCardList from "../../../components/CardList/EmptyCardList";
 import {profileTokensSlice} from "../../../state/profile/nfts/tokens/slice";
 import {SignedInProps} from "../../../hoc/withAuthData";
-import BlueToggle from "../../../components/Common/Form/Toggle/BlueToggle";
+import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
 import {WhitelistedContracts} from "../../../business-logic/whitelisted.contracts";
 import {ContractVerificationStatus} from "../../../business-logic/models/contract";
+import MobileFilter from "../../../components/Common/Filters/MobileFilter";
 
 interface PropTypes extends SignedInProps {
 }
@@ -61,6 +62,7 @@ const ProfileNftsFetch: React.FC<PropTypes> = ({accountId}) => {
                             handleToggle={checked => setFilters({...filters, mjolNear: checked})}
                             defaultChecked={filters.mjolNear}/>
             </div>
+            {/*<MobileFilter/>*/}
             {fetching
                 ? <CardListLoader/>
                 : nfts.length === 0

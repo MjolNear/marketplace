@@ -19,7 +19,7 @@ export function giveApprove(contractId: ContractId, tokenId: TokenId, stringPric
         copies: nft.copies ? (nft.copies).toString() : "1",
         media_url: nft.mediaURL,
         reference_url: nft.referenceURL,
-        mint_sit: nft.mintedInfo ? {
+        mint_site: nft.mintedInfo ? {
             name: nft.mintedInfo.name,
             nft_link: nft.mintedInfo.link
         } : {

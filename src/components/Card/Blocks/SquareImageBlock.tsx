@@ -9,13 +9,17 @@ interface PropTypes {
     objectFit?: ObjectFit,
     className?: string,
     scrollPosition?: ScrollPosition,
+    width?: number | string
+    height?: number | string
 }
 
 const SquareImageBlock: React.FC<PropTypes> = ({
     path,
     objectFit = 'contain',
     scrollPosition = undefined,
-    className = undefined
+    className = undefined,
+    width = "100%",
+    height = "100%"
 }) => {
 
     const [loading, setLoading] = useState(true)
@@ -30,8 +34,8 @@ const SquareImageBlock: React.FC<PropTypes> = ({
                            scrollPosition={scrollPosition}
                            afterLoad={() => setLoading(false)}
                            style={{
-                               width: "100%",
-                               height: "100%",
+                               width,
+                               height,
                                objectFit,
                            }}
             />
