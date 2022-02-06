@@ -10,7 +10,7 @@ interface PropTypes {
     isActive: boolean
 }
 
-const BlackUnderlineButton = React.memo<PropTypes>( ({title, onClick, isActive}) => {
+const BlueUnderlineButton = React.memo<PropTypes>( ({title, onClick, isActive}) => {
 
     return (
         <div className="flex flex-col gap-1">
@@ -30,4 +30,4 @@ const BlackUnderlineButton = React.memo<PropTypes>( ({title, onClick, isActive})
     );
 });
 
-export default BlackUnderlineButton;
+export default BlueUnderlineButton;
