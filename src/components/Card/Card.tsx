@@ -32,7 +32,7 @@ const Card: React.FC<PropTypes> = ({nft, scrollPosition}) => {
                         <CollectionBlock name="Mock collection"/>
                     </Link>
                 </div>
-                <MintedBlock market={nft.mintSite?.name} link={nft.mintSite?.nftLink}/>
+                <MintedBlock mintedInfo={nft.mintedInfo}/>
                 <PriceBlock price={nft.price}/>
             </div>
         </div>

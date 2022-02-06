@@ -70,8 +70,11 @@ export async function getUserNfts(accountId: AccountId) {
                 token => getConvertedNFT(contractId, token, tokenPrices)).then(result => result.values)
             )
 
-
-    return batchRequest(contractIds, fetchNfts).then(result => result.values.flat())
+    return Promise.all([
+            batchRequest(contractIds, fetchNfts).then(result => result.values.flat()),
+            batchRequest(contractIds, contractAPI.fetchContractBeta).then(result => result.values)
+        ]
+    )
 }
 
 

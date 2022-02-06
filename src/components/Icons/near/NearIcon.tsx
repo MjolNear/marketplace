@@ -1,9 +1,6 @@
 import React from 'react';
+import {IconProps} from "../IconProps";
 
-interface IconProps {
-    size: number,
-    fill: string
-}
 
 const NearIcon: React.FC<IconProps> = ({size, fill}) => {
     return (

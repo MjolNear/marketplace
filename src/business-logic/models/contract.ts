@@ -1,13 +1,5 @@
-import {ContractAccordance} from "../near/api/contracts/parser/methods";
-import {ContractId} from "./types";
-
-export enum MintedContract {
-    Verified = "Verified",
-    Unverified = "Not verified",
-    NotSupported = "Not supported"
-}
-
-export interface ContractInfo {
-    contractId: ContractId,
-    accordance: ContractAccordance
+export enum ContractVerificationStatus {
+    Verified = "VERIFIED",
+    Unverified = "UNVERIFIED",
+    NotSupported = "NOT_SUPPORTED"
 }

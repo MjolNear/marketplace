@@ -1,16 +1,6 @@
 import {AccountId, ContractId} from "../../../models/types";
-import {QueryResponseKind} from "near-api-js/lib/providers/provider";
-import {JsonRpcProvider} from "near-api-js/lib/providers";
-import {contractAccordance, INCORRECT_STANDARD} from "./parser/methods";
-import {parseContract} from "./parser/lib";
 import {fetchWithTimeout} from "../core";
-import {ContractInfo} from "../../../models/contract";
-import {batchRequest} from "../batch-request";
-
-
-interface ViewCode extends QueryResponseKind {
-    code_base64: string
-}
+import {ContractStatusResponse} from "../types/response/contracts";
 
 
 export const contractAPI = {
@@ -26,41 +16,35 @@ export const contractAPI = {
         ).then(response => response.json()
         ).catch(() => []),
 
-    /**
-     * Extracts exported functions from NEAR smart contract
-     *
-     * @param contractId NEAR contract
-     */
-    viewMethods: (contractId: ContractId) => {
-        if (contractId.endsWith('mintbase1.near')) {
-            console.log(contractId)
-            return Promise.resolve(INCORRECT_STANDARD)
-        }
+    // /**
+    //  * Extracts exported functions from NEAR smart contract
+    //  *
+    //  * @param contractId NEAR contract
+    //  */
+    // viewMethods: (contractId: ContractId) => {
+    //     if (contractId.endsWith('mintbase1.near')) {
+    //         console.log(contractId)
+    //         return Promise.resolve(INCORRECT_STANDARD)
+    //     }
+    //
+    //     // https://rpc.ankr.com/near
+    //     // https://rpc.mainnet.near.org/
+    //     return new JsonRpcProvider('https://rpc.mainnet.near.org/')
+    //         .query<ViewCode>({
+    //             account_id: contractId,
+    //             finality: 'final',
+    //             request_type: 'view_code'
+    //         })
+    //         .then(response => contractAccordance(parseContract(response.code_base64)))
+    //         .catch(e => {
+    //             console.log(e)
+    //             return INCORRECT_STANDARD
+    //         })
+    // },
 
-        // https://rpc.ankr.com/near
-        // https://rpc.mainnet.near.org/
-        return new JsonRpcProvider('https://rpc.mainnet.near.org/')
-            .query<ViewCode>({
-                account_id: contractId,
-                finality: 'final',
-                request_type: 'view_code'
-            })
-            .then(response => contractAccordance(parseContract(response.code_base64)))
-            .catch(e => {
-                console.log(e)
-                return INCORRECT_STANDARD
-            })
-    },
-
-    fetchUserTokenContractsInfo: (accountId: AccountId) =>
-        contractAPI
-            .fetchUserTokenContracts(accountId)
-            .then(contractAPI.fetchContractsInfo),
-
-    fetchContractsInfo: (contracts: ContractId[]): Promise<ContractInfo[]> =>
-        batchRequest(contracts, contractAPI.viewMethods)
-            .then(result => result.values.map((accordance, i) => ({
-                contractId: contracts[i],
-                accordance
-            })))
+    fetchContractBeta: (contractId: ContractId, port = 7010): Promise<ContractStatusResponse> => {
+        // const url = `http://localhost:7010/api.mjolnear.com/contracts/${contractId}`
+        const url = `https://mjolnear-contracts-indexer.herokuapp.com/api.mjolnear.com/contracts/${contractId}`
+        return fetch(url).then(response => response.json())
+    }
 }

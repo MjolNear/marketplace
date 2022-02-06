@@ -1,11 +1,8 @@
 import React from 'react';
 import logo from "../../../resources/logo-white.svg";
+import {IconProps} from "../IconProps";
 
-interface SizeProps {
-    size: number | string
-}
-
-const WhiteNearIcon: React.FC<SizeProps> = ({size = 16}) => {
+const WhiteNearIcon: React.FC<IconProps> = React.memo(({size = 16}) => {
     return (
         <img src={logo}
              alt="near"
@@ -13,6 +10,6 @@ const WhiteNearIcon: React.FC<SizeProps> = ({size = 16}) => {
              height={size}
         />
     )
-};
+});
 
 export default WhiteNearIcon;

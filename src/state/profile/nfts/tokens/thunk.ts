@@ -7,8 +7,9 @@ export const fetchMyNfts = (accountId: string) =>
     async (dispatch: AppDispatch) => {
         dispatch(profileTokensSlice.actions.toggleFetching(true))
         getUserNfts('root.near')
-            .then((nfts) => {
+            .then(([nfts, contracts]) => {
                 dispatch(profileTokensSlice.actions.setNfts(nfts))
+                dispatch(profileTokensSlice.actions.setContracts(contracts))
             })
             .finally(() => dispatch(profileTokensSlice.actions.toggleFetching(false)))
     }
