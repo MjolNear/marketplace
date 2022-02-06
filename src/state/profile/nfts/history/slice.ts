@@ -1,11 +1,11 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-export interface ProfileTokensState {
+export interface ProfileHistoryState {
     history: any[],
     fetching: boolean
 }
 
-const initialState: ProfileTokensState = {
+const initialState: ProfileHistoryState = {
     history: [],
     fetching: false
 }
