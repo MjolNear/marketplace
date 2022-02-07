@@ -25,7 +25,7 @@ const CollectionCard: React.FC<PropTypes> = ({collection}) => {
                 </div>
                 <div className="w-full space-y-1 px-2 pt-1">
                     <div
-                        className="font-bold font-archivo text-tiny-5 h-[35px] opacity-80 text-center overflow-hidden"
+                        className="font-bold font-archivo text-tiny-5 opacity-80 text-center truncate"
                     >
                         {collection.desc.length === 0
                             ? "Collection has no description"
