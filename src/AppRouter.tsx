@@ -25,8 +25,8 @@ const AppRouter = () => {
             <Route path="nfts/:contractId/:tokenId" element={<PreviewNftPage/>}/>
 
             {/* Collections block */}
-            <Route path="collections/:collectionId/:filterTab" element={<PreviewCollectionPage/>}/>
             <Route path="collections" element={<ExploreCollectionsPage/>}/>
+            <Route path="collections/:contractId/:collectionId/:filterTab" element={<PreviewCollectionPage/>}/>
 
             {/* Creation block */}
             <Route path="create-nft" element={<CreateNftPage/>}/>

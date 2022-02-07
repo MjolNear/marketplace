@@ -10,7 +10,7 @@ interface PropTypes {
 
 const CollectionCard: React.FC<PropTypes> = ({collection}) => {
 
-    const previewLink = `/collections/${collection.collection_id}/items`
+    const previewLink = `/collections/${collection.collection_contract}/${collection.collection_id}/items`
 
     return (
         <Link className="flex flex-col justify-start bg-white rounded-2xl
@@ -25,7 +25,7 @@ const CollectionCard: React.FC<PropTypes> = ({collection}) => {
                 </div>
                 <div className="w-full space-y-1 px-2 pt-1">
                     <div
-                        className="font-bold font-archivo text-sm opacity-80 text-center truncate"
+                        className="font-bold font-archivo text-tiny-5 h-[35px] opacity-80 text-center overflow-hidden"
                     >
                         {collection.desc.length === 0
                             ? "Collection has no description"
@@ -34,7 +34,7 @@ const CollectionCard: React.FC<PropTypes> = ({collection}) => {
                     </div>
                     <hr/>
                     <DarkBlueMjolText text={collection.owner_id}
-                                      classes="w-full font-archivo text-tiny-5 pr-2 text-right font-bold"
+                                      classes="w-full font-archivo text-tiny-4 pr-2 text-right font-bold"
                     />
                 </div>
             </div>

@@ -1,13 +1,11 @@
 import {
-    AccountId,
     ContractId,
     NumberAmount,
     Optional,
     StringAmount,
-    TokenId,
     TokenUID
 } from "../../../../models/types";
-import {TokensResponse} from "./core";
+import {TokensBatchResponse} from "./core";
 import {CoreToken} from "../token";
 
 export interface MarketToken extends CoreToken {
@@ -16,5 +14,5 @@ export interface MarketToken extends CoreToken {
     price: NumberAmount,
 }
 
-export type MarketTokens = TokensResponse<MarketToken>
+export type MarketTokens = TokensBatchResponse<MarketToken>
 export type TokenPrices = Record<TokenUID, Optional<StringAmount>>

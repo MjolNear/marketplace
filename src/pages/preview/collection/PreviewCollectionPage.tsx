@@ -16,28 +16,29 @@ import CollectionMedia from "../../../components/Collection/Media/CollectionMedi
 import TraitsFilter from "../../../components/Collection/Filters/TraitsFilter";
 
 type CollectionRouteParams = {
-    collectionId: string
+    contractId: string,
+    collectionId: string,
     filterTab: "Items" | "Activity"
 }
 
 const PreviewCollectionPage: React.FC = () => {
 
-    const {collectionId, filterTab} = useParams<CollectionRouteParams>()
+    const {contractId, collectionId, filterTab} = useParams<CollectionRouteParams>()
     const dispatch = useAppDispatch()
     const {collection, fetching} = useAppSelector(state => state.preview.collection)
     const total = useAppSelector(state => state.preview.collection.nftsState.total)
 
     useEffect(() => {
-        if (!collectionId) {
+        if (!collectionId || !contractId) {
             return
         }
-        dispatch(fetchCollection(collectionId))
+        dispatch(fetchCollection(collectionId, contractId))
         return () => {
             dispatch(previewCollectionSlice.actions.reset())
         }
     }, [collectionId, dispatch])
 
-    if (!collectionId || !filterTab) {
+    if (!collectionId || !contractId || !filterTab) {
         return <NotFoundPage/>
     }
 
