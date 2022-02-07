@@ -1,7 +1,5 @@
-import {Token} from "../near/api/types/token";
-import {MJOL_CONTRACT_ID} from "../near/enviroment/contract-names";
 import {Optional, StringAmount} from "./types";
-import {marketAPI} from "../near/api/market";
+import {NftMintedInfo} from "../whitelisted.contracts";
 
 export interface BaseNft {
     contractId: string,
@@ -18,27 +16,9 @@ export interface NftMetadata {
     copies: Optional<number>
 }
 
+
 export interface MintInfo {
-    mintSite?: {
-        name: string,
-        nftLink: string
-    }
+    mintedInfo: NftMintedInfo
 }
 
 export type Nft = BaseNft & NftMetadata & MintInfo
-
-
-
-export async function mapMjolTokenToNFT (token: Token): Promise<Nft> {
-    return {
-        contractId: MJOL_CONTRACT_ID,
-        tokenId: token.token_id,
-        ownerId: token.owner_id,
-        title: token.metadata.title || "",
-        mediaURL: token.metadata.media || "",
-        description: token.metadata.description,
-        price: await marketAPI.fetchTokenPrice(MJOL_CONTRACT_ID, token.token_id),
-        referenceURL: token.metadata.reference,
-        copies: token.metadata.copies,
-    }
-}

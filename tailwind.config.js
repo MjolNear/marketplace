@@ -41,7 +41,7 @@ module.exports = {
             '3xl': ['1.875rem', {
                 'line-height': '2.25rem'
             }],
-            '4xl': ['2.25', {
+            '4xl': ['2.25rem', {
                 'line-height': '2.5rem'
             }],
             '5xl': ['3rem', {
@@ -70,15 +70,18 @@ module.exports = {
             "mjol-base-blue-lg": "0px 7px 9px 6px  rgba(120, 192, 233, 0.3)",
             "mjol-base-blue-drop-xl": "0px 15px 14px 0px rgba(120, 192, 233, 0.3)",
 
-            "mjol-blue-all-md": "0px 0px 6px 6px rgba(120, 192, 233, 0.5)",
+            "mjol-blue-all-md": "0px 0px 5px 3px rgba(120, 192, 233, 1)",
             "mjol-blue-all-xs": "0px 0px 3px 3px rgba(120, 192, 233, 0.3)",
+
+            "mjol-blue-300-md": "0px 0px 5px 3px #93c5fd",
 
             "mjol-medium-blue-all-xs": "0px 0px 3px 3px rgba(120, 192, 233, 0.5)",
 
             "mjol-dark-blue-xs": "0px 0px 3px 3px rgba(67, 145, 255, 0.8)",
             "mjol-dark-blue-md": "0px 0px 6px 6px rgba(67, 145, 255, 0.8)",
 
-            "mjol-gray-xs": "0px 0px 3px 3px rgba(0, 0, 0, 0.1)"
+            "mjol-gray-xs": "0px 0px 3px 3px rgba(0, 0, 0, 0.1)",
+            "mjol-gray-md": "0px 0px 4px 2px rgba(0, 0, 0, 0.2)"
         },
 
         screens: {

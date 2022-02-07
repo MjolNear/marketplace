@@ -4,6 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+
+input:checked ~ .checkedBackground {
+    background: #4391ff;
+}
+
+input:checked ~ .dotCheckbox {
+    transform: translateX(28px);
+    background-color: white;
+}
+
 /* For hiding stepper in input forms. */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

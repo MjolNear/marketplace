@@ -11,8 +11,8 @@ const CardLoader = React.memo<PropTypes>(({size = 300, ...props}) => {
 
     return (
         <div {...props}>
-            <div className="flex flex-col ring-1 rounded-xl ring-gray-200 overflow-hidden pulse-animation w-full
-                        transform hover:shadow-mjol-gray-xs hover:ring-inset"
+            <div className="flex flex-col ring-1 rounded-xl ring-gray-200 overflow-hidden animate-pulse w-full
+                        transform hover:shadow-mjol-gray-xs hover:ring-inset hover:-translate-y-[1px]"
             >
                 {/* Image block */}
                 <div style={{

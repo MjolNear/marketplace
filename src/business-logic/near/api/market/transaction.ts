@@ -11,25 +11,23 @@ export function giveApprove(contractId: ContractId, tokenId: TokenId, stringPric
     const price = utils.format.parseNearAmount(stringPrice.toString());
 
     const json_nft = {
-        "contract_id": nft.contractId,
-        "token_id": nft.tokenId,
-        "owner_id": nft.ownerId,
-        "title": nft.title,
-        "description": nft.description,
-        "copies": nft.copies ? (nft.copies).toString() : "1",
-        "media_url": nft.mediaURL,
-        "reference_url": nft.referenceURL,
-        "mint_site": nft.mintSite ? {
-            "name": nft.mintSite.name,
-            "nft_link": nft.mintSite.nftLink
+        contract_id: nft.contractId,
+        token_id: nft.tokenId,
+        owner_id: nft.ownerId,
+        title: nft.title,
+        description: nft.description,
+        copies: nft.copies ? (nft.copies).toString() : "1",
+        media_url: nft.mediaURL,
+        reference_url: nft.referenceURL,
+        mint_site: nft.mintedInfo ? {
+            name: nft.mintedInfo.name,
+            nft_link: nft.mintedInfo.link
         } : {
-            "name": "",
-            "nft_link": ""
+            name: "",
+            nft_link: ""
         },
-        "price":price
+        price
     }
-
-    console.log(JSON.stringify({json_nft}));
 
     return functionCall({
         contractId,

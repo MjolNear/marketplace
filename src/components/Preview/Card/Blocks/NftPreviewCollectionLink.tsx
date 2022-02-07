@@ -10,7 +10,7 @@ interface PropTypes {
 const NftPreviewCollectionLink = React.memo<PropTypes>(({name, link}) => {
     return (
         <div className="flex flex-row justify-between">
-            <div className="text-md md:text-lg font-bold font-archivo text-mjol-purple-dark-t hover:bg-opacity-80 text-center">
+            <div className="text-md md:text-lg font-bold font-archivo text-black opacity-60 hover:opacity-80 text-center">
                 <Link to={link}>{name}</Link>
             </div>
             <ShareIcon/>

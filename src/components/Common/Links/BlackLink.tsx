@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import classNames from "../../../utils/css-utils";
+import AnimatedBlueUnderline from "../Animation/AnimatedBlueUnderline";
 
 interface LinkPropTypes {
     to: string,
@@ -17,10 +18,8 @@ const BlackLink = React.memo<LinkPropTypes>(({to, text, isActive}) => {
                       isActive ? "opacity-100" : "opacity-60",
                   )}
         >
-            <div className="px-5">
-                {text}
-            </div>
-            {isActive && <div className="h-[2px] bg-blue-500 rounded-t-[2px]"/>}
+            <div className="px-5">{text}</div>
+            <AnimatedBlueUnderline isActive={isActive}/>
         </Link>
     );
 });

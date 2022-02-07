@@ -15,7 +15,7 @@ export const getConfig = (env: NetworkEnv): Config => {
         case NetworkEnv.MAINNET:
             return {
                 networkId: 'mainnet',
-                nodeUrl: 'https://rpc.mainnet.near.org',
+                nodeUrl: 'https://rpc.ankr.com/near',
                 contractName: MARKET_CONTRACT_ID,
                 walletUrl: 'https://wallet.near.org',
                 helperUrl: 'https://helper.mainnet.near.org',

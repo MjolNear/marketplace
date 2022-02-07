@@ -86,8 +86,8 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
 
 
     return (
-        <div className="grid md:grid-cols-2 gap-8 min-h-screen bg-mjol-white p-5 xs:p-10 md:items-start">
-            <PreviewNftImage link={nft.mediaURL}/>
+        <div className="grid md:grid-cols-2 gap-8 min-h-screen p-5 xs:p-10 md:items-start">
+            <PreviewNftImage link={nft.mediaURL} imageName={nft.title}/>
             <NftPreviewInfo nft={nft}
                             payouts={payouts}
                             statusElement={getStatus()}

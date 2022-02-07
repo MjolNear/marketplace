@@ -30,6 +30,7 @@ export const signIn = () => {
         .catch()
 }
 
-export const signOut = () => {
-    wallet.signOut()
+export const signOut = (): void => {
+    wallet.signOut();
+    window.location.replace(window.location.origin + window.location.pathname)
 }

@@ -2,11 +2,12 @@ import {NftAPI} from "../../get-utils";
 import {viewFunction} from "../rpc";
 import {Nft} from "../../../models/nft";
 import {buildUID, getPrice} from "../utils";
-import {Marketplace} from "../contracts";
 import {TokenPrices} from "../types/response/market";
 import {Token} from "../types/token";
 import {marketAPI} from "../market";
 import {ContractId} from "../../../models/types";
+import {ContractVerificationStatus} from "../../../models/contract";
+import {getNftMintedSiteInfo, WhitelistedContracts} from "../../../whitelisted.contracts";
 
 const isIPFS = require('is-ipfs')
 
@@ -30,36 +31,14 @@ function getRealUrl(url: string, urlHash?: string, contractId?: string) {
     return null
 }
 
-function getNftMintedSiteInfo(nft: any, contractId: string) {
-    if (contractId === Marketplace.PARAS) {
-        const holder = nft.token_id.split(':')[0];
-        return {
-            name: 'Paras',
-            nftLink: `https://paras.id/token/x.paras.near::${holder}/${nft.token_id}`
-        }
-    }
-    if (contractId.endsWith('mintbase1.near')) {
-        return {
-            name: 'Mintbase',
-            nftLink: `https://www.mintbase.io/thing/${nft.metadata.reference}:${contractId}`
-        }
-    }
-    // if (contractId === 'pluminite.near') {
-    //     return new MintSite(
-    //         'Pluminite',
-    //         `https://pluminite.com/#/gem/${nft.token_id}`
-    //     )
-    // }
-
-    if (contractId.endsWith('mjol.near')) {
-        return {
-            name: 'MjolNear',
-            nftLink: `https://mjolnear.com/nfts/${contractId}/${nft.token_id}`
-        }
-    }
-    return {
-        name: 'unsupported contract',
-        nftLink: ''
+export const getMintText = (status: string) => {
+    switch (status) {
+        case ContractVerificationStatus.Unverified:
+            return "Unverified"
+        case ContractVerificationStatus.NotSupported:
+            return "Not supported"
+        default:
+            return `Minted on ${status}`
     }
 }
 
@@ -98,7 +77,7 @@ function convertStandardNFT(contractId: string, nft: any, tokenPrices: TokenPric
         copies: metadata.copies,
         mediaURL: mediaUrl,
         referenceURL: getRealUrl(metadata.reference, metadata.reference_hash, contractId),
-        mintSite: getNftMintedSiteInfo(nft, contractId),
+        mintedInfo: getNftMintedSiteInfo(nft, contractId),
         price: getPrice(uid, tokenPrices)
     })
 }
@@ -191,7 +170,7 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: TokenPr
         copies: metadata.copies,
         mediaURL: mediaUrl,
         referenceURL: getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId),
-        mintSite: getNftMintedSiteInfo(nft, contractId),
+        mintedInfo: getNftMintedSiteInfo(nft, contractId),
         price: getPrice(uid, tokenPrices)
     })
 }

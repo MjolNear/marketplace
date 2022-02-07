@@ -1,28 +1,40 @@
 import React from 'react';
-import {GoUnverified, GoVerified} from "react-icons/go";
+import {NftMintedInfo} from "../../../business-logic/whitelisted.contracts";
+import ResolveVerificationIcon from "../../Common/Verification/Icons/ResolveVerificationIcon";
+import {ContractVerificationStatus} from "../../../business-logic/models/contract";
+import {resolveVerificationText} from "../../Common/Verification/utils";
+import LightBlueGradientText from "../../Common/Text/LightBlueGradientText";
+import DarkBlueMjolText from "../../Common/Text/DarkBlueMjolText";
 
 interface PropsTypes {
-    market?: string,
-    link?: string
+    mintedInfo: NftMintedInfo
 }
 
-const MintedBlock = React.memo<PropsTypes>(({market, link}) => {
+const MintedBlock = React.memo<PropsTypes>(({mintedInfo}) => {
+    const verification = mintedInfo.verification
     return (
         <>
             <div className="flex gap-1 items-center">
-                {market !== 'unsupported contract'
-                    ? <GoVerified size={14} color="#18b3cc"/>
-                    : <GoUnverified size={14} color=""/>
+                <ResolveVerificationIcon verification={verification}/>
+                {verification === ContractVerificationStatus.Verified
+                    ?
+                    <a className="text-black opacity-80 font-bold font-archivo text-xs group hover:opacity-100"
+                       href={mintedInfo.link}
+                       target="_blank"
+                       rel="noreferrer"
+                    >
+                        <div className="inline-flex gap-[3px]">
+                            Minted on
+                            <DarkBlueMjolText text={mintedInfo.name} classes="text-center font-bold"/>
+                        </div>
+                    </a>
+                    :
+                    <div className="text-black opacity-80 font-archivo font-archivo font-bold text-xs">
+                        {resolveVerificationText(verification)}
+                    </div>
                 }
-                <a className="text-black opacity-80 font-archivo font-bold text-tiny-4 hover:opacity-90"
-                   href={link}
-                   target="_blank"
-                   rel="noreferrer"
-                >
-                    {market === 'unsupported contract' ? 'Not verified' : `Minted on ${market}`}
-                </a>
             </div>
-            <hr className="border-mjol-purple-dark"/>
+            <div className="h-[1px] bg-blue-200 mt-[3px] rounded-lg"/>
         </>
     );
 });

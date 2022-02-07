@@ -1,37 +1,73 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import {ProfileNftsTab, profileNftsSlice} from "../../../state/profile/nfts/slice";
-import {fetchMyNfts} from "../../../state/profile/nfts/thunk";
+import {ProfileNftsTab} from "../../../state/profile/nfts/slice";
+import {fetchMyNfts} from "../../../state/profile/nfts/tokens/thunk";
 import CardGrid from "../../../components/CardList/CardGrid";
 import CardListLoader from "../../../components/CardList/CardListLoader";
 import EmptyCardList from "../../../components/CardList/EmptyCardList";
+import {profileTokensSlice} from "../../../state/profile/nfts/tokens/slice";
+import {SignedInProps} from "../../../hoc/withAuthData";
+import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
+import {WhitelistedContracts} from "../../../business-logic/whitelisted.contracts";
+import {ContractVerificationStatus} from "../../../business-logic/models/contract";
+import MobileFilter from "../../../components/Common/Filters/MobileFilter";
 
-interface PropTypes {
-    accountId: string
+interface PropTypes extends SignedInProps {
 }
 
 const ProfileNftsFetch: React.FC<PropTypes> = ({accountId}) => {
-    const {nfts, fetching, activeTab} = useAppSelector(state => state.profile.nfts)
+    const activeTab = useAppSelector(state => state.profile.nfts.tabs.activeTab)
+    const {nfts, contracts, fetching} = useAppSelector(state => state.profile.nfts.tokens)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(fetchMyNfts(accountId))
         return () => {
-            dispatch(profileNftsSlice.actions.resetNfts())
+            dispatch(profileTokensSlice.actions.reset())
         }
-    }, [accountId, dispatch])
+    }, [accountId])
+
+    const [filters, setFilters] = useState({
+        mjolNear: false,
+        supported: true
+    })
+
+    const filteredNfts = (activeTab === ProfileNftsTab.Listed
+            ? nfts.filter(nft => nft.price !== null)
+            : nfts
+    ).map(nft => ({
+            ...nft,
+            mintedInfo: {
+                ...nft.mintedInfo,
+                verification: contracts[nft.contractId]?.verification || nft.mintedInfo.verification
+            }
+        })
+    ).filter(nft => {
+        if (filters.mjolNear) {
+            return nft.contractId === WhitelistedContracts.MjolNear
+        }
+        if (filters.supported) {
+            return nft.mintedInfo.verification !== ContractVerificationStatus.NotSupported
+        }
+        return true
+    })
 
     return (
         <>
+            <div className="w-full inline-flex justify-center gap-10 mb-10">
+                <BlueToggle text="Supported"
+                            handleToggle={checked => setFilters({...filters, supported: checked})}
+                            defaultChecked={filters.supported}/>
+                <BlueToggle text="MjolNear"
+                            handleToggle={checked => setFilters({...filters, mjolNear: checked})}
+                            defaultChecked={filters.mjolNear}/>
+            </div>
+            {/*<MobileFilter/>*/}
             {fetching
                 ? <CardListLoader/>
                 : nfts.length === 0
                     ? <EmptyCardList/>
-                    : <CardGrid fetching={fetching} nfts={
-                        activeTab === ProfileNftsTab.Listed
-                            ? nfts.filter(nft => nft.price !== null)
-                            : nfts
-                    }/>
+                    : <CardGrid fetching={fetching} nfts={filteredNfts}/>
             }
         </>
     );

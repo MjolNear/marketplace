@@ -13,7 +13,7 @@ export interface ExploreNftsState {
 
 const initialState: ExploreNftsState = {
     nfts: [],
-    fetching: false,
+    fetching: true,
     from: 0,
     limit: 12,
     hasMore: true,
