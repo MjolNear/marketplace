@@ -42,13 +42,18 @@ export function giveApprove(contractId: ContractId, tokenId: TokenId, stringPric
     })
 }
 
-export function buyNftWithPayouts(contractId: ContractId, tokenId: TokenId, price: StringAmount) {
+export function buyNftWithPayouts(
+    contractId: ContractId,
+    tokenId: TokenId,
+    price: StringAmount,
+    hasPayouts: boolean = false) {
     const nearAmount = utils.format.parseNearAmount(price) || "0";
     return marketFunctionCall({
-        methodName: 'buy_with_payouts',
+        methodName: 'buy',
         args: {
             nft_contract_id: contractId,
-            token_id: tokenId
+            token_id: tokenId,
+            is_payouts_supported: hasPayouts
         },
         gas: GAS,
         attachedDeposit: new BN(nearAmount)

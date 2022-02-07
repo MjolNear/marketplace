@@ -1,10 +1,21 @@
-import {AccountId, CollectionId, Optional} from "../../../models/types";
-import {mjolViewFunction} from "../rpc";
-import {CollectionBatch, CollectionTokens} from "../types/response/collection";
+import {AccountId, CollectionId, ContractId, Optional} from "../../../models/types";
+import {mjolViewFunction, viewFunction} from "../rpc";
+import {
+    CollectionsBatchResponse,
+    CollectionTokens,
+    emptyCollectionsBatchResponse,
+} from "../types/response/collection";
 import {Collection, CollectionInfo, IPFSMetadata} from "../../../models/collection";
 import {fetchWithTimeout} from "../core";
+import {Token} from "../types/token";
+import {MJOL_CONTRACT_ID} from "../../enviroment/contract-names";
+import {emptyTokensBatchResponse} from "../types/response/core";
+import {batchRequest} from "../batch-request";
+import {nftAPI} from "../nfts";
+import {WhitelistedContracts} from "../../../whitelisted.contracts";
 
 export const collectionAPI = {
+
     /**
      * Fetches information about user collections.
      *
@@ -21,15 +32,83 @@ export const collectionAPI = {
             return []
         }),
 
+    fetchTotalSupply: (collectionId: CollectionId, contractId: ContractId) => {
+        if (contractId === MJOL_CONTRACT_ID) {
+            return mjolViewFunction<number>({
+                methodName: 'nft_collection_supply',
+                args: {
+                    collection_id: collectionId
+                }
+            }).catch(e => {
+                console.log(e)
+                return Number(0)
+            })
+        } else {
+            return viewFunction<string>({
+                    contractId,
+                    methodName: 'nft_total_supply',
+                    args: {}
+                }
+            ).then(stringTotal => Number(stringTotal)
+            ).catch(e => {
+                console.log(e)
+                return Number(0)
+            })
+        }
+    },
+
+    fetchNfts: (
+        collectionId: CollectionId,
+        contractId: ContractId,
+        from: number,
+        limit: number,
+        totalSupply: number = 0
+    ): Promise<CollectionTokens> => {
+        if (contractId === MJOL_CONTRACT_ID) {
+            return collectionAPI.fetchMjolNfts(collectionId, from, limit)
+        } else {
+            return collectionAPI.fetchWhitelistedCollectionNfts(contractId, from, limit)
+                .then(tokens => ({
+                    tokens,
+                    has_next_batch: from < totalSupply,
+                    total_count: totalSupply
+                }))
+                .catch(e => {
+                    console.log(e)
+                    return emptyTokensBatchResponse
+                })
+        }
+    },
+
+    fetchWhitelistedCollectionNfts: (contractId: ContractId, from: number, limit: number): Promise<Token[]> => {
+        if (contractId === WhitelistedContracts.NearPunks) {
+            let indices = []
+            for (let i = 1; i <= limit; i++) {
+                indices.push(from + i)
+            }
+            return batchRequest(indices, i => nftAPI.fetchNft(contractId, i.toString()))
+                .then(result => {
+                    return result.values.filter(nft => !!nft)
+                })
+        }
+        return viewFunction({
+            contractId,
+            methodName: "nft_tokens",
+            args: {
+                from_index: from.toString(),
+                limit
+            }
+        })
+    },
 
     /**
-     * Fetches NFTs from collection.
+     * Fetches NFTs from collection stored on MjolNear contract.
      *
      * @param collectionId valid collection id
      * @param from  start index for fetching
      * @param limit maximum amount of fetched tokens
      */
-    fetchNfts: (collectionId: CollectionId, from: number, limit: number): Promise<CollectionTokens> =>
+    fetchMjolNfts: (collectionId: CollectionId, from: number, limit: number): Promise<CollectionTokens> =>
         mjolViewFunction<CollectionTokens>({
             methodName: 'get_nfts_from_collection',
             args: {
@@ -39,11 +118,7 @@ export const collectionAPI = {
             }
         }).catch(e => {
             console.log(e)
-            return {
-                tokens: [],
-                total_count: 0,
-                has_next_batch: false
-            }
+            return emptyTokensBatchResponse
         }),
 
     fetchCollection: (collectionId: CollectionId): Promise<Optional<Collection>> =>
@@ -85,8 +160,8 @@ export const collectionAPI = {
             return null
         }),
 
-    fetchCollections: (from: number, limit: number): Promise<CollectionBatch> =>
-        mjolViewFunction<CollectionBatch>({
+    fetchCollections: (from: number, limit: number): Promise<CollectionsBatchResponse> =>
+        mjolViewFunction<CollectionsBatchResponse>({
                 methodName: 'get_collections',
                 args: {
                     from,
@@ -94,12 +169,8 @@ export const collectionAPI = {
                 }
             }
         ).catch(e => {
-            console.log(e)
-            return {
-                collections: [],
-                total_count: 0,
-                has_next_batch: false
+                console.log(e)
+                return emptyCollectionsBatchResponse
             }
-        })
-
+        )
 }

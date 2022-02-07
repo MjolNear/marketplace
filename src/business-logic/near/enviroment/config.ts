@@ -1,6 +1,7 @@
 import {NetworkEnv} from "./network";
 import {NearConfig} from "near-api-js/lib/near";
 import {MARKET_CONTRACT_ID} from "./contract-names";
+import {RpcEndpoint} from "./rpc.endpoint";
 
 
 export interface Config extends NearConfig {
@@ -15,7 +16,7 @@ export const getConfig = (env: NetworkEnv): Config => {
         case NetworkEnv.MAINNET:
             return {
                 networkId: 'mainnet',
-                nodeUrl: 'https://rpc.ankr.com/near',
+                nodeUrl: RpcEndpoint.ANKR,
                 contractName: MARKET_CONTRACT_ID,
                 walletUrl: 'https://wallet.near.org',
                 helperUrl: 'https://helper.mainnet.near.org',
@@ -73,6 +74,3 @@ export const getConfig = (env: NetworkEnv): Config => {
             throw Error(`Unconfigured environment '${env}'. Can be configured in src/config.js.`)
     }
 }
-
-// Why do we need that?
-// module.exports = getConfig;

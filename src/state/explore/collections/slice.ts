@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Collection} from "../../../business-logic/models/collection";
-import {CollectionBatch} from "../../../business-logic/near/api/types/response/collection";
+import {CollectionsBatchResponse} from "../../../business-logic/near/api/types/response/collection";
 
 export interface ExploreCollectionsState {
     collections: Collection[],
@@ -24,7 +24,7 @@ export const exploreCollectionsSlice = createSlice({
     name: "explore-collections",
     initialState,
     reducers: {
-        setPageData: (state, action: PayloadAction<CollectionBatch>) => {
+        setPageData: (state, action: PayloadAction<CollectionsBatchResponse>) => {
             state.collections = state.collections.concat(action.payload.collections)
             state.total = action.payload.total_count
             state.hasMore = action.payload.has_next_batch

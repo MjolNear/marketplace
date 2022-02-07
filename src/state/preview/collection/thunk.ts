@@ -1,23 +1,34 @@
 import {AppDispatch} from "../../store";
-import {CollectionId} from "../../../business-logic/models/types";
+import {CollectionId, ContractId} from "../../../business-logic/models/types";
 import {collectionAPI} from "../../../business-logic/near/api/collections";
 import {previewCollectionSlice} from "./slice";
 import {mapTokenToNFT} from "../../../business-logic/near/api/standardization/nft-converter";
-import {MJOL_CONTRACT_ID} from "../../../business-logic/near/enviroment/contract-names";
 
-export const fetchCollection = (collectionId: CollectionId) =>
+export const fetchCollection = (collectionId: CollectionId, contractId: ContractId) =>
     async (dispatch: AppDispatch) => {
         dispatch(previewCollectionSlice.actions.toggleFetching(true))
-        collectionAPI.fetchCollectionInfo(collectionId)
-            .then(collection => dispatch(previewCollectionSlice.actions.setCollection(collection)))
-            .finally(() => dispatch(previewCollectionSlice.actions.toggleFetching(false)))
+        Promise.all([
+                collectionAPI.fetchCollectionInfo(collectionId),
+                collectionAPI.fetchTotalSupply(collectionId, contractId)
+            ]
+        ).then(([collection, supply]) => {
+                dispatch(previewCollectionSlice.actions.setCollection(collection))
+                dispatch(previewCollectionSlice.actions.setTotalSupply(supply))
+            }
+        ).finally(() => dispatch(previewCollectionSlice.actions.toggleFetching(false)))
     }
 
-export const fetchCollectionNfts = (collectionId: CollectionId, from: number, limit: number) =>
+export const fetchCollectionNfts = (
+    collectionId: CollectionId,
+    contractId: ContractId,
+    from: number,
+    limit: number,
+    supply?: number
+) =>
     async (dispatch: AppDispatch) => {
         dispatch(previewCollectionSlice.actions.toggleNftsFetching(true))
-        collectionAPI.fetchNfts(collectionId, from, limit)
-            .then(response => Promise.all(response.tokens.map(token => mapTokenToNFT(MJOL_CONTRACT_ID, token)))
+        collectionAPI.fetchNfts(collectionId, contractId, from, limit, supply)
+            .then(response => Promise.all(response.tokens.map(token => mapTokenToNFT(contractId, token)))
                 .then(nfts =>
                     dispatch(previewCollectionSlice.actions.setNftsBatch({
                         tokens: nfts,

@@ -39,13 +39,17 @@ export const previewCollectionSlice = createSlice({
     name: "preview-collection",
     initialState,
     reducers: {
+        setTotalSupply: (state, action: PayloadAction<number | undefined>) => {
+            state.nftsState.total = action.payload
+                ? action.payload
+                : 0
+        },
         setCollection: (state, action: PayloadAction<Optional<CollectionInfo>>) => {
             state.collection = action.payload
         },
         setNftsBatch: (state, action: PayloadAction<TokensBatch>) => {
             state.nftsState.nfts = state.nftsState.nfts.concat(action.payload.tokens)
             state.nftsState.hasMore = action.payload.hasMore
-            state.nftsState.total = action.payload.total
             state.nftsState.from += state.nftsState.limit
         },
         toggleNftsFetching: (state, action: PayloadAction<boolean>) => {

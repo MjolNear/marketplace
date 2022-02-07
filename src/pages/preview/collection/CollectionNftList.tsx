@@ -8,10 +8,10 @@ import {previewCollectionSlice} from "../../../state/preview/collection/slice";
 const CollectionNftList = () => {
 
 
-    const {nfts, fetching, hasMore, from, limit} = useAppSelector(state => state.preview.collection.nftsState)
-    const collectionId = useAppSelector(state => state.preview.collection.collection?.collection_id)
+    const {nfts, fetching, hasMore, from, limit, total} = useAppSelector(state => state.preview.collection.nftsState)
+    const collection = useAppSelector(state => state.preview.collection.collection)
 
-    if (!collectionId) {
+    if (!collection) {
         return <NotFoundPage/>
     }
 
@@ -22,7 +22,13 @@ const CollectionNftList = () => {
                             from={from}
                             limit={limit}
                             fetcher={
-                                (from: number, limit: number) => fetchCollectionNfts(collectionId, from, limit)
+                                (from: number, limit: number) => fetchCollectionNfts(
+                                    collection.collection_id,
+                                    collection.collection_contract,
+                                    from,
+                                    limit,
+                                    total
+                                )
                             }
                             reset={previewCollectionSlice.actions.reset}
         />
