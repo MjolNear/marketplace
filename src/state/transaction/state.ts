@@ -10,9 +10,6 @@ export enum ItemMarketStatus {
 
     // Item is owned by another user and not listed on transaction.
     FREE = "FREE",
-
-    // Item contract is not supported
-    NOT_SUPPORTED = "NOT_SUPPORTED",
 }
 
 

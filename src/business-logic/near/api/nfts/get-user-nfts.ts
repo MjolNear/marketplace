@@ -5,6 +5,7 @@ import {AccountId, ContractId, TokenId} from "../../../models/types";
 import {contractAPI} from "../contracts";
 import {batchRequest} from "../batch-request";
 import {buildUID} from "../utils";
+import {MJOL_CONTRACT_ID} from "../../enviroment/contract-names";
 
 export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenId: TokenId) => {
     const jsonNft = await nftAPI.fetchNft(contractId, tokenId)
@@ -14,23 +15,25 @@ export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenI
     return getConvertedNFT(contractId, jsonNft, tokenWrapper)
 }
 
-export async function getNftPayouts(contractId: string, tokenId: string) {
+export async function getNftPayouts(contractId: string, tokenId: string): Promise<Record<string, number>> {
     const TREASURY_PERCENT = 2;
+    let royalties: Record<string, number> = {
+        'fee': TREASURY_PERCENT
+    };
 
     if (contractId === "mjol.near") {
-        return nftAPI.fetchTokenRoyalties(contractId, tokenId).then(rawRoyalties => {
-            let royalties: Record<string, number> = {'treasury': TREASURY_PERCENT};
+        return nftAPI.fetchTokenRoyalties(contractId, tokenId)
+            .then(rawRoyalties => {
             for (let payoutKey in rawRoyalties) {
                 royalties[payoutKey] = parseInt(rawRoyalties[payoutKey]) / 100
             }
-            delete royalties['undefined'] //delete bad minted Nfts
+            delete royalties['undefined'] //delete bad minted NFTs
             return royalties
-        })
+        }).catch(() => royalties)
     }
 
     return nftAPI.fetchTokenPayouts(contractId, tokenId)
         .then(payouts => {
-            let royalties: Record<string, number> = {'treasury': TREASURY_PERCENT};
             let highestPayout = null;
             for (let payoutKey in payouts['payout']) {
                 const payoutVal = parseInt(payouts['payout'][payoutKey]) / 1000000;
@@ -42,10 +45,9 @@ export async function getNftPayouts(contractId: string, tokenId: string) {
             if (highestPayout) {
                 delete royalties[highestPayout[0]]
             }
-            delete royalties['undefined'] //delete bad minted Nfts
 
             return royalties
-        })
+        }).catch(() => royalties)
 }
 
 function addExtraContracts(curContracts: string[]) {
