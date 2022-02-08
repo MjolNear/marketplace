@@ -9,8 +9,7 @@ import PreviewAttributes from "../Attributes/PreviewAttributes";
 import NftPreviewTitle from "./NftPreviewTitle";
 import NftPreviewCollectionLink from "./NftPreviewCollectionLink";
 
-
-const NftPreviewInfo = ({nft, payouts, statusElement}) => {
+const NftPreviewInfo = ({nft, payouts, contract, statusElement}) => {
 
     const ownerAttributes = [
         {name: "Owner ID", value: nft.ownerId || "Not found"},
@@ -35,7 +34,7 @@ const NftPreviewInfo = ({nft, payouts, statusElement}) => {
     return (
         <div className="space-y-5 md:max-w-xl">
             <div>
-                <NftPreviewTitle title={nft.title}/>
+                <NftPreviewTitle title={nft.title} verification={contract?.verification}/>
                 <NftPreviewCollectionLink name="MOCK" link=""/>
             </div>
             {statusElement}

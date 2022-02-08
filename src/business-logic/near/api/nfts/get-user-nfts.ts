@@ -5,7 +5,7 @@ import {AccountId, ContractId, TokenId} from "../../../models/types";
 import {contractAPI} from "../contracts";
 import {batchRequest} from "../batch-request";
 import {buildUID} from "../utils";
-import {MJOL_CONTRACT_ID} from "../../enviroment/contract-names";
+import {Nft} from "../../../models/nft";
 
 export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenId: TokenId) => {
     const jsonNft = await nftAPI.fetchNft(contractId, tokenId)
@@ -24,12 +24,12 @@ export async function getNftPayouts(contractId: string, tokenId: string): Promis
     if (contractId === "mjol.near") {
         return nftAPI.fetchTokenRoyalties(contractId, tokenId)
             .then(rawRoyalties => {
-            for (let payoutKey in rawRoyalties) {
-                royalties[payoutKey] = parseInt(rawRoyalties[payoutKey]) / 100
-            }
-            delete royalties['undefined'] //delete bad minted NFTs
-            return royalties
-        }).catch(() => royalties)
+                for (let payoutKey in rawRoyalties) {
+                    royalties[payoutKey] = parseInt(rawRoyalties[payoutKey]) / 100
+                }
+                delete royalties['undefined'] //delete bad minted NFTs
+                return royalties
+            }).catch(() => royalties)
     }
 
     return nftAPI.fetchTokenPayouts(contractId, tokenId)
@@ -60,16 +60,27 @@ function addExtraContracts(curContracts: string[]) {
     return curContracts
 }
 
-export async function getUserNfts(accountId: AccountId) {
+export async function getUserNfts(accountId: AccountId, limit: number = 20) {
 
     const contracts = await contractAPI.fetchUserTokenContracts(accountId)
     const contractIds = addExtraContracts(contracts)
     const tokenPrices = await marketAPI.fetchUserTokenPrices(accountId);
 
-    const fetchNfts = (contractId: ContractId) =>
-        nftAPI.fetchUserTokens(contractId, accountId)
-            .then(nfts => batchRequest(nfts,
-                token => getConvertedNFT(contractId, token, tokenPrices)).then(result => result.values)
+    const fetchNfts = (contractId: ContractId): Promise<Nft[]> =>
+        nftAPI.fetchUserTokensSupply(contractId, accountId)
+            .then(async supply => {
+                    let offsets = []
+                    for (let from = 0; from < supply; from += limit) {
+                        offsets.push(from)
+                    }
+                    return batchRequest(
+                        offsets,
+                        offset => nftAPI.fetchUserTokens(contractId, accountId, offset, limit).then(
+                            nfts => batchRequest(nfts,
+                                token => getConvertedNFT(contractId, token, tokenPrices)
+                            ).then(result => result.values))
+                    ).then(result => result.values.flat())
+                }
             )
 
     return Promise.all([
