@@ -28,7 +28,7 @@ type NftRouteParams = {
 
 const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
     const {contractId, tokenId} = useParams<NftRouteParams>()
-    const {nft, fetching, payouts} = useAppSelector(state => state.preview.nft)
+    const {nft, fetching, payouts, contract} = useAppSelector(state => state.preview.nft)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -58,6 +58,9 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
         }
 
         const nftStatus = getNftMarketStatus(accountId, nft)
+        if (!contract?.isCorrect) {
+            return <NftContractNotSupported/>
+        }
         switch (nftStatus) {
             case ItemMarketStatus.CAN_BUY:
                 return <BuyNftContainer price={nft.price}
@@ -77,8 +80,6 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
                                            onClick={
                                                () => dispatch(unlistNft(contractId, tokenId))
                                            }/>
-            case ItemMarketStatus.NOT_SUPPORTED:
-                return <NftContractNotSupported/>
             case ItemMarketStatus.FREE:
                 return <NotListedNftContainer/>
         }
