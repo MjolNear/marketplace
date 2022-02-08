@@ -33,7 +33,7 @@ const Card: React.FC<PropTypes> = ({nft, scrollPosition}) => {
             </div>
             <div className="px-2 xxs:px-5">
                 <div className="mb-3">
-                    {Math.random() < 0.5 && <CollectionBlock name="Mock collection"/>}
+                    <CollectionBlock name="Mock collection"/>
                 </div>
                 <MintedBlock mintedInfo={nft.mintedInfo}/>
                 <PriceBlock price={nft.price}/>
