@@ -18,6 +18,7 @@ import UnlistNftContainer from "../../../components/Preview/Card/Status/UnlistNf
 import NftContractNotSupported from "../../../components/Preview/Card/Status/NftContractNotSupported";
 import NotListedNftContainer from "../../../components/Preview/Card/Status/NotListedNftContainer";
 import {fetchNearUsdPrice} from "../../../hooks/fetchNearUsdPrice";
+import {ContractVerificationStatus} from "../../../business-logic/models/contract";
 
 interface PropTypes extends SignedInProps {
 }
@@ -63,8 +64,8 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
         }
 
         const nftStatus = getNftMarketStatus(accountId, nft)
-        if (!contract?.isCorrect) {
-            return <NftContractNotSupported missedNeps={contract?.missedNeps || []}/>
+        if (!contract || contract.verification === ContractVerificationStatus.NotSupported) {
+            return <NftContractNotSupported missedNeps={contract?.missedNeps}/>
         }
         switch (nftStatus) {
             case ItemMarketStatus.CAN_BUY:
