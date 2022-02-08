@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {fetchNft} from "../../../state/preview/nft/thunk";
 import withAuthData, {SignedInProps} from "../../../hoc/withAuthData";
@@ -17,6 +17,7 @@ import SellNftContainer from "../../../components/Preview/Card/Status/sell/SellN
 import UnlistNftContainer from "../../../components/Preview/Card/Status/UnlistNftContainer";
 import NftContractNotSupported from "../../../components/Preview/Card/Status/NftContractNotSupported";
 import NotListedNftContainer from "../../../components/Preview/Card/Status/NotListedNftContainer";
+import {fetchNearUsdPrice} from "../../../hooks/fetchNearUsdPrice";
 
 interface PropTypes extends SignedInProps {
 }
@@ -31,11 +32,15 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
     const {nft, fetching, payouts, contract} = useAppSelector(state => state.preview.nft)
     const dispatch = useAppDispatch()
 
+    const [usdPrice, setUsdPrice] = useState("0")
+
+
     useEffect(() => {
         if (!contractId || !tokenId) {
             return
         }
         dispatch(fetchNft(contractId, tokenId))
+        fetchNearUsdPrice().then(setUsdPrice)
         return () => {
             dispatch(previewNftSlice.actions.reset())
         }
@@ -59,11 +64,12 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
 
         const nftStatus = getNftMarketStatus(accountId, nft)
         if (!contract?.isCorrect) {
-            return <NftContractNotSupported/>
+            return <NftContractNotSupported missedNeps={contract?.missedNeps || []}/>
         }
         switch (nftStatus) {
             case ItemMarketStatus.CAN_BUY:
-                return <BuyNftContainer price={nft.price}
+                return <BuyNftContainer nearPrice={nft.price}
+                                        usdPrice={usdPrice}
                                         onClick={
                                             () => dispatch(buyNft(contractId, tokenId, nft.price || ''))
                                         }
@@ -76,7 +82,8 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
                                          }
                 />
             case ItemMarketStatus.LISTED:
-                return <UnlistNftContainer price={nft.price}
+                return <UnlistNftContainer nearPrice={nft.price}
+                                           usdPrice={usdPrice}
                                            onClick={
                                                () => dispatch(unlistNft(contractId, tokenId))
                                            }/>
@@ -91,6 +98,7 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
             <PreviewNftImage link={nft.mediaURL} imageName={nft.title}/>
             <NftPreviewInfo nft={nft}
                             payouts={payouts}
+                            contract={contract}
                             statusElement={getStatus()}
             />
         </div>

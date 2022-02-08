@@ -6,7 +6,7 @@ import UnverifiedIcon from "./UnverifiedIcon";
 import NotSupportedIcon from "./NotSupportedIcon";
 
 interface PropTypes {
-    verification: ContractVerificationStatus,
+    verification?: ContractVerificationStatus,
     iconProps?: IconProps
 }
 

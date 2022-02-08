@@ -22,7 +22,6 @@ export const nftAPI = {
             }
         }),
 
-
     /**
      * Fetches user tokens.
      * @see [Non-Fungible Token Enumeration (NEP-181)]{@link https://nomicon.io/Standards/NonFungibleToken/Enumeration.html}
@@ -36,8 +35,8 @@ export const nftAPI = {
     fetchUserTokens: (
         contractId: ContractId,
         accountId: AccountId,
-        limit: number = 20,
-        from: number = 0
+        from: number = 0,
+        limit: number = 20
     ): Promise<any[]> =>
         viewFunction({
             contractId,
@@ -47,6 +46,23 @@ export const nftAPI = {
                 from_index: from.toString(),
                 limit: limit
             }
+        }),
+
+    fetchUserTokensSupply: (
+        contractId: ContractId,
+        accountId: AccountId
+    ): Promise<number> =>
+        viewFunction<string>({
+                contractId,
+                methodName: "nft_supply_for_owner",
+                args: {
+                    account_id: accountId
+                }
+            }
+        ).then(stringNumber => Number(stringNumber)
+        ).catch((e) => {
+            console.log(e)
+            return 0
         }),
 
 
@@ -82,9 +98,5 @@ export const nftAPI = {
                 token_id: tokenId,
                 max_len_payout: 10
             }
-        }),
-
-    fetchMintbaseNft: (url: string) => {
-
-    }
+        })
 }
