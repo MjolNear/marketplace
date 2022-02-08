@@ -71,7 +71,14 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
                 return <BuyNftContainer nearPrice={nft.price}
                                         usdPrice={usdPrice}
                                         onClick={
-                                            () => dispatch(buyNft(contractId, tokenId, nft.price || ''))
+                                            () => dispatch(
+                                                buyNft(
+                                                    contractId,
+                                                    tokenId,
+                                                    nft.price || '',
+                                                    contract?.hasPayouts
+                                                )
+                                            )
                                         }
                 />
             case ItemMarketStatus.CAN_SELL:

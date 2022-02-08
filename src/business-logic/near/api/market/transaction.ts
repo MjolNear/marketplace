@@ -46,7 +46,8 @@ export function buyNftWithPayouts(
     contractId: ContractId,
     tokenId: TokenId,
     price: StringAmount,
-    hasPayouts: boolean = false) {
+    hasPayouts: boolean = false
+) {
     const nearAmount = utils.format.parseNearAmount(price) || "0";
     return marketFunctionCall({
         methodName: 'buy',
