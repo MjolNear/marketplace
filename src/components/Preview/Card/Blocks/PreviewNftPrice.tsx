@@ -2,6 +2,7 @@ import React from 'react';
 import NearBlackLogo from "../../../Icons/near/NearBlackLogo";
 import BN from "bn.js";
 import LightBlueGradientText from "../../../Common/Text/LightBlueGradientText";
+import DarkBlueMjolText from "../../../Common/Text/DarkBlueMjolText";
 
 interface PriceProps {
     nearPrice: string
@@ -13,16 +14,19 @@ const PreviewNftPrice = React.memo<PriceProps>(({nearPrice, usdPrice}) => {
 
     const priceInUSD = (Number(nearPrice) * Number(usdPrice)).toLocaleString(
         'en-US', {
-            maximumFractionDigits: 6
+            maximumFractionDigits: 6,
         })
 
     return (
-        <div className="inline-flex gap-3 items-center">
-            <div className="flex items-center gap-2 font-archivo text-[20px] font-black">
-                <NearBlackLogo/>
-                <LightBlueGradientText text={nearPrice} size="xl" fontWeight="black"/>
+        <div className="flex">
+            <div className="flex items-center gap-2">
+                <NearBlackLogo size={15}/>
+                <DarkBlueMjolText text={nearPrice} classes="text-[25px] font-archivo font-extrabold"/>
             </div>
-            <div className="text-gray-600 text-xs font-semibold">(≈ {priceInUSD}$)</div>
+            <div
+                className="text-gray-500 text-[13px] mt-[11px] pl-[10px] font-medium align-text-bottom whitespace-nowrap">
+                (≈ {priceInUSD}$)
+            </div>
         </div>
     );
 });

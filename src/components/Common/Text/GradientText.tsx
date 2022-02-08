@@ -14,7 +14,7 @@ export interface TextProps {
 
 const GradientText = React.memo<TextProps>(({
     text,
-    size = "md",
+    size = undefined,
     align = "center",
     fontWeight = "bold",
     extraClasses = '',
@@ -25,7 +25,7 @@ const GradientText = React.memo<TextProps>(({
     const textWeight = `font-${fontWeight}`
     return (
         <div
-            className={`text-transparent bg-clip-text font-archivo ${textSize} ${textAlignment} ${textWeight} ${extraClasses}`}
+            className={`text-transparent bg-clip-text font-archivo ${extraClasses} ${textSize} ${textAlignment} ${textWeight}`}
             style={style}
         >
             {text}
