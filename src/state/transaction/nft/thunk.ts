@@ -11,10 +11,10 @@ export const sellNft = (contractId: string, tokenId: string, price: string, nft:
             .catch(() => dispatch(marketNftTransactionSlice.actions.failure()))
     }
 
-export const buyNft = (contractId: string, tokenId: string, price: string) =>
+export const buyNft = (contractId: string, tokenId: string, price: string, hasPayouts: boolean) =>
     async (dispatch: AppDispatch) => {
         dispatch(marketNftTransactionSlice.actions.commit())
-        buyNftWithPayouts(contractId, tokenId, price)
+        buyNftWithPayouts(contractId, tokenId, price, hasPayouts)
             .then(() => dispatch(marketNftTransactionSlice.actions.success()))
             .catch(() => dispatch(marketNftTransactionSlice.actions.failure()))
     }
