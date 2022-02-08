@@ -4,14 +4,14 @@ import SinglePayout from "./SinglePayout";
 
 const PayoutsPreview = ({price, payouts}) => {
 
-    const {treasury, ...rest} = payouts
+    const {fee, ...rest} = payouts
     const royalties = Object.values(rest).reduce((a, b) => a + b, 0)
-    const receive = 100 - treasury - royalties
+    const receive = 100 - fee - royalties
 
     return (
         <div className="py-3">
             <SinglePayout name="Receive:" value={getStringPercentage(price, receive)}/>
-            <SinglePayout name="Fee:" value={getStringPercentage(price, treasury)}/>
+            <SinglePayout name="Fee:" value={getStringPercentage(price, fee)}/>
             <SinglePayout name="Royalty:" value={getStringPercentage(price, royalties)}/>
         </div>
     );

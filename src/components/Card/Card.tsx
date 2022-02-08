@@ -20,17 +20,20 @@ const Card: React.FC<PropTypes> = ({nft, scrollPosition}) => {
                         ring-1 ring-blue-300 select-none
                         transform hover:shadow-mjol-blue-300-md hover:-translate-y-[1px]"
         >
-            <Link to={previewLink}>
-                <SquareImageBlock path={nft.mediaURL} scrollPosition={scrollPosition}/>
-            </Link>
-            <div className="px-2 xxs:px-5 mt-1">
-                <div className="flex flex-col mb-4">
+
+            <div>
+                <Link to={previewLink}>
+                    <SquareImageBlock path={nft.mediaURL} scrollPosition={scrollPosition}/>
+                </Link>
+                <div className="px-2 xxs:px-5 mt-2">
                     <Link to={previewLink}>
                         <TitleBlock title={nft.title}/>
                     </Link>
-                    <Link to="MOCK">
-                        <CollectionBlock name="Mock collection"/>
-                    </Link>
+                </div>
+            </div>
+            <div className="px-2 xxs:px-5">
+                <div className="mb-3">
+                    {Math.random() < 0.5 && <CollectionBlock name="Mock collection"/>}
                 </div>
                 <MintedBlock mintedInfo={nft.mintedInfo}/>
                 <PriceBlock price={nft.price}/>

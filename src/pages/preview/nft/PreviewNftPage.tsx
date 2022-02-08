@@ -59,7 +59,7 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
 
         const nftStatus = getNftMarketStatus(accountId, nft)
         if (!contract?.isCorrect) {
-            return <NftContractNotSupported/>
+            return <NftContractNotSupported missedNeps={contract?.missedNeps || []}/>
         }
         switch (nftStatus) {
             case ItemMarketStatus.CAN_BUY:
