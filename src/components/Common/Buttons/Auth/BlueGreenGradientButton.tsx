@@ -1,5 +1,4 @@
 import React, {MouseEventHandler} from 'react';
-import {signIn} from "../../../../business-logic/near/enviroment/near";
 
 interface PropTypes {
     title: string
