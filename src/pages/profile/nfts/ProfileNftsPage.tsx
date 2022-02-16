@@ -6,7 +6,8 @@ import ProfileHistoryFetch from "./ProfileHistoryFetch";
 import ProfileNftsFetch from "./ProfileNftsFetch";
 import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
-import TabsPanel from "./navbar/TabsPanel";
+import TabsPanel from "../navbar/TabsPanel";
+import withAuthRedirect from "../../../hoc/withAuthRedirect";
 
 interface PropTypes extends SignedInProps {}
 
@@ -38,7 +39,7 @@ const ProfileNftsPage: React.FC<PropTypes> = ({accountId, signedIn}) => {
     return (
         <div className="pb-4 min-h-screen max-w-screen-2xl mx-auto">
             <BlueShadowContainer>
-                <div className="space-y-14 text-center">
+                <div className="space-y-10 text-center">
                     <DarkBlueTitle title="My NFTs"/>
                     <TabsPanel tabs={tabs} activeTab={activeTab} changeTab={changeTab}/>
                 </div>
@@ -48,4 +49,4 @@ const ProfileNftsPage: React.FC<PropTypes> = ({accountId, signedIn}) => {
     )
 };
 
-export default withAuthData(ProfileNftsPage);
+export default withAuthRedirect(withAuthData(ProfileNftsPage));

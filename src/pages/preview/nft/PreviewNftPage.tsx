@@ -19,9 +19,9 @@ import NftContractNotSupported from "../../../components/Preview/Card/Status/Nft
 import NotListedNftContainer from "../../../components/Preview/Card/Status/NotListedNftContainer";
 import {fetchNearUsdPrice} from "../../../hooks/fetchNearUsdPrice";
 import {ContractVerificationStatus} from "../../../business-logic/models/contract";
+import NftNotApproved from "../../../components/Preview/Card/Status/NftNotApproved";
 
-interface PropTypes extends SignedInProps {
-}
+interface PropTypes extends SignedInProps {}
 
 type NftRouteParams = {
     contractId: string,
@@ -30,7 +30,7 @@ type NftRouteParams = {
 
 const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
     const {contractId, tokenId} = useParams<NftRouteParams>()
-    const {nft, fetching, payouts, contract} = useAppSelector(state => state.preview.nft)
+    const {nft, fetching, payouts, contract, isApproved} = useAppSelector(state => state.preview.nft)
     const dispatch = useAppDispatch()
 
     const [usdPrice, setUsdPrice] = useState("0")
@@ -61,6 +61,10 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
     const getStatus = () => {
         if (!accountId) {
             return <ConnectWalletButton/>
+        }
+
+        if (!isApproved && nft.price !== null) {
+            return <NftNotApproved/>
         }
 
         const nftStatus = getNftMarketStatus(accountId, nft)
@@ -102,7 +106,7 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
 
 
     return (
-        <div className="grid md:grid-cols-2 gap-8 min-h-screen p-5 xs:p-10 md:items-start">
+        <div className="grid md:grid-cols-2 gap-8 min-h-screen px-5 xs:px-10 pt-10 md:items-start">
             <PreviewNftImage link={nft.mediaURL} imageName={nft.title}/>
             <NftPreviewInfo nft={nft}
                             payouts={payouts}

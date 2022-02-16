@@ -4,7 +4,8 @@ module.exports = {
     ],
     theme: {
         fontFamily: {
-            'archivo': ['Archivo']
+            'archivo': ['Archivo'],
+            'etna': ['Etna']
         },
         fontSize: {
             'tiny-1': '.4rem',
@@ -137,6 +138,7 @@ module.exports = {
             // Colors
             colors: {
                 mjol: {
+                    background: '#f7f7f7',
                     black: 'rgb(0, 0, 0)',
                     white: '#f4f7fc',
                     gray: {

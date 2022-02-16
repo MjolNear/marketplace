@@ -10,7 +10,8 @@ export interface PreviewNftState {
     fetching: boolean,
     success?: boolean,
     nft?: Nft,
-    contract?: ContractResponse
+    contract?: ContractResponse,
+    isApproved?: boolean,
     payouts: Record<string, number>
 }
 
@@ -26,6 +27,7 @@ export const previewNftSlice = createSlice({
     reducers: {
         success: (state, action: PayloadAction<Nft>) => {
             state.nft = action.payload
+            state.isApproved = action.payload.isApproved
         },
         failure: (state) => {
             state.nft = undefined

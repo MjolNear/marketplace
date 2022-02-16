@@ -7,7 +7,8 @@ import {Token} from "../types/token";
 import {marketAPI} from "../market";
 import {ContractId} from "../../../models/types";
 import {ContractVerificationStatus} from "../../../models/contract";
-import {getNftMintedSiteInfo, WhitelistedContracts} from "../../../whitelisted.contracts";
+import {getNftMintedSiteInfo} from "../../../whitelisted.contracts";
+import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
 
 const isIPFS = require('is-ipfs')
 
@@ -63,6 +64,7 @@ export const getMintText = (status: string) => {
 // approved_account_ids: {}
 function convertStandardNFT(contractId: string, nft: any, tokenPrices: TokenPrices): Promise<Nft> {
     const metadata = nft.metadata;
+    const {approved_account_ids = {}} = nft
     const mediaUrl = getRealUrl(metadata.media, metadata.media_hash, contractId);
     if (!mediaUrl) {
         return Promise.reject("Standard NFT has no media URL")
@@ -78,7 +80,8 @@ function convertStandardNFT(contractId: string, nft: any, tokenPrices: TokenPric
         mediaURL: mediaUrl,
         referenceURL: getRealUrl(metadata.reference, metadata.reference_hash, contractId),
         mintedInfo: getNftMintedSiteInfo(nft, contractId),
-        price: getPrice(uid, tokenPrices)
+        price: getPrice(uid, tokenPrices),
+        isApproved: !!approved_account_ids[MARKET_CONTRACT_ID]
     })
 }
 
@@ -157,6 +160,7 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: TokenPr
     )
     const jsonNFT = await NftAPI.getJsonByURL(url)
     const mediaUrl = getRealUrl(jsonNFT.media, jsonNFT.media_hash, contractId)
+    const {approvals = {}} = nft
     if (!mediaUrl) {
         return Promise.reject("Mintbase NFT has no media URL")
     }
@@ -171,7 +175,8 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: TokenPr
         mediaURL: mediaUrl,
         referenceURL: getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId),
         mintedInfo: getNftMintedSiteInfo(nft, contractId),
-        price: getPrice(uid, tokenPrices)
+        price: getPrice(uid, tokenPrices),
+        isApproved: !!approvals[MARKET_CONTRACT_ID]
     })
 }
 
