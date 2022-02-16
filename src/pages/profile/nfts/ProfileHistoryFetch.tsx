@@ -1,9 +1,11 @@
 import React, {useEffect} from 'react';
-import DarkBlueMjolText from "../../../components/Common/Text/DarkBlueMjolText";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {profileHistorySlice} from "../../../state/profile/nfts/history/slice";
 import {SignedInProps} from "../../../hoc/withAuthData";
-import LightBlueGradientText from "../../../components/Common/Text/LightBlueGradientText";
+import {useQuery} from "@apollo/client";
+import StatBox from "../../../components/Collection/Stats/StatBox";
+import {formatPrice} from "../../../business-logic/near/api/utils";
+import {fetchUsersStatsQuery} from "../../../business-logic/near/api/graphql/users";
 
 
 interface PropTypes extends SignedInProps {
@@ -11,20 +13,38 @@ interface PropTypes extends SignedInProps {
 
 const ProfileHistoryFetch: React.FC<PropTypes> = ({accountId}) => {
 
+    const {query, variables} = fetchUsersStatsQuery(accountId)
+
     const dispatch = useAppDispatch()
-    const {history, fetching} = useAppSelector(state => state.profile.nfts.history)
+
+    const {loading, error, data} = useQuery(query, {
+        variables
+    });
+    const history = []
 
     useEffect(() => {
         return () => {
             dispatch(profileHistorySlice.actions.reset())
         }
-    }, [accountId])
+    }, [])
+
+    if (loading) {
+        return <div>Loading</div>
+    }
+
+    const {users} = data
 
     return (
         <>{
-            history.length === 0
-                ? <LightBlueGradientText text="History support would be added soon!" size="lg" fontWeight="bold"/>
-                : <DarkBlueMjolText text="History"/>
+            users.map((u: any) => (
+                <div
+                    className="flex flex-wrap max-w-[700px] rounded-2xl overflow-hidden ring-[1px] ring-mjol-blue-base mx-3">
+                    <StatBox name="sales" value={u.sales}/>
+                    <StatBox name="earned" value={formatPrice(u.earned)} priceValue={true}/>
+                    <StatBox name="purchases" value={u.purchases}/>
+                    <StatBox name="spent" value={formatPrice(u.spent)} priceValue={true}/>
+                </div>
+            ))
         }
         </>
     );

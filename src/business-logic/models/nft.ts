@@ -8,7 +8,8 @@ export interface BaseNft {
     title: string,
     mediaURL: string,
     description: Optional<string>,
-    price: Optional<StringAmount>
+    price: Optional<StringAmount>,
+    isApproved: boolean
 }
 
 export interface NftMetadata {

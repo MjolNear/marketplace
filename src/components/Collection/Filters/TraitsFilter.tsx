@@ -75,15 +75,19 @@ const TraitsFilter: React.FC<PropTypes> = ({children, traits}) => {
                                                 <>
                                                     <h3 className="-mx-2 -my-3 flow-root">
                                                         <Disclosure.Button
-                                                            className="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500">
-                                                            <span
-                                                                className="font-medium text-gray-900">{name}</span>
+                                                            className="px-2 py-3 bg-white w-full flex items-center
+                                                                    justify-between text-gray-400 hover:text-gray-500">
+                                                            <span className="font-medium text-gray-900">
+                                                                {name}
+                                                            </span>
                                                             <span className="ml-6 flex items-center">
-                                {open
-                                    ? <ChevronUpIcon className="h-5 w-5" aria-hidden="true"/>
-                                    : <ChevronDownIcon className="h-5 w-5" aria-hidden="true"/>
-                                }
-                              </span>
+                                                                {open
+                                                                    ? <ChevronUpIcon className="h-5 w-5"
+                                                                                     aria-hidden="true"/>
+                                                                    : <ChevronDownIcon className="h-5 w-5"
+                                                                                       aria-hidden="true"/>
+                                                                }
+                                                            </span>
                                                         </Disclosure.Button>
                                                     </h3>
                                                     <OptionsPanel values={values}/>

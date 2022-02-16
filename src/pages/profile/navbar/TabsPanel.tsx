@@ -1,6 +1,7 @@
 import React from 'react';
-import BlueUnderlineButton from "../../../../components/Common/Buttons/BlueUnderlineButton";
-import {ProfileNftsTab} from "../../../../state/profile/nfts/slice";
+import BlueUnderlineButton from "../../../components/Common/Buttons/BlueUnderlineButton";
+import Tab from '../../../components/Common/Tabs/Tab';
+import {ProfileNftsTab} from "../../../state/profile/nfts/slice";
 
 interface PropTypes {
     tabs: ProfileNftsTab[],

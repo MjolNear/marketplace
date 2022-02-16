@@ -1,21 +1,14 @@
-import React, {useEffect} from 'react'
-import NavbarContainer from "./pages/navbar/NavbarContainer";
+import React from 'react'
 import AppRouter from "./AppRouter";
-import {collectionAPI} from "./business-logic/near/api/collections";
+import Navbar from "./pages/navbar/Navbar";
 
 export default function App() {
-
-    useEffect(() => {
-        collectionAPI.fetchCollections(0, 20).then(
-            console.log
-        )
-    })
-
     return (
-        <div>
-            {/*<WalletConnectionPage/>*/}
-            <NavbarContainer/>
-            <AppRouter/>
-        </div>
+        <>
+            <Navbar/>
+            <div className="pt-[69px] min-h-[calc(100vh-69px)]">
+                <AppRouter/>
+            </div>
+        </>
     )
 }

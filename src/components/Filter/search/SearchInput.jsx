@@ -5,11 +5,18 @@ const SearchInput = ({placeholder, isTyping, onCancel, onSearch}) => {
     return (
         <div className="flex text-xs xs:text-md">
             <input className="rounded-l-3xl w-full sm:w-88
-                              focus:outline-0 outline-none py-2 px-5 ring-1 ring-inset ring-blue-100"
+                              outline-none border-0 py-[12px] px-5 ring-1 ring-inset ring-mjol-light-blue
+                              focus:ring-mjol-light-blue
+                              focus:ring-inset
+                              focus:bg-gray-50
+                              "
                    placeholder={placeholder}
-                   type="search"
+                   type="text"
             />
-            <div className="rounded-r-3xl px-5 bg-gradient-to-b from-blue-400 to-blue-900 grid place-items-center cursor-pointer">
+            <div className="rounded-r-3xl w-[60px]
+                            bg-gradient-to-r from-mjol-light-blue to-blue-700
+                            hover:to-blue-600
+                            grid place-items-center cursor-pointer">
                 <FaSearch color="white"/>
             </div>
         </div>

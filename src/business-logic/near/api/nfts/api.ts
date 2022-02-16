@@ -1,5 +1,6 @@
 import {viewFunction} from "../rpc";
 import {AccountId, ContractId, StringAmount, TokenId} from "../../../models/types";
+import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
 
 export interface Payouts {
     payout: Record<AccountId, StringAmount>
@@ -98,5 +99,18 @@ export const nftAPI = {
                 token_id: tokenId,
                 max_len_payout: 10
             }
+        }),
+
+    isMjolNearApproved: (contractId: ContractId, tokenId: TokenId) =>
+        viewFunction<boolean>({
+            contractId,
+            methodName: 'nft_is_approved',
+            args: {
+                token_id: tokenId,
+                approved_account_id: MARKET_CONTRACT_ID,
+            }
+        }).catch(e => {
+            console.log(e)
+            return false
         })
 }

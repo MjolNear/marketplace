@@ -12,8 +12,8 @@ import {getAccountId, wallet} from "../../../business-logic/near/enviroment/near
 import {getTraitsFromCollectionsLinks} from "../../../business-logic/near/api/collections/get-collections-traits";
 import OptionInput from "./upload/lines/OptionInput";
 import {collectionAPI} from "../../../business-logic/near/api/collections";
+import withAuthRedirect from "../../../hoc/withAuthRedirect";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
-
 
 const LineAlert = ({state, setState}) => {
     return (
@@ -154,14 +154,12 @@ const CreateNftPage = () => {
             {isLoading ? (
                 <CreateLoader/>
             ) : (
-                <div className="bg-mjol-white">
-                    <div className="bg-white">
-                        <BlueShadowContainer>
-                            <div className="pb-10 px-4 space-y-8">
-                                <DarkBlueTitle title="Create NFT"/>
-                            </div>
-                        </BlueShadowContainer>
-                    </div>
+                <div className="bg-white">
+                    <BlueShadowContainer>
+                        <div className="pb-10 px-4 space-y-8">
+                            <DarkBlueTitle title="Create NFT"/>
+                        </div>
+                    </BlueShadowContainer>
                     <div className="max-w-7xl py-10 mx-auto px-4 sm:px-6">
                         <form onSubmit={submitForm}>
                             <div className="shadow rounded-md overflow-hidden">
@@ -249,10 +247,10 @@ const CreateNftPage = () => {
                                         <></>
                                     )}
                                 </div>
-                                <div className="px-4 py-3 bg-gray-50 text-left sm:px-6">
+                                <div className="px-4 py-3 text-left sm:px-6">
                                     <button
                                         type="submit"
-                                        className="inline-flex justify-center py-2 px-6 font-bold text-lg hover:text-gray-900 font-large rounded-md text-white bg-gradient-to-br from-mjol-blue-base to-green-200 hover:from-green-200 hover:to-mjol-blue-base"
+                                        className="inline-flex justify-center py-2 px-6 font-bold text-lg hover:text-gray-900 rounded-md text-white bg-gradient-to-br from-mjol-blue-base to-green-200 hover:from-green-200 hover:to-mjol-blue-base"
                                     >
                                         Mint
                                     </button>
@@ -267,4 +265,4 @@ const CreateNftPage = () => {
     )
 };
 
-export default CreateNftPage;
+export default withAuthRedirect(CreateNftPage);

@@ -10,6 +10,7 @@ import {createCollection} from "../../../business-logic/near/api/nfts/mint";
 import classNames from "../../../utils/css-utils";
 import PropertyInput from "../nft/upload/lines/PropertyInput";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
+import withAuthRedirect from "../../../hoc/withAuthRedirect";
 
 const LineAlert = ({state, setState}) => {
     return (
@@ -184,14 +185,12 @@ const CreateCollectionPage = () => {
             {isLoading ? (
                 <CreateLoader/>
             ) : (
-                <div className="bg-mjol-white">
-                    <div className="bg-white">
-                        <BlueShadowContainer>
-                            <div className="pb-10 px-4 space-y-8">
-                                <DarkBlueTitle title="Create Collection"/>
-                            </div>
-                        </BlueShadowContainer>
-                    </div>
+                <div className="bg-white">
+                    <BlueShadowContainer>
+                        <div className="pb-10 px-4 space-y-8">
+                            <DarkBlueTitle title="Create Collection"/>
+                        </div>
+                    </BlueShadowContainer>
                     <div className="max-w-7xl py-10 mx-auto px-4 sm:px-6">
                         <form onSubmit={submitForm}>
                             <div className="shadow rounded-md overflow-hidden">
@@ -247,13 +246,13 @@ const CreateCollectionPage = () => {
                                                 Traits</label>
                                             <div className="my-1">
                                                 <button onClick={() => changeToggleMode("from UI")}
-                                                   className={classNames(toggleTraits === "from UI" ? "bg-gray-700 text-white" : "text-gray-700",
-                                                       "cursor-pointer inline-flex items-center justify-center px-4 py-1 border text-base font-medium rounded-l-lg border-gray-700")}>
+                                                        className={classNames(toggleTraits === "from UI" ? "bg-gray-700 text-white" : "text-gray-700",
+                                                            "cursor-pointer inline-flex items-center justify-center px-4 py-1 border text-base font-medium rounded-l-lg border-gray-700")}>
                                                     from UI
                                                 </button>
                                                 <button onClick={() => changeToggleMode("from File")}
-                                                   className={classNames(toggleTraits === "from File" ? "bg-gray-700 text-white" : "text-gray-700",
-                                                       "cursor-pointer inline-flex items-center justify-center px-4 py-1 border text-base font-medium rounded-r-lg border-gray-700")}>
+                                                        className={classNames(toggleTraits === "from File" ? "bg-gray-700 text-white" : "text-gray-700",
+                                                            "cursor-pointer inline-flex items-center justify-center px-4 py-1 border text-base font-medium rounded-r-lg border-gray-700")}>
                                                     from File
                                                 </button>
                                             </div>
@@ -344,7 +343,7 @@ const CreateCollectionPage = () => {
                                         <></>
                                     )}
                                 </div>
-                                <div className="px-4 py-3 bg-gray-50 text-left sm:px-6">
+                                <div className="px-4 py-3 text-left sm:px-6">
                                     <button
                                         type="submit"
                                         className="inline-flex justify-center py-2 px-6 font-bold text-lg hover:text-gray-900 font-large rounded-md text-white bg-gradient-to-br from-mjol-blue-base to-green-200 hover:from-green-200 hover:to-mjol-blue-base"
@@ -361,4 +360,4 @@ const CreateCollectionPage = () => {
         </>
     )
 };
-export default CreateCollectionPage;
+export default withAuthRedirect(CreateCollectionPage);

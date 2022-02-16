@@ -2,16 +2,9 @@ import React from 'react';
 import {useAppSelector} from "../../hooks/redux";
 import {fetchMarketNfts} from "../../state/explore/nfts/thunk";
 import {exploreNftsSlice} from "../../state/explore/nfts/slice";
-import {ScrollPosition, trackWindowScroll} from "react-lazy-load-image-component";
 import PaginationCardList from "./PaginationCardList";
 
-
-
-interface PropTypes {
-    scrollPosition: ScrollPosition
-}
-
-const ExploreCardList: React.FC<PropTypes> = ({scrollPosition}) => {
+const ExploreCardList: React.FC = () => {
 
     const {nfts, hasMore, fetching, from, limit} = useAppSelector(state => state.explore.nfts)
 
@@ -25,4 +18,4 @@ const ExploreCardList: React.FC<PropTypes> = ({scrollPosition}) => {
     />
 };
 
-export default trackWindowScroll(ExploreCardList);
+export default ExploreCardList;

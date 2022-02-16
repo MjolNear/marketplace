@@ -3,7 +3,7 @@ import {BsQuestionCircle} from "react-icons/bs"
 import ReactTooltip from "react-tooltip";
 
 interface PropTypes {
-    missedNeps: string[]
+    missedNeps?: string[]
 }
 
 const NftContractNotSupported: React.FC<PropTypes> = ({missedNeps}) => {
@@ -13,7 +13,7 @@ const NftContractNotSupported: React.FC<PropTypes> = ({missedNeps}) => {
             NFT contract not supported
             <BsQuestionCircle size={16}
                               className="cursor-pointer"
-                              data-tip={`Missed standards: ${missedNeps.join(', ')}`}
+                              data-tip={`Missed standards: ${missedNeps?.join(', ')}`}
             />
             <ReactTooltip className='text-sm font-medium font-archivo' type='dark' place='bottom' delayShow={200}/>
         </div>
