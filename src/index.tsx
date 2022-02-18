@@ -10,17 +10,13 @@ import {IndexerEndpoint} from "./graphql/config";
 
 // Needed for near-api-js lib
 import {Buffer} from "buffer"
+import {setupApolloClient} from "./state/apollo";
 
 (window as any).Buffer = Buffer;
 
 
 const store = setupStore()
-
-export const client = new ApolloClient({
-    uri: IndexerEndpoint.Main,
-    cache: new InMemoryCache()
-});
-
+const client = setupApolloClient()
 
 ReactDOM.render(
     <React.StrictMode>

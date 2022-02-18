@@ -406,8 +406,8 @@ export enum _SubgraphErrorPolicy_ {
 }
 
 export type MarketTokensQueryVariables = Exact<{
-  first: Scalars['Int'];
-  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
   orderBy: Token_OrderBy;
   orderDirection: OrderDirection;
   priceFrom?: InputMaybe<Scalars['BigInt']>;
@@ -433,10 +433,10 @@ export type TextSearchTokensQuery = { __typename?: 'Query', tokenSearch: Array<{
 
 
 export const MarketTokensDocument = gql`
-    query marketTokens($first: Int!, $skip: Int!, $orderBy: Token_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt, $priceTo: BigInt) {
+    query marketTokens($limit: Int!, $offset: Int!, $orderBy: Token_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt, $priceTo: BigInt) {
   tokens(
-    first: $first
-    skip: $skip
+    first: $limit
+    skip: $offset
     orderBy: $orderBy
     orderDirection: $orderDirection
     where: {price_gte: $priceFrom, price_lte: $priceTo}
@@ -466,8 +466,8 @@ export const MarketTokensDocument = gql`
  * @example
  * const { data, loading, error } = useMarketTokensQuery({
  *   variables: {
- *      first: // value for 'first'
- *      skip: // value for 'skip'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
  *      orderBy: // value for 'orderBy'
  *      orderDirection: // value for 'orderDirection'
  *      priceFrom: // value for 'priceFrom'

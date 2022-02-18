@@ -70,9 +70,11 @@ const ExploreNftsPage = () => {
     })
 
     const {data, loading, fetchMore} = useMarketTokensQuery({
+        fetchPolicy: "network-only",
+        nextFetchPolicy: "network-only",
         variables: {
-            skip: 0,
-            first: limit,
+            offset: 0,
+            limit: limit,
             orderBy: filters.sort.by,
             orderDirection: filters.sort.direction,
             priceFrom: filters.priceRange.from || MIN_ITEM_YOCTO_PRICE,
@@ -90,19 +92,23 @@ const ExploreNftsPage = () => {
         }
         const previousTokens = previousQueryResult.tokens;
         const fetchMoreTokens = fetchMoreResult.tokens;
-        setHasMore(!(fetchMoreTokens.length === 0))
+        setHasMore(fetchMoreTokens.length === limit)
         fetchMoreResult.tokens = [...previousTokens, ...fetchMoreTokens];
         return {...fetchMoreResult}
     }
 
-    const nfts = data?.tokens.map(convertToEntity) || []
-
-    const onLoadMore = (skip: number) => fetchMore({
+    const onLoadMore = (offset: number) => fetchMore({
         updateQuery,
         variables: {
-            skip
+            offset
         }
     })
+
+    useEffect(() => {
+        setHasMore(true)
+    }, [filters])
+
+    const nfts = data?.tokens.map(convertToEntity) || []
 
     return (
         <div className="max-w-screen-2xl mx-auto">
