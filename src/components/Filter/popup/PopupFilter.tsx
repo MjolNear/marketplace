@@ -14,7 +14,9 @@ const PopupFilter: React.FC<PopupFilterProps> = ({
     return (
         <Popover>
             <Popover.Button className="inline-flex items-center gap-2 rounded-2xl px-5 py-2 font-archivo
-                                       text-xs-2 ring-1 ring-blue-200 font-semibold"
+                                       text-xs-2 ring-1 ring-blue-200 font-semibold
+                                       focus:outline-none
+                                       focus-visible:ring-0"
             >
                 {icon}
                 {name}
