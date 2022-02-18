@@ -38,7 +38,10 @@ export const TabsDropDownMenu: React.FC<PropTypes> = ({name, tabs}) => {
                                 <Link to={path}
                                       className="font-bold font-archivo text-black text-sm text-left w-full
                                                  py-[12px] px-[16px] inline-flex justify-between items-center
-                                                 hover:bg-gray-200 rounded-xl"
+                                                 hover:bg-gray-200 rounded-xl
+                                                 focus:outline-none
+                                                 focus-visible:ring-0
+                                                "
                                 >
                                     {tabName}
                                 </Link>

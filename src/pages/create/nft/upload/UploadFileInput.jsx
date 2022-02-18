@@ -48,7 +48,9 @@ const UploadFileInput = (props) => {
                         <div className="flex text-sm text-gray-600">
                             <label
                                 htmlFor={props.id}
-                                className="mx-auto cursor-pointer bg-white rounded-md font-medium text-blue-500 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                                className="mx-auto cursor-pointer bg-white rounded-md font-medium text-blue-500 hover:text-indigo-500
+                                           focus:outline-none
+                                           focus-visible:ring-0"
                             >
                                 <span>Upload {props.type}</span>
                                 <input id={props.id} name={props.id} type="file" accept={props.accept}
