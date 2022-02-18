@@ -5,23 +5,18 @@ import {HashRouter} from "react-router-dom";
 import {Provider as ReduxProvider} from "react-redux";
 import App from "./App";
 import {setupStore} from "./state/store";
+import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
+import {IndexerEndpoint} from "./graphql/config";
 
 // Needed for near-api-js lib
 import {Buffer} from "buffer"
-import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
+import {setupApolloClient} from "./state/apollo";
 
 (window as any).Buffer = Buffer;
 
 
 const store = setupStore()
-
-const client = new ApolloClient({
-    uri: 'https://api.thegraph.com/subgraphs/name/mjolnear/indexer',
-    cache: new InMemoryCache({
-        resultCacheMaxSize: 0
-    })
-});
-
+const client = setupApolloClient()
 
 ReactDOM.render(
     <React.StrictMode>

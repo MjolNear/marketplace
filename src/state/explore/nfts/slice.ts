@@ -15,7 +15,7 @@ const initialState: ExploreNftsState = {
     nfts: [],
     fetching: true,
     from: 0,
-    limit: 12,
+    limit: 4,
     hasMore: true,
     total: 0
 }
@@ -24,10 +24,10 @@ export const exploreNftsSlice = createSlice({
     name: "explore-nfts",
     initialState,
     reducers: {
-        setPageData: (state, action: PayloadAction<TokensBatch>) => {
-            state.nfts = state.nfts.concat(action.payload.tokens)
-            state.total = action.payload.total
-            state.hasMore = action.payload.hasMore
+        setPageData: (state, action: PayloadAction<Nft[]>) => {
+            console.log(action.payload)
+            state.nfts = state.nfts.concat(action.payload)
+            state.hasMore = action.payload.length === state.limit
             state.from += state.limit
         },
         toggleFetching: (state, action: PayloadAction<boolean>) => {

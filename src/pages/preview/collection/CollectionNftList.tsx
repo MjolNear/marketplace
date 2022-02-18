@@ -1,15 +1,35 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PaginationCardList from "../../../components/CardList/PaginationCardList";
-import {useAppSelector} from "../../../hooks/redux";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import NotFoundPage from "../../not-found/NotFoundPage";
 import {fetchCollectionNfts} from "../../../state/preview/collection/thunk";
 import {previewCollectionSlice} from "../../../state/preview/collection/slice";
 
 const CollectionNftList = () => {
-
-
     const {nfts, fetching, hasMore, from, limit, total} = useAppSelector(state => state.preview.collection.nftsState)
     const collection = useAppSelector(state => state.preview.collection.collection)
+    const dispatch = useAppDispatch()
+
+    const fetchNextTokens = (from: number, limit: number) => {
+        if (hasMore && !fetching && collection) {
+            return dispatch(
+                fetchCollectionNfts(
+                    collection.collection_id,
+                    collection.collection_contract,
+                    from,
+                    limit,
+                    total
+                )
+            )
+        }
+    }
+
+    useEffect(() => {
+        fetchNextTokens(from, limit)
+        return () => {
+            dispatch(previewCollectionSlice.actions.reset())
+        }
+    }, [])
 
     if (!collection) {
         return <NotFoundPage/>
@@ -17,20 +37,10 @@ const CollectionNftList = () => {
 
     return (
         <PaginationCardList nfts={nfts}
-                            fetching={fetching}
+                            loading={fetching}
                             hasMore={hasMore}
-                            from={from}
-                            limit={limit}
-                            fetcher={
-                                (from: number, limit: number) => fetchCollectionNfts(
-                                    collection.collection_id,
-                                    collection.collection_contract,
-                                    from,
-                                    limit,
-                                    total
-                                )
-                            }
-                            reset={previewCollectionSlice.actions.reset}
+                            isCollectionNFTs={true}
+                            onLoadMore={() => fetchNextTokens(from, limit)}
         />
     );
 };

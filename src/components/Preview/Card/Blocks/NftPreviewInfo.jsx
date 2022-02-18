@@ -44,6 +44,7 @@ const NftPreviewInfo = ({nft, payouts, contract, statusElement}) => {
                                             buttonContent={
                                                 <IconText icon={tab.icon}
                                                           text={tab.name}
+                                                          className="group-hover:text-black text-gray-800"
                                                 />
                                             }>
                         <div className="rounded-b-lg w-full bg-blue-100 text-black font-medium text-sm px-5 py-2">

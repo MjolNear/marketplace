@@ -37,7 +37,7 @@ const ProfileNftsPage: React.FC<PropTypes> = ({accountId, signedIn}) => {
     }, [activeTab, accountId, signedIn])
 
     return (
-        <div className="pb-4 min-h-screen max-w-screen-2xl mx-auto">
+        <div className="pb-4 max-w-screen-2xl mx-auto">
             <BlueShadowContainer>
                 <div className="space-y-10 text-center">
                     <DarkBlueTitle title="My NFTs"/>

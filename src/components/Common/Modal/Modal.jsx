@@ -6,7 +6,10 @@ const Modal = ({
     closeOnBgClick = true,
     closeOnEscape = true,
     children,
-    style = {},
+    className="fixed inset-0 z-50 flex items-center p-4",
+    style = {
+        backgroundColor: `rgba(0, 0, 0, 0.8)`
+    },
 }) => {
     const modalRef = useRef(null)
 
@@ -36,11 +39,8 @@ const Modal = ({
         <div
             ref={modalRef}
             onClick={_bgClick}
-            className="fixed inset-0 z-50 flex items-center p-4"
-            style={{
-                backgroundColor: `rgba(0, 0, 0, 0.8)`,
-                ...style,
-            }}
+            className={className}
+            style={style}
         >
             {children}
         </div>

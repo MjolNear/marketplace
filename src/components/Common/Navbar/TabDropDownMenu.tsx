@@ -29,22 +29,19 @@ export const TabsDropDownMenu: React.FC<PropTypes> = ({name, tabs}) => {
                 leaveTo="transform opacity-0 scale-95"
             >
                 <Menu.Items
-                    className="absolute mt-2 bg-white rounded-md drop-shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <div className="p-1 flex flex-col">
+                    className="z-20 absolute flex rounded-xl ring-[1px] ring-blue-100
+                               mt-4 bg-white focus:outline-none shadow-mjol-blue-all-xs"
+                >
+                    <div className="flex flex-col items-center px-2 py-1 gap-1">
                         {tabs.map(({name: tabName, path}) =>
                             <Menu.Item key={tabName}>
-                                {({active}) => (
-                                    <div className="inline-flex justify-between gap-1">
-                                        <Link
-                                            to={path}
-                                            className={`${
-                                                active ? 'bg-gray-100 text-black' : 'text-gray-900'
-                                            } rounded-md w-full px-6 py-3 text-sm font-archivo font-semibold`}
-                                        >
-                                            {tabName}
-                                        </Link>
-                                    </div>
-                                )}
+                                <Link to={path}
+                                      className="font-bold font-archivo text-black text-sm text-left w-full
+                                                 py-[12px] px-[16px] inline-flex justify-between items-center
+                                                 hover:bg-gray-200 rounded-xl"
+                                >
+                                    {tabName}
+                                </Link>
                             </Menu.Item>
                         )}
                     </div>

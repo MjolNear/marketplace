@@ -6,12 +6,25 @@ import {grayGradient} from "../../utils/css-utils";
 interface PropTypes {
     width?: number,
     height?: number,
+    footerDescription?: string
+    footerLink?: string
+    footerLinkName?: string
+}
+
+interface EmptyMessage {
+
 }
 
 /**
  * Returns empty card list animated component
  */
-const EmptyCardList = React.memo<PropTypes>(({width = 160, height = 220}) => {
+const EmptyCardList = React.memo<PropTypes>(({
+    width = 160,
+    height = 220,
+    footerDescription = "Browse something for you on our",
+    footerLink = "/nfts",
+    footerLinkName = "market"
+}) => {
     return (
         <div className="w-full flex flex-col justify-center items-center gap-10">
             <div className="inline-flex place-items-end gap-4">
@@ -62,10 +75,10 @@ const EmptyCardList = React.memo<PropTypes>(({width = 160, height = 220}) => {
                 </div>
                 <div className="text-md flex flex-row flex-wrap gap-1 justify-center">
                     <div className="text-gray-700">
-                        Browse something for you on our
+                        {footerDescription}
                     </div>
-                    <Link to="/nfts" className="text-blue-600 font-extrabold">
-                        marketplace
+                    <Link to={footerLink} className="text-blue-600 font-extrabold">
+                        {footerLinkName}
                     </Link>
                 </div>
             </div>

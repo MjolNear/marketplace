@@ -14,9 +14,9 @@ const ExploreCollectionsPage = () => {
             <BlueShadowContainer>
                 <div className="pb-10 px-4 space-y-8">
                     <DarkBlueTitle title="Explore Collections"/>
-                    <div className="flex justify-center">
-                        <SearchInput placeholder="Search by collection name"/>
-                    </div>
+                    {/*<div className="flex justify-center">*/}
+                    {/*    <SearchInput placeholder="Search by collection name"/>*/}
+                    {/*</div>*/}
                 </div>
             </BlueShadowContainer>
             <div className="mb-5 font-archivo text-md text-center text-gray-600">

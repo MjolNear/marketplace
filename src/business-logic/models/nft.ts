@@ -6,17 +6,16 @@ export interface BaseNft {
     tokenId: string,
     ownerId: string,
     title: string,
-    mediaURL: string,
-    description: Optional<string>,
-    price: Optional<StringAmount>,
+    media?: Optional<string>,
+    description?: Optional<string>,
+    price?: Optional<StringAmount>,
     isApproved: boolean
 }
 
 export interface NftMetadata {
-    referenceURL: Optional<string>,
-    copies: Optional<number>
+    ipfsReference?: Optional<string>,
+    copies?: Optional<number>
 }
-
 
 export interface MintInfo {
     mintedInfo: NftMintedInfo

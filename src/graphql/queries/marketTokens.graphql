@@ -1,0 +1,29 @@
+query marketTokens(
+    $limit: Int!,
+    $offset: Int!,
+    $orderBy: Token_orderBy!,
+    $orderDirection: OrderDirection!,
+    $priceFrom: BigInt,
+    $priceTo: BigInt
+) {
+    tokens(
+        first: $limit,
+        skip: $offset,
+        orderBy: $orderBy,
+        orderDirection: $orderDirection,
+        where: {
+            price_gte: $priceFrom,
+            price_lte: $priceTo
+        }
+    ) {
+        ownerId
+        tokenId
+        contractId
+        title
+        description
+        media
+        copies
+        ipfsReference
+        price
+    }
+}
