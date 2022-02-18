@@ -31,8 +31,8 @@ export interface TokenSortOption {
 }
 
 export enum TokenSortName {
-    PriceLowToHigh = "Price: High to Low",
-    PriceHighToLow = "Price: Low to High",
+    PriceLowToHigh = "Price: Low to High",
+    PriceHighToLow = "Price: High to Low",
     RecentlyAdded = "Recently added"
 }
 
