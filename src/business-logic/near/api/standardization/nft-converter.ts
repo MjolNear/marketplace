@@ -22,7 +22,7 @@ function getRealUrl(url: string, urlHash?: string, contractId?: string) {
     if (url) {
         if (url.startsWith("http")) {
             return url;
-        } else if (isIPFS.cid(url)) {
+        } else {
             return storageLink + url;
         }
     }
@@ -65,10 +65,11 @@ export const getMintText = (status: string) => {
 function convertStandardNFT(contractId: string, nft: any, tokenPrices: TokenPrices): Promise<Nft> {
     const metadata = nft.metadata;
     const {approved_account_ids = {}} = nft
-    const mediaUrl = getRealUrl(metadata.media, metadata.media_hash, contractId);
-    if (!mediaUrl) {
+    const media = getRealUrl(metadata.media, metadata.media_hash, contractId);
+    if (!media) {
         return Promise.reject("Standard NFT has no media URL")
     }
+
     const uid = buildUID(contractId, nft.token_id)
     return Promise.resolve({
         contractId,
@@ -77,8 +78,8 @@ function convertStandardNFT(contractId: string, nft: any, tokenPrices: TokenPric
         title: metadata.title,
         description: metadata.description,
         copies: metadata.copies,
-        mediaURL: mediaUrl,
-        referenceURL: getRealUrl(metadata.reference, metadata.reference_hash, contractId),
+        media,
+        ipfsReference: getRealUrl(metadata.reference, metadata.reference_hash, contractId),
         mintedInfo: getNftMintedSiteInfo(nft, contractId),
         price: getPrice(uid, tokenPrices),
         isApproved: !!approved_account_ids[MARKET_CONTRACT_ID]
@@ -158,10 +159,13 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: TokenPr
             }
         }
     )
+
+    console.log(getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId))
+
     const jsonNFT = await NftAPI.getJsonByURL(url)
-    const mediaUrl = getRealUrl(jsonNFT.media, jsonNFT.media_hash, contractId)
+    const media = getRealUrl(jsonNFT.media, jsonNFT.media_hash, contractId)
     const {approvals = {}} = nft
-    if (!mediaUrl) {
+    if (!media) {
         return Promise.reject("Mintbase NFT has no media URL")
     }
     const uid = buildUID(contractId, nft.id.toString())
@@ -172,8 +176,8 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: TokenPr
         title: jsonNFT.title,
         description: jsonNFT.description,
         copies: metadata.copies,
-        mediaURL: mediaUrl,
-        referenceURL: getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId),
+        media: media,
+        ipfsReference: getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId),
         mintedInfo: getNftMintedSiteInfo(nft, contractId),
         price: getPrice(uid, tokenPrices),
         isApproved: !!approvals[MARKET_CONTRACT_ID]

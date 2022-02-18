@@ -3,9 +3,10 @@ import {LazyLoadImage, ScrollPosition} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 import MjolLoader from "../../Common/Loaders/MjolLoader";
 import {ObjectFit} from "../../../utils/css-utils";
+import {Optional} from "../../../business-logic/models/types";
 
 interface PropTypes {
-    path: string,
+    path?: Optional<string>,
     objectFit?: ObjectFit,
     className?: string,
     scrollPosition?: ScrollPosition,
@@ -26,7 +27,7 @@ const SquareImageBlock: React.FC<PropTypes> = ({
 
     return (
         <div className="aspect-w-1 aspect-h-1 justify-center z-10">
-            <LazyLoadImage src={path}
+            <LazyLoadImage src={path || undefined}
                            className={className}
                            alt="media not supported"
                            effect="opacity"

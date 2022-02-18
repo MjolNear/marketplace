@@ -9,7 +9,9 @@ interface PriceProps {
 function withPriceContainer<T>(Child: React.ComponentType<T>) {
     const wrapped: React.FC<T & PriceProps> = (props) => (
         <div className="rounded-lg px-6 py-4 bg-blue-100">
-            <div className="font-archivo font-medium text-gray-500 text-sm-3">Current price</div>
+            <div className="font-bold font-archivo text-left text-md text-gray-600 w-full">
+                Current price
+            </div>
             <PreviewNftPrice nearPrice={props.nearPrice} usdPrice={props.usdPrice}/>
             <Child {...props}/>
         </div>

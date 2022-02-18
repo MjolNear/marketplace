@@ -29,12 +29,13 @@ export const fetchCollectionNfts = (
         dispatch(previewCollectionSlice.actions.toggleNftsFetching(true))
         collectionAPI.fetchNfts(collectionId, contractId, from, limit, supply)
             .then(response => Promise.all(response.tokens.map(token => mapTokenToNFT(contractId, token)))
-                .then(nfts =>
-                    dispatch(previewCollectionSlice.actions.setNftsBatch({
-                        tokens: nfts,
-                        hasMore: response.has_next_batch,
-                        total: response.total_count
-                    }))
+                .then(nfts => {
+                        dispatch(previewCollectionSlice.actions.setNftsBatch({
+                            tokens: nfts,
+                            hasMore: response.has_next_batch,
+                            total: response.total_count
+                        }))
+                    }
                 )
             ).finally(() => dispatch(previewCollectionSlice.actions.toggleNftsFetching(false)))
     }

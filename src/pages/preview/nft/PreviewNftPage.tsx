@@ -87,7 +87,7 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
                                         }
                 />
             case ItemMarketStatus.CAN_SELL:
-                return <SellNftContainer imgSrc={nft.mediaURL}
+                return <SellNftContainer imgSrc={nft.media}
                                          payouts={payouts}
                                          onClick={
                                              (price: string) => dispatch(sellNft(contractId, tokenId, price, nft))
@@ -106,8 +106,8 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
 
 
     return (
-        <div className="grid md:grid-cols-2 gap-8 min-h-screen px-5 xs:px-10 pt-10 md:items-start">
-            <PreviewNftImage link={nft.mediaURL} imageName={nft.title}/>
+        <div className="grid md:grid-cols-2 gap-8 px-5 xs:px-10 pt-10 md:items-start">
+            <PreviewNftImage link={nft.media} imageName={nft.title}/>
             <NftPreviewInfo nft={nft}
                             payouts={payouts}
                             contract={contract}

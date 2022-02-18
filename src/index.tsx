@@ -6,7 +6,7 @@ import {Provider as ReduxProvider} from "react-redux";
 import App from "./App";
 import {setupStore} from "./state/store";
 import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
-import {IndexerEndpoint} from "./business-logic/thegraph/config";
+import {IndexerEndpoint} from "./graphql/config";
 
 // Needed for near-api-js lib
 import {Buffer} from "buffer"
@@ -16,11 +16,9 @@ import {Buffer} from "buffer"
 
 const store = setupStore()
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
     uri: IndexerEndpoint.Main,
-    cache: new InMemoryCache({
-        resultCacheMaxSize: 0
-    })
+    cache: new InMemoryCache()
 });
 
 

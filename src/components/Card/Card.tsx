@@ -23,7 +23,7 @@ const Card: React.FC<PropTypes> = ({nft, scrollPosition}) => {
 
             <div>
                 <Link to={previewLink}>
-                    <SquareImageBlock path={nft.mediaURL} scrollPosition={scrollPosition}/>
+                    <SquareImageBlock path={nft.media} scrollPosition={scrollPosition}/>
                 </Link>
                 <div className="px-2 xxs:px-5 mt-2">
                     <Link to={previewLink}>

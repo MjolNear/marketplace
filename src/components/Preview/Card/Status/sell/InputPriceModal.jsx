@@ -5,7 +5,7 @@ import {AiOutlineClose} from 'react-icons/ai'
 import NearBlackLogo from "../../../../Icons/near/NearBlackLogo";
 import DarkBlueMjolText from "../../../../Common/Text/DarkBlueMjolText";
 import {useForm} from "react-hook-form";
-import {MAX_ITEM_PRICE} from "../../../../../utils/string";
+import {MAX_ITEM_NEAR_PRICE} from "../../../../../utils/string";
 import PayoutsPreview from "./recieve/PayoutsPreview";
 
 const InputPriceModal = ({close, onClick, payouts, imgSrc}) => {
@@ -69,8 +69,8 @@ const InputPriceModal = ({close, onClick, payouts, imgSrc}) => {
                                             {...register("price", {
                                                 required: true,
                                                 max: {
-                                                    value: MAX_ITEM_PRICE,
-                                                    message: `Maximum price is ${MAX_ITEM_PRICE} Ⓝ`
+                                                    value: MAX_ITEM_NEAR_PRICE,
+                                                    message: `Maximum price is ${MAX_ITEM_NEAR_PRICE} Ⓝ`
                                                 },
                                                 min: {
                                                     value: 0,

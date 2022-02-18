@@ -9,7 +9,8 @@ import EmptyCardList from "./EmptyCardList";
 interface PropTypes {
     nfts: Nft[],
     fetching: boolean,
-    scrollPosition?: ScrollPosition
+    scrollPosition?: ScrollPosition,
+    isCollectionNFTs?: boolean
 }
 
 /**
@@ -17,14 +18,24 @@ interface PropTypes {
  *
  * @param nfts array of {@link Nft} items
  * @param fetching boolean value which determines fetching status
+ * @param collectionNfts boolean value than changes the empty card animation footer
  * @param scrollPosition
  */
-const CardGrid: React.FC<PropTypes> = ({nfts, fetching, scrollPosition}) => {
-
+const CardGrid: React.FC<PropTypes> = ({
+    nfts,
+    fetching,
+    scrollPosition,
+    isCollectionNFTs = false
+}) => {
     return (
         <>
             {nfts.length === 0 && !fetching
-                ? <EmptyCardList/>
+                ? isCollectionNFTs
+                    ? <EmptyCardList footerDescription="You can Mint your ow NFTs into collection via"
+                                     footerLink="/create-nft"
+                                     footerLinkName="creation"
+                    />
+                    : <EmptyCardList/>
                 : <CardsGridContainer>
                     {nfts.map(nft => {
                             const uid = buildUID(nft.contractId, nft.tokenId)

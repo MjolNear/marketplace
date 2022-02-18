@@ -1,0 +1,13 @@
+query textSearchTokens($text: String!) {
+    tokenSearch(text: $text) {
+        ownerId
+        tokenId
+        contractId
+        title
+        description
+        media
+        copies
+        ipfsReference
+        price
+    }
+}

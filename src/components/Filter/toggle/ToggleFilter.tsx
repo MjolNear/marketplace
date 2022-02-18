@@ -1,6 +1,10 @@
 import React from 'react';
 
-const ToggleFilter = ({text}) => {
+interface ToggleFilterProps {
+    text: string
+}
+
+const ToggleFilter = React.memo<ToggleFilterProps>(({text}) => {
     return (
         <div className="flex justify-center">
             <div className="form-check form-switch">
@@ -12,6 +16,6 @@ const ToggleFilter = ({text}) => {
             </div>
         </div>
     );
-};
+});
 
 export default ToggleFilter;
