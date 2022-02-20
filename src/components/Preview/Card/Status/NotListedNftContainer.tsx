@@ -2,8 +2,10 @@ import React from 'react';
 
 const NotListedNftContainer = () => {
     return (
-        <div className="text-center rounded-lg py-4 bg-blue-100 font-semibold font-archivo text-md text-black">
-            NFT not listed on the market
+        <div className="rounded-xl px-[24px] py-[18px] bg-mjol-blue-card-property">
+            <div className="font-bold font-archivo text-md text-gray-600 text-center">
+                NFT not listed on the market
+            </div>
         </div>
     );
 };

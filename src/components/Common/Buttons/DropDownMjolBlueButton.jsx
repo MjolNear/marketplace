@@ -26,7 +26,7 @@ export default function DropDownMjolBlueButton({buttonContent, children}) {
                         <div className="px-5 bg-mjol-blue-card-property">
                             <Hr color="bg-gray-600"/>
                         </div>
-                            {children}
+                        {children}
                     </Disclosure.Panel>
                 </div>)}
         </Disclosure>

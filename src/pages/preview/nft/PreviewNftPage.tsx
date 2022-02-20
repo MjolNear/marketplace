@@ -110,10 +110,11 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
         }
     }
 
-
     return (
         <div
-            className="px-2 pt-10 flex flex-col justify-center items-center gap-4 max-w-[1200px] mx-auto">
+            className="px-2 xs:px-4 sm:px-6 md:px-8 lg:px-10 pt-10
+                       flex flex-col justify-center items-center gap-6 lg:gap-10 max-w-[1200px] mx-auto"
+        >
             <div className="flex flex-col gap-6 justify-center w-full
                             lg:items-start lg:flex-row"
             >

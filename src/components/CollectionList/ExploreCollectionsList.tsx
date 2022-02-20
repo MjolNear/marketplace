@@ -23,7 +23,7 @@ const ExploreCollectionList: React.FC<PropTypes> = ({scrollPosition}) => {
         }
     }, [])
 
-    const fetchNextTokens = () => {
+    const fetchNextTokens = (from: number, limit: number) => {
         if (hasMore && !fetching) {
             return dispatch(fetchCollections(from, limit))
         }
@@ -31,7 +31,7 @@ const ExploreCollectionList: React.FC<PropTypes> = ({scrollPosition}) => {
 
     return (
         <InfiniteScroll
-            next={fetchNextTokens}
+            next={() => fetchNextTokens(from, limit)}
             scrollThreshold="100px"
             hasMore={hasMore}
             className={"py-5 " + (collections.length !== 0 ? "space-y-6 lg:space-y-7 2xl:space-y-10" : "")}
