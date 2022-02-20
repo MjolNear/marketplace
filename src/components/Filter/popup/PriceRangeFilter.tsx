@@ -35,7 +35,7 @@ const PriceRangeFilter: React.FC<RangeFilterProps> = ({
                            <NearBlackLogo size={11}/>
                        }
         >
-            <Popover.Panel className="flex flex-col items-center p-3 gap-2">
+            <Popover.Panel className="flex flex-col items-center p-3 gap-2 w-[280px]">
                 {({close}) => (
                     <>
                         <div className="font-bold font-archivo text-left text-md text-gray-400 w-full">

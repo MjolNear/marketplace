@@ -93,6 +93,14 @@ module.exports = {
             'lg': '990px',
             'xl': '1320px',
             '2xl': '1536px',
+
+            'max-xxs': {'max': '310px'},
+            'max-xs': {'max': '500px'},
+            'max-sm': {'max': '660px'},
+            'max-md': {'max': '768px'},
+            'max-lg': {'max': '990px'},
+            'max-xl': {'max': '1320px'},
+            'max-2xl': {'max': '1536px'},
         },
 
         extend: {
@@ -150,6 +158,7 @@ module.exports = {
                         'dark-t': '#25155299'
                     },
                     blue: {
+                        'card-property': 'rgb(239, 246, 255)',
                         opensea: 'rgb(59, 129, 219)',
                         'opensea-dark': 'rgb(46,104,177)',
                         shadow: 'rgb(224, 240, 250)',

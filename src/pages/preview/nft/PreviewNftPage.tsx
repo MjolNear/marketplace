@@ -20,8 +20,14 @@ import NotListedNftContainer from "../../../components/Preview/Card/Status/NotLi
 import {fetchNearUsdPrice} from "../../../hooks/fetchNearUsdPrice";
 import {ContractVerificationStatus} from "../../../business-logic/models/contract";
 import NftNotApproved from "../../../components/Preview/Card/Status/NftNotApproved";
+import CardActivity from "../../../components/Activity/CardActivity";
+import {buildUID} from "../../../business-logic/near/api/utils";
+import DropDownMjolBlueButton from "../../../components/Common/Buttons/DropDownMjolBlueButton";
+import IconText from "../../../components/Icons/IconText";
+import {GiBuyCard} from "react-icons/gi";
 
-interface PropTypes extends SignedInProps {}
+interface PropTypes extends SignedInProps {
+}
 
 type NftRouteParams = {
     contractId: string,
@@ -30,7 +36,7 @@ type NftRouteParams = {
 
 const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
     const {contractId, tokenId} = useParams<NftRouteParams>()
-    const {nft, fetching, payouts, contract, isApproved} = useAppSelector(state => state.preview.nft)
+    const {token, fetching, payouts, contract, isApproved} = useAppSelector(state => state.preview.nft)
     const dispatch = useAppDispatch()
 
     const [usdPrice, setUsdPrice] = useState("0")
@@ -54,7 +60,7 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
     if (fetching) {
         return <MjolLoader/>
     }
-    if (!nft) {
+    if (!token) {
         return <NotFoundPage/>
     }
 
@@ -63,38 +69,38 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
             return <ConnectWalletButton/>
         }
 
-        if (!isApproved && nft.price !== null) {
+        if (!isApproved && token.price !== null) {
             return <NftNotApproved/>
         }
 
-        const nftStatus = getNftMarketStatus(accountId, nft)
+        const nftStatus = getNftMarketStatus(accountId, token)
         if (!contract || contract.verification === ContractVerificationStatus.NotSupported) {
             return <NftContractNotSupported missedNeps={contract?.missedNeps}/>
         }
         switch (nftStatus) {
             case ItemMarketStatus.CAN_BUY:
-                return <BuyNftContainer nearPrice={nft.price}
+                return <BuyNftContainer nearPrice={token.price}
                                         usdPrice={usdPrice}
                                         onClick={
                                             () => dispatch(
                                                 buyNft(
                                                     contractId,
                                                     tokenId,
-                                                    nft.price || '',
+                                                    token.price || '',
                                                     contract?.hasPayouts
                                                 )
                                             )
                                         }
                 />
             case ItemMarketStatus.CAN_SELL:
-                return <SellNftContainer imgSrc={nft.media}
+                return <SellNftContainer imgSrc={token.media}
                                          payouts={payouts}
                                          onClick={
-                                             (price: string) => dispatch(sellNft(contractId, tokenId, price, nft))
+                                             (price: string) => dispatch(sellNft(contractId, tokenId, price, token))
                                          }
                 />
             case ItemMarketStatus.LISTED:
-                return <UnlistNftContainer nearPrice={nft.price}
+                return <UnlistNftContainer nearPrice={token.price}
                                            usdPrice={usdPrice}
                                            onClick={
                                                () => dispatch(unlistNft(contractId, tokenId))
@@ -106,13 +112,30 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
 
 
     return (
-        <div className="grid md:grid-cols-2 gap-8 px-5 xs:px-10 pt-10 md:items-start">
-            <PreviewNftImage link={nft.media} imageName={nft.title}/>
-            <NftPreviewInfo nft={nft}
-                            payouts={payouts}
-                            contract={contract}
-                            statusElement={getStatus()}
-            />
+        <div
+            className="px-2 pt-10 flex flex-col justify-center items-center gap-4 max-w-[1200px] mx-auto">
+            <div className="flex flex-col gap-6 justify-center w-full
+                            lg:items-start lg:flex-row"
+            >
+                <PreviewNftImage link={token.media} imageName={token.title}/>
+                <NftPreviewInfo nft={token}
+                                payouts={payouts}
+                                contract={contract}
+                                statusElement={getStatus()}
+                />
+            </div>
+            <div className="w-full mb-10">
+                <DropDownMjolBlueButton buttonContent={
+                    <IconText icon={<GiBuyCard/>}
+                              text="Activity"
+                              className="group-hover:text-black text-gray-800"
+                    />
+                }>
+                    <CardActivity activities={[]}
+                                  tokenUID={buildUID(token.contractId, token.tokenId)}/>
+                </DropDownMjolBlueButton>
+
+            </div>
         </div>
     )
 };

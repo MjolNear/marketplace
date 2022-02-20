@@ -1,11 +1,11 @@
 import {ItemMarketStatus} from "../state/transaction/state";
-import {Nft} from "../business-logic/models/nft";
+import {Token} from "../business-logic/models/nft";
 
-export const getNftMarketStatus = (accountId: string, nft: Nft): ItemMarketStatus => {
+export const getNftMarketStatus = (accountId: string, token: Token): ItemMarketStatus => {
 
-    const isListed = nft.price !== null
+    const isListed = token.price !== null
 
-    return (accountId === nft.ownerId) ?
+    return (accountId === token.ownerId) ?
         isListed
             ? ItemMarketStatus.LISTED
             : ItemMarketStatus.CAN_SELL

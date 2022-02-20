@@ -8,6 +8,7 @@ import {BiDna} from 'react-icons/bi'
 import PreviewAttributes from "../Attributes/PreviewAttributes";
 import NftPreviewTitle from "./NftPreviewTitle";
 import NftPreviewCollectionLink from "./NftPreviewCollectionLink";
+import OwnerBlock from "./OwnerBlock";
 
 const NftPreviewInfo = ({nft, payouts, contract, statusElement}) => {
 
@@ -23,22 +24,23 @@ const NftPreviewInfo = ({nft, payouts, contract, statusElement}) => {
     })
 
     const tabs = [
-        {name: "Description", element: nft.description || "Not found", icon: <BsList/>},
         {name: "Attributes", element: <PreviewAttributes attributes={ownerAttributes}/>, icon: <MdAcc/>},
         {name: "Royalties", element: <PreviewAttributes attributes={formattedPayouts}/>, icon: <GrMoney/>},
-        {name: "History", element: "Not found", icon: <GiBuyCard/>},
         {name: "Traits", element: "Not found", icon: <BiDna/>}
     ]
 
 
     return (
-        <div className="space-y-5 md:max-w-xl">
-            <div>
+        <div className="space-y-6 lg:max-w-[580px] w-full">
+            <div className="flex flex-col gap-1 w-full">
                 <NftPreviewTitle title={nft.title} verification={contract?.verification}/>
-                <NftPreviewCollectionLink name="MOCK" link=""/>
+                <OwnerBlock ownerId={nft.ownerId}/>
+                <div className="pt-4 text-xs-2 font-archivo text-gray-500">
+                    {nft.description}
+                </div>
             </div>
             {statusElement}
-            <div className="space-y-3">
+            <div className="space-y-3 w-full">
                 {tabs.map(tab => (
                     <DropDownMjolBlueButton key={tab.name}
                                             buttonContent={
@@ -47,7 +49,7 @@ const NftPreviewInfo = ({nft, payouts, contract, statusElement}) => {
                                                           className="group-hover:text-black text-gray-800"
                                                 />
                                             }>
-                        <div className="rounded-b-lg w-full bg-blue-100 text-black font-medium text-sm px-5 py-2">
+                        <div className="rounded-b-lg w-full bg-mjol-blue-card-property text-black font-medium text-sm px-5 py-2">
                             {tab.element}
                         </div>
                     </DropDownMjolBlueButton>

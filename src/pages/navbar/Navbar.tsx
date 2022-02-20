@@ -32,7 +32,7 @@ const Navbar = React.memo(() => {
                             <TabsDropDownMenu key="Create" name="Create" tabs={createTabs}/>
                         </div>
                         {singleTabs.map(({name, path}) => (
-                            <div key={name} className="inline-flex gap-2 items-center group">
+                            <div key={name} className="inline-flex gap-2 items-center group opacity-50">
                                 <div
                                     className={classNames(
                                         name === "Launchpad" || name === "Docs"

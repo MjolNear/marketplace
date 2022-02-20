@@ -1,7 +1,7 @@
 import {marketViewFunction} from "../rpc";
 import {AccountId, ContractId, NumberAmount, Optional, StringAmount, TokenId} from "../../../models/types";
 import {buildUID, formatOptionalPrice, formatPrice} from "../utils";
-import {MarketTokens, MarketToken, TokenPrices} from "../types/response/market";
+import {MarketResponseTokens, MarketResponseToken, ResponseTokenPrices} from "../types/response/market";
 
 
 export const marketAPI = {
@@ -12,8 +12,8 @@ export const marketAPI = {
      * @param from  start index for fetching
      * @param limit maximum amount of fetched tokens
      */
-    fetchTokens: (from: number, limit: number): Promise<MarketTokens> =>
-        marketViewFunction<MarketTokens>({
+    fetchTokens: (from: number, limit: number): Promise<MarketResponseTokens> =>
+        marketViewFunction<MarketResponseTokens>({
                 methodName: 'get_nfts',
                 args: {
                     from,
@@ -34,9 +34,9 @@ export const marketAPI = {
      *
      * @param accountId NEAR account
      */
-    fetchUserTokenPrices: (accountId: AccountId): Promise<TokenPrices> => {
-        const prices: TokenPrices = {}
-        return marketViewFunction<MarketToken[]>({
+    fetchUserTokenPrices: (accountId: AccountId): Promise<ResponseTokenPrices> => {
+        const prices: ResponseTokenPrices = {}
+        return marketViewFunction<MarketResponseToken[]>({
                 methodName: 'get_user_nfts',
                 args: {
                     owner_id: accountId

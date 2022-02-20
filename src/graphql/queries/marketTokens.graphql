@@ -1,12 +1,12 @@
 query marketTokens(
     $limit: Int!,
     $offset: Int!,
-    $orderBy: Token_orderBy!,
+    $orderBy: MarketToken_orderBy!,
     $orderDirection: OrderDirection!,
-    $priceFrom: BigInt,
-    $priceTo: BigInt
+    $priceFrom: BigInt!,
+    $priceTo: BigInt!
 ) {
-    tokens(
+    marketTokens(
         first: $limit,
         skip: $offset,
         orderBy: $orderBy,
@@ -16,14 +16,14 @@ query marketTokens(
             price_lte: $priceTo
         }
     ) {
-        ownerId
         tokenId
         contractId
+        ownerId
         title
         description
         media
-        copies
-        ipfsReference
+        mintSiteName,
+        mintSiteLink,
         price
     }
 }

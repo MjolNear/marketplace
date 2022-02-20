@@ -5,7 +5,7 @@ import {Optional} from "../../../../models/types";
  *
  * {@link https://github.com/near/NEPs/blob/master/specs/Standards/NonFungibleToken/Metadata.md}
  */
-export interface TokenMetadata {
+export interface NearTokenMetadata {
     // ex. "Arch Nemesis: Mail Carrier" or "Parcel #5055"
     title: Optional<string>,
 

@@ -3,11 +3,11 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import CardListLoader from "./CardListLoader";
 import CardGrid from "./CardGrid";
 import {ScrollPosition, trackWindowScroll} from "react-lazy-load-image-component";
-import {Nft} from "../../business-logic/models/nft";
+import {GridToken} from "../../business-logic/models/nft";
 
 
 interface PropTypes {
-    nfts: Nft[],
+    tokens: GridToken[],
     hasMore: boolean,
     loading: boolean,
     onLoadMore: () => any,
@@ -16,7 +16,7 @@ interface PropTypes {
 }
 
 const PaginationCardList: React.FC<PropTypes> = ({
-    nfts,
+    tokens,
     hasMore,
     loading,
     onLoadMore,
@@ -28,11 +28,11 @@ const PaginationCardList: React.FC<PropTypes> = ({
             next={onLoadMore}
             scrollThreshold="100px"
             hasMore={hasMore}
-            className={"py-5 " + (nfts.length !== 0 ? "space-y-6 lg:space-y-7 2xl:space-y-10" : "")}
+            className={"py-5 " + (tokens.length !== 0 ? "space-y-6 lg:space-y-7 2xl:space-y-10" : "")}
             loader={<CardListLoader/>}
-            dataLength={nfts.length}
+            dataLength={tokens.length}
         >
-            <CardGrid nfts={nfts}
+            <CardGrid tokens={tokens}
                       fetching={loading}
                       isCollectionNFTs={isCollectionNFTs}
                       scrollPosition={scrollPosition}/>

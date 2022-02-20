@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {Nft} from "../../../business-logic/models/nft";
+import {ApprovedToken, Token} from "../../../business-logic/models/nft";
 import {
     ContractResponse,
     ContractStatusResponse,
@@ -9,7 +9,7 @@ import {
 export interface PreviewNftState {
     fetching: boolean,
     success?: boolean,
-    nft?: Nft,
+    token?: Token,
     contract?: ContractResponse,
     isApproved?: boolean,
     payouts: Record<string, number>
@@ -25,12 +25,12 @@ export const previewNftSlice = createSlice({
     name: "preview-nft",
     initialState,
     reducers: {
-        success: (state, action: PayloadAction<Nft>) => {
-            state.nft = action.payload
+        success: (state, action: PayloadAction<ApprovedToken>) => {
+            state.token = action.payload
             state.isApproved = action.payload.isApproved
         },
         failure: (state) => {
-            state.nft = undefined
+            state.token = undefined
         },
         toggleFetching: (state, action: PayloadAction<boolean>) => {
             state.fetching = action.payload

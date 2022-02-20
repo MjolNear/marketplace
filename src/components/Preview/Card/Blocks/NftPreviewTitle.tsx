@@ -10,10 +10,10 @@ interface PropTypes {
 
 const NftPreviewTitle = React.memo<PropTypes>(({title, verification}) => {
     return (
-        <div className="inline-flex items-center gap-2 font-extrabold font-archivo text-black text-lg md:text-xl">
+        <div className="inline-flex w-full items-center gap-2 font-black font-archivo text-black text-2xl">
             {title}
             <ResolveVerificationIcon verification={verification}
-                                     iconProps={{size: 18}}/>
+                                     iconProps={{size: 20}}/>
         </div>
     );
 });

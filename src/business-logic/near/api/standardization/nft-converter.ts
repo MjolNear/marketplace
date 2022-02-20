@@ -1,14 +1,14 @@
 import {NftAPI} from "../../get-utils";
 import {viewFunction} from "../rpc";
-import {Nft} from "../../../models/nft";
+import {ApprovedToken, Token} from "../../../models/nft";
 import {buildUID, getPrice} from "../utils";
-import {TokenPrices} from "../types/response/market";
-import {Token} from "../types/token";
+import {ResponseTokenPrices} from "../types/response/market";
 import {marketAPI} from "../market";
 import {ContractId} from "../../../models/types";
 import {ContractVerificationStatus} from "../../../models/contract";
 import {getNftMintedSiteInfo} from "../../../whitelisted.contracts";
 import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
+import {NearCoreToken} from "../types/token";
 
 const isIPFS = require('is-ipfs')
 
@@ -62,13 +62,11 @@ export const getMintText = (status: string) => {
 //   reference_hash: null
 // },
 // approved_account_ids: {}
-function convertStandardNFT(contractId: string, nft: any, tokenPrices: TokenPrices): Promise<Nft> {
+function convertStandardNFT(contractId: string, nft: any, tokenPrices: ResponseTokenPrices): Promise<ApprovedToken> {
     const metadata = nft.metadata;
     const {approved_account_ids = {}} = nft
     const media = getRealUrl(metadata.media, metadata.media_hash, contractId);
-    if (!media) {
-        return Promise.reject("Standard NFT has no media URL")
-    }
+    const mintSiteInfo = getNftMintedSiteInfo(nft, contractId)
 
     const uid = buildUID(contractId, nft.token_id)
     return Promise.resolve({
@@ -80,14 +78,14 @@ function convertStandardNFT(contractId: string, nft: any, tokenPrices: TokenPric
         copies: metadata.copies,
         media,
         ipfsReference: getRealUrl(metadata.reference, metadata.reference_hash, contractId),
-        mintedInfo: getNftMintedSiteInfo(nft, contractId),
         price: getPrice(uid, tokenPrices),
-        isApproved: !!approved_account_ids[MARKET_CONTRACT_ID]
+        isApproved: !!approved_account_ids[MARKET_CONTRACT_ID],
+        ...mintSiteInfo
     })
 }
 
 
-export async function mapTokenToNFT(contractId: ContractId, token: Token) {
+export async function mapTokenToNFT(contractId: ContractId, token: NearCoreToken) {
     const price = await marketAPI.fetchTokenPrice(contractId, token.token_id)
     const uid = buildUID(contractId, token.token_id)
     const wrappedPrice = {[uid]: price}
@@ -149,7 +147,7 @@ export async function mapTokenToNFT(contractId: ContractId, token: Token) {
 // store: 'nuniversity.mintbase1.near',
 // external_url: 'https://near.university/',
 // type: 'NEP171'
-async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: TokenPrices): Promise<Nft> {
+async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: ResponseTokenPrices): Promise<ApprovedToken> {
     const metadata = nft.metadata;
     const url = await viewFunction({
             contractId,
@@ -160,15 +158,12 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: TokenPr
         }
     )
 
-    console.log(getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId))
-
     const jsonNFT = await NftAPI.getJsonByURL(url)
     const media = getRealUrl(jsonNFT.media, jsonNFT.media_hash, contractId)
     const {approvals = {}} = nft
-    if (!media) {
-        return Promise.reject("Mintbase NFT has no media URL")
-    }
     const uid = buildUID(contractId, nft.id.toString())
+    const mintSiteInfo = getNftMintedSiteInfo(nft, contractId)
+
     return Promise.resolve({
         contractId,
         tokenId: nft.id.toString(),
@@ -178,13 +173,13 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: TokenPr
         copies: metadata.copies,
         media: media,
         ipfsReference: getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId),
-        mintedInfo: getNftMintedSiteInfo(nft, contractId),
         price: getPrice(uid, tokenPrices),
-        isApproved: !!approvals[MARKET_CONTRACT_ID]
+        isApproved: !!approvals[MARKET_CONTRACT_ID],
+        ...mintSiteInfo
     })
 }
 
-export async function getConvertedNFT(contractId: string, jsonNft: any, tokenPrices: TokenPrices) {
+export async function getConvertedNFT(contractId: string, jsonNft: any, tokenPrices: ResponseTokenPrices) {
     if (contractId.endsWith('mintbase1.near')) {
         return getMintbaseNFT(contractId, jsonNft, tokenPrices)
     }

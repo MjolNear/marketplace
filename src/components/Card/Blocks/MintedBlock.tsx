@@ -1,17 +1,20 @@
 import React from 'react';
-import {NftMintedInfo} from "../../../business-logic/whitelisted.contracts";
 import ResolveVerificationIcon from "../../Common/Verification/Icons/ResolveVerificationIcon";
 import {ContractVerificationStatus} from "../../../business-logic/models/contract";
 import {resolveVerificationText} from "../../Common/Verification/utils";
-import LightBlueGradientText from "../../Common/Text/LightBlueGradientText";
 import DarkBlueMjolText from "../../Common/Text/DarkBlueMjolText";
 
-interface PropsTypes {
-    mintedInfo: NftMintedInfo
+interface MintedInfoProps {
+    mintedSiteName: string
+    mintedSiteLink: string
+    verification: ContractVerificationStatus
 }
 
-const MintedBlock = React.memo<PropsTypes>(({mintedInfo}) => {
-    const verification = mintedInfo.verification
+const MintedBlock = React.memo<MintedInfoProps>(({
+    mintedSiteLink,
+    mintedSiteName,
+    verification
+}) => {
     return (
         <>
             <div className="flex gap-1 items-center">
@@ -19,13 +22,13 @@ const MintedBlock = React.memo<PropsTypes>(({mintedInfo}) => {
                 {verification === ContractVerificationStatus.Verified
                     ?
                     <a className="text-black opacity-80 font-bold font-archivo text-xs group hover:opacity-100"
-                       href={mintedInfo.link}
+                       href={mintedSiteLink}
                        target="_blank"
                        rel="noreferrer"
                     >
                         <div className="inline-flex gap-[3px]">
                             Minted on
-                            <DarkBlueMjolText text={mintedInfo.name} classes="text-center font-bold"/>
+                            <DarkBlueMjolText text={mintedSiteName} classes="text-center font-bold"/>
                         </div>
                     </a>
                     :

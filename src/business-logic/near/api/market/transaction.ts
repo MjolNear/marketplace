@@ -4,10 +4,10 @@ import {functionCall, marketFunctionCall} from "../rpc";
 import BN from "bn.js";
 import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
 import {ContractId, StringAmount, TokenId} from "../../../models/types";
-import {Nft} from "../../../models/nft";
+import {Token} from "../../../models/nft";
 
 
-export function giveApprove(contractId: ContractId, tokenId: TokenId, stringPrice: StringAmount, nft: Nft) {
+export function giveApprove(contractId: ContractId, tokenId: TokenId, stringPrice: StringAmount, nft: Token) {
     const price = utils.format.parseNearAmount(stringPrice.toString());
 
     const json_nft = {
@@ -20,8 +20,8 @@ export function giveApprove(contractId: ContractId, tokenId: TokenId, stringPric
         media_url: nft.media,
         reference_url: nft.ipfsReference,
         mint_site: {
-            name: nft.mintedInfo.name,
-            nft_link: nft.mintedInfo.link
+            name: nft.mintedSiteName,
+            nft_link: nft.mintedSiteLink
         },
         price
     }

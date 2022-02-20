@@ -5,7 +5,7 @@ import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
 import {
     MarketTokensQuery,
     OrderDirection,
-    Token_OrderBy,
+    MarketToken_OrderBy,
     useMarketTokensQuery
 } from "../../../graphql/generated/graphql";
 import {convertToEntity} from "../../../graphql/utils";
@@ -25,30 +25,30 @@ export interface SearchText {
 }
 
 export interface TokenSortOption {
-    by: Token_OrderBy,
+    by: MarketToken_OrderBy,
     direction: OrderDirection,
     name: TokenSortName
 }
 
 export enum TokenSortName {
-    PriceLowToHigh = "Price: High to Low",
-    PriceHighToLow = "Price: Low to High",
+    PriceLowToHigh = "Price: Low to High",
+    PriceHighToLow = "Price: High to Low",
     RecentlyAdded = "Recently added"
 }
 
 export const tokenSortOptions: Record<TokenSortName, TokenSortOption> = {
     [TokenSortName.PriceLowToHigh]: {
-        by: Token_OrderBy.Price,
+        by: MarketToken_OrderBy.Price,
         direction: OrderDirection.Asc,
         name: TokenSortName.PriceLowToHigh
     },
     [TokenSortName.PriceHighToLow]: {
-        by: Token_OrderBy.Price,
+        by: MarketToken_OrderBy.Price,
         direction: OrderDirection.Desc,
         name: TokenSortName.PriceHighToLow
     },
     [TokenSortName.RecentlyAdded]: {
-        by: Token_OrderBy.ListingTime,
+        by: MarketToken_OrderBy.ListingTime,
         direction: OrderDirection.Desc,
         name: TokenSortName.RecentlyAdded
     }
@@ -90,10 +90,10 @@ const ExploreNftsPage = () => {
         if (!fetchMoreResult) {
             return previousQueryResult;
         }
-        const previousTokens = previousQueryResult.tokens;
-        const fetchMoreTokens = fetchMoreResult.tokens;
+        const previousTokens = previousQueryResult.marketTokens;
+        const fetchMoreTokens = fetchMoreResult.marketTokens;
         setHasMore(fetchMoreTokens.length === limit)
-        fetchMoreResult.tokens = [...previousTokens, ...fetchMoreTokens];
+        fetchMoreResult.marketTokens = [...previousTokens, ...fetchMoreTokens];
         return {...fetchMoreResult}
     }
 
@@ -108,7 +108,7 @@ const ExploreNftsPage = () => {
         setHasMore(true)
     }, [filters])
 
-    const nfts = data?.tokens.map(convertToEntity) || []
+    const tokens = data?.marketTokens.map(convertToEntity) || []
 
     return (
         <div className="max-w-screen-2xl mx-auto">
@@ -144,10 +144,10 @@ const ExploreNftsPage = () => {
                                 })
                             }}/>
             </div>
-            <PaginationCardList nfts={nfts}
+            <PaginationCardList tokens={tokens}
                                 loading={loading}
                                 hasMore={hasMore}
-                                onLoadMore={() => onLoadMore(nfts.length)}/>
+                                onLoadMore={() => onLoadMore(tokens.length)}/>
         </div>
     )
 };

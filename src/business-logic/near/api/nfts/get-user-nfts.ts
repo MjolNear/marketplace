@@ -5,7 +5,7 @@ import {AccountId, ContractId, TokenId} from "../../../models/types";
 import {contractAPI} from "../contracts";
 import {batchRequest} from "../batch-request";
 import {buildUID} from "../utils";
-import {Nft} from "../../../models/nft";
+import {ApprovedToken} from "../../../models/nft";
 
 export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenId: TokenId) => {
     const jsonNft = await nftAPI.fetchNft(contractId, tokenId)
@@ -66,7 +66,7 @@ export async function getUserNfts(accountId: AccountId, limit: number = 20) {
     const contractIds = addExtraContracts(contracts)
     const tokenPrices = await marketAPI.fetchUserTokenPrices(accountId);
 
-    const fetchNfts = (contractId: ContractId): Promise<Nft[]> =>
+    const fetchNfts = (contractId: ContractId): Promise<ApprovedToken[]> =>
         nftAPI.fetchUserTokensSupply(contractId, accountId)
             .then(async supply => {
                     let offsets = []

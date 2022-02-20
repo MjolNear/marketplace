@@ -12,7 +12,7 @@ export default function DropDownMjolBlueButton({buttonContent, children}) {
                 <div>
                     <Disclosure.Button
                         className={classNames(
-                            "group flex justify-between font-archivo p-5 w-full text-md font-semibold text-left bg-blue-100",
+                            "group flex justify-between font-archivo p-5 w-full text-md font-semibold text-left bg-mjol-blue-card-property",
                             open ? "rounded-t-lg" : "rounded-lg"
                         )}>
                         {buttonContent}
@@ -23,10 +23,10 @@ export default function DropDownMjolBlueButton({buttonContent, children}) {
                         />
                     </Disclosure.Button>
                     <Disclosure.Panel>
-                        <div className="px-2 bg-blue-100">
+                        <div className="px-5 bg-mjol-blue-card-property">
                             <Hr color="bg-gray-600"/>
                         </div>
-                        {children}
+                            {children}
                     </Disclosure.Panel>
                 </div>)}
         </Disclosure>

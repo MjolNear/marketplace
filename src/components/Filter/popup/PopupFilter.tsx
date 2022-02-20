@@ -31,7 +31,11 @@ const PopupFilter: React.FC<PopupFilterProps> = ({
                 leaveTo="transform opacity-0 scale-95"
             >
                 <div className="z-20 absolute flex rounded-xl ring-[1px] ring-blue-100
-                                mt-4 bg-white focus:outline-none shadow-mjol-blue-all-xs"
+                                mt-4 bg-white focus:outline-none shadow-mjol-blue-all-xs
+                                max-xs:transform
+                                max-xs:-translate-x-1/2
+                                max-xs:left-1/2
+                                "
                 >
                     {children}
                 </div>
