@@ -2,6 +2,7 @@ import React from 'react';
 import CardActivityRow, {CardActivityRowProps} from "./CardActivityRow";
 import {useTokenActivityQuery} from "../../graphql/generated/graphql";
 import CardActivityCell, {ActivityCellType} from "./CardActivityCell";
+import MjolLoader from "../Common/Loaders/MjolLoader";
 
 interface CardActivityProps {
     tokenUID: string
@@ -11,7 +12,7 @@ interface CardActivityProps {
 const CardActivity = React.memo<CardActivityProps>(({
     tokenUID,
 }) => {
-    const {data, loading, fetchMore} = useTokenActivityQuery({
+    const {data, loading} = useTokenActivityQuery({
         variables: {
             tokenUID
         }
@@ -21,9 +22,21 @@ const CardActivity = React.memo<CardActivityProps>(({
 
     const columns = ["Event", "Price", "From", "To", "Date", "Tx Hash"]
 
+    if (activities.length === 0 || loading) {
+        return <div className="w-full py-[16px] text-center text-md font-archivo font-semibold bg-mjol-blue-card-property
+                               border-l-[2px] border-r-[2px] border-b-[2px]
+                               border-mjol-blue-card-property rounded-b-lg"
+        >
+            {loading
+                ? <MjolLoader/>
+                : <div>No activities found</div>
+            }
+        </div>
+    }
+
     return (
         <div className="max-h-[325px] overflow-y-scroll w-full
-                        border-l-[1px] border-r-[1px] border-b-[1px] border-mjol-blue-card-property rounded-b-lg"
+                        border-l-[2px] border-r-[2px] border-b-[2px] border-mjol-blue-card-property rounded-b-lg"
         >
             <div className="w-full flex px-[4px]
                             font-archivo text-sm font-semibold pt-[1px] sticky top-0 z-1 bg-mjol-blue-card-property">

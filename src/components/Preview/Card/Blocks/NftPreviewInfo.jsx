@@ -32,12 +32,14 @@ const NftPreviewInfo = ({nft, payouts, contract, statusElement}) => {
 
     return (
         <div className="space-y-6 lg:max-w-[580px] w-full">
-            <div className="flex flex-col gap-2 w-full">
+            <div className="flex flex-col gap-1 w-full">
                 <NftPreviewTitle title={nft.title} verification={contract?.verification}/>
                 <OwnerBlock ownerId={nft.ownerId}/>
+                <div className="pt-4 text-xs-2 font-archivo text-gray-500">
+                    {nft.description}
+                </div>
             </div>
             {statusElement}
-            {nft.description}
             <div className="space-y-3 w-full">
                 {tabs.map(tab => (
                     <DropDownMjolBlueButton key={tab.name}

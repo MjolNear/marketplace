@@ -42,7 +42,7 @@ const CardActivityRow = React.memo<CardActivityRowProps>(({
                 {event}
             </CardActivityCell>
             <CardActivityCell type={ActivityCellType.Price}>
-                {<NearBlackLogo size={12} fill="fill-gray-700"/>}
+                <NearBlackLogo size={12} fill="fill-gray-700"/>
                 <div className="text-black font-bold">{fromYocto2Near(price)}</div>
             </CardActivityCell>
             <CardActivityCell type={ActivityCellType.Basic}>
