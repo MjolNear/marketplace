@@ -1,15 +1,23 @@
-import {parseNearAmount} from "near-api-js/lib/utils/format";
+import {parseNearAmount, formatNearAmount} from "near-api-js/lib/utils/format";
 
-export const shortenString = (string, chunkSize = 5, sizeToSplit = 15) => {
+export const shortenString = (string: string, chunkSize = 5, sizeToSplit = 15) => {
     if (string.length > sizeToSplit) {
         return string.slice(0, chunkSize) + '..' + string.slice(-chunkSize)
     }
     return string
 }
 
+export const fromYocto2Near = (yocto: string | undefined | null) => {
+    const nearAmount = formatNearAmount(yocto || '', 6)
+    if (!nearAmount || !yocto) {
+        return "---"
+    }
+    return nearAmount
+}
+
 export const getPercentage = (
-    value,
-    percentage,
+    value: number,
+    percentage: number,
     minValue = 0,
     maxValue = MAX_ITEM_NEAR_PRICE,
     defaultValue = 0
@@ -21,8 +29,8 @@ export const getPercentage = (
 }
 
 export const getStringPercentage = (
-    value,
-    percentage,
+    value: number,
+    percentage: number,
     minValue = 0,
     maxValue = MAX_ITEM_NEAR_PRICE,
     defaultValue = 0,

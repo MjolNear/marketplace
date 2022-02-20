@@ -6,7 +6,7 @@ import {fetchCollectionNfts} from "../../../state/preview/collection/thunk";
 import {previewCollectionSlice} from "../../../state/preview/collection/slice";
 
 const CollectionNftList = () => {
-    const {nfts, fetching, hasMore, from, limit, total} = useAppSelector(state => state.preview.collection.nftsState)
+    const {tokens, fetching, hasMore, from, limit, total} = useAppSelector(state => state.preview.collection.nftsState)
     const collection = useAppSelector(state => state.preview.collection.collection)
     const dispatch = useAppDispatch()
 
@@ -36,7 +36,7 @@ const CollectionNftList = () => {
     }
 
     return (
-        <PaginationCardList nfts={nfts}
+        <PaginationCardList tokens={tokens}
                             loading={fetching}
                             hasMore={hasMore}
                             isCollectionNFTs={true}

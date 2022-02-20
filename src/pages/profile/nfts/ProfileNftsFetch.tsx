@@ -10,14 +10,13 @@ import {SignedInProps} from "../../../hoc/withAuthData";
 import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
 import {WhitelistedContracts} from "../../../business-logic/whitelisted.contracts";
 import {ContractVerificationStatus} from "../../../business-logic/models/contract";
-import MobileFilter from "../../../components/Common/Filters/MobileFilter";
 
 interface PropTypes extends SignedInProps {
 }
 
 const ProfileNftsFetch: React.FC<PropTypes> = ({accountId}) => {
     const activeTab = useAppSelector(state => state.profile.nfts.tabs.activeTab)
-    const {nfts, contracts, fetching} = useAppSelector(state => state.profile.nfts.tokens)
+    const {tokens, contracts, fetching} = useAppSelector(state => state.profile.nfts.tokens)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -32,22 +31,19 @@ const ProfileNftsFetch: React.FC<PropTypes> = ({accountId}) => {
         supported: true
     })
 
-    const filteredNfts = (activeTab === ProfileNftsTab.Listed
-            ? nfts.filter(nft => nft.price !== null)
-            : nfts
-    ).map(nft => ({
-            ...nft,
-            mintedInfo: {
-                ...nft.mintedInfo,
-                verification: contracts[nft.contractId]?.verification || nft.mintedInfo.verification
-            }
+    const filteredTokens = (activeTab === ProfileNftsTab.Listed
+            ? tokens.filter(token => token.price !== null)
+            : tokens
+    ).map(token => ({
+            ...token,
+            verification: contracts[token.contractId]?.verification || token.verification
         })
-    ).filter(nft => {
+    ).filter(token => {
         if (filters.mjolNear) {
-            return nft.contractId === WhitelistedContracts.MjolNear
+            return token.contractId === WhitelistedContracts.MjolNear
         }
         if (filters.supported) {
-            return nft.mintedInfo.verification !== ContractVerificationStatus.NotSupported
+            return token.verification !== ContractVerificationStatus.NotSupported
         }
         return true
     })
@@ -65,9 +61,9 @@ const ProfileNftsFetch: React.FC<PropTypes> = ({accountId}) => {
             {/*<MobileFilter/>*/}
             {fetching
                 ? <CardListLoader/>
-                : nfts.length === 0
+                : tokens.length === 0
                     ? <EmptyCardList/>
-                    : <CardGrid fetching={fetching} nfts={filteredNfts}/>
+                    : <CardGrid fetching={fetching} tokens={filteredTokens}/>
             }
         </>
     );

@@ -8,12 +8,10 @@ interface PropTypes {
 
 const PreviewNftImage = React.memo<PropTypes>(({link, imageName}) => {
     return (
-        <div className="justify-self-center md:justify-self-end w-full max-w-2xl">
-            <img src={link || undefined}
-                 alt={imageName}
-                 className="w-full max-h-xl object-contain"
-            />
-        </div>
+        <img src={link || undefined}
+             alt={imageName}
+             className="object-contain w-full max-h-[600px]"
+        />
     );
 });
 

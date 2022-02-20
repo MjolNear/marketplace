@@ -1,13 +1,13 @@
 import {formatPrice} from "../business-logic/near/api/utils";
 import {getMintbaseSiteInfo, getNftMintedSiteInfo} from "../business-logic/whitelisted.contracts";
-import {Token} from "./generated/graphql";
-import {Nft} from "../business-logic/models/nft";
+import {MarketToken} from "./generated/graphql";
+import {GridToken} from "../business-logic/models/nft";
+import {ContractVerificationStatus} from "../business-logic/models/contract";
 
-export const convertToEntity = (token: Omit<Token, "id" | "listingTime">): Nft => ({
+export const convertToEntity = (token: Omit<MarketToken, "id" | "listingTime">): GridToken => ({
     ...token,
-    isApproved: true,
     price: formatPrice(token.price),
-    mintedInfo: token.contractId.endsWith('mintbase1.near')
-        ? getMintbaseSiteInfo(token.contractId, token.ipfsReference?.split('https://arweave.net/')[1])
-        : getNftMintedSiteInfo(token, token.contractId)
+    mintedSiteLink: token.mintSiteLink ? token.mintSiteLink : '',
+    mintedSiteName: token.mintSiteName ? token.mintSiteName : '',
+    verification: ContractVerificationStatus.Verified
 })

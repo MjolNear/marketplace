@@ -7,7 +7,7 @@ import {AccountId, TokenId} from "../../../../models/types";
  *
  * {@link https://github.com/near/NEPs/blob/master/specs/Standards/NonFungibleToken/Core.md}
  */
-export interface CoreToken {
+export interface NearCoreToken {
     token_id: TokenId
     owner_id: AccountId
 }

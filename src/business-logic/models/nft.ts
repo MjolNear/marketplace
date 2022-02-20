@@ -1,7 +1,7 @@
 import {Optional, StringAmount} from "./types";
-import {NftMintedInfo} from "../whitelisted.contracts";
+import {ContractVerificationStatus} from "./contract";
 
-export interface BaseNft {
+export interface CoreToken {
     contractId: string,
     tokenId: string,
     ownerId: string,
@@ -9,16 +9,28 @@ export interface BaseNft {
     media?: Optional<string>,
     description?: Optional<string>,
     price?: Optional<StringAmount>,
+}
+
+export interface TokenMintedInfo {
+    mintedSiteName: string,
+    mintedSiteLink: string,
+    verification: ContractVerificationStatus
+}
+
+export interface TokenApproveInfo {
     isApproved: boolean
 }
 
-export interface NftMetadata {
+export interface TokensReferenceInfo {
     ipfsReference?: Optional<string>,
     copies?: Optional<number>
 }
 
-export interface MintInfo {
-    mintedInfo: NftMintedInfo
-}
+// Grid token contains all fields without reference and approval info
+export type GridToken = CoreToken & TokenMintedInfo
 
-export type Nft = BaseNft & NftMetadata & MintInfo
+// Contains fields as metadata, price
+export type Token = CoreToken & TokensReferenceInfo & TokenMintedInfo
+
+// Contains all fields and approval status
+export type ApprovedToken = Token & TokenApproveInfo

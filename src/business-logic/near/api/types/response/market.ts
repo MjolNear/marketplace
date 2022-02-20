@@ -6,13 +6,13 @@ import {
     TokenUID
 } from "../../../../models/types";
 import {TokensBatchResponse} from "./core";
-import {CoreToken} from "../token";
+import {NearCoreToken} from "../token";
 
-export interface MarketToken extends CoreToken {
+export interface MarketResponseToken extends NearCoreToken {
     approval_id: number,
     nft_contract_id: ContractId,
     price: NumberAmount,
 }
 
-export type MarketTokens = TokensBatchResponse<MarketToken>
-export type TokenPrices = Record<TokenUID, Optional<StringAmount>>
+export type MarketResponseTokens = TokensBatchResponse<MarketResponseToken>
+export type ResponseTokenPrices = Record<TokenUID, Optional<StringAmount>>

@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {Nft} from "../../../../business-logic/models/nft";
+import {GridToken, Token} from "../../../../business-logic/models/nft";
 import {ContractId} from "../../../../business-logic/models/types";
 import {
     ContractResponse,
@@ -8,13 +8,13 @@ import {
 } from "../../../../business-logic/near/api/types/response/contracts";
 
 export interface ProfileTokensState {
-    nfts: Nft[],
+    tokens: GridToken[],
     contracts: Record<ContractId, ContractResponse>,
     fetching: boolean
 }
 
 const initialState: ProfileTokensState = {
-    nfts: [],
+    tokens: [],
     contracts: {},
     fetching: true
 }
@@ -31,8 +31,8 @@ export const profileTokensSlice = createSlice({
                 }
             })
         },
-        setNfts: (state, action: PayloadAction<Nft[]>) => {
-            state.nfts = action.payload
+        setNfts: (state, action: PayloadAction<GridToken[]>) => {
+            state.tokens = action.payload
         },
 
         toggleFetching: (state, action: PayloadAction<boolean>) => {

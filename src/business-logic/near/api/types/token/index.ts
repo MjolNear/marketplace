@@ -1,6 +1,6 @@
-import {CoreToken} from "./core";
-import {TokenMetadata} from "./metadata";
-import {Token} from './token'
+import {NearCoreToken} from "./core";
+import {NearTokenMetadata} from "./metadata";
+import {NearToken} from './token'
 
 
-export type {Token, CoreToken, TokenMetadata}
+export type {NearToken, NearCoreToken, NearTokenMetadata}

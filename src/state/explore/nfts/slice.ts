@@ -1,9 +1,8 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {Nft} from "../../../business-logic/models/nft";
-import {TokensBatch} from "../../../business-logic/near/api/market/get-nfts-market";
+import {GridToken} from "../../../business-logic/models/nft";
 
 export interface ExploreNftsState {
-    nfts: Nft[],
+    tokens: GridToken[],
     fetching: boolean,
     from: number,
     limit: number,
@@ -12,7 +11,7 @@ export interface ExploreNftsState {
 }
 
 const initialState: ExploreNftsState = {
-    nfts: [],
+    tokens: [],
     fetching: true,
     from: 0,
     limit: 4,
@@ -24,9 +23,9 @@ export const exploreNftsSlice = createSlice({
     name: "explore-nfts",
     initialState,
     reducers: {
-        setPageData: (state, action: PayloadAction<Nft[]>) => {
+        setPageData: (state, action: PayloadAction<GridToken[]>) => {
             console.log(action.payload)
-            state.nfts = state.nfts.concat(action.payload)
+            state.tokens = state.tokens.concat(action.payload)
             state.hasMore = action.payload.length === state.limit
             state.from += state.limit
         },

@@ -1,8 +1,8 @@
 import {BatchResponse, TokensBatchResponse} from "./core";
-import {Token} from "../token";
+import {NearToken} from "../token";
 import {Collection} from "../../../../models/collection";
 
-export type CollectionTokens = TokensBatchResponse<Token>
+export type CollectionTokensResponse = TokensBatchResponse<NearToken>
 
 
 export interface CollectionsBatchResponse extends BatchResponse {

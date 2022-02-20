@@ -1,5 +1,0 @@
-query tokenPrice($id: ID!) {
-    token(id: $id) {
-        price
-    }
-}

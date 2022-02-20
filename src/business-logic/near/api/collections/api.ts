@@ -2,12 +2,12 @@ import {AccountId, CollectionId, ContractId, Optional} from "../../../models/typ
 import {mjolViewFunction, viewFunction} from "../rpc";
 import {
     CollectionsBatchResponse,
-    CollectionTokens,
+    CollectionTokensResponse,
     emptyCollectionsBatchResponse,
 } from "../types/response/collection";
 import {Collection, CollectionInfo, IPFSMetadata} from "../../../models/collection";
 import {fetchWithTimeout} from "../core";
-import {Token} from "../types/token";
+import {NearToken} from "../types/token";
 import {MJOL_CONTRACT_ID} from "../../enviroment/contract-names";
 import {emptyTokensBatchResponse} from "../types/response/core";
 import {batchRequest} from "../batch-request";
@@ -63,7 +63,7 @@ export const collectionAPI = {
         from: number,
         limit: number,
         totalSupply: number = 0
-    ): Promise<CollectionTokens> => {
+    ): Promise<CollectionTokensResponse> => {
         if (contractId === MJOL_CONTRACT_ID) {
             return collectionAPI.fetchMjolNfts(collectionId, from, limit)
         } else {
@@ -80,7 +80,7 @@ export const collectionAPI = {
         }
     },
 
-    fetchWhitelistedCollectionNfts: (contractId: ContractId, from: number, limit: number): Promise<Token[]> => {
+    fetchWhitelistedCollectionNfts: (contractId: ContractId, from: number, limit: number): Promise<NearToken[]> => {
         if (contractId === WhitelistedContracts.NearPunks) {
             let indices = []
             for (let i = 1; i <= limit; i++) {
@@ -108,8 +108,8 @@ export const collectionAPI = {
      * @param from  start index for fetching
      * @param limit maximum amount of fetched tokens
      */
-    fetchMjolNfts: (collectionId: CollectionId, from: number, limit: number): Promise<CollectionTokens> =>
-        mjolViewFunction<CollectionTokens>({
+    fetchMjolNfts: (collectionId: CollectionId, from: number, limit: number): Promise<CollectionTokensResponse> =>
+        mjolViewFunction<CollectionTokensResponse>({
             methodName: 'get_nfts_from_collection',
             args: {
                 collection_id: collectionId,

@@ -3,11 +3,11 @@ import {viewFunction} from "../rpc";
 import {marketAPI} from "./api";
 import {buildUID, formatOptionalPrice} from "../utils";
 import {batchRequest} from "../batch-request";
-import {Nft} from "../../../models/nft";
-import {MarketToken} from "../types/response/market";
+import {ApprovedToken} from "../../../models/nft";
+import {MarketResponseToken} from "../types/response/market";
 
 export interface TokensBatch {
-    tokens: Nft[],
+    tokens: ApprovedToken[],
     hasMore: boolean,
     total: number
 }
@@ -15,7 +15,7 @@ export interface TokensBatch {
 
 export async function getMarketNfts(from = 0, limit = 50): Promise<TokensBatch> {
     const marketNfts = await marketAPI.fetchTokens(from, limit)
-    return batchRequest<MarketToken, Nft>(marketNfts.tokens, async token => {
+    return batchRequest<MarketResponseToken, ApprovedToken>(marketNfts.tokens, async token => {
         const {price, token_id, nft_contract_id: contractId} = token
         return viewFunction({
                 contractId,

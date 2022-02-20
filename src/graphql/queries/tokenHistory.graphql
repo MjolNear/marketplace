@@ -1,0 +1,10 @@
+query tokenActivity($tokenUID: String!) {
+    histories(where: {token: $tokenUID}, orderBy: timestamp, orderDirection: desc) {
+        ownerId,
+        buyerId,
+        price
+        txHash,
+        eventType,
+        timestamp
+    }
+}

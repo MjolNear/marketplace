@@ -1,5 +1,5 @@
-query textSearchTokens($text: String!) {
-    tokenSearch(text: $text) {
+query marketTokensSearch($text: String!) {
+    marketSearch(text: $text) {
         ownerId
         tokenId
         contractId
