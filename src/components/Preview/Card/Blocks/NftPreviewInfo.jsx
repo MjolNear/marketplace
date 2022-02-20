@@ -35,7 +35,7 @@ const NftPreviewInfo = ({nft, payouts, contract, statusElement}) => {
             <div className="flex flex-col gap-1 w-full">
                 <NftPreviewTitle title={nft.title} verification={contract?.verification}/>
                 <OwnerBlock ownerId={nft.ownerId}/>
-                <div className="pt-4 text-xs-2 font-archivo text-gray-500">
+                <div className="pt-8 text-xs-2 font-archivo text-gray-600">
                     {nft.description}
                 </div>
             </div>

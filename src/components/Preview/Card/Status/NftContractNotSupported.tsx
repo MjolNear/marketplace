@@ -8,11 +8,13 @@ interface PropTypes {
 
 const NftContractNotSupported: React.FC<PropTypes> = ({missedNeps}) => {
     return (
-        <div
-            className="inline-flex gap-2 w-full items-center justify-center rounded-lg bg-blue-100 py-4 font-semibold text-md text-black font-archivo">
-            NFT contract not supported
-            <BsQuestionCircle size={16}
-                              className="cursor-pointer"
+        <div className="inline-flex gap-2 w-full justify-center items-center
+                        rounded-xl px-[24px] py-[18px] bg-mjol-blue-card-property"
+        >
+            <div className="font-bold font-archivo text-md text-gray-600">
+                NFT contract not supported
+            </div>
+            <BsQuestionCircle size={15}
                               data-tip={`Missed standards: ${missedNeps?.join(', ')}`}
             />
             <ReactTooltip className='text-sm font-medium font-archivo' type='dark' place='bottom' delayShow={200}/>

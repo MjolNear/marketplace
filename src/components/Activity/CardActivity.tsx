@@ -28,7 +28,7 @@ const CardActivity = React.memo<CardActivityProps>(({
                                border-mjol-blue-card-property rounded-b-lg"
         >
             {loading
-                ? <MjolLoader/>
+                ? <MjolLoader size={24}/>
                 : <div>No activities found</div>
             }
         </div>
