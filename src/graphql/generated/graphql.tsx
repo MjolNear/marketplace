@@ -794,12 +794,12 @@ export enum _SubgraphErrorPolicy_ {
 export type LastMarketTokensQueryVariables = Exact<{
   first: Scalars['Int'];
   skip: Scalars['Int'];
-  orderBy: Token_OrderBy;
+  orderBy: MarketToken_OrderBy;
   orderDirection: OrderDirection;
 }>;
 
 
-export type LastMarketTokensQuery = { __typename?: 'Query', tokens: Array<{ __typename?: 'Token', ownerId: string, tokenId: string, contractId: string, title: string, description?: string | null, media?: string | null, copies?: any | null, ipfsReference?: string | null, price: any }> };
+export type LastMarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', ownerId: string, tokenId: string, contractId: string, title: string, description?: string | null, media?: string | null, copies?: any | null, ipfsReference?: string | null, price: any }> };
 
 export type MarketTokensQueryVariables = Exact<{
   limit: Scalars['Int'];
@@ -829,8 +829,8 @@ export type MarketTokensSearchQuery = { __typename?: 'Query', marketSearch: Arra
 
 
 export const LastMarketTokensDocument = gql`
-    query lastMarketTokens($first: Int!, $skip: Int!, $orderBy: Token_orderBy!, $orderDirection: OrderDirection!) {
-  tokens(
+    query lastMarketTokens($first: Int!, $skip: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!) {
+  marketTokens(
     first: $first
     skip: $skip
     orderBy: $orderBy

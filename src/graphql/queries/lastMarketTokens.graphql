@@ -1,10 +1,10 @@
 query lastMarketTokens(
     $first: Int!,
     $skip: Int!,
-    $orderBy: Token_orderBy!,
+    $orderBy: MarketToken_orderBy!,
     $orderDirection: OrderDirection!
 ) {
-    tokens(
+    marketTokens(
         first: $first,
         skip: $skip,
         orderBy: $orderBy,

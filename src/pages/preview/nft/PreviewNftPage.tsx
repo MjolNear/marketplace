@@ -5,7 +5,6 @@ import withAuthData, {SignedInProps} from "../../../hoc/withAuthData";
 import NotFoundPage from "../../not-found/NotFoundPage";
 import {previewNftSlice} from "../../../state/preview/nft/slice";
 import {useParams} from "react-router";
-import MjolLoader from "../../../components/Common/Loaders/MjolLoader";
 import PreviewNftImage from "../../../components/Preview/Card/PreviewNftImage";
 import NftPreviewInfo from "../../../components/Preview/Card/Blocks/NftPreviewInfo";
 import {getNftMarketStatus} from "../../../hooks/getNftMarketStatus";
@@ -25,6 +24,7 @@ import {buildUID} from "../../../business-logic/near/api/utils";
 import DropDownMjolBlueButton from "../../../components/Common/Buttons/DropDownMjolBlueButton";
 import IconText from "../../../components/Icons/IconText";
 import {GiBuyCard} from "react-icons/gi";
+import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
 
 interface PropTypes extends SignedInProps {
 }
@@ -58,7 +58,7 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
     }
 
     if (fetching) {
-        return <MjolLoader/>
+        return <CreateLoader/>
     }
     if (!token) {
         return <NotFoundPage/>

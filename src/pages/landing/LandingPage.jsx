@@ -17,7 +17,7 @@ const LandingPage = () => {
             orderDirection: initialSort.direction,
         }
     })
-    const nfts = data?.tokens.map(convertToEntity) || [];
+    const nfts = data?.marketTokens.map(convertToEntity) || [];
     return (
         <div className="max-w-screen-2xl mx-auto">
             <div className="max-w-7xl mx-auto py-8 px-8">
@@ -33,7 +33,7 @@ const LandingPage = () => {
             <div className="md:col-span-2 col-span-4 md:py-40 py-20 place-self-start">
                 <DarkBlueTitle title="Latest listings"/>
                 <div className="py-5">
-                    <CardGrid nfts={nfts}
+                    <CardGrid tokens={nfts}
                               fetching={loading}
                     />
                 </div>
