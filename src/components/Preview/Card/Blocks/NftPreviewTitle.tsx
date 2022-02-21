@@ -1,7 +1,6 @@
 import React from 'react';
 import {ContractVerificationStatus} from "../../../../business-logic/models/contract";
 import ResolveVerificationIcon from "../../../Common/Verification/Icons/ResolveVerificationIcon";
-import ReactTooltip from "react-tooltip";
 
 interface PropTypes {
     title: string,
