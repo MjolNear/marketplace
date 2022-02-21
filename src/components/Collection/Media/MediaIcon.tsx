@@ -9,11 +9,11 @@ interface PropTypes {
 
 const MediaIcon = React.memo<PropTypes>(({link, Icon}) => {
     return (
-        <Link to={link}>
-            <div className="p-3 group rounded-lg hover:bg-blue-400">
-                <Icon size={25} className="group-hover:fill-white"/>
+        <div className="cursor-not-allowed">
+            <div className="p-3 group rounded-lg">
+                <Icon size={25} className=""/>
             </div>
-        </Link>
+        </div>
     );
 });
 
