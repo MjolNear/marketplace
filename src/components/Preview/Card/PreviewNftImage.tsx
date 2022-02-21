@@ -10,7 +10,7 @@ const PreviewNftImage = React.memo<PropTypes>(({link, imageName}) => {
     return (
         <img src={link || undefined}
              alt={imageName}
-             className="object-contain w-full max-h-[600px]"
+             className="object-contain w-full max-h-[600px] max-w-[600px]"
         />
     );
 });
