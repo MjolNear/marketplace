@@ -1,0 +1,23 @@
+query lastMarketTokens(
+    $first: Int!,
+    $skip: Int!,
+    $orderBy: Token_orderBy!,
+    $orderDirection: OrderDirection!
+) {
+    tokens(
+        first: $first,
+        skip: $skip,
+        orderBy: $orderBy,
+        orderDirection: $orderDirection
+    ) {
+        ownerId
+        tokenId
+        contractId
+        title
+        description
+        media
+        copies
+        ipfsReference
+        price
+    }
+}

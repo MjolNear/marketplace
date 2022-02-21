@@ -791,6 +791,16 @@ export enum _SubgraphErrorPolicy_ {
   Deny = 'deny'
 }
 
+export type LastMarketTokensQueryVariables = Exact<{
+  first: Scalars['Int'];
+  skip: Scalars['Int'];
+  orderBy: Token_OrderBy;
+  orderDirection: OrderDirection;
+}>;
+
+
+export type LastMarketTokensQuery = { __typename?: 'Query', tokens: Array<{ __typename?: 'Token', ownerId: string, tokenId: string, contractId: string, title: string, description?: string | null, media?: string | null, copies?: any | null, ipfsReference?: string | null, price: any }> };
+
 export type MarketTokensQueryVariables = Exact<{
   limit: Scalars['Int'];
   offset: Scalars['Int'];
@@ -818,6 +828,57 @@ export type MarketTokensSearchQueryVariables = Exact<{
 export type MarketTokensSearchQuery = { __typename?: 'Query', marketSearch: Array<{ __typename?: 'MarketToken', ownerId: string, tokenId: string, contractId: string, title: string, description?: string | null, media?: string | null, copies?: any | null, ipfsReference?: string | null, price: any }> };
 
 
+export const LastMarketTokensDocument = gql`
+    query lastMarketTokens($first: Int!, $skip: Int!, $orderBy: Token_orderBy!, $orderDirection: OrderDirection!) {
+  tokens(
+    first: $first
+    skip: $skip
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+  ) {
+    ownerId
+    tokenId
+    contractId
+    title
+    description
+    media
+    copies
+    ipfsReference
+    price
+  }
+}
+    `;
+
+/**
+ * __useLastMarketTokensQuery__
+ *
+ * To run a query within a React component, call `useLastMarketTokensQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLastMarketTokensQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLastMarketTokensQuery({
+ *   variables: {
+ *      first: // value for 'first'
+ *      skip: // value for 'skip'
+ *      orderBy: // value for 'orderBy'
+ *      orderDirection: // value for 'orderDirection'
+ *   },
+ * });
+ */
+export function useLastMarketTokensQuery(baseOptions: Apollo.QueryHookOptions<LastMarketTokensQuery, LastMarketTokensQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<LastMarketTokensQuery, LastMarketTokensQueryVariables>(LastMarketTokensDocument, options);
+      }
+export function useLastMarketTokensLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LastMarketTokensQuery, LastMarketTokensQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<LastMarketTokensQuery, LastMarketTokensQueryVariables>(LastMarketTokensDocument, options);
+        }
+export type LastMarketTokensQueryHookResult = ReturnType<typeof useLastMarketTokensQuery>;
+export type LastMarketTokensLazyQueryHookResult = ReturnType<typeof useLastMarketTokensLazyQuery>;
+export type LastMarketTokensQueryResult = Apollo.QueryResult<LastMarketTokensQuery, LastMarketTokensQueryVariables>;
 export const MarketTokensDocument = gql`
     query marketTokens($limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt!, $priceTo: BigInt!) {
   marketTokens(

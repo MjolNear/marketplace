@@ -3,7 +3,6 @@ import {useParams} from "react-router";
 import {fetchCollection} from "../../../state/preview/collection/thunk";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import NotFoundPage from "../../not-found/NotFoundPage";
-import MjolLoader from "../../../components/Common/Loaders/MjolLoader";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import Stats from "../../../components/Collection/Stats/Stats";
 import CollectionNftList from "./CollectionNftList";
@@ -14,6 +13,7 @@ import CollectionBanner from "../../../components/Collection/Blocks/CollectionBa
 import ItemsActivity from "../../../components/Collection/Filters/ItemsActivity";
 import CollectionMedia from "../../../components/Collection/Media/CollectionMedia";
 import TraitsFilter from "../../../components/Collection/Filters/TraitsFilter";
+import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
 
 type CollectionRouteParams = {
     contractId: string,
@@ -43,7 +43,7 @@ const PreviewCollectionPage: React.FC = () => {
     }
 
     if (fetching) {
-        return <MjolLoader/>
+        return <CreateLoader/>
     }
     if (!collection) {
         return <NotFoundPage/>
