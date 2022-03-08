@@ -1,17 +1,16 @@
 import './index.css';
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {HashRouter} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import {Provider as ReduxProvider} from "react-redux";
 import App from "./App";
+import {ApolloProvider} from '@apollo/client';
+
 import {setupStore} from "./state/store";
-import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
-import {IndexerEndpoint} from "./graphql/config";
+import {setupApolloClient} from "./state/apollo";
 
 // Needed for near-api-js lib
 import {Buffer} from "buffer"
-import {setupApolloClient} from "./state/apollo";
-
 (window as any).Buffer = Buffer;
 
 
@@ -20,13 +19,13 @@ const client = setupApolloClient()
 
 ReactDOM.render(
     <React.StrictMode>
-        <HashRouter>
+        <BrowserRouter>
             <ApolloProvider client={client}>
                 <ReduxProvider store={store}>
                     <App/>
                 </ReduxProvider>
             </ApolloProvider>
-        </HashRouter>
+        </BrowserRouter>
     </React.StrictMode>,
     document.getElementById("root")
 )
