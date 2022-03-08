@@ -10,6 +10,7 @@ import {getRelativeTimestamp} from "../../utils/time";
 import UnlistIcon from "../Icons/Activity/UnlistIcon";
 import CopyIcon from "../Icons/Common/CopyIcon";
 import {BsCheck} from "react-icons/bs";
+import AccountHrefCell from "./AccountHrefCell";
 
 export interface CardActivityRowProps {
     event: HistoryEventType,
@@ -46,26 +47,10 @@ const CardActivityRow = React.memo<CardActivityRowProps>(({
                 <div className="text-black font-bold">{fromYocto2Near(price)}</div>
             </CardActivityCell>
             <CardActivityCell type={ActivityCellType.Basic}>
-                <a href={`https://explorer.near.org/accounts/${from}`}
-                   className="hover:text-blue-600 text-blue-500 font-semibold"
-                   target="_blank"
-                   rel="noreferrer"
-                >
-                    {shortenString(from, 10, 25)}
-                </a>
+                <AccountHrefCell accountId={from}/>
             </CardActivityCell>
             <CardActivityCell type={ActivityCellType.Basic}>
-                {to
-                    ?
-                    <a href={`https://explorer.near.org/accounts/${to}`}
-                       className="hover:text-blue-600 text-blue-500 font-semibold"
-                       target="_blank"
-                       rel="noreferrer"
-                    >
-                        {shortenString(to, 10, 25)}
-                    </a>
-                    : "---"
-                }
+                <AccountHrefCell accountId={to}/>
             </CardActivityCell>
             <CardActivityCell type={ActivityCellType.Basic}>
                 {getRelativeTimestamp(timestamp)}
