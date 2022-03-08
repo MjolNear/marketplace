@@ -1,7 +1,7 @@
 import './index.css';
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {BrowserRouter} from "react-router-dom";
+import {HashRouter} from "react-router-dom";
 import {Provider as ReduxProvider} from "react-redux";
 import App from "./App";
 import {ApolloProvider} from '@apollo/client';
@@ -19,13 +19,13 @@ const client = setupApolloClient()
 
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter>
+        <HashRouter>
             <ApolloProvider client={client}>
                 <ReduxProvider store={store}>
                     <App/>
                 </ReduxProvider>
             </ApolloProvider>
-        </BrowserRouter>
+        </HashRouter>
     </React.StrictMode>,
     document.getElementById("root")
 )
