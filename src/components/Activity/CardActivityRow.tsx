@@ -46,7 +46,7 @@ const CardActivityRow = React.memo<CardActivityRowProps>(({
                 <div className="text-black font-bold">{fromYocto2Near(price)}</div>
             </CardActivityCell>
             <CardActivityCell type={ActivityCellType.Basic}>
-                <a href={`https://explorer.near.org/accounts/${to}`}
+                <a href={`https://explorer.near.org/accounts/${from}`}
                    className="hover:text-blue-600 text-blue-500 font-semibold"
                    target="_blank"
                    rel="noreferrer"
