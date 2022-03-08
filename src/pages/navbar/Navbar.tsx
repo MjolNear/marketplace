@@ -98,7 +98,7 @@ const Navbar = React.memo(() => {
                                             ?
                                             <MobileTabSection name="Profile" tabs={profileTabs}/>
                                             :
-                                            <BlueGreenGradientButton title="Sing in" onClick={signIn}/>
+                                            <BlueGreenGradientButton title="Sign in" onClick={signIn}/>
                                         }
                                     </div>
                                 </Menu.Items>
