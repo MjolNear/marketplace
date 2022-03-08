@@ -32,5 +32,5 @@ export const signIn = () => {
 
 export const signOut = (): void => {
     wallet.signOut();
-    window.location.replace(window.location.origin + window.location.pathname)
+    window.location.replace(window.location.origin)
 }

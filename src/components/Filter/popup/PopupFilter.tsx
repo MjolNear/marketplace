@@ -30,7 +30,7 @@ const PopupFilter: React.FC<PopupFilterProps> = ({
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
             >
-                <div className="z-20 absolute flex rounded-xl ring-[1px] ring-blue-100
+                <div className="z-50 absolute flex rounded-xl ring-[1px] ring-blue-100
                                 mt-4 bg-white focus:outline-none shadow-mjol-blue-all-xs
                                 max-xs:transform
                                 max-xs:-translate-x-1/2

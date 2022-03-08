@@ -2,7 +2,7 @@ import {Transition, Menu} from "@headlessui/react";
 import React, {Fragment} from "react";
 import {Link} from "react-router-dom";
 import MenuChevronButton from "./MenuChevronButton";
-import PuzzleIcon from "../../Icons/PuzzleIcon";
+import {signOut} from "../../../business-logic/near/enviroment/near";
 
 interface TabItem {
     name: string,
@@ -35,16 +35,28 @@ export const TabsDropDownMenu: React.FC<PropTypes> = ({name, tabs}) => {
                     <div className="flex flex-col items-center px-2 py-1 gap-1">
                         {tabs.map(({name: tabName, path}) =>
                             <Menu.Item key={tabName}>
-                                <Link to={path}
-                                      className="font-bold font-archivo text-black text-sm text-left w-full
+                                {tabName === "Sign out"
+                                    ?
+                                    <button onClick={signOut}
+                                            className="font-bold font-archivo text-black text-sm text-left w-full
+                                                 py-[12px] px-[16px] inline-flex justify-between items-center
+                                                 hover:bg-gray-200 rounded-xl
+                                                 focus:outline-none
+                                                 focus-visible:ring-0">
+                                        {tabName}
+                                    </button>
+                                    :
+                                    <Link to={path}
+                                          className="font-bold font-archivo text-black text-sm text-left w-full
                                                  py-[12px] px-[16px] inline-flex justify-between items-center
                                                  hover:bg-gray-200 rounded-xl
                                                  focus:outline-none
                                                  focus-visible:ring-0
                                                 "
-                                >
-                                    {tabName}
-                                </Link>
+                                    >
+                                        {tabName}
+                                    </Link>
+                                }
                             </Menu.Item>
                         )}
                     </div>

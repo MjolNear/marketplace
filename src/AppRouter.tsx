@@ -6,7 +6,6 @@ import CreateCollectionPage from "./pages/create/collection/CreateCollectionPage
 import CreateNftPage from "./pages/create/nft/CreateNftPage";
 import ExploreCollectionsPage from "./pages/explore/collection/ExploreCollectionsPage";
 import PreviewNftPage from "./pages/preview/nft/PreviewNftPage";
-import Logout from "./hoc/auth/Logout";
 import ExploreNftsPage from "./pages/explore/nft/ExploreNftsPage";
 import ProfileCollectionsPage from "./pages/profile/collections/ProfileCollectionsPage";
 import ProfileNftsPage from "./pages/profile/nfts/ProfileNftsPage";
@@ -18,7 +17,6 @@ const AppRouter = () => {
 
             {/* Landing & auth block*/}
             <Route path="/" element={<LandingPage/>}/>
-            <Route path="logout" element={<Logout/>}/>
 
             {/* Nfts block */}
             <Route path="nfts" element={<ExploreNftsPage/>}/>
