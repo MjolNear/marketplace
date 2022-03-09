@@ -29,7 +29,6 @@ const CardActivityRow = React.memo<CardActivityRowProps>(({
     timestamp,
     txHash
 }) => {
-
     const [isCopied, setIsCopied] = useState(false)
 
     return (
