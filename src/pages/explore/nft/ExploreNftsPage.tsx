@@ -48,7 +48,7 @@ export const tokenSortOptions: Record<TokenSortName, TokenSortOption> = {
         name: TokenSortName.PriceHighToLow
     },
     [TokenSortName.RecentlyAdded]: {
-        by: MarketToken_OrderBy.ListingTime,
+        by: MarketToken_OrderBy.ListingTimestamp,
         direction: OrderDirection.Desc,
         name: TokenSortName.RecentlyAdded
     }

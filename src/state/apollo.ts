@@ -4,7 +4,7 @@ import {IndexerEndpoint} from "../graphql/config";
 export const setupApolloClient = () => {
     const cache = setupCache()
     return new ApolloClient({
-        uri: IndexerEndpoint.Main,
+        uri: IndexerEndpoint.BackupV2,
         cache
     })
 }

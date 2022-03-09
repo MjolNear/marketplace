@@ -18,11 +18,71 @@ export type Scalars = {
   Bytes: any;
 };
 
+/** The block at which the query should be executed. */
 export type Block_Height = {
+  /** Value containing a block hash */
   hash?: InputMaybe<Scalars['Bytes']>;
+  /** Value containing a block number */
   number?: InputMaybe<Scalars['Int']>;
+  /**
+   * Value containing the minimum block number.
+   * In the case of `number_gte`, the query will be executed on the latest block only if
+   * the subgraph has progressed to or past the minimum block number.
+   * Defaults to the latest block when omitted.
+   *
+   */
   number_gte?: InputMaybe<Scalars['Int']>;
 };
+
+export type DailyMarketStat = {
+  __typename?: 'DailyMarketStat';
+  id: Scalars['ID'];
+  timestamp: Scalars['BigInt'];
+  transactions: Scalars['BigInt'];
+  volume: Scalars['BigInt'];
+};
+
+export type DailyMarketStat_Filter = {
+  id?: InputMaybe<Scalars['ID']>;
+  id_gt?: InputMaybe<Scalars['ID']>;
+  id_gte?: InputMaybe<Scalars['ID']>;
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  id_lt?: InputMaybe<Scalars['ID']>;
+  id_lte?: InputMaybe<Scalars['ID']>;
+  id_not?: InputMaybe<Scalars['ID']>;
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  timestamp?: InputMaybe<Scalars['BigInt']>;
+  timestamp_gt?: InputMaybe<Scalars['BigInt']>;
+  timestamp_gte?: InputMaybe<Scalars['BigInt']>;
+  timestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  timestamp_lt?: InputMaybe<Scalars['BigInt']>;
+  timestamp_lte?: InputMaybe<Scalars['BigInt']>;
+  timestamp_not?: InputMaybe<Scalars['BigInt']>;
+  timestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  transactions?: InputMaybe<Scalars['BigInt']>;
+  transactions_gt?: InputMaybe<Scalars['BigInt']>;
+  transactions_gte?: InputMaybe<Scalars['BigInt']>;
+  transactions_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  transactions_lt?: InputMaybe<Scalars['BigInt']>;
+  transactions_lte?: InputMaybe<Scalars['BigInt']>;
+  transactions_not?: InputMaybe<Scalars['BigInt']>;
+  transactions_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  volume?: InputMaybe<Scalars['BigInt']>;
+  volume_gt?: InputMaybe<Scalars['BigInt']>;
+  volume_gte?: InputMaybe<Scalars['BigInt']>;
+  volume_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  volume_lt?: InputMaybe<Scalars['BigInt']>;
+  volume_lte?: InputMaybe<Scalars['BigInt']>;
+  volume_not?: InputMaybe<Scalars['BigInt']>;
+  volume_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+};
+
+export enum DailyMarketStat_OrderBy {
+  Id = 'id',
+  Timestamp = 'timestamp',
+  Transactions = 'transactions',
+  Volume = 'volume'
+}
 
 export type History = {
   __typename?: 'History';
@@ -147,7 +207,7 @@ export type MarketToken = {
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   ipfsReference?: Maybe<Scalars['String']>;
-  listingTime: Scalars['BigInt'];
+  listingTimestamp: Scalars['BigInt'];
   media?: Maybe<Scalars['String']>;
   mintSiteLink?: Maybe<Scalars['String']>;
   mintSiteName?: Maybe<Scalars['String']>;
@@ -216,14 +276,14 @@ export type MarketToken_Filter = {
   ipfsReference_not_in?: InputMaybe<Array<Scalars['String']>>;
   ipfsReference_not_starts_with?: InputMaybe<Scalars['String']>;
   ipfsReference_starts_with?: InputMaybe<Scalars['String']>;
-  listingTime?: InputMaybe<Scalars['BigInt']>;
-  listingTime_gt?: InputMaybe<Scalars['BigInt']>;
-  listingTime_gte?: InputMaybe<Scalars['BigInt']>;
-  listingTime_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  listingTime_lt?: InputMaybe<Scalars['BigInt']>;
-  listingTime_lte?: InputMaybe<Scalars['BigInt']>;
-  listingTime_not?: InputMaybe<Scalars['BigInt']>;
-  listingTime_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  listingTimestamp?: InputMaybe<Scalars['BigInt']>;
+  listingTimestamp_gt?: InputMaybe<Scalars['BigInt']>;
+  listingTimestamp_gte?: InputMaybe<Scalars['BigInt']>;
+  listingTimestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  listingTimestamp_lt?: InputMaybe<Scalars['BigInt']>;
+  listingTimestamp_lte?: InputMaybe<Scalars['BigInt']>;
+  listingTimestamp_not?: InputMaybe<Scalars['BigInt']>;
+  listingTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   media?: InputMaybe<Scalars['String']>;
   media_contains?: InputMaybe<Scalars['String']>;
   media_ends_with?: InputMaybe<Scalars['String']>;
@@ -324,7 +384,7 @@ export enum MarketToken_OrderBy {
   Description = 'description',
   Id = 'id',
   IpfsReference = 'ipfsReference',
-  ListingTime = 'listingTime',
+  ListingTimestamp = 'listingTimestamp',
   Media = 'media',
   MintSiteLink = 'mintSiteLink',
   MintSiteName = 'mintSiteName',
@@ -334,6 +394,7 @@ export enum MarketToken_OrderBy {
   TokenId = 'tokenId'
 }
 
+/** Defines the order direction, either ascending or descending */
 export enum OrderDirection {
   Asc = 'asc',
   Desc = 'desc'
@@ -343,6 +404,8 @@ export type Query = {
   __typename?: 'Query';
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
+  dailyMarketStat?: Maybe<DailyMarketStat>;
+  dailyMarketStats: Array<DailyMarketStat>;
   histories: Array<History>;
   history?: Maybe<History>;
   marketSearch: Array<MarketToken>;
@@ -358,6 +421,24 @@ export type Query = {
 
 export type Query_MetaArgs = {
   block?: InputMaybe<Block_Height>;
+};
+
+
+export type QueryDailyMarketStatArgs = {
+  block?: InputMaybe<Block_Height>;
+  id: Scalars['ID'];
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryDailyMarketStatsArgs = {
+  block?: InputMaybe<Block_Height>;
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<DailyMarketStat_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']>;
+  subgraphError?: _SubgraphErrorPolicy_;
+  where?: InputMaybe<DailyMarketStat_Filter>;
 };
 
 
@@ -612,6 +693,8 @@ export type Subscription = {
   __typename?: 'Subscription';
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
+  dailyMarketStat?: Maybe<DailyMarketStat>;
+  dailyMarketStats: Array<DailyMarketStat>;
   histories: Array<History>;
   history?: Maybe<History>;
   marketToken?: Maybe<MarketToken>;
@@ -625,6 +708,24 @@ export type Subscription = {
 
 export type Subscription_MetaArgs = {
   block?: InputMaybe<Block_Height>;
+};
+
+
+export type SubscriptionDailyMarketStatArgs = {
+  block?: InputMaybe<Block_Height>;
+  id: Scalars['ID'];
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionDailyMarketStatsArgs = {
+  block?: InputMaybe<Block_Height>;
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<DailyMarketStat_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']>;
+  subgraphError?: _SubgraphErrorPolicy_;
+  where?: InputMaybe<DailyMarketStat_Filter>;
 };
 
 

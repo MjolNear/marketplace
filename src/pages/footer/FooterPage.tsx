@@ -2,7 +2,7 @@ import React from 'react';
 
 const FooterPage = () => {
     return (
-        <footer className="text-center bg-mjol-white text-gray-700 mt-20">
+        <footer className="text-center bg-mjol-blue-card-property text-gray-700 mt-20">
             <div className="">
                 <div className="py-5 flex justify-center">
                     <a href="https://twitter.com/MjolNear_" className="mr-9 text-gray-800" target="_blank">
