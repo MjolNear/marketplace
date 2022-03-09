@@ -47,7 +47,7 @@ const Card: React.FC<CardProps> = ({
             </div>
             <div className="px-2 xxs:px-5">
                 <div className="mb-3">
-                    <CollectionBlock name="Mock collection"/>
+                    <CollectionBlock name="-"/>
                 </div>
                 <MintedBlock mintedSiteName={mintedSiteName}
                              mintedSiteLink={mintedSiteLink}
