@@ -8,7 +8,7 @@ import EmptyCardList from "../../../components/CardList/EmptyCardList";
 import {profileTokensSlice} from "../../../state/profile/nfts/tokens/slice";
 import {SignedInProps} from "../../../hoc/withAuthData";
 import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
-import {WhitelistedContracts} from "../../../business-logic/whitelisted.contracts";
+import {WhitelistedContract} from "../../../business-logic/whitelisted.contract";
 import {ContractVerificationStatus} from "../../../business-logic/models/contract";
 
 interface PropTypes extends SignedInProps {
@@ -40,7 +40,7 @@ const ProfileNftsFetch: React.FC<PropTypes> = ({accountId}) => {
         })
     ).filter(token => {
         if (filters.mjolNear) {
-            return token.contractId === WhitelistedContracts.MjolNear
+            return token.contractId === WhitelistedContract.MjolNear
         }
         if (filters.supported) {
             return token.verification !== ContractVerificationStatus.NotSupported

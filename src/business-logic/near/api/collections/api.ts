@@ -12,7 +12,7 @@ import {MJOL_CONTRACT_ID} from "../../enviroment/contract-names";
 import {emptyTokensBatchResponse} from "../types/response/core";
 import {batchRequest} from "../batch-request";
 import {nftAPI} from "../nfts";
-import {WhitelistedContracts} from "../../../whitelisted.contracts";
+import {WhitelistedContract} from "../../../whitelisted.contract";
 
 export const collectionAPI = {
 
@@ -81,7 +81,7 @@ export const collectionAPI = {
     },
 
     fetchWhitelistedCollectionNfts: (contractId: ContractId, from: number, limit: number): Promise<NearToken[]> => {
-        if (contractId === WhitelistedContracts.NearPunks) {
+        if (contractId === WhitelistedContract.NearPunks) {
             let indices = []
             for (let i = 1; i <= limit; i++) {
                 indices.push(from + i)
