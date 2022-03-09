@@ -10,6 +10,7 @@ import LogoLink from "../../components/Common/Links/LogoLink";
 import {useAppSelector} from "../../hooks/redux";
 import MobileTabSection from "../../components/Common/Navbar/MobileTabSection";
 import BlueGreenGradientButton from "../../components/Common/Buttons/Auth/BlueGreenGradientButton";
+import ReactTooltip from "react-tooltip";
 
 const Navbar = React.memo(() => {
     const tabs = useAppSelector(state => state.navbar.tabs)
@@ -32,27 +33,21 @@ const Navbar = React.memo(() => {
                             <TabsDropDownMenu key="Create" name="Create" tabs={createTabs}/>
                         </div>
                         {singleTabs.map(({name, path}) => (
-                            <div key={name} className="inline-flex gap-2 items-center group opacity-50">
-                                <div
-                                    className={classNames(
-                                        name === "Launchpad" || name === "Docs"
-                                            ? 'cursor-not-allowed'
-                                            : 'cursor-pointer',
-                                        name === "Launchpad"
-                                            ? "text-transparent bg-clip-text font-archivo bg-gradient-to-r " +
-                                            "from-mjol-blue-base to-blue-600 group-hover:text-blue-500"
-                                            : "",
-                                        name === "Docs"
-                                            ? "text-slate-500 group-hover:text-gray-700"
-                                            : "",
-                                        "text-md font-archivo font-bold"
-                                    )}>
-                                    {name}
-                                </div>
+                            <div key={name} className="cursor-pointer inline-flex gap-2 items-center group opacity-50">
+                                {name === "Launchpad" ?
+                                    <p className={"text-transparent bg-clip-text font-archivo bg-gradient-to-r" +
+                                    " from-mjol-blue-base to-blue-600 group-hover:text-blue-500 text-md font-archivo font-bold"}
+                                    data-tip={"Coming soon!"}>
+                                        {name}
+                                    </p> : <a className={"text-slate-500 group-hover:text-gray-700 text-md font-archivo font-bold"}
+                                    href={"https://oleg-bobrov.gitbook.io/mjolnear/"} target="_blank">
+                                        {name}
+                                    </a>}
                                 {name === "Launchpad"
                                     ? <IoIosRocket size={18} className="fill-blue-600 group-hover:fill-blue-500"/>
                                     : <SiGitbook size={18} color="#64748b" className="group-hover:fill-gray-700"/>
                                 }
+                                <ReactTooltip className='text-sm' type='dark' place='bottom' delayShow={0}/>
                             </div>
                         ))}
                     </div>
