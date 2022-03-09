@@ -27,7 +27,7 @@ export const getNftMintedSiteInfo = (nft: any, contractId: ContractId): TokenMin
         case WhitelistedContracts.MjolNear:
             return {
                 mintedSiteName: 'MjolNear',
-                mintedSiteLink: `https://mjolnear.com/nfts/${contractId}/${tokenId}`,
+                mintedSiteLink: `https://mjolnear.com/#/nfts/${contractId}/${tokenId}`,
                 verification: ContractVerificationStatus.Verified
             }
         case WhitelistedContracts.Paras:
