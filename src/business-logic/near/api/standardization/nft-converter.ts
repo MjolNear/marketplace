@@ -6,7 +6,7 @@ import {ResponseTokenPrices} from "../types/response/market";
 import {marketAPI} from "../market";
 import {ContractId} from "../../../models/types";
 import {ContractVerificationStatus} from "../../../models/contract";
-import {getNftMintedSiteInfo} from "../../../whitelisted.contracts";
+import {getNftMintedSiteInfo} from "../../../whitelisted.contract";
 import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
 import {NearCoreToken} from "../types/token";
 
