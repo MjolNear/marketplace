@@ -8,7 +8,7 @@ import {
     MarketToken_OrderBy,
     useMarketTokensQuery
 } from "../../../graphql/generated/graphql";
-import {convertToEntity} from "../../../graphql/utils";
+import {convertToMarketToken} from "../../../graphql/utils";
 import PaginationCardList from "../../../components/CardList/PaginationCardList";
 import PriceRangeFilter from "../../../components/Filter/popup/PriceRangeFilter";
 import SortFilter from "../../../components/Filter/popup/sort/SortFilter";
@@ -108,7 +108,7 @@ const ExploreNftsPage = () => {
         setHasMore(true)
     }, [filters])
 
-    const tokens = data?.marketTokens.map(convertToEntity) || []
+    const tokens = data?.marketTokens.map(convertToMarketToken) || []
 
     return (
         <div className="max-w-screen-2xl mx-auto">
