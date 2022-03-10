@@ -902,6 +902,13 @@ export type LastMarketTokensQueryVariables = Exact<{
 
 export type LastMarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', ownerId: string, tokenId: string, contractId: string, title: string, description?: string | null, media?: string | null, copies?: any | null, ipfsReference?: string | null, price: any }> };
 
+export type MarketStatisticsQueryVariables = Exact<{
+  fromTimestamp: Scalars['BigInt'];
+}>;
+
+
+export type MarketStatisticsQuery = { __typename?: 'Query', dailyMarketStats: Array<{ __typename?: 'DailyMarketStat', volume: any, transactions: any, timestamp: any }> };
+
 export type MarketTokensQueryVariables = Exact<{
   limit: Scalars['Int'];
   offset: Scalars['Int'];
@@ -980,6 +987,43 @@ export function useLastMarketTokensLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type LastMarketTokensQueryHookResult = ReturnType<typeof useLastMarketTokensQuery>;
 export type LastMarketTokensLazyQueryHookResult = ReturnType<typeof useLastMarketTokensLazyQuery>;
 export type LastMarketTokensQueryResult = Apollo.QueryResult<LastMarketTokensQuery, LastMarketTokensQueryVariables>;
+export const MarketStatisticsDocument = gql`
+    query marketStatistics($fromTimestamp: BigInt!) {
+  dailyMarketStats(where: {timestamp_gte: $fromTimestamp}, orderBy: timestamp) {
+    volume
+    transactions
+    timestamp
+  }
+}
+    `;
+
+/**
+ * __useMarketStatisticsQuery__
+ *
+ * To run a query within a React component, call `useMarketStatisticsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMarketStatisticsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMarketStatisticsQuery({
+ *   variables: {
+ *      fromTimestamp: // value for 'fromTimestamp'
+ *   },
+ * });
+ */
+export function useMarketStatisticsQuery(baseOptions: Apollo.QueryHookOptions<MarketStatisticsQuery, MarketStatisticsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MarketStatisticsQuery, MarketStatisticsQueryVariables>(MarketStatisticsDocument, options);
+      }
+export function useMarketStatisticsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MarketStatisticsQuery, MarketStatisticsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MarketStatisticsQuery, MarketStatisticsQueryVariables>(MarketStatisticsDocument, options);
+        }
+export type MarketStatisticsQueryHookResult = ReturnType<typeof useMarketStatisticsQuery>;
+export type MarketStatisticsLazyQueryHookResult = ReturnType<typeof useMarketStatisticsLazyQuery>;
+export type MarketStatisticsQueryResult = Apollo.QueryResult<MarketStatisticsQuery, MarketStatisticsQueryVariables>;
 export const MarketTokensDocument = gql`
     query marketTokens($limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt!, $priceTo: BigInt!) {
   marketTokens(
