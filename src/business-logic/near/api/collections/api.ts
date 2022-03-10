@@ -166,6 +166,7 @@ export const collectionAPI = {
                 args: {
                     from,
                     limit,
+                    include_empty: false
                 }
             }
         ).catch(e => {
