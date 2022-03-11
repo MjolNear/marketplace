@@ -13,6 +13,10 @@ import {NearCoreToken} from "../types/token";
 const isIPFS = require('is-ipfs')
 
 function getRealUrl(url: string, urlHash?: string, contractId?: string) {
+    if (contractId === 'asac.near'){
+        return 'https://ipfs.io/ipfs/bafybeicj5zfhe3ytmfleeiindnqlj7ydkpoyitxm7idxdw2kucchojf7v4/' + url;
+    }
+
     let storageLink = 'https://ipfs.fleek.co/ipfs/';
 
     if (contractId && contractId.endsWith('mintbase1.near')) {

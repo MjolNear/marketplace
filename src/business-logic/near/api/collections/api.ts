@@ -81,7 +81,9 @@ export const collectionAPI = {
     },
 
     fetchWhitelistedCollectionNfts: (contractId: ContractId, from: number, limit: number): Promise<NearToken[]> => {
-        if (contractId === WhitelistedContract.NearPunks) {
+        if (contractId === WhitelistedContract.NearPunks ||
+            contractId === WhitelistedContract.AntisocialApeClub
+        ) {
             let indices = []
             for (let i = 1; i <= limit; i++) {
                 indices.push(from + i)
