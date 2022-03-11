@@ -7,8 +7,14 @@ export enum WhitelistedContract {
     Paras = "x.paras.near",
     NearPunks = "near-punks.near",
     NEARNauts = "nearnautnft.near",
-    AntisocialApeClub = 'asac.near'
+    AntisocialApeClub = 'asac.near',
+    TAYC = "tayc-nft.near",
+    GrimmsArmy = "grimms.secretskelliessociety.near"
 }
+
+export const DODIK_GET_LIST = new Set<string>([
+    WhitelistedContract.NearPunks, WhitelistedContract.TAYC, WhitelistedContract.AntisocialApeClub
+]);
 
 export const verifiedContracts = new Set(Object.values(WhitelistedContract) as string[])
 
@@ -64,6 +70,18 @@ export const getNftMintedSiteInfo = (nft: any, contractId: ContractId): TokenMin
             return {
                 mintedSiteName: "AntisocialApeClub",
                 mintedSiteLink: "https://antisocialape.club",
+                verification: ContractVerificationStatus.Verified
+            }
+        case WhitelistedContract.TAYC:
+            return {
+                mintedSiteName: "TAYC",
+                mintedSiteLink: "https://tayc.app",
+                verification: ContractVerificationStatus.Verified
+            }
+        case WhitelistedContract.GrimmsArmy:
+            return {
+                mintedSiteName: "GrimmsArmy",
+                mintedSiteLink: "https://secretskelliessociety.com",
                 verification: ContractVerificationStatus.Verified
             }
         default:

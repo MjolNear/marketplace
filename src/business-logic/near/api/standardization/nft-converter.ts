@@ -12,11 +12,12 @@ import {NearCoreToken} from "../types/token";
 
 const isIPFS = require('is-ipfs')
 
-function getRealUrl(url: string, urlHash?: string, contractId?: string) {
-    if (contractId === 'asac.near'){
-        return 'https://ipfs.io/ipfs/bafybeicj5zfhe3ytmfleeiindnqlj7ydkpoyitxm7idxdw2kucchojf7v4/' + url;
-    }
+const DODIK_MEDIA_LIST:  Map<string, string> = new Map([
+    ["asac.near", 'https://ipfs.io/ipfs/bafybeicj5zfhe3ytmfleeiindnqlj7ydkpoyitxm7idxdw2kucchojf7v4/'],
+    ["tayc-nft.near", 'https://ipfs.io/ipfs/QmXQEfLTs8W3968eVZrAwfY6oTN4UphyADdvbV2jop6S89/']
+]);
 
+function getRealUrl(url: string, urlHash?: string, contractId?: string) {
     let storageLink = 'https://ipfs.fleek.co/ipfs/';
 
     if (contractId && contractId.endsWith('mintbase1.near')) {
@@ -27,6 +28,9 @@ function getRealUrl(url: string, urlHash?: string, contractId?: string) {
         if (url.startsWith("http")) {
             return url;
         } else {
+            if (contractId !== undefined && DODIK_MEDIA_LIST.has(contractId)){
+                return DODIK_MEDIA_LIST.get(contractId) + url;
+            }
             return storageLink + url;
         }
     }
