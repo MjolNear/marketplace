@@ -183,12 +183,13 @@ export const configureSenderWallet = (window: Window): Wallet | undefined => {
         }): Promise<FinalExecutionOutcome> => {
             const tx = {
                 receiverId: contractId,
-                actions: [{
-                    methodName,
-                    args,
-                    gas: gas?.toString(),
-                    deposit: attachedDeposit?.toString()
-                },
+                actions: [
+                    {
+                        methodName,
+                        args,
+                        gas: gas?.toString(),
+                        deposit: attachedDeposit?.toString()
+                    },
                 ],
             }
             return near.signAndSendTransaction(tx);
