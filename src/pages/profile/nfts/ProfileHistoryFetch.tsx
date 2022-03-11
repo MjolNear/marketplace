@@ -1,12 +1,5 @@
-import React, {useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import {profileHistorySlice} from "../../../state/profile/nfts/history/slice";
+import React from 'react';
 import {SignedInProps} from "../../../hoc/withAuthData";
-import {useQuery} from "@apollo/client";
-import StatBox from "../../../components/Collection/Stats/StatBox";
-import {formatPrice} from "../../../business-logic/near/api/utils";
-
-// import {fetchUsersStatsQuery} from "../../../business-logic/near/api/graphql/users";
 
 
 interface PropTypes extends SignedInProps {
@@ -14,7 +7,7 @@ interface PropTypes extends SignedInProps {
 
 const ProfileHistoryFetch: React.FC<PropTypes> = ({accountId}) => {
 
-    return null
+    return <div className="text-center text-xl font-archivo font-semibold text-blue-400">History will be added soon!</div>
 
     // const {query, variables} = fetchUsersStatsQuery(accountId)
     //

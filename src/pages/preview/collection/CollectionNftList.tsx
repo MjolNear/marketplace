@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import PaginationCardList from "../../../components/CardList/PaginationCardList";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import NotFoundPage from "../../not-found/NotFoundPage";
@@ -6,7 +6,9 @@ import {fetchCollectionNfts} from "../../../state/preview/collection/thunk";
 import {previewCollectionSlice} from "../../../state/preview/collection/slice";
 
 const CollectionNftList = () => {
-    const {tokens, fetching, hasMore, from, limit, total} = useAppSelector(state => state.preview.collection.nftsState)
+    const {tokens, fetching, hasMore, from, limit, total} = useAppSelector(
+        state => state.preview.collection.nftsState
+    )
     const collection = useAppSelector(state => state.preview.collection.collection)
     const dispatch = useAppDispatch()
 
@@ -29,7 +31,7 @@ const CollectionNftList = () => {
         return () => {
             dispatch(previewCollectionSlice.actions.reset())
         }
-    }, [])
+    }, [dispatch])
 
     if (!collection) {
         return <NotFoundPage/>

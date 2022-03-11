@@ -11,10 +11,6 @@ interface PropTypes {
     footerLinkName?: string
 }
 
-interface EmptyMessage {
-
-}
-
 /**
  * Returns empty card list animated component
  */

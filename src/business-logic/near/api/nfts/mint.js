@@ -1,11 +1,11 @@
-import {getAccountId} from "../../enviroment/near";
-import {mjolFunctionCall} from "../rpc";
-import {GAS, SM_DEPOSIT} from "../../constants";
+import {mjolFunctionCall} from "../../enviroment/rpc";
+import {SM_DEPOSIT} from "../../constants";
 import BN from "bn.js";
+import {getCurrentWallet} from "../../wallet/wallet";
 
 export function mintToCommonCollection(tokenMetadata, payout, collectionId) {
     const args = {
-        token_owner_id: getAccountId(),
+        token_owner_id: getCurrentWallet().getAccountId(),
         token_metadata: tokenMetadata,
     };
     if (payout !== null) {
@@ -17,8 +17,7 @@ export function mintToCommonCollection(tokenMetadata, payout, collectionId) {
     let deposit = SM_DEPOSIT.mul(new BN(Math.ceil(tokenMetadata.copies / 11)));
     return mjolFunctionCall({
             methodName: 'nft_mint',
-            args: args,
-            gas: GAS,
+            args,
             attachedDeposit: deposit
         }
     )
@@ -34,7 +33,7 @@ export function createCollection(collectionMetadata, methodName) {
     }
 
     return mjolFunctionCall({
-        methodName: methodName,
+        methodName,
         args
     })
 }

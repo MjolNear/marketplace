@@ -18,13 +18,13 @@ const ProfileNftsPage: React.FC<PropTypes> = ({accountId, signedIn}) => {
 
     const changeTab = useCallback((tab: ProfileNftsTab) => {
         dispatch(profileTabsSlice.actions.changeTab(tab))
-    }, [])
+    }, [dispatch])
 
     useEffect(() => {
         return () => {
             dispatch(profileTabsSlice.actions.reset())
         }
-    }, [accountId])
+    }, [accountId, dispatch])
 
     const child = useMemo(() => {
         switch (activeTab) {

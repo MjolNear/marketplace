@@ -1,6 +1,6 @@
 import {NftAPI} from "../../get-utils";
-import {viewFunction} from "../rpc";
-import {ApprovedToken, Token} from "../../../models/nft";
+import {viewFunction} from "../../enviroment/rpc";
+import {ApprovedToken} from "../../../models/nft";
 import {buildUID, getPrice} from "../utils";
 import {ResponseTokenPrices} from "../types/response/market";
 import {marketAPI} from "../market";

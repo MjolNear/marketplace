@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
-import {signOut} from "../../business-logic/near/enviroment/near";
+import {getCurrentWallet} from "../../business-logic/near/wallet/wallet";
 
 const Logout = () => {
     useEffect(() => {
-        signOut()
+        getCurrentWallet().signOut()
     }, [])
 
     return <></>

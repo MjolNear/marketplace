@@ -1,4 +1,4 @@
-import {viewFunction} from "../rpc";
+import {viewFunction} from "../../enviroment/rpc";
 import {AccountId, ContractId, StringAmount, TokenId} from "../../../models/types";
 import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
 

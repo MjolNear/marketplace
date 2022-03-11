@@ -1,8 +1,5 @@
 import React from 'react';
 import NearBlackLogo from "../../../Icons/near/NearBlackLogo";
-import BN from "bn.js";
-import LightBlueGradientText from "../../../Common/Text/LightBlueGradientText";
-import DarkBlueMjolText from "../../../Common/Text/DarkBlueMjolText";
 
 interface PriceProps {
     nearPrice: string

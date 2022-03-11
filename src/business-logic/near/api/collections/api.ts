@@ -1,5 +1,5 @@
 import {AccountId, CollectionId, ContractId, Optional} from "../../../models/types";
-import {mjolViewFunction, viewFunction} from "../rpc";
+import {mjolViewFunction, viewFunction} from "../../enviroment/rpc";
 import {
     CollectionsBatchResponse,
     CollectionTokensResponse,
@@ -160,12 +160,13 @@ export const collectionAPI = {
             return null
         }),
 
-    fetchCollections: (from: number, limit: number): Promise<CollectionsBatchResponse> =>
+    fetchCollections: (from: number, limit: number, includeEmpty: boolean = false): Promise<CollectionsBatchResponse> =>
         mjolViewFunction<CollectionsBatchResponse>({
                 methodName: 'get_collections',
                 args: {
                     from,
                     limit,
+                    include_empty: includeEmpty
                 }
             }
         ).catch(e => {

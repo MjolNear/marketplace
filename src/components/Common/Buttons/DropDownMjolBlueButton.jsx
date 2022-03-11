@@ -1,5 +1,5 @@
-import {Disclosure, Transition} from "@headlessui/react";
-import React, {useState} from "react";
+import {Disclosure} from "@headlessui/react";
+import React from "react";
 import Hr from "../Borders/Hr";
 import {ChevronUpIcon} from "@heroicons/react/solid";
 import classNames from "../../../utils/css-utils";
