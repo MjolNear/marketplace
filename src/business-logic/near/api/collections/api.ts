@@ -83,7 +83,7 @@ export const collectionAPI = {
     fetchWhitelistedCollectionNfts: (contractId: ContractId, from: number, limit: number): Promise<NearToken[]> => {
         if (DODIK_GET_LIST.has(contractId)) {
             let indices = []
-            for (let i = 1; i <= limit; i++) {
+            for (let i = 0; i < limit; i++) {
                 indices.push(from + i)
             }
             return batchRequest(indices, i => nftAPI.fetchNft(contractId, i.toString()))

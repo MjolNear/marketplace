@@ -14,7 +14,9 @@ const isIPFS = require('is-ipfs')
 
 const DODIK_MEDIA_LIST:  Map<string, string> = new Map([
     ["asac.near", 'https://ipfs.io/ipfs/bafybeicj5zfhe3ytmfleeiindnqlj7ydkpoyitxm7idxdw2kucchojf7v4/'],
-    ["tayc-nft.near", 'https://ipfs.io/ipfs/QmXQEfLTs8W3968eVZrAwfY6oTN4UphyADdvbV2jop6S89/']
+    ["tayc-nft.near", 'https://ipfs.io/ipfs/QmXQEfLTs8W3968eVZrAwfY6oTN4UphyADdvbV2jop6S89/'],
+    ["nearton_nft.near", "https://bafybeidunfr6lhn3v6a3xvjlczhhhzfielkq4vjpc5clplue63lfpm536q.ipfs.dweb.link/"],
+    ["billionairebullsclub.near", "https://ipfs.io/ipfs/bafybeibhdz6f6t44qpjqjumns44il3ta6zxobq4vcl3ayh63pc4jvtckiy/"]
 ]);
 
 function getRealUrl(url: string, urlHash?: string, contractId?: string) {
