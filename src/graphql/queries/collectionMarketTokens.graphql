@@ -1,0 +1,31 @@
+query collectionMarketTokens(
+    $contractId: String!,
+    $limit: Int!,
+    $offset: Int!,
+    $orderBy: MarketToken_orderBy!,
+    $orderDirection: OrderDirection!,
+    $priceFrom: BigInt!,
+    $priceTo: BigInt!
+) {
+    marketTokens(
+        first: $limit,
+        skip: $offset,
+        orderBy: $orderBy,
+        orderDirection: $orderDirection,
+        where: {
+            contractId: $contractId,
+            price_gte: $priceFrom,
+            price_lte: $priceTo
+        }
+    ) {
+        tokenId
+        contractId
+        ownerId
+        title
+        description
+        media
+        mintSiteName,
+        mintSiteLink,
+        price
+    }
+}

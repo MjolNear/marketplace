@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import {fetchCollection} from "../../../state/preview/collection/thunk";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
@@ -14,6 +14,8 @@ import ItemsActivity from "../../../components/Collection/Filters/ItemsActivity"
 import CollectionMedia from "../../../components/Collection/Media/CollectionMedia";
 import TraitsFilter from "../../../components/Collection/Filters/TraitsFilter";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
+import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
+import CollectionMarketNftList from "./CollectionMarketNftList";
 
 type CollectionRouteParams = {
     contractId: string,
@@ -23,6 +25,7 @@ type CollectionRouteParams = {
 
 const PreviewCollectionPage: React.FC = () => {
 
+    const [onlyMarket, setOnlyMarket] = useState(true);
     const {contractId, collectionId, filterTab} = useParams<CollectionRouteParams>()
     const dispatch = useAppDispatch()
     const {collection, fetching} = useAppSelector(state => state.preview.collection)
@@ -48,6 +51,7 @@ const PreviewCollectionPage: React.FC = () => {
     if (!collection) {
         return <NotFoundPage/>
     }
+    console.log(onlyMarket)
 
     const hasBanner = !!collection.metadata?.bannerImage
 
@@ -71,16 +75,33 @@ const PreviewCollectionPage: React.FC = () => {
                     </div>
                 </div>
             </BlueShadowContainer>
-            {
-                collection.metadata?.traits
+            {<>
+                {collection.collection_contract === "mjol.near" ? <></> :
+                    <div className="flex justify-center pb-10">
+                        <BlueToggle text="Buy now"
+                                    handleToggle={(checked => setOnlyMarket(!onlyMarket))}
+                                    defaultChecked={onlyMarket}/>
+                    </div>
+                }
+                {collection.metadata?.traits
                     ?
-                    <TraitsFilter traits={collection.metadata?.traits}>
-                        <div className="w-full">
-                            <CollectionNftList/>
-                        </div>
-                    </TraitsFilter>
+                    <>
+                        <TraitsFilter traits={collection.metadata?.traits}>
+                            <div className="w-full">
+                                {!onlyMarket || collection.collection_contract === "mjol.near" ?
+                                    <CollectionNftList/> : <CollectionMarketNftList/>
+                                }
+                            </div>
+                        </TraitsFilter>
+                    </>
                     :
-                    <CollectionNftList/>
+                    <>
+                        {!onlyMarket || collection.collection_contract === "mjol.near" ?
+                            <CollectionNftList/> : <CollectionMarketNftList/>
+                        }
+                    </>
+                }
+            </>
             }
         </div>
     );

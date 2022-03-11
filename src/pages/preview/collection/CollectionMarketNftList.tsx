@@ -1,0 +1,90 @@
+import React, {useEffect, useState} from 'react';
+import PaginationCardList from "../../../components/CardList/PaginationCardList";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
+import NotFoundPage from "../../not-found/NotFoundPage";
+import {fetchCollectionNfts} from "../../../state/preview/collection/thunk";
+import {previewCollectionSlice} from "../../../state/preview/collection/slice";
+import {
+    MarketTokensQuery,
+    useCollectionMarketTokensQuery,
+    useMarketTokensQuery
+} from "../../../graphql/generated/graphql";
+import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../../utils/string";
+import {convertToEntity} from "../../../graphql/utils";
+import {SearchText, TokenPriceRange, TokenSortName, tokenSortOptions} from "../../explore/nft/ExploreNftsPage";
+
+
+const CollectionMarketNftList = () => {
+
+    const collection = useAppSelector(state => state.preview.collection.collection)
+
+    const limit = 12
+    const [hasMore, setHasMore] = useState(true)
+
+    const initialSort = tokenSortOptions[TokenSortName.RecentlyAdded]
+    const initialPriceRange: TokenPriceRange = {}
+    const initialSearchText: SearchText = {}
+
+    const [filters, setFilters] = useState({
+        priceRange: initialPriceRange,
+        sort: initialSort,
+        search: initialSearchText
+    })
+
+    const {data, loading, fetchMore} = useCollectionMarketTokensQuery({
+        fetchPolicy: "network-only",
+        nextFetchPolicy: "network-only",
+        variables: {
+            contractId: collection ? collection.collection_contract : "",
+            offset: 0,
+            limit: limit,
+            orderBy: filters.sort.by,
+            orderDirection: filters.sort.direction,
+            priceFrom: filters.priceRange.from || MIN_ITEM_YOCTO_PRICE,
+            priceTo: filters.priceRange.to || MAX_ITEM_YOCTO_PRICE
+        }
+    })
+
+    const updateQuery = (
+        previousQueryResult: MarketTokensQuery,
+        options: { fetchMoreResult?: MarketTokensQuery }
+    ) => {
+        const fetchMoreResult = options.fetchMoreResult
+        if (!fetchMoreResult) {
+            return previousQueryResult;
+        }
+        const previousTokens = previousQueryResult.marketTokens;
+        const fetchMoreTokens = fetchMoreResult.marketTokens;
+        setHasMore(fetchMoreTokens.length === limit)
+        fetchMoreResult.marketTokens = [...previousTokens, ...fetchMoreTokens];
+        return {...fetchMoreResult}
+    }
+
+    const onLoadMore = (offset: number) => fetchMore({
+        updateQuery,
+        variables: {
+            offset
+        }
+    })
+
+    const tokens = data?.marketTokens.map(convertToEntity) || []
+
+    useEffect(() => {
+        setHasMore(true)
+    }, [filters])
+
+    if (!collection) {
+        return <NotFoundPage/>
+    }
+
+    return (
+        <PaginationCardList tokens={tokens}
+                            loading={loading}
+                            hasMore={hasMore}
+                            isCollectionNFTs={true}
+                            onLoadMore={() => onLoadMore(tokens.length)}
+        />
+    );
+};
+
+export default CollectionMarketNftList;
