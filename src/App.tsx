@@ -10,8 +10,8 @@ export default function App() {
         <>
             <Navbar/>
             <div className="pt-[69px] min-h-[calc(100vh-69px)]">
-                <MarketStats/>
-                {/*<AppRouter/>*/}
+                {/*<MarketStats/>*/}
+                <AppRouter/>
             </div>
             <FooterPage/>
         </>
