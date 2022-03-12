@@ -24,7 +24,7 @@ const ProfileNftsFetch: React.FC<PropTypes> = ({accountId}) => {
         return () => {
             dispatch(profileTokensSlice.actions.reset())
         }
-    }, [accountId])
+    }, [accountId, dispatch])
 
     const [filters, setFilters] = useState({
         mjolNear: false,

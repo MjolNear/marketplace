@@ -1,16 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import PaginationCardList from "../../../components/CardList/PaginationCardList";
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import NotFoundPage from "../../not-found/NotFoundPage";
-import {fetchCollectionNfts} from "../../../state/preview/collection/thunk";
-import {previewCollectionSlice} from "../../../state/preview/collection/slice";
-import {
-    MarketTokensQuery,
-    useCollectionMarketTokensQuery,
-    useMarketTokensQuery
-} from "../../../graphql/generated/graphql";
+import {MarketTokensQuery, useCollectionMarketTokensQuery} from "../../../graphql/generated/graphql";
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../../utils/string";
-import {convertToEntity} from "../../../graphql/utils";
+import {convertToMarketToken} from "../../../graphql/utils";
 import {SearchText, TokenPriceRange, TokenSortName, tokenSortOptions} from "../../explore/nft/ExploreNftsPage";
 
 
@@ -70,7 +63,7 @@ const CollectionMarketNftList: React.FC<Props> = ({collectionContract}) => {
         }
     })
 
-    const tokens = data?.marketTokens.map(convertToEntity) || []
+    const tokens = data?.marketTokens.map(convertToMarketToken) || []
 
     useEffect(() => {
         setHasMore(true)

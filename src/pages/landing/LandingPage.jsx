@@ -3,14 +3,14 @@ import GreetingBlock from "./GreetingBlock";
 import nftsImg from "../../resources/nfts_main2.png";
 import CardGrid from "../../components/CardList/CardGrid";
 import DarkBlueTitle from "../../components/Common/Text/DarkBlueTitle";
-import {convertToEntity} from "../../graphql/utils";
-import {useLastMarketTokensQuery, useMarketTokensQuery} from "../../graphql/generated/graphql";
+import {convertToMarketToken} from "../../graphql/utils";
+import {useMarketTokensQuery} from "../../graphql/generated/graphql";
 import {tokenSortOptions, TokenSortName} from "../explore/nft/ExploreNftsPage";
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../utils/string";
 
 const LandingPage = () => {
     const initialSort = tokenSortOptions[TokenSortName.RecentlyAdded]
-    const {data, loading, fetchMore} = useMarketTokensQuery({
+    const {data, loading} = useMarketTokensQuery({
         fetchPolicy: "network-only",
         nextFetchPolicy: "network-only",
         variables: {
@@ -23,7 +23,7 @@ const LandingPage = () => {
         }
     })
 
-    const nfts = data?.marketTokens.map(convertToEntity) || [];
+    const nfts = data?.marketTokens.map(convertToMarketToken) || [];
     return (
         <div className="max-w-screen-2xl mx-auto">
             <div className="max-w-7xl mx-auto py-8 px-8">

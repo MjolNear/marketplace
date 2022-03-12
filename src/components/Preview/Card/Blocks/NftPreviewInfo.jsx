@@ -1,13 +1,10 @@
 import DropDownMjolBlueButton from "../../../Common/Buttons/DropDownMjolBlueButton";
 import IconText from "../../../Icons/IconText";
-import {BsList} from 'react-icons/bs';
 import {MdAccountBalanceWallet as MdAcc} from 'react-icons/md'
 import {GrMoney} from 'react-icons/gr'
-import {GiBuyCard} from 'react-icons/gi'
 import {BiDna} from 'react-icons/bi'
 import PreviewAttributes from "../Attributes/PreviewAttributes";
 import NftPreviewTitle from "./NftPreviewTitle";
-import NftPreviewCollectionLink from "./NftPreviewCollectionLink";
 import OwnerBlock from "./OwnerBlock";
 
 const NftPreviewInfo = ({nft, payouts, contract, statusElement}) => {

@@ -11,6 +11,7 @@ import {setupApolloClient} from "./state/apollo";
 
 // Needed for near-api-js lib
 import {Buffer} from "buffer"
+
 (window as any).Buffer = Buffer;
 
 
@@ -19,13 +20,11 @@ const client = setupApolloClient()
 
 ReactDOM.render(
     <React.StrictMode>
-        <HashRouter>
-            <ApolloProvider client={client}>
-                <ReduxProvider store={store}>
-                    <App/>
-                </ReduxProvider>
-            </ApolloProvider>
-        </HashRouter>
+        <ApolloProvider client={client}>
+            <ReduxProvider store={store}>
+                <App/>
+            </ReduxProvider>
+        </ApolloProvider>
     </React.StrictMode>,
     document.getElementById("root")
 )

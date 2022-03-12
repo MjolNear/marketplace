@@ -1,8 +1,11 @@
 import {NetworkEnv} from "./network";
 import {NearConfig} from "near-api-js/lib/near";
 import {MARKET_CONTRACT_ID} from "./contract-names";
-import {RpcEndpoint} from "./rpc.endpoint";
 
+export enum RpcEndpoint {
+    ANKR = "https://rpc.ankr.com/near",
+    MAINNET = "https://rpc.mainnet.near.org"
+}
 
 export interface Config extends NearConfig {
     contractName: string,

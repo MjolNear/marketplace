@@ -75,7 +75,7 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
 
         const nftStatus = getNftMarketStatus(accountId, token)
         if (!contract || contract.verification === ContractVerificationStatus.NotSupported) {
-            return <NftContractNotSupported missedNeps={contract?.missedNeps}/>
+            return <NftContractNotSupported missedNeps={contract?.missedNeps || ["Loading failed"]}/>
         }
         switch (nftStatus) {
             case ItemMarketStatus.CAN_BUY:

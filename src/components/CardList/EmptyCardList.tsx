@@ -12,10 +12,6 @@ interface PropTypes {
     mainDescription?: string
 }
 
-interface EmptyMessage {
-
-}
-
 /**
  * Returns empty card list animated component
  */

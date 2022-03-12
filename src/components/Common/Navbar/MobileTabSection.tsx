@@ -2,9 +2,9 @@ import React from 'react';
 import {Menu} from "@headlessui/react";
 import {Link} from "react-router-dom";
 import {ChevronRightIcon} from "@heroicons/react/solid";
-import {signOut, wallet} from "../../../business-logic/near/enviroment/near";
-import ConnectWalletButton from "../../Preview/Card/Status/connect-wallet/ConnectWalletButton";
 import BlueGreenGradientButton from "../Buttons/Auth/BlueGreenGradientButton";
+import {getCurrentWallet} from "../../../business-logic/near/wallet/wallet";
+
 
 interface TabItem {
     name: string,
@@ -29,7 +29,8 @@ const MobileTabSection: React.FC<PropTypes> = ({name, tabs}) => {
                         {({active}) => (
                             <div className="inline-flex justify-between items-center py-[20px]">
                                 {name === 'Sign out'
-                                    ? <BlueGreenGradientButton title="Sign out" onClick={signOut}/>
+                                    ? <BlueGreenGradientButton title="Sign out"
+                                                               onClick={() => getCurrentWallet().signOut}/>
                                     : <>
                                         <Link to={path} className="w-full text-md font-archivo">{name}</Link>
                                         <ChevronRightIcon className="w-5 h-5"/>

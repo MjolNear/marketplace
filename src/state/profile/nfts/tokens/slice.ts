@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {GridToken, Token} from "../../../../business-logic/models/nft";
+import {GridToken} from "../../../../business-logic/models/nft";
 import {ContractId} from "../../../../business-logic/models/types";
 import {
     ContractResponse,

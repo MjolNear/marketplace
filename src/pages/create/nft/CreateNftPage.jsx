@@ -6,14 +6,13 @@ import OptionInputContainer from "./upload/containers/OptionInputContainer";
 import UploadFileInput from "./upload/UploadFileInput";
 import {makeNftLink, storeNFT} from "../../../business-logic/ipfs/upload";
 import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
-import MjolLoader from "../../../components/Common/Loaders/MjolLoader";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
-import {getAccountId, wallet} from "../../../business-logic/near/enviroment/near";
 import {getTraitsFromCollectionsLinks} from "../../../business-logic/near/api/collections/get-collections-traits";
 import OptionInput from "./upload/lines/OptionInput";
 import {collectionAPI} from "../../../business-logic/near/api/collections";
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
+import {getCurrentWallet} from "../../../business-logic/near/wallet/wallet";
 
 const LineAlert = ({state, setState}) => {
     return (
@@ -56,8 +55,8 @@ const CreateNftPage = () => {
     const [alertText, setAlertText] = useState("");
 
     useEffect(() => {
-        if (wallet.isSignedIn()) {
-            collectionAPI.fetchUserCollections(getAccountId()).then(myColls => {
+        if (getCurrentWallet().isSignedIn()) {
+            collectionAPI.fetchUserCollections(getCurrentWallet().getAccountId()).then(myColls => {
                 console.log(myColls)
                 getTraitsFromCollectionsLinks(myColls).then(traitsDict => {
                     setCollectionTraits(traitsDict)
@@ -92,7 +91,7 @@ const CreateNftPage = () => {
     const submitForm = (e) => {
         e.preventDefault();
         setAlertText("");
-        if (!wallet.isSignedIn()) {
+        if (!getCurrentWallet().isSignedIn()) {
             return
         }
         if (!(title.length <= MAX_TITLE_LEN && title.length >= MIN_TITLE_LEN)) {
@@ -132,7 +131,7 @@ const CreateNftPage = () => {
                 payout = {
                     payout: {}
                 };
-                payout["payout"][getAccountId()] = (100 * royalty).toString();
+                payout["payout"][getCurrentWallet().getAccountId()] = (100 * royalty).toString();
             }
             let collectionId = curCollection === 'None' ? null : curCollection;
             mintToCommonCollection(token_metadata, payout, collectionId).finally(

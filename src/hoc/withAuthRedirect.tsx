@@ -1,10 +1,10 @@
 import React from 'react';
 import WalletConnectionPage from "../pages/auth/WalletConnectionPage";
-import {wallet} from "../business-logic/near/enviroment/near";
+import {getCurrentWallet} from "../business-logic/near/wallet/wallet";
 
 
 function withAuthRedirect<T>(Child: React.ComponentType<T>) {
-    if (!wallet.isSignedIn()) {
+    if (!getCurrentWallet().isSignedIn) {
         return () => <WalletConnectionPage/>
     }
     return (props: T) => <Child {...props}/>

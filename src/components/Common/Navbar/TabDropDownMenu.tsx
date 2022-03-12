@@ -2,7 +2,7 @@ import {Transition, Menu} from "@headlessui/react";
 import React, {Fragment} from "react";
 import {Link} from "react-router-dom";
 import MenuChevronButton from "./MenuChevronButton";
-import {signOut} from "../../../business-logic/near/enviroment/near";
+import {getCurrentWallet} from "../../../business-logic/near/wallet/wallet";
 
 interface TabItem {
     name: string,
@@ -37,7 +37,7 @@ export const TabsDropDownMenu: React.FC<PropTypes> = ({name, tabs}) => {
                             <Menu.Item key={tabName}>
                                 {tabName === "Sign out"
                                     ?
-                                    <button onClick={signOut}
+                                    <button onClick={() => getCurrentWallet().signOut()}
                                             className="font-bold font-archivo text-black text-sm text-left w-full
                                                  py-[12px] px-[16px] inline-flex justify-between items-center
                                                  hover:bg-gray-200 rounded-xl

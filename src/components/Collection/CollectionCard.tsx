@@ -19,25 +19,20 @@ const CollectionCard: React.FC<PropTypes> = ({collection}) => {
               to={previewLink}
         >
             <SquareImageBlock path={collection.media} objectFit="fill" className="bg-white rounded-2xl"/>
-            <div className="flex flex-col p-1 justify-between w-full">
-                <div className="font-black font-archivo text-2xl text-center">
+            <div className="flex flex-col pt-3 px-6 justify-between w-full">
+                <div className="font-black font-archivo text-xl text-center truncate">
                     {collection.title}
                 </div>
-                <div className="w-full space-y-1 px-2 pt-1">
-                    <div
-                        className="font-bold font-archivo text-tiny-5 opacity-80 text-center truncate"
-                    >
-                        {collection.desc.length === 0
-                            ? "Collection has no description"
-                            : collection.desc
-                        }
-                    </div>
-                    <hr/>
-                    <DarkBlueMjolText text={collection.owner_id}
-                                      classes="w-full font-archivo text-tiny-4 pr-2 text-right font-bold"
-                    />
+                <div className="mt-1 mb-3 font-bold font-archivo text-tiny-5 opacity-80 text-center truncate">
+                    {collection.desc.length === 0
+                        ? "Collection has no description"
+                        : collection.desc
+                    }
                 </div>
             </div>
+            <DarkBlueMjolText text={collection.owner_id}
+                              classes="w-full font-archivo text-tiny-4 pr-4 mb-0.5 text-right font-bold"
+            />
         </Link>
     );
 };

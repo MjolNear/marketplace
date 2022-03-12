@@ -6,6 +6,6 @@ export const getRelativeTimestamp = (timestamp: string) => {
 }
 
 export const dateFromUNIX = (timestamp: string) => {
-    const intTimestamp = parseInt(timestamp) / 1_000_000
+    const intTimestamp = parseInt(timestamp)
     return new Date(intTimestamp)
 }
