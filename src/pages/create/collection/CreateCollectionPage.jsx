@@ -33,7 +33,7 @@ const LineAlert = ({state, setState}) => {
 };
 
 const CreateCollectionPage = () => {
-    const METHOD = 'create_collection';//'add_collection';
+    const METHOD = 'create_collection';//'add_collection'; 'create_collection';
     const CONTRACT = 'mjol.near';
 
     const MIN_TITLE_LEN = 3;
@@ -159,7 +159,9 @@ const CreateCollectionPage = () => {
             setIsLoading(true);
             storeCollection(title, description, fileIcon, fileBanner, fileTraits).then(res => {
                 prepareCollection(res);
-                setIsLoading(false);
+                setTimeout(() => {
+                    setIsLoading(false)
+                }, 2000)
             })
         }
     }
@@ -176,7 +178,9 @@ const CreateCollectionPage = () => {
             reference: ipfsRef
         }
         createCollection(collectionMetadata, METHOD).finally(() =>
-            setIsLoading(false)
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 2000)
         )
     }
 
