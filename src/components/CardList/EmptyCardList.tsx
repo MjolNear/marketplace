@@ -9,6 +9,7 @@ interface PropTypes {
     footerDescription?: string
     footerLink?: string
     footerLinkName?: string
+    mainDescription?: string
 }
 
 /**
@@ -19,7 +20,8 @@ const EmptyCardList = React.memo<PropTypes>(({
     height = 220,
     footerDescription = "Browse something for you on our",
     footerLink = "/nfts",
-    footerLinkName = "market"
+    footerLinkName = "market",
+    mainDescription = "No items found."
 }) => {
     return (
         <div className="w-full flex flex-col justify-center items-center gap-10">
@@ -67,7 +69,7 @@ const EmptyCardList = React.memo<PropTypes>(({
             {/* Footer */}
             <div className="text-sm font-archivo items-center text-center space-y-2 px-1">
                 <div className="text-black text-xl font-archivo font-extrabold">
-                    No items found.
+                    {mainDescription}
                 </div>
                 <div className="text-md flex flex-row flex-wrap gap-1 justify-center">
                     <div className="text-gray-700">
