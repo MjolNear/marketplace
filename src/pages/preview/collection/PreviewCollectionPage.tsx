@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import {fetchCollection} from "../../../state/preview/collection/thunk";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
@@ -14,6 +14,8 @@ import ItemsActivity from "../../../components/Collection/Filters/ItemsActivity"
 import CollectionMedia from "../../../components/Collection/Media/CollectionMedia";
 import TraitsFilter from "../../../components/Collection/Filters/TraitsFilter";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
+import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
+import CollectionMarketNftList from "./CollectionMarketNftList";
 
 type CollectionRouteParams = {
     contractId: string,
@@ -23,6 +25,7 @@ type CollectionRouteParams = {
 
 const PreviewCollectionPage: React.FC = () => {
 
+    const [marketToggleState, setMarketToggleState] = useState<"init" | "only-market" | "all">("init");
     const {contractId, collectionId, filterTab} = useParams<CollectionRouteParams>()
     const dispatch = useAppDispatch()
     const {collection, fetching} = useAppSelector(state => state.preview.collection)
@@ -42,20 +45,20 @@ const PreviewCollectionPage: React.FC = () => {
         return <NotFoundPage/>
     }
 
-    if (fetching) {
+    if (fetching && marketToggleState === "init") {
         return <CreateLoader/>
     }
+
     if (!collection) {
         return <NotFoundPage/>
     }
-
     const hasBanner = !!collection.metadata?.bannerImage
 
     return (
         <div className="max-w-screen-2xl mx-auto">
             <BlueShadowContainer>
                 <div className="flex flex-col items-center">
-                    <CollectionBanner bannerLink={collection.metadata?.bannerImage}/>
+                    <CollectionBanner bannerLink={collection?.metadata?.bannerImage}/>
                     <CollectionLogo hasBanner={hasBanner}
                                     logoLink={collection.media}
                     />
@@ -71,16 +74,41 @@ const PreviewCollectionPage: React.FC = () => {
                     </div>
                 </div>
             </BlueShadowContainer>
-            {
-                collection.metadata?.traits
+            {<>
+                {collection.collection_contract === "mjol.near" ? <></> :
+                    <div className="flex justify-center pb-10">
+                        <BlueToggle text="Buy now"
+                                    handleToggle={(() => {
+                                        setMarketToggleState(
+                                            marketToggleState === "init" || marketToggleState === "only-market"
+                                                ? "all"
+                                                : "only-market"
+                                        )
+                                    })}
+                                    defaultChecked={marketToggleState === "init" || marketToggleState === "only-market"}/>
+                    </div>
+                }
+                {collection.metadata?.traits
                     ?
-                    <TraitsFilter traits={collection.metadata?.traits}>
-                        <div className="w-full">
-                            <CollectionNftList/>
-                        </div>
-                    </TraitsFilter>
+                    <>
+                        <TraitsFilter traits={collection.metadata?.traits}>
+                            <div className="w-full">
+                                {marketToggleState === "all" || collection.collection_contract === "mjol.near"
+                                    ? <CollectionNftList/>
+                                    : <CollectionMarketNftList collectionContract={collection.collection_contract}/>
+                                }
+                            </div>
+                        </TraitsFilter>
+                    </>
                     :
-                    <CollectionNftList/>
+                    <>
+                        {marketToggleState === "all" || collection.collection_contract === "mjol.near"
+                            ? <CollectionNftList/>
+                            : <CollectionMarketNftList collectionContract={collection.collection_contract}/>
+                        }
+                    </>
+                }
+            </>
             }
         </div>
     );

@@ -27,7 +27,7 @@ const CollectionNftList = () => {
     useEffect(() => {
         fetchNextTokens(from, limit)
         return () => {
-            dispatch(previewCollectionSlice.actions.reset())
+            dispatch(previewCollectionSlice.actions.resetLimits())
         }
     }, [])
 

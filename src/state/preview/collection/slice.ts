@@ -58,7 +58,11 @@ export const previewCollectionSlice = createSlice({
         toggleFetching: (state, action: PayloadAction<boolean>) => {
             state.fetching = action.payload
         },
-        reset: () => initialState
+        reset: () => initialState,
+
+        resetLimits: (state) => {
+            state.nftsState = {...collectionNftsInitialState, total: state.nftsState.total}
+        }
     }
 })
 
