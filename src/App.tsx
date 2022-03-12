@@ -41,21 +41,21 @@ export default function App() {
     //             };
     //     }
     // };
-
+    //
     // const SignedInStateReducer = useReducer(signedInStateReducer, {
     //     isSignedIn: false,
     // });
     //
     // const [signedInState, signedInStateDispatch] = SignedInStateReducer;
-
-
+    //
+    //
     // useEffect(() => {
     //     if (webWallet.isSignedIn()) {
     //         signedInStateDispatch({type: 'signIn'});
     //     }
     // }, [webWallet.isSignedIn()]);
-
-
+    //
+    //
     // useEffect(() => {
     //     console.log('trigerred')
     //     const windowRef = window as any
@@ -110,6 +110,6 @@ export default function App() {
                 </div>
                 <FooterPage/>
             </HashRouter>
-        // </WalletContext.Provider>
+         // </WalletContext.Provider>
     )
 }
