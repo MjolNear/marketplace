@@ -14,9 +14,12 @@ import {convertToEntity} from "../../../graphql/utils";
 import {SearchText, TokenPriceRange, TokenSortName, tokenSortOptions} from "../../explore/nft/ExploreNftsPage";
 
 
-const CollectionMarketNftList = () => {
+interface Props {
+    collectionContract?: string
+}
 
-    const collection = useAppSelector(state => state.preview.collection.collection)
+
+const CollectionMarketNftList: React.FC<Props> = ({collectionContract}) => {
 
     const limit = 12
     const [hasMore, setHasMore] = useState(true)
@@ -35,7 +38,7 @@ const CollectionMarketNftList = () => {
         fetchPolicy: "network-only",
         nextFetchPolicy: "network-only",
         variables: {
-            contractId: collection ? collection.collection_contract : "",
+            contractId: collectionContract || "",
             offset: 0,
             limit: limit,
             orderBy: filters.sort.by,
@@ -73,7 +76,7 @@ const CollectionMarketNftList = () => {
         setHasMore(true)
     }, [filters])
 
-    if (!collection) {
+    if (!collectionContract) {
         return <NotFoundPage/>
     }
 

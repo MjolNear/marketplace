@@ -25,7 +25,7 @@ type CollectionRouteParams = {
 
 const PreviewCollectionPage: React.FC = () => {
 
-    const [onlyMarket, setOnlyMarket] = useState(true);
+    const [marketToggleState, setMarketToggleState] = useState<"init" | "only-market" | "all">("init");
     const {contractId, collectionId, filterTab} = useParams<CollectionRouteParams>()
     const dispatch = useAppDispatch()
     const {collection, fetching} = useAppSelector(state => state.preview.collection)
@@ -45,21 +45,20 @@ const PreviewCollectionPage: React.FC = () => {
         return <NotFoundPage/>
     }
 
-    if (fetching) {
+    if (fetching && marketToggleState === "init") {
         return <CreateLoader/>
     }
+
     if (!collection) {
         return <NotFoundPage/>
     }
-    console.log(onlyMarket)
-
     const hasBanner = !!collection.metadata?.bannerImage
 
     return (
         <div className="max-w-screen-2xl mx-auto">
             <BlueShadowContainer>
                 <div className="flex flex-col items-center">
-                    <CollectionBanner bannerLink={collection.metadata?.bannerImage}/>
+                    <CollectionBanner bannerLink={collection?.metadata?.bannerImage}/>
                     <CollectionLogo hasBanner={hasBanner}
                                     logoLink={collection.media}
                     />
@@ -79,8 +78,14 @@ const PreviewCollectionPage: React.FC = () => {
                 {collection.collection_contract === "mjol.near" ? <></> :
                     <div className="flex justify-center pb-10">
                         <BlueToggle text="Buy now"
-                                    handleToggle={(checked => setOnlyMarket(!onlyMarket))}
-                                    defaultChecked={onlyMarket}/>
+                                    handleToggle={(() => {
+                                        setMarketToggleState(
+                                            marketToggleState === "init" || marketToggleState === "only-market"
+                                                ? "all"
+                                                : "only-market"
+                                        )
+                                    })}
+                                    defaultChecked={marketToggleState === "init" || marketToggleState === "only-market"}/>
                     </div>
                 }
                 {collection.metadata?.traits
@@ -88,16 +93,18 @@ const PreviewCollectionPage: React.FC = () => {
                     <>
                         <TraitsFilter traits={collection.metadata?.traits}>
                             <div className="w-full">
-                                {!onlyMarket || collection.collection_contract === "mjol.near" ?
-                                    <CollectionNftList/> : <CollectionMarketNftList/>
+                                {marketToggleState === "all" || collection.collection_contract === "mjol.near"
+                                    ? <CollectionNftList/>
+                                    : <CollectionMarketNftList collectionContract={collection.collection_contract}/>
                                 }
                             </div>
                         </TraitsFilter>
                     </>
                     :
                     <>
-                        {!onlyMarket || collection.collection_contract === "mjol.near" ?
-                            <CollectionNftList/> : <CollectionMarketNftList/>
+                        {marketToggleState === "all" || collection.collection_contract === "mjol.near"
+                            ? <CollectionNftList/>
+                            : <CollectionMarketNftList collectionContract={collection.collection_contract}/>
                         }
                     </>
                 }
