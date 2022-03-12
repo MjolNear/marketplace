@@ -18,9 +18,19 @@ export type Scalars = {
   Bytes: any;
 };
 
+/** The block at which the query should be executed. */
 export type Block_Height = {
+  /** Value containing a block hash */
   hash?: InputMaybe<Scalars['Bytes']>;
+  /** Value containing a block number */
   number?: InputMaybe<Scalars['Int']>;
+  /**
+   * Value containing the minimum block number.
+   * In the case of `number_gte`, the query will be executed on the latest block only if
+   * the subgraph has progressed to or past the minimum block number.
+   * Defaults to the latest block when omitted.
+   *
+   */
   number_gte?: InputMaybe<Scalars['Int']>;
 };
 
@@ -334,6 +344,7 @@ export enum MarketToken_OrderBy {
   TokenId = 'tokenId'
 }
 
+/** Defines the order direction, either ascending or descending */
 export enum OrderDirection {
   Asc = 'asc',
   Desc = 'desc'
@@ -791,6 +802,19 @@ export enum _SubgraphErrorPolicy_ {
   Deny = 'deny'
 }
 
+export type CollectionMarketTokensQueryVariables = Exact<{
+  contractId: Scalars['String'];
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+  orderBy: MarketToken_OrderBy;
+  orderDirection: OrderDirection;
+  priceFrom: Scalars['BigInt'];
+  priceTo: Scalars['BigInt'];
+}>;
+
+
+export type CollectionMarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, ownerId: string, title: string, description?: string | null, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+
 export type LastMarketTokensQueryVariables = Exact<{
   first: Scalars['Int'];
   skip: Scalars['Int'];
@@ -828,6 +852,61 @@ export type MarketTokensSearchQueryVariables = Exact<{
 export type MarketTokensSearchQuery = { __typename?: 'Query', marketSearch: Array<{ __typename?: 'MarketToken', ownerId: string, tokenId: string, contractId: string, title: string, description?: string | null, media?: string | null, copies?: any | null, ipfsReference?: string | null, price: any }> };
 
 
+export const CollectionMarketTokensDocument = gql`
+    query collectionMarketTokens($contractId: String!, $limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt!, $priceTo: BigInt!) {
+  marketTokens(
+    first: $limit
+    skip: $offset
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: {contractId: $contractId, price_gte: $priceFrom, price_lte: $priceTo}
+  ) {
+    tokenId
+    contractId
+    ownerId
+    title
+    description
+    media
+    mintSiteName
+    mintSiteLink
+    price
+  }
+}
+    `;
+
+/**
+ * __useCollectionMarketTokensQuery__
+ *
+ * To run a query within a React component, call `useCollectionMarketTokensQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCollectionMarketTokensQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCollectionMarketTokensQuery({
+ *   variables: {
+ *      contractId: // value for 'contractId'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      orderBy: // value for 'orderBy'
+ *      orderDirection: // value for 'orderDirection'
+ *      priceFrom: // value for 'priceFrom'
+ *      priceTo: // value for 'priceTo'
+ *   },
+ * });
+ */
+export function useCollectionMarketTokensQuery(baseOptions: Apollo.QueryHookOptions<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>(CollectionMarketTokensDocument, options);
+      }
+export function useCollectionMarketTokensLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>(CollectionMarketTokensDocument, options);
+        }
+export type CollectionMarketTokensQueryHookResult = ReturnType<typeof useCollectionMarketTokensQuery>;
+export type CollectionMarketTokensLazyQueryHookResult = ReturnType<typeof useCollectionMarketTokensLazyQuery>;
+export type CollectionMarketTokensQueryResult = Apollo.QueryResult<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>;
 export const LastMarketTokensDocument = gql`
     query lastMarketTokens($first: Int!, $skip: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!) {
   marketTokens(
