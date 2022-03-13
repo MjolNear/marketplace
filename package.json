@@ -35,6 +35,7 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "react-scroll-to-top": "^1.0.8",
     "react-tooltip": "^4.2.21",
     "recharts": "^2.1.9",
     "source-map-resolve": "^0.6.0",
