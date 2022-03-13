@@ -20,6 +20,10 @@ export const DODIK_GET_LIST = new Set<string>([
     WhitelistedContract.BillionaireBullsClub
 ]);
 
+export const DODIK_INDEX_LIST = new Map<string, number>([
+    ["nearton_nft.near", 1]
+]);
+
 export const verifiedContracts = new Set(Object.values(WhitelistedContract) as string[])
 
 export const getMarketNftVerification = (contractId: ContractId): ContractVerificationStatus => {
