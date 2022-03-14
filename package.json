@@ -45,6 +45,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "gen": "graphql-codegen --config codegen.yml"
   },
   "eslintConfig": {
@@ -85,6 +86,7 @@
     "near-cli": "~2.1.1",
     "nft.storage": "^3.4.0",
     "postcss": "^8.4.5",
+    "source-map-explorer": "^2.5.2",
     "tailwindcss": "^3.0.18"
   }
 }
