@@ -71,7 +71,7 @@ const ExploreNftsPage = () => {
         sort: initialSort,
     })
 
-    const {data, loading, fetchMore} = useMarketTokensQuery({
+    const {data, loading, fetchMore, error} = useMarketTokensQuery({
         fetchPolicy: "network-only",
         nextFetchPolicy: "network-only",
         variables: {
@@ -146,6 +146,10 @@ const ExploreNftsPage = () => {
     useEffect(() => {
         setHasMore(true)
     }, [filters])
+
+    useEffect(() => {
+        setHasMore(!error)
+    }, [error])
 
     console.log("render")
     console.log(debounceQuery)
