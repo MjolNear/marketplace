@@ -1,4 +1,4 @@
-import SquareImageBlock from "../../Card/Blocks/SquareImageBlock";
+import CardImage from "../../Card/Blocks/CardImage";
 import React from "react";
 
 interface PropTypes {
@@ -9,7 +9,7 @@ interface PropTypes {
 const CollectionLogo = React.memo<PropTypes>(({logoLink, hasBanner}) => {
     return <div
         className={"w-[120px] h-[120px] relative " + (hasBanner ? "-mt-[64px]" : "")}>
-        <SquareImageBlock path={logoLink} className="rounded-full ring-8 ring-white "/>
+        <CardImage url={logoLink} className="rounded-full ring-8 ring-white "/>
     </div>;
 })
 

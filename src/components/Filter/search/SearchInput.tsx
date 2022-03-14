@@ -4,7 +4,7 @@ import {IoClose} from 'react-icons/io5'
 
 interface SearchInputProps {
     searchQueryText: string,
-    setSearchQueryText: React.Dispatch<React.SetStateAction<string>>,
+    setSearchQueryText: (query: string) => any,
     placeholder?: string
 }
 

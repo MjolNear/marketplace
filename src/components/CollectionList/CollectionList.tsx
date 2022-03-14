@@ -12,7 +12,12 @@ const CollectionList: React.FC<PropTypes> = ({collections}) => {
         <CardsGridContainer>
             {collections.map(
                 collection => (
-                    <CollectionCard collection={collection}
+                    <CollectionCard ownerId={collection.owner_id}
+                                    contractId={collection.collection_contract}
+                                    collectionId={collection.collection_id}
+                                    media={collection.media}
+                                    title={collection.title}
+                                    description={collection.desc}
                                     key={collection.collection_id}
                     />
                 ))

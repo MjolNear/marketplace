@@ -1,5 +1,5 @@
 import React from 'react';
-import SquareImageBlock from "./Blocks/SquareImageBlock";
+import CardImage from "./Blocks/CardImage";
 import MintedBlock from "./Blocks/MintedBlock";
 import TitleBlock from "./Blocks/TitleBlock";
 import CollectionBlock from "./Blocks/CollectionBlock";
@@ -37,7 +37,7 @@ const Card: React.FC<CardProps> = ({
         >
             <div>
                 <Link to={previewLink}>
-                    <SquareImageBlock path={media}/>
+                    <CardImage url={media}/>
                 </Link>
                 <div className="px-2 xxs:px-5 mt-2">
                     <Link to={previewLink}>

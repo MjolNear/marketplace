@@ -943,10 +943,12 @@ export type TokenActivityQuery = { __typename?: 'Query', histories: Array<{ __ty
 
 export type MarketTokensSearchQueryVariables = Exact<{
   text: Scalars['String'];
+  first: Scalars['Int'];
+  skip: Scalars['Int'];
 }>;
 
 
-export type MarketTokensSearchQuery = { __typename?: 'Query', marketSearch: Array<{ __typename?: 'MarketToken', ownerId: string, tokenId: string, contractId: string, title: string, description?: string | null, media?: string | null, copies?: any | null, ipfsReference?: string | null, price: any }> };
+export type MarketTokensSearchQuery = { __typename?: 'Query', marketSearch: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, ownerId: string, title: string, description?: string | null, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
 
 
 export const CollectionMarketTokensDocument = gql`
@@ -1187,16 +1189,16 @@ export type TokenActivityQueryHookResult = ReturnType<typeof useTokenActivityQue
 export type TokenActivityLazyQueryHookResult = ReturnType<typeof useTokenActivityLazyQuery>;
 export type TokenActivityQueryResult = Apollo.QueryResult<TokenActivityQuery, TokenActivityQueryVariables>;
 export const MarketTokensSearchDocument = gql`
-    query marketTokensSearch($text: String!) {
-  marketSearch(text: $text) {
-    ownerId
+    query marketTokensSearch($text: String!, $first: Int!, $skip: Int!) {
+  marketSearch(text: $text, first: $first, skip: $skip) {
     tokenId
     contractId
+    ownerId
     title
     description
     media
-    copies
-    ipfsReference
+    mintSiteName
+    mintSiteLink
     price
   }
 }
@@ -1215,6 +1217,8 @@ export const MarketTokensSearchDocument = gql`
  * const { data, loading, error } = useMarketTokensSearchQuery({
  *   variables: {
  *      text: // value for 'text'
+ *      first: // value for 'first'
+ *      skip: // value for 'skip'
  *   },
  * });
  */

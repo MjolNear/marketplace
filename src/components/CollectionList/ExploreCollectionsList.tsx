@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {ScrollPosition, trackWindowScroll} from "react-lazy-load-image-component";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {fetchCollections} from "../../state/explore/collections/thunk";
@@ -7,11 +6,8 @@ import CollectionList from "./CollectionList";
 import CollectionListLoader from "./CollectionListLoader";
 import {exploreCollectionsSlice} from "../../state/explore/collections/slice";
 
-interface PropTypes {
-    scrollPosition: ScrollPosition
-}
 
-const ExploreCollectionList: React.FC<PropTypes> = ({scrollPosition}) => {
+const ExploreCollectionList: React.FC = () => {
 
     const {collections, hasMore, fetching, from, limit} = useAppSelector(state => state.explore.collections)
     const dispatch = useAppDispatch()
@@ -43,4 +39,4 @@ const ExploreCollectionList: React.FC<PropTypes> = ({scrollPosition}) => {
     );
 };
 
-export default trackWindowScroll(ExploreCollectionList);
+export default ExploreCollectionList;
