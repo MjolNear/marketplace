@@ -13,7 +13,6 @@ import {HashRouter} from "react-router-dom";
 import {Route, Routes} from "react-router";
 import LandingPage from "./pages/landing/LandingPage";
 import ExploreNftsPage from "./pages/explore/nft/ExploreNftsPage";
-import PreviewNftPage from "./pages/preview/nft/PreviewNftPage";
 import ExploreCollectionsPage from "./pages/explore/collection/ExploreCollectionsPage";
 import PreviewCollectionPage from "./pages/preview/collection/PreviewCollectionPage";
 import CreateNftPage from "./pages/create/nft/CreateNftPage";
@@ -21,6 +20,9 @@ import CreateCollectionPage from "./pages/create/collection/CreateCollectionPage
 import ProfileNftsPage from "./pages/profile/nfts/ProfileNftsPage";
 import ProfileCollectionsPage from "./pages/profile/collections/ProfileCollectionsPage";
 import NotFoundPage from "./pages/not-found/NotFoundPage";
+import ScrollToTopButton from "./components/Common/Buttons/ScrollToTopButton";
+import MjolLoader from "./components/Common/Loaders/MjolLoader";
+import PreviewNftPage from "./pages/preview/nft/PreviewNftPage";
 
 
 export default function App() {
@@ -89,27 +91,52 @@ export default function App() {
     //     }, 200);
     // }, [window, (window as any)?.near]);
 
+
+    // background-color: white;
+    // right: 40px;
+    // bottom: 40px;
+    // position: fixed;
+    // z-index: 2;
+    // cursor: pointer;
+    // border-radius: 7px;
+    // width: 40px;
+    // height: 40px;
+    // transition: opacity 1s ease-in-out;
+    // box-shadow: 0 9px 25px 0 rgba(132, 128, 177, 0.28);
+    // border: none;
+    // outline: none;
+
     return (
         // <WalletContext.Provider value={{signedInState, signedInStateDispatch}}>
-            <HashRouter>
-                <Navbar/>
-                <div className="pt-[69px] min-h-[calc(100vh-69px)]">
+        <HashRouter>
+            <Navbar/>
+            <ScrollToTopButton/>
+            {/*<div className="pt-[150px] pl-[50px]">*/}
+            {/*    <NearIcon size={200} fill="rgb(244, 40, 30)"/>*/}
+            {/*</div>*/}
+            <div className="pt-[69px] min-h-[calc(100vh-69px)]">
+                <React.Suspense fallback={<MjolLoader size={50}/>}>
                     <Routes>
+                        {/*<React.Suspense fallback={<BiLoader/>}>*/}
                         <Route path="/" element={<LandingPage/>}/>
+                        {/*</React.Suspense>*/}
                         <Route path="nfts" element={<ExploreNftsPage/>}/>
                         <Route path="nfts/:contractId/:tokenId" element={<PreviewNftPage/>}/>
                         <Route path="collections" element={<ExploreCollectionsPage/>}/>
-                        <Route path="collections/:contractId/:collectionId/:filterTab"
-                               element={<PreviewCollectionPage/>}/>
+                        <Route
+                            path="collections/:contractId/:collectionId/:filterTab"
+                            element={<PreviewCollectionPage/>}
+                        />
                         <Route path="create-nft" element={<CreateNftPage/>}/>
                         <Route path="create-collection" element={<CreateCollectionPage/>}/>
                         <Route path="profile/nfts" element={<ProfileNftsPage/>}/>
                         <Route path="profile/collections" element={<ProfileCollectionsPage/>}/>
                         <Route path="*" element={<NotFoundPage/>}/>
                     </Routes>
-                </div>
-                <FooterPage/>
-            </HashRouter>
-         // </WalletContext.Provider>
+                </React.Suspense>
+            </div>
+            <FooterPage/>
+        </HashRouter>
+        // </WalletContext.Provider>
     )
 }

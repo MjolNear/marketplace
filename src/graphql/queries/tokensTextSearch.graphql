@@ -1,13 +1,13 @@
-query marketTokensSearch($text: String!) {
-    marketSearch(text: $text) {
-        ownerId
+query marketTokensSearch($text: String!, $first: Int!, $skip: Int!) {
+    marketSearch(text: $text, first: $first, skip: $skip) {
         tokenId
         contractId
+        ownerId
         title
         description
         media
-        copies
-        ipfsReference
+        mintSiteName,
+        mintSiteLink,
         price
     }
 }

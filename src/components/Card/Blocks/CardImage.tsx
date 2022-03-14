@@ -1,6 +1,4 @@
 import React from 'react';
-import {ScrollPosition} from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/opacity.css';
 import MjolLoader from "../../Common/Loaders/MjolLoader";
 import {ObjectFit} from "../../../utils/css-utils";
 import {Optional} from "../../../business-logic/models/types";
@@ -8,17 +6,16 @@ import {Img} from 'react-image';
 
 import brokenImage from './../../../resources/broken-image.png'
 
-interface PropTypes {
-    path?: Optional<string>,
+interface CardImageProps {
+    url?: Optional<string>,
     objectFit?: ObjectFit,
     className?: string,
-    scrollPosition?: ScrollPosition,
     width?: number | string
     height?: number | string
 }
 
-const SquareImageBlock: React.FC<PropTypes> = ({
-    path,
+const CardImage = React.memo<CardImageProps>(({
+    url,
     objectFit = 'contain',
     className = undefined,
     width = "100%",
@@ -26,7 +23,7 @@ const SquareImageBlock: React.FC<PropTypes> = ({
 }) => {
     return (
         <div className="aspect-w-1 aspect-h-1 justify-center z-10">
-            <Img src={path || ''}
+            <Img src={url || ''}
                  className={className}
                  loader={
                      <div className="flex items-center justify-center">
@@ -46,6 +43,6 @@ const SquareImageBlock: React.FC<PropTypes> = ({
             />
         </div>
     );
-};
+});
 
-export default SquareImageBlock;
+export default CardImage;

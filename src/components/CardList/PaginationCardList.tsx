@@ -2,7 +2,6 @@ import React from 'react';
 import InfiniteScroll from "react-infinite-scroll-component";
 import CardListLoader from "./CardListLoader";
 import CardGrid from "./CardGrid";
-import {ScrollPosition, trackWindowScroll} from "react-lazy-load-image-component";
 import {GridToken} from "../../business-logic/models/nft";
 
 
@@ -12,7 +11,6 @@ interface PropTypes {
     loading: boolean,
     onLoadMore: () => any,
     isCollectionNFTs?: boolean
-    scrollPosition: ScrollPosition
 }
 
 const PaginationCardList: React.FC<PropTypes> = ({
@@ -20,7 +18,6 @@ const PaginationCardList: React.FC<PropTypes> = ({
     hasMore,
     loading,
     onLoadMore,
-    scrollPosition,
     isCollectionNFTs = false,
 }) => {
     return (
@@ -35,9 +32,9 @@ const PaginationCardList: React.FC<PropTypes> = ({
             <CardGrid tokens={tokens}
                       fetching={loading}
                       isCollectionNFTs={isCollectionNFTs}
-                      scrollPosition={scrollPosition}/>
+            />
         </InfiniteScroll>
     );
 };
 
-export default trackWindowScroll(PaginationCardList);
+export default PaginationCardList;

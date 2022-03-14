@@ -6,13 +6,15 @@ import {
     MarketTokensQuery,
     OrderDirection,
     MarketToken_OrderBy,
-    useMarketTokensQuery
+    useMarketTokensQuery, useMarketTokensSearchQuery, MarketTokensSearchQuery
 } from "../../../graphql/generated/graphql";
 import {convertToMarketToken} from "../../../graphql/utils";
 import PaginationCardList from "../../../components/CardList/PaginationCardList";
 import PriceRangeFilter from "../../../components/Filter/popup/PriceRangeFilter";
 import SortFilter from "../../../components/Filter/popup/sort/SortFilter";
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../../utils/string";
+import SearchInput from "../../../components/Filter/search/SearchInput";
+import useDebounce from "../../../hooks/useDebounce";
 
 
 export interface TokenPriceRange {
@@ -61,12 +63,12 @@ const ExploreNftsPage = () => {
 
     const initialSort = tokenSortOptions[TokenSortName.RecentlyAdded]
     const initialPriceRange: TokenPriceRange = {}
-    const initialSearchText: SearchText = {}
+    const [textQuery, setTextQuery] = useState<string>('')
+    const debounceQuery = useDebounce(textQuery, 300)
 
     const [filters, setFilters] = useState({
         priceRange: initialPriceRange,
         sort: initialSort,
-        search: initialSearchText
     })
 
     const {data, loading, fetchMore} = useMarketTokensQuery({
@@ -82,6 +84,16 @@ const ExploreNftsPage = () => {
         }
     })
 
+    const {data: searchData, loading: searchLoading, fetchMore: searchFetchMore} = useMarketTokensSearchQuery({
+        fetchPolicy: "network-only",
+        nextFetchPolicy: "network-only",
+        variables: {
+            skip: 0,
+            first: limit,
+            text: debounceQuery
+        }
+    })
+
     const updateQuery = (
         previousQueryResult: MarketTokensQuery,
         options: { fetchMoreResult?: MarketTokensQuery }
@@ -92,33 +104,65 @@ const ExploreNftsPage = () => {
         }
         const previousTokens = previousQueryResult.marketTokens;
         const fetchMoreTokens = fetchMoreResult.marketTokens;
+        console.log(fetchMoreTokens.length)
         setHasMore(fetchMoreTokens.length === limit)
         fetchMoreResult.marketTokens = [...previousTokens, ...fetchMoreTokens];
         return {...fetchMoreResult}
     }
 
-    const onLoadMore = (offset: number) => fetchMore({
-        updateQuery,
-        variables: {
-            offset
+    const updateSearchQuery = (
+        previousQueryResult: MarketTokensSearchQuery,
+        options: { fetchMoreResult?: MarketTokensSearchQuery }
+    ) => {
+        const fetchMoreResult = options.fetchMoreResult
+        if (!fetchMoreResult) {
+            return previousQueryResult;
         }
-    })
+        const previousTokens = previousQueryResult.marketSearch;
+        const fetchMoreTokens = fetchMoreResult.marketSearch;
+        setHasMore(fetchMoreTokens.length === limit)
+        fetchMoreResult.marketSearch = [...previousTokens, ...fetchMoreTokens];
+        return {...fetchMoreResult}
+    }
+
+    const onLoadMore = (offset: number, debounceValue: string) => {
+        return debounceValue
+            ?
+            searchFetchMore({
+                updateQuery: updateSearchQuery,
+                variables: {
+                    skip: offset
+                }
+            })
+            :
+            fetchMore({
+                updateQuery,
+                variables: {
+                    offset
+                }
+            })
+    }
 
     useEffect(() => {
         setHasMore(true)
     }, [filters])
 
-    const tokens = data?.marketTokens.map(convertToMarketToken) || []
+    console.log("render")
+    console.log(debounceQuery)
+
+    const tokens = debounceQuery
+        ? searchData?.marketSearch.map(convertToMarketToken) || []
+        : data?.marketTokens.map(convertToMarketToken) || []
 
     return (
         <div className="max-w-screen-2xl mx-auto">
             <BlueShadowContainer>
                 <div className="flex flex-col pb-10 px-4 space-y-8 items-center">
                     <DarkBlueTitle title="Explore NFTs"/>
-                    {/*<SearchInput placeholder="Search by NFT name"*/}
-                    {/*             searchQueryText={filters.search.text || ''}*/}
-                    {/*             setSearchQueryText={(query) => setFilters({...filters, search: query})}*/}
-                    {/*/>*/}
+                    <SearchInput placeholder="Search by NFT name"
+                                 searchQueryText={textQuery}
+                                 setSearchQueryText={setTextQuery}
+                    />
                 </div>
             </BlueShadowContainer>
             <div className="inline-flex flex-wrap gap-4 w-full justify-center mb-2">
@@ -145,9 +189,9 @@ const ExploreNftsPage = () => {
                             }}/>
             </div>
             <PaginationCardList tokens={tokens}
-                                loading={loading}
+                                loading={loading || searchLoading}
                                 hasMore={hasMore}
-                                onLoadMore={() => onLoadMore(tokens.length)}/>
+                                onLoadMore={() => onLoadMore(tokens.length, debounceQuery)}/>
         </div>
     )
 };

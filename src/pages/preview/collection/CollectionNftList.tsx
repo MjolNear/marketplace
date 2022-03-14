@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import PaginationCardList from "../../../components/CardList/PaginationCardList";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import NotFoundPage from "../../not-found/NotFoundPage";
