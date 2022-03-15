@@ -1,17 +1,18 @@
 import React from 'react';
-import CardActivityRow, {CardActivityRowProps} from "./CardActivityRow";
+import CardActivityRow, {TCardActivityRowProps} from "./CardActivityRow";
 import {useTokenActivityQuery} from "../../graphql/generated/graphql";
 import CardActivityCell, {ActivityCellType} from "./CardActivityCell";
 import MjolLoader from "../Common/Loaders/MjolLoader";
 
-interface CardActivityProps {
+interface TCardActivityProps {
     tokenUID: string
-    activities: CardActivityRowProps[]
+    activities: TCardActivityRowProps[]
 }
 
-const CardActivity = React.memo<CardActivityProps>(({
+const CardActivity: React.FC<TCardActivityProps> = ({
     tokenUID,
 }) => {
+
     const {data, loading} = useTokenActivityQuery({
         variables: {
             tokenUID
@@ -68,6 +69,6 @@ const CardActivity = React.memo<CardActivityProps>(({
             )}
         </div>
     );
-});
+};
 
 export default CardActivity;

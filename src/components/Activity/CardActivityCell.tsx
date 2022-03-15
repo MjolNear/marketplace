@@ -7,14 +7,14 @@ export enum ActivityCellType {
     Basic
 }
 
-interface ActivityCellProps {
+interface TActivityCellProps {
     type: ActivityCellType,
     paddingY?: string
     children: React.ReactNode
 }
 
 
-const CardActivityCell = React.memo<ActivityCellProps>(({
+const CardActivityCell: React.FC<TActivityCellProps> = ({
     type,
     children,
     paddingY = 'py-[16px]'
@@ -33,6 +33,6 @@ const CardActivityCell = React.memo<ActivityCellProps>(({
             </div>
         </div>
     );
-});
+};
 
 export default CardActivityCell;
