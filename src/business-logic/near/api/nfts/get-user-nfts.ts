@@ -15,6 +15,11 @@ export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenI
     return getConvertedNFT(contractId, jsonNft, tokenWrapper)
 }
 
+export const getNFTByCID = async (contractId: ContractId, tokenId: TokenId) => {
+    const jsonNft = await nftAPI.fetchNft(contractId, tokenId)
+    return getConvertedNFT(contractId, jsonNft, {})
+}
+
 export async function getNftPayouts(contractId: string, tokenId: string): Promise<Record<string, number>> {
     const TREASURY_PERCENT = 2;
     let royalties: Record<string, number> = {

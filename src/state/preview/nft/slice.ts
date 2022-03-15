@@ -5,11 +5,13 @@ import {
     ContractStatusResponse,
     ContractStatusResponseCode
 } from "../../../business-logic/near/api/types/response/contracts";
+import {Optional} from "../../../business-logic/models/types";
 
 export interface PreviewNftState {
     fetching: boolean,
     success?: boolean,
     token?: Token,
+    price?: Optional<string>,
     contract?: ContractResponse,
     isApproved?: boolean,
     payouts: Record<string, number>
@@ -28,6 +30,9 @@ export const previewNftSlice = createSlice({
         success: (state, action: PayloadAction<ApprovedToken>) => {
             state.token = action.payload
             state.isApproved = action.payload.isApproved
+        },
+        setPrice: (state, action: PayloadAction<Optional<string>>) => {
+            state.price = action.payload
         },
         failure: (state) => {
             state.token = undefined

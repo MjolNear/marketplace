@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {fetchNft} from "../../../state/preview/nft/thunk";
 import withAuthData, {TSignedInProps} from "../../../hoc/withAuthData";
@@ -25,6 +25,8 @@ import DropDownMjolBlueButton from "../../../components/Common/Buttons/DropDownM
 import IconText from "../../../components/Icons/IconText";
 import {GiBuyCard} from "react-icons/gi";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
+import {useTokenPrice} from "../../../hooks/useTokenPrice";
+import {Optional, StringAmount} from "../../../business-logic/models/types";
 
 interface TPreviewNftProps extends TSignedInProps {
 }
@@ -38,16 +40,18 @@ const PreviewNftPage: React.FC<TPreviewNftProps> = ({
     accountId
 }) => {
     const {contractId, tokenId} = useParams<NftRouteParams>()
+
     const {token, fetching, payouts, contract, isApproved} = useAppSelector(state => state.preview.nft)
     const dispatch = useAppDispatch()
 
     const usdPrice = useNearUsdPrice()
+    const tokenPrice = useTokenPrice(contractId, tokenId)
+
+    console.log(`token price - ${tokenPrice} | usd price - ${usdPrice}`)
 
     useEffect(() => {
-        if (!contractId || !tokenId) {
-            return
-        }
-        dispatch(fetchNft(contractId, tokenId))
+        console.log('run use effect')
+        contractId && tokenId && dispatch(fetchNft(contractId, tokenId))
         return () => {
             dispatch(previewNftSlice.actions.reset())
         }
@@ -64,29 +68,29 @@ const PreviewNftPage: React.FC<TPreviewNftProps> = ({
         return <NotFoundPage/>
     }
 
-    const getStatus = () => {
+    const getStatus = (tokenPrice: Optional<StringAmount>) => {
         if (!accountId) {
             return <ConnectWalletButton/>
         }
 
-        if (!isApproved && token.price !== null) {
+        if (!isApproved && tokenPrice !== null) {
             return <NftNotApproved/>
         }
 
-        const nftStatus = getNftMarketStatus(accountId, token)
+        const nftStatus = getNftMarketStatus(accountId, token.ownerId, tokenPrice)
         if (!contract || contract.verification === ContractVerificationStatus.NotSupported) {
             return <NftContractNotSupported missedNeps={contract?.missedNeps || ["fetching missed NEPs..."]}/>
         }
         switch (nftStatus) {
             case ItemMarketStatus.CAN_BUY:
-                return <BuyNftContainer nearPrice={token.price}
+                return <BuyNftContainer nearPrice={tokenPrice}
                                         usdPrice={usdPrice}
                                         onClick={
                                             () => dispatch(
                                                 buyNft(
                                                     contractId,
                                                     tokenId,
-                                                    token.price || '',
+                                                    tokenPrice || '',
                                                     contract?.hasPayouts
                                                 )
                                             )
@@ -100,7 +104,7 @@ const PreviewNftPage: React.FC<TPreviewNftProps> = ({
                                          }
                 />
             case ItemMarketStatus.LISTED:
-                return <UnlistNftContainer nearPrice={token.price}
+                return <UnlistNftContainer nearPrice={tokenPrice}
                                            usdPrice={usdPrice}
                                            onClick={
                                                () => dispatch(unlistNft(contractId, tokenId))
@@ -109,6 +113,8 @@ const PreviewNftPage: React.FC<TPreviewNftProps> = ({
                 return <NotListedNftContainer/>
         }
     }
+
+    console.log('render')
 
     return (
         <div
@@ -122,7 +128,7 @@ const PreviewNftPage: React.FC<TPreviewNftProps> = ({
                 <NftPreviewInfo nft={token}
                                 payouts={payouts}
                                 contract={contract}
-                                statusElement={getStatus()}
+                                statusElement={getStatus(tokenPrice)}
                 />
             </div>
             <div className="w-full mb-10">
