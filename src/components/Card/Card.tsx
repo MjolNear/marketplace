@@ -3,12 +3,12 @@ import CardImage from "./Blocks/CardImage";
 import MintedBlock from "./Blocks/MintedBlock";
 import TitleBlock from "./Blocks/TitleBlock";
 import CollectionBlock from "./Blocks/CollectionBlock";
-import PriceBlock from "./Blocks/PriceBlock";
+import CardPrice from "./Blocks/CardPrice";
 import {Link} from "react-router-dom";
 import {Optional} from "../../business-logic/models/types";
 import {ContractVerificationStatus} from "../../business-logic/models/contract";
 
-interface CardProps {
+interface TCardProps {
     contractId: string,
     tokenId: string
     title: string,
@@ -19,7 +19,7 @@ interface CardProps {
     verification: ContractVerificationStatus
 }
 
-const Card: React.FC<CardProps> = ({
+const Card: React.FC<TCardProps> = ({
     tokenId,
     contractId,
     title,
@@ -53,7 +53,7 @@ const Card: React.FC<CardProps> = ({
                              mintedSiteLink={mintedSiteLink}
                              verification={verification}
                 />
-                <PriceBlock price={price}/>
+                <CardPrice price={price}/>
             </div>
         </div>
     );

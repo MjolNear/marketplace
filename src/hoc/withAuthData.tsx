@@ -1,12 +1,12 @@
 import React from "react";
 import {getCurrentWallet} from "../business-logic/near/wallet/wallet";
 
-export interface SignedInProps {
+export interface TSignedInProps {
     accountId: string,
     signedIn: boolean
 }
 
-function withAuthData<T>(Child: React.ComponentType<T & SignedInProps>):React.FC<T> {
+function withAuthData<T>(Child: React.ComponentType<T & TSignedInProps>):React.FC<T> {
     const wallet = getCurrentWallet()
     return (props) =>
         <Child {...props}

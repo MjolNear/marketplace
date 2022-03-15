@@ -1,30 +1,29 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {Optional} from "../../../business-logic/models/types";
 import {Img} from "react-image";
 import MjolLoader from "../../Common/Loaders/MjolLoader";
 import brokenImage from "../../../resources/broken-image.png";
 
-interface PropTypes {
+interface TImageProps {
     link?: Optional<string>,
-    imageName: string
 }
 
-const PreviewNftImage = React.memo<PropTypes>(({link, imageName}) => {
+const PreviewNftImage: React.FC<TImageProps> = ({link}) => {
     return (
-        <Img src={link || ''}
+        <Img src={'' || ''}
              className="object-contain w-full max-h-[600px] max-w-[600px]"
              loader={
-                 <div className="flex items-center justify-center">
+                 <div className="">
                      <MjolLoader/>
                  </div>
              }
              unloader={
-                 <div className="flex items-center justify-center w-full max-h-[600px] max-w-[600px]">
+                 <div className="w-full h-full">
                      <img src={brokenImage} alt="not found" className="w-[100px]"/>
                  </div>
              }
         />
     );
-});
+};
 
-export default PreviewNftImage;
+export default memo(PreviewNftImage);

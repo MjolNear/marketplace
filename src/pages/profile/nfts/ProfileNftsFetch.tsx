@@ -6,12 +6,12 @@ import CardGrid from "../../../components/CardList/CardGrid";
 import CardListLoader from "../../../components/CardList/CardListLoader";
 import EmptyCardList from "../../../components/CardList/EmptyCardList";
 import {profileTokensSlice} from "../../../state/profile/nfts/tokens/slice";
-import {SignedInProps} from "../../../hoc/withAuthData";
+import {TSignedInProps} from "../../../hoc/withAuthData";
 import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
 import {WhitelistedContract} from "../../../business-logic/whitelisted.contract";
 import {ContractVerificationStatus} from "../../../business-logic/models/contract";
 
-interface PropTypes extends SignedInProps {
+interface PropTypes extends TSignedInProps {
 }
 
 const ProfileNftsFetch: React.FC<PropTypes> = ({accountId}) => {

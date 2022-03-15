@@ -1,9 +1,22 @@
 import React from 'react';
-import withPriceContainer from "./withPriceContainer";
+import {TPriceContainerProps} from "./PriceContainer";
 import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
+import PriceContainer from "./PriceContainer";
 
-const UnlistNftContainer = (props: any) => {
-    return <DarkBlueGradientButton title="Unlist NFT" {...props}/>;
+interface TUnlistNftProps extends TPriceContainerProps {
+    onClick: React.MouseEventHandler
+}
+
+const UnlistNftContainer: React.FC<TUnlistNftProps> = ({
+    nearPrice,
+    usdPrice,
+    onClick
+}) => {
+    return (
+        <PriceContainer usdPrice={usdPrice} nearPrice={nearPrice}>
+            <DarkBlueGradientButton title="Unlist NFT" onClick={onClick}/>
+        </PriceContainer>
+    )
 };
 
-export default withPriceContainer(UnlistNftContainer);
+export default UnlistNftContainer;

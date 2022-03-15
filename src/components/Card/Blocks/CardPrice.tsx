@@ -3,11 +3,11 @@ import NearBlackLogo from "../../Icons/near/NearBlackLogo";
 import LightBlueGradientText from "../../Common/Text/LightBlueGradientText";
 import {Optional} from "../../../business-logic/models/types";
 
-interface PropTypes {
+interface TCardPriceProps {
     price?: Optional<string>
 }
 
-const PriceBlock = React.memo<PropTypes>(({price}) => {
+const CardPrice: React.FC<TCardPriceProps> = ({price}) => {
     const isListed = !!price
     return (
         <div className="mt-2 mb-1 grid place-items-end">
@@ -17,6 +17,6 @@ const PriceBlock = React.memo<PropTypes>(({price}) => {
             </div>
         </div>
     );
-});
+};
 
-export default PriceBlock;
+export default CardPrice;

@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import DarkBlueMjolText from "../Common/Text/DarkBlueMjolText";
 import {ContractId, AccountId, Optional,} from "../../business-logic/models/types";
 
-interface CollectionCardProps {
+interface TCollectionCardProps {
     ownerId: AccountId,
     contractId: ContractId,
     collectionId: string,
@@ -13,7 +13,7 @@ interface CollectionCardProps {
     media?: Optional<string>
 }
 
-const CollectionCard = React.memo<CollectionCardProps>(({
+const CollectionCard: React.FC<TCollectionCardProps> = ({
     ownerId,
     contractId,
     collectionId,
@@ -46,6 +46,6 @@ const CollectionCard = React.memo<CollectionCardProps>(({
                               classes="w-full font-archivo text-tiny-4 pr-4 mb-0.5 text-right font-bold"/>
         </Link>
     );
-});
+};
 
 export default CollectionCard;

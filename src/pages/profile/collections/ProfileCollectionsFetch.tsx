@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import withAuthData, {SignedInProps} from "../../../hoc/withAuthData";
+import withAuthData, {TSignedInProps} from "../../../hoc/withAuthData";
 import {profileCollectionsSlice} from "../../../state/profile/collections/slice";
 import {fetchMyCollections} from "../../../state/profile/collections/thunk";
 import CollectionListLoader from "../../../components/CollectionList/CollectionListLoader";
@@ -8,7 +8,7 @@ import EmptyCollectionList from "../../../components/CollectionList/EmptyCollect
 import CollectionList from "../../../components/CollectionList/CollectionList";
 
 
-interface PropTypes extends SignedInProps {
+interface PropTypes extends TSignedInProps {
 }
 
 const ProfileCollectionsFetch: React.FC<PropTypes> = ({accountId}) => {

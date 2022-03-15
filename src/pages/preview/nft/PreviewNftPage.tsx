@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {fetchNft} from "../../../state/preview/nft/thunk";
-import withAuthData, {SignedInProps} from "../../../hoc/withAuthData";
+import withAuthData, {TSignedInProps} from "../../../hoc/withAuthData";
 import NotFoundPage from "../../not-found/NotFoundPage";
 import {previewNftSlice} from "../../../state/preview/nft/slice";
 import {useParams} from "react-router";
@@ -16,7 +16,7 @@ import SellNftContainer from "../../../components/Preview/Card/Status/sell/SellN
 import UnlistNftContainer from "../../../components/Preview/Card/Status/UnlistNftContainer";
 import NftContractNotSupported from "../../../components/Preview/Card/Status/NftContractNotSupported";
 import NotListedNftContainer from "../../../components/Preview/Card/Status/NotListedNftContainer";
-import {fetchNearUsdPrice} from "../../../hooks/fetchNearUsdPrice";
+import {useNearUsdPrice} from "../../../hooks/useNearUsdPrice";
 import {ContractVerificationStatus} from "../../../business-logic/models/contract";
 import NftNotApproved from "../../../components/Preview/Card/Status/NftNotApproved";
 import CardActivity from "../../../components/Activity/CardActivity";
@@ -26,7 +26,7 @@ import IconText from "../../../components/Icons/IconText";
 import {GiBuyCard} from "react-icons/gi";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
 
-interface PropTypes extends SignedInProps {
+interface TPreviewNftProps extends TSignedInProps {
 }
 
 type NftRouteParams = {
@@ -34,24 +34,24 @@ type NftRouteParams = {
     tokenId: string,
 }
 
-const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
+const PreviewNftPage: React.FC<TPreviewNftProps> = ({
+    accountId
+}) => {
     const {contractId, tokenId} = useParams<NftRouteParams>()
     const {token, fetching, payouts, contract, isApproved} = useAppSelector(state => state.preview.nft)
     const dispatch = useAppDispatch()
 
-    const [usdPrice, setUsdPrice] = useState("0")
-
+    const usdPrice = useNearUsdPrice()
 
     useEffect(() => {
         if (!contractId || !tokenId) {
             return
         }
         dispatch(fetchNft(contractId, tokenId))
-        fetchNearUsdPrice().then(setUsdPrice)
         return () => {
             dispatch(previewNftSlice.actions.reset())
         }
-    }, [accountId, contractId, dispatch, tokenId])
+    }, [accountId, contractId, tokenId, dispatch])
 
     if (!contractId || !tokenId) {
         return <NotFoundPage/>
@@ -75,7 +75,7 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
 
         const nftStatus = getNftMarketStatus(accountId, token)
         if (!contract || contract.verification === ContractVerificationStatus.NotSupported) {
-            return <NftContractNotSupported missedNeps={contract?.missedNeps || ["Loading failed"]}/>
+            return <NftContractNotSupported missedNeps={contract?.missedNeps || ["fetching missed NEPs..."]}/>
         }
         switch (nftStatus) {
             case ItemMarketStatus.CAN_BUY:
@@ -115,10 +115,10 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
             className="px-2 xs:px-4 sm:px-6 md:px-8 lg:px-10 pt-10
                        flex flex-col justify-center items-center gap-6 lg:gap-10 max-w-[1200px] mx-auto"
         >
-            <div className="flex flex-col gap-6 justify-center w-full
+            <div className="flex flex-col gap-6 justify-center w-full items-center
                             lg:items-start lg:flex-row"
             >
-                <PreviewNftImage link={token.media} imageName={token.title}/>
+                <PreviewNftImage link={token.media}/>
                 <NftPreviewInfo nft={token}
                                 payouts={payouts}
                                 contract={contract}
@@ -135,7 +135,6 @@ const PreviewNftPage: React.FC<PropTypes> = ({accountId}) => {
                     <CardActivity activities={[]}
                                   tokenUID={buildUID(token.contractId, token.tokenId)}/>
                 </DropDownMjolBlueButton>
-
             </div>
         </div>
     )

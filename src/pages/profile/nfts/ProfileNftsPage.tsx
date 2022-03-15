@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useMemo} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import withAuthData, {SignedInProps} from "../../../hoc/withAuthData";
+import withAuthData, {TSignedInProps} from "../../../hoc/withAuthData";
 import {ProfileNftsTab, profileTabsSlice} from "../../../state/profile/nfts/slice";
 import ProfileHistoryFetch from "./ProfileHistoryFetch";
 import ProfileNftsFetch from "./ProfileNftsFetch";
@@ -9,7 +9,7 @@ import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowCon
 import TabsPanel from "../navbar/TabsPanel";
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
 
-interface PropTypes extends SignedInProps {}
+interface PropTypes extends TSignedInProps {}
 
 
 const ProfileNftsPage: React.FC<PropTypes> = ({accountId, signedIn}) => {
