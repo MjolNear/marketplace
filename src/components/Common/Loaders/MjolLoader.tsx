@@ -2,11 +2,11 @@ import React from 'react';
 import {motion} from "framer-motion";
 
 
-interface LoaderProps {
+interface TMjolLoaderProps {
     size?: number
 }
 
-const MjolLoader = React.memo<LoaderProps>(({size = 30}) => {
+const MjolLoader: React.FC<TMjolLoaderProps> = ({size = 30}) => {
     return (
         <div className="flex items-center justify-center w-full h-full">
             <motion.div
@@ -32,6 +32,6 @@ const MjolLoader = React.memo<LoaderProps>(({size = 30}) => {
             />
         </div>
     );
-});
+};
 
 export default MjolLoader;

@@ -10,7 +10,7 @@ import {previewCollectionSlice} from "../../../state/preview/collection/slice";
 import CollectionLogo from "../../../components/Collection/Blocks/CollectionLogo";
 import CollectionTitleDescription from "../../../components/Collection/Blocks/CollectionTitleDescription";
 import CollectionBanner from "../../../components/Collection/Blocks/CollectionBanner";
-import ItemsActivity from "../../../components/Collection/Filters/ItemsActivity";
+import CollectionItemActivityTab from "../../../components/Collection/Filters/CollectionItemActivityTab";
 import CollectionMedia from "../../../components/Collection/Media/CollectionMedia";
 import TraitsFilter from "../../../components/Collection/Filters/TraitsFilter";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
@@ -69,7 +69,7 @@ const PreviewCollectionPage: React.FC = () => {
                         <Stats floar={"--"} items={total.toString()} owners={"--"} volume={"--"}/>
                         <CollectionMedia/>
                         <div className="mt-[30px]">
-                            <ItemsActivity activeTab={filterTab}/>
+                            <CollectionItemActivityTab activeTab={filterTab}/>
                         </div>
                     </div>
                 </div>

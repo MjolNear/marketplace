@@ -3,11 +3,13 @@ import {Collection} from "../../business-logic/models/collection";
 import CollectionCard from "../Collection/CollectionCard";
 import CardsGridContainer from "../Common/Grid/CardsGridContainer";
 
-interface PropTypes {
+interface TCollectionListProps {
     collections: Collection[]
 }
 
-const CollectionList: React.FC<PropTypes> = ({collections}) => {
+const CollectionList: React.FC<TCollectionListProps> = ({
+    collections
+}) => {
     return (
         <CardsGridContainer>
             {collections.map(
