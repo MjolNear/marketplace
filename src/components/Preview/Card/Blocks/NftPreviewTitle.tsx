@@ -1,23 +1,25 @@
-import React from 'react';
-import {ContractVerificationStatus} from "../../../../business-logic/models/contract";
-import ResolveVerificationIcon from "../../../Common/Verification/Icons/ResolveVerificationIcon";
+import React, {memo} from 'react';
 
 interface TNftPreviewTitleProps {
     title: string,
-    verification?: ContractVerificationStatus
+    ownerId: string
 }
 
-const NftPreviewTitle: React.FC<TNftPreviewTitleProps> = ({
+const TokenTitleAndOwner: React.FC<TNftPreviewTitleProps> = ({
     title,
-    verification
+    ownerId
 }) => {
     return (
-        <div className="inline-flex w-full items-center gap-2 font-black font-archivo text-black text-2xl">
-            {title}
-            <ResolveVerificationIcon verification={verification}
-                                     iconProps={{size: 20}}/>
+        <div className="font-archivo w-full mb-6">
+            <div className="font-black text-2xl">
+                {title}
+            </div>
+            <div className="text-md inline-flex gap-1">
+                <div className="text-gray-700">Owned by</div>
+                <div className="font-semibold">{ownerId}</div>
+            </div>
         </div>
-    );
+    )
 };
 
-export default NftPreviewTitle;
+export default memo(TokenTitleAndOwner);

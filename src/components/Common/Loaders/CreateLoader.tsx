@@ -3,8 +3,8 @@ import MjolLoader from "./MjolLoader";
 
 const CreateLoader = () => {
     return (
-        <div className="flex h-full w-full">
-            <MjolLoader/>
+        <div className="flex items-center min-h-[calc(100vh-69px)]">
+            <MjolLoader size={100}/>
         </div>
     )
 }

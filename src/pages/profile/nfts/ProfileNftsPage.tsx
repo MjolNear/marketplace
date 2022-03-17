@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useMemo} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import withAuthData, {TSignedInProps} from "../../../hoc/withAuthData";
+import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
 import {ProfileNftsTab, profileTabsSlice} from "../../../state/profile/nfts/slice";
 import ProfileHistoryFetch from "./ProfileHistoryFetch";
 import ProfileNftsFetch from "./ProfileNftsFetch";
@@ -9,10 +9,10 @@ import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowCon
 import TabsPanel from "../navbar/TabsPanel";
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
 
-interface PropTypes extends TSignedInProps {}
-
-
-const ProfileNftsPage: React.FC<PropTypes> = ({accountId, signedIn}) => {
+const ProfileNftsPage: React.FC<TAuthProps> = ({
+    accountId,
+    isSignedIn
+}) => {
     const {activeTab, tabs} = useAppSelector(state => state.profile.nfts.tabs)
     const dispatch = useAppDispatch()
 
@@ -30,11 +30,15 @@ const ProfileNftsPage: React.FC<PropTypes> = ({accountId, signedIn}) => {
         switch (activeTab) {
             case ProfileNftsTab.All:
             case ProfileNftsTab.Listed:
-                return <ProfileNftsFetch accountId={accountId} signedIn={signedIn}/>
+                return <ProfileNftsFetch accountId={accountId}
+                                         isSignedIn={isSignedIn}
+                />
             case ProfileNftsTab.History:
-                return <ProfileHistoryFetch accountId={accountId} signedIn={signedIn}/>
+                return <ProfileHistoryFetch accountId={accountId}
+                                            isSignedIn={isSignedIn}
+                />
         }
-    }, [activeTab, accountId, signedIn])
+    }, [activeTab, accountId, isSignedIn])
 
     return (
         <div className="pb-4 max-w-screen-2xl mx-auto">

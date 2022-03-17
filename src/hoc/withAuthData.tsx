@@ -1,18 +1,18 @@
 import React from "react";
 import {getCurrentWallet} from "../business-logic/near/wallet/wallet";
 
-export interface TSignedInProps {
+export interface TAuthProps {
     accountId: string,
-    signedIn: boolean
+    isSignedIn: boolean
 }
 
-function withAuthData<T>(Child: React.ComponentType<T & TSignedInProps>):React.FC<T> {
+export default function withAuthData<T>(
+    Child: React.ComponentType<T & TAuthProps>
+): React.FC<T> {
     const wallet = getCurrentWallet()
     return (props) =>
         <Child {...props}
                accountId={wallet.getAccountId()}
-               signedIn={wallet.isSignedIn()}
+               isSignedIn={wallet.isSignedIn()}
         />
 }
-
-export default withAuthData;

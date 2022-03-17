@@ -3,7 +3,7 @@ import IconText from "../../../Icons/IconText";
 import {MdAccountBalanceWallet as MdAcc} from 'react-icons/md'
 import {GrMoney} from 'react-icons/gr'
 import {BiDna} from 'react-icons/bi'
-import PreviewAttributes from "../Attributes/PreviewAttributes";
+import KeyValueAttributeList from "../Attributes/KeyValueAttributeList";
 import NftPreviewTitle from "./NftPreviewTitle";
 import OwnerBlock from "./OwnerBlock";
 
@@ -21,8 +21,8 @@ const NftPreviewInfo = ({nft, payouts, contract, statusElement}) => {
     })
 
     const tabs = [
-        {name: "Attributes", element: <PreviewAttributes attributes={ownerAttributes}/>, icon: <MdAcc/>},
-        {name: "Royalties", element: <PreviewAttributes attributes={formattedPayouts}/>, icon: <GrMoney/>},
+        {name: "Attributes", element: <KeyValueAttributeList attributes={ownerAttributes}/>, icon: <MdAcc/>},
+        {name: "Royalties", element: <KeyValueAttributeList attributes={formattedPayouts}/>, icon: <GrMoney/>},
         {name: "Traits", element: "Not found", icon: <BiDna/>}
     ]
 

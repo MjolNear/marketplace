@@ -8,6 +8,7 @@ export interface CoreToken {
     title: string,
     media?: Optional<string>,
     description?: Optional<string>,
+    extra?: Optional<string>
     price?: Optional<StringAmount>,
 }
 

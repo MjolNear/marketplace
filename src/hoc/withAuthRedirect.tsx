@@ -3,11 +3,12 @@ import WalletConnectionPage from "../pages/auth/WalletConnectionPage";
 import {getCurrentWallet} from "../business-logic/near/wallet/wallet";
 
 
-function withAuthRedirect<T>(Child: React.ComponentType<T>) {
-    if (!getCurrentWallet().isSignedIn) {
+export default function withAuthRedirect<T>(
+    Child: React.ComponentType<T>
+): React.FC<T> {
+    const isSignedIn = getCurrentWallet().isSignedIn()
+    if (!isSignedIn) {
         return () => <WalletConnectionPage/>
     }
-    return (props: T) => <Child {...props}/>
+    return (props) => <Child {...props}/>
 }
-
-export default withAuthRedirect;

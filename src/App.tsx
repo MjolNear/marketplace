@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer} from 'react'
+import React from 'react'
 import Navbar from "./pages/navbar/Navbar";
 import FooterPage from "./pages/footer/FooterPage";
 import {webWallet} from "./business-logic/near/wallet/web-wallet";
@@ -9,7 +9,7 @@ import {
     SENDER_WALLET_SIGNED_IN_STATE_KEY
 } from "./business-logic/near/wallet/sender-wallet";
 import {WalletContext} from './business-logic/near/wallet/wallet';
-import {HashRouter} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import {Route, Routes} from "react-router";
 import LandingPage from "./pages/landing/LandingPage";
 import ExploreNftsPage from "./pages/explore/nft/ExploreNftsPage";
@@ -22,7 +22,9 @@ import ProfileCollectionsPage from "./pages/profile/collections/ProfileCollectio
 import NotFoundPage from "./pages/not-found/NotFoundPage";
 import ScrollToTopButton from "./components/Common/Buttons/ScrollToTopButton";
 import MjolLoader from "./components/Common/Loaders/MjolLoader";
-import PreviewNftPage from "./pages/preview/nft/PreviewNftPage";
+import PreviewNftMatchRouterParams from "./pages/preview/nft/PreviewNftMatchRouterParams";
+import ScrollToTop from "./hoc/ScrollToTop";
+import {ToastContainer} from "react-toastify";
 
 
 export default function App() {
@@ -108,9 +110,11 @@ export default function App() {
 
     return (
         // <WalletContext.Provider value={{signedInState, signedInStateDispatch}}>
-        <HashRouter>
+        <BrowserRouter>
             <Navbar/>
+            <ScrollToTop/>
             <ScrollToTopButton/>
+            <ToastContainer className="mt-11"/>
             {/*<div className="pt-[150px] pl-[50px]">*/}
             {/*    <NearIcon size={200} fill="rgb(244, 40, 30)"/>*/}
             {/*</div>*/}
@@ -121,7 +125,7 @@ export default function App() {
                         <Route path="/" element={<LandingPage/>}/>
                         {/*</React.Suspense>*/}
                         <Route path="nfts" element={<ExploreNftsPage/>}/>
-                        <Route path="nfts/:contractId/:tokenId" element={<PreviewNftPage/>}/>
+                        <Route path="nfts/:contractId/:tokenId" element={<PreviewNftMatchRouterParams/>}/>
                         <Route path="collections" element={<ExploreCollectionsPage/>}/>
                         <Route
                             path="collections/:contractId/:collectionId/:filterTab"
@@ -136,7 +140,7 @@ export default function App() {
                 </React.Suspense>
             </div>
             <FooterPage/>
-        </HashRouter>
+        </BrowserRouter>
         // </WalletContext.Provider>
     )
 }

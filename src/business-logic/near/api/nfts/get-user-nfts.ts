@@ -1,11 +1,12 @@
-import {getConvertedNFT} from "../standardization";
+import {getConvertedNFT} from "../nfts";
 import {nftAPI} from "./api";
 import {marketAPI} from "../market";
-import {AccountId, ContractId, TokenId} from "../../../models/types";
+import {AccountId, ContractId, TokenId, TPayouts} from "../../../models/types";
 import {contractAPI} from "../contracts";
 import {batchRequest} from "../batch-request";
 import {buildUID} from "../utils";
 import {ApprovedToken} from "../../../models/nft";
+import {MJOL_CONTRACT_ID} from "../../enviroment/contract-names";
 
 export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenId: TokenId) => {
     const jsonNft = await nftAPI.fetchNft(contractId, tokenId)
@@ -15,18 +16,15 @@ export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenI
     return getConvertedNFT(contractId, jsonNft, tokenWrapper)
 }
 
-export const getNFTByCID = async (contractId: ContractId, tokenId: TokenId) => {
-    const jsonNft = await nftAPI.fetchNft(contractId, tokenId)
-    return getConvertedNFT(contractId, jsonNft, {})
-}
 
-export async function getNftPayouts(contractId: string, tokenId: string): Promise<Record<string, number>> {
+export async function getNftPayouts(contractId: string, tokenId: string): Promise<TPayouts> {
+
     const TREASURY_PERCENT = 2;
-    let royalties: Record<string, number> = {
-        'fee': TREASURY_PERCENT
-    };
+    let royalties: TPayouts = {
+        fee: TREASURY_PERCENT
+    }
 
-    if (contractId === "mjol.near") {
+    if (contractId === MJOL_CONTRACT_ID) {
         return nftAPI.fetchTokenRoyalties(contractId, tokenId)
             .then(rawRoyalties => {
                 for (let payoutKey in rawRoyalties) {
@@ -90,7 +88,7 @@ export async function getUserNfts(accountId: AccountId, limit: number = 20) {
 
     return Promise.all([
             batchRequest(contractIds, fetchNfts).then(result => result.values.flat()),
-            batchRequest(contractIds, contractAPI.fetchContractBeta).then(result => result.values)
+            batchRequest(contractIds, contractAPI.fetchContract).then(result => result.values)
         ]
     )
 }

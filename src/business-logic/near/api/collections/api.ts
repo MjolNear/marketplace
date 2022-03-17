@@ -155,8 +155,8 @@ export const collectionAPI = {
                         })
                 }
             ).catch(e => {
-            console.log(e)
-            return null
+                console.log(e)
+                return null
         }),
 
     fetchCollections: (from: number, limit: number): Promise<CollectionsBatchResponse> =>

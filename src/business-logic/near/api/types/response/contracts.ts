@@ -1,7 +1,7 @@
 import {ContractId} from "../../../../models/types";
 import {ContractVerificationStatus} from "../../../../models/contract";
 
-export interface ContractResponse {
+export interface TContractResponse {
     contractId: ContractId,
     verification: ContractVerificationStatus,
     isCorrect: boolean,
@@ -20,4 +20,4 @@ export interface StatusResponse<T> {
     data: T
 }
 
-export type ContractStatusResponse = StatusResponse<ContractResponse>
+export type ContractStatusResponse = StatusResponse<TContractResponse>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 
 interface TNftOwnerProps {
     ownerId: string
@@ -13,4 +13,4 @@ const OwnerBlock: React.FC<TNftOwnerProps> = ({ownerId}) => {
     );
 };
 
-export default OwnerBlock;
+export default memo(OwnerBlock);

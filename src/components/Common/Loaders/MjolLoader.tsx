@@ -1,5 +1,5 @@
-import React from 'react';
-import {motion} from "framer-motion";
+import React, {memo, useMemo} from 'react';
+import {motion, Transition} from "framer-motion";
 
 
 interface TMjolLoaderProps {
@@ -7,31 +7,40 @@ interface TMjolLoaderProps {
 }
 
 const MjolLoader: React.FC<TMjolLoaderProps> = ({size = 30}) => {
+
+    const initial = useMemo(() => ({
+        rotate: 0
+    }), [])
+
+    const animate = useMemo(() => ({
+        rotate: 360,
+    }), [])
+
+    const style = useMemo(() => ({
+        border: "4px solid #f3f3f3",
+        borderTop: "4px solid #3498db",
+        borderRadius: '50%',
+        width: size,
+        height: size,
+    }), [size])
+
+    const transition: Transition = useMemo(() => ({
+        repeatType: "loop",
+        duration: 1,
+        ease: "linear",
+        repeat: Infinity,
+    }), [])
+
     return (
         <div className="flex items-center justify-center w-full h-full">
             <motion.div
-                style={{
-                    border: "4px solid #f3f3f3", /* Light grey */
-                    borderTop: "4px solid #3498db", /* Blue */
-                    borderRadius: '50%',
-                    width: size,
-                    height: size,
-                }}
-                initial={{
-                    rotate: 0,
-                }}
-                animate={{
-                    rotate: 360,
-                }}
-                transition={{
-                    repeatType: "loop",
-                    duration: 1,
-                    ease: "linear",
-                    repeat: Infinity,
-                }}
+                style={style}
+                initial={initial}
+                animate={animate}
+                transition={transition}
             />
         </div>
     );
 };
 
-export default MjolLoader;
+export default memo(MjolLoader);

@@ -2,7 +2,7 @@ import {AppDispatch} from "../../store";
 import {CollectionId, ContractId} from "../../../business-logic/models/types";
 import {collectionAPI} from "../../../business-logic/near/api/collections";
 import {previewCollectionSlice} from "./slice";
-import {mapTokenToNFT} from "../../../business-logic/near/api/standardization/nft-converter";
+import {mapTokenToNFT} from "../../../business-logic/near/api/nfts/nft-converter";
 
 export const fetchCollection = (collectionId: CollectionId, contractId: ContractId) =>
     async (dispatch: AppDispatch) => {

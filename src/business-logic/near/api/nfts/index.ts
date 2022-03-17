@@ -1,4 +1,5 @@
 import {nftAPI} from "./api";
+import {getConvertedNFT} from "./nft-converter"
 
 
-export {nftAPI}
+export {nftAPI, getConvertedNFT}
