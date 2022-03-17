@@ -5,7 +5,7 @@ import CardsGridContainer from "../Common/Grid/CardsGridContainer";
 import {buildUID} from "../../business-logic/near/api/utils";
 import EmptyCardList from "./EmptyCardList";
 
-interface PropTypes {
+interface TGridProps {
     tokens: GridToken[],
     fetching: boolean,
     isCollectionNFTs?: boolean
@@ -18,7 +18,7 @@ interface PropTypes {
  * @param fetching boolean value which determines fetching status
  * @param isCollectionNfts boolean value than changes the empty card animation footer
  */
-const CardGrid: React.FC<PropTypes> = ({
+const CardGrid: React.FC<TGridProps> = ({
     tokens,
     fetching,
     isCollectionNFTs = false
