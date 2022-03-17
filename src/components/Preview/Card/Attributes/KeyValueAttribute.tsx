@@ -11,15 +11,14 @@ const PreviewAttribute = React.memo<TAttribute>(({
     const shrinkValue = shortenString(value, 8, 20)
 
     return (
-        <div className="flex flex-row justify-between">
-            <div className="font-semibold font-archivo">
+        <div className="flex flex-row justify-between font-archivo">
+            <div className="font-semibold">
                 {name}
             </div>
             {tooltip
                 ?
                 <p className="cursor-pointer"
                    data-tip="copy"
-                   data-html={true}
                    onClick={() => {
                        navigator.clipboard.writeText(value).then()
                    }}
@@ -27,7 +26,7 @@ const PreviewAttribute = React.memo<TAttribute>(({
                     {shrinkValue}
                 </p>
                 :
-                <p className="font-archivo">{shrinkValue}</p>
+                <>{shrinkValue}</>
             }
             {tooltip && <ReactTooltip type="dark"
                                       place="bottom"
