@@ -10,4 +10,4 @@ const NotListedNftContainer = () => {
     );
 };
 
-export default memo(NotListedNftContainer);
+export default NotListedNftContainer;

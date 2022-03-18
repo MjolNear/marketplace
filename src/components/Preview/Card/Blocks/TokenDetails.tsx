@@ -29,4 +29,4 @@ const TokenDetails: React.FC<TTokenDetailsProps> = ({
     );
 };
 
-export default memo(TokenDetails);
+export default TokenDetails;

@@ -1,11 +1,11 @@
-import React, {memo, useState} from 'react';
+import React, {memo, useCallback, useState} from 'react';
 import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
-import {TPriceContainerProps} from "./PriceContainer";
 import PriceContainer from "./PriceContainer";
-import {ContractId, TokenId} from "../../../../business-logic/models/types";
+import {ContractId, Optional, TokenId} from "../../../../business-logic/models/types";
 import {buyNftWithPayouts} from "../../../../business-logic/near/api/market/transaction";
 
-interface TBuyNftProps extends TPriceContainerProps {
+interface TBuyNftProps {
+    tokenPrice?: Optional<string>
     contractId: ContractId,
     tokenId: TokenId,
     hasPayouts: boolean
@@ -15,15 +15,13 @@ const BuyNftContainer: React.FC<TBuyNftProps> = ({
     tokenPrice,
     contractId,
     tokenId,
-    hasPayouts
+    hasPayouts,
 }) => {
-
-    // const [isBuying, setIsBuying] = useState(false)
-
+    const [isBuying, setIsBuying] = useState(false)
     const buy = () => {
-        // setIsBuying(true)
+        setIsBuying(true)
         buyNftWithPayouts(contractId, tokenId, tokenPrice || "0", hasPayouts)
-            // .finally(() => setIsBuying(false))
+            .finally(() => setIsBuying(false))
     }
 
     return (
@@ -33,10 +31,11 @@ const BuyNftContainer: React.FC<TBuyNftProps> = ({
                     ? "Get for free"
                     : "Buy Now"
                 }
+                isLoading={isBuying}
                 onClick={buy}
             />
         </PriceContainer>
     )
 };
 
-export default memo(BuyNftContainer);
+export default BuyNftContainer;

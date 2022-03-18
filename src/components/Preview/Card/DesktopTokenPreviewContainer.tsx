@@ -10,11 +10,8 @@ const DesktopTokenPreviewContainer: React.FC<TokenPreviewProps> = ({
     contract,
     payouts
 }) => {
-
-    console.log(token.extra)
-
     return (
-        <div className="max-lg:hidden w-full flex flex-col mx-5">
+        <div className="w-full flex flex-col mx-5">
             <div className="flex flex-row justify-center mb-5 gap-8">
                 <TokenPreviewSummaryBlock media={token.media}
                                           description={token.description}

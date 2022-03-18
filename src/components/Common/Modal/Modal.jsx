@@ -6,7 +6,7 @@ const Modal = ({
     closeOnBgClick = true,
     closeOnEscape = true,
     children,
-    className="fixed inset-0 z-50 flex items-center p-4",
+    className="fixed inset-0 z-[150] flex items-center p-4",
     style = {
         backgroundColor: `rgba(0, 0, 0, 0.8)`
     },

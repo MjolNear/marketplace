@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import NearBlackLogo from "../../../../Icons/near/NearBlackLogo";
 
 interface TSinglePayoutProps {
@@ -21,4 +21,4 @@ const SinglePayout: React.FC<TSinglePayoutProps> = ({
     );
 };
 
-export default memo(SinglePayout);
+export default SinglePayout;

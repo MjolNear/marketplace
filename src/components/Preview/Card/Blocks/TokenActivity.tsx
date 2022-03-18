@@ -24,4 +24,4 @@ const TokenActivity: React.FC<TTokenActivityProps> = ({
     );
 };
 
-export default memo(TokenActivity);
+export default TokenActivity;

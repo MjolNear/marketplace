@@ -19,4 +19,4 @@ const TokenDescription: React.FC<TTokenDescription> = ({
     )
 };
 
-export default memo(TokenDescription);
+export default TokenDescription;

@@ -29,4 +29,4 @@ const NftNotApproved: React.FC<TNftNotApprovedProps> = ({
     );
 };
 
-export default memo(NftNotApproved);
+export default NftNotApproved;

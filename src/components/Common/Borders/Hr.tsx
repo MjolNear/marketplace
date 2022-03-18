@@ -5,7 +5,7 @@ interface TBorderProps {
 }
 
 const Hr: React.FC<TBorderProps> = ({color = "bg-black"}) => {
-    return <div className={color + " h-px"}/>
+    return <div className={color + " h-px w-full"}/>
 };
 
 export default Hr;

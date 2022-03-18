@@ -13,7 +13,6 @@ interface TTokenPayoutsProps {
 const TokenPayoutDetails: React.FC<TTokenPayoutsProps> = ({
     payouts,
 }) => {
-
     let total = 0
     const formattedPayouts: TAttribute[] = Object
         .entries(payouts || {})
@@ -37,4 +36,4 @@ const TokenPayoutDetails: React.FC<TTokenPayoutsProps> = ({
     );
 };
 
-export default memo(TokenPayoutDetails);
+export default TokenPayoutDetails;

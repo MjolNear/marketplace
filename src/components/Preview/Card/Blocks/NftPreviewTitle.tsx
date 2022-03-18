@@ -22,4 +22,4 @@ const TokenTitleAndOwner: React.FC<TNftPreviewTitleProps> = ({
     )
 };
 
-export default memo(TokenTitleAndOwner);
+export default TokenTitleAndOwner;

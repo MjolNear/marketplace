@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {memo} from 'react';
 import NearBlackLogo from "../../../Icons/near/NearBlackLogo";
 import {Optional} from "../../../../business-logic/models/types";
 import {useNearUsdPrice} from "../../../../hooks/useNearUsdPrice";
 
 export interface TPriceContainerProps {
     tokenPrice?: Optional<string>
+    children: React.ReactNode
 }
 
 const PriceContainer: React.FC<TPriceContainerProps> = ({
@@ -12,10 +13,6 @@ const PriceContainer: React.FC<TPriceContainerProps> = ({
     children
 }) => {
     const usdPrice = useNearUsdPrice()
-
-    if (tokenPrice && usdPrice) {
-        console.log(Number(tokenPrice) * usdPrice)
-    }
 
     const priceInUSD = tokenPrice && usdPrice
         ?

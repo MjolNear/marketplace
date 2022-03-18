@@ -16,7 +16,7 @@ const MobileTokenPreviewContainer: React.FC<TokenPreviewProps> = ({
     payouts
 }) => {
     return (
-        <div className="lg:hidden flex flex-col w-full max-w-[600px] px-4 gap-4">
+        <div className="flex flex-col w-full max-w-[600px] px-4 gap-4">
             <NftPreviewTitle title={token.title}
                              ownerId={token.ownerId}
             />

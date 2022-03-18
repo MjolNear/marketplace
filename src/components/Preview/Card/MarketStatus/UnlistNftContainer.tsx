@@ -1,13 +1,11 @@
-import React, {memo} from 'react';
-import {TPriceContainerProps} from "./PriceContainer";
+import React, {memo, useState} from 'react';
 import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
 import PriceContainer from "./PriceContainer";
-import {ContractId, TokenId} from "../../../../business-logic/models/types";
+import {ContractId, Optional, TokenId} from "../../../../business-logic/models/types";
 import {unlistNFT} from "../../../../business-logic/near/api/market/transaction";
-import {useAppDispatch} from "../../../../hooks/redux";
-import {outcomeSlice} from "../../../../state/store";
 
-interface TUnlistNftProps extends TPriceContainerProps {
+interface TUnlistNftProps {
+    tokenPrice?: Optional<string>
     contractId: ContractId
     tokenId: TokenId
 }
@@ -18,15 +16,18 @@ const UnlistNftContainer: React.FC<TUnlistNftProps> = ({
     tokenId
 }) => {
 
+    const [isUnlisting, setIsUnlisting] = useState(false)
+
     const unlist = () => {
-        unlistNFT(contractId, tokenId).then()
+        setIsUnlisting(true)
+        unlistNFT(contractId, tokenId).finally(() => setIsUnlisting(false))
     }
 
     return (
         <PriceContainer tokenPrice={tokenPrice}>
-            <DarkBlueGradientButton title="Unlist NFT" onClick={unlist}/>
+            <DarkBlueGradientButton title="Unlist NFT" onClick={unlist} isLoading={isUnlisting}/>
         </PriceContainer>
     )
 };
 
-export default memo(UnlistNftContainer);
+export default UnlistNftContainer;

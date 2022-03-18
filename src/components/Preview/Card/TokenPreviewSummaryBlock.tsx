@@ -25,4 +25,4 @@ const TokenPreviewSummaryBlock: React.FC<TPreviewTokenSummaryProps> = ({
     );
 };
 
-export default memo(TokenPreviewSummaryBlock);
+export default TokenPreviewSummaryBlock;

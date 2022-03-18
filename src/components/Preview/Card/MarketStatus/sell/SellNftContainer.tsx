@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import DarkBlueGradientButton from "../../../../Common/Buttons/DarkBlueGradientButton";
 import InputPriceModal from "./InputPriceModal";
-import {useAppDispatch} from "../../../../../hooks/redux";
-import {sellNft} from "../../../../../state/transaction/nft/thunk";
 import {ApprovedToken} from "../../../../../business-logic/models/nft";
+import {giveApprove} from "../../../../../business-logic/near/api/market/transaction";
 
 interface TSellNftProps {
     token: ApprovedToken
@@ -16,16 +15,13 @@ const SellNftContainer: React.FC<TSellNftProps> = ({
     payouts
 }) => {
 
-    const dispatch = useAppDispatch()
     const [visible, setVisible] = useState(false)
 
-    const sell = (price: string) => {
-        dispatch(sellNft(token.contractId, token.tokenId, price, token))
-    }
+    const sell = (price: string) => giveApprove(token.contractId, token.tokenId, price, token)
 
     return (
         <div>
-            <DarkBlueGradientButton title="Sell NFT" onClick={() => setVisible(!visible)}/>
+            <DarkBlueGradientButton title="Sell NFT" onClick={() => setVisible(true)}/>
             {visible &&
                 <InputPriceModal close={() => setVisible(false)}
                                  onClick={sell}

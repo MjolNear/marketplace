@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {TContractResponse} from "../../../../business-logic/near/api/types/response/contracts";
 import {ApprovedToken} from "../../../../business-logic/models/nft";
 import {useNftMarketStatus} from "../../../../hooks/useNftMarketStatus";
@@ -26,7 +26,6 @@ const TokenMarketStatus: React.FC<TTokenMarketStatusBlockProps & TAuthProps> = (
     isSignedIn,
     accountId
 }) => {
-
     const nftMarketStatus = useNftMarketStatus(accountId, token.ownerId, token.isApproved, token.price)
 
     if (!isSignedIn) {
@@ -45,13 +44,20 @@ const TokenMarketStatus: React.FC<TTokenMarketStatusBlockProps & TAuthProps> = (
                                     hasPayouts={contract?.hasPayouts}
             />
         case ItemMarketStatus.CAN_SELL:
-            return <SellNftContainer token={token} payouts={payouts || {}}/>
+            return <SellNftContainer token={token}
+                                     payouts={payouts || {}}
+            />
         case ItemMarketStatus.LISTED:
-            return <UnlistNftContainer tokenPrice={token.price} contractId={token.contractId} tokenId={token.tokenId}/>
+            return <UnlistNftContainer tokenPrice={token.price}
+                                       contractId={token.contractId}
+                                       tokenId={token.tokenId}
+            />
+        case ItemMarketStatus.NOT_APPROVED:
+            return <NftNotApproved contractId={token.contractId}
+                                   tokenId={token.tokenId}
+            />
         case ItemMarketStatus.FREE:
             return <NotListedNftContainer/>
-        case ItemMarketStatus.NOT_APPROVED:
-            return <NftNotApproved contractId={token.contractId} tokenId={token.tokenId}/>
     }
 };
 

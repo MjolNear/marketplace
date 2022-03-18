@@ -34,7 +34,7 @@ export const getStringPercentage = (
     minValue = 0,
     maxValue = MAX_ITEM_NEAR_PRICE,
     defaultValue = 0,
-    maximumFractionDigits = 4
+    maximumFractionDigits = 6
 ) => {
     return getPercentage(value, percentage, minValue, maxValue, defaultValue)
         .toLocaleString(

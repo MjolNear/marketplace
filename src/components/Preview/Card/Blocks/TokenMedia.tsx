@@ -30,4 +30,4 @@ const TokenMedia: React.FC<TImageProps> = ({link}) => {
     );
 };
 
-export default memo(TokenMedia);
+export default TokenMedia;
