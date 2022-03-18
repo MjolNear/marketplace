@@ -27,7 +27,7 @@ const FooterPage = () => {
                         </svg>
                     </a>
                     <a href="https://github.com/MjolNear"
-                       className="text-gray-800 hover:text-blue-500"
+                       className="mr-9 text-gray-800 hover:text-blue-500"
                        target="_blank"
                        rel="noreferrer"
                     >
@@ -47,9 +47,40 @@ const FooterPage = () => {
                             />
                         </svg>
                     </a>
+                    <a href="https://twitter.com/MjolNear_"
+                       className="mr-9 text-gray-800 hover:text-blue-500"
+                       target="_blank"
+                       rel="noreferrer"
+                    >
+                        <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            data-prefix="fab"
+                            className="svg-inline--fa w-4"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                        >
+                            <path  fill="currentColor" d="m9.417 15.181-.397 5.584c.568 0 .814-.244 1.109-.537l2.663-2.545 5.518 4.041c1.012.564 1.725.267 1.998-.931l3.622-16.972.001-.001c.321-1.496-.541-2.081-1.527-1.714l-21.29 8.151c-1.453.564-1.431 1.374-.247 1.741l5.443 1.693 12.643-7.911c.595-.394 1.136-.176.691.218z"/></svg>
+                    </a>
+                    <a href="https://medium.com/@mjolnear"
+                       className="mr-9 text-gray-800 hover:text-blue-500"
+                       target="_blank"
+                       rel="noreferrer"
+                    >
+                        <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            data-prefix="fab"
+                            className="svg-inline--fa w-4"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 256 256"
+                        ><path fill="currentColor" d="M136,128c0,37.49512-28.71,68-64,68S8,165.49514,8,128,36.71,60,72,60,136,90.5049,136,128Zm48-64c-5.68262,0-16.39941,2.76074-24.32373,21.251C154.72607,96.8008,152,111.98342,152,128s2.72607,31.19922,7.67627,42.749C167.60059,189.23928,178.31738,192,184,192s16.39941-2.76074,24.32373-21.251C213.27393,159.19924,216,144.01662,216,128s-2.72607-31.19922-7.67627-42.749C200.39941,66.76076,189.68262,64,184,64Zm56,0a8.00039,8.00039,0,0,0-8,8V184a8,8,0,0,0,16,0V72A8.00039,8.00039,0,0,0,240,64Z"/></svg>
+                    </a>
                 </div>
                 <div className="py-2">
-                    <p className="flex items-center justify-center mb-4">
+                    <p className="flex items-center justify-center mb-4 mr-8">
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope"
                              className="w-4 mr-4" role="img" xmlns="http://www.w3.org/2000/svg"
                              viewBox="0 0 512 512">

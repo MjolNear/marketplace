@@ -11,7 +11,8 @@ export enum WhitelistedContract {
     TAYC = "tayc-nft.near",
     GrimmsArmy = "grimms.secretskelliessociety.near",
     NEARton = "nearton_nft.near",
-    BillionaireBullsClub = "billionairebullsclub.near"
+    BillionaireBullsClub = "billionairebullsclub.near",
+    FreakyElves = "spin-nft-contract.near"
 }
 
 export const DODIK_GET_LIST = new Set<string>([
@@ -102,6 +103,12 @@ export const getNftMintedSiteInfo = (nft: any, contractId: ContractId): TokenMin
             return {
                 mintedSiteName: "BillionaireBullsClub",
                 mintedSiteLink: "http://billionaire-bulls.club",
+                verification: ContractVerificationStatus.Verified
+            }
+        case WhitelistedContract.FreakyElves:
+            return {
+                mintedSiteName: "FreakyElves",
+                mintedSiteLink: "https://nft.spin.fi",
                 verification: ContractVerificationStatus.Verified
             }
         default:
