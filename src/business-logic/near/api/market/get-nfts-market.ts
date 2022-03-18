@@ -1,4 +1,4 @@
-import {getConvertedNFT} from "../standardization";
+import {getConvertedNFT} from "../nfts";
 import {viewFunction} from "../../enviroment/rpc";
 import {marketAPI} from "./api";
 import {buildUID, formatOptionalPrice} from "../utils";

@@ -4,13 +4,13 @@ import {ContractVerificationStatus} from "../../../business-logic/models/contrac
 import {resolveVerificationText} from "../../Common/Verification/utils";
 import DarkBlueMjolText from "../../Common/Text/DarkBlueMjolText";
 
-interface MintedInfoProps {
+interface TMintedInfoProps {
     mintedSiteName: string
     mintedSiteLink: string
     verification: ContractVerificationStatus
 }
 
-const MintedBlock = React.memo<MintedInfoProps>(({
+const MintedBlock: React.FC<TMintedInfoProps> = ({
     mintedSiteLink,
     mintedSiteName,
     verification
@@ -40,6 +40,6 @@ const MintedBlock = React.memo<MintedInfoProps>(({
             <div className="h-[1px] bg-blue-200 mt-[3px] rounded-lg"/>
         </>
     );
-});
+};
 
 export default MintedBlock;

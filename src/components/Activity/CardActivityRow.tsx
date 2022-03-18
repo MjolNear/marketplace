@@ -12,7 +12,7 @@ import CopyIcon from "../Icons/Common/CopyIcon";
 import {BsCheck} from "react-icons/bs";
 import AccountHrefCell from "./AccountHrefCell";
 
-export interface CardActivityRowProps {
+export interface TCardActivityRowProps {
     event: HistoryEventType,
     price?: Optional<string>,
     from: string,
@@ -21,7 +21,7 @@ export interface CardActivityRowProps {
     txHash: string
 }
 
-const CardActivityRow = React.memo<CardActivityRowProps>(({
+const CardActivityRow: React.FC<TCardActivityRowProps> = ({
     event,
     price,
     from,
@@ -71,6 +71,6 @@ const CardActivityRow = React.memo<CardActivityRowProps>(({
             </CardActivityCell>
         </div>
     );
-});
+};
 
 export default CardActivityRow;

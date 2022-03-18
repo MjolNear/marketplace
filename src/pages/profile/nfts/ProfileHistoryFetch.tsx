@@ -1,8 +1,8 @@
 import React from 'react';
-import {SignedInProps} from "../../../hoc/withAuthData";
+import {TAuthProps} from "../../../hoc/withAuthData";
 
 
-interface PropTypes extends SignedInProps {
+interface PropTypes extends TAuthProps {
 }
 
 const ProfileHistoryFetch: React.FC<PropTypes> = ({accountId}) => {

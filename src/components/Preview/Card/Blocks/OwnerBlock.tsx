@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {memo} from 'react';
 
-interface OwnerBlockProps {
+interface TNftOwnerProps {
     ownerId: string
 }
 
-const OwnerBlock = React.memo<OwnerBlockProps>(({ownerId}) => {
+const OwnerBlock: React.FC<TNftOwnerProps> = ({ownerId}) => {
     return (
         <div className="font-archivo text-md inline-flex gap-1">
             <div className="text-gray-700">Owned by</div>
             <div className="font-semibold">{ownerId}</div>
         </div>
     );
-});
+};
 
-export default OwnerBlock;
+export default memo(OwnerBlock);

@@ -13,11 +13,14 @@ import SectionDisclosure from "./Blocks/SectionDisclosure";
 import {CollectionTraits} from "../../../business-logic/models/collection";
 
 
-interface PropTypes {
+interface TTraitsFilterProps {
     traits: CollectionTraits
 }
 
-const TraitsFilter: React.FC<PropTypes> = ({children, traits}) => {
+const TraitsFilter: React.FC<TTraitsFilterProps> = ({
+    traits,
+    children
+}) => {
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
     const [filtersIsHidden, setFiltersIsHidden] = useState(false)
 

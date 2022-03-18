@@ -2,13 +2,11 @@ import React from 'react';
 import {shortenString} from "../../utils/string";
 import {Optional} from "../../business-logic/models/types";
 
-interface AccountHrefCellProps {
+interface TAccountHrefCellProps {
     accountId?: Optional<string>
 }
 
-const AccountHrefCell = React.memo<AccountHrefCellProps>(({
-    accountId,
-}) => {
+const AccountHrefCell: React.FC<TAccountHrefCellProps> = ({accountId}) => {
     return (
         <> {
             accountId
@@ -24,6 +22,6 @@ const AccountHrefCell = React.memo<AccountHrefCellProps>(({
         }
         </>
     );
-});
+};
 
 export default AccountHrefCell;

@@ -5,9 +5,15 @@ import BN from "bn.js";
 import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
 import {ContractId, StringAmount, TokenId} from "../../../models/types";
 import {Token} from "../../../models/nft";
+import {parseNearAmount} from "near-api-js/lib/utils/format";
 
 
-export function giveApprove(contractId: ContractId, tokenId: TokenId, stringPrice: StringAmount, nft: Token) {
+export function giveApprove(
+    contractId: ContractId,
+    tokenId: TokenId,
+    stringPrice: StringAmount,
+    nft: Token
+) {
     const price = utils.format.parseNearAmount(stringPrice.toString());
 
     const json_nft = {
@@ -64,6 +70,20 @@ export function unlistNFT(contractId: ContractId, tokenId: TokenId) {
         args: {
             nft_contract_id: contractId,
             token_id: tokenId
+        },
+        gas: GAS,
+        attachedDeposit: YOCTO_NEAR
+    })
+}
+
+export const updatePrice = (contractId: ContractId, tokenId: TokenId, newPrice: string) => {
+    const newPriceInYocto = utils.format.parseNearAmount(newPrice) || 0
+    return marketFunctionCall({
+        methodName: "update_token_price",
+        args: {
+            contract_id: contractId,
+            token_id: tokenId,
+            price: newPriceInYocto
         },
         gas: GAS,
         attachedDeposit: YOCTO_NEAR

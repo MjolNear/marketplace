@@ -13,7 +13,7 @@ export interface Config extends NearConfig {
     keyPath?: string
 }
 
-export const getConfig = (env: NetworkEnv): Config => {
+export const getConfig = (env: NetworkEnv = NetworkEnv.MAINNET): Config => {
     switch (env) {
         case NetworkEnv.PRODUCTION:
         case NetworkEnv.MAINNET:

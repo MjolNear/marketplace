@@ -14,7 +14,7 @@ export interface Wallet {
     isSignedIn: () => boolean,
     requestSignIn: () => Promise<any>,
     signOut: () => void,
-    getAccountId: () => any,
+    getAccountId: () => string,
     viewFunction: <T>(contractId: string, methodName: string, args?: any) => Promise<T>
     functionCall: (props: FunctionCallOptions) => Promise<FinalExecutionOutcome>
 }

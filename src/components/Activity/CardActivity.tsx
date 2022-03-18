@@ -1,17 +1,18 @@
 import React from 'react';
-import CardActivityRow, {CardActivityRowProps} from "./CardActivityRow";
+import CardActivityRow, {TCardActivityRowProps} from "./CardActivityRow";
 import {useTokenActivityQuery} from "../../graphql/generated/graphql";
 import CardActivityCell, {ActivityCellType} from "./CardActivityCell";
 import MjolLoader from "../Common/Loaders/MjolLoader";
 
-interface CardActivityProps {
+interface TCardActivityProps {
     tokenUID: string
-    activities: CardActivityRowProps[]
+    activities: TCardActivityRowProps[]
 }
 
-const CardActivity = React.memo<CardActivityProps>(({
+const CardActivity: React.FC<TCardActivityProps> = ({
     tokenUID,
 }) => {
+
     const {data, loading} = useTokenActivityQuery({
         variables: {
             tokenUID
@@ -41,19 +42,20 @@ const CardActivity = React.memo<CardActivityProps>(({
             <div className="w-full flex px-[4px]
                             font-archivo text-sm font-semibold pt-[1px] sticky top-0 z-1 bg-mjol-blue-card-property">
                 {columns.map(c =>
-                    <CardActivityCell type={
-                        c === "Event"
-                            ? ActivityCellType.Event
-                            : c === "Price"
-                                ? ActivityCellType.Price
-                                : ActivityCellType.Basic
-                    }>
+                    <CardActivityCell key={c}
+                                      type={
+                                          c === "Event"
+                                              ? ActivityCellType.Event
+                                              : c === "Price"
+                                                  ? ActivityCellType.Price
+                                                  : ActivityCellType.Basic
+                                      }>
                         {c}
                     </CardActivityCell>
                 )}
             </div>
             {activities.map(activity =>
-                <>
+                <div key={activity.txHash}>
                     <div className="bg-mjol-blue-card-property h-px"/>
                     <div className="px-[4px]">
                         <CardActivityRow event={activity.eventType}
@@ -64,10 +66,10 @@ const CardActivity = React.memo<CardActivityProps>(({
                                          txHash={activity.txHash}
                         />
                     </div>
-                </>
+                </div>
             )}
         </div>
     );
-});
+};
 
 export default CardActivity;

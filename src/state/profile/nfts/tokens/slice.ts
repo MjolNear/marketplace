@@ -1,15 +1,11 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {GridToken} from "../../../../business-logic/models/nft";
 import {ContractId} from "../../../../business-logic/models/types";
-import {
-    ContractResponse,
-    ContractStatusResponse,
-    ContractStatusResponseCode
-} from "../../../../business-logic/near/api/types/response/contracts";
+import {TContractResponse} from "../../../../business-logic/near/api/types/response/contracts";
 
 export interface ProfileTokensState {
     tokens: GridToken[],
-    contracts: Record<ContractId, ContractResponse>,
+    contracts: Record<ContractId, TContractResponse>,
     fetching: boolean
 }
 
@@ -23,10 +19,9 @@ export const profileTokensSlice = createSlice({
     name: "profile-nfts-tokens",
     initialState,
     reducers: {
-        setContracts: (state, action: PayloadAction<ContractStatusResponse[]>) => {
-            action.payload.forEach(response => {
-                if (response.status===ContractStatusResponseCode.SUCCESS) {
-                    const contract = response.data
+        setContracts: (state, action: PayloadAction<(TContractResponse | undefined)[]>) => {
+            action.payload.forEach(contract => {
+                if (contract) {
                     state.contracts[contract.contractId] = contract
                 }
             })

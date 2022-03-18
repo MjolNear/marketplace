@@ -34,6 +34,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "react-scroll-to-top": "^1.0.8",
+    "react-toastify": "^8.2.0",
     "react-tooltip": "^4.2.21",
     "recharts": "^2.1.9",
     "source-map-resolve": "^0.6.0",
@@ -45,6 +46,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "gen": "graphql-codegen --config codegen.yml"
   },
   "eslintConfig": {
@@ -85,6 +87,7 @@
     "near-cli": "~2.1.1",
     "nft.storage": "^3.4.0",
     "postcss": "^8.4.5",
+    "source-map-explorer": "^2.5.2",
     "tailwindcss": "^3.0.18"
   }
 }

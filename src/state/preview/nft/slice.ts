@@ -1,16 +1,14 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {ApprovedToken, Token} from "../../../business-logic/models/nft";
-import {
-    ContractResponse,
-    ContractStatusResponse,
-    ContractStatusResponseCode
-} from "../../../business-logic/near/api/types/response/contracts";
+import {TContractResponse} from "../../../business-logic/near/api/types/response/contracts";
+import {Optional} from "../../../business-logic/models/types";
 
 export interface PreviewNftState {
     fetching: boolean,
     success?: boolean,
     token?: Token,
-    contract?: ContractResponse,
+    price?: Optional<string>,
+    contract?: TContractResponse,
     isApproved?: boolean,
     payouts: Record<string, number>
 }
@@ -29,16 +27,17 @@ export const previewNftSlice = createSlice({
             state.token = action.payload
             state.isApproved = action.payload.isApproved
         },
+        setPrice: (state, action: PayloadAction<Optional<string>>) => {
+            state.price = action.payload
+        },
         failure: (state) => {
             state.token = undefined
         },
         toggleFetching: (state, action: PayloadAction<boolean>) => {
             state.fetching = action.payload
         },
-        setContract: (state, action: PayloadAction<ContractStatusResponse>) => {
-            if (action.payload.status === ContractStatusResponseCode.SUCCESS) {
-                state.contract = action.payload.data
-            }
+        setContract: (state, action: PayloadAction<TContractResponse | undefined>) => {
+            state.contract = action.payload
         },
         setPayouts: (state, action: PayloadAction<Record<string, number>>) => {
             state.payouts = action.payload

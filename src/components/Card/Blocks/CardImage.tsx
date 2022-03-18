@@ -6,7 +6,7 @@ import {Img} from 'react-image';
 
 import brokenImage from './../../../resources/broken-image.png'
 
-interface CardImageProps {
+interface TCardImageProps {
     url?: Optional<string>,
     objectFit?: ObjectFit,
     className?: string,
@@ -14,7 +14,7 @@ interface CardImageProps {
     height?: number | string
 }
 
-const CardImage = React.memo<CardImageProps>(({
+const CardImage: React.FC<TCardImageProps> = ({
     url,
     objectFit = 'contain',
     className = undefined,
@@ -43,6 +43,6 @@ const CardImage = React.memo<CardImageProps>(({
             />
         </div>
     );
-});
+};
 
 export default CardImage;

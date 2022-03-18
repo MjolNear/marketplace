@@ -1,25 +1,28 @@
 import React from 'react';
 
-interface PropTypes {
+interface TCollectionCardLoaderProps {
     size?: number,
     className?: string
 }
 
-const CollectionCardLoader = React.memo<PropTypes>(({size = 300, ...props}) => {
+const CollectionCardLoader: React.FC<TCollectionCardLoaderProps> = ({
+    size = 300,
+    className
+}) => {
     const gradient = (direction: string) =>
         `linear-gradient(to ${direction}, rgb(229, 232, 235), rgba(255, 255, 255, 0))`
 
     return (
-        <div {...props}>
+        <div className={className}>
             <div className="flex flex-col ring-1 rounded-xl ring-gray-200 overflow-hidden pulse-animation w-full
                             transform hover:shadow-mjol-gray-xs hover:ring-inset"
             >
                 {/* Image block */}
                 <div style={{
-                         width: size,
-                         height: size,
-                         background: gradient('right')
-                     }}>
+                    width: size,
+                    height: size,
+                    background: gradient('right')
+                }}>
                 </div>
 
                 <div className="py-2 px-2 xxs:px-5 space-y-4 mt-2">
@@ -58,6 +61,6 @@ const CollectionCardLoader = React.memo<PropTypes>(({size = 300, ...props}) => {
             </div>
         </div>
     );
-});
+};
 
 export default CollectionCardLoader;

@@ -10,6 +10,9 @@ export enum ItemMarketStatus {
 
     // Item is owned by another user and not listed on transaction.
     FREE = "FREE",
+
+    // Item has been transferred or sold on other marketplace and lose approvals for MjolNear marketplace
+    NOT_APPROVED = "NOT_APPROVED",
 }
 
 

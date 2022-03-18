@@ -1,6 +1,6 @@
-import {AccountId, ContractId} from "../../../models/types";
+import {AccountId, ContractId, TokenId} from "../../../models/types";
 import {fetchWithTimeout} from "../core";
-import {ContractStatusResponse} from "../types/response/contracts";
+import {TContractResponse, ContractStatusResponse, ContractStatusResponseCode} from "../types/response/contracts";
 
 
 export const contractAPI = {
@@ -16,35 +16,27 @@ export const contractAPI = {
         ).then(response => response.json()
         ).catch(() => []),
 
-    // /**
-    //  * Extracts exported functions from NEAR smart contract
-    //  *
-    //  * @param contractId NEAR contract
-    //  */
-    // viewMethods: (contractId: ContractId) => {
-    //     if (contractId.endsWith('mintbase1.near')) {
-    //         console.log(contractId)
-    //         return Promise.resolve(INCORRECT_STANDARD)
-    //     }
-    //
-    //     // https://rpc.ankr.com/near
-    //     // https://rpc.mainnet.near.org/
-    //     return new JsonRpcProvider('https://rpc.mainnet.near.org/')
-    //         .query<ViewCode>({
-    //             account_id: contractId,
-    //             finality: 'final',
-    //             request_type: 'view_code'
-    //         })
-    //         .then(response => contractAccordance(parseContract(response.code_base64)))
-    //         .catch(e => {
-    //             console.log(e)
-    //             return INCORRECT_STANDARD
-    //         })
-    // },
-
-    fetchContractBeta: (contractId: ContractId, port = 7010): Promise<ContractStatusResponse> => {
+    fetchContract: (contractId: ContractId): Promise<TContractResponse | undefined> => {
         // const url = `http://localhost:7010/api.mjolnear.com/contracts/${contractId}`
         const url = `https://mjolnear-contracts-indexer.herokuapp.com/api.mjolnear.com/contracts/${contractId}`
-        return fetch(url).then(response => response.json())
+        return fetch(url)
+            .then(response => response.json())
+            .then(contractResponse => contractResponse.status === ContractStatusResponseCode.SUCCESS
+                ? contractResponse.data
+                : undefined
+            )
+            .catch(() => undefined)
+    },
+
+    removeExpiredContract: (contractId: ContractId, tokenId: TokenId) => {
+        const url = "https://mjolnear-contracts-indexer.herokuapp.com/api.mjolnear.com/remover/remove"
+        return fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({contractId, tokenId}),
+        }).then(response => response.json())
     }
 }
