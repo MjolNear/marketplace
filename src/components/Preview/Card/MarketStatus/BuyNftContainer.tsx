@@ -17,6 +17,7 @@ const BuyNftContainer: React.FC<TBuyNftProps> = ({
     tokenId,
     hasPayouts,
 }) => {
+
     const [isBuying, setIsBuying] = useState(false)
     const buy = () => {
         setIsBuying(true)
@@ -28,7 +29,7 @@ const BuyNftContainer: React.FC<TBuyNftProps> = ({
         <PriceContainer tokenPrice={tokenPrice}>
             <DarkBlueGradientButton
                 title={tokenPrice === "0"
-                    ? "Get for free"
+                    ? "Buy NFT for free"
                     : "Buy Now"
                 }
                 isLoading={isBuying}

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 // Наш хук
-export default function useDebounce<T>(value: T, delay: number) {
+export default function useDebounce<T>(value: T, delay: number = 1000) {
     // Состояние и сеттер для отложенного значения
     const [debouncedValue, setDebouncedValue] = useState(value);
 
