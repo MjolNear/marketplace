@@ -7,8 +7,8 @@ const initialState = {
             {name: 'Collections', path: '/collections'},
         ],
         create: [
-            {name: 'NFT', path: '/create-nft'},
-            {name: 'Collection', path: '/create-collection'}
+            {name: 'NFT', path: '/nfts/new'},
+            {name: 'Collection', path: '/collections/new'}
         ],
         profile: [
             {name: 'My NFTs', path: '/profile/nfts'},

@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import {ContractId, TokenId} from "../../../business-logic/models/types";
 import {useFetchTokenData} from "../../../hooks/useFetchTokenData";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";

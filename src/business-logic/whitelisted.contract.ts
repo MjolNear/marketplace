@@ -27,6 +27,12 @@ export const DODIK_INDEX_LIST = new Map<string, number>([
 
 export const verifiedContracts = new Set(Object.values(WhitelistedContract) as string[])
 
+const UNVERIFIED_STATUS: TokenMintedInfo = {
+    mintedSiteName: '',
+    mintedSiteLink: '',
+    verification: ContractVerificationStatus.Unverified
+}
+
 export const getMarketNftVerification = (contractId: ContractId): ContractVerificationStatus => {
     if (contractId.endsWith(".mintbase1.near") || verifiedContracts.has(contractId)) {
         return ContractVerificationStatus.Verified
@@ -35,19 +41,37 @@ export const getMarketNftVerification = (contractId: ContractId): ContractVerifi
     }
 }
 
-export const getMintbaseSiteInfo = (contractId: ContractId, hash?: string): TokenMintedInfo => {
+export const getMintbaseSiteInfo = (contractId: ContractId, reference?: string): TokenMintedInfo => {
     const name = contractId.split(".mintbase1.near")[0]
     return {
         mintedSiteName: name ? name : "Mintbase",
         verification: ContractVerificationStatus.Verified,
-        mintedSiteLink: hash
-            ? `https://www.mintbase.io/thing/${hash}:${contractId}`
+        mintedSiteLink: reference
+            ? `https://www.mintbase.io/thing/${reference}:${contractId}`
             : `https://www.mintbase.io/`
     }
 }
 
-export const getNftMintedSiteInfo = (nft: any, contractId: ContractId): TokenMintedInfo => {
+export const getNftMintedSiteInfo = (
+    nft: {
+        tokenId?: string,
+        token_id?: string,
+        metadata?: {
+            reference?: string
+        }
+    },
+    contractId: ContractId
+): TokenMintedInfo => {
     const tokenId = nft.token_id || nft.tokenId
+
+    if (contractId.endsWith(".mintbase1.near")) {
+        return getMintbaseSiteInfo(contractId, nft?.metadata?.reference)
+    }
+
+    if (!tokenId) {
+        return UNVERIFIED_STATUS
+    }
+
     switch (contractId) {
         case WhitelistedContract.MjolNear:
             return {
@@ -112,13 +136,6 @@ export const getNftMintedSiteInfo = (nft: any, contractId: ContractId): TokenMin
                 verification: ContractVerificationStatus.Verified
             }
         default:
-            if (contractId.endsWith("mintbase1.near")) {
-                return getMintbaseSiteInfo(contractId, nft.metadata.reference)
-            }
-            return {
-                mintedSiteName: '',
-                mintedSiteLink: '',
-                verification: ContractVerificationStatus.Unverified
-            }
+            return UNVERIFIED_STATUS
     }
 }

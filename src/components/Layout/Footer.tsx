@@ -1,8 +1,8 @@
 import React from 'react';
 
-const FooterPage = () => {
+const Footer = () => {
     return (
-        <footer className="text-center bg-mjol-blue-card-property text-gray-700 mt-20">
+        <footer className="text-center bg-mjol-blue-card-property text-gray-700">
             <div className="">
                 <div className="py-5 flex justify-center">
                     <a href="https://twitter.com/MjolNear_"
@@ -96,4 +96,4 @@ const FooterPage = () => {
     );
 };
 
-export default FooterPage;
+export default Footer;

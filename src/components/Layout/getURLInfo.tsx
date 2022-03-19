@@ -1,24 +1,41 @@
-import {useLocation} from "react-router-dom";
 import {useEffect} from "react";
 import {useNavigate} from 'react-router-dom'
 import {getURLInfo, swapToast} from "./Toast";
-import { getCurrentWallet } from "../../business-logic/near/wallet/wallet";
+import {getCurrentWallet} from "../../business-logic/near/wallet/wallet";
 import {JsonRpcProvider} from "near-api-js/lib/providers";
 import {near} from "../../business-logic/near/wallet/web-wallet";
 
-export const checkTransaction = (txHash: string) => {
+export const checkTransaction = (txHash: string): Promise<{
+    transaction?: {
+        actions: Record<string, any>[]
+    }
+}> => {
     return (near.connection.provider as JsonRpcProvider).sendJsonRpc(
         'EXPERIMENTAL_tx_status',
         [txHash, getCurrentWallet().getAccountId()]
     );
 };
 
+export enum TransactionStatus {
+    Unlist,
+    Buy,
+    Sell,
+    Failed,
+}
+
 export const useURLInfo = () => {
-    const { txHash, hash, errorType } = getURLInfo();
+    const {txHash, hash, errorType} = getURLInfo();
+    console.log(txHash, hash, errorType)
     const navigate = useNavigate()
     useEffect(() => {
+        console.log("run toast effect")
         if (txHash) {
-            checkTransaction(txHash)
+            checkTransaction(txHash).then(({transaction}) => {
+                if (transaction?.actions[0]?.['FunctionCall']['method_name'] === "remove_from_market") {
+                    return TransactionStatus.Unlist
+                }
+                return TransactionStatus.Failed
+            })
                 // .then(({transaction}: any) => {
                 //     return (
                 //         transaction?.actions[1]?.['FunctionCall']?.method_name ===
@@ -31,10 +48,13 @@ export const useURLInfo = () => {
                 //     );
                 // })
                 .then((isSwap) => {
-                    !errorType && swapToast(txHash);
-                    // window.location.replace(window.location.origin + hash)
-                    navigate(`/${hash.substring(1)}`)
-                    console.log(txHash)
+                    swapToast(txHash, isSwap);
+                    // // window.location.replace(window.location.origin + hash)
+                    navigate(`${hash}`, {
+                        replace: true,
+                        state: null,
+                    })
+                    // console.log(txHash)
                 });
         }
     }, [txHash]);
