@@ -33,6 +33,7 @@ export const successToast = (txHash: string, transaction: TransactionOperation) 
         <a href={txURL}
            target="_blank"
            className="bg-black"
+           rel="noreferrer"
         >
             <div className="flex flex-col text-left font-archivo text-sm">
                 {text}

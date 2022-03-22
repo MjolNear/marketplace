@@ -5,6 +5,7 @@ import TokenMarketStatus from "./Blocks/TokenMarketStatus";
 import TokenDescription from "./Blocks/TokenDescription";
 import TokenDetails from "./Blocks/TokenDetails";
 import {TokenPreviewProps} from "./Blocks/TokenPreviewProps";
+import SharePopup from "../../Common/Share/SharePopup";
 
 const TokenPreviewMainBlock: React.FC<TokenPreviewProps> = ({
     token,
@@ -13,6 +14,9 @@ const TokenPreviewMainBlock: React.FC<TokenPreviewProps> = ({
 }) => {
     return (
         <div className="flex flex-col flex-grow-[4] flex-shrink-0 basis-0 gap-4">
+            <div className="self-end">
+                <SharePopup link={`mjolnear.com/#/nfts/${token.contractId}/${token.tokenId}`}/>
+            </div>
             <NftPreviewTitle title={token.title}
                              ownerId={token.ownerId}
             />

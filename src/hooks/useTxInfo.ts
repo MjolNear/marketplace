@@ -34,7 +34,8 @@ export enum TRANSACTION_WALLET_TYPE {
 
 export const useTxInfo = () => {
 
-    const {pathname, search} = useLocation()
+    const {pathname} = useLocation()
+    const search = window.location.search
 
     const errorType = new URLSearchParams(search).get('errorType');
     const errorCode = new URLSearchParams(search).get("errorCode")

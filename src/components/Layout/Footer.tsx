@@ -47,7 +47,7 @@ const Footer = () => {
                             />
                         </svg>
                     </a>
-                    <a href="https://twitter.com/MjolNear_"
+                    <a href="https://t.me/mj0lnear"
                        className="mr-9 text-gray-800 hover:text-blue-500"
                        target="_blank"
                        rel="noreferrer"
