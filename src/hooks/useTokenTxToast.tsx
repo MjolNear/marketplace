@@ -31,7 +31,7 @@ export const useTokenTxToast = () => {
                 })
                 .then(result => {
                     if (!isError && result !== TransactionOperation.Unknown) {
-                        successToast(txHash, result)
+                        // successToast(txHash, result)
                         // window.location.search = ''
                         // navigate(pathname)
                     }
@@ -39,7 +39,7 @@ export const useTokenTxToast = () => {
         }
         if (isError) {
             // window.location.search = ''
-            failToast()
+            // failToast()
             // navigate(pathname)
         }
     }, [txHash, isError])
