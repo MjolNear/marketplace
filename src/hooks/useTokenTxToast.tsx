@@ -32,15 +32,15 @@ export const useTokenTxToast = () => {
                 .then(result => {
                     if (!isError && result !== TransactionOperation.Unknown) {
                         successToast(txHash, result)
-                        window.location.search = ''
-                        navigate(pathname)
+                        // window.location.search = ''
+                        // navigate(pathname)
                     }
                 })
         }
         if (isError) {
-            window.location.search = ''
+            // window.location.search = ''
             failToast()
-            navigate(pathname)
+            // navigate(pathname)
         }
     }, [txHash, isError])
 
