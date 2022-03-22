@@ -6,7 +6,7 @@ import {
     SENDER_WALLET_SIGNED_IN_STATE_KEY
 } from "./business-logic/near/wallet/sender-wallet";
 import {WalletContext} from './business-logic/near/wallet/wallet';
-import {BrowserRouter} from "react-router-dom";
+import {HashRouter} from "react-router-dom";
 import {Route, Routes} from "react-router";
 import LandingPage from "./pages/landing/LandingPage";
 import ExploreNftsPage from "./pages/explore/nft/ExploreNftsPage";
@@ -93,7 +93,7 @@ export default function App() {
 
 
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Routes>
                 <Route path="/" element={<PageLayout/>}>
                     <Route index element={<LandingPage/>}/>
@@ -115,6 +115,6 @@ export default function App() {
                     <Route path="*" element={<NotFoundPage/>}/>
                 </Route>
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
