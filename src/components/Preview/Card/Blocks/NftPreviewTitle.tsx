@@ -10,7 +10,7 @@ const TokenTitleAndOwner: React.FC<TNftPreviewTitleProps> = ({
     ownerId
 }) => {
     return (
-        <div className="font-archivo w-full mb-6">
+        <div className="font-archivo w-full mb-2 lg:mb-6">
             <div className="font-black text-2xl">
                 {title}
             </div>
