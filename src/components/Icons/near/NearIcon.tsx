@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {IconProps, PixelIconProps} from "../IconProps";
+import {PixelIconProps} from "../IconProps";
 
 
 const NearIcon = React.memo<PixelIconProps>(({size, fill}) => {

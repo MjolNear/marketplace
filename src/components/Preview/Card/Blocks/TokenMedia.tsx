@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import {Optional} from "../../../../business-logic/models/types";
 import {Img} from "react-image";
 import MjolLoader from "../../../Common/Loaders/MjolLoader";

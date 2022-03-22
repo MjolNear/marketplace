@@ -1,7 +1,6 @@
 import {Wallet} from "./wallet";
 import {MARKET_CONTRACT_ID} from "../enviroment/contract-names";
 import {FinalExecutionOutcome} from "near-api-js/lib/providers";
-import {webWallet} from "./web-wallet";
 
 const windowRef = window as any
 

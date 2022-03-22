@@ -3,7 +3,6 @@ import React from "react";
 import ExploreCollectionList from "../../../components/CollectionList/ExploreCollectionsList";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
-import SearchInput from "../../../components/Filter/search/SearchInput";
 
 const ExploreCollectionsPage = () => {
 

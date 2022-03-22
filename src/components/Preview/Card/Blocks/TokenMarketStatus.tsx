@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import {TContractResponse} from "../../../../business-logic/near/api/types/response/contracts";
 import {ApprovedToken} from "../../../../business-logic/models/nft";
 import {useNftMarketStatus} from "../../../../hooks/useNftMarketStatus";

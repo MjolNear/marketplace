@@ -1,7 +1,6 @@
 import {FunctionCallOptions} from "../enviroment/rpc";
 import {FinalExecutionOutcome} from "near-api-js/lib/providers";
 import {webWallet} from "./web-wallet";
-import {configureSenderWallet} from "./sender-wallet";
 import {createContext} from "react";
 
 export enum WalletType {

@@ -5,7 +5,6 @@ import BN from "bn.js";
 import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
 import {ContractId, StringAmount, TokenId} from "../../../models/types";
 import {Token} from "../../../models/nft";
-import {parseNearAmount} from "near-api-js/lib/utils/format";
 
 
 export function giveApprove(

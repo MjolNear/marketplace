@@ -1,4 +1,4 @@
-import React, {memo, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {contractAPI} from "../../../../business-logic/near/api/contracts";
 import {ContractId, TokenId} from "../../../../business-logic/models/types";
 

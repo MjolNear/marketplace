@@ -1,11 +1,4 @@
 import React from 'react'
-import {
-    configureSenderWallet,
-    removeSenderLoginRes,
-    saveSenderLoginRes,
-    SENDER_WALLET_SIGNED_IN_STATE_KEY
-} from "./business-logic/near/wallet/sender-wallet";
-import {WalletContext} from './business-logic/near/wallet/wallet';
 import {HashRouter} from "react-router-dom";
 import {Route, Routes} from "react-router";
 import LandingPage from "./pages/landing/LandingPage";

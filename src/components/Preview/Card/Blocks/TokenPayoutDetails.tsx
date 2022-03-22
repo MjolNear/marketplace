@@ -1,6 +1,5 @@
-import React, {memo} from 'react';
+import React from 'react';
 import {TAttribute} from "../Attributes/AttributeProps";
-import KeyValueDisclosure from "../../../Common/Disclosure/KeyValueDisclosure";
 import {GrMoney} from "react-icons/gr";
 import {TPayouts} from "../../../../business-logic/models/types";
 import IconDisclosureButton from "../../../Common/Disclosure/IconDisclosureButton";

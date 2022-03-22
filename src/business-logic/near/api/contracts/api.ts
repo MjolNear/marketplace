@@ -1,6 +1,6 @@
 import {AccountId, ContractId, TokenId} from "../../../models/types";
 import {fetchWithTimeout} from "../core";
-import {TContractResponse, ContractStatusResponse, ContractStatusResponseCode} from "../types/response/contracts";
+import {ContractStatusResponseCode, TContractResponse} from "../types/response/contracts";
 
 
 export const contractAPI = {

@@ -1,6 +1,5 @@
 import React, {memo} from 'react';
 import {AiOutlineClose} from "react-icons/ai";
-import DarkBlueMjolText from "../../../../Common/Text/DarkBlueMjolText";
 
 interface TTokenPriceHeaderProps {
     closeModal: React.MouseEventHandler

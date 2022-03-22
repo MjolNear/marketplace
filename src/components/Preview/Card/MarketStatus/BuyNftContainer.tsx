@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useState} from 'react';
+import React, {useState} from 'react';
 import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
 import PriceContainer from "./PriceContainer";
 import {ContractId, Optional, TokenId} from "../../../../business-logic/models/types";
