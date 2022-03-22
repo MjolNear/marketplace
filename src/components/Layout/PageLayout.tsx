@@ -12,9 +12,9 @@ const PageLayout: React.FC = () => {
             <Navbar/>
             <ScrollToTop/>
             <ScrollToTopButton/>
-            <ToastContainer className="mt-16"/>
+            <ToastContainer className="mt-24"/>
 
-            <main className="mt-16 min-h-[calc(100vh-64px)] pb-32">
+            <main className="mt-24 min-h-[calc(100vh-96px)] pb-32">
                 <Outlet/>
             </main>
 
