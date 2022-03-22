@@ -15,8 +15,8 @@ const ShareBox: React.FC<TShareBoxProps> = ({
 }) => {
     return (
         <div className="ring-[1px] ring-blue-100 bg-white shadow-mjol-blue-all-xs rounded-lg
-                        font-archivo font-semibold flex flex-col text-[14px] w-[200px] overflow-hidden">
-            <div className="flex flex-row items-center gap-4 p-3 w-full hover:bg-gray-100 cursor-pointer"
+                        font-archivo font-bold text-gray-500 flex flex-col text-[14px] w-[200px] overflow-hidden">
+            <div className="flex flex-row items-center gap-4 p-3 w-full hover:bg-gray-100 cursor-pointer hover:text-black"
                  onClick={() => navigator.clipboard.writeText(link)
                      .then(close)
                      .then(() => toast(
@@ -41,13 +41,13 @@ const ShareBox: React.FC<TShareBoxProps> = ({
                 Copy link
             </div>
             <TelegramShareButton url={link} onClick={close}>
-                <div className="flex flex-row items-center gap-4 p-3 w-full hover:bg-gray-100">
+                <div className="flex flex-row items-center gap-4 p-3 w-full hover:bg-gray-100 hover:text-black">
                     <BsTelegram size={20} className="fill-blue-500"/>
                     Share on Telegram
                 </div>
             </TelegramShareButton>
             <TwitterShareButton url={link} onClick={close}>
-                <div className="flex flex-row items-center gap-4 p-3 w-full hover:bg-gray-100">
+                <div className="flex flex-row items-center gap-4 p-3 w-full hover:bg-gray-100 hover:text-black">
                     <BsTwitter size={20} className="fill-blue-700"/>
                     Share on Twitter
                 </div>

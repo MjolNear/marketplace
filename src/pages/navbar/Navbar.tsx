@@ -90,7 +90,7 @@ const Navbar = React.memo(() => {
                                 leaveTo="transform translate-x-full"
                             >
                                 <Menu.Items
-                                    className="absolute left-0 top-[69px] min-h-[calc(100vh-69px)] w-full bg-white">
+                                    className="absolute left-0 top-24 min-h-[calc(100vh-96px)] w-full bg-white">
                                     <div className="px-5 flex flex-col gap-3 pt-5">
                                         <MobileTabSection name="Explore" tabs={exploreTabs}/>
                                         <MobileTabSection name="Create" tabs={createTabs}/>
