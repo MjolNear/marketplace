@@ -101,7 +101,8 @@ export default function App() {
                     <Route path="collections">
                         <Route index
                                element={<ExploreCollectionsPage/>}/>
-                        <Route path=":contractId/:collectionId/:filterTab" element={<PreviewCollectionPage/>}/>
+                        <Route path=":contractId/:collectionId/:filterTab"
+                               element={<PreviewCollectionPage/>}/>
                         <Route path="new" element={<CreateCollectionPage/>}/>
                     </Route>
                     <Route path="profile">

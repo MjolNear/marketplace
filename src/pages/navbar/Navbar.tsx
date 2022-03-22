@@ -10,6 +10,7 @@ import {useAppSelector} from "../../hooks/redux";
 import MobileTabSection from "../../components/Common/Navbar/MobileTabSection";
 import BlueGreenGradientButton from "../../components/Common/Buttons/Auth/BlueGreenGradientButton";
 import ReactTooltip from "react-tooltip";
+import BetaHeader from "../../components/Layout/BetaHeader";
 
 const Navbar = React.memo(() => {
     const tabs = useAppSelector(state => state.navbar.tabs)
@@ -21,6 +22,7 @@ const Navbar = React.memo(() => {
     return (
         <Popover
             className="bg-white fixed top-0 z-[100] w-full bg-opacity-80 backdrop-blur-2xl drop-shadow-md lg:drop-shadow-none">
+            <BetaHeader/>
             <div className="hidden lg:block max-w-7xl mx-auto px-5">
                 <div className="flex justify-between items-center py-3 lg:justify-start lg:space-x-10">
                     <div className="flex justify-start lg:w-0 lg:flex-1">
