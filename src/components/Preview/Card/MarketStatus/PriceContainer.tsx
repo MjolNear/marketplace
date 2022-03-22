@@ -16,7 +16,7 @@ const PriceContainer: React.FC<TPriceContainerProps> = ({
 
     const priceInUSD = tokenPrice && usdPrice
         ?
-        `(≈ ${(Number(tokenPrice) * usdPrice).toLocaleString('en-US', {
+        `(≈ ${(Number(tokenPrice.replaceAll(',', '')) * usdPrice).toLocaleString('en-US', {
             maximumFractionDigits: 6
         })}$)`
         :
