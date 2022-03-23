@@ -75,6 +75,7 @@ export const getMintText = (status: string) => {
 function convertStandardNFT(contractId: string, nft: any, tokenPrices: ResponseTokenPrices): Promise<ApprovedToken> {
     const metadata = nft.metadata;
     const {approved_account_ids = {}} = nft
+    console.log(approved_account_ids)
     const media = getRealUrl(metadata.media, metadata.media_hash, contractId);
     const mintSiteInfo = getNftMintedSiteInfo(nft, contractId)
 
@@ -90,7 +91,7 @@ function convertStandardNFT(contractId: string, nft: any, tokenPrices: ResponseT
         ipfsReference: getRealUrl(metadata.reference, metadata.reference_hash, contractId),
         price: getPrice(uid, tokenPrices),
         extra: metadata.extra,
-        isApproved: !!approved_account_ids[MARKET_CONTRACT_ID],
+        isApproved: MARKET_CONTRACT_ID in approved_account_ids,
         ...mintSiteInfo
     })
 }
@@ -186,7 +187,7 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: Respons
         ipfsReference: getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId),
         extra: nft.metadata.extra,
         price: getPrice(uid, tokenPrices),
-        isApproved: !!approvals[MARKET_CONTRACT_ID],
+        isApproved: MARKET_CONTRACT_ID in approvals,
         ...mintSiteInfo
     })
 }
