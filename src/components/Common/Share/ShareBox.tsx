@@ -2,7 +2,7 @@ import React from 'react';
 import {TelegramShareButton, TwitterShareButton} from "react-share";
 import {BsTelegram, BsTwitter} from "react-icons/bs";
 import imgLogo from "../../../resources/hammer.png";
-import {toast} from "react-toastify";
+import {copiedToast} from "../../Layout/Toast";
 
 interface TShareBoxProps {
     link: string
@@ -19,19 +19,7 @@ const ShareBox: React.FC<TShareBoxProps> = ({
             <div className="flex flex-row items-center gap-4 p-3 w-full hover:bg-gray-100 cursor-pointer hover:text-black"
                  onClick={() => navigator.clipboard.writeText(link)
                      .then(close)
-                     .then(() => toast(
-                         <div className="font-archivo text-xs-3 font-bold">Link copied</div>,
-                         {
-                             style: {
-                                 height: "20px",
-                                 paddingLeft: "10px",
-                                 paddingRight: "10px",
-                                 borderRadius: "20px"
-                             },
-                             position: "bottom-right",
-                             autoClose: 2000,
-                             hideProgressBar: true
-                         }))
+                     .then(() => copiedToast("Link copied successfully"))
                  }
             >
                 <img className="inline-block h-auto w-[20px]"

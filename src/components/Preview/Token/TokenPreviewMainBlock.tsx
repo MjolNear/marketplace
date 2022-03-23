@@ -6,6 +6,7 @@ import TokenDescription from "./Blocks/TokenDescription";
 import TokenDetails from "./Blocks/TokenDetails";
 import {TokenPreviewProps} from "./Blocks/TokenPreviewProps";
 import SharePopup from "../../Common/Share/SharePopup";
+import ResolveVerificationIcon from "../../Common/Verification/Icons/ResolveVerificationIcon";
 
 const TokenPreviewMainBlock: React.FC<TokenPreviewProps> = ({
     token,
@@ -20,8 +21,9 @@ const TokenPreviewMainBlock: React.FC<TokenPreviewProps> = ({
             <NftPreviewTitle title={token.title}
                              ownerId={token.ownerId}
                              contractId={token.contractId}
+                             mintSiteName={token.mintedSiteName}
+                             verification={contract?.verification}
             />
-            <TokenDescription description={token.description}/>
             <TokenMarketStatus token={token}
                                contract={contract}
                                payouts={payouts}

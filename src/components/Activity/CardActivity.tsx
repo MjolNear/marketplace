@@ -24,7 +24,7 @@ const CardActivity: React.FC<TCardActivityProps> = ({
     const columns = ["Event", "Price", "From", "To", "Date", "Tx Hash"]
 
     if (activities.length === 0 || loading) {
-        return <div className="w-full py-[16px] text-center text-md font-archivo font-semibold bg-mjol-blue-card-property
+        return <div className="w-full py-[16px] text-md text-center font-archivo font-semibold bg-mjol-blue-card-property
                                border-l-[2px] border-r-[2px] border-b-[2px]
                                border-mjol-blue-card-property rounded-b-lg"
         >
