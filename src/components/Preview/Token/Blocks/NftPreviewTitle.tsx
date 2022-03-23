@@ -47,13 +47,14 @@ const TokenTitleAndOwner: React.FC<TNftPreviewTitleProps> = ({
                     }/>
                 </div>
                 <div className="flex flex-row items-center gap-2 text-[15px]">
-                    <div className="inline-flex gap-1">
-                        <label className="text-gray-600">Minted on</label>
-                        <label className="text-gray-700 font-semibold">{mintSiteName || contractId}</label>
+                    <div className="inline-flex gap-1 text-gray-600">
+                        Minted on
+                        <label className="font-semibold">{mintSiteName || contractId}</label>
                     </div>
                     <p data-tip={getContractVerificationTooltipContent(verification || ContractVerificationStatus.Unverified)}
                        data-html={true}
                        data-for="contractVerificationTooltip"
+                       className="cursor-pointer"
                     >
                         <ResolveVerificationIcon verification={verification} iconProps={{size: 16}}/>
                     </p>
