@@ -1,7 +1,10 @@
 import React from 'react';
+import {render} from 'react-dom'
 import ReactTooltip from 'react-tooltip';
 import {shortenString} from "../../../../utils/string";
 import {TAttribute} from "./AttributeProps";
+import {copiedToast} from "../../../Layout/Toast";
+import Tooltip from "../../../Layout/Tooltip";
 
 const PreviewAttribute = React.memo<TAttribute>(({
     name,
@@ -18,9 +21,11 @@ const PreviewAttribute = React.memo<TAttribute>(({
             {tooltip
                 ?
                 <p className="cursor-pointer"
-                   data-tip="copy"
+                   data-tip="Copy"
+                   data-for={`preview-token-copy:${name}:${value}`}
                    onClick={() => {
-                       navigator.clipboard.writeText(value).then()
+                       navigator.clipboard.writeText(value)
+                           .then(() => copiedToast("Copied successfully"))
                    }}
                 >
                     {shrinkValue}
@@ -28,10 +33,7 @@ const PreviewAttribute = React.memo<TAttribute>(({
                 :
                 <>{shrinkValue}</>
             }
-            {tooltip && <ReactTooltip type="dark"
-                                      place="bottom"
-                                      delayShow={50}/>
-            }
+            {tooltip && <Tooltip id={`preview-token-copy:${name}:${value}`}/>}
         </div>
     );
 });

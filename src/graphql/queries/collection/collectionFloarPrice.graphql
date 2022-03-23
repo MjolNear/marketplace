@@ -1,0 +1,14 @@
+query collectionFloarPrice($contractId: String!) {
+    marketTokens(
+        where: {
+            contractId: $contractId
+        },
+        orderBy: price,
+        orderDirection: asc,
+        first: 1
+    ) {
+        title,
+        price
+    }
+}
+

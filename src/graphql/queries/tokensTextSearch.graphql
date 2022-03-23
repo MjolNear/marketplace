@@ -1,5 +1,9 @@
-query marketTokensSearch($text: String!, $first: Int!, $skip: Int!) {
-    marketSearch(text: $text, first: $first, skip: $skip) {
+query marketTokensSearch(
+    $text: String!,
+    $limit: Int!,
+    $offset: Int!
+) {
+    marketSearch(text: $text, first: $limit, skip: $offset) {
         tokenId
         contractId
         ownerId

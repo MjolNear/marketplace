@@ -3,9 +3,9 @@ import {ContractId, TokenId} from "../../../business-logic/models/types";
 import {useFetchTokenData} from "../../../hooks/useFetchTokenData";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
 import NotFoundPage from "../../not-found/NotFoundPage";
-import TokenPreviewContainer from "../../../components/Preview/Card/TokenPreviewContainer";
-import MobileTokenPreviewContainer from "../../../components/Preview/Card/MobileTokenPreviewContainer";
-import DesktopTokenPreviewContainer from "../../../components/Preview/Card/DesktopTokenPreviewContainer";
+import TokenPreviewContainer from "../../../components/Preview/Token/TokenPreviewContainer";
+import MobileTokenPreviewContainer from "../../../components/Preview/Token/MobileTokenPreviewContainer";
+import DesktopTokenPreviewContainer from "../../../components/Preview/Token/DesktopTokenPreviewContainer";
 import {useIsMobile} from "../../../hooks/useIsMobile";
 import {useTokenTxToast} from "../../../hooks/useTokenTxToast";
 

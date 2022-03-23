@@ -78,3 +78,21 @@ export const failToast = () => {
         }
     );
 };
+
+export const copiedToast = (text: string = "Link copied") => {
+    return toast(
+        <div className="font-archivo text-xs-3 font-bold">{text}</div>,
+        {
+            style: {
+                paddingLeft: "10px",
+                paddingRight: "10px",
+                borderRadius: "10px"
+            },
+            progressStyle: {
+                background: "#4391ff"
+            },
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false
+        })
+}

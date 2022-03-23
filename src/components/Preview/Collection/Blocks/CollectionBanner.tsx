@@ -1,5 +1,5 @@
 import React from 'react';
-import {Optional} from "../../../business-logic/models/types";
+import {Optional} from "../../../../business-logic/models/types";
 
 interface PropTypes {
     bannerLink?: Optional<string>

@@ -6,7 +6,7 @@ interface TCollectionBlockProps {
 
 const CollectionBlock: React.FC<TCollectionBlockProps> = ({name}) => {
     return (
-        <div className="text-xs font-bold font-archivo truncate text-gray-800 opacity-75 hover:opacity-90">
+        <div className="text-xs font-bold font-archivo truncate text-gray-800 opacity-75 hover:opacity-90 hover:underline">
             {name}
         </div>
     );

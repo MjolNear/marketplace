@@ -15,7 +15,7 @@ const LandingPage = () => {
         nextFetchPolicy: "network-only",
         variables: {
             offset: 0,
-            limit: 12,
+            limit: 4,
             orderBy: initialSort.by,
             orderDirection: initialSort.direction,
             priceFrom: MIN_ITEM_YOCTO_PRICE,
@@ -36,17 +36,14 @@ const LandingPage = () => {
                     </div>
                 </div>
             </div>
-            <div className="md:col-span-2 col-span-4 md:py-40 py-20 place-self-start">
-                <DarkBlueTitle title="Latest listings"/>
-                <div className="py-5">
-                    <CardGrid tokens={nfts}
-                              fetching={loading}
-                    />
+            <div className="md:col-span-2 col-span-4 mt-12 place-self-start">
+                <div className="font-archivo font-bold text-2xl text-blue-500 text-center mb-5">
+                    Latest listing
                 </div>
+                <CardGrid tokens={nfts}
+                          fetching={loading}
+                />
             </div>
-            {/*<div className="col-span-2 py-40 place-self-start">*/}
-            {/*    <DarkBlueTitle title="Top collections"/>*/}
-            {/*</div>*/}
         </div>
     )
 };

@@ -11,6 +11,7 @@ import MobileTabSection from "../../components/Common/Navbar/MobileTabSection";
 import BlueGreenGradientButton from "../../components/Common/Buttons/Auth/BlueGreenGradientButton";
 import ReactTooltip from "react-tooltip";
 import BetaHeader from "../../components/Layout/BetaHeader";
+import Tooltip from "../../components/Layout/Tooltip";
 
 const Navbar = React.memo(() => {
     const tabs = useAppSelector(state => state.navbar.tabs)
@@ -38,7 +39,9 @@ const Navbar = React.memo(() => {
                                 {name === "Launchpad" ?
                                     <p className={"text-transparent bg-clip-text font-archivo bg-gradient-to-r" +
                                         " from-mjol-blue-base to-blue-600 group-hover:text-blue-500 text-md font-archivo font-bold"}
-                                       data-tip={"Coming soon!"}>
+                                       data-tip="Coming soon!"
+                                       data-for="launchpadTooltip"
+                                    >
                                         {name}
                                     </p> :
                                     <a className={"text-slate-500 group-hover:text-gray-700 text-md font-archivo font-bold"}
@@ -52,7 +55,7 @@ const Navbar = React.memo(() => {
                                     ? <IoIosRocket size={18} className="fill-blue-600 group-hover:fill-blue-500"/>
                                     : <SiGitbook size={18} color="#64748b" className="group-hover:fill-gray-700"/>
                                 }
-                                <ReactTooltip className='text-sm' type='dark' place='bottom' delayShow={0}/>
+                                <Tooltip id="launchpadTooltip" place="bottom"/>
                             </div>
                         ))}
                     </div>

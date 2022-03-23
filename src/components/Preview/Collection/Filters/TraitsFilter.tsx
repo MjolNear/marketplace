@@ -10,7 +10,7 @@ import {
 import MobileFilterButton from "./Blocks/MobileFilterButton";
 import OptionsPanel from "./Blocks/OptionsPanel";
 import SectionDisclosure from "./Blocks/SectionDisclosure";
-import {CollectionTraits} from "../../../business-logic/models/collection";
+import {CollectionTraits} from "../../../../business-logic/models/collection";
 
 
 interface TTraitsFilterProps {

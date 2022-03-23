@@ -8,7 +8,7 @@ query marketStatistics(
         orderBy: timestamp
     ) {
         volume,
-        transactions
+        sales
         timestamp,
     }
 }

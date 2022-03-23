@@ -1,7 +1,7 @@
 import React from 'react';
 import {Disclosure} from "@headlessui/react";
 import {ChevronDownIcon, ChevronUpIcon} from "@heroicons/react/solid";
-import IconText from "../../../Icons/IconText";
+import IconText from "../../../../Icons/IconText";
 import {BsList} from "react-icons/bs";
 
 interface PropTypes {

@@ -75,7 +75,6 @@ export const getMintText = (status: string) => {
 function convertStandardNFT(contractId: string, nft: any, tokenPrices: ResponseTokenPrices): Promise<ApprovedToken> {
     const metadata = nft.metadata;
     const {approved_account_ids = {}} = nft
-    console.log(approved_account_ids)
     const media = getRealUrl(metadata.media, metadata.media_hash, contractId);
     const mintSiteInfo = getNftMintedSiteInfo(nft, contractId)
 

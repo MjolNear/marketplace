@@ -7,12 +7,12 @@ import NotSupportedIcon from "./NotSupportedIcon";
 
 interface PropTypes {
     verification?: ContractVerificationStatus,
-    iconProps?: IconProps
+    iconProps?: IconProps,
 }
 
 const ResolveVerificationIcon: React.FC<PropTypes> = ({
     verification,
-    iconProps
+    iconProps,
 }) => {
     switch (verification) {
         case ContractVerificationStatus.Verified:

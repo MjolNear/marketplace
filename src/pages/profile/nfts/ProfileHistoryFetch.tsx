@@ -7,7 +7,9 @@ interface PropTypes extends TAuthProps {
 
 const ProfileHistoryFetch: React.FC<PropTypes> = ({accountId}) => {
 
-    return <div className="text-center text-xl font-archivo font-semibold text-blue-400">History will be added soon!</div>
+    return <div className="text-center text-xl font-archivo font-semibold text-blue-500">
+        History will be added soon!
+    </div>
 
     // const {query, variables} = fetchUsersStatsQuery(accountId)
     //

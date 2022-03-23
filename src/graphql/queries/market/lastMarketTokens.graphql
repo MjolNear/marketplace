@@ -1,12 +1,12 @@
 query lastMarketTokens(
-    $first: Int!,
-    $skip: Int!,
+    $limit: Int!,
+    $offset: Int!,
     $orderBy: MarketToken_orderBy!,
     $orderDirection: OrderDirection!
 ) {
     marketTokens(
-        first: $first,
-        skip: $skip,
+        first: $limit,
+        skip: $offset,
         orderBy: $orderBy,
         orderDirection: $orderDirection
     ) {
