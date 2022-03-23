@@ -1,6 +1,6 @@
 import React from 'react';
 import {ContractId, TokenId} from "../../../business-logic/models/types";
-import {useFetchTokenData} from "../../../hooks/useFetchTokenData";
+import {useFetchTokenData} from "../../../hooks/token/useFetchTokenData";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
 import NotFoundPage from "../../not-found/NotFoundPage";
 import TokenPreviewContainer from "../../../components/Preview/Token/TokenPreviewContainer";

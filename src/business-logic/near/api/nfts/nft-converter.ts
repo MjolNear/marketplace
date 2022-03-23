@@ -196,7 +196,7 @@ export async function getConvertedNFT(
     jsonNft: any,
     tokenPrices: ResponseTokenPrices = {}
 ): Promise<ApprovedToken> {
-    if (contractId.endsWith('mintbase1.near')) {
+    if (contractId.endsWith('.mintbase1.near')) {
         return getMintbaseNFT(contractId, jsonNft, tokenPrices)
     }
     return convertStandardNFT(contractId, jsonNft, tokenPrices)
