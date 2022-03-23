@@ -1,22 +1,21 @@
-import {CollectionId, ContractId, Optional} from "../business-logic/models/types";
-import {CollectionInfo} from "../business-logic/models/collection";
+import {CollectionId, ContractId, Optional} from "../../business-logic/models/types";
+import {CollectionInfo} from "../../business-logic/models/collection";
 import {useEffect, useState} from "react";
-import {collectionAPI} from "../business-logic/near/api/collections";
+import {collectionAPI} from "../../business-logic/near/api/collections";
 
-export interface FetchCollectionHookResult {
+export interface FetchCollectionDataHookResult {
     fetching: boolean
     collection?: Optional<CollectionInfo>
     supply?: number
 }
 
 export const useFetchCollectionData = (contractId: ContractId, collectionId: CollectionId) => {
-    const [result, setResult] = useState<FetchCollectionHookResult>({
-        fetching: true
+    const [result, setResult] = useState<FetchCollectionDataHookResult>({
+        fetching: true,
     })
-
     useEffect(() => {
         Promise.all([
-                collectionAPI.fetchCollectionInfo(collectionId),
+                collectionAPI.fetchCollection(collectionId),
                 collectionAPI.fetchTotalSupply(collectionId, contractId)
             ]
         ).then(response => {
@@ -25,7 +24,7 @@ export const useFetchCollectionData = (contractId: ContractId, collectionId: Col
         }).catch(() => {
             setResult({fetching: false})
         })
-    }, [collectionId])
+    }, [contractId, collectionId])
 
     return result
 }

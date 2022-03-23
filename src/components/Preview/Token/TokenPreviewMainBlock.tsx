@@ -19,6 +19,7 @@ const TokenPreviewMainBlock: React.FC<TokenPreviewProps> = ({
             </div>
             <NftPreviewTitle title={token.title}
                              ownerId={token.ownerId}
+                             contractId={token.contractId}
             />
             <TokenDescription description={token.description}/>
             <TokenMarketStatus token={token}

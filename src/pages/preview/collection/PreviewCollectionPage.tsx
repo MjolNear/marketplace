@@ -1,12 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useParams} from "react-router";
-import {fetchCollection} from "../../../state/preview/collection/thunk";
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import NotFoundPage from "../../not-found/NotFoundPage";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
-import Stats from "../../../components/Preview/Collection/Stats/Stats";
 import CollectionNftList from "./CollectionNftList";
-import {previewCollectionSlice} from "../../../state/preview/collection/slice";
 import CollectionLogo from "../../../components/Preview/Collection/Blocks/CollectionLogo";
 import CollectionTitleDescription from "../../../components/Preview/Collection/Blocks/CollectionTitleDescription";
 import CollectionBanner from "../../../components/Preview/Collection/Blocks/CollectionBanner";
@@ -16,7 +12,8 @@ import TraitsFilter from "../../../components/Preview/Collection/Filters/TraitsF
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
 import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
 import CollectionMarketNftList from "./CollectionMarketNftList";
-import {useLocation} from "react-router-dom";
+import {useFetchCollection} from "../../../hooks/collection/useFetchCollection";
+import CollectionStats from "../../../components/Preview/Collection/Stats/CollectionStats";
 
 type CollectionRouteParams = {
     contractId: string,
@@ -28,21 +25,10 @@ const PreviewCollectionPage: React.FC = () => {
 
     const [marketToggleState, setMarketToggleState] = useState<"init" | "only-market" | "all">("init");
     const {contractId, collectionId, filterTab} = useParams<CollectionRouteParams>()
-    const filter = useLocation().search
-    console.log(filter)
-    const dispatch = useAppDispatch()
-    const {collection, fetching} = useAppSelector(state => state.preview.collection)
-    const total = useAppSelector(state => state.preview.collection.nftsState.total)
-
-    useEffect(() => {
-        if (!collectionId || !contractId) {
-            return
-        }
-        dispatch(fetchCollection(collectionId, contractId))
-        return () => {
-            dispatch(previewCollectionSlice.actions.reset())
-        }
-    }, [collectionId, contractId, dispatch])
+    const {fetching, collection, stats} = useFetchCollection(
+        contractId || "",
+        collectionId || ""
+    )
 
     if (!collectionId || !contractId || !filterTab) {
         return <NotFoundPage/>
@@ -69,7 +55,7 @@ const PreviewCollectionPage: React.FC = () => {
                                                 description={collection.desc}
                     />
                     <div className="flex flex-col items-center gap-6 mt-[20px] justify-start">
-                        <Stats floar={"--"} items={total.toString()} owners={"--"} volume={"--"}/>
+                        <CollectionStats {...stats}/>
                         <CollectionMedia/>
                         <div className="mt-[30px]">
                             <CollectionItemActivityTab prefixLink={`/collections/${contractId}/${collectionId}`}
@@ -94,26 +80,31 @@ const PreviewCollectionPage: React.FC = () => {
                                         defaultChecked={marketToggleState === "init" || marketToggleState === "only-market"}/>
                         </div>
                     }
-                    {collection.metadata?.traits
-                        ?
-                        <>
-                            <TraitsFilter traits={collection.metadata?.traits}>
-                                <div className="w-full">
-                                    {marketToggleState === "all" || collection.collection_contract === "mjol.near"
-                                        ? <CollectionNftList/>
-                                        : <CollectionMarketNftList collectionContract={collection.collection_contract}/>
-                                    }
-                                </div>
-                            </TraitsFilter>
-                        </>
-                        :
-                        <>
-                            {marketToggleState === "all" || collection.collection_contract === "mjol.near"
-                                ? <CollectionNftList/>
-                                : <CollectionMarketNftList collectionContract={collection.collection_contract}/>
-                            }
-                        </>
-                    }
+                    {/*{collection.metadata?.traits*/}
+                    {/*    ?*/}
+                    {/*    <>*/}
+                    {/*        <TraitsFilter traits={collection.metadata?.traits}>*/}
+                    {/*            <div className="w-full">*/}
+                    {/*                {marketToggleState === "all" || collection.collection_contract === "mjol.near"*/}
+                    {/*                    ? <CollectionNftList/>*/}
+                    {/*                    : <CollectionMarketNftList collectionContract={collection.collection_contract}/>*/}
+                    {/*                }*/}
+                    {/*            </div>*/}
+                    {/*        </TraitsFilter>*/}
+                    {/*    </>*/}
+                    {/*    :*/}
+                    <>
+                        {marketToggleState === "all" || collection.collection_contract === "mjol.near"
+                            ?
+                            <CollectionNftList contractId={collection.collection_id}
+                                               collectionId={collection.collection_contract}
+                                               total={stats.supply || 0}
+                            />
+                            :
+                            <CollectionMarketNftList collectionContract={collection.collection_contract}/>
+                        }
+                    </>
+                    {/*}*/}
                 </>
                 :
                 <div className="text-center text-xl font-archivo font-semibold text-blue-500">

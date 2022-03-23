@@ -58,7 +58,7 @@ export const tokenSortOptions: Record<TokenSortName, TokenSortOption> = {
 
 
 const ExploreNftsPage = () => {
-    const limit = 12
+    const limit = 24
     const [hasMore, setHasMore] = useState(true)
 
     const initialSort = tokenSortOptions[TokenSortName.RecentlyAdded]
@@ -76,7 +76,7 @@ const ExploreNftsPage = () => {
         nextFetchPolicy: "network-only",
         variables: {
             offset: 0,
-            limit: limit,
+            limit,
             orderBy: filters.sort.by,
             orderDirection: filters.sort.direction,
             priceFrom: filters.priceRange.from || MIN_ITEM_YOCTO_PRICE,
@@ -88,8 +88,8 @@ const ExploreNftsPage = () => {
         fetchPolicy: "network-only",
         nextFetchPolicy: "network-only",
         variables: {
-            skip: 0,
-            first: limit,
+            offset: 0,
+            limit,
             text: debounceQuery
         }
     })

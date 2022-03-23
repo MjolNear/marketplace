@@ -19,6 +19,7 @@ const MobileTokenPreviewContainer: React.FC<TokenPreviewProps> = ({
         <div className="flex flex-col w-full max-w-[600px] px-4 gap-4">
             <NftPreviewTitle title={token.title}
                              ownerId={token.ownerId}
+                             contractId={token.contractId}
             />
             <TokenMedia link={token.media}/>
             <TokenMarketStatus token={token}
