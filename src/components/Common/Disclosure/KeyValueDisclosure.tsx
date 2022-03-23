@@ -1,6 +1,6 @@
 import React from 'react';
-import {TAttribute} from "../../Preview/Card/Attributes/AttributeProps";
-import KeyValueAttributeList from "../../Preview/Card/Attributes/KeyValueAttributeList";
+import {TAttribute} from "../../Preview/Token/Attributes/AttributeProps";
+import KeyValueAttributeList from "../../Preview/Token/Attributes/KeyValueAttributeList";
 import IconDisclosureButton, {TIconDisclosureProps} from "./IconDisclosureButton";
 
 

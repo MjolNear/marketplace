@@ -6,7 +6,7 @@ interface TTitleBlockProps {
 
 const TitleBlock: React.FC<TTitleBlockProps> = ({title}) => {
     return (
-        <div className="font-black font-archivo text-black truncate text-md">
+        <div className="font-extrabold font-archivo text-black truncate text-md">
             {title}
         </div>
     );

@@ -1,4 +1,4 @@
-import CardImage from "../../Card/Blocks/CardImage";
+import CardImage from "../../../Card/Blocks/CardImage";
 import React from "react";
 
 interface TCollectionLogoProps {
