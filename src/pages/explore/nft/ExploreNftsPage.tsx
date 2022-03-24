@@ -118,10 +118,10 @@ const ExploreNftsPage = () => {
         if (!fetchMoreResult) {
             return previousQueryResult;
         }
-        const previousTokens = previousQueryResult.marketSearch;
-        const fetchMoreTokens = fetchMoreResult.marketSearch;
+        const previousTokens = previousQueryResult.searchedMarketTokens;
+        const fetchMoreTokens = fetchMoreResult.searchedMarketTokens;
         setHasMore(fetchMoreTokens.length === limit)
-        fetchMoreResult.marketSearch = [...previousTokens, ...fetchMoreTokens];
+        fetchMoreResult.searchedMarketTokens = [...previousTokens, ...fetchMoreTokens];
         return {...fetchMoreResult}
     }
 
@@ -155,7 +155,7 @@ const ExploreNftsPage = () => {
     console.log(debounceQuery)
 
     const tokens = debounceQuery
-        ? searchData?.marketSearch.map(convertToMarketToken) || []
+        ? searchData?.searchedMarketTokens.map(convertToMarketToken) || []
         : data?.marketTokens.map(convertToMarketToken) || []
 
     return (

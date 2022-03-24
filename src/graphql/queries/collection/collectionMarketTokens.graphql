@@ -7,7 +7,7 @@ query collectionMarketTokens(
     $priceFrom: BigInt!,
     $priceTo: BigInt!
 ) {
-    marketTokens(
+    collectionMarketTokens: marketTokens(
         first: $limit,
         skip: $offset,
         orderBy: $orderBy,

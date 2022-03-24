@@ -63,7 +63,7 @@ const CollectionMarketNftList: React.FC<Props> = ({collectionContract}) => {
         }
     })
 
-    const tokens = data?.marketTokens.map(convertToMarketToken) || []
+    const tokens = data?.collectionMarketTokens.map(convertToMarketToken) || []
 
     useEffect(() => {
         setHasMore(true)

@@ -1,7 +1,7 @@
 query tokenActivity(
     $tokenUID: String!
 ) {
-    activities(
+    tokenActivity: activities(
         where: {
             token: $tokenUID
         },
