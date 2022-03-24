@@ -4,11 +4,13 @@ import React, {Fragment} from 'react';
 interface PopupFilterProps {
     name: string,
     icon: React.ReactNode,
+    disabled?: boolean
 }
 
 const PopupFilter: React.FC<PopupFilterProps> = ({
     name,
     icon,
+    disabled,
     children,
 }) => {
     return (
@@ -16,7 +18,9 @@ const PopupFilter: React.FC<PopupFilterProps> = ({
             <Popover.Button className="inline-flex items-center gap-2 rounded-2xl px-5 py-2 font-archivo
                                        text-xs-2 ring-1 ring-blue-200 font-semibold
                                        focus:outline-none
+                                       disabled:opacity-40
                                        focus-visible:ring-0"
+                            disabled={disabled}
             >
                 {icon}
                 {name}

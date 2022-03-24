@@ -1,27 +1,32 @@
-import React from 'react';
+import React, {memo} from 'react';
 import PopupFilter from "../PopupFilter";
 import {BiSortAlt2} from 'react-icons/bi'
 import SortOption from "./SortOption";
 import {Popover} from '@headlessui/react';
-import {TokenSortName, TokenSortOption, tokenSortOptions} from "../../../../pages/explore/nft/ExploreNftsPage";
+import {TokenSortName, TokenSortOption, tokenSortOptions} from "../../../../graphql/utils";
 
 
 interface SortFilterProps {
-    setSort: (option: TokenSortOption) => any,
-    picked: TokenSortName
+    setSort: (sort: TokenSortOption) => void,
+    picked: TokenSortName,
+    disabled?: boolean
 }
 
-const SortFilter: React.FC<SortFilterProps> = ({setSort, picked}) => {
+const SortFilter: React.FC<SortFilterProps> = ({
+    setSort,
+    picked,
+    disabled,
+}) => {
 
-    const changeSort = (name: TokenSortName, close: any) => {
-        close()
-        setSort(tokenSortOptions[name])
-    }
-
-    const options = [TokenSortName.RecentlyAdded, TokenSortName.PriceLowToHigh, TokenSortName.PriceHighToLow]
+    const options = [
+        TokenSortName.RecentlyAdded,
+        TokenSortName.PriceLowToHigh,
+        TokenSortName.PriceHighToLow
+    ]
 
     return (
-        <PopupFilter name={`Sort by`}
+        <PopupFilter name="Sort by"
+                     disabled={disabled}
                      icon={<BiSortAlt2 size={18}/>}
         >
             <Popover.Panel>
@@ -35,7 +40,10 @@ const SortFilter: React.FC<SortFilterProps> = ({setSort, picked}) => {
                                 <SortOption key={name}
                                             text={name}
                                             isPicked={picked === name}
-                                            onClick={() => changeSort(name, close)}
+                                            onClick={() => {
+                                                close()
+                                                setSort(tokenSortOptions[name])
+                                            }}
                                 />
                             ))}
                         </div>
@@ -46,4 +54,4 @@ const SortFilter: React.FC<SortFilterProps> = ({setSort, picked}) => {
     );
 };
 
-export default SortFilter;
+export default memo(SortFilter);

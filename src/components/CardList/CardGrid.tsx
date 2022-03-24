@@ -1,5 +1,5 @@
 import Card from "../Card/Card";
-import React from "react";
+import React, {memo} from "react";
 import {GridToken} from "../../business-logic/models/nft";
 import CardsGridContainer from "../Common/Grid/CardsGridContainer";
 import {buildUID} from "../../business-logic/near/api/utils";
@@ -50,4 +50,4 @@ const CardGrid: React.FC<TGridProps> = ({
     )
 };
 
-export default CardGrid;
+export default memo(CardGrid);

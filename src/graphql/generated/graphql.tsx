@@ -1411,13 +1411,6 @@ export enum _SubgraphErrorPolicy_ {
   Deny = 'deny'
 }
 
-export type CollectionFloarPriceQueryVariables = Exact<{
-  contractId: Scalars['String'];
-}>;
-
-
-export type CollectionFloarPriceQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', title: string, price: any }> };
-
 export type CollectionMarketTokensQueryVariables = Exact<{
   contractId: Scalars['String'];
   limit: Scalars['Int'];
@@ -1429,7 +1422,7 @@ export type CollectionMarketTokensQueryVariables = Exact<{
 }>;
 
 
-export type CollectionMarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, ownerId: string, title: string, description?: string | null, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+export type CollectionMarketTokensQuery = { __typename?: 'Query', collectionMarketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, ownerId: string, title: string, description?: string | null, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
 
 export type CollectionTotalStatsQueryVariables = Exact<{
   contractId: Scalars['ID'];
@@ -1468,13 +1461,6 @@ export type MarketTokensQueryVariables = Exact<{
 
 export type MarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, ownerId: string, title: string, description?: string | null, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
 
-export type TokenActivityQueryVariables = Exact<{
-  tokenUID: Scalars['String'];
-}>;
-
-
-export type TokenActivityQuery = { __typename?: 'Query', activities: Array<{ __typename?: 'Activity', ownerId: string, buyerId?: string | null, price?: any | null, txHash: string, eventType: HistoryEventType, timestamp: any }> };
-
 export type MarketTokensSearchQueryVariables = Exact<{
   text: Scalars['String'];
   limit: Scalars['Int'];
@@ -1482,53 +1468,19 @@ export type MarketTokensSearchQueryVariables = Exact<{
 }>;
 
 
-export type MarketTokensSearchQuery = { __typename?: 'Query', marketSearch: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, ownerId: string, title: string, description?: string | null, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+export type MarketTokensSearchQuery = { __typename?: 'Query', searchedMarketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, ownerId: string, title: string, description?: string | null, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+
+export type TokenActivityQueryVariables = Exact<{
+  tokenUID: Scalars['String'];
+}>;
 
 
-export const CollectionFloarPriceDocument = gql`
-    query collectionFloarPrice($contractId: String!) {
-  marketTokens(
-    where: {contractId: $contractId}
-    orderBy: price
-    orderDirection: asc
-    first: 1
-  ) {
-    title
-    price
-  }
-}
-    `;
+export type TokenActivityQuery = { __typename?: 'Query', tokenActivity: Array<{ __typename?: 'Activity', ownerId: string, buyerId?: string | null, price?: any | null, txHash: string, eventType: HistoryEventType, timestamp: any }> };
 
-/**
- * __useCollectionFloarPriceQuery__
- *
- * To run a query within a React component, call `useCollectionFloarPriceQuery` and pass it any options that fit your needs.
- * When your component renders, `useCollectionFloarPriceQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useCollectionFloarPriceQuery({
- *   variables: {
- *      contractId: // value for 'contractId'
- *   },
- * });
- */
-export function useCollectionFloarPriceQuery(baseOptions: Apollo.QueryHookOptions<CollectionFloarPriceQuery, CollectionFloarPriceQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CollectionFloarPriceQuery, CollectionFloarPriceQueryVariables>(CollectionFloarPriceDocument, options);
-      }
-export function useCollectionFloarPriceLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CollectionFloarPriceQuery, CollectionFloarPriceQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CollectionFloarPriceQuery, CollectionFloarPriceQueryVariables>(CollectionFloarPriceDocument, options);
-        }
-export type CollectionFloarPriceQueryHookResult = ReturnType<typeof useCollectionFloarPriceQuery>;
-export type CollectionFloarPriceLazyQueryHookResult = ReturnType<typeof useCollectionFloarPriceLazyQuery>;
-export type CollectionFloarPriceQueryResult = Apollo.QueryResult<CollectionFloarPriceQuery, CollectionFloarPriceQueryVariables>;
+
 export const CollectionMarketTokensDocument = gql`
     query collectionMarketTokens($contractId: String!, $limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt!, $priceTo: BigInt!) {
-  marketTokens(
+  collectionMarketTokens: marketTokens(
     first: $limit
     skip: $offset
     orderBy: $orderBy
@@ -1769,49 +1721,9 @@ export function useMarketTokensLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type MarketTokensQueryHookResult = ReturnType<typeof useMarketTokensQuery>;
 export type MarketTokensLazyQueryHookResult = ReturnType<typeof useMarketTokensLazyQuery>;
 export type MarketTokensQueryResult = Apollo.QueryResult<MarketTokensQuery, MarketTokensQueryVariables>;
-export const TokenActivityDocument = gql`
-    query tokenActivity($tokenUID: String!) {
-  activities(where: {token: $tokenUID}, orderBy: timestamp, orderDirection: desc) {
-    ownerId
-    buyerId
-    price
-    txHash
-    eventType
-    timestamp
-  }
-}
-    `;
-
-/**
- * __useTokenActivityQuery__
- *
- * To run a query within a React component, call `useTokenActivityQuery` and pass it any options that fit your needs.
- * When your component renders, `useTokenActivityQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useTokenActivityQuery({
- *   variables: {
- *      tokenUID: // value for 'tokenUID'
- *   },
- * });
- */
-export function useTokenActivityQuery(baseOptions: Apollo.QueryHookOptions<TokenActivityQuery, TokenActivityQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<TokenActivityQuery, TokenActivityQueryVariables>(TokenActivityDocument, options);
-      }
-export function useTokenActivityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TokenActivityQuery, TokenActivityQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<TokenActivityQuery, TokenActivityQueryVariables>(TokenActivityDocument, options);
-        }
-export type TokenActivityQueryHookResult = ReturnType<typeof useTokenActivityQuery>;
-export type TokenActivityLazyQueryHookResult = ReturnType<typeof useTokenActivityLazyQuery>;
-export type TokenActivityQueryResult = Apollo.QueryResult<TokenActivityQuery, TokenActivityQueryVariables>;
 export const MarketTokensSearchDocument = gql`
     query marketTokensSearch($text: String!, $limit: Int!, $offset: Int!) {
-  marketSearch(text: $text, first: $limit, skip: $offset) {
+  searchedMarketTokens: marketSearch(text: $text, first: $limit, skip: $offset) {
     tokenId
     contractId
     ownerId
@@ -1854,3 +1766,47 @@ export function useMarketTokensSearchLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type MarketTokensSearchQueryHookResult = ReturnType<typeof useMarketTokensSearchQuery>;
 export type MarketTokensSearchLazyQueryHookResult = ReturnType<typeof useMarketTokensSearchLazyQuery>;
 export type MarketTokensSearchQueryResult = Apollo.QueryResult<MarketTokensSearchQuery, MarketTokensSearchQueryVariables>;
+export const TokenActivityDocument = gql`
+    query tokenActivity($tokenUID: String!) {
+  tokenActivity: activities(
+    where: {token: $tokenUID}
+    orderBy: timestamp
+    orderDirection: desc
+  ) {
+    ownerId
+    buyerId
+    price
+    txHash
+    eventType
+    timestamp
+  }
+}
+    `;
+
+/**
+ * __useTokenActivityQuery__
+ *
+ * To run a query within a React component, call `useTokenActivityQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTokenActivityQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTokenActivityQuery({
+ *   variables: {
+ *      tokenUID: // value for 'tokenUID'
+ *   },
+ * });
+ */
+export function useTokenActivityQuery(baseOptions: Apollo.QueryHookOptions<TokenActivityQuery, TokenActivityQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TokenActivityQuery, TokenActivityQueryVariables>(TokenActivityDocument, options);
+      }
+export function useTokenActivityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TokenActivityQuery, TokenActivityQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TokenActivityQuery, TokenActivityQueryVariables>(TokenActivityDocument, options);
+        }
+export type TokenActivityQueryHookResult = ReturnType<typeof useTokenActivityQuery>;
+export type TokenActivityLazyQueryHookResult = ReturnType<typeof useTokenActivityLazyQuery>;
+export type TokenActivityQueryResult = Apollo.QueryResult<TokenActivityQuery, TokenActivityQueryVariables>;

@@ -5,7 +5,7 @@ import {offsetLimitPagination} from "@apollo/client/utilities";
 export const setupApolloClient = () => {
     const cache = setupCache()
     return new ApolloClient({
-        uri: IndexerEndpoint.BackupV2,
+        uri: IndexerEndpoint.Main,
         cache
     })
 }

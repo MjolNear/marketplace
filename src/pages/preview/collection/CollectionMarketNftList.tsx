@@ -1,31 +1,37 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import PaginationCardList from "../../../components/CardList/PaginationCardList";
 import NotFound404Page from "../../NotFound404";
-import {MarketTokensQuery, useCollectionMarketTokensQuery} from "../../../graphql/generated/graphql";
-import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../../utils/string";
+import {
+    CollectionMarketTokensQuery,
+    MarketToken_OrderBy,
+    OrderDirection,
+    useCollectionMarketTokensQuery
+} from "../../../graphql/generated/graphql";
 import {convertToMarketToken} from "../../../graphql/utils";
-import {SearchText, TokenPriceRange, TokenSortName, tokenSortOptions} from "../../explore/nft/ExploreNftsPage";
+import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../../utils/string";
 
 
-interface Props {
+interface CollectionMarketNftListProps {
     collectionContract?: string
 }
 
 
-const CollectionMarketNftList: React.FC<Props> = ({collectionContract}) => {
+const CollectionMarketNftList: React.FC<CollectionMarketNftListProps> = ({
+    collectionContract
+}) => {
 
     const limit = 12
     const [hasMore, setHasMore] = useState(true)
 
-    const initialSort = tokenSortOptions[TokenSortName.RecentlyAdded]
-    const initialPriceRange: TokenPriceRange = {}
-    const initialSearchText: SearchText = {}
-
-    const [filters, setFilters] = useState({
-        priceRange: initialPriceRange,
-        sort: initialSort,
-        search: initialSearchText
-    })
+    // const initialSort = tokenSortOptions[TokenSortName.RecentlyAdded]
+    // const initialPriceRange: TokenPriceRange = {}
+    // const initialSearchText: SearchText = {}
+    //
+    // const [filters, setFilters] = useState({
+    //     priceRange: initialPriceRange,
+    //     sort: initialSort,
+    //     search: initialSearchText
+    // })
 
     const {data, loading, fetchMore} = useCollectionMarketTokensQuery({
         fetchPolicy: "network-only",
@@ -33,41 +39,46 @@ const CollectionMarketNftList: React.FC<Props> = ({collectionContract}) => {
         variables: {
             contractId: collectionContract || "",
             offset: 0,
-            limit: limit,
-            orderBy: filters.sort.by,
-            orderDirection: filters.sort.direction,
-            priceFrom: filters.priceRange.from || MIN_ITEM_YOCTO_PRICE,
-            priceTo: filters.priceRange.to || MAX_ITEM_YOCTO_PRICE
+            limit,
+            orderBy: MarketToken_OrderBy.ListingTimestamp,
+            orderDirection: OrderDirection.Desc,
+            priceFrom: MIN_ITEM_YOCTO_PRICE,
+            priceTo: MAX_ITEM_YOCTO_PRICE
         }
     })
 
-    const updateQuery = (
-        previousQueryResult: MarketTokensQuery,
-        options: { fetchMoreResult?: MarketTokensQuery }
+    const tokens = useMemo(
+        () => data?.collectionMarketTokens.map(convertToMarketToken) || [],
+        [data]
+    )
+
+    const canLoadMore = useMemo(() =>
+            loading || hasMore && tokens.length !== 0 && tokens.length % limit === 0,
+        [loading, tokens, hasMore]
+    )
+
+    const updateQuery = useCallback((
+        previousQueryResult: CollectionMarketTokensQuery,
+        options: { fetchMoreResult?: CollectionMarketTokensQuery }
     ) => {
         const fetchMoreResult = options.fetchMoreResult
         if (!fetchMoreResult) {
+            setHasMore(false)
             return previousQueryResult;
         }
-        const previousTokens = previousQueryResult.marketTokens;
-        const fetchMoreTokens = fetchMoreResult.marketTokens;
+        const previousTokens = previousQueryResult.collectionMarketTokens;
+        const fetchMoreTokens = fetchMoreResult.collectionMarketTokens;
         setHasMore(fetchMoreTokens.length === limit)
-        fetchMoreResult.marketTokens = [...previousTokens, ...fetchMoreTokens];
+        fetchMoreResult.collectionMarketTokens = previousTokens.concat(fetchMoreTokens);
         return {...fetchMoreResult}
-    }
+    }, [])
 
-    const onLoadMore = (offset: number) => fetchMore({
+    const onLoadMore = useCallback(() => fetchMore({
         updateQuery,
         variables: {
-            offset
+            offset: tokens.length
         }
-    })
-
-    const tokens = data?.marketTokens.map(convertToMarketToken) || []
-
-    useEffect(() => {
-        setHasMore(true)
-    }, [filters])
+    }), [tokens])
 
     if (!collectionContract) {
         return <NotFound404Page/>
@@ -76,9 +87,9 @@ const CollectionMarketNftList: React.FC<Props> = ({collectionContract}) => {
     return (
         <PaginationCardList tokens={tokens}
                             loading={loading}
-                            hasMore={hasMore}
+                            hasMore={canLoadMore}
                             isCollectionNFTs={true}
-                            onLoadMore={() => onLoadMore(tokens.length)}
+                            onLoadMore={onLoadMore}
         />
     );
 };

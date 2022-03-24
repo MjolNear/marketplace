@@ -10,13 +10,13 @@ import MobileTabSection from "./MobileTabSection";
 import BlueGreenGradientButton from "../../Common/Buttons/Auth/BlueGreenGradientButton";
 import BetaHeader from "../BetaHeader";
 import Tooltip from "../Tooltip";
-import {links} from "./links";
+import {routesConfig} from "./routes-config";
 
-const Navbar = React.memo(() => {
-    const exploreTabs = links.explore
-    const createTabs = links.create
-    const profileTabs = links.profile
-    const singleTabs = links.single
+const NavigationBar = React.memo(() => {
+    const exploreTabs = routesConfig.explore
+    const createTabs = routesConfig.create
+    const profileTabs = routesConfig.profile
+    const singleTabs = routesConfig.single
 
     return (
         <Popover
@@ -121,4 +121,4 @@ const Navbar = React.memo(() => {
     )
 })
 
-export default Navbar;
+export default NavigationBar;

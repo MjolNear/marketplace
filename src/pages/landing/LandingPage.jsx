@@ -2,10 +2,8 @@ import React from 'react';
 import GreetingBlock from "./GreetingBlock";
 import nftsImg from "../../resources/nfts-landing.png";
 import CardGrid from "../../components/CardList/CardGrid";
-import DarkBlueTitle from "../../components/Common/Text/DarkBlueTitle";
-import {convertToMarketToken} from "../../graphql/utils";
+import {convertToMarketToken, TokenSortName, tokenSortOptions} from "../../graphql/utils";
 import {useMarketTokensQuery} from "../../graphql/generated/graphql";
-import {tokenSortOptions, TokenSortName} from "../explore/nft/ExploreNftsPage";
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../utils/string";
 
 const LandingPage = () => {

@@ -3,7 +3,7 @@ query marketTokensSearch(
     $limit: Int!,
     $offset: Int!
 ) {
-    marketSearch(text: $text, first: $limit, skip: $offset) {
+    searchedMarketTokens: marketSearch(text: $text, first: $limit, skip: $offset) {
         tokenId
         contractId
         ownerId

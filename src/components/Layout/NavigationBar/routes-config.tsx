@@ -1,5 +1,5 @@
 import {MdCollections} from "react-icons/md";
-import {ImFilePicture} from 'react-icons/im'
+import {IoMdImage} from 'react-icons/io'
 import {GiPalette, GiPaintBrush} from 'react-icons/gi'
 
 import React from "react";
@@ -10,9 +10,9 @@ export interface TabItem {
     icon?: React.ReactNode
 }
 
-export const links: Record<string, TabItem[]> = {
+export const routesConfig: Record<string, TabItem[]> = {
     explore: [
-        {name: 'NFTs', path: '/nfts', icon: <ImFilePicture size={20}/>},
+        {name: 'NFTs', path: '/nfts', icon: <IoMdImage size={20}/>},
         {name: 'Collections', path: '/collections', icon: <MdCollections size={20}/>},
     ],
     create: [

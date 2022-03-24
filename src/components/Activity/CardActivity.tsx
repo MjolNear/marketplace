@@ -19,7 +19,7 @@ const CardActivity: React.FC<TCardActivityProps> = ({
         }
     })
 
-    const activities = data?.activities || []
+    const activities = data?.tokenActivity || []
 
     const columns = ["Event", "Price", "From", "To", "Date", "Tx Hash"]
 
