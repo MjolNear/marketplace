@@ -1,17 +1,17 @@
-import React, {memo} from 'react';
+import React from 'react';
 import {TContractResponse} from "../../../../business-logic/near/api/types/response/contracts";
 import {ApprovedToken} from "../../../../business-logic/models/nft";
-import {useNftMarketStatus} from "../../../../hooks/useNftMarketStatus";
+import {ItemMarketStatus, useNftMarketStatus} from "../../../../hooks/useNftMarketStatus";
 import {ContractVerificationStatus} from "../../../../business-logic/models/contract";
 import NftContractNotSupported from "../MarketStatus/NftContractNotSupported";
-import {ItemMarketStatus} from "../../../../state/transaction/state";
 import BuyNftContainer from "../MarketStatus/BuyNftContainer";
 import SellNftContainer from "../MarketStatus/sell/SellNftContainer";
 import UnlistNftContainer from "../MarketStatus/UnlistNftContainer";
 import NotListedNftContainer from "../MarketStatus/NotListedNftContainer";
-import ConnectWalletButton from "../MarketStatus/ConnectWalletButton";
 import withAuthData, {TAuthProps} from "../../../../hoc/withAuthData";
 import NftNotApproved from "../MarketStatus/NftNotApproved";
+import PriceConnectWalletContainer from "../MarketStatus/PriceConnectWalletContainer";
+import ConnectWalletButton from "../MarketStatus/ConnectWalletButton";
 
 interface TTokenMarketStatusBlockProps {
     token: ApprovedToken
@@ -23,20 +23,19 @@ const TokenMarketStatus: React.FC<TTokenMarketStatusBlockProps & TAuthProps> = (
     token,
     contract,
     payouts,
-    isSignedIn,
     accountId
 }) => {
     const nftMarketStatus = useNftMarketStatus(accountId, token.ownerId, token.isApproved, token.price)
-
-    if (!isSignedIn) {
-        return <ConnectWalletButton/>
-    }
 
     if (!contract || contract.verification === ContractVerificationStatus.NotSupported) {
         return <NftContractNotSupported missedNeps={contract?.missedNeps}/>
     }
 
     switch (nftMarketStatus) {
+        case ItemMarketStatus.LISTED_AUTH_REQUIRED:
+            return <PriceConnectWalletContainer tokenPrice={token.price}/>
+        case ItemMarketStatus.NOT_LISTED_AUTH_REQUIRED:
+            return <ConnectWalletButton/>
         case ItemMarketStatus.CAN_BUY:
             return <BuyNftContainer tokenPrice={token.price}
                                     contractId={token.contractId}

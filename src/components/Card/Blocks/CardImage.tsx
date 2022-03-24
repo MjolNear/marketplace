@@ -25,11 +25,7 @@ const CardImage: React.FC<TCardImageProps> = ({
         <div className="aspect-w-1 aspect-h-1 justify-center z-10">
             <Img src={url || ''}
                  className={className}
-                 loader={
-                     <div className="flex items-center justify-center">
-                         <MjolLoader/>
-                     </div>
-                 }
+                 loader={<MjolLoader/>}
                  unloader={
                      <div className="flex items-center justify-center">
                          <img src={brokenImage} alt="not found" className="object-contain w-[100px]"/>

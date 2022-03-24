@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import {Optional} from "../../../business-logic/models/types";
 import TokenMedia from "./Blocks/TokenMedia";
 import {TTokenDetailsProps} from "./Blocks/TokenDetails";
@@ -12,11 +12,7 @@ interface TPreviewTokenSummaryProps extends TTokenDetailsProps {
 
 const TokenPreviewSummaryBlock: React.FC<TPreviewTokenSummaryProps> = ({
     media,
-    description,
-
-    contractId,
-    tokenId,
-    ownerId
+    description
 }) => {
     return (
         <div className="flex flex-col flex-grow-[3] flex-shrink-0 basis-0 max-w-[45%] gap-4">

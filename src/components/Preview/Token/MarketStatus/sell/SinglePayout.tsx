@@ -1,5 +1,5 @@
 import React from 'react';
-import NearBlackLogo from "../../../../Icons/near/NearBlackLogo";
+import NearBlackLogo from "../../../../Icons/near/NearIcon";
 
 interface TSinglePayoutProps {
     name: string

@@ -1,7 +1,7 @@
 import React, {memo} from 'react';
 import {UseFormRegister} from "react-hook-form";
 import {MAX_ITEM_NEAR_PRICE} from "../../../../../utils/string";
-import NearBlackLogo from "../../../../Icons/near/NearBlackLogo";
+import NearIcon from "../../../../Icons/near/NearIcon";
 
 interface TInputPriceFormProps {
     register: UseFormRegister<{ price: number }>
@@ -11,7 +11,7 @@ const TokenPriceInput: React.FC<TInputPriceFormProps> = ({
     register
 }) => {
     return (
-        <div className="flex justify-between gap-3">
+        <div className="flex justify-between gap-3 items-center">
             <input
                 min="0"
                 className="w-full px-3 py-2 rounded-lg border-transparent text-gray-800 text-base
@@ -32,7 +32,7 @@ const TokenPriceInput: React.FC<TInputPriceFormProps> = ({
                     },
                 })}
             />
-            <NearBlackLogo/>
+            <NearIcon/>
         </div>
     );
 };

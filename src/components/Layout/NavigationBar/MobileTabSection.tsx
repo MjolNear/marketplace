@@ -2,13 +2,14 @@ import React from 'react';
 import {Menu} from "@headlessui/react";
 import {Link} from "react-router-dom";
 import {ChevronRightIcon} from "@heroicons/react/solid";
-import BlueGreenGradientButton from "../Buttons/Auth/BlueGreenGradientButton";
+import BlueGreenGradientButton from "../../Common/Buttons/Auth/BlueGreenGradientButton";
 import {getCurrentWallet} from "../../../business-logic/near/wallet/wallet";
 
 
 interface TabItem {
     name: string,
-    path: string
+    path: string,
+    icon?: React.ReactNode
 }
 
 interface PropTypes {
@@ -24,7 +25,7 @@ const MobileTabSection: React.FC<PropTypes> = ({name, tabs}) => {
                 <hr/>
             </div>
             <div className="flex flex-col">
-                {tabs.map(({name, path}) =>
+                {tabs.map(({name, path, icon}) =>
                     <Menu.Item key={name}>
                         {({active}) => (
                             <div className="inline-flex justify-between items-center py-[20px]">

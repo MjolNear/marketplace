@@ -1,5 +1,5 @@
-import React, {memo} from 'react';
-import NearBlackLogo from "../../../Icons/near/NearBlackLogo";
+import React from 'react';
+import NearIcon from "../../../Icons/near/NearIcon";
 import {Optional} from "../../../../business-logic/models/types";
 import {useNearUsdPrice} from "../../../../hooks/useNearUsdPrice";
 
@@ -31,7 +31,7 @@ const PriceContainer: React.FC<TPriceContainerProps> = ({
             </div>
             <div className="flex">
                 <div className="flex items-center gap-2">
-                    <NearBlackLogo size={18}/>
+                    <NearIcon size={18}/>
                     <div className="text-[25px] font-archivo font-extrabold">
                         {tokenPrice}
                     </div>

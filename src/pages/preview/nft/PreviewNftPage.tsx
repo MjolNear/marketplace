@@ -1,8 +1,8 @@
 import React from 'react';
 import {ContractId, TokenId} from "../../../business-logic/models/types";
-import {useFetchTokenData} from "../../../hooks/useFetchTokenData";
+import {useFetchTokenData} from "../../../hooks/token/useFetchTokenData";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
-import NotFoundPage from "../../not-found/NotFoundPage";
+import NotFound404Page from "../../NotFound404";
 import TokenPreviewContainer from "../../../components/Preview/Token/TokenPreviewContainer";
 import MobileTokenPreviewContainer from "../../../components/Preview/Token/MobileTokenPreviewContainer";
 import DesktopTokenPreviewContainer from "../../../components/Preview/Token/DesktopTokenPreviewContainer";
@@ -25,7 +25,7 @@ const PreviewNftPage: React.FC<TPreviewNftProps> = ({
     useTokenTxToast()
 
     if (fetching) return <CreateLoader/>
-    if (!token) return <NotFoundPage/>
+    if (!token) return <NotFound404Page/>
 
 
     return (

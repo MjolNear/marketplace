@@ -2,11 +2,9 @@ import React from 'react';
 import NftPreviewTitle from "./Blocks/NftPreviewTitle";
 import TokenPayoutDetails from "./Blocks/TokenPayoutDetails";
 import TokenMarketStatus from "./Blocks/TokenMarketStatus";
-import TokenDescription from "./Blocks/TokenDescription";
 import TokenDetails from "./Blocks/TokenDetails";
 import {TokenPreviewProps} from "./Blocks/TokenPreviewProps";
 import SharePopup from "../../Common/Share/SharePopup";
-import ResolveVerificationIcon from "../../Common/Verification/Icons/ResolveVerificationIcon";
 
 const TokenPreviewMainBlock: React.FC<TokenPreviewProps> = ({
     token,

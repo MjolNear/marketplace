@@ -4,11 +4,11 @@ import {fromYocto2Near, shortenString} from "../../utils/string";
 import CardActivityCell, {ActivityCellType} from "./CardActivityCell";
 import {HistoryEventType} from "../../graphql/generated/graphql";
 import ListingIcon from "../Icons/Activity/ListingIcon";
-import NearBlackLogo from "../Icons/near/NearBlackLogo";
+import NearBlackLogo from "../Icons/near/NearIcon";
 import BuyIcon from "../Icons/Activity/BuyIcon";
 import {getRelativeTimestamp} from "../../utils/time";
 import UnlistIcon from "../Icons/Activity/UnlistIcon";
-import CopyIcon from "../Icons/Common/CopyIcon";
+import CopyIcon from "../Icons/CopyIcon";
 import {BsCheck} from "react-icons/bs";
 import AccountHrefCell from "./AccountHrefCell";
 

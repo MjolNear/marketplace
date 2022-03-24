@@ -1,24 +1,22 @@
 import React, {Fragment} from 'react'
 import {Popover, Transition, Menu} from '@headlessui/react'
-import {OpenMenuButton} from "../../components/Common/Navbar/MobileButtons";
-import {TabsDropDownMenu} from "../../components/Common/Navbar/TabDropDownMenu";
-import {getCurrentWallet} from "../../business-logic/near/wallet/wallet";
+import {OpenMenuButton} from "./MobileButtons";
+import {TabsDropDownMenu} from "./TabDropDownMenu";
+import {getCurrentWallet} from "../../../business-logic/near/wallet/wallet";
 import {IoIosRocket} from 'react-icons/io'
 import {SiGitbook} from 'react-icons/si'
-import LogoLink from "../../components/Common/Links/LogoLink";
-import {useAppSelector} from "../../hooks/redux";
-import MobileTabSection from "../../components/Common/Navbar/MobileTabSection";
-import BlueGreenGradientButton from "../../components/Common/Buttons/Auth/BlueGreenGradientButton";
-import ReactTooltip from "react-tooltip";
-import BetaHeader from "../../components/Layout/BetaHeader";
-import Tooltip from "../../components/Layout/Tooltip";
+import LogoLink from "../../Common/Links/LogoLink";
+import MobileTabSection from "./MobileTabSection";
+import BlueGreenGradientButton from "../../Common/Buttons/Auth/BlueGreenGradientButton";
+import BetaHeader from "../BetaHeader";
+import Tooltip from "../Tooltip";
+import {links} from "./links";
 
 const Navbar = React.memo(() => {
-    const tabs = useAppSelector(state => state.navbar.tabs)
-    const exploreTabs = tabs.explore
-    const createTabs = tabs.create
-    const profileTabs = tabs.profile
-    const singleTabs = tabs.single
+    const exploreTabs = links.explore
+    const createTabs = links.create
+    const profileTabs = links.profile
+    const singleTabs = links.single
 
     return (
         <Popover
@@ -35,25 +33,29 @@ const Navbar = React.memo(() => {
                             <TabsDropDownMenu key="Create" name="Create" tabs={createTabs}/>
                         </div>
                         {singleTabs.map(({name, path}) => (
-                            <div key={name} className="cursor-pointer inline-flex gap-2 items-center group opacity-50">
-                                {name === "Launchpad" ?
-                                    <p className={"text-transparent bg-clip-text font-archivo bg-gradient-to-r" +
-                                        " from-mjol-blue-base to-blue-600 group-hover:text-blue-500 text-md font-archivo font-bold"}
-                                       data-tip="Coming soon!"
-                                       data-for="launchpadTooltip"
+                            <div key={name} className="cursor-pointer inline-flex gap-2 items-center group">
+                                {name === "Launchpad"
+                                    ? <p className="text-transparent bg-clip-text font-archivo bg-gradient-to-r
+                                                  from-mjol-blue-base to-blue-600 group-hover:text-blue-500 text-md
+                                                  font-archivo font-bold opacity-50"
+                                         data-tip="Coming soon!"
+                                         data-for="launchpadTooltip"
                                     >
                                         {name}
-                                    </p> :
-                                    <a className={"text-slate-500 group-hover:text-gray-700 text-md font-archivo font-bold"}
-                                       href={"https://oleg-bobrov.gitbook.io/mjolnear/"}
+                                    </p>
+                                    :
+                                    <a className="text-gray-600 group-hover:text-black opacity-100 text-md font-archivo
+                                                 font-bold"
+                                       href="https://oleg-bobrov.gitbook.io/mjolnear/"
                                        target="_blank"
                                        rel="noreferrer"
                                     >
                                         {name}
-                                    </a>}
+                                    </a>
+                                }
                                 {name === "Launchpad"
-                                    ? <IoIosRocket size={18} className="fill-blue-600 group-hover:fill-blue-500"/>
-                                    : <SiGitbook size={18} color="#64748b" className="group-hover:fill-gray-700"/>
+                                    ? <IoIosRocket size={18} className="fill-blue-500 opacity-50"/>
+                                    : <SiGitbook size={18} color="#64748b" className="group-hover:fill-black"/>
                                 }
                                 <Tooltip id="launchpadTooltip" place="bottom"/>
                             </div>
@@ -67,7 +69,9 @@ const Navbar = React.memo(() => {
                         :
                         <div className="flex items-center justify-end lg:flex-1 lg:w-0">
                             <button onClick={() => getCurrentWallet().requestSignIn()}
-                                    className="inline-flex justify-center py-1.5 px-4 font-bold text-md font-bold rounded-md text-white bg-gradient-to-br from-mjol-blue-base to-green-200 hover:from-green-200 hover:to-mjol-blue-base"
+                                    className="inline-flex justify-center py-1.5 px-4 font-bold text-md font-bold
+                                                rounded-md text-white bg-gradient-to-br from-mjol-blue-base to-green-200
+                                               hover:from-green-200 hover:to-mjol-blue-base"
                             >
                                 Sign in
                             </button>

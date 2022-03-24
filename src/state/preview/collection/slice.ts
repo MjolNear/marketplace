@@ -14,7 +14,7 @@ const initialState: CollectionNftsState = {
     tokens: [],
     fetching: false,
     from: 0,
-    limit: 24,
+    limit: 12,
     hasMore: true,
 }
 

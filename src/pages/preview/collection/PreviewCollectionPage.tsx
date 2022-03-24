@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useParams} from "react-router";
-import NotFoundPage from "../../not-found/NotFoundPage";
+import NotFound404Page from "../../NotFound404";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import CollectionNftList from "./CollectionNftList";
 import CollectionLogo from "../../../components/Preview/Collection/Blocks/CollectionLogo";
@@ -31,7 +31,7 @@ const PreviewCollectionPage: React.FC = () => {
     )
 
     if (!collectionId || !contractId || !filterTab) {
-        return <NotFoundPage/>
+        return <NotFound404Page/>
     }
 
     if (fetching && marketToggleState === "init") {
@@ -39,7 +39,7 @@ const PreviewCollectionPage: React.FC = () => {
     }
 
     if (!collection) {
-        return <NotFoundPage/>
+        return <NotFound404Page/>
     }
     const hasBanner = !!collection.metadata?.bannerImage
 
