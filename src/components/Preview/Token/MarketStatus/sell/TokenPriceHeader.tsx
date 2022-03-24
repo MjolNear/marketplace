@@ -1,6 +1,8 @@
 import React, {memo} from 'react';
 import {AiOutlineClose} from "react-icons/ai";
 import DarkBlueMjolText from "../../../../Common/Text/DarkBlueMjolText";
+import GradientText from "../../../../Common/Text/GradientText";
+import LightBlueGradientText from "../../../../Common/Text/LightBlueGradientText";
 
 interface TTokenPriceHeaderProps {
     closeModal: React.MouseEventHandler
@@ -14,11 +16,11 @@ const TokenPriceHeader: React.FC<TTokenPriceHeaderProps> = ({
             <div className="absolute right-0 top-0 pr-4 pt-4">
                 <AiOutlineClose onClick={closeModal} className="cursor-pointer" size={20}/>
             </div>
-            <div className="text-blue-600 font-archivo font-bold text-2xl text-center mb-4">
-                List NFT for sale
-            </div>
-            {/*<DarkBlueMjolText text="List NFT for sale"*/}
-            {/*                  classes="text-2xl font-black pb-4 text-center"/>*/}
+            <GradientText text="List NFT for sale"
+                          size="2xl"
+                          fontWeight="extrabold"
+                          extraClasses="bg-gradient-to-br from-gray-600 to-blue-600 mb-3"
+            />
         </>
     );
 };
