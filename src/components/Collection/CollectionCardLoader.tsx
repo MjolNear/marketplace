@@ -14,8 +14,8 @@ const CollectionCardLoader: React.FC<TCollectionCardLoaderProps> = ({
 
     return (
         <div className={className}>
-            <div className="flex flex-col ring-1 rounded-xl ring-gray-200 overflow-hidden pulse-animation w-full
-                            transform hover:shadow-mjol-gray-xs hover:ring-inset"
+            <div className="flex flex-col ring-1 rounded-xl ring-gray-200 overflow-hidden mjol-pulse-animation cursor-pointer
+                            w-full transform hover:shadow-mjol-gray-xs hover:ring-inset"
             >
                 {/* Image block */}
                 <div style={{
