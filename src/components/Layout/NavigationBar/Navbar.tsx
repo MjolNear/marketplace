@@ -1,17 +1,17 @@
 import React, {Fragment} from 'react'
 import {Popover, Transition, Menu} from '@headlessui/react'
-import {OpenMenuButton} from "../../components/Common/Navbar/MobileButtons";
-import {TabsDropDownMenu} from "../../components/Common/Navbar/TabDropDownMenu";
-import {getCurrentWallet} from "../../business-logic/near/wallet/wallet";
+import {OpenMenuButton} from "../../Common/Navbar/MobileButtons";
+import {TabsDropDownMenu} from "../../Common/Navbar/TabDropDownMenu";
+import {getCurrentWallet} from "../../../business-logic/near/wallet/wallet";
 import {IoIosRocket} from 'react-icons/io'
 import {SiGitbook} from 'react-icons/si'
-import LogoLink from "../../components/Common/Links/LogoLink";
-import {useAppSelector} from "../../hooks/redux";
-import MobileTabSection from "../../components/Common/Navbar/MobileTabSection";
-import BlueGreenGradientButton from "../../components/Common/Buttons/Auth/BlueGreenGradientButton";
+import LogoLink from "../../Common/Links/LogoLink";
+import {useAppSelector} from "../../../hooks/redux";
+import MobileTabSection from "../../Common/Navbar/MobileTabSection";
+import BlueGreenGradientButton from "../../Common/Buttons/Auth/BlueGreenGradientButton";
 import ReactTooltip from "react-tooltip";
-import BetaHeader from "../../components/Layout/BetaHeader";
-import Tooltip from "../../components/Layout/Tooltip";
+import BetaHeader from "../BetaHeader";
+import Tooltip from "../Tooltip";
 
 const Navbar = React.memo(() => {
     const tabs = useAppSelector(state => state.navbar.tabs)

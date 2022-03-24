@@ -16,7 +16,7 @@ import CreateNftPage from "./pages/create/nft/CreateNftPage";
 import CreateCollectionPage from "./pages/create/collection/CreateCollectionPage";
 import ProfileNftsPage from "./pages/profile/nfts/ProfileNftsPage";
 import ProfileCollectionsPage from "./pages/profile/collections/ProfileCollectionsPage";
-import NotFoundPage from "./pages/not-found/NotFoundPage";
+import NotFound404Page from "./pages/NotFound404";
 import PreviewNftMatchRouterParams from "./pages/preview/nft/PreviewNftMatchRouterParams";
 import PageLayout from "./components/Layout/PageLayout";
 
@@ -109,7 +109,7 @@ export default function App() {
                         <Route path="nfts" element={<ProfileNftsPage/>}/>
                         <Route path="collections" element={<ProfileCollectionsPage/>}/>
                     </Route>
-                    <Route path="*" element={<NotFoundPage/>}/>
+                    <Route path="*" element={<NotFound404Page/>}/>
                 </Route>
             </Routes>
         </HashRouter>

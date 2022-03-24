@@ -1,5 +1,5 @@
 import React from 'react';
-import WalletConnectionPage from "../pages/auth/WalletConnectionPage";
+import WalletConnectionPage from "../pages/WalletConnectionPage";
 import {getCurrentWallet} from "../business-logic/near/wallet/wallet";
 
 

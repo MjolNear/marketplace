@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from "../../pages/navbar/Navbar";
+import Navbar from "./NavigationBar/Navbar";
 import ScrollToTop from "../../hoc/ScrollToTop";
 import ScrollToTopButton from "../Common/Buttons/ScrollToTopButton";
 import {ToastContainer} from "react-toastify";

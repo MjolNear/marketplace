@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import PaginationCardList from "../../../components/CardList/PaginationCardList";
-import NotFoundPage from "../../not-found/NotFoundPage";
+import NotFound404Page from "../../NotFound404";
 import {MarketTokensQuery, useCollectionMarketTokensQuery} from "../../../graphql/generated/graphql";
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../../utils/string";
 import {convertToMarketToken} from "../../../graphql/utils";
@@ -70,7 +70,7 @@ const CollectionMarketNftList: React.FC<Props> = ({collectionContract}) => {
     }, [filters])
 
     if (!collectionContract) {
-        return <NotFoundPage/>
+        return <NotFound404Page/>
     }
 
     return (

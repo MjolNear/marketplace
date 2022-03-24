@@ -1,6 +1,6 @@
 import React from 'react';
 import {useParams} from "react-router";
-import NotFoundPage from "../../not-found/NotFoundPage";
+import NotFound404Page from "../../NotFound404";
 import PreviewNftPage from "./PreviewNftPage";
 
 type TPreviewNftRouteParams = {
@@ -12,7 +12,7 @@ const PreviewNftMatchRouterParams: React.FC = () => {
     const {contractId, tokenId} = useParams<TPreviewNftRouteParams>()
 
     if (!contractId || !tokenId) {
-        return <NotFoundPage/>
+        return <NotFound404Page/>
     }
 
     return <PreviewNftPage contractId={contractId}
