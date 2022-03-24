@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import IconDisclosureButton from "../../../Common/Disclosure/IconDisclosureButton";
 import {GiBuyCard} from "react-icons/gi";
 import CardActivity from "../../../Activity/CardActivity";

@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import {AccountId, ContractId, TokenId} from "../../../../business-logic/models/types";
 import KeyValueDisclosure from "../../../Common/Disclosure/KeyValueDisclosure";
 import {MdAccountBalanceWallet as MdAcc} from "react-icons/md";

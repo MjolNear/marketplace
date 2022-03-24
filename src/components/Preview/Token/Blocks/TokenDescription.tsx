@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import {Optional} from '../../../../business-logic/models/types';
 import {MdDescription} from "react-icons/md";
 import IconDisclosureButton from "../../../Common/Disclosure/IconDisclosureButton";
@@ -15,7 +15,7 @@ const TokenDescription: React.FC<TTokenDescription> = ({
                               icon={<MdDescription/>}
                               defaultOpen={true}
         >
-            <div className="font-archivo text-center">
+            <div className="font-archivo text-left">
                 {description || "NFT has no description"}
             </div>
         </IconDisclosureButton>

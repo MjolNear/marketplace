@@ -1,6 +1,5 @@
 import React from 'react';
 import {TokenPreviewProps} from './Blocks/TokenPreviewProps';
-import {useTokenPayouts} from "../../../hooks/token/useTokenPayouts";
 import TokenMedia from "./Blocks/TokenMedia";
 import NftPreviewTitle from "./Blocks/NftPreviewTitle";
 import TokenDetails from "./Blocks/TokenDetails";

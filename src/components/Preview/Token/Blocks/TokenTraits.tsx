@@ -12,7 +12,7 @@ const TokenTraits: React.FC<TTokenTraitsProps> = () => {
         <IconDisclosure icon={<BiDna/>}
                         name="Traits"
         >
-            <div className="font-archivo text-center">Currently not supported</div>
+            <div className="font-archivo text-left">Currently not supported</div>
         </IconDisclosure>
     );
 };
