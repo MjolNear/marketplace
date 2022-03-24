@@ -19,7 +19,7 @@ const TokenPriceHeader: React.FC<TTokenPriceHeaderProps> = ({
             <GradientText text="List NFT for sale"
                           size="2xl"
                           fontWeight="extrabold"
-                          extraClasses="bg-gradient-to-br from-gray-600 to-blue-600 mb-3"
+                          extraClasses="bg-gradient-to-r from-blue-700 to-blue-400 mb-3"
             />
         </>
     );
