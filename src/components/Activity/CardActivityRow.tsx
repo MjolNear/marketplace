@@ -8,7 +8,7 @@ import NearBlackLogo from "../Icons/near/NearBlackLogo";
 import BuyIcon from "../Icons/Activity/BuyIcon";
 import {getRelativeTimestamp} from "../../utils/time";
 import UnlistIcon from "../Icons/Activity/UnlistIcon";
-import CopyIcon from "../Icons/Common/CopyIcon";
+import CopyIcon from "../Icons/CopyIcon";
 import {BsCheck} from "react-icons/bs";
 import AccountHrefCell from "./AccountHrefCell";
 

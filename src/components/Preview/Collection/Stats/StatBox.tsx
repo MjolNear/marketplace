@@ -13,7 +13,7 @@ const StatBox = React.memo<PropTypes>(({name, value, priceValue}) => {
             className={"flex flex-col justify-center items-center ring-blue-200 ring-[0.5px] px-10 py-3"}>
             <div className="font-archivo font-medium opacity-80 text-sm">{name}</div>
             {priceValue
-                ? <div className="inline-flex gap-3">
+                ? <div className="inline-flex gap-3 items-center">
                     <NearBlackLogo size={16}/>
                     <div className="font-archivo font-extrabold text-2xl">
                         {value}

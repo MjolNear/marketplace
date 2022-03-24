@@ -16,7 +16,7 @@ const LightBlueDisclosure: React.FC<TDisclosureProps> = ({
 }) => {
     return (
         <Disclosure defaultOpen={defaultOpen}>
-            {({open}) => (
+            {({open}) =>
                 <div>
                     <Disclosure.Button
                         className={classNames(
@@ -37,7 +37,8 @@ const LightBlueDisclosure: React.FC<TDisclosureProps> = ({
                             {children}
                         </div>
                     </Disclosure.Panel>
-                </div>)}
+                </div>
+            }
         </Disclosure>
     );
 };

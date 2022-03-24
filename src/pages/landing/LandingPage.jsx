@@ -1,6 +1,6 @@
 import React from 'react';
 import GreetingBlock from "./GreetingBlock";
-import nftsImg from "../../resources/nfts_main2.png";
+import nftsImg from "../../resources/nfts-landing.png";
 import CardGrid from "../../components/CardList/CardGrid";
 import DarkBlueTitle from "../../components/Common/Text/DarkBlueTitle";
 import {convertToMarketToken} from "../../graphql/utils";
