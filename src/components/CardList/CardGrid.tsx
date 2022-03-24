@@ -27,11 +27,7 @@ const CardGrid: React.FC<TGridProps> = ({
         <>
             {tokens.length === 0 && !fetching
                 ? isCollectionNFTs
-                    ? <EmptyCardList mainDescription="No items on sale"
-                                     //footerDescription="You can Mint your own NFTs into collection via"
-                                     //footerLink="/create-token"
-                                     //footerLinkName="creation"
-                    />
+                    ? <EmptyCardList mainDescription="No items on sale"/>
                     : <EmptyCardList/>
                 : <CardsGridContainer>
                     {tokens.map(token => {
