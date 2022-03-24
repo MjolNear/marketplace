@@ -1,42 +1,39 @@
-import React, {useState} from 'react';
+import React, {memo, useState} from 'react';
 import PopoverFilter from "./PopupFilter";
 import NearBlackLogo from "../../Icons/near/NearIcon";
 import GrayInput from "../../Input/GrayInput";
 import GrayButton from "../../Common/Buttons/GrayButton";
 import BlueButton from "../../Common/Buttons/BlueButton";
 import {Popover} from '@headlessui/react';
-import {TokenPriceRange} from "../../../pages/explore/nft/ExploreNftsPage";
 import {utils} from "near-api-js";
+import {TokenPriceRange} from "../../../graphql/utils";
 
 interface RangeFilterProps {
-    onApply: (range: TokenPriceRange) => any,
-    onClear: () => any
+    onApply: (range: TokenPriceRange) => void
+    onClear: () => void,
+    disabled?: boolean
 }
 
 const PriceRangeFilter: React.FC<RangeFilterProps> = ({
     onApply,
-    onClear
+    onClear,
+    disabled
 }) => {
+    const [priceRange, setPriceRange] = useState<TokenPriceRange>({})
 
-    const formatRangeBorder = (nearAmount?: string): string | undefined => {
-        const amount = utils.format.parseNearAmount(nearAmount)
-        if (amount === null) {
-            return undefined
-        }
-        return amount
-    }
+    const setFrom = (e: React.ChangeEvent<HTMLInputElement>) =>
+        setPriceRange({...priceRange, from: e.target.value})
 
-    const initialPriceRange: TokenPriceRange = {}
-    const [priceRange, setPriceRange] = useState(initialPriceRange)
+    const setTo = (e: React.ChangeEvent<HTMLInputElement>) =>
+        setPriceRange({...priceRange, to: e.target.value})
 
     return (
         <PopoverFilter name="Price range"
-                       icon={
-                           <NearBlackLogo size={11}/>
-                       }
+                       disabled={disabled}
+                       icon={<NearBlackLogo size={11}/>}
         >
             <Popover.Panel className="flex flex-col items-center p-3 gap-2 w-[280px]">
-                {({close}) => (
+                {props =>
                     <>
                         <div className="font-bold font-archivo text-left text-md text-gray-400 w-full">
                             Price
@@ -45,43 +42,39 @@ const PriceRangeFilter: React.FC<RangeFilterProps> = ({
                             <GrayInput placeholder="From"
                                        type="number"
                                        value={priceRange.from}
-                                       onChange={e => setPriceRange({
-                                               ...priceRange,
-                                               from: e.target.value
-                                           }
-                                       )}
+                                       onChange={setFrom}
                             />
                             <GrayInput placeholder="To"
                                        type="number"
                                        value={priceRange.to}
-                                       onChange={e => setPriceRange({
-                                               ...priceRange,
-                                               to: e.target.value
-                                           }
-                                       )}
+                                       onChange={setTo}
                             />
                         </div>
                         <div className="inline-flex text-sm gap-2 justify-between w-full items-stretch">
-                            <GrayButton title="Clear" onClick={() => {
-                                close()
-                                setPriceRange(initialPriceRange)
-                                onClear()
-                            }}/>
+                            <GrayButton title="Clear"
+                                        onClick={() => {
+                                            props.close()
+                                            setPriceRange({})
+                                            onClear()
+                                        }}
+                            />
                             <BlueButton title="Apply"
                                         disabled={!priceRange.from && !priceRange.to}
                                         onClick={() => {
-                                close()
-                                onApply({
-                                    from: formatRangeBorder(priceRange.from),
-                                    to: formatRangeBorder(priceRange.to)
-                                })
-                            }}/>
+                                            const range = {
+                                                from: utils.format.parseNearAmount(priceRange.from) || undefined,
+                                                to: utils.format.parseNearAmount(priceRange.to) || undefined
+                                            }
+                                            props.close()
+                                            onApply(range)
+                                        }}
+                            />
                         </div>
                     </>
-                )}
+                }
             </Popover.Panel>
         </PopoverFilter>
     );
 };
 
-export default PriceRangeFilter;
+export default memo(PriceRangeFilter);

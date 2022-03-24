@@ -7,7 +7,11 @@ interface SortOptionProps {
     isPicked: boolean,
 }
 
-const SortOption: React.FC<SortOptionProps & ButtonProps> = ({text, isPicked, ...props}) => {
+const SortOption: React.FC<SortOptionProps & ButtonProps> = ({
+    text,
+    isPicked,
+    ...props
+}) => {
     return (
         <button className="font-bold font-archivo text-black text-sm text-left w-full py-[12px] px-[16px]
                            inline-flex justify-between items-center hover:bg-gray-200 rounded-xl"

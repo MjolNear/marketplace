@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {memo} from 'react';
 import InfiniteScroll from "react-infinite-scroll-component";
 import CardListLoader from "./CardListLoader";
 import CardGrid from "./CardGrid";
 import {GridToken} from "../../business-logic/models/nft";
 
 
-interface PropTypes {
+interface PaginationCardListProps {
     tokens: GridToken[],
     hasMore: boolean,
     loading: boolean,
@@ -13,7 +13,7 @@ interface PropTypes {
     isCollectionNFTs?: boolean
 }
 
-const PaginationCardList: React.FC<PropTypes> = ({
+const PaginationCardList: React.FC<PaginationCardListProps> = ({
     tokens,
     hasMore,
     loading,
@@ -37,4 +37,4 @@ const PaginationCardList: React.FC<PropTypes> = ({
     );
 };
 
-export default PaginationCardList;
+export default memo(PaginationCardList);

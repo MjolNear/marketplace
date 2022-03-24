@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from "./NavigationBar/Navbar";
+import NavigationBar from "./NavigationBar/NavigationBar";
 import ScrollToTop from "../../hoc/ScrollToTop";
 import ScrollToTopButton from "../Common/Buttons/ScrollToTopButton";
 import {ToastContainer} from "react-toastify";
@@ -9,7 +9,7 @@ import Footer from "./Footer";
 const PageLayout: React.FC = () => {
     return (
         <>
-            <Navbar/>
+            <NavigationBar/>
             <ScrollToTop/>
             <ScrollToTopButton/>
             <ToastContainer className="mt-24"/>
