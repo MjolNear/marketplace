@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import PopoverFilter from "./PopupFilter";
-import NearBlackLogo from "../../Icons/near/NearBlackLogo";
+import NearBlackLogo from "../../Icons/near/NearIcon";
 import GrayInput from "../../Input/GrayInput";
 import GrayButton from "../../Common/Buttons/GrayButton";
 import BlueButton from "../../Common/Buttons/BlueButton";
