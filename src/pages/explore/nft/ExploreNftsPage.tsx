@@ -58,7 +58,7 @@ export const tokenSortOptions: Record<TokenSortName, TokenSortOption> = {
 
 
 const ExploreNftsPage = () => {
-    const limit = 24
+    const limit = 12
     const [hasMore, setHasMore] = useState(true)
 
     const initialSort = tokenSortOptions[TokenSortName.RecentlyAdded]

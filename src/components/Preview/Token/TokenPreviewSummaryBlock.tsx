@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import {Optional} from "../../../business-logic/models/types";
 import TokenMedia from "./Blocks/TokenMedia";
 import {TTokenDetailsProps} from "./Blocks/TokenDetails";

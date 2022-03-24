@@ -13,6 +13,12 @@ export enum ItemMarketStatus {
 
     // Item has been transferred or sold on other marketplace and lose approvals for MjolNear marketplace
     NOT_APPROVED = "NOT_APPROVED",
+
+    // Item is listed but current user not authenticated
+    LISTED_AUTH_REQUIRED = "LISTED_AUTH_REQUIRED",
+
+    // Item is not listed and current user not authenticated
+    NOT_LISTED_AUTH_REQUIRED = "NOT_LISTED_AUTH_REQUIRED"
 }
 
 

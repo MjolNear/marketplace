@@ -1,9 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
 import {getCurrentWallet} from "../../../../business-logic/near/wallet/wallet";
 
 const ConnectWalletButton = () => {
-    return <DarkBlueGradientButton title="Connect to NEAR" onClick={() => getCurrentWallet().requestSignIn()}/>
+
+    const [isConnecting, setIsConnecting] = useState(false)
+
+    return <DarkBlueGradientButton title="Connect to wallet"
+                                   isLoading={isConnecting}
+                                   onClick={() => {
+                                       setIsConnecting(!isConnecting)
+                                       getCurrentWallet().requestSignIn().then()
+                                   }}
+    />
 };
 
 export default ConnectWalletButton

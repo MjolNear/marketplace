@@ -10,7 +10,13 @@ export const useNftMarketStatus = (
 
     const isListed = !!price
 
-    if (!isApproved && isListed) return ItemMarketStatus.NOT_APPROVED
+    if (!accountId) {
+        return isListed
+            ? ItemMarketStatus.LISTED_AUTH_REQUIRED
+            : ItemMarketStatus.NOT_LISTED_AUTH_REQUIRED
+    }
+
+    if (isListed && !isApproved) return ItemMarketStatus.NOT_APPROVED
 
     return (accountId === ownerId) ?
         isListed

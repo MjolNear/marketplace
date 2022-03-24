@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import NearBlackLogo from "../../../Icons/near/NearBlackLogo";
 import {Optional} from "../../../../business-logic/models/types";
 import {useNearUsdPrice} from "../../../../hooks/useNearUsdPrice";
