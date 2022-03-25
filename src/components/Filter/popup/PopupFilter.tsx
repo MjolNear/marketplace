@@ -19,7 +19,7 @@ const PopupFilter: React.FC<PopupFilterProps> = ({
                                        text-xs-2 ring-1 ring-blue-200 font-semibold
                                        focus:outline-none
                                        disabled:opacity-40
-                                       focus-visible:ring-0"
+                                       "
                             disabled={disabled}
             >
                 {icon}

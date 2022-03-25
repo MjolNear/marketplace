@@ -25,7 +25,7 @@ const EmptyCardList = React.memo<PropTypes>(({
 }) => {
     return (
         <div className="w-full flex flex-col justify-center items-center gap-10">
-            <div className="inline-flex place-items-end gap-4">
+            <div className="inline-flex items-end gap-4">
                 <motion.div className="rounded-lg shadow-mjol-gray-xs"
                             style={{
                                 width,

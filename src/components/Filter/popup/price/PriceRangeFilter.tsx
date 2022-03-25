@@ -1,15 +1,16 @@
 import React, {memo, useState} from 'react';
-import PopoverFilter from "./PopupFilter";
-import NearBlackLogo from "../../Icons/near/NearIcon";
-import GrayInput from "../../Input/GrayInput";
-import GrayButton from "../../Common/Buttons/GrayButton";
-import BlueButton from "../../Common/Buttons/BlueButton";
+import PopoverFilter from "../PopupFilter";
+import NearBlackLogo from "../../../Icons/near/NearIcon";
+import GrayInput from "../../../Input/GrayInput";
+import GrayButton from "../../../Common/Buttons/GrayButton";
+import BlueButton from "../../../Common/Buttons/BlueButton";
 import {Popover} from '@headlessui/react';
 import {utils} from "near-api-js";
-import {TokenPriceRange} from "../../../graphql/utils";
+import {TokenPriceRange} from "../../../../graphql/utils";
 
 interface RangeFilterProps {
     onApply: (range: TokenPriceRange) => void
+
     onClear: () => void,
     disabled?: boolean
 }

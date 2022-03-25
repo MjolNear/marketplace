@@ -3,7 +3,7 @@ import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowCon
 import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
 
 import {TokenPriceRange, TokenSortName, tokenSortOptions} from "../../../graphql/utils";
-import PriceRangeFilter from "../../../components/Filter/popup/PriceRangeFilter";
+import PriceRangeFilter from "../../../components/Filter/popup/price/PriceRangeFilter";
 import SortFilter from "../../../components/Filter/popup/sort/SortFilter";
 import SearchInput from "../../../components/Filter/search/SearchInput";
 import useDebounce from "../../../hooks/useDebounce";
