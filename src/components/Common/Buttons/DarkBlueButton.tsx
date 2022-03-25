@@ -6,7 +6,7 @@ import BaseButton from "./BaseButton";
 const DarkBlueButton: React.FC<ColoredButtonProps> = (props) => {
     return (
         <BaseButton {...props}
-                    fontWeight="extrabold"
+                    fontWeight="bold"
                     fromColor="from-blue-500"
                     toColor="to-gray-800"
                     hoverFromColor="hover:from-blue-600"

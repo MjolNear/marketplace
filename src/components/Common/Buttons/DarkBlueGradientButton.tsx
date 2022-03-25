@@ -1,12 +1,12 @@
 import React from 'react';
-import {ButtonProps, ColoredButtonProps} from "./ButtonProps";
+import {ColoredButtonProps} from "./ButtonProps";
 import BaseButton from "./BaseButton";
 
 
 const DarkBlueGradientButton: React.FC<ColoredButtonProps> = (props) => {
     return (
         <BaseButton {...props}
-                    fontWeight="extrabold"
+                    fontWeight="bold"
                     fromColor="from-blue-500"
                     toColor="to-blue-800"
                     hoverFromColor="hover:from-blue-600"

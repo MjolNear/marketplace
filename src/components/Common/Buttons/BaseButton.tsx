@@ -15,6 +15,7 @@ interface GradientButtonsProps {
     hoverToColor?: string,
     disabledStyles?: string
     rounded?: string,
+    height?: string
     width?: string
     px?: number,
     py?: number
@@ -37,6 +38,7 @@ const BaseButton: React.FC<GradientButtonsProps & ButtonProps & Omit<TextProps, 
     textColor = "white",
     shadow = "drop-shadow-xl",
     rounded = "xl",
+    height = "h-full",
     width = "w-full",
     px = 18,
     py = 12,
@@ -54,8 +56,8 @@ const BaseButton: React.FC<GradientButtonsProps & ButtonProps & Omit<TextProps, 
         <button disabled={disabled || isLoading}
                 className={
                     `font-archivo disabled:opacity-60 disabled:hover:drop-shadow-none disabled:cursor-not-allowed 
-                 ${paddings} ${bgColor} ${hoverShadow} ${textColorStyle} ${textSize} ${textAlignment}
-                 ${textWeight} ${width} ${roundedStyle} ${fromColor} ${toColor} ${hoverFromColor} ${hoverToColor}
+                 ${paddings} ${bgColor} ${hoverShadow} ${textColorStyle} ${textSize} ${textAlignment} ${textWeight} 
+                 ${width} ${height} ${roundedStyle} ${fromColor} ${toColor} ${hoverFromColor} ${hoverToColor}
                  ${disabledStyles}`
                 }
                 {...props}
