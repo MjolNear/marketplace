@@ -8,9 +8,8 @@ import CollectionTitleDescription from "../../../components/Preview/Collection/B
 import CollectionBanner from "../../../components/Preview/Collection/Blocks/CollectionBanner";
 import CollectionItemActivityTab from "../../../components/Preview/Collection/Filters/CollectionItemActivityTab";
 import CollectionMedia from "../../../components/Preview/Collection/Media/CollectionMedia";
-import TraitsFilter from "../../../components/Preview/Collection/Filters/TraitsFilter";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
-import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
+import BlueToggle from "../../../components/Filter/toggle/BlueToggle";
 import CollectionMarketNftList from "./CollectionMarketNftList";
 import {useFetchCollection} from "../../../hooks/collection/useFetchCollection";
 import CollectionStats from "../../../components/Preview/Collection/Stats/CollectionStats";

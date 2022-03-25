@@ -3,6 +3,8 @@ import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButt
 import PriceContainer from "./PriceContainer";
 import {ContractId, Optional, TokenId} from "../../../../business-logic/models/types";
 import {buyNftWithPayouts} from "../../../../business-logic/near/api/market/transaction";
+import DarkBlueButton from "../../../Common/Buttons/DarkBlueButton";
+import DarkCyanGradientButton from "../../../Common/Buttons/DarkCyanGradientButton";
 
 interface TBuyNftProps {
     tokenPrice?: Optional<string>
