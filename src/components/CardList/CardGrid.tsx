@@ -27,7 +27,7 @@ const CardGrid: React.FC<TGridProps> = ({
         <>
             {tokens.length === 0 && !fetching
                 ? isCollectionNFTs
-                    ? <EmptyCardList mainDescription="No items on sale"/>
+                    ? <EmptyCardList mainDescription="No items for this collection on sale"/>
                     : <EmptyCardList/>
                 : <CardsGridContainer>
                     {tokens.map(token => {

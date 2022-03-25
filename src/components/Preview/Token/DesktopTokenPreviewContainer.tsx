@@ -1,5 +1,5 @@
 import React from 'react';
-import {TokenPreviewProps} from "./Blocks/TokenPreviewProps";
+import {TokenPreviewProps} from "./TokenPreviewProps";
 import TokenPreviewSummaryBlock from "./TokenPreviewSummaryBlock";
 import TokenPreviewMainBlock from "./TokenPreviewMainBlock";
 import TokenActivity from "./Blocks/TokenActivity";

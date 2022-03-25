@@ -1,13 +1,14 @@
 import React from 'react';
-import {TokenPreviewProps} from './Blocks/TokenPreviewProps';
+import {TokenPreviewProps} from './TokenPreviewProps';
 import TokenMedia from "./Blocks/TokenMedia";
-import NftPreviewTitle from "./Blocks/NftPreviewTitle";
 import TokenDetails from "./Blocks/TokenDetails";
 import TokenActivity from "./Blocks/TokenActivity";
 import TokenTraits from "./Blocks/TokenTraits";
 import TokenPayoutDetails from "./Blocks/TokenPayoutDetails";
 import TokenDescription from "./Blocks/TokenDescription";
 import TokenMarketStatus from "./Blocks/TokenMarketStatus";
+import TokenPreviewTitleCollection from "./Blocks/TokenPreviewTitleCollection";
+import TokenPreviewOwnerContract from "./Blocks/TokenPreviewOwnerContract";
 
 const MobileTokenPreviewContainer: React.FC<TokenPreviewProps> = ({
     token,
@@ -15,14 +16,16 @@ const MobileTokenPreviewContainer: React.FC<TokenPreviewProps> = ({
     payouts
 }) => {
     return (
-        <div className="flex flex-col w-full max-w-[600px] px-4 gap-4">
-            <NftPreviewTitle title={token.title}
-                             ownerId={token.ownerId}
-                             contractId={token.contractId}
-                             mintSiteName={token.mintedSiteName}
-                             verification={contract?.verification}
+        <div className="flex flex-col w-full max-w-[600px] px-2 gap-4">
+            <TokenPreviewTitleCollection title={token.title}
+                                         contractId={token.contractId}
             />
             <TokenMedia link={token.media}/>
+            <TokenPreviewOwnerContract ownerId={token.ownerId}
+                                       contractId={token.contractId}
+                                       mintSiteName={token.mintedSiteName}
+                                       verification={contract?.verification}
+            />
             <TokenMarketStatus token={token}
                                contract={contract}
                                payouts={payouts}

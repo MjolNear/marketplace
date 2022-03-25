@@ -1,10 +1,11 @@
 import React from 'react';
-import NftPreviewTitle from "./Blocks/NftPreviewTitle";
 import TokenPayoutDetails from "./Blocks/TokenPayoutDetails";
 import TokenMarketStatus from "./Blocks/TokenMarketStatus";
 import TokenDetails from "./Blocks/TokenDetails";
-import {TokenPreviewProps} from "./Blocks/TokenPreviewProps";
+import {TokenPreviewProps} from "./TokenPreviewProps";
 import SharePopup from "../../Common/Share/SharePopup";
+import TokenPreviewTitleCollection from "./Blocks/TokenPreviewTitleCollection";
+import TokenPreviewOwnerContract from "./Blocks/TokenPreviewOwnerContract";
 
 const TokenPreviewMainBlock: React.FC<TokenPreviewProps> = ({
     token,
@@ -16,11 +17,13 @@ const TokenPreviewMainBlock: React.FC<TokenPreviewProps> = ({
             <div className="self-end">
                 <SharePopup link={`mjolnear.com/#/nfts/${token.contractId}/${token.tokenId}`}/>
             </div>
-            <NftPreviewTitle title={token.title}
-                             ownerId={token.ownerId}
-                             contractId={token.contractId}
-                             mintSiteName={token.mintedSiteName}
-                             verification={contract?.verification}
+            <TokenPreviewTitleCollection title={token.title}
+                                         contractId={token.contractId}
+            />
+            <TokenPreviewOwnerContract ownerId={token.ownerId}
+                                       contractId={token.contractId}
+                                       mintSiteName={token.mintedSiteName}
+                                       verification={contract?.verification}
             />
             <TokenMarketStatus token={token}
                                contract={contract}

@@ -7,7 +7,7 @@ import CardListLoader from "../../../components/CardList/CardListLoader";
 import EmptyCardList from "../../../components/CardList/EmptyCardList";
 import {profileTokensSlice} from "../../../state/profile/nfts/tokens/slice";
 import {TAuthProps} from "../../../hoc/withAuthData";
-import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
+import BlueToggle from "../../../components/Filter/toggle/BlueToggle";
 import {WhitelistedContract} from "../../../business-logic/whitelisted.contract";
 import {ContractVerificationStatus} from "../../../business-logic/models/contract";
 

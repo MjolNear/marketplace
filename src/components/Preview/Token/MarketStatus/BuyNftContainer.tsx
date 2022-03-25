@@ -3,6 +3,9 @@ import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButt
 import PriceContainer from "./PriceContainer";
 import {ContractId, Optional, TokenId} from "../../../../business-logic/models/types";
 import {buyNftWithPayouts} from "../../../../business-logic/near/api/market/transaction";
+import DarkBlueButton from "../../../Common/Buttons/DarkBlueButton";
+import DarkCyanGradientButton from "../../../Common/Buttons/DarkCyanGradientButton";
+import Tooltip from "../../../Layout/Tooltip";
 
 interface TBuyNftProps {
     tokenPrice?: Optional<string>
@@ -26,14 +29,25 @@ const BuyNftContainer: React.FC<TBuyNftProps> = ({
 
     return (
         <PriceContainer tokenPrice={tokenPrice}>
-            <DarkBlueGradientButton
-                title={tokenPrice === "0"
-                    ? "Get for free"
-                    : "Buy Now"
-                }
-                isLoading={isBuying}
-                onClick={buy}
-            />
+            <div className="flex flex-col lg:flex-row gap-2">
+                <DarkBlueGradientButton
+                    title={tokenPrice === "0"
+                        ? "Get for free"
+                        : "Buy Now"
+                    }
+                    isLoading={isBuying}
+                    onClick={buy}
+                />
+                <p className="w-full cursor-pointer"
+                   data-for="placeOfferTooltip"
+                   data-tip="Offers will be added soon!"
+                >
+                    <DarkBlueButton title="Place an Offer"
+                                    disabled={true}
+                    />
+                </p>
+                <Tooltip id="placeOfferTooltip" place="bottom"/>
+            </div>
         </PriceContainer>
     )
 };

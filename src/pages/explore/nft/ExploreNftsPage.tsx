@@ -1,18 +1,14 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
 
 import {TokenPriceRange, TokenSortName, tokenSortOptions} from "../../../graphql/utils";
-import PriceRangeFilter from "../../../components/Filter/popup/PriceRangeFilter";
+import PriceRangeFilter from "../../../components/Filter/popup/price/PriceRangeFilter";
 import SortFilter from "../../../components/Filter/popup/sort/SortFilter";
 import SearchInput from "../../../components/Filter/search/SearchInput";
 import useDebounce from "../../../hooks/useDebounce";
 import ExploreSearchTokens from "./ExploreSearchTokens";
-import ExploreFilterTokens from "./ExploreFilterTokens";
-import ActiveFilters from "../../../components/Filter/ActiveFilters";
-import {formatNearAmount} from "near-api-js/lib/utils/format";
-import NearIcon from "../../../components/Icons/near/NearIcon";
-import activeFilters from "../../../components/Filter/ActiveFilters";
+import ExploreFilterTokens from "./ExploreFilterTokens";;
 
 
 const ExploreNftsPage = () => {

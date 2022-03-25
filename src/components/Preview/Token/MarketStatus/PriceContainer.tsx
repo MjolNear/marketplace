@@ -24,7 +24,7 @@ const PriceContainer: React.FC<TPriceContainerProps> = ({
         ""
 
     return (
-        <div className="rounded-xl px-6 py-4 bg-mjol-blue-card-property flex flex-col gap-4">
+        <div className="rounded-xl px-4 lg:px-6 py-4 bg-mjol-blue-card-property flex flex-col gap-4">
             <div className="font-bold font-archivo text-left text-sm text-gray-600 w-full">
                 CURRENT PRICE
                 <hr/>
@@ -40,7 +40,7 @@ const PriceContainer: React.FC<TPriceContainerProps> = ({
                     {priceInUSD}
                 </div>
             </div>
-            <div className="max-w-[70%]">
+            <div className="lg:max-w-[80%]">
                 {children}
             </div>
         </div>
