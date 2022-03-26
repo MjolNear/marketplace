@@ -18,40 +18,164 @@ export type Scalars = {
   Bytes: any;
 };
 
+export type Account = {
+  __typename?: 'Account';
+  earned: Scalars['BigDecimal'];
+  id: Scalars['ID'];
+  marketTokens: Array<MarketToken>;
+  purchases: Scalars['BigInt'];
+  sales: Scalars['BigInt'];
+  spent: Scalars['BigDecimal'];
+};
+
+
+export type AccountMarketTokensArgs = {
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<MarketToken_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<MarketToken_Filter>;
+};
+
+export type Account_Filter = {
+  earned?: InputMaybe<Scalars['BigDecimal']>;
+  earned_gt?: InputMaybe<Scalars['BigDecimal']>;
+  earned_gte?: InputMaybe<Scalars['BigDecimal']>;
+  earned_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  earned_lt?: InputMaybe<Scalars['BigDecimal']>;
+  earned_lte?: InputMaybe<Scalars['BigDecimal']>;
+  earned_not?: InputMaybe<Scalars['BigDecimal']>;
+  earned_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  id?: InputMaybe<Scalars['ID']>;
+  id_gt?: InputMaybe<Scalars['ID']>;
+  id_gte?: InputMaybe<Scalars['ID']>;
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  id_lt?: InputMaybe<Scalars['ID']>;
+  id_lte?: InputMaybe<Scalars['ID']>;
+  id_not?: InputMaybe<Scalars['ID']>;
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  purchases?: InputMaybe<Scalars['BigInt']>;
+  purchases_gt?: InputMaybe<Scalars['BigInt']>;
+  purchases_gte?: InputMaybe<Scalars['BigInt']>;
+  purchases_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  purchases_lt?: InputMaybe<Scalars['BigInt']>;
+  purchases_lte?: InputMaybe<Scalars['BigInt']>;
+  purchases_not?: InputMaybe<Scalars['BigInt']>;
+  purchases_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  sales?: InputMaybe<Scalars['BigInt']>;
+  sales_gt?: InputMaybe<Scalars['BigInt']>;
+  sales_gte?: InputMaybe<Scalars['BigInt']>;
+  sales_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  sales_lt?: InputMaybe<Scalars['BigInt']>;
+  sales_lte?: InputMaybe<Scalars['BigInt']>;
+  sales_not?: InputMaybe<Scalars['BigInt']>;
+  sales_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  spent?: InputMaybe<Scalars['BigDecimal']>;
+  spent_gt?: InputMaybe<Scalars['BigDecimal']>;
+  spent_gte?: InputMaybe<Scalars['BigDecimal']>;
+  spent_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  spent_lt?: InputMaybe<Scalars['BigDecimal']>;
+  spent_lte?: InputMaybe<Scalars['BigDecimal']>;
+  spent_not?: InputMaybe<Scalars['BigDecimal']>;
+  spent_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+};
+
+export enum Account_OrderBy {
+  Earned = 'earned',
+  Id = 'id',
+  MarketTokens = 'marketTokens',
+  Purchases = 'purchases',
+  Sales = 'sales',
+  Spent = 'spent'
+}
+
 export type Activity = {
   __typename?: 'Activity';
-  buyerId?: Maybe<Scalars['String']>;
+  blockHash: Scalars['String'];
+  buyer?: Maybe<Account>;
+  collectionId?: Maybe<Scalars['String']>;
   contractId: Scalars['String'];
-  eventType: HistoryEventType;
+  eventType: ActivityEventType;
   id: Scalars['ID'];
-  ownerId: Scalars['String'];
+  owner: Account;
   price?: Maybe<Scalars['BigInt']>;
   timestamp: Scalars['BigInt'];
   token: SavedToken;
   txHash: Scalars['String'];
 };
 
+export enum ActivityEventType {
+  AcceptOffer = 'AcceptOffer',
+  Buy = 'Buy',
+  List = 'List',
+  MakeOffer = 'MakeOffer',
+  RemoveOffer = 'RemoveOffer',
+  Transferred = 'Transferred',
+  Unlist = 'Unlist',
+  UpdatePrice = 'UpdatePrice'
+}
+
 export type Activity_Filter = {
-  buyerId?: InputMaybe<Scalars['String']>;
-  buyerId_contains?: InputMaybe<Scalars['String']>;
-  buyerId_contains_nocase?: InputMaybe<Scalars['String']>;
-  buyerId_ends_with?: InputMaybe<Scalars['String']>;
-  buyerId_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  buyerId_gt?: InputMaybe<Scalars['String']>;
-  buyerId_gte?: InputMaybe<Scalars['String']>;
-  buyerId_in?: InputMaybe<Array<Scalars['String']>>;
-  buyerId_lt?: InputMaybe<Scalars['String']>;
-  buyerId_lte?: InputMaybe<Scalars['String']>;
-  buyerId_not?: InputMaybe<Scalars['String']>;
-  buyerId_not_contains?: InputMaybe<Scalars['String']>;
-  buyerId_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  buyerId_not_ends_with?: InputMaybe<Scalars['String']>;
-  buyerId_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  buyerId_not_in?: InputMaybe<Array<Scalars['String']>>;
-  buyerId_not_starts_with?: InputMaybe<Scalars['String']>;
-  buyerId_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  buyerId_starts_with?: InputMaybe<Scalars['String']>;
-  buyerId_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  blockHash?: InputMaybe<Scalars['String']>;
+  blockHash_contains?: InputMaybe<Scalars['String']>;
+  blockHash_contains_nocase?: InputMaybe<Scalars['String']>;
+  blockHash_ends_with?: InputMaybe<Scalars['String']>;
+  blockHash_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  blockHash_gt?: InputMaybe<Scalars['String']>;
+  blockHash_gte?: InputMaybe<Scalars['String']>;
+  blockHash_in?: InputMaybe<Array<Scalars['String']>>;
+  blockHash_lt?: InputMaybe<Scalars['String']>;
+  blockHash_lte?: InputMaybe<Scalars['String']>;
+  blockHash_not?: InputMaybe<Scalars['String']>;
+  blockHash_not_contains?: InputMaybe<Scalars['String']>;
+  blockHash_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  blockHash_not_ends_with?: InputMaybe<Scalars['String']>;
+  blockHash_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  blockHash_not_in?: InputMaybe<Array<Scalars['String']>>;
+  blockHash_not_starts_with?: InputMaybe<Scalars['String']>;
+  blockHash_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  blockHash_starts_with?: InputMaybe<Scalars['String']>;
+  blockHash_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  buyer?: InputMaybe<Scalars['String']>;
+  buyer_contains?: InputMaybe<Scalars['String']>;
+  buyer_contains_nocase?: InputMaybe<Scalars['String']>;
+  buyer_ends_with?: InputMaybe<Scalars['String']>;
+  buyer_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  buyer_gt?: InputMaybe<Scalars['String']>;
+  buyer_gte?: InputMaybe<Scalars['String']>;
+  buyer_in?: InputMaybe<Array<Scalars['String']>>;
+  buyer_lt?: InputMaybe<Scalars['String']>;
+  buyer_lte?: InputMaybe<Scalars['String']>;
+  buyer_not?: InputMaybe<Scalars['String']>;
+  buyer_not_contains?: InputMaybe<Scalars['String']>;
+  buyer_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  buyer_not_ends_with?: InputMaybe<Scalars['String']>;
+  buyer_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  buyer_not_in?: InputMaybe<Array<Scalars['String']>>;
+  buyer_not_starts_with?: InputMaybe<Scalars['String']>;
+  buyer_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  buyer_starts_with?: InputMaybe<Scalars['String']>;
+  buyer_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionId?: InputMaybe<Scalars['String']>;
+  collectionId_contains?: InputMaybe<Scalars['String']>;
+  collectionId_contains_nocase?: InputMaybe<Scalars['String']>;
+  collectionId_ends_with?: InputMaybe<Scalars['String']>;
+  collectionId_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionId_gt?: InputMaybe<Scalars['String']>;
+  collectionId_gte?: InputMaybe<Scalars['String']>;
+  collectionId_in?: InputMaybe<Array<Scalars['String']>>;
+  collectionId_lt?: InputMaybe<Scalars['String']>;
+  collectionId_lte?: InputMaybe<Scalars['String']>;
+  collectionId_not?: InputMaybe<Scalars['String']>;
+  collectionId_not_contains?: InputMaybe<Scalars['String']>;
+  collectionId_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  collectionId_not_ends_with?: InputMaybe<Scalars['String']>;
+  collectionId_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionId_not_in?: InputMaybe<Array<Scalars['String']>>;
+  collectionId_not_starts_with?: InputMaybe<Scalars['String']>;
+  collectionId_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionId_starts_with?: InputMaybe<Scalars['String']>;
+  collectionId_starts_with_nocase?: InputMaybe<Scalars['String']>;
   contractId?: InputMaybe<Scalars['String']>;
   contractId_contains?: InputMaybe<Scalars['String']>;
   contractId_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -72,10 +196,10 @@ export type Activity_Filter = {
   contractId_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   contractId_starts_with?: InputMaybe<Scalars['String']>;
   contractId_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  eventType?: InputMaybe<HistoryEventType>;
-  eventType_in?: InputMaybe<Array<HistoryEventType>>;
-  eventType_not?: InputMaybe<HistoryEventType>;
-  eventType_not_in?: InputMaybe<Array<HistoryEventType>>;
+  eventType?: InputMaybe<ActivityEventType>;
+  eventType_in?: InputMaybe<Array<ActivityEventType>>;
+  eventType_not?: InputMaybe<ActivityEventType>;
+  eventType_not_in?: InputMaybe<Array<ActivityEventType>>;
   id?: InputMaybe<Scalars['ID']>;
   id_gt?: InputMaybe<Scalars['ID']>;
   id_gte?: InputMaybe<Scalars['ID']>;
@@ -84,26 +208,26 @@ export type Activity_Filter = {
   id_lte?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  ownerId?: InputMaybe<Scalars['String']>;
-  ownerId_contains?: InputMaybe<Scalars['String']>;
-  ownerId_contains_nocase?: InputMaybe<Scalars['String']>;
-  ownerId_ends_with?: InputMaybe<Scalars['String']>;
-  ownerId_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  ownerId_gt?: InputMaybe<Scalars['String']>;
-  ownerId_gte?: InputMaybe<Scalars['String']>;
-  ownerId_in?: InputMaybe<Array<Scalars['String']>>;
-  ownerId_lt?: InputMaybe<Scalars['String']>;
-  ownerId_lte?: InputMaybe<Scalars['String']>;
-  ownerId_not?: InputMaybe<Scalars['String']>;
-  ownerId_not_contains?: InputMaybe<Scalars['String']>;
-  ownerId_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  ownerId_not_ends_with?: InputMaybe<Scalars['String']>;
-  ownerId_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  ownerId_not_in?: InputMaybe<Array<Scalars['String']>>;
-  ownerId_not_starts_with?: InputMaybe<Scalars['String']>;
-  ownerId_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  ownerId_starts_with?: InputMaybe<Scalars['String']>;
-  ownerId_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  owner?: InputMaybe<Scalars['String']>;
+  owner_contains?: InputMaybe<Scalars['String']>;
+  owner_contains_nocase?: InputMaybe<Scalars['String']>;
+  owner_ends_with?: InputMaybe<Scalars['String']>;
+  owner_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  owner_gt?: InputMaybe<Scalars['String']>;
+  owner_gte?: InputMaybe<Scalars['String']>;
+  owner_in?: InputMaybe<Array<Scalars['String']>>;
+  owner_lt?: InputMaybe<Scalars['String']>;
+  owner_lte?: InputMaybe<Scalars['String']>;
+  owner_not?: InputMaybe<Scalars['String']>;
+  owner_not_contains?: InputMaybe<Scalars['String']>;
+  owner_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  owner_not_ends_with?: InputMaybe<Scalars['String']>;
+  owner_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  owner_not_in?: InputMaybe<Array<Scalars['String']>>;
+  owner_not_starts_with?: InputMaybe<Scalars['String']>;
+  owner_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  owner_starts_with?: InputMaybe<Scalars['String']>;
+  owner_starts_with_nocase?: InputMaybe<Scalars['String']>;
   price?: InputMaybe<Scalars['BigInt']>;
   price_gt?: InputMaybe<Scalars['BigInt']>;
   price_gte?: InputMaybe<Scalars['BigInt']>;
@@ -163,11 +287,13 @@ export type Activity_Filter = {
 };
 
 export enum Activity_OrderBy {
-  BuyerId = 'buyerId',
+  BlockHash = 'blockHash',
+  Buyer = 'buyer',
+  CollectionId = 'collectionId',
   ContractId = 'contractId',
   EventType = 'eventType',
   Id = 'id',
-  OwnerId = 'ownerId',
+  Owner = 'owner',
   Price = 'price',
   Timestamp = 'timestamp',
   Token = 'token',
@@ -354,17 +480,10 @@ export enum DailyMarketStat_OrderBy {
   Volume = 'volume'
 }
 
-export enum HistoryEventType {
-  AcceptOffer = 'AcceptOffer',
-  Buy = 'Buy',
-  List = 'List',
-  MakeOffer = 'MakeOffer',
-  RemoveOffer = 'RemoveOffer',
-  Unlist = 'Unlist'
-}
-
 export type MarketToken = {
   __typename?: 'MarketToken';
+  collectionId?: Maybe<Scalars['String']>;
+  collectionName?: Maybe<Scalars['String']>;
   contractId: Scalars['String'];
   copies?: Maybe<Scalars['BigInt']>;
   description?: Maybe<Scalars['String']>;
@@ -374,13 +493,53 @@ export type MarketToken = {
   media?: Maybe<Scalars['String']>;
   mintSiteLink?: Maybe<Scalars['String']>;
   mintSiteName?: Maybe<Scalars['String']>;
-  ownerId: Scalars['String'];
+  owner: Account;
   price: Scalars['BigInt'];
   title: Scalars['String'];
   tokenId: Scalars['String'];
 };
 
 export type MarketToken_Filter = {
+  collectionId?: InputMaybe<Scalars['String']>;
+  collectionId_contains?: InputMaybe<Scalars['String']>;
+  collectionId_contains_nocase?: InputMaybe<Scalars['String']>;
+  collectionId_ends_with?: InputMaybe<Scalars['String']>;
+  collectionId_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionId_gt?: InputMaybe<Scalars['String']>;
+  collectionId_gte?: InputMaybe<Scalars['String']>;
+  collectionId_in?: InputMaybe<Array<Scalars['String']>>;
+  collectionId_lt?: InputMaybe<Scalars['String']>;
+  collectionId_lte?: InputMaybe<Scalars['String']>;
+  collectionId_not?: InputMaybe<Scalars['String']>;
+  collectionId_not_contains?: InputMaybe<Scalars['String']>;
+  collectionId_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  collectionId_not_ends_with?: InputMaybe<Scalars['String']>;
+  collectionId_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionId_not_in?: InputMaybe<Array<Scalars['String']>>;
+  collectionId_not_starts_with?: InputMaybe<Scalars['String']>;
+  collectionId_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionId_starts_with?: InputMaybe<Scalars['String']>;
+  collectionId_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionName?: InputMaybe<Scalars['String']>;
+  collectionName_contains?: InputMaybe<Scalars['String']>;
+  collectionName_contains_nocase?: InputMaybe<Scalars['String']>;
+  collectionName_ends_with?: InputMaybe<Scalars['String']>;
+  collectionName_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionName_gt?: InputMaybe<Scalars['String']>;
+  collectionName_gte?: InputMaybe<Scalars['String']>;
+  collectionName_in?: InputMaybe<Array<Scalars['String']>>;
+  collectionName_lt?: InputMaybe<Scalars['String']>;
+  collectionName_lte?: InputMaybe<Scalars['String']>;
+  collectionName_not?: InputMaybe<Scalars['String']>;
+  collectionName_not_contains?: InputMaybe<Scalars['String']>;
+  collectionName_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  collectionName_not_ends_with?: InputMaybe<Scalars['String']>;
+  collectionName_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionName_not_in?: InputMaybe<Array<Scalars['String']>>;
+  collectionName_not_starts_with?: InputMaybe<Scalars['String']>;
+  collectionName_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionName_starts_with?: InputMaybe<Scalars['String']>;
+  collectionName_starts_with_nocase?: InputMaybe<Scalars['String']>;
   contractId?: InputMaybe<Scalars['String']>;
   contractId_contains?: InputMaybe<Scalars['String']>;
   contractId_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -525,26 +684,26 @@ export type MarketToken_Filter = {
   mintSiteName_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   mintSiteName_starts_with?: InputMaybe<Scalars['String']>;
   mintSiteName_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  ownerId?: InputMaybe<Scalars['String']>;
-  ownerId_contains?: InputMaybe<Scalars['String']>;
-  ownerId_contains_nocase?: InputMaybe<Scalars['String']>;
-  ownerId_ends_with?: InputMaybe<Scalars['String']>;
-  ownerId_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  ownerId_gt?: InputMaybe<Scalars['String']>;
-  ownerId_gte?: InputMaybe<Scalars['String']>;
-  ownerId_in?: InputMaybe<Array<Scalars['String']>>;
-  ownerId_lt?: InputMaybe<Scalars['String']>;
-  ownerId_lte?: InputMaybe<Scalars['String']>;
-  ownerId_not?: InputMaybe<Scalars['String']>;
-  ownerId_not_contains?: InputMaybe<Scalars['String']>;
-  ownerId_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  ownerId_not_ends_with?: InputMaybe<Scalars['String']>;
-  ownerId_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  ownerId_not_in?: InputMaybe<Array<Scalars['String']>>;
-  ownerId_not_starts_with?: InputMaybe<Scalars['String']>;
-  ownerId_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  ownerId_starts_with?: InputMaybe<Scalars['String']>;
-  ownerId_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  owner?: InputMaybe<Scalars['String']>;
+  owner_contains?: InputMaybe<Scalars['String']>;
+  owner_contains_nocase?: InputMaybe<Scalars['String']>;
+  owner_ends_with?: InputMaybe<Scalars['String']>;
+  owner_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  owner_gt?: InputMaybe<Scalars['String']>;
+  owner_gte?: InputMaybe<Scalars['String']>;
+  owner_in?: InputMaybe<Array<Scalars['String']>>;
+  owner_lt?: InputMaybe<Scalars['String']>;
+  owner_lte?: InputMaybe<Scalars['String']>;
+  owner_not?: InputMaybe<Scalars['String']>;
+  owner_not_contains?: InputMaybe<Scalars['String']>;
+  owner_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  owner_not_ends_with?: InputMaybe<Scalars['String']>;
+  owner_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  owner_not_in?: InputMaybe<Array<Scalars['String']>>;
+  owner_not_starts_with?: InputMaybe<Scalars['String']>;
+  owner_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  owner_starts_with?: InputMaybe<Scalars['String']>;
+  owner_starts_with_nocase?: InputMaybe<Scalars['String']>;
   price?: InputMaybe<Scalars['BigInt']>;
   price_gt?: InputMaybe<Scalars['BigInt']>;
   price_gte?: InputMaybe<Scalars['BigInt']>;
@@ -596,6 +755,8 @@ export type MarketToken_Filter = {
 };
 
 export enum MarketToken_OrderBy {
+  CollectionId = 'collectionId',
+  CollectionName = 'collectionName',
   ContractId = 'contractId',
   Copies = 'copies',
   Description = 'description',
@@ -605,7 +766,7 @@ export enum MarketToken_OrderBy {
   Media = 'media',
   MintSiteLink = 'mintSiteLink',
   MintSiteName = 'mintSiteName',
-  OwnerId = 'ownerId',
+  Owner = 'owner',
   Price = 'price',
   Title = 'title',
   TokenId = 'tokenId'
@@ -621,8 +782,12 @@ export type Query = {
   __typename?: 'Query';
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
+  account?: Maybe<Account>;
+  accountSearch: Array<Account>;
+  accounts: Array<Account>;
   activities: Array<Activity>;
   activity?: Maybe<Activity>;
+  activitySearch: Array<Activity>;
   dailyCollectionStat?: Maybe<DailyCollectionStat>;
   dailyCollectionStats: Array<DailyCollectionStat>;
   dailyMarketStat?: Maybe<DailyMarketStat>;
@@ -636,14 +801,38 @@ export type Query = {
   totalCollectionStats: Array<TotalCollectionStat>;
   totalMarketStat?: Maybe<TotalMarketStat>;
   totalMarketStats: Array<TotalMarketStat>;
-  user?: Maybe<User>;
-  userSearch: Array<User>;
-  users: Array<User>;
 };
 
 
 export type Query_MetaArgs = {
   block?: InputMaybe<Block_Height>;
+};
+
+
+export type QueryAccountArgs = {
+  block?: InputMaybe<Block_Height>;
+  id: Scalars['ID'];
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryAccountSearchArgs = {
+  block?: InputMaybe<Block_Height>;
+  first?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  subgraphError?: _SubgraphErrorPolicy_;
+  text: Scalars['String'];
+};
+
+
+export type QueryAccountsArgs = {
+  block?: InputMaybe<Block_Height>;
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Account_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']>;
+  subgraphError?: _SubgraphErrorPolicy_;
+  where?: InputMaybe<Account_Filter>;
 };
 
 
@@ -662,6 +851,15 @@ export type QueryActivityArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryActivitySearchArgs = {
+  block?: InputMaybe<Block_Height>;
+  first?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  subgraphError?: _SubgraphErrorPolicy_;
+  text: Scalars['String'];
 };
 
 
@@ -781,35 +979,10 @@ export type QueryTotalMarketStatsArgs = {
   where?: InputMaybe<TotalMarketStat_Filter>;
 };
 
-
-export type QueryUserArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QueryUserSearchArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  text: Scalars['String'];
-};
-
-
-export type QueryUsersArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<User_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<User_Filter>;
-};
-
 export type SavedToken = {
   __typename?: 'SavedToken';
+  collectionId?: Maybe<Scalars['String']>;
+  collectionName?: Maybe<Scalars['String']>;
   contractId: Scalars['String'];
   copies?: Maybe<Scalars['BigInt']>;
   description?: Maybe<Scalars['String']>;
@@ -823,6 +996,46 @@ export type SavedToken = {
 };
 
 export type SavedToken_Filter = {
+  collectionId?: InputMaybe<Scalars['String']>;
+  collectionId_contains?: InputMaybe<Scalars['String']>;
+  collectionId_contains_nocase?: InputMaybe<Scalars['String']>;
+  collectionId_ends_with?: InputMaybe<Scalars['String']>;
+  collectionId_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionId_gt?: InputMaybe<Scalars['String']>;
+  collectionId_gte?: InputMaybe<Scalars['String']>;
+  collectionId_in?: InputMaybe<Array<Scalars['String']>>;
+  collectionId_lt?: InputMaybe<Scalars['String']>;
+  collectionId_lte?: InputMaybe<Scalars['String']>;
+  collectionId_not?: InputMaybe<Scalars['String']>;
+  collectionId_not_contains?: InputMaybe<Scalars['String']>;
+  collectionId_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  collectionId_not_ends_with?: InputMaybe<Scalars['String']>;
+  collectionId_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionId_not_in?: InputMaybe<Array<Scalars['String']>>;
+  collectionId_not_starts_with?: InputMaybe<Scalars['String']>;
+  collectionId_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionId_starts_with?: InputMaybe<Scalars['String']>;
+  collectionId_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionName?: InputMaybe<Scalars['String']>;
+  collectionName_contains?: InputMaybe<Scalars['String']>;
+  collectionName_contains_nocase?: InputMaybe<Scalars['String']>;
+  collectionName_ends_with?: InputMaybe<Scalars['String']>;
+  collectionName_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionName_gt?: InputMaybe<Scalars['String']>;
+  collectionName_gte?: InputMaybe<Scalars['String']>;
+  collectionName_in?: InputMaybe<Array<Scalars['String']>>;
+  collectionName_lt?: InputMaybe<Scalars['String']>;
+  collectionName_lte?: InputMaybe<Scalars['String']>;
+  collectionName_not?: InputMaybe<Scalars['String']>;
+  collectionName_not_contains?: InputMaybe<Scalars['String']>;
+  collectionName_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  collectionName_not_ends_with?: InputMaybe<Scalars['String']>;
+  collectionName_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionName_not_in?: InputMaybe<Array<Scalars['String']>>;
+  collectionName_not_starts_with?: InputMaybe<Scalars['String']>;
+  collectionName_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionName_starts_with?: InputMaybe<Scalars['String']>;
+  collectionName_starts_with_nocase?: InputMaybe<Scalars['String']>;
   contractId?: InputMaybe<Scalars['String']>;
   contractId_contains?: InputMaybe<Scalars['String']>;
   contractId_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -1002,6 +1215,8 @@ export type SavedToken_Filter = {
 };
 
 export enum SavedToken_OrderBy {
+  CollectionId = 'collectionId',
+  CollectionName = 'collectionName',
   ContractId = 'contractId',
   Copies = 'copies',
   Description = 'description',
@@ -1018,6 +1233,8 @@ export type Subscription = {
   __typename?: 'Subscription';
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
+  account?: Maybe<Account>;
+  accounts: Array<Account>;
   activities: Array<Activity>;
   activity?: Maybe<Activity>;
   dailyCollectionStat?: Maybe<DailyCollectionStat>;
@@ -1032,13 +1249,29 @@ export type Subscription = {
   totalCollectionStats: Array<TotalCollectionStat>;
   totalMarketStat?: Maybe<TotalMarketStat>;
   totalMarketStats: Array<TotalMarketStat>;
-  user?: Maybe<User>;
-  users: Array<User>;
 };
 
 
 export type Subscription_MetaArgs = {
   block?: InputMaybe<Block_Height>;
+};
+
+
+export type SubscriptionAccountArgs = {
+  block?: InputMaybe<Block_Height>;
+  id: Scalars['ID'];
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionAccountsArgs = {
+  block?: InputMaybe<Block_Height>;
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Account_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']>;
+  subgraphError?: _SubgraphErrorPolicy_;
+  where?: InputMaybe<Account_Filter>;
 };
 
 
@@ -1165,24 +1398,6 @@ export type SubscriptionTotalMarketStatsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   subgraphError?: _SubgraphErrorPolicy_;
   where?: InputMaybe<TotalMarketStat_Filter>;
-};
-
-
-export type SubscriptionUserArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionUsersArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<User_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<User_Filter>;
 };
 
 export type TotalCollectionStat = {
@@ -1319,66 +1534,6 @@ export enum TotalMarketStat_OrderBy {
   Volume = 'volume'
 }
 
-export type User = {
-  __typename?: 'User';
-  earned: Scalars['BigDecimal'];
-  id: Scalars['ID'];
-  purchases: Scalars['BigInt'];
-  sales: Scalars['BigInt'];
-  spent: Scalars['BigDecimal'];
-};
-
-export type User_Filter = {
-  earned?: InputMaybe<Scalars['BigDecimal']>;
-  earned_gt?: InputMaybe<Scalars['BigDecimal']>;
-  earned_gte?: InputMaybe<Scalars['BigDecimal']>;
-  earned_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  earned_lt?: InputMaybe<Scalars['BigDecimal']>;
-  earned_lte?: InputMaybe<Scalars['BigDecimal']>;
-  earned_not?: InputMaybe<Scalars['BigDecimal']>;
-  earned_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  purchases?: InputMaybe<Scalars['BigInt']>;
-  purchases_gt?: InputMaybe<Scalars['BigInt']>;
-  purchases_gte?: InputMaybe<Scalars['BigInt']>;
-  purchases_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  purchases_lt?: InputMaybe<Scalars['BigInt']>;
-  purchases_lte?: InputMaybe<Scalars['BigInt']>;
-  purchases_not?: InputMaybe<Scalars['BigInt']>;
-  purchases_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  sales?: InputMaybe<Scalars['BigInt']>;
-  sales_gt?: InputMaybe<Scalars['BigInt']>;
-  sales_gte?: InputMaybe<Scalars['BigInt']>;
-  sales_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  sales_lt?: InputMaybe<Scalars['BigInt']>;
-  sales_lte?: InputMaybe<Scalars['BigInt']>;
-  sales_not?: InputMaybe<Scalars['BigInt']>;
-  sales_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  spent?: InputMaybe<Scalars['BigDecimal']>;
-  spent_gt?: InputMaybe<Scalars['BigDecimal']>;
-  spent_gte?: InputMaybe<Scalars['BigDecimal']>;
-  spent_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  spent_lt?: InputMaybe<Scalars['BigDecimal']>;
-  spent_lte?: InputMaybe<Scalars['BigDecimal']>;
-  spent_not?: InputMaybe<Scalars['BigDecimal']>;
-  spent_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-};
-
-export enum User_OrderBy {
-  Earned = 'earned',
-  Id = 'id',
-  Purchases = 'purchases',
-  Sales = 'sales',
-  Spent = 'spent'
-}
-
 export type _Block_ = {
   __typename?: '_Block_';
   /** The hash of the block */
@@ -1422,7 +1577,7 @@ export type CollectionMarketTokensQueryVariables = Exact<{
 }>;
 
 
-export type CollectionMarketTokensQuery = { __typename?: 'Query', collectionMarketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, ownerId: string, title: string, description?: string | null, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+export type CollectionMarketTokensQuery = { __typename?: 'Query', collectionMarketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
 
 export type CollectionTotalStatsQueryVariables = Exact<{
   contractId: Scalars['ID'];
@@ -1440,7 +1595,7 @@ export type LastMarketTokensQueryVariables = Exact<{
 }>;
 
 
-export type LastMarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', ownerId: string, tokenId: string, contractId: string, title: string, description?: string | null, media?: string | null, copies?: any | null, ipfsReference?: string | null, price: any }> };
+export type LastMarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, title: string, description?: string | null, media?: string | null, copies?: any | null, ipfsReference?: string | null, price: any }> };
 
 export type MarketStatisticsQueryVariables = Exact<{
   fromTimestamp: Scalars['BigInt'];
@@ -1459,7 +1614,7 @@ export type MarketTokensQueryVariables = Exact<{
 }>;
 
 
-export type MarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, ownerId: string, title: string, description?: string | null, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+export type MarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
 
 export type MarketTokensSearchQueryVariables = Exact<{
   text: Scalars['String'];
@@ -1468,14 +1623,14 @@ export type MarketTokensSearchQueryVariables = Exact<{
 }>;
 
 
-export type MarketTokensSearchQuery = { __typename?: 'Query', searchedMarketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, ownerId: string, title: string, description?: string | null, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+export type MarketTokensSearchQuery = { __typename?: 'Query', searchedMarketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
 
 export type TokenActivityQueryVariables = Exact<{
   tokenUID: Scalars['String'];
 }>;
 
 
-export type TokenActivityQuery = { __typename?: 'Query', tokenActivity: Array<{ __typename?: 'Activity', ownerId: string, buyerId?: string | null, price?: any | null, txHash: string, eventType: HistoryEventType, timestamp: any }> };
+export type TokenActivityQuery = { __typename?: 'Query', tokenActivity: Array<{ __typename?: 'Activity', price?: any | null, txHash: string, eventType: ActivityEventType, timestamp: any, owner: { __typename?: 'Account', id: string }, buyer?: { __typename?: 'Account', id: string } | null }> };
 
 
 export const CollectionMarketTokensDocument = gql`
@@ -1489,9 +1644,9 @@ export const CollectionMarketTokensDocument = gql`
   ) {
     tokenId
     contractId
-    ownerId
+    collectionId
+    collectionName
     title
-    description
     media
     mintSiteName
     mintSiteLink
@@ -1587,7 +1742,6 @@ export const LastMarketTokensDocument = gql`
     orderBy: $orderBy
     orderDirection: $orderDirection
   ) {
-    ownerId
     tokenId
     contractId
     title
@@ -1678,9 +1832,9 @@ export const MarketTokensDocument = gql`
   ) {
     tokenId
     contractId
-    ownerId
+    collectionId
+    collectionName
     title
-    description
     media
     mintSiteName
     mintSiteLink
@@ -1726,9 +1880,9 @@ export const MarketTokensSearchDocument = gql`
   searchedMarketTokens: marketSearch(text: $text, first: $limit, skip: $offset) {
     tokenId
     contractId
-    ownerId
+    collectionId
+    collectionName
     title
-    description
     media
     mintSiteName
     mintSiteLink
@@ -1773,12 +1927,16 @@ export const TokenActivityDocument = gql`
     orderBy: timestamp
     orderDirection: desc
   ) {
-    ownerId
-    buyerId
     price
     txHash
     eventType
     timestamp
+    owner {
+      id
+    }
+    buyer {
+      id
+    }
   }
 }
     `;

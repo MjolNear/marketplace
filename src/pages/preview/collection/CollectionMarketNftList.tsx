@@ -1,12 +1,7 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 import PaginationCardList from "../../../components/CardList/PaginationCardList";
 import NotFound404Page from "../../NotFound404";
-import {
-    CollectionMarketTokensQuery,
-    MarketToken_OrderBy,
-    OrderDirection,
-    useCollectionMarketTokensQuery
-} from "../../../graphql/generated/graphql";
+import {CollectionMarketTokensQuery, MarketToken_OrderBy, OrderDirection, useCollectionMarketTokensQuery} from "../../../graphql/generated/graphql";
 import {convertToMarketToken} from "../../../graphql/utils";
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../../utils/string";
 
@@ -48,7 +43,7 @@ const CollectionMarketNftList: React.FC<CollectionMarketNftListProps> = ({
     })
 
     const tokens = useMemo(
-        () => data?.collectionMarketTokens.map(convertToMarketToken) || [],
+        () => data?.collectionMarketTokens.map(token => convertToMarketToken(token)) || [],
         [data]
     )
 

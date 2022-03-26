@@ -20,12 +20,12 @@ query collectionMarketTokens(
     ) {
         tokenId
         contractId
-        ownerId
+        collectionId
+        collectionName
         title
-        description
         media
-        mintSiteName,
-        mintSiteLink,
+        mintSiteName
+        mintSiteLink
         price
     }
 }

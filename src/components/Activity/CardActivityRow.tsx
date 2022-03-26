@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Optional} from "../../business-logic/models/types";
 import {fromYocto2Near, shortenString} from "../../utils/string";
 import CardActivityCell, {ActivityCellType} from "./CardActivityCell";
-import {HistoryEventType} from "../../graphql/generated/graphql";
+import {ActivityEventType} from "../../graphql/generated/graphql";
 import ListingIcon from "../Icons/Activity/ListingIcon";
 import NearBlackLogo from "../Icons/near/NearIcon";
 import BuyIcon from "../Icons/Activity/BuyIcon";
@@ -13,7 +13,7 @@ import {BsCheck} from "react-icons/bs";
 import AccountHrefCell from "./AccountHrefCell";
 
 export interface TCardActivityRowProps {
-    event: HistoryEventType,
+    event: ActivityEventType,
     price?: Optional<string>,
     from: string,
     to?: Optional<string>,
@@ -36,9 +36,9 @@ const CardActivityRow: React.FC<TCardActivityRowProps> = ({
                         font-archivo text-gray-700 text-sm font-semibold"
         >
             <CardActivityCell type={ActivityCellType.Event}>
-                {event === HistoryEventType.List && <ListingIcon size={14}/>}
-                {event === HistoryEventType.Buy && <BuyIcon size={14}/>}
-                {event === HistoryEventType.Unlist && <UnlistIcon size={14}/>}
+                {event === ActivityEventType.List && <ListingIcon size={14}/>}
+                {event === ActivityEventType.Buy && <BuyIcon size={14}/>}
+                {event === ActivityEventType.Unlist && <UnlistIcon size={14}/>}
                 {event}
             </CardActivityCell>
             <CardActivityCell type={ActivityCellType.Price}>

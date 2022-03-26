@@ -6,12 +6,12 @@ query marketTokensSearch(
     searchedMarketTokens: marketSearch(text: $text, first: $limit, skip: $offset) {
         tokenId
         contractId
-        ownerId
+        collectionId
+        collectionName
         title
-        description
         media
-        mintSiteName,
-        mintSiteLink,
+        mintSiteName
+        mintSiteLink
         price
     }
 }

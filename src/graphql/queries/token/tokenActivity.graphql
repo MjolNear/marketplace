@@ -8,11 +8,15 @@ query tokenActivity(
         orderBy: timestamp,
         orderDirection: desc
     ) {
-        ownerId,
-        buyerId,
         price
-        txHash,
-        eventType,
+        txHash
+        eventType
         timestamp
+        owner {
+            id
+        }
+        buyer {
+            id
+        }
     }
 }

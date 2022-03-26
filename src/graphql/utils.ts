@@ -3,14 +3,27 @@ import {getMarketNftVerification, getNftMintedSiteInfo} from "../business-logic/
 import {MarketToken, MarketToken_OrderBy, OrderDirection} from "./generated/graphql";
 import {GridToken} from "../business-logic/models/nft";
 
-export const convertToMarketToken = (token: Omit<MarketToken, "id" | "listingTimestamp">): GridToken => ({
+export const convertToMarketToken = (
+    token: Omit<MarketToken, 'id' | 'listingTimestamp' | 'owner'>
+): GridToken => ({
     ...token,
     price: formatPrice(token.price),
-    mintedSiteLink: token.mintSiteLink ? token.mintSiteLink : getNftMintedSiteInfo(token,
-        token.contractId).mintedSiteLink,
-    mintedSiteName: token.mintSiteName ? token.mintSiteName : getNftMintedSiteInfo(token,
-        token.contractId).mintedSiteName,
-    verification: getMarketNftVerification(token.contractId)
+    verification: getMarketNftVerification(token.contractId),
+
+    mintedSiteLink: token.mintSiteLink
+        ? token.mintSiteLink
+        : getNftMintedSiteInfo(token, token.contractId).mintedSiteLink,
+
+    mintedSiteName: token.mintSiteName
+        ? token.mintSiteName
+        : getNftMintedSiteInfo(token, token.contractId).mintedSiteName,
+
+    collection: token.collectionId && token.collectionName
+        ? {
+            collectionId: token.collectionId,
+            collectionName: token.collectionName
+        }
+        : null
 })
 
 

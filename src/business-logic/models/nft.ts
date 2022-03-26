@@ -8,7 +8,10 @@ export interface CoreToken {
     title: string,
     media?: Optional<string>,
     description?: Optional<string>,
-    extra?: Optional<string>
+    collection?: {
+        collectionId: string
+        collectionName: string
+    } | null,
     price?: Optional<StringAmount>,
 }
 
@@ -28,7 +31,7 @@ export interface TokensReferenceInfo {
 }
 
 // Grid token contains all fields without reference and approval info
-export type GridToken = CoreToken & TokenMintedInfo
+export type GridToken = Omit<CoreToken, 'ownerId'> & TokenMintedInfo
 
 // Contains fields as metadata, price
 export type Token = CoreToken & TokensReferenceInfo & TokenMintedInfo
