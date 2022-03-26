@@ -2,6 +2,32 @@
   "name": "marketplace",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "gen": "graphql-codegen --config codegen.yml"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
     "@apollo/client": "^3.5.8",
     "@craco/craco": "^6.4.3",
@@ -41,32 +67,6 @@
     "typescript": "^4.5.4",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject",
-    "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "gen": "graphql-codegen --config codegen.yml"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
     "@babel/core": "~7.14.0",
     "@babel/preset-env": "~7.14.0",
@@ -80,13 +80,13 @@
     "@types/node": "^17.0.14",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
-    "@types/react-lazy-load-image-component": "^1.5.2",
     "@types/react-redux": "^7.1.22",
     "apollo": "^2.33.9",
     "autoprefixer": "^10.4.2",
     "near-cli": "~2.1.1",
     "nft.storage": "^3.4.0",
     "postcss": "^8.4.5",
+    "postcss-normalize": "^10.0.1",
     "source-map-explorer": "^2.5.2",
     "tailwindcss": "^3.0.18"
   }

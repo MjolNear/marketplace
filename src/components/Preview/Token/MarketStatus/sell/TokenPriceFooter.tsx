@@ -1,11 +1,6 @@
 import React, {memo} from 'react';
 import DarkBlueGradientButton from "../../../../Common/Buttons/DarkBlueGradientButton";
 import Hr from "../../../../Common/Borders/Hr";
-import {BsPatchQuestionFill} from "react-icons/bs";
-import Tooltip from "../../../../Layout/Tooltip";
-import {formatNearAmount} from "near-api-js/lib/utils/format";
-// import {APPROVE_FEE} from "../../../../../business-logic/near/constants";
-import DarkBlueButton from "../../../../Common/Buttons/DarkBlueButton";
 
 interface TTokenPriceFooterProps {
     isPriceValid: boolean,
