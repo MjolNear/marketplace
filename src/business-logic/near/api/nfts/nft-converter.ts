@@ -21,17 +21,15 @@ const DODIK_MEDIA_LIST: Map<string, string> = new Map([
 ]);
 
 async function getRealUrl(url: string, urlHash?: string, contractId?: string) {
-    let storageLink = 'https://ipfs.fleek.co/ipfs/';
-
-    if (contractId && contractId.endsWith('mintbase1.near')) {
-        storageLink = 'https://arweave.net/';
-    }
+    const storageLink = contractId?.endsWith(".mintbase1.near")
+        ? 'https://arweave.net/'
+        : 'https://ipfs.fleek.co/ipfs/'
 
     if (url) {
         if (url.startsWith("http")) {
             return url;
         } else {
-            if (contractId !== undefined && DODIK_MEDIA_LIST.has(contractId)) {
+            if (contractId && DODIK_MEDIA_LIST.has(contractId)) {
                 return DODIK_MEDIA_LIST.get(contractId) + url;
             }
             const meta = await viewFunction({
@@ -53,17 +51,6 @@ async function getRealUrl(url: string, urlHash?: string, contractId?: string) {
         return storageLink + urlHash;
     }
     return null
-}
-
-export const getMintText = (status: string) => {
-    switch (status) {
-        case ContractVerificationStatus.Unverified:
-            return "Unverified"
-        case ContractVerificationStatus.NotSupported:
-            return "Not supported"
-        default:
-            return `Minted on ${status}`
-    }
 }
 
 // Input example:

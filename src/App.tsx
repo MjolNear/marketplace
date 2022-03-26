@@ -19,6 +19,7 @@ import ProfileCollectionsPage from "./pages/profile/collections/ProfileCollectio
 import NotFound404Page from "./pages/NotFound404";
 import PreviewNftMatchRouterParams from "./pages/preview/nft/PreviewNftMatchRouterParams";
 import PageLayout from "./components/Layout/PageLayout";
+import MarketStats from "./components/Stats/Ranking/MarketStats";
 
 
 export default function App() {
@@ -90,6 +91,7 @@ export default function App() {
 
     return (
         <HashRouter>
+            {/*<MarketStats/>*/}
             <Routes>
                 <Route path="/" element={<PageLayout/>}>
                     <Route index element={<LandingPage/>}/>
