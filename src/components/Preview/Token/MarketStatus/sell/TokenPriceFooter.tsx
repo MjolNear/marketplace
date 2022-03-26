@@ -1,6 +1,11 @@
 import React, {memo} from 'react';
 import DarkBlueGradientButton from "../../../../Common/Buttons/DarkBlueGradientButton";
 import Hr from "../../../../Common/Borders/Hr";
+import {BsPatchQuestionFill} from "react-icons/bs";
+import Tooltip from "../../../../Layout/Tooltip";
+import {formatNearAmount} from "near-api-js/lib/utils/format";
+// import {APPROVE_FEE} from "../../../../../business-logic/near/constants";
+import DarkBlueButton from "../../../../Common/Buttons/DarkBlueButton";
 
 interface TTokenPriceFooterProps {
     isPriceValid: boolean,
@@ -12,21 +17,17 @@ const TokenPriceFooter: React.FC<TTokenPriceFooterProps> = ({
     isLoading
 }) => {
     return (
-        <div className="items-center flex flex-col mt-3 w-full">
+        <div className="items-center flex flex-col mt-3 w-full font-archivo">
             <Hr color="bg-gray-400"/>
             <p className="text-black text-sm mt-3 text-center opacity-60">
                 You will be redirected to
                 NEAR Web Wallet to confirm your transaction.
             </p>
-            <div className="mt-4">
-                <DarkBlueGradientButton title="Complete listing"
-                                        isLoading={isLoading}
-                                        disabled={!isPriceValid}
-                                        style={{
-                                            width: 300
-                                        }}
-                />
-            </div>
+            <DarkBlueGradientButton title="Complete listing"
+                                    width="w-full md:max-w-[75%] mt-4"
+                                    isLoading={isLoading}
+                                    disabled={!isPriceValid}
+            />
         </div>
     );
 };

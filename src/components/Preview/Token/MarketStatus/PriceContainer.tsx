@@ -40,9 +40,7 @@ const PriceContainer: React.FC<TPriceContainerProps> = ({
                     {priceInUSD}
                 </div>
             </div>
-            <div className="lg:max-w-[80%]">
-                {children}
-            </div>
+            {children}
         </div>
     );
 }

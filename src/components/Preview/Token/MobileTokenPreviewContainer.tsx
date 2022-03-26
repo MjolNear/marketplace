@@ -34,6 +34,7 @@ const MobileTokenPreviewContainer: React.FC<TokenPreviewProps> = ({
             <TokenDetails tokenId={token.tokenId}
                           ownerId={token.ownerId}
                           contractId={token.contractId}
+                          copies={token.copies}
             />
             <TokenPayoutDetails payouts={payouts}/>
             <TokenTraits traits={[]}/>

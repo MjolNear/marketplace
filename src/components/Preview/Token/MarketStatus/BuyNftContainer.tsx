@@ -20,33 +20,45 @@ const BuyNftContainer: React.FC<TBuyNftProps> = ({
     tokenId,
     hasPayouts,
 }) => {
-    const [isBuying, setIsBuying] = useState(false)
+    const [isSigningTx, setIsSigningTx] = useState(false)
+
     const buy = () => {
-        setIsBuying(true)
+        setIsSigningTx(true)
         buyNftWithPayouts(contractId, tokenId, tokenPrice || "0", hasPayouts)
-            .finally(() => setIsBuying(false))
+            .finally(() => setIsSigningTx(false))
+    }
+
+    const placeOffer = () => {
+        setIsSigningTx(true)
     }
 
     return (
         <PriceContainer tokenPrice={tokenPrice}>
-            <div className="flex flex-col lg:flex-row gap-2">
-                <DarkBlueGradientButton
-                    title={tokenPrice === "0"
-                        ? "Get for free"
-                        : "Buy Now"
-                    }
-                    isLoading={isBuying}
-                    onClick={buy}
-                />
+            <div className="flex flex-col md:flex-row gap-2">
                 <p className="w-full cursor-pointer"
-                   data-for="placeOfferTooltip"
-                   data-tip="Offers will be added soon!"
+                   data-for="fixingMarketBugsId"
+                   data-tip="We are Fixing bugs:) Will be available soon! Stay tuned! You can unlist your NFT anytime you want"
                 >
-                    <DarkBlueButton title="Place an Offer"
-                                    disabled={true}
+                    <DarkBlueGradientButton
+                        title={tokenPrice === "0"
+                            ? "Get for free"
+                            : "Buy Now"
+                        }
+                        disabled={true}
+                        isLoading={isSigningTx}
+                        onClick={buy}
                     />
+                    <Tooltip id="fixingMarketBugsId" place="bottom"/>
                 </p>
-                <Tooltip id="placeOfferTooltip" place="bottom"/>
+                {/*<p className="w-full cursor-pointer"*/}
+                {/*   data-for="placeOfferTooltip"*/}
+                {/*   data-tip="Offers will be added soon!"*/}
+                {/*>*/}
+                {/*    <DarkBlueButton title="Place an Offer"*/}
+                {/*                    disabled={true}*/}
+                {/*    />*/}
+                {/*</p>*/}
+                {/*<Tooltip id="placeOfferTooltip" place="bottom"/>*/}
             </div>
         </PriceContainer>
     )

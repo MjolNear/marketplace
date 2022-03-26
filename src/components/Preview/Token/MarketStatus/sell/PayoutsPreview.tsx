@@ -23,7 +23,7 @@ const PayoutsPreview: React.FC<TPayoutsPriceProps> = ({
     }, [payouts])
 
     return (
-        <section>
+        <section className="font-archivo">
             <SinglePayout name="Receive:" receiveAmount={getStringPercentage(price, receive)}/>
             <SinglePayout name="Fee:" receiveAmount={getStringPercentage(price, fee)}/>
             <SinglePayout name="Royalty:" receiveAmount={getStringPercentage(price, royalties)}/>

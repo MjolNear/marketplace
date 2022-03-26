@@ -9,3 +9,7 @@ export const dateFromUNIX = (timestamp: string) => {
     const intTimestamp = parseInt(timestamp)
     return new Date(intTimestamp)
 }
+
+export const nowUTC = () => {
+    return new Date(Date.now() - (new Date().getTimezoneOffset() * 60000)).getTime()
+}
