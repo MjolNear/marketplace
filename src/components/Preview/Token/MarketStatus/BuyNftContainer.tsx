@@ -37,7 +37,7 @@ const BuyNftContainer: React.FC<TBuyNftProps> = ({
             <div className="flex flex-col md:flex-row gap-2">
                 <p className="w-full cursor-pointer"
                    data-for="fixingMarketBugsId"
-                   data-tip="We are Fixing bugs:) Will be available soon! Stay tuned! You can unlist your NFT anytime you want"
+                   data-tip="We are Fixing bugs:) Will be available soon! You can unlist your NFTs anytime you want."
                 >
                     <DarkBlueGradientButton
                         title={tokenPrice === "0"

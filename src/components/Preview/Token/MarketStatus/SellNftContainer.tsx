@@ -24,7 +24,7 @@ const SellNftContainer: React.FC<TSellNftProps> = ({
         <div>
             <p className="w-full cursor-pointer"
                data-for="fixingMarketBugsIdSell"
-               data-tip="We are Fixing bugs:) Will be available soon! Stay tuned! You can unlist your NFT anytime you want"
+               data-tip="We are Fixing bugs:) Will be available soon! You can unlist your NFTs anytime you want."
             >
                 <DarkBlueGradientButton title="Place NFT on market"
                                         disabled={true}
