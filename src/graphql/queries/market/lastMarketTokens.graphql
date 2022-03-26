@@ -10,7 +10,6 @@ query lastMarketTokens(
         orderBy: $orderBy,
         orderDirection: $orderDirection
     ) {
-        ownerId
         tokenId
         contractId
         title

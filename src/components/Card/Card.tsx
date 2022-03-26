@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 import {Optional} from "../../business-logic/models/types";
 import {ContractVerificationStatus} from "../../business-logic/models/contract";
 import {whitelistedCollections} from "../../business-logic/whitelisted.collections";
+import {TokenCollectionMetadata} from "../../business-logic/models/nft";
 
 interface TCardProps {
     contractId: string,
@@ -17,6 +18,7 @@ interface TCardProps {
     price?: Optional<string>,
     mintedSiteName: string,
     mintedSiteLink: string,
+    collectionMeta?: Optional<TokenCollectionMetadata>
     verification: ContractVerificationStatus
 }
 
@@ -28,10 +30,11 @@ const Card: React.FC<TCardProps> = ({
     price,
     mintedSiteName,
     mintedSiteLink,
+    collectionMeta,
     verification
 }) => {
     const previewLink = `/nfts/${contractId}/${tokenId}`
-    const collection = whitelistedCollections[contractId]
+    const collection = collectionMeta ? collectionMeta : whitelistedCollections[contractId]
     return (
         <div className="flex flex-col justify-between overflow-hidden w-full rounded-xl
                         ring-1 ring-blue-300 select-none

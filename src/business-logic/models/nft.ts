@@ -1,6 +1,12 @@
 import {Optional, StringAmount} from "./types";
 import {ContractVerificationStatus} from "./contract";
 
+
+export interface TokenCollectionMetadata {
+    collectionId: string
+    name: string
+} 
+
 export interface CoreToken {
     contractId: string,
     tokenId: string,
@@ -8,7 +14,7 @@ export interface CoreToken {
     title: string,
     media?: Optional<string>,
     description?: Optional<string>,
-    extra?: Optional<string>
+    collection?: Optional<TokenCollectionMetadata>,
     price?: Optional<StringAmount>,
 }
 
@@ -28,7 +34,7 @@ export interface TokensReferenceInfo {
 }
 
 // Grid token contains all fields without reference and approval info
-export type GridToken = CoreToken & TokenMintedInfo
+export type GridToken = Omit<CoreToken, 'ownerId'> & TokenMintedInfo
 
 // Contains fields as metadata, price
 export type Token = CoreToken & TokensReferenceInfo & TokenMintedInfo

@@ -67,19 +67,18 @@ const PreviewCollectionPage: React.FC = () => {
             </BlueShadowContainer>
             {filterTab === 'items' ?
                 <>
-                    {collection.collection_contract === "mjol.near" ? <></> :
-                        <div className="flex justify-center pb-10">
-                            <BlueToggle text="Buy now"
-                                        handleToggle={(() => {
-                                            setMarketToggleState(
-                                                marketToggleState === "init" || marketToggleState === "only-market"
-                                                    ? "all"
-                                                    : "only-market"
-                                            )
-                                        })}
-                                        defaultChecked={marketToggleState === "init" || marketToggleState === "only-market"}/>
-                        </div>
-                    }
+                    <div className="flex justify-center pb-10">
+                        <BlueToggle text="Buy now"
+                                    handleToggle={(() => {
+                                        setMarketToggleState(
+                                            marketToggleState === "init" || marketToggleState === "only-market"
+                                                ? "all"
+                                                : "only-market"
+                                        )
+                                    })}
+                                    defaultChecked={marketToggleState === "init" || marketToggleState === "only-market"}/>
+                    </div>
+
                     {/*{collection.metadata?.traits*/}
                     {/*    ?*/}
                     {/*    <>*/}
@@ -94,17 +93,18 @@ const PreviewCollectionPage: React.FC = () => {
                     {/*    </>*/}
                     {/*    :*/}
                     <>
-                        {marketToggleState === "all" || collection.collection_contract === "mjol.near"
+                        {marketToggleState === "all"
                             ?
-                            <CollectionNftList contractId={collection.collection_id}
-                                               collectionId={collection.collection_contract}
+                            <CollectionNftList contractId={collectionId}
+                                               collectionId={contractId}
                                                total={stats.supply || 0}
                             />
                             :
-                            <CollectionMarketNftList collectionContract={collection.collection_contract}/>
+                            <CollectionMarketNftList collectionContract={contractId}
+                                                     collectionId={collectionId}
+                            />
                         }
                     </>
-                    {/*}*/}
                 </>
                 :
                 <div className="text-center text-xl font-archivo font-semibold text-blue-500">

@@ -10,7 +10,10 @@ const TokenFormImagePreview: React.FC<TFormImagePreview> = ({
     link
 }) => {
     return (
-        <Img src={link || ""} alt="loading" className="hidden md:block rounded-2xl object-contain aspect-1"/>
+        <Img src={link || ""}
+             alt="loading"
+             className="hidden md:block rounded-2xl object-contain aspect-1"
+        />
     );
 };
 

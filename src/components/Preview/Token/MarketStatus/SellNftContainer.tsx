@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import DarkBlueGradientButton from "../../../../Common/Buttons/DarkBlueGradientButton";
-import InputPriceModal from "./InputPriceModal";
-import {ApprovedToken} from "../../../../../business-logic/models/nft";
-import {giveApprove} from "../../../../../business-logic/near/api/market/transaction";
+import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
+import InputPriceModal from "./sell/InputPriceModal";
+import {ApprovedToken} from "../../../../business-logic/models/nft";
+import {giveApprove} from "../../../../business-logic/near/api/market/transaction";
 
 interface TSellNftProps {
     token: ApprovedToken
@@ -17,7 +17,7 @@ const SellNftContainer: React.FC<TSellNftProps> = ({
 
     const [visible, setVisible] = useState(false)
 
-    const sell = (price: string) => giveApprove(token.contractId, token.tokenId, price, token)
+    const sell = (price: string) => giveApprove(token,price)
 
     return (
         <div>

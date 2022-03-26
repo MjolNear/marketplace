@@ -5,7 +5,7 @@ import {ItemMarketStatus, useNftMarketStatus} from "../../../../hooks/useNftMark
 import {ContractVerificationStatus} from "../../../../business-logic/models/contract";
 import NftContractNotSupported from "../MarketStatus/NftContractNotSupported";
 import BuyNftContainer from "../MarketStatus/BuyNftContainer";
-import SellNftContainer from "../MarketStatus/sell/SellNftContainer";
+import SellNftContainer from "../MarketStatus/SellNftContainer";
 import UnlistNftContainer from "../MarketStatus/UnlistNftContainer";
 import NotListedNftContainer from "../MarketStatus/NotListedNftContainer";
 import withAuthData, {TAuthProps} from "../../../../hoc/withAuthData";

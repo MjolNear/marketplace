@@ -1,5 +1,6 @@
 query collectionMarketTokens(
     $contractId: String!,
+    $collectionId: String,
     $limit: Int!,
     $offset: Int!,
     $orderBy: MarketToken_orderBy!,
@@ -14,18 +15,19 @@ query collectionMarketTokens(
         orderDirection: $orderDirection,
         where: {
             contractId: $contractId,
+            collectionId: $collectionId,
             price_gte: $priceFrom,
             price_lte: $priceTo
         }
     ) {
         tokenId
         contractId
-        ownerId
+        collectionId
+        collectionName
         title
-        description
         media
-        mintSiteName,
-        mintSiteLink,
+        mintSiteName
+        mintSiteLink
         price
     }
 }

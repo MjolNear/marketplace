@@ -12,7 +12,7 @@ const TokenPriceFooter: React.FC<TTokenPriceFooterProps> = ({
     isLoading
 }) => {
     return (
-        <div className="items-center flex flex-col mt-3 w-full">
+        <div className="items-center flex flex-col mt-3 w-full font-archivo">
             <Hr color="bg-gray-400"/>
             <p className="text-black text-sm mt-3 text-center opacity-60">
                 You will be redirected to

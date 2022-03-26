@@ -60,8 +60,8 @@ const CardActivity: React.FC<TCardActivityProps> = ({
                     <div className="px-[4px]">
                         <CardActivityRow event={activity.eventType}
                                          price={activity.price}
-                                         from={activity.ownerId}
-                                         to={activity.buyerId}
+                                         from={activity.owner.id}
+                                         to={activity.buyer?.id}
                                          timestamp={activity.timestamp}
                                          txHash={activity.txHash}
                         />
