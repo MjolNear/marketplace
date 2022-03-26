@@ -21,7 +21,7 @@ export const convertToMarketToken = (
     collection: token.collectionId && token.collectionName
         ? {
             collectionId: token.collectionId,
-            collectionName: token.collectionName
+            name: token.collectionName
         }
         : null
 })

@@ -38,6 +38,7 @@ const CardGrid: React.FC<TGridProps> = ({
                                          title={token.title}
                                          media={token.media}
                                          price={token.price}
+                                         collectionMeta={token.collection}
                                          mintedSiteLink={token.mintedSiteLink}
                                          mintedSiteName={token.mintedSiteName}
                                          verification={token.verification}

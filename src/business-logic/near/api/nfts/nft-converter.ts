@@ -7,8 +7,9 @@ import {marketAPI} from "../market";
 import {ContractId} from "../../../models/types";
 import {ContractVerificationStatus} from "../../../models/contract";
 import {getNftMintedSiteInfo} from "../../../whitelisted.contract";
-import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
+import {MARKET_CONTRACT_ID, MJOL_CONTRACT_ID} from "../../enviroment/contract-names";
 import {NearCoreToken} from "../types/token";
+import {parseCollection} from "../../token-parser/parser";
 
 const isIPFS = require('is-ipfs')
 
@@ -20,17 +21,16 @@ const DODIK_MEDIA_LIST: Map<string, string> = new Map([
 ]);
 
 function getRealUrl(url: string, urlHash?: string, contractId?: string) {
-    let storageLink = 'https://ipfs.fleek.co/ipfs/';
 
-    if (contractId && contractId.endsWith('mintbase1.near')) {
-        storageLink = 'https://arweave.net/';
-    }
+    const storageLink = contractId?.endsWith(".mintbase1.near")
+        ? 'https://arweave.net/'
+        : 'https://ipfs.fleek.co/ipfs/'
 
     if (url) {
         if (url.startsWith("http")) {
             return url;
         } else {
-            if (contractId !== undefined && DODIK_MEDIA_LIST.has(contractId)) {
+            if (contractId && DODIK_MEDIA_LIST.has(contractId)) {
                 return DODIK_MEDIA_LIST.get(contractId) + url;
             }
             return storageLink + url;
@@ -40,17 +40,6 @@ function getRealUrl(url: string, urlHash?: string, contractId?: string) {
         return storageLink + urlHash;
     }
     return null
-}
-
-export const getMintText = (status: string) => {
-    switch (status) {
-        case ContractVerificationStatus.Unverified:
-            return "Unverified"
-        case ContractVerificationStatus.NotSupported:
-            return "Not supported"
-        default:
-            return `Minted on ${status}`
-    }
 }
 
 // Input example:
@@ -77,6 +66,9 @@ function convertStandardNFT(contractId: string, nft: any, tokenPrices: ResponseT
     const {approved_account_ids = {}} = nft
     const media = getRealUrl(metadata.media, metadata.media_hash, contractId);
     const mintSiteInfo = getNftMintedSiteInfo(nft, contractId)
+    const collection = parseCollection(contractId, nft?.metadata)
+
+    console.log(collection)
 
     const uid = buildUID(contractId, nft.token_id)
     return Promise.resolve({
@@ -87,9 +79,9 @@ function convertStandardNFT(contractId: string, nft: any, tokenPrices: ResponseT
         description: metadata.description,
         copies: metadata.copies,
         media,
+        collection,
         ipfsReference: getRealUrl(metadata.reference, metadata.reference_hash, contractId),
         price: getPrice(uid, tokenPrices),
-        extra: metadata.extra,
         isApproved: MARKET_CONTRACT_ID in approved_account_ids,
         ...mintSiteInfo
     })

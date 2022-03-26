@@ -19,6 +19,7 @@ const TokenPreviewMainBlock: React.FC<TokenPreviewProps> = ({
             </div>
             <TokenPreviewTitleCollection title={token.title}
                                          contractId={token.contractId}
+                                         collectionMeta={token.collection}
             />
             <TokenPreviewOwnerContract ownerId={token.ownerId}
                                        contractId={token.contractId}
@@ -32,6 +33,7 @@ const TokenPreviewMainBlock: React.FC<TokenPreviewProps> = ({
             <TokenDetails contractId={token.contractId}
                           tokenId={token.tokenId}
                           ownerId={token.ownerId}
+                          copies={token.copies}
             />
             <TokenPayoutDetails payouts={payouts}/>
         </div>

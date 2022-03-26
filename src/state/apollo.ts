@@ -1,6 +1,5 @@
 import {ApolloClient, InMemoryCache} from "@apollo/client";
 import {IndexerEndpoint} from "../graphql/config";
-import {offsetLimitPagination} from "@apollo/client/utilities";
 
 export const setupApolloClient = () => {
     const cache = setupCache()

@@ -19,6 +19,7 @@ const MobileTokenPreviewContainer: React.FC<TokenPreviewProps> = ({
         <div className="flex flex-col w-full max-w-[600px] px-2 gap-4">
             <TokenPreviewTitleCollection title={token.title}
                                          contractId={token.contractId}
+                                         collectionMeta={token.collection}
             />
             <TokenMedia link={token.media}/>
             <TokenPreviewOwnerContract ownerId={token.ownerId}
@@ -34,6 +35,7 @@ const MobileTokenPreviewContainer: React.FC<TokenPreviewProps> = ({
             <TokenDetails tokenId={token.tokenId}
                           ownerId={token.ownerId}
                           contractId={token.contractId}
+                          copies={token.copies}
             />
             <TokenPayoutDetails payouts={payouts}/>
             <TokenTraits traits={[]}/>

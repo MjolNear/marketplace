@@ -1,6 +1,12 @@
 import {Optional, StringAmount} from "./types";
 import {ContractVerificationStatus} from "./contract";
 
+
+export interface TokenCollectionMetadata {
+    collectionId: string
+    name: string
+} 
+
 export interface CoreToken {
     contractId: string,
     tokenId: string,
@@ -8,10 +14,7 @@ export interface CoreToken {
     title: string,
     media?: Optional<string>,
     description?: Optional<string>,
-    collection?: {
-        collectionId: string
-        collectionName: string
-    } | null,
+    collection?: Optional<TokenCollectionMetadata>,
     price?: Optional<StringAmount>,
 }
 
