@@ -24,6 +24,7 @@ query userMarketTokens(
                 price_lte: $priceTo
             }
         ) {
+            id
             tokenId
             contractId
             collectionId

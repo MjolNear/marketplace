@@ -58,4 +58,4 @@ const ExploreSearchTokens: React.FC<ExploreSearchTokensProps> = ({
                                onLoadMore={onLoadMore}/>
 };
 
-export default memo(ExploreSearchTokens);
+export default ExploreSearchTokens;

@@ -7,13 +7,7 @@ import {
     OrderDirection,
     useCollectionMarketTokensQuery
 } from "../../../graphql/generated/graphql";
-import {
-    convertToMarketToken,
-    TokenPriceRange,
-    TokenSortName,
-    TokenSortOption,
-    tokenSortOptions
-} from "../../../graphql/utils";
+import {convertToMarketToken, TokenPriceRange, TokenSortOption} from "../../../graphql/utils";
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../../utils/string";
 import {MJOL_CONTRACT_ID} from "../../../business-logic/near/enviroment/contract-names";
 
@@ -34,16 +28,7 @@ const CollectionMarketNftList: React.FC<CollectionMarketNftListProps> = ({
 }) => {
     const limit = 12
 
-    const [hasMore, setHasMore] = useState(true)
-
-    useEffect(() => {
-        setHasMore(true)
-    }, [sort, priceRange, limit, collectionId, collectionContract])
-
-
     const {data, loading, fetchMore} = useCollectionMarketTokensQuery({
-        fetchPolicy: "network-only",
-        nextFetchPolicy: "network-only",
         variables: {
             contractId: collectionContract || "",
             collectionId: collectionContract === MJOL_CONTRACT_ID ? collectionId : null,
@@ -57,32 +42,13 @@ const CollectionMarketNftList: React.FC<CollectionMarketNftListProps> = ({
     })
 
     const tokens = data?.collectionMarketTokens.map(convertToMarketToken) || []
-    const canLoadMore = loading || hasMore && tokens.length !== 0 && tokens.length % limit === 0
-
-    const updateQuery = useCallback((
-        previousQueryResult: CollectionMarketTokensQuery,
-        options: { fetchMoreResult?: CollectionMarketTokensQuery }
-    ) => {
-        const fetchMoreResult = options.fetchMoreResult
-        if (!fetchMoreResult) {
-            setHasMore(false)
-            return previousQueryResult;
-        }
-        const previousTokens = previousQueryResult.collectionMarketTokens;
-        const fetchMoreTokens = fetchMoreResult.collectionMarketTokens;
-        if (fetchMoreTokens.length !== limit) {
-            setHasMore(false)
-        }
-        fetchMoreResult.collectionMarketTokens = previousTokens.concat(fetchMoreTokens);
-        return {...fetchMoreResult}
-    }, [limit])
+    const canLoadMore = tokens.length !== 0 && tokens.length % limit === 0
 
     const onLoadMore = useCallback(() => fetchMore({
-        updateQuery,
         variables: {
             offset: tokens.length
         }
-    }), [tokens, updateQuery])
+    }), [tokens])
 
     if (!collectionContract) {
         return <NotFound404Page/>

@@ -20,6 +20,7 @@ query collectionMarketTokens(
             price_lte: $priceTo
         }
     ) {
+        id
         tokenId
         contractId
         collectionId

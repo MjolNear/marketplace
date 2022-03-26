@@ -1578,7 +1578,7 @@ export type CollectionMarketTokensQueryVariables = Exact<{
 }>;
 
 
-export type CollectionMarketTokensQuery = { __typename?: 'Query', collectionMarketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+export type CollectionMarketTokensQuery = { __typename?: 'Query', collectionMarketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
 
 export type CollectionTotalStatsQueryVariables = Exact<{
   contractId: Scalars['ID'];
@@ -1586,7 +1586,7 @@ export type CollectionTotalStatsQueryVariables = Exact<{
 }>;
 
 
-export type CollectionTotalStatsQuery = { __typename?: 'Query', stats?: { __typename?: 'TotalCollectionStat', volume: any, sales: any, avg: any } | null, floar: Array<{ __typename?: 'MarketToken', price: any }> };
+export type CollectionTotalStatsQuery = { __typename?: 'Query', stats?: { __typename?: 'TotalCollectionStat', volume: any, sales: any, avg: any } | null, floar: Array<{ __typename?: 'MarketToken', id: string, price: any }> };
 
 export type LastMarketTokensQueryVariables = Exact<{
   limit: Scalars['Int'];
@@ -1596,7 +1596,7 @@ export type LastMarketTokensQueryVariables = Exact<{
 }>;
 
 
-export type LastMarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, title: string, description?: string | null, media?: string | null, copies?: any | null, ipfsReference?: string | null, price: any }> };
+export type LastMarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, description?: string | null, media?: string | null, copies?: any | null, ipfsReference?: string | null, price: any }> };
 
 export type MarketStatisticsQueryVariables = Exact<{
   fromTimestamp: Scalars['BigInt'];
@@ -1615,7 +1615,7 @@ export type MarketTokensQueryVariables = Exact<{
 }>;
 
 
-export type MarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+export type MarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
 
 export type MarketTokensSearchQueryVariables = Exact<{
   text: Scalars['String'];
@@ -1624,7 +1624,7 @@ export type MarketTokensSearchQueryVariables = Exact<{
 }>;
 
 
-export type MarketTokensSearchQuery = { __typename?: 'Query', searchedMarketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+export type MarketTokensSearchQuery = { __typename?: 'Query', searchedMarketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
 
 export type UserMarketTokensQueryVariables = Exact<{
   account: Scalars['ID'];
@@ -1637,7 +1637,7 @@ export type UserMarketTokensQueryVariables = Exact<{
 }>;
 
 
-export type UserMarketTokensQuery = { __typename?: 'Query', account?: { __typename?: 'Account', marketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> } | null };
+export type UserMarketTokensQuery = { __typename?: 'Query', account?: { __typename?: 'Account', marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> } | null };
 
 export type TokenActivityQueryVariables = Exact<{
   tokenUID: Scalars['String'];
@@ -1656,6 +1656,7 @@ export const CollectionMarketTokensDocument = gql`
     orderDirection: $orderDirection
     where: {contractId: $contractId, collectionId: $collectionId, price_gte: $priceFrom, price_lte: $priceTo}
   ) {
+    id
     tokenId
     contractId
     collectionId
@@ -1716,6 +1717,7 @@ export const CollectionTotalStatsDocument = gql`
     orderDirection: asc
     first: 1
   ) {
+    id
     price
   }
 }
@@ -1757,6 +1759,7 @@ export const LastMarketTokensDocument = gql`
     orderBy: $orderBy
     orderDirection: $orderDirection
   ) {
+    id
     tokenId
     contractId
     title
@@ -1845,6 +1848,7 @@ export const MarketTokensDocument = gql`
     orderDirection: $orderDirection
     where: {price_gte: $priceFrom, price_lte: $priceTo}
   ) {
+    id
     tokenId
     contractId
     collectionId
@@ -1893,6 +1897,7 @@ export type MarketTokensQueryResult = Apollo.QueryResult<MarketTokensQuery, Mark
 export const MarketTokensSearchDocument = gql`
     query marketTokensSearch($text: String!, $limit: Int!, $offset: Int!) {
   searchedMarketTokens: marketSearch(text: $text, first: $limit, skip: $offset) {
+    id
     tokenId
     contractId
     collectionId
@@ -1945,6 +1950,7 @@ export const UserMarketTokensDocument = gql`
       orderDirection: $orderDirection
       where: {price_gte: $priceFrom, price_lte: $priceTo}
     ) {
+      id
       tokenId
       contractId
       collectionId

@@ -17,6 +17,7 @@ query collectionTotalStats(
         orderDirection: asc,
         first: 1
     ) {
+        id
         price
     }
 }

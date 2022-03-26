@@ -15,7 +15,6 @@ const ProfileMarketTokens: React.FC<ProfileMarketTokensProps> = ({
 
     const [priceRange, setPriceRange] = useState<TokenPriceRange>({})
     const clearPriceRange = useCallback(() => setPriceRange({}), [])
-
     const [sort, setSort] = useState(tokenSortOptions[TokenSortName.RecentlyAdded])
 
     return (

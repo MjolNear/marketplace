@@ -4,6 +4,7 @@ query marketTokensSearch(
     $offset: Int!
 ) {
     searchedMarketTokens: marketSearch(text: $text, first: $limit, skip: $offset) {
+        id
         tokenId
         contractId
         collectionId

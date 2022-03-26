@@ -17,16 +17,7 @@ const ProfileFilterMarketTokens: React.FC<ExploreFilterTokens> = ({
     priceRange,
     sort
 }) => {
-    const [hasMore, setHasMore] = useState(true)
-
-    useEffect(() => {
-        setHasMore(true)
-    }, [sort, priceRange, limit, accountId])
-
-
     const {data, loading, fetchMore} = useUserMarketTokensQuery({
-        nextFetchPolicy: "network-only",
-        fetchPolicy: "network-only",
         variables: {
             account: accountId,
             offset: 0,
@@ -39,32 +30,9 @@ const ProfileFilterMarketTokens: React.FC<ExploreFilterTokens> = ({
     })
 
     const tokens = data?.account?.marketTokens.map(convertToMarketToken) || []
-    const canLoadMore = loading || hasMore && tokens.length !== 0 && tokens.length % limit === 0
-
-    const updateQuery = useCallback((
-        previousQueryResult: UserMarketTokensQuery,
-        options: { fetchMoreResult?: UserMarketTokensQuery }
-    ) => {
-        const fetchMoreResult = options.fetchMoreResult
-        if (!fetchMoreResult) {
-            setHasMore(false)
-            return previousQueryResult;
-        }
-        const previousTokens = previousQueryResult.account?.marketTokens || [];
-        const fetchMoreTokens = fetchMoreResult.account?.marketTokens || [];
-        if (fetchMoreTokens.length !== limit) {
-            setHasMore(false)
-        }
-        return {
-            ...fetchMoreResult, account: {
-                ...fetchMoreResult.account,
-                marketTokens: previousTokens.concat(fetchMoreTokens)
-            }
-        }
-    }, [])
+    const canLoadMore = tokens.length !== 0 && tokens.length % limit === 0
 
     const onLoadMore = useCallback(() => fetchMore({
-        updateQuery,
         variables: {
             offset: tokens.length
         }
@@ -76,4 +44,4 @@ const ProfileFilterMarketTokens: React.FC<ExploreFilterTokens> = ({
                                onLoadMore={onLoadMore}/>
 };
 
-export default memo(ProfileFilterMarketTokens);
+export default ProfileFilterMarketTokens;
