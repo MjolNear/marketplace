@@ -74,7 +74,7 @@ const ExploreNftsPage = () => {
             <BlueShadowContainer>
                 <div className="flex flex-col pb-10 px-4 space-y-8 items-center">
                     <DarkBlueTitle title="Explore NFTs"/>
-                    <SearchInput placeholder="Search by NFT name, Owner or Contract"
+                    <SearchInput placeholder="Search by NFT name, Collection or Contract"
                                  searchQueryText={textQueryFilter}
                                  setSearchQueryText={setTextQueryFilter}
                     />
