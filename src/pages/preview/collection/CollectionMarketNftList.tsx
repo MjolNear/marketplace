@@ -1,18 +1,26 @@
 import React, {useCallback, useMemo, useState} from 'react';
 import PaginationCardList from "../../../components/CardList/PaginationCardList";
 import NotFound404Page from "../../NotFound404";
-import {CollectionMarketTokensQuery, MarketToken_OrderBy, OrderDirection, useCollectionMarketTokensQuery} from "../../../graphql/generated/graphql";
+import {
+    CollectionMarketTokensQuery,
+    MarketToken_OrderBy,
+    OrderDirection,
+    useCollectionMarketTokensQuery
+} from "../../../graphql/generated/graphql";
 import {convertToMarketToken} from "../../../graphql/utils";
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../../utils/string";
+import {MJOL_CONTRACT_ID} from "../../../business-logic/near/enviroment/contract-names";
 
 
 interface CollectionMarketNftListProps {
     collectionContract?: string
+    collectionId?: string
 }
 
 
 const CollectionMarketNftList: React.FC<CollectionMarketNftListProps> = ({
-    collectionContract
+    collectionContract,
+    collectionId
 }) => {
 
     const limit = 12
@@ -33,6 +41,7 @@ const CollectionMarketNftList: React.FC<CollectionMarketNftListProps> = ({
         nextFetchPolicy: "network-only",
         variables: {
             contractId: collectionContract || "",
+            collectionId: collectionContract === MJOL_CONTRACT_ID ? collectionId : null,
             offset: 0,
             limit,
             orderBy: MarketToken_OrderBy.ListingTimestamp,

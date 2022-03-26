@@ -1568,6 +1568,7 @@ export enum _SubgraphErrorPolicy_ {
 
 export type CollectionMarketTokensQueryVariables = Exact<{
   contractId: Scalars['String'];
+  collectionId?: InputMaybe<Scalars['String']>;
   limit: Scalars['Int'];
   offset: Scalars['Int'];
   orderBy: MarketToken_OrderBy;
@@ -1634,13 +1635,13 @@ export type TokenActivityQuery = { __typename?: 'Query', tokenActivity: Array<{ 
 
 
 export const CollectionMarketTokensDocument = gql`
-    query collectionMarketTokens($contractId: String!, $limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt!, $priceTo: BigInt!) {
+    query collectionMarketTokens($contractId: String!, $collectionId: String, $limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt!, $priceTo: BigInt!) {
   collectionMarketTokens: marketTokens(
     first: $limit
     skip: $offset
     orderBy: $orderBy
     orderDirection: $orderDirection
-    where: {contractId: $contractId, price_gte: $priceFrom, price_lte: $priceTo}
+    where: {contractId: $contractId, collectionId: $collectionId, price_gte: $priceFrom, price_lte: $priceTo}
   ) {
     tokenId
     contractId
@@ -1668,6 +1669,7 @@ export const CollectionMarketTokensDocument = gql`
  * const { data, loading, error } = useCollectionMarketTokensQuery({
  *   variables: {
  *      contractId: // value for 'contractId'
+ *      collectionId: // value for 'collectionId'
  *      limit: // value for 'limit'
  *      offset: // value for 'offset'
  *      orderBy: // value for 'orderBy'
