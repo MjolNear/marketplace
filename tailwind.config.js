@@ -88,7 +88,7 @@ module.exports = {
         screens: {
             'xxs': '310px',
             'xs': '500px',
-            'sm': '660px',
+            'sm': '680px',
             'md': '768px',
             'lg': '990px',
             '1200px': '1200px',
@@ -97,7 +97,7 @@ module.exports = {
 
             'max-xxs': {'max': '310px'},
             'max-xs': {'max': '500px'},
-            'max-sm': {'max': '660px'},
+            'max-sm': {'max': '680px'},
             'max-md': {'max': '768px'},
             'max-lg': {'max': '990px'},
             'max-xl': {'max': '1320px'},

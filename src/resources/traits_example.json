@@ -1,6 +1,0 @@
-{
-  "class": ["alien", "ape", "human"],
-  "eyes": ["green", "blue"],
-  "accessory": ["glasses"],
-  "head": ["big", "small"]
-}
