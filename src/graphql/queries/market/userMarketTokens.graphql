@@ -1,0 +1,38 @@
+#account(id: "danielto.near") {
+#marketTokens(first: 10) {
+#title
+#}
+#}
+
+query userMarketTokens(
+    $account: ID!,
+    $limit: Int!,
+    $offset: Int!,
+    $orderBy: MarketToken_orderBy!,
+    $orderDirection: OrderDirection!,
+    $priceFrom: BigInt!,
+    $priceTo: BigInt!
+) {
+    account(id: $account) {
+        marketTokens(
+            first: $limit,
+            skip: $offset,
+            orderBy: $orderBy,
+            orderDirection: $orderDirection,
+            where: {
+                price_gte: $priceFrom,
+                price_lte: $priceTo
+            }
+        ) {
+            tokenId
+            contractId
+            collectionId
+            collectionName
+            title
+            media
+            mintSiteName
+            mintSiteLink
+            price
+        }
+    }
+}

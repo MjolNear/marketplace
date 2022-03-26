@@ -24,7 +24,7 @@ const EmptyCardList = React.memo<PropTypes>(({
     mainDescription = "No items found."
 }) => {
     return (
-        <div className="w-full flex flex-col justify-center items-center gap-10">
+        <div className="w-full flex flex-col justify-center items-center gap-10 mt-10">
             <div className="inline-flex items-end gap-4">
                 <motion.div className="rounded-lg shadow-mjol-gray-xs"
                             style={{

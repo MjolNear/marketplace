@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {useParams} from "react-router";
 import NotFound404Page from "../../NotFound404";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
@@ -14,6 +14,9 @@ import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
 import CollectionMarketNftList from "./CollectionMarketNftList";
 import {useFetchCollection} from "../../../hooks/collection/useFetchCollection";
 import CollectionStats from "../../../components/Preview/Collection/Stats/CollectionStats";
+import PriceRangeFilter from "../../../components/Filter/popup/price/PriceRangeFilter";
+import SortFilter from "../../../components/Filter/popup/sort/SortFilter";
+import {TokenPriceRange, TokenSortName, tokenSortOptions} from "../../../graphql/utils";
 
 type CollectionRouteParams = {
     contractId: string,
@@ -29,6 +32,12 @@ const PreviewCollectionPage: React.FC = () => {
         contractId || "",
         collectionId || ""
     )
+
+    const [priceRange, setPriceRange] = useState<TokenPriceRange>({})
+    const clearPriceRange = useCallback(() => setPriceRange({}), [])
+
+    const [sort, setSort] = useState(tokenSortOptions[TokenSortName.RecentlyAdded])
+
 
     if (!collectionId || !contractId || !filterTab) {
         return <NotFound404Page/>
@@ -67,7 +76,8 @@ const PreviewCollectionPage: React.FC = () => {
             </BlueShadowContainer>
             {filterTab === 'items' ?
                 <>
-                    <div className="flex justify-center pb-10">
+                    <div className="inline-flex flex-wrap gap-20 w-full justify-center mb-2">
+
                         <BlueToggle text="Buy now"
                                     handleToggle={(() => {
                                         setMarketToggleState(
@@ -76,7 +86,19 @@ const PreviewCollectionPage: React.FC = () => {
                                                 : "only-market"
                                         )
                                     })}
-                                    defaultChecked={marketToggleState === "init" || marketToggleState === "only-market"}/>
+                                    defaultChecked={marketToggleState === "init" || marketToggleState === "only-market"}
+                        />
+                        <div className="inline-flex gap-5">
+                            <PriceRangeFilter
+                                disabled={marketToggleState === "all"}
+                                onClear={clearPriceRange}
+                                onApply={setPriceRange}
+                            />
+                            <SortFilter disabled={marketToggleState === "all"}
+                                        picked={sort.name}
+                                        setSort={setSort}
+                            />
+                        </div>
                     </div>
 
                     {/*{collection.metadata?.traits*/}
@@ -102,6 +124,8 @@ const PreviewCollectionPage: React.FC = () => {
                             :
                             <CollectionMarketNftList collectionContract={contractId}
                                                      collectionId={collectionId}
+                                                     sort={sort}
+                                                     priceRange={priceRange}
                             />
                         }
                     </>
