@@ -16,11 +16,11 @@ const DODIK_MEDIA_LIST: Map<string, string> = new Map([
     ["asac.near", 'https://ipfs.io/ipfs/bafybeicj5zfhe3ytmfleeiindnqlj7ydkpoyitxm7idxdw2kucchojf7v4/'],
     ["tayc-nft.near", 'https://ipfs.io/ipfs/QmXQEfLTs8W3968eVZrAwfY6oTN4UphyADdvbV2jop6S89/'],
     ["nearton_nft.near", "https://bafybeidunfr6lhn3v6a3xvjlczhhhzfielkq4vjpc5clplue63lfpm536q.ipfs.dweb.link/"],
-    ["billionairebullsclub.near", "https://ipfs.io/ipfs/bafybeibhdz6f6t44qpjqjumns44il3ta6zxobq4vcl3ayh63pc4jvtckiy/"]
+    ["billionairebullsclub.near", "https://ipfs.io/ipfs/bafybeibhdz6f6t44qpjqjumns44il3ta6zxobq4vcl3ayh63pc4jvtckiy/"],
+    ["pgonft.crayonlabs.near", "https://ipfs.io/ipfs/QmVEnyy59WGCLLsDMrqHkRf1cm8FwSrEVqQJEqm2ug65pg/"]
 ]);
 
-function getRealUrl(url: string, urlHash?: string, contractId?: string) {
-
+async function getRealUrl(url: string, urlHash?: string, contractId?: string) {
     const storageLink = contractId?.endsWith(".mintbase1.near")
         ? 'https://arweave.net/'
         : 'https://ipfs.fleek.co/ipfs/'
@@ -31,6 +31,18 @@ function getRealUrl(url: string, urlHash?: string, contractId?: string) {
         } else {
             if (contractId && DODIK_MEDIA_LIST.has(contractId)) {
                 return DODIK_MEDIA_LIST.get(contractId) + url;
+            }
+            const meta = await viewFunction({
+                    contractId: (contractId || ''),
+                    methodName: 'nft_metadata',
+                    args: {}
+                }
+            )
+            if (meta["base_uri"] !== ""){
+                if (meta["base_uri"][meta["base_uri"].length - 1] !== '/'){
+                    return meta["base_uri"] + '/' + url
+                }
+                return meta["base_uri"] + url
             }
             return storageLink + url;
         }
@@ -60,10 +72,11 @@ function getRealUrl(url: string, urlHash?: string, contractId?: string) {
 //   reference_hash: null
 // },
 // approved_account_ids: {}
-function convertStandardNFT(contractId: string, nft: any, tokenPrices: ResponseTokenPrices): Promise<ApprovedToken> {
+async function convertStandardNFT(contractId: string, nft: any, tokenPrices: ResponseTokenPrices): Promise<ApprovedToken> {
     const metadata = nft.metadata;
     const {approved_account_ids = {}} = nft
-    const media = getRealUrl(metadata.media, metadata.media_hash, contractId);
+    const media = await getRealUrl(metadata.media, metadata.media_hash, contractId);
+    const ipfsRef = await getRealUrl(metadata.reference, metadata.reference_hash, contractId);
     const mintSiteInfo = getNftMintedSiteInfo(nft, contractId)
 
     const uid = buildUID(contractId, nft.token_id)
@@ -75,7 +88,7 @@ function convertStandardNFT(contractId: string, nft: any, tokenPrices: ResponseT
         description: metadata.description,
         copies: metadata.copies,
         media,
-        ipfsReference: getRealUrl(metadata.reference, metadata.reference_hash, contractId),
+        ipfsReference: ipfsRef,
         price: getPrice(uid, tokenPrices),
         extra: metadata.extra,
         isApproved: MARKET_CONTRACT_ID in approved_account_ids,
@@ -158,10 +171,11 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: Respons
     )
 
     const jsonNFT = await NftAPI.getJsonByURL(url)
-    const media = getRealUrl(jsonNFT.media, jsonNFT.media_hash, contractId)
+    const media = await getRealUrl(jsonNFT.media, jsonNFT.media_hash, contractId)
     const {approvals = {}} = nft
     const uid = buildUID(contractId, nft.id.toString())
     const mintSiteInfo = getNftMintedSiteInfo(nft, contractId)
+    const ipfsReference = await getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId);
 
     return Promise.resolve({
         contractId,
@@ -171,7 +185,7 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: Respons
         description: jsonNFT.description,
         copies: metadata.copies,
         media: media,
-        ipfsReference: getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId),
+        ipfsReference: ipfsReference,
         extra: nft.metadata.extra,
         price: getPrice(uid, tokenPrices),
         isApproved: MARKET_CONTRACT_ID in approvals,
