@@ -1626,6 +1626,19 @@ export type MarketTokensSearchQueryVariables = Exact<{
 
 export type MarketTokensSearchQuery = { __typename?: 'Query', searchedMarketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
 
+export type UserMarketTokensQueryVariables = Exact<{
+  account: Scalars['ID'];
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+  orderBy: MarketToken_OrderBy;
+  orderDirection: OrderDirection;
+  priceFrom: Scalars['BigInt'];
+  priceTo: Scalars['BigInt'];
+}>;
+
+
+export type UserMarketTokensQuery = { __typename?: 'Query', account?: { __typename?: 'Account', marketTokens: Array<{ __typename?: 'MarketToken', tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> } | null };
+
 export type TokenActivityQueryVariables = Exact<{
   tokenUID: Scalars['String'];
 }>;
@@ -1922,6 +1935,63 @@ export function useMarketTokensSearchLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type MarketTokensSearchQueryHookResult = ReturnType<typeof useMarketTokensSearchQuery>;
 export type MarketTokensSearchLazyQueryHookResult = ReturnType<typeof useMarketTokensSearchLazyQuery>;
 export type MarketTokensSearchQueryResult = Apollo.QueryResult<MarketTokensSearchQuery, MarketTokensSearchQueryVariables>;
+export const UserMarketTokensDocument = gql`
+    query userMarketTokens($account: ID!, $limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt!, $priceTo: BigInt!) {
+  account(id: $account) {
+    marketTokens(
+      first: $limit
+      skip: $offset
+      orderBy: $orderBy
+      orderDirection: $orderDirection
+      where: {price_gte: $priceFrom, price_lte: $priceTo}
+    ) {
+      tokenId
+      contractId
+      collectionId
+      collectionName
+      title
+      media
+      mintSiteName
+      mintSiteLink
+      price
+    }
+  }
+}
+    `;
+
+/**
+ * __useUserMarketTokensQuery__
+ *
+ * To run a query within a React component, call `useUserMarketTokensQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserMarketTokensQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserMarketTokensQuery({
+ *   variables: {
+ *      account: // value for 'account'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      orderBy: // value for 'orderBy'
+ *      orderDirection: // value for 'orderDirection'
+ *      priceFrom: // value for 'priceFrom'
+ *      priceTo: // value for 'priceTo'
+ *   },
+ * });
+ */
+export function useUserMarketTokensQuery(baseOptions: Apollo.QueryHookOptions<UserMarketTokensQuery, UserMarketTokensQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UserMarketTokensQuery, UserMarketTokensQueryVariables>(UserMarketTokensDocument, options);
+      }
+export function useUserMarketTokensLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserMarketTokensQuery, UserMarketTokensQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UserMarketTokensQuery, UserMarketTokensQueryVariables>(UserMarketTokensDocument, options);
+        }
+export type UserMarketTokensQueryHookResult = ReturnType<typeof useUserMarketTokensQuery>;
+export type UserMarketTokensLazyQueryHookResult = ReturnType<typeof useUserMarketTokensLazyQuery>;
+export type UserMarketTokensQueryResult = Apollo.QueryResult<UserMarketTokensQuery, UserMarketTokensQueryVariables>;
 export const TokenActivityDocument = gql`
     query tokenActivity($tokenUID: String!) {
   tokenActivity: activities(

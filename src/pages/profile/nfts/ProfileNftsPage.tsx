@@ -8,6 +8,7 @@ import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import TabsPanel from "../navbar/TabsPanel";
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
+import ProfileMarketTokens from "./ProfileMarketTokens";
 
 const ProfileNftsPage: React.FC<TAuthProps> = ({
     accountId,
@@ -29,10 +30,11 @@ const ProfileNftsPage: React.FC<TAuthProps> = ({
     const child = useMemo(() => {
         switch (activeTab) {
             case ProfileNftsTab.All:
-            case ProfileNftsTab.Listed:
                 return <ProfileNftsFetch accountId={accountId}
                                          isSignedIn={isSignedIn}
                 />
+            case ProfileNftsTab.Listed:
+                return <ProfileMarketTokens accountId={accountId}/>
             case ProfileNftsTab.History:
                 return <ProfileHistoryFetch accountId={accountId}
                                             isSignedIn={isSignedIn}

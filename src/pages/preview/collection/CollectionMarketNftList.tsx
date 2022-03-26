@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import PaginationCardList from "../../../components/CardList/PaginationCardList";
 import NotFound404Page from "../../NotFound404";
 import {
@@ -7,7 +7,13 @@ import {
     OrderDirection,
     useCollectionMarketTokensQuery
 } from "../../../graphql/generated/graphql";
-import {convertToMarketToken} from "../../../graphql/utils";
+import {
+    convertToMarketToken,
+    TokenPriceRange,
+    TokenSortName,
+    TokenSortOption,
+    tokenSortOptions
+} from "../../../graphql/utils";
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../../utils/string";
 import {MJOL_CONTRACT_ID} from "../../../business-logic/near/enviroment/contract-names";
 
@@ -15,26 +21,25 @@ import {MJOL_CONTRACT_ID} from "../../../business-logic/near/enviroment/contract
 interface CollectionMarketNftListProps {
     collectionContract?: string
     collectionId?: string
+    priceRange: TokenPriceRange,
+    sort: TokenSortOption
 }
 
 
 const CollectionMarketNftList: React.FC<CollectionMarketNftListProps> = ({
     collectionContract,
-    collectionId
+    collectionId,
+    sort,
+    priceRange
 }) => {
-
     const limit = 12
+
     const [hasMore, setHasMore] = useState(true)
 
-    // const initialSort = tokenSortOptions[TokenSortName.RecentlyAdded]
-    // const initialPriceRange: TokenPriceRange = {}
-    // const initialSearchText: SearchText = {}
-    //
-    // const [filters, setFilters] = useState({
-    //     priceRange: initialPriceRange,
-    //     sort: initialSort,
-    //     search: initialSearchText
-    // })
+    useEffect(() => {
+        setHasMore(true)
+    }, [sort, priceRange, limit, collectionId, collectionContract])
+
 
     const {data, loading, fetchMore} = useCollectionMarketTokensQuery({
         fetchPolicy: "network-only",
@@ -44,22 +49,15 @@ const CollectionMarketNftList: React.FC<CollectionMarketNftListProps> = ({
             collectionId: collectionContract === MJOL_CONTRACT_ID ? collectionId : null,
             offset: 0,
             limit,
-            orderBy: MarketToken_OrderBy.ListingTimestamp,
-            orderDirection: OrderDirection.Desc,
-            priceFrom: MIN_ITEM_YOCTO_PRICE,
-            priceTo: MAX_ITEM_YOCTO_PRICE
+            orderBy: sort.by,
+            orderDirection: sort.direction,
+            priceFrom: priceRange.from || MIN_ITEM_YOCTO_PRICE,
+            priceTo: priceRange.to || MAX_ITEM_YOCTO_PRICE
         }
     })
 
-    const tokens = useMemo(
-        () => data?.collectionMarketTokens.map(token => convertToMarketToken(token)) || [],
-        [data]
-    )
-
-    const canLoadMore = useMemo(() =>
-            loading || hasMore && tokens.length !== 0 && tokens.length % limit === 0,
-        [loading, tokens, hasMore]
-    )
+    const tokens = data?.collectionMarketTokens.map(convertToMarketToken) || []
+    const canLoadMore = loading || hasMore && tokens.length !== 0 && tokens.length % limit === 0
 
     const updateQuery = useCallback((
         previousQueryResult: CollectionMarketTokensQuery,
@@ -72,17 +70,19 @@ const CollectionMarketNftList: React.FC<CollectionMarketNftListProps> = ({
         }
         const previousTokens = previousQueryResult.collectionMarketTokens;
         const fetchMoreTokens = fetchMoreResult.collectionMarketTokens;
-        setHasMore(fetchMoreTokens.length === limit)
+        if (fetchMoreTokens.length !== limit) {
+            setHasMore(false)
+        }
         fetchMoreResult.collectionMarketTokens = previousTokens.concat(fetchMoreTokens);
         return {...fetchMoreResult}
-    }, [])
+    }, [limit])
 
     const onLoadMore = useCallback(() => fetchMore({
         updateQuery,
         variables: {
             offset: tokens.length
         }
-    }), [tokens])
+    }), [tokens, updateQuery])
 
     if (!collectionContract) {
         return <NotFound404Page/>
