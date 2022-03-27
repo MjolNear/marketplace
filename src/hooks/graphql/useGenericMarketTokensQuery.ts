@@ -6,8 +6,8 @@ import {ApolloQueryResult} from "@apollo/client";
 
 export const useGenericMarketTokensQuery = <TData, TVariables extends { limit: number, offset: number }>(
     queryHook: (options: QueryHookOptions<TData, TVariables>) => QueryResult<TData, TVariables>,
-    options: QueryHookOptions<TData, TVariables>,
     tokensMapper: (data?: TData) => GridToken[],
+    options: QueryHookOptions<TData, TVariables>,
 ) => {
 
     const {data, loading, fetchMore, error} = queryHook(options)
