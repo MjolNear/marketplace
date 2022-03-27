@@ -5,6 +5,7 @@ query collectionTotalStats(
     stats: totalCollectionStat(
         id: $contractId
     ) {
+        id
         volume
         sales,
         avg,
@@ -17,6 +18,7 @@ query collectionTotalStats(
         orderDirection: asc,
         first: 1
     ) {
+        id
         price
     }
 }

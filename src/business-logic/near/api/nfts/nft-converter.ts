@@ -68,8 +68,6 @@ function convertStandardNFT(contractId: string, nft: any, tokenPrices: ResponseT
     const mintSiteInfo = getNftMintedSiteInfo(nft, contractId)
     const collection = parseCollection(contractId, nft?.metadata)
 
-    console.log(collection)
-
     const uid = buildUID(contractId, nft.token_id)
     return Promise.resolve({
         contractId,

@@ -8,6 +8,7 @@ query tokenActivity(
         orderBy: timestamp,
         orderDirection: desc
     ) {
+        id
         price
         txHash
         eventType
