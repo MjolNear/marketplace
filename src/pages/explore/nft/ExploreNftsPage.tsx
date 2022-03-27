@@ -81,9 +81,6 @@ const ExploreNftsPage = () => {
                 </div>
             </BlueShadowContainer>
             <div className="flex flex-col items-center gap-6">
-                {/*<ActiveFilters filters={activeFilters}*/}
-                {/*               reset={clearFilters}*/}
-                {/*/>*/}
                 <div className="inline-flex flex-wrap gap-4 w-full justify-center mb-2">
                     <PriceRangeFilter
                         disabled={!!textQueryFilter}

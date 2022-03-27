@@ -24,10 +24,10 @@ const SearchInput: React.FC<SearchInputProps> = ({
 
     return (
         <div className="flex text-xs xs:text-md">
-            <input className="rounded-l-3xl w-full sm:w-88
-                              outline-none border-0 py-[12px] px-5 ring-1 ring-inset ring-mjol-light-blue
+            <input className="rounded-l-3xl w-full xxs:w-64 xs:w-72 sm:w-88
+                              outline-none border-0 py-3 px-5 ring-1 ring-inset ring-mjol-light-blue
                               focus:ring-mjol-light-blue
-                              text-[14px]
+                              text-[12px] xs:text-[14px]
                               font-semibold
                               focus:ring-inset
                               focus:bg-gray-50
