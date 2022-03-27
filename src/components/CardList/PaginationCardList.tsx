@@ -37,4 +37,4 @@ const PaginationCardList: React.FC<PaginationCardListProps> = ({
     );
 };
 
-export default memo(PaginationCardList);
+export default PaginationCardList;

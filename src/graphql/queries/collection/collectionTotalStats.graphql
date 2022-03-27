@@ -5,6 +5,7 @@ query collectionTotalStats(
     stats: totalCollectionStat(
         id: $contractId
     ) {
+        id
         volume
         sales,
         avg,

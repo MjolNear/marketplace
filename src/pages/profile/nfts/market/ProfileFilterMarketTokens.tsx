@@ -1,8 +1,8 @@
-import React, {memo, useCallback, useEffect, useState} from 'react';
-import {UserMarketTokensQuery, useUserMarketTokensQuery} from "../../../../graphql/generated/graphql";
+import React, {useCallback} from 'react';
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../../../utils/string";
 import {convertToMarketToken, TokenPriceRange, TokenSortOption} from "../../../../graphql/utils";
 import PaginationCardList from "../../../../components/CardList/PaginationCardList";
+import {useAccountMarketTokens} from "../../../../hooks/graphql";
 
 interface ExploreFilterTokens {
     accountId: string,
@@ -17,31 +17,12 @@ const ProfileFilterMarketTokens: React.FC<ExploreFilterTokens> = ({
     priceRange,
     sort
 }) => {
-    const {data, loading, fetchMore} = useUserMarketTokensQuery({
-        variables: {
-            account: accountId,
-            offset: 0,
-            limit,
-            orderBy: sort.by,
-            orderDirection: sort.direction,
-            priceFrom: priceRange.from || MIN_ITEM_YOCTO_PRICE,
-            priceTo: priceRange.to || MAX_ITEM_YOCTO_PRICE
-        }
-    })
-
-    const tokens = data?.account?.marketTokens.map(convertToMarketToken) || []
-    const canLoadMore = tokens.length !== 0 && tokens.length % limit === 0
-
-    const onLoadMore = useCallback(() => fetchMore({
-        variables: {
-            offset: tokens.length
-        }
-    }), [tokens])
-
+    const {tokens, loading, hasMore, onLoadMore} = useAccountMarketTokens(accountId, limit, sort, priceRange)
     return <PaginationCardList tokens={tokens}
                                loading={loading}
-                               hasMore={canLoadMore}
-                               onLoadMore={onLoadMore}/>
+                               hasMore={hasMore}
+                               onLoadMore={onLoadMore}
+    />
 };
 
 export default ProfileFilterMarketTokens;

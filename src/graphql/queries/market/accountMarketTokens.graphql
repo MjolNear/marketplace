@@ -1,11 +1,11 @@
 #account(id: "danielto.near") {
-#marketTokens(first: 10) {
+#useMarketTokens(first: 10) {
 #title
 #}
 #}
 
-query userMarketTokens(
-    $account: ID!,
+query accountMarketTokens(
+    $accountId: ID!,
     $limit: Int!,
     $offset: Int!,
     $orderBy: MarketToken_orderBy!,
@@ -13,7 +13,8 @@ query userMarketTokens(
     $priceFrom: BigInt!,
     $priceTo: BigInt!
 ) {
-    account(id: $account) {
+    account(id: $accountId) {
+        id
         marketTokens(
             first: $limit,
             skip: $offset,
