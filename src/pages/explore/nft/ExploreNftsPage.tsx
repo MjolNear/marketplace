@@ -1,8 +1,8 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
 
-import {TokenPriceRange, TokenSortName, tokenSortOptions} from "../../../graphql/utils";
+import {TokenPriceRange, TokenSortName} from "../../../graphql/utils";
 import PriceRangeFilter from "../../../components/Filter/popup/price/PriceRangeFilter";
 import SortFilter from "../../../components/Filter/popup/sort/SortFilter";
 import SearchInput from "../../../components/Filter/search/SearchInput";
@@ -16,12 +16,12 @@ import activeFilters from "../../../components/Filter/ActiveFilters";
 
 
 const ExploreNftsPage = () => {
-    const limit = 12
+    const LIMIT = 12
 
     const [priceRange, setPriceRange] = useState<TokenPriceRange>({})
     const clearPriceRange = useCallback(() => setPriceRange({}), [])
 
-    const [sort, setSort] = useState(tokenSortOptions[TokenSortName.RecentlyAdded])
+    const [sort, setSort] = useState(TokenSortName.RecentlyAdded)
 
     const [textQueryFilter, setTextQueryFilter] = useState('')
     const debounceQuery = useDebounce(textQueryFilter, 500)
@@ -81,9 +81,6 @@ const ExploreNftsPage = () => {
                 </div>
             </BlueShadowContainer>
             <div className="flex flex-col items-center gap-6">
-                {/*<ActiveFilters filters={activeFilters}*/}
-                {/*               reset={clearFilters}*/}
-                {/*/>*/}
                 <div className="inline-flex flex-wrap gap-4 w-full justify-center mb-2">
                     <PriceRangeFilter
                         disabled={!!textQueryFilter}
@@ -91,18 +88,18 @@ const ExploreNftsPage = () => {
                         onApply={setPriceRange}
                     />
                     <SortFilter disabled={!!textQueryFilter}
-                                picked={sort.name}
+                                picked={sort}
                                 setSort={setSort}
                     />
                 </div>
             </div>
             {debounceQuery
                 ?
-                <ExploreSearchTokens limit={limit}
+                <ExploreSearchTokens limit={LIMIT}
                                      searchQuery={debounceQuery}
                 />
                 :
-                <ExploreFilterTokens limit={limit}
+                <ExploreFilterTokens limit={LIMIT}
                                      priceRange={priceRange}
                                      sort={sort}
                 />

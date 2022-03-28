@@ -19,6 +19,7 @@ import ProfileCollectionsPage from "./pages/profile/collections/ProfileCollectio
 import NotFound404Page from "./pages/NotFound404";
 import PreviewNftMatchRouterParams from "./pages/preview/nft/PreviewNftMatchRouterParams";
 import PageLayout from "./components/Layout/PageLayout";
+import PreviewCollectionMatchRouterParams from "./pages/preview/collection/PreviewCollectionMatchRouterParams";
 
 
 export default function App() {
@@ -102,10 +103,11 @@ export default function App() {
                         <Route index
                                element={<ExploreCollectionsPage/>}/>
                         <Route path=":contractId/:collectionId/:filterTab"
-                               element={<PreviewCollectionPage/>}/>
+                               element={<PreviewCollectionMatchRouterParams/>}/>
                         <Route path="new" element={<CreateCollectionPage/>}/>
                     </Route>
                     <Route path="profile">
+                        <Route index element={<NotFound404Page/>}/>
                         <Route path="nfts" element={<ProfileNftsPage/>}/>
                         <Route path="collections" element={<ProfileCollectionsPage/>}/>
                     </Route>

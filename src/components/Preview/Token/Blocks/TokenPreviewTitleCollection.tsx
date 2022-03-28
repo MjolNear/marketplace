@@ -15,7 +15,6 @@ const TokenPreviewTitleCollection: React.FC<TokenPreviewTitleCollection> = ({
     contractId,
     collectionMeta
 }) => {
-    console.log(collectionMeta)
     const collection = collectionMeta ? collectionMeta : whitelistedCollections[contractId]
     return (
         <section className="font-archivo">

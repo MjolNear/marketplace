@@ -5,10 +5,12 @@ import GradientText from "../../../../Common/Text/GradientText";
 import LightBlueGradientText from "../../../../Common/Text/LightBlueGradientText";
 
 interface TTokenPriceHeaderProps {
+    headerText: string,
     closeModal: React.MouseEventHandler
 }
 
 const TokenPriceHeader: React.FC<TTokenPriceHeaderProps> = ({
+    headerText,
     closeModal
 }) => {
     return (
@@ -16,7 +18,7 @@ const TokenPriceHeader: React.FC<TTokenPriceHeaderProps> = ({
             <div className="absolute right-0 top-0 pr-4 pt-4">
                 <AiOutlineClose onClick={closeModal} className="cursor-pointer" size={20}/>
             </div>
-            <GradientText text="List NFT for sale"
+            <GradientText text={headerText}
                           size="2xl"
                           fontWeight="extrabold"
                           extraClasses="bg-gradient-to-r from-blue-700 to-blue-400 mb-3"

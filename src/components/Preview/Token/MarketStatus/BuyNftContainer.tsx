@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
 import PriceContainer from "./PriceContainer";
 import {ContractId, Optional, TokenId} from "../../../../business-logic/models/types";
-import {buyNftWithPayouts} from "../../../../business-logic/near/api/market/transaction";
+import {buyNftWithPayouts} from "../../../../business-logic/near/transaction";
 
 interface TBuyNftProps {
     tokenPrice?: Optional<string>

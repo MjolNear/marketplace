@@ -2,7 +2,7 @@ import {Popover, Transition} from '@headlessui/react';
 import React, {Fragment} from 'react';
 
 interface PopupFilterProps {
-    name: string,
+    name: string | React.ReactNode,
     icon: React.ReactNode,
     disabled?: boolean
 }
@@ -34,8 +34,8 @@ const PopupFilter: React.FC<PopupFilterProps> = ({
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
             >
-                <div className="z-50 absolute flex rounded-xl ring-[1px] ring-blue-100
-                                mt-4 bg-white focus:outline-none shadow-mjol-blue-all-xs
+                <div className="z-50 absolute flex rounded-xl
+                                mt-3 bg-white focus:outline-none shadow-mjol-blue
                                 max-xs:transform
                                 max-xs:-translate-x-1/2
                                 max-xs:left-1/2

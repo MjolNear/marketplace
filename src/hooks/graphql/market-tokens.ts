@@ -34,7 +34,7 @@ export const useMarketTokens = (
     priceRange: TokenPriceRange
 ) => {
     return useGenericMarketTokensQuery<MarketTokensQuery, MarketTokensQueryVariables>(
-        useMarketTokensQuery, {
+        useMarketTokensQuery, marketTokensResponseMapper, {
             fetchPolicy: "cache-and-network",
             nextFetchPolicy: "cache-and-network",
             variables: {
@@ -45,8 +45,7 @@ export const useMarketTokens = (
                 priceFrom: priceRange.from || MIN_ITEM_YOCTO_PRICE,
                 priceTo: priceRange.to || MAX_ITEM_YOCTO_PRICE
             }
-        },
-        marketTokensResponseMapper
+        }
     )
 }
 
@@ -58,7 +57,7 @@ export const useCollectionMarketTokens = (
     collectionId?: string
 ) => {
     return useGenericMarketTokensQuery<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>(
-        useCollectionMarketTokensQuery, {
+        useCollectionMarketTokensQuery, marketTokensResponseMapper, {
             fetchPolicy: "cache-and-network",
             nextFetchPolicy: "cache-and-network",
             variables: {
@@ -72,7 +71,6 @@ export const useCollectionMarketTokens = (
                 priceTo: priceRange.to || MAX_ITEM_YOCTO_PRICE
             }
         },
-        marketTokensResponseMapper
     )
 }
 
@@ -81,7 +79,7 @@ export const useMarketTokensTextSearching = (
     limit: number
 ) => {
     return useGenericMarketTokensQuery<MarketTokensSearchQuery, MarketTokensSearchQueryVariables>(
-        useMarketTokensSearchQuery, {
+        useMarketTokensSearchQuery, marketTokensResponseMapper, {
             fetchPolicy: "cache-and-network",
             nextFetchPolicy: "cache-and-network",
             variables: {
@@ -89,8 +87,7 @@ export const useMarketTokensTextSearching = (
                 text,
                 offset: 0
             }
-        },
-        marketTokensResponseMapper
+        }
     )
 }
 
@@ -102,7 +99,7 @@ export const useAccountMarketTokens = (
     priceRange: TokenPriceRange
 ) => {
     return useGenericMarketTokensQuery<AccountMarketTokensQuery, AccountMarketTokensQueryVariables>(
-        useAccountMarketTokensQuery, {
+        useAccountMarketTokensQuery, profileMarketTokensResponseMapper, {
             fetchPolicy: "cache-and-network",
             nextFetchPolicy: "cache-and-network",
             variables: {
@@ -114,8 +111,7 @@ export const useAccountMarketTokens = (
                 priceFrom: priceRange.from || MIN_ITEM_YOCTO_PRICE,
                 priceTo: priceRange.to || MAX_ITEM_YOCTO_PRICE
             }
-        },
-        profileMarketTokensResponseMapper
+        }
     )
 }
 

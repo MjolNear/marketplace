@@ -3,6 +3,7 @@ import React, {Fragment} from 'react';
 import ShareIcon from "./ShareIcon";
 import ShareBox from "./ShareBox";
 import {TShareProps} from "./TShareProps";
+import Tooltip from "../../Layout/Tooltip";
 
 
 const SharePopup: React.FC<TShareProps> = ({
@@ -10,9 +11,15 @@ const SharePopup: React.FC<TShareProps> = ({
 }) => {
     return (
         <Popover className="relative">
-            <Popover.Button className="focus:outline-none focus-visible:ring-0">
-                <ShareIcon size={20}/>
-            </Popover.Button>
+            <p data-for="shareTokenTooltipId"
+               data-tip="Share"
+               className="cursor-pointer"
+            >
+                <Popover.Button>
+                    <ShareIcon size={20}/>
+                </Popover.Button>
+                <Tooltip id="shareTokenTooltipId" place="top"/>
+            </p>
             <Transition
                 as={Fragment}
                 enter="transition ease-out duration-100"
@@ -22,11 +29,11 @@ const SharePopup: React.FC<TShareProps> = ({
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
             >
-                    <Popover.Panel className="absolute right-0 mt-3">
-                        {({close}) => (
-                            <ShareBox link={link} close={close}/>
-                        )}
-                    </Popover.Panel>
+                <Popover.Panel className="absolute right-0 mt-3">
+                    {({close}) => (
+                        <ShareBox link={link} close={close}/>
+                    )}
+                </Popover.Panel>
             </Transition>
         </Popover>
     );

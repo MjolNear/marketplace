@@ -38,7 +38,7 @@ const Card: React.FC<TCardProps> = ({
     return (
         <div className="flex flex-col justify-between overflow-hidden w-full rounded-xl
                         ring-1 ring-blue-300 select-none
-                        transform hover:shadow-mjol-blue-300-md hover:-translate-y-[1px]"
+                        transform transition-all hover:shadow-mjol-blue hover:-translate-y-[2px]"
         >
             <div>
                 <Link to={previewLink}>

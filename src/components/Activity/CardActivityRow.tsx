@@ -8,9 +8,12 @@ import NearBlackLogo from "../Icons/near/NearIcon";
 import BuyIcon from "../Icons/Activity/BuyIcon";
 import {getRelativeTimestamp} from "../../utils/time";
 import UnlistIcon from "../Icons/Activity/UnlistIcon";
-import CopyIcon from "../Icons/CopyIcon";
 import {BsCheck} from "react-icons/bs";
+import {BiMerge} from 'react-icons/bi'
 import AccountHrefCell from "./AccountHrefCell";
+import CopyIcon from "../Icons/CopyIcon";
+import Tooltip from "../Layout/Tooltip";
+import {copiedToast} from "../Layout/Toast";
 
 export interface TCardActivityRowProps {
     event: ActivityEventType,
@@ -60,13 +63,19 @@ const CardActivityRow: React.FC<TCardActivityRowProps> = ({
                     ?
                     <BsCheck size={18}/>
                     :
-                    <button onClick={() => {
-                        navigator.clipboard.writeText(txHash).then()
-                        setIsCopied(true)
-                        setTimeout(() => setIsCopied(false), 1000)
-                    }}>
-                        <CopyIcon size={15}/>
-                    </button>
+                    <p data-for={`copyActivityTxTooltip:${txHash}`}
+                       data-tip="Copy"
+                    >
+                        <button onClick={() => {
+                            navigator.clipboard.writeText(txHash)
+                                .then(() => setIsCopied(true))
+                                .then(() => copiedToast("TX hash copied successfully"))
+                                .then(() => setTimeout(() => setIsCopied(false), 1000))
+                        }}>
+                            <CopyIcon size={15}/>
+                        </button>
+                        <Tooltip id={`copyActivityTxTooltip:${txHash}`} place="right"/>
+                    </p>
                 }
             </CardActivityCell>
         </div>

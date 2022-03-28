@@ -1,5 +1,4 @@
 import React, {useCallback, useState} from 'react';
-import {useParams} from "react-router";
 import NotFound404Page from "../../NotFound404";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import CollectionNftList from "./CollectionNftList";
@@ -8,7 +7,6 @@ import CollectionTitleDescription from "../../../components/Preview/Collection/B
 import CollectionBanner from "../../../components/Preview/Collection/Blocks/CollectionBanner";
 import CollectionItemActivityTab from "../../../components/Preview/Collection/Filters/CollectionItemActivityTab";
 import CollectionMedia from "../../../components/Preview/Collection/Media/CollectionMedia";
-import TraitsFilter from "../../../components/Preview/Collection/Filters/TraitsFilter";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
 import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
 import CollectionMarketNftList from "./CollectionMarketNftList";
@@ -18,30 +16,27 @@ import PriceRangeFilter from "../../../components/Filter/popup/price/PriceRangeF
 import SortFilter from "../../../components/Filter/popup/sort/SortFilter";
 import {TokenPriceRange, TokenSortName, tokenSortOptions} from "../../../graphql/utils";
 
-type CollectionRouteParams = {
+type PreviewCollectionProps = {
     contractId: string,
     collectionId: string,
     filterTab: "items" | "activity"
 }
 
-const PreviewCollectionPage: React.FC = () => {
+const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
+    contractId,
+    collectionId,
+    filterTab
+}) => {
 
     const [marketToggleState, setMarketToggleState] = useState<"init" | "only-market" | "all">("init");
-    const {contractId, collectionId, filterTab} = useParams<CollectionRouteParams>()
-    const {fetching, collection, stats} = useFetchCollection(
-        contractId || "",
-        collectionId || ""
-    )
+
+    const {fetching, collection, stats} = useFetchCollection(contractId, collectionId)
 
     const [priceRange, setPriceRange] = useState<TokenPriceRange>({})
     const clearPriceRange = useCallback(() => setPriceRange({}), [])
 
-    const [sort, setSort] = useState(tokenSortOptions[TokenSortName.RecentlyAdded])
+    const [sort, setSort] = useState(TokenSortName.RecentlyAdded)
 
-
-    if (!collectionId || !contractId || !filterTab) {
-        return <NotFound404Page/>
-    }
 
     if (fetching && marketToggleState === "init") {
         return <CreateLoader/>
@@ -50,6 +45,7 @@ const PreviewCollectionPage: React.FC = () => {
     if (!collection) {
         return <NotFound404Page/>
     }
+
     const hasBanner = !!collection.metadata?.bannerImage
 
     return (
@@ -95,7 +91,7 @@ const PreviewCollectionPage: React.FC = () => {
                                 onApply={setPriceRange}
                             />
                             <SortFilter disabled={marketToggleState === "all"}
-                                        picked={sort.name}
+                                        picked={sort}
                                         setSort={setSort}
                             />
                         </div>

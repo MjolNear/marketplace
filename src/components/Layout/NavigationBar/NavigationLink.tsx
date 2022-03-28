@@ -15,8 +15,8 @@ const NavigationLink: React.FC<NavigationLinkProps> = ({
     return (
         <Link to={path}
               className="flex flex-row px-2 py-3 gap-3 text-[15px]
-                         opacity-80 hover:opacity-100 rounded-lg
-                         font-archivo hover:bg-gray-100 items-center">
+                         opacity-80 hover:opacity-100 rounded-lg transition-all
+                         font-archivo hover:bg-mjol-hover-blue items-center">
             {icon}
             <div className="font-bold">{name}</div>
         </Link>

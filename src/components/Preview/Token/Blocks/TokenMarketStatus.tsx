@@ -50,6 +50,8 @@ const TokenMarketStatus: React.FC<TTokenMarketStatusBlockProps & TAuthProps> = (
             return <UnlistNftContainer tokenPrice={token.price}
                                        contractId={token.contractId}
                                        tokenId={token.tokenId}
+                                       media={token.media}
+                                       payouts={payouts || {}}
             />
         case ItemMarketStatus.NOT_APPROVED:
             return <NftNotApproved contractId={token.contractId}
