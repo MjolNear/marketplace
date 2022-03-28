@@ -4,18 +4,18 @@ import {useCallback, useEffect, useMemo, useState} from "react";
 import {ApolloQueryResult} from "@apollo/client";
 
 
-export const useGenericMarketTokensQuery = <TData, TVariables extends { limit: number, offset: number }>(
+export const useGenericMarketTokensQuery = <TData, TVariables extends { limit: number }>(
     queryHook: (options: QueryHookOptions<TData, TVariables>) => QueryResult<TData, TVariables>,
     tokensMapper: (data?: TData) => GridToken[],
     options: QueryHookOptions<TData, TVariables>,
 ) => {
 
-    const {data, loading, fetchMore, error} = queryHook(options)
-    const tokens = useMemo(() => tokensMapper(data), [data])
+    const {data, error, loading, fetchMore} = queryHook(options)
+    const tokens = useMemo(() => tokensMapper(data), [data, tokensMapper])
 
     const [fetchingStatus, setFetchingStatus] = useState({
-        loading: tokens.length === 0,
-        hasMore: tokens.length % (options?.variables?.limit || 1) === 0 && tokens.length !== 0
+        loading: true,
+        hasMore: true
     })
 
     useEffect(() => {
@@ -37,7 +37,7 @@ export const useGenericMarketTokensQuery = <TData, TVariables extends { limit: n
                 hasMore: (tokens.length % (options?.variables?.limit || 1) === 0 && tokens.length !== 0)
             }))
         }
-    }, [loading, error, tokens])
+    }, [loading, error, tokens, options?.variables?.limit])
 
 
     const onLoadMore = useCallback(() => {
@@ -54,7 +54,7 @@ export const useGenericMarketTokensQuery = <TData, TVariables extends { limit: n
                 })
             }
         )
-    }, [tokens])
+    }, [tokens, fetchMore, tokensMapper, options?.variables?.limit])
 
     return {tokens, onLoadMore, ...fetchingStatus}
 }

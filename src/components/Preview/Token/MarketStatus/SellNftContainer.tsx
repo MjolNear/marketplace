@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
 import InputPriceModal from "./sell/InputPriceModal";
 import {ApprovedToken} from "../../../../business-logic/models/nft";
-import {giveApprove} from "../../../../business-logic/near/api/market/transaction";
+import {giveApprove} from "../../../../business-logic/near/transaction";
 
 interface TSellNftProps {
     token: ApprovedToken

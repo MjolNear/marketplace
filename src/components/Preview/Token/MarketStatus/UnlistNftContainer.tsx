@@ -1,31 +1,72 @@
 import React, {useState} from 'react';
 import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
 import PriceContainer from "./PriceContainer";
-import {ContractId, Optional, TokenId} from "../../../../business-logic/models/types";
-import {unlistNFT} from "../../../../business-logic/near/api/market/transaction";
+import {ContractId, Optional, TokenId, TPayouts} from "../../../../business-logic/models/types";
+import {unlistNft, updateNftPrice} from "../../../../business-logic/near/transaction";
+import DarkCyanGradientButton from "../../../Common/Buttons/DarkCyanGradientButton";
+import InputPriceModal from "./sell/InputPriceModal";
+import Tooltip from "../../../Layout/Tooltip";
 
 interface TUnlistNftProps {
     tokenPrice?: Optional<string>
-    contractId: ContractId
-    tokenId: TokenId
+    tokenId: TokenId,
+    contractId: ContractId,
+    payouts: TPayouts,
+    media?: Optional<string>
 }
 
 const UnlistNftContainer: React.FC<TUnlistNftProps> = ({
     tokenPrice,
     contractId,
-    tokenId
+    tokenId,
+    payouts,
+    media
 }) => {
 
     const [isUnlisting, setIsUnlisting] = useState(false)
+    const [isUpdating, setIsUpdating] = useState(false)
+    const [visible, setVisible] = useState(false)
 
     const unlist = () => {
         setIsUnlisting(true)
-        unlistNFT(contractId, tokenId).finally(() => setIsUnlisting(false))
+        unlistNft(contractId, tokenId).finally(() => setIsUnlisting(false))
     }
+    const updatePrice = (price: string) => {
+        setIsUpdating(true)
+        return updateNftPrice(contractId, tokenId, price).finally(() => setIsUpdating(false))
+    }
+
 
     return (
         <PriceContainer tokenPrice={tokenPrice}>
-            <DarkBlueGradientButton title="Unlist NFT" onClick={unlist} isLoading={isUnlisting}/>
+            <div className="flex flex-col lg:flex-row gap-2">
+                <DarkBlueGradientButton title="Unlist NFT"
+                                        onClick={unlist}
+                                        isLoading={isUnlisting}
+                                        disabled={isUpdating}
+                />
+                {/*<div className="w-full">*/}
+                    <p data-for="updateTokenPriceTipId"
+                       data-tip="Will be able soon!"
+                       className="w-full"
+                    >
+                        <DarkCyanGradientButton title="Update Price"
+                                                onClick={() => setVisible(true)}
+                                                isLoading={isUpdating}
+                                                disabled={true}
+                        />
+                        <Tooltip id="updateTokenPriceTipId" place="bottom"/>
+                    </p>
+                {/*</div>*/}
+                {visible &&
+                    <InputPriceModal close={() => setVisible(false)}
+                                     onClick={updatePrice}
+                                     payouts={payouts}
+                                     imgSrc={media}
+                                     headerText="Update NFT price"
+                    />
+                }
+            </div>
         </PriceContainer>
     )
 };

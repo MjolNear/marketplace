@@ -16,7 +16,7 @@ import activeFilters from "../../../components/Filter/ActiveFilters";
 
 
 const ExploreNftsPage = () => {
-    const limit = 12
+    const LIMIT = 12
 
     const [priceRange, setPriceRange] = useState<TokenPriceRange>({})
     const clearPriceRange = useCallback(() => setPriceRange({}), [])
@@ -95,11 +95,11 @@ const ExploreNftsPage = () => {
             </div>
             {debounceQuery
                 ?
-                <ExploreSearchTokens limit={limit}
+                <ExploreSearchTokens limit={LIMIT}
                                      searchQuery={debounceQuery}
                 />
                 :
-                <ExploreFilterTokens limit={limit}
+                <ExploreFilterTokens limit={LIMIT}
                                      priceRange={priceRange}
                                      sort={sort}
                 />

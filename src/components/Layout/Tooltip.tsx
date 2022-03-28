@@ -4,7 +4,7 @@ import ReactDOMServer from 'react-dom/server'
 import {ContractVerificationStatus} from "../../business-logic/models/contract";
 
 interface TooltipProps {
-    id?: string
+    id: string
     className?: string
     place?: "left" | "right" | "top" | "bottom"
     effect?: "solid" | "float"

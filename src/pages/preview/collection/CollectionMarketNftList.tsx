@@ -22,7 +22,7 @@ const CollectionMarketNftList: React.FC<CollectionMarketNftListProps> = ({
         tokens, loading, hasMore, onLoadMore
     } = useCollectionMarketTokens(LIMIT, sort, priceRange, collectionContract, collectionId)
 
-    console.log(loading, hasMore)
+    console.log(`loading = ${loading}, hasMore = ${hasMore}, length = ${tokens.length}`)
 
     if (!collectionContract) {
         return <NotFound404Page/>

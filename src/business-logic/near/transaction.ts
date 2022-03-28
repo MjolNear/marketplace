@@ -1,10 +1,10 @@
 import {utils} from "near-api-js";
-import {GAS, SM_DEPOSIT, YOCTO_NEAR} from "../../constants";
-import {functionCall, marketFunctionCall} from "../../enviroment/rpc";
+import {GAS, SM_DEPOSIT, YOCTO_NEAR} from "./constants";
+import {functionCall, marketFunctionCall} from "./enviroment/rpc";
 import BN from "bn.js";
-import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
-import {ContractId, StringAmount, TokenId} from "../../../models/types";
-import {Token} from "../../../models/nft";
+import {MARKET_CONTRACT_ID} from "./enviroment/contract-names";
+import {ContractId, StringAmount, TokenId} from "../models/types";
+import {Token} from "../models/nft";
 
 
 export function giveApprove(
@@ -69,7 +69,7 @@ export function buyNftWithPayouts(
     })
 }
 
-export function unlistNFT(contractId: ContractId, tokenId: TokenId) {
+export function unlistNft(contractId: ContractId, tokenId: TokenId) {
     return marketFunctionCall({
         methodName: 'remove_from_market',
         args: {
@@ -81,12 +81,12 @@ export function unlistNFT(contractId: ContractId, tokenId: TokenId) {
     })
 }
 
-export const updatePrice = (contractId: ContractId, tokenId: TokenId, newPrice: string) => {
+export const updateNftPrice = (contractId: ContractId, tokenId: TokenId, newPrice: string) => {
     const newPriceInYocto = utils.format.parseNearAmount(newPrice)
     return marketFunctionCall({
         methodName: "update_token_price",
         args: {
-            contract_id: contractId,
+            nft_contract_id: contractId,
             token_id: tokenId,
             price: newPriceInYocto
         },

@@ -18,30 +18,27 @@ import PriceRangeFilter from "../../../components/Filter/popup/price/PriceRangeF
 import SortFilter from "../../../components/Filter/popup/sort/SortFilter";
 import {TokenPriceRange, TokenSortName, tokenSortOptions} from "../../../graphql/utils";
 
-type CollectionRouteParams = {
+type PreviewCollectionProps = {
     contractId: string,
     collectionId: string,
     filterTab: "items" | "activity"
 }
 
-const PreviewCollectionPage: React.FC = () => {
+const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
+    contractId,
+    collectionId,
+    filterTab
+}) => {
 
     const [marketToggleState, setMarketToggleState] = useState<"init" | "only-market" | "all">("init");
-    const {contractId, collectionId, filterTab} = useParams<CollectionRouteParams>()
-    const {fetching, collection, stats} = useFetchCollection(
-        contractId || "",
-        collectionId || ""
-    )
+
+    const {fetching, collection, stats} = useFetchCollection(contractId, collectionId)
 
     const [priceRange, setPriceRange] = useState<TokenPriceRange>({})
     const clearPriceRange = useCallback(() => setPriceRange({}), [])
 
     const [sort, setSort] = useState(tokenSortOptions[TokenSortName.RecentlyAdded])
 
-
-    if (!collectionId || !contractId || !filterTab) {
-        return <NotFound404Page/>
-    }
 
     if (fetching && marketToggleState === "init") {
         return <CreateLoader/>
@@ -50,6 +47,7 @@ const PreviewCollectionPage: React.FC = () => {
     if (!collection) {
         return <NotFound404Page/>
     }
+
     const hasBanner = !!collection.metadata?.bannerImage
 
     return (

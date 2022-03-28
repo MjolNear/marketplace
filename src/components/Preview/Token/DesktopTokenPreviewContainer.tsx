@@ -18,6 +18,7 @@ const DesktopTokenPreviewContainer: React.FC<TokenPreviewProps> = ({
                                           ownerId={token.ownerId}
                                           contractId={token.contractId}
                                           tokenId={token.tokenId}
+                                          ipfsReference={token.ipfsReference}
                 />
                 <TokenPreviewMainBlock token={token}
                                        contract={contract}

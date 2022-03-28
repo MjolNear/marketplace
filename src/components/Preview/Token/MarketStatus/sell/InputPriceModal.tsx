@@ -11,6 +11,7 @@ import TokenPriceValidationInput from "./TokenPriceValidationInput";
 interface TInputTokenPriceProps {
     close: any,
     onClick: (price: string) => Promise<any>,
+    headerText?: string
     payouts: Record<string, number>
     imgSrc?: Optional<string>
 }
@@ -19,9 +20,10 @@ const InputPriceModal: React.FC<TInputTokenPriceProps> = ({
         close,
         onClick,
         payouts,
-        imgSrc
+        imgSrc,
+        headerText = "List NFT for sale"
     }) => {
-        const [isSellingProcess, setIsSellingProcess] = useState(false)
+        const [isSigningTx, setIsSigningTx] = useState(false)
 
         const {register, watch, handleSubmit, reset, formState} = useForm({
             mode: "onChange",
@@ -36,10 +38,10 @@ const InputPriceModal: React.FC<TInputTokenPriceProps> = ({
         }, [close, reset])
 
         const onSubmit = useCallback(({price}: { price: number }) => {
-            setIsSellingProcess(true)
+            setIsSigningTx(true)
             onClick(price.toString())
                 .finally(() => {
-                    setIsSellingProcess(false)
+                    setIsSigningTx(false)
                     closeModal()
                 })
         }, [onClick, closeModal])
@@ -50,7 +52,7 @@ const InputPriceModal: React.FC<TInputTokenPriceProps> = ({
             <Modal close={closeModal}>
                 <div className="mx-auto w-full max-w-[400px] md:max-w-lg py-4 px-5 bg-white rounded-2xl relative">
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <TokenPriceHeader closeModal={closeModal}/>
+                        <TokenPriceHeader closeModal={closeModal} headerText={headerText}/>
                         <div className="grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-6">
                             <div className="flex flex-col justify-between">
                                 <TokenPriceValidationInput register={register}
@@ -63,7 +65,7 @@ const InputPriceModal: React.FC<TInputTokenPriceProps> = ({
                             </div>
                             <TokenFormImagePreview link={imgSrc}/>
                         </div>
-                        <TokenPriceFooter isPriceValid={formState.isValid} isLoading={isSellingProcess}/>
+                        <TokenPriceFooter isPriceValid={formState.isValid} isLoading={isSigningTx}/>
                     </form>
                 </div>
             </Modal>
