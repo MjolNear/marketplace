@@ -1,5 +1,4 @@
 import React, {useCallback, useState} from 'react';
-import {useParams} from "react-router";
 import NotFound404Page from "../../NotFound404";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import CollectionNftList from "./CollectionNftList";
@@ -8,7 +7,6 @@ import CollectionTitleDescription from "../../../components/Preview/Collection/B
 import CollectionBanner from "../../../components/Preview/Collection/Blocks/CollectionBanner";
 import CollectionItemActivityTab from "../../../components/Preview/Collection/Filters/CollectionItemActivityTab";
 import CollectionMedia from "../../../components/Preview/Collection/Media/CollectionMedia";
-import TraitsFilter from "../../../components/Preview/Collection/Filters/TraitsFilter";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
 import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
 import CollectionMarketNftList from "./CollectionMarketNftList";
@@ -37,7 +35,7 @@ const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
     const [priceRange, setPriceRange] = useState<TokenPriceRange>({})
     const clearPriceRange = useCallback(() => setPriceRange({}), [])
 
-    const [sort, setSort] = useState(tokenSortOptions[TokenSortName.RecentlyAdded])
+    const [sort, setSort] = useState(TokenSortName.RecentlyAdded)
 
 
     if (fetching && marketToggleState === "init") {
@@ -93,7 +91,7 @@ const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
                                 onApply={setPriceRange}
                             />
                             <SortFilter disabled={marketToggleState === "all"}
-                                        picked={sort.name}
+                                        picked={sort}
                                         setSort={setSort}
                             />
                         </div>

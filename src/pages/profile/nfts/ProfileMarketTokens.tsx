@@ -15,7 +15,7 @@ const ProfileMarketTokens: React.FC<ProfileMarketTokensProps> = ({
 
     const [priceRange, setPriceRange] = useState<TokenPriceRange>({})
     const clearPriceRange = useCallback(() => setPriceRange({}), [])
-    const [sort, setSort] = useState(tokenSortOptions[TokenSortName.RecentlyAdded])
+    const [sort, setSort] = useState(TokenSortName.RecentlyAdded)
 
     return (
         <>
@@ -27,7 +27,7 @@ const ProfileMarketTokens: React.FC<ProfileMarketTokensProps> = ({
                         onApply={setPriceRange}
                     />
                     <SortFilter disabled={false}
-                                picked={sort.name}
+                                picked={sort}
                                 setSort={setSort}
                     />
                 </div>
@@ -35,7 +35,7 @@ const ProfileMarketTokens: React.FC<ProfileMarketTokensProps> = ({
             <ProfileFilterMarketTokens accountId={accountId}
                                        limit={limit}
                                        priceRange={priceRange}
-                                       sort={sort}
+                                       sort={tokenSortOptions[sort]}
             />
         </>
     );

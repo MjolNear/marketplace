@@ -1,8 +1,8 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
 
-import {TokenPriceRange, TokenSortName, tokenSortOptions} from "../../../graphql/utils";
+import {TokenPriceRange, TokenSortName} from "../../../graphql/utils";
 import PriceRangeFilter from "../../../components/Filter/popup/price/PriceRangeFilter";
 import SortFilter from "../../../components/Filter/popup/sort/SortFilter";
 import SearchInput from "../../../components/Filter/search/SearchInput";
@@ -21,7 +21,7 @@ const ExploreNftsPage = () => {
     const [priceRange, setPriceRange] = useState<TokenPriceRange>({})
     const clearPriceRange = useCallback(() => setPriceRange({}), [])
 
-    const [sort, setSort] = useState(tokenSortOptions[TokenSortName.RecentlyAdded])
+    const [sort, setSort] = useState(TokenSortName.RecentlyAdded)
 
     const [textQueryFilter, setTextQueryFilter] = useState('')
     const debounceQuery = useDebounce(textQueryFilter, 500)
@@ -88,7 +88,7 @@ const ExploreNftsPage = () => {
                         onApply={setPriceRange}
                     />
                     <SortFilter disabled={!!textQueryFilter}
-                                picked={sort.name}
+                                picked={sort}
                                 setSort={setSort}
                     />
                 </div>

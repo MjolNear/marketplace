@@ -1,6 +1,5 @@
 import React, {useCallback} from 'react';
 import {FaSearch} from 'react-icons/fa'
-import {IoClose} from 'react-icons/io5'
 
 interface SearchInputProps {
     searchQueryText: string,
@@ -18,39 +17,22 @@ const SearchInput: React.FC<SearchInputProps> = ({
         setSearchQueryText(e.target.value)
     }, [setSearchQueryText])
 
-    const clearSearch = useCallback(() => {
-        setSearchQueryText('')
-    }, [setSearchQueryText])
-
     return (
-        <div className="flex text-xs xs:text-md">
-            <input className="rounded-l-3xl w-full xxs:w-64 xs:w-72 sm:w-88
-                              outline-none border-0 py-3 px-5 ring-1 ring-inset ring-mjol-light-blue
-                              focus:ring-mjol-light-blue
+        <div className="flex text-xs xs:text-md transition-all focus-within:shadow-mjol-gray focus-within:bg-mjol-hover
+                        ring-blue-200 ring-[1px] rounded-3xl overflow-hidden items-center px-5 py-1"
+        >
+            <FaSearch size={18} className="fill-blue-400 mr-2"/>
+            <input className="w-full xxs:w-64 xs:w-72 sm:w-80
+                              outline-none border-0 outline-none border-0
+                              focus:ring-0
                               text-[12px] xs:text-[14px]
                               font-semibold
-                              focus:ring-inset
-                              focus:bg-gray-50
                               "
                    type="text"
                    placeholder={placeholder}
                    value={searchQueryText}
                    onChange={setSearch}
             />
-            <div className="rounded-r-3xl w-[60px]
-                            bg-gradient-to-r from-mjol-light-blue to-blue-700
-                            hover:to-blue-600
-                            grid place-items-center cursor-pointer">
-                {searchQueryText
-                    ?
-                    <IoClose size={22}
-                             className="fill-white"
-                             onClick={clearSearch}
-                    />
-                    :
-                    <FaSearch color="white"/>
-                }
-            </div>
         </div>
     );
 };

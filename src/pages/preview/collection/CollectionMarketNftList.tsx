@@ -1,14 +1,14 @@
 import React from 'react';
 import PaginationCardList from "../../../components/CardList/PaginationCardList";
 import NotFound404Page from "../../NotFound404";
-import {TokenPriceRange, TokenSortOption} from "../../../graphql/utils";
+import {TokenPriceRange, TokenSortName, TokenSortOption, tokenSortOptions} from "../../../graphql/utils";
 import {useCollectionMarketTokens} from "../../../hooks/graphql";
 
 interface CollectionMarketNftListProps {
     collectionContract?: string
     collectionId?: string
     priceRange: TokenPriceRange,
-    sort: TokenSortOption
+    sort: TokenSortName
 }
 
 const CollectionMarketNftList: React.FC<CollectionMarketNftListProps> = ({
@@ -20,7 +20,7 @@ const CollectionMarketNftList: React.FC<CollectionMarketNftListProps> = ({
     const LIMIT = 12
     const {
         tokens, loading, hasMore, onLoadMore
-    } = useCollectionMarketTokens(LIMIT, sort, priceRange, collectionContract, collectionId)
+    } = useCollectionMarketTokens(LIMIT, tokenSortOptions[sort], priceRange, collectionContract, collectionId)
 
     console.log(`loading = ${loading}, hasMore = ${hasMore}, length = ${tokens.length}`)
 

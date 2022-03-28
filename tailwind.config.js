@@ -63,24 +63,8 @@ module.exports = {
         },
 
         boxShadow: {
-            "mjol-base-purple": "0px 6px 6px 4px  rgba(0,   19,  224, 0.2)",
-            "mjol-base-purple-lg": "0px 7px 9px 6px  rgba(0,   19,  224, 0.2)",
-            "mjol-base-purple-xl": "0px 9px 11px 8px rgba(0,   19,  224, 0.2)",
-            "mjol-blue-button": "0px 0px 4px 2px  rgba(120, 192, 233, 0.3)",
-            "mjol-base-blue": "0px 5px 7px 4px  rgba(120, 192, 233, 0.3)",
-            "mjol-base-blue-lg": "0px 7px 9px 6px  rgba(120, 192, 233, 0.3)",
-            "mjol-base-blue-drop-xl": "0px 15px 14px 0px rgba(120, 192, 233, 0.3)",
-
-            "mjol-blue-all-md": "0px 0px 5px 3px rgba(120, 192, 233, 1)",
-            "mjol-blue-all-xs": "0px 0px 3px 3px rgba(120, 192, 233, 0.3)",
-
-            "mjol-blue-300-md": "0px 0px 5px 3px #93c5fd",
-
-            "mjol-medium-blue-all-xs": "0px 0px 3px 3px rgba(120, 192, 233, 0.5)",
-
-            "mjol-dark-blue-xs": "0px 0px 3px 3px rgba(67, 145, 255, 0.8)",
-            "mjol-dark-blue-md": "0px 0px 6px 6px rgba(67, 145, 255, 0.8)",
-
+            "mjol-blue": "0px 0px 8px 1px #93c5fd",
+            "mjol-gray": "0px 0px 8px 0px rgba(4, 17, 29, 0.25)",
             "mjol-gray-xs": "0px 0px 3px 3px rgba(0, 0, 0, 0.1)",
             "mjol-gray-md": "0px 0px 4px 2px rgba(0, 0, 0, 0.2)"
         },
@@ -150,6 +134,8 @@ module.exports = {
                     background: '#f7f7f7',
                     black: 'rgb(0, 0, 0)',
                     white: '#f4f7fc',
+                    hover: '#fbfdff',
+                    'hover-blue': 'rgb(243, 251, 254)',
                     gray: {
                         border: 'rgb(229,231,235)'
                     },

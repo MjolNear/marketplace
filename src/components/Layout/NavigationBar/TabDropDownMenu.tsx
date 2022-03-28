@@ -2,9 +2,8 @@ import {Transition, Menu} from "@headlessui/react";
 import React, {Fragment} from "react";
 import MenuChevronButton from "./MenuChevronButton";
 import {getCurrentWallet} from "../../../business-logic/near/wallet/wallet";
-import NavigationLink from "./NavigationLink";
-import classNames from "../../../utils/css-utils";
 import {Link} from "react-router-dom";
+import GradientText from "../../Common/Text/GradientText";
 
 interface TabItem {
     name: string,
@@ -32,35 +31,30 @@ export const TabsDropDownMenu: React.FC<PropTypes> = ({name, tabs}) => {
                 leaveTo="transform opacity-0 scale-95"
             >
                 <Menu.Items
-                    className={"z-20 absolute flex rounded-xl ring-[1px] ring-blue-100 " +
-                        "mt-[6px] bg-white focus:outline-none shadow-mjol-base-blue " +
-                        (name === "Profile"
-                                ? "right-3"
-                                : "left-3"
-                        )
+                    className={
+                        "z-20 absolute flex mt-3 bg-white focus:outline-none flex flex-col w-[175px] shadow-mjol-gray rounded-lg overflow-hidden " +
+                        (name === "Profile" ? "right-3" : "left-3")
                     }
                 >
-                    <div className="flex flex-col px-2 py-2">
+                    <div>
                         {tabs.map(props =>
                             <Menu.Item key={props.name}>
                                 {props.name === "Sign out"
                                     ?
                                     <button onClick={() => getCurrentWallet().signOut()}
-                                            className="px-4 py-3 gap-3 text-[15px]
-                                                     opacity-80 hover:opacity-100 rounded-lg
-                                                     font-archivo hover:bg-gray-100
-                                                     focus:outline-none font-bold text-left
-                                                     focus-visible:ring-0"
+                                            className="flex flex-row transition-all p-4 text-[15px]
+                                                     font-archivo text-left font-bold w-full
+                                                     transition-all hover:shadow-mjol-gray-xs hover:bg-mjol-hover"
                                     >
                                         {props.name}
                                     </button>
                                     :
                                     <Link to={props.path}
-                                          className="flex flex-row px-4 py-3 gap-3 text-[15px]
-                                                     opacity-80 hover:opacity-100 rounded-lg
-                                                     font-archivo hover:bg-gray-100 items-center">
+                                          className="flex flex-row transition-all p-4 gap-3 text-[15px]
+                                                     font-archivo
+                                                     transition-all hover:shadow-mjol-gray-xs hover:bg-mjol-hover">
                                         {props.icon}
-                                        <div className="font-bold">{props.name}</div>
+                                        <div className="font-bold text-gray-800">{props.name}</div>
                                     </Link>
                                 }
                             </Menu.Item>

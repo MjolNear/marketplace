@@ -31,10 +31,10 @@ const UnlistNftContainer: React.FC<TUnlistNftProps> = ({
         setIsUnlisting(true)
         unlistNft(contractId, tokenId).finally(() => setIsUnlisting(false))
     }
-    const updatePrice = (price: string) => {
-        setIsUpdating(true)
-        return updateNftPrice(contractId, tokenId, price).finally(() => setIsUpdating(false))
-    }
+    // const updatePrice = (price: string) => {
+    //     setIsUpdating(true)
+    //     return updateNftPrice(contractId, tokenId, price).finally(() => setIsUpdating(false))
+    // }
 
 
     return (
@@ -45,27 +45,19 @@ const UnlistNftContainer: React.FC<TUnlistNftProps> = ({
                                         isLoading={isUnlisting}
                                         disabled={isUpdating}
                 />
-                {/*<div className="w-full">*/}
-                    <p data-for="updateTokenPriceTipId"
-                       data-tip="Will be able soon!"
-                       className="w-full"
-                    >
-                        <DarkCyanGradientButton title="Update Price"
-                                                onClick={() => setVisible(true)}
-                                                isLoading={isUpdating}
-                                                disabled={true}
-                        />
-                        <Tooltip id="updateTokenPriceTipId" place="bottom"/>
-                    </p>
-                {/*</div>*/}
-                {visible &&
-                    <InputPriceModal close={() => setVisible(false)}
-                                     onClick={updatePrice}
-                                     payouts={payouts}
-                                     imgSrc={media}
-                                     headerText="Update NFT price"
-                    />
-                }
+                {/*<DarkCyanGradientButton title="Update Price"*/}
+                {/*                        onClick={() => setVisible(true)}*/}
+                {/*                        isLoading={isUpdating}*/}
+                {/*                        disabled={isUnlisting}*/}
+                {/*/>*/}
+                {/*{visible &&*/}
+                {/*    <InputPriceModal close={() => setVisible(false)}*/}
+                {/*                     onClick={updatePrice}*/}
+                {/*                     payouts={payouts}*/}
+                {/*                     imgSrc={media}*/}
+                {/*                     headerText="Update NFT price"*/}
+                {/*    />*/}
+                {/*}*/}
             </div>
         </PriceContainer>
     )
