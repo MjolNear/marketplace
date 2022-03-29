@@ -9,19 +9,22 @@ export interface TTokenDetailsProps {
     ownerId: AccountId
     tokenId: TokenId,
     copies?: Optional<number>
+    ipfsReference?: Optional<string>
 }
 
 const TokenDetails: React.FC<TTokenDetailsProps> = ({
     contractId,
     ownerId,
     tokenId,
-    copies
+    copies,
+    ipfsReference
 }) => {
     const attributes: TAttribute[] = [
         {name: "Contract", value: contractId, tooltip: true},
         {name: "Token", value: tokenId, tooltip: true},
         {name: "Owner", value: ownerId, tooltip: true},
-        {name: "Copies", value: copies?.toString() || "1", tooltip: true}
+        {name: "Copies", value: copies?.toString() || "1", tooltip: true},
+        {name: "IPFS", value: ipfsReference || "---", tooltip: true}
     ]
     return (
         <KeyValueDisclosure name="Token details"

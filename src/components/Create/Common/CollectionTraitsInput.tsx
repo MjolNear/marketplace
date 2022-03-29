@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CreateNftPage2 = () => {
+const CollectionTraitsInput = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const CreateNftPage2 = () => {
     );
 };
 
-export default CreateNftPage2;
+export default CollectionTraitsInput;
