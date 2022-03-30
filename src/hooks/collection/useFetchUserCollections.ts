@@ -1,11 +1,11 @@
 import {AccountId} from "../../business-logic/models/types";
 import {useState, useEffect} from "react";
 import {collectionAPI} from "../../business-logic/near/api/collections";
-import {Collection} from "../../business-logic/models/collection";
+import {BlockchainCollection} from "../../business-logic/models/collection";
 
 export interface UserCollectionsHookResult {
     loading: boolean,
-    collections: Collection[]
+    collections: BlockchainCollection[]
 }
 
 export const useFetchUserCollections = (accountId: AccountId) => {

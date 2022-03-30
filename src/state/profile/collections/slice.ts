@@ -1,9 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {Collection} from "../../../business-logic/models/collection";
+import {BlockchainCollection} from "../../../business-logic/models/collection";
 
 
 export interface ProfileState {
-    collections: Collection[],
+    collections: BlockchainCollection[],
     fetching: boolean,
 }
 
@@ -16,7 +16,7 @@ export const profileCollectionsSlice = createSlice({
     name: "profile-collections",
     initialState,
     reducers: {
-        setCollections: (state, action: PayloadAction<Collection[]>) => {
+        setCollections: (state, action: PayloadAction<BlockchainCollection[]>) => {
             state.collections = action.payload
         },
         toggleFetching: (state, action: PayloadAction<boolean>) => {

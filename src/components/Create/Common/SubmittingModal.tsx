@@ -10,6 +10,7 @@ import {makeNftLink, uploadTokenMetadataToIpfs} from "../../../business-logic/ip
 import {Optional} from "../../../business-logic/models/types";
 import {mintToCommonCollection} from "../../../business-logic/near/api/nfts/mint";
 import {AiFillCloseCircle} from 'react-icons/ai';
+import {SingleTraitInput} from "../Token/MintTokenForm";
 
 
 interface SubmittingModalProps {
@@ -21,13 +22,11 @@ export interface TokenSubmitProps {
     title: string,
     accountId: string,
     description: string,
-    file: File,
-    previewUrl: string,
+    media: { file: File, url: string },
+    collection: Optional<{ id: string, name: string }>
     copies: number,
-    collectionId?: string
-    collectionName?: string
     payouts: Optional<Record<string, string>>
-    traits: Record<string, string>
+    traits: SingleTraitInput[]
 }
 
 const SubmittingModal: React.FC<SubmittingModalProps> = ({
@@ -43,7 +42,7 @@ const SubmittingModal: React.FC<SubmittingModalProps> = ({
 
     const submit = useCallback(() => {
         setLoadingState("ipfs")
-        uploadTokenMetadataToIpfs(data.title, data.description, data.file, data.traits)
+        uploadTokenMetadataToIpfs(data.title, data.description, data.media.file, data.traits)
             .then(response => {
                 setLoadingState("near")
                 const ipfsMedia = makeNftLink(response.data.image.href);
@@ -59,7 +58,7 @@ const SubmittingModal: React.FC<SubmittingModalProps> = ({
                     token_metadata,
                     data.payouts ? {payout: data.payouts} : null,
                     data.accountId,
-                    data.collectionId
+                    data.collection?.id
                 ).then(() => setLoadingState("success"))
                     .catch(() => setLoadingState("nearFailure"))
             })
@@ -130,8 +129,8 @@ const SubmittingModal: React.FC<SubmittingModalProps> = ({
                     </div>
                     <div className="max-md:hidden w-full max-w-[240px]">
                         <PreviewMintedTokenCard title={data.title}
-                                                url={data.previewUrl}
-                                                collectionName={data.collectionName}
+                                                url={data.media.url}
+                                                collectionName={data.collection?.name}
                         />
                     </div>
                 </div>

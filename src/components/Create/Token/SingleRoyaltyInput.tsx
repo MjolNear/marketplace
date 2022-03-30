@@ -31,7 +31,7 @@ const SingleRoyaltyInput: React.FC = () => {
     return (
         <div>
             <InputLabel label={label}
-                        description="Given account will receive percent from secondary sales."
+                        description="Given account will receive percent from secondary sales"
                         tooltip={tooltip}
             />
             <div className="inline-flex gap-5 font-archivo text-xs font-semibold mt-2 items-stretch">

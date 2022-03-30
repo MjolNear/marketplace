@@ -70,7 +70,7 @@ const TraitsFilter: React.FC<TTraitsFilterProps> = ({
 
                                 {/* Filters */}
                                 <form className="mt-4 border-t border-gray-200">
-                                    {Object.entries(traits).map(([name, values]) => (
+                                    {Object.entries(traits || {}).map(([name, values]) => (
                                         <Disclosure as="div"
                                                     key={name}
                                                     className="border-t border-gray-200 px-4 py-6">
@@ -123,7 +123,7 @@ const TraitsFilter: React.FC<TTraitsFilterProps> = ({
                             </button>
                             {!filtersIsHidden && <form className="hidden md:block min-w-[340px]">
                                 {
-                                    Object.entries(traits)
+                                    Object.entries(traits || {})
                                         .map(([name, values]) => (
                                             <Disclosure as="div"
                                                         key={name}

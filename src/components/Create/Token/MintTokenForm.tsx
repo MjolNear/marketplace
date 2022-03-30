@@ -1,7 +1,7 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
 import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
-import {FormProvider, useFieldArray, useForm} from "react-hook-form";
+import {FormProvider, useForm} from "react-hook-form";
 import InputLabel from "../../Common/Forms/InputLabel";
 import UploadImage from "../Common/UploadImage";
 import TitleInput from "../Common/TitleInput";
@@ -32,19 +32,10 @@ export interface TokenFormFields {
     title: string
     description: string
     copies: number
-    media: {
-        file?: File,
-        url: string
-    }
-    collection?: {
-        id: string
-        name: string
-    }
+    media: { file?: File, url: string }
+    collection: Optional<{ id: string, name: string, reference: Optional<string> }>
+    royalty: { account: string, percent: number }
     traits: SingleTraitInput[]
-    royalty: {
-        account: string
-        percent: number
-    }
 }
 
 const MintTokenForm: React.FC<TAuthProps> = ({
@@ -73,7 +64,7 @@ const MintTokenForm: React.FC<TAuthProps> = ({
 
     const onSubmit = useCallback(methods.handleSubmit(fields => {
 
-        const {title, description, royalty, copies, media, collection} = fields
+        const {royalty, media} = fields
 
         const isValidPercent = !isNaN(royalty.percent)
         if (!isValidPercent && royalty.account) {
@@ -88,7 +79,9 @@ const MintTokenForm: React.FC<TAuthProps> = ({
             return
         }
 
-        if (!media.file) {
+        const file = media.file
+
+        if (!file) {
             methods.setError("media.file", {
                 message: "Media is required."
             })
@@ -100,30 +93,21 @@ const MintTokenForm: React.FC<TAuthProps> = ({
             : null
 
         setSubmitProps({
-            title,
-            accountId,
-            description,
-            file: media.file,
-            previewUrl: media.url,
-            collectionId: collection?.id,
-            collectionName: collection?.name,
-            copies,
-            traits: {},
+            ...fields,
             payouts,
+            accountId,
+            media: {file, url: media.url}
         })
     }), [methods, accountId])
 
 
-    const [title, mediaUrl, traits, collection] = methods.watch(["title", "media.url", "traits", "collection"])
-
+    const [title, mediaUrl, collection] = methods.watch(["title", "media.url", "collection"])
 
     useEffect(() => {
         if (!collection) {
             methods.setValue("copies", 1)
         }
     }, [collection])
-
-    console.log(traits)
 
 
     return (
@@ -139,7 +123,7 @@ const MintTokenForm: React.FC<TAuthProps> = ({
                     <TitleInput placeholder="My NFT"/>
                     <DescriptionInput placeholder="Brief description about your NFT"/>
                     <TokenCollectionInput accountId={accountId}/>
-                    {collection && <TraitsInput/>}
+                    {collection && <TraitsInput ipfsReference={collection.reference}/>}
                     <SingleRoyaltyInput/>
                     {!collection && <CopiesRangeInput/>}
                     <div className="min-w-[300px] max-w-[50%]">

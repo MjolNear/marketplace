@@ -1,12 +1,12 @@
 import {BatchResponse, TokensBatchResponse} from "./core";
 import {NearToken} from "../token";
-import {Collection} from "../../../../models/collection";
+import {BlockchainCollection} from "../../../../models/collection";
 
 export type CollectionTokensResponse = TokensBatchResponse<NearToken>
 
 
 export interface CollectionsBatchResponse extends BatchResponse {
-    collections: Collection[]
+    collections: BlockchainCollection[]
 }
 
 export const emptyCollectionsBatchResponse: CollectionsBatchResponse = {
