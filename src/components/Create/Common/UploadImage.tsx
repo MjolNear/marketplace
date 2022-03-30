@@ -1,30 +1,37 @@
-import React, {memo} from 'react';
+import React, {memo, useCallback} from 'react';
 import UploadImageBlock from "./Upload/UploadImageBlock";
 import QuestionIcon from "../../Icons/QuestionIcon";
 import {NoRefInputProps} from "../../Common/Forms/BaseInput";
+import {useFormContext} from "react-hook-form";
 
 interface UploadImageProps {
-    text: string,
-    url: string,
-    mediaError?: string,
-    clearImage: () => void,
-    inputProps: NoRefInputProps
+    label: string,
 }
 
 const UploadImage: React.FC<UploadImageProps> = ({
-    text,
-    url,
-    mediaError,
-    clearImage,
-    inputProps
+    label
 }) => {
+
+    const {register, formState, resetField, watch, setValue} = useFormContext<{
+        media: {
+            file?: File,
+            url: string
+        }
+    }>()
+
+    const clearImage = useCallback(() => {
+        resetField("media")
+    }, [resetField])
+
+    const url = watch("media.url")
+
     return (
         <div>
             <div className="text-[15px] font-bold text-gray-700">
                 <div>
                     <b className="font-black text-red-500">*</b>
                     <div className="inline-flex gap-2 items-center">
-                        {text}
+                        {label}
                         <QuestionIcon dataFor="mintTokenUploadMediaInfoId"
                                       dataHTML={true}
                                       dataTip={`
@@ -56,11 +63,25 @@ const UploadImage: React.FC<UploadImageProps> = ({
                         </div>
                     </div>
                     :
-                    <UploadImageBlock error={mediaError} {...inputProps}/>
+                    <UploadImageBlock error={formState.errors.media?.file?.message}
+                                      {...register("media.file", {
+                                          required: {
+                                              value: true,
+                                              message: "Media is required"
+                                          },
+                                          onChange: event => {
+                                              const files = event.target.files
+                                              if (files && files.length !== 0) {
+                                                  const file = files[0]
+                                                  setValue("media.file", file)
+                                                  setValue("media.url", URL.createObjectURL(file))
+                                              }
+                                          }
+                                      })}/>
                 }
             </div>
         </div>
     )
 };
 
-export default memo(UploadImage);
+export default UploadImage;

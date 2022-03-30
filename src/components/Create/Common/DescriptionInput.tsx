@@ -1,29 +1,33 @@
-import React, {memo} from 'react';
+import React from 'react';
 import InputLabel from "../../Common/Forms/InputLabel";
-import BaseTextArea, {NoRefTextAreaProps} from "../../Common/Forms/BaseTextArea";
+import BaseTextArea from "../../Common/Forms/BaseTextArea";
+import {useFormContext} from "react-hook-form";
 
 interface DescriptionInputProps {
-    inputProps: NoRefTextAreaProps
-    error?: string
     placeholder: string,
 }
 
 const DescriptionInput: React.FC<DescriptionInputProps> = ({
-    inputProps,
-    error,
     placeholder,
 }) => {
+
+    const {register, formState} = useFormContext<{ description: string }>()
 
     return (
         <div>
             <InputLabel label="Description"/>
             <BaseTextArea placeholder={placeholder}
-                          error={error}
+                          error={formState.errors.description?.message}
                           rows={4}
-                          {...inputProps}
+                          {...register("description", {
+                              maxLength: {
+                                  value: 200,
+                                  message: "Maximum description length is 200 characters"
+                              }
+                          })}
             />
         </div>
     );
 };
 
-export default memo(DescriptionInput);
+export default DescriptionInput

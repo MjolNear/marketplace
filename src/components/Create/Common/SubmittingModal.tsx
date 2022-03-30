@@ -53,7 +53,7 @@ const SubmittingModal: React.FC<SubmittingModalProps> = ({
                     description: data.description,
                     media: ipfsMedia,
                     reference: ipfsRef,
-                    copies: data.copies
+                    copies: Number(data.copies)
                 }
                 return mintToCommonCollection(
                     token_metadata,

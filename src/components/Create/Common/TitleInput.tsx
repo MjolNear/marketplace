@@ -1,28 +1,37 @@
-import React, {memo} from 'react';
-import BaseInput, {NoRefInputProps} from "../../Common/Forms/BaseInput";
+import React from 'react';
+import BaseInput from "../../Common/Forms/BaseInput";
 import InputLabel from "../../Common/Forms/InputLabel";
+import {useFormContext} from "react-hook-form";
 
 
 interface TitleInputProps {
-    inputProps: NoRefInputProps
-    error?: string
     placeholder: string
 }
 
 const TitleInput: React.FC<TitleInputProps> = ({
-    inputProps,
-    error,
     placeholder,
 }) => {
+
+    const {register, formState} = useFormContext<{ title: string }>()
+
     return (
         <div>
             <InputLabel label="Title" required={true}/>
             <BaseInput placeholder={placeholder}
-                       error={error}
-                       {...inputProps}
+                       error={formState.errors.title?.message}
+                       {...register("title", {
+                           required: {
+                               value: true,
+                               message: "Title is required."
+                           },
+                           maxLength: {
+                               value: 50,
+                               message: "Maximum title length is 50 characters"
+                           }
+                       })}
             />
         </div>
     );
 };
 
-export default memo(TitleInput)
+export default TitleInput
