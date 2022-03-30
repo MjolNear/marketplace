@@ -36,7 +36,7 @@ const SingleRoyaltyInput: React.FC<SingleRoyaltyInputProps> = ({
                         description="Given account will receive percent from secondary sales."
                         tooltip={tooltip}
             />
-            <div className="inline-flex gap-5 font-archivo text-xs font-semibold mt-2">
+            <div className="inline-flex gap-5 font-archivo text-xs font-semibold mt-2 items-stretch">
                 <div className="space-y-1">
                     <div>Account ID</div>
                     <BaseInput placeholder="satoshi.near"
@@ -46,7 +46,8 @@ const SingleRoyaltyInput: React.FC<SingleRoyaltyInputProps> = ({
                 </div>
                 <div className="space-y-1">
                     <div>% on secondary sales</div>
-                    <BaseInput type="number" placeholder="e.g. 5"
+                    <BaseInput type="number"
+                               placeholder="e.g. 5"
                                error={percentError}
                                {...percentInputProps}
                     />

@@ -1,6 +1,7 @@
 import {Listbox, Transition} from '@headlessui/react';
 import React, {Fragment} from 'react';
 import {CheckIcon, SelectorIcon} from "@heroicons/react/solid";
+import { Controller } from 'react-hook-form';
 
 export interface SelectItem {
     id?: string
@@ -54,18 +55,18 @@ const BaseListSelect: React.FC<BaseListSelectProps> = ({
                         className="absolute w-full mt-3 overflow-auto text-base bg-white
                                    rounded-lg shadow-mjol-gray max-h-60 ring-[1px] ring-gray-300
                                    focus:outline-none sm:text-sm">
-                        {items.length === 0 &&
-                            <div className="px-6 py-3 font-semibold">Collections not found</div>
-                        }
-                        {items.map(
-                            item => <Listbox.Option
-                                key={item.id ? item.id : "None"}
-                                className={props => `cursor-pointer select-none relative px-6 ${
-                                    props.active ? 'bg-mjol-hover shadow-mjol-gray' : 'text-gray-900'
-                                }`}
-                                value={item}
-                            >
-                                {props => <>
+                            {items.length === 0 &&
+                                <div className="px-6 py-3 font-semibold">Collections not found</div>
+                            }
+                            {items.map(
+                                item => <Listbox.Option
+                                    key={item.id ? item.id : "None"}
+                                    className={props => `cursor-pointer select-none relative px-6 ${
+                                        props.active ? 'bg-mjol-hover shadow-mjol-gray' : 'text-gray-900'
+                                    }`}
+                                    value={item}
+                                >
+                                    {props => <>
                       <span className={`inline-flex items-center gap-2 truncate 
                                         ${props.selected ? 'font-medium' : 'font-normal'}`}
                       >

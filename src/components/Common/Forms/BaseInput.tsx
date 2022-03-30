@@ -23,7 +23,7 @@ const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(({
                 >
                     <input ref={ref}
                            className="w-full outline-none border-0 bg-transparent px-4 my-3
-                                 focus:ring-0 font-archivo font-semibold text-[12px] xs:text-[14px]"
+                                 focus:ring-0 font-archivo font-semibold text-xs-2 xs:text-sm"
                            {...inputProps}
                     />
                 </div>

@@ -13,7 +13,7 @@ const BaseTextArea = React.forwardRef<HTMLTextAreaElement, ReactTextAreaProps & 
             <textarea ref={ref}
                       className={classNames("rounded-lg focus:shadow-mjol-gray focus:bg-mjol-hover " +
                           "ring-[1px] px-4 py-3 ring-inset border-0 outline-none focus:ring-0 outline-none w-full bg-white  " +
-                          "text-[12px] xs:text-[14px] font-semibold",
+                          "text-xs-2 xs:text-sm font-semibold",
                           error ? "ring-red-400" : "ring-gray-300"
                       )}
                       {...textAreaProps}

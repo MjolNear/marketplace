@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
 import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
-import {useForm} from "react-hook-form";
+import {useFieldArray, useForm} from "react-hook-form";
 import InputLabel from "../../Common/Forms/InputLabel";
 import UploadImage from "../Common/UploadImage";
 import TitleInput from "../Common/TitleInput";
@@ -14,21 +14,27 @@ import {Optional} from "../../../business-logic/models/types";
 import {useFetchUserCollections} from "../../../hooks/collection/useFetchUserCollections";
 import SingleRoyaltyInput from "../Common/SingleRoyaltyInput";
 import SubmittingModal, {TokenSubmitProps} from "../Common/SubmittingModal";
+import TraitsInput from "../Common/TraitsInput";
 
 
-export interface TSelectedItem {
+export interface TSelectedCollection {
     id?: string
     name?: string
     reference?: Optional<string>
     icon?: React.ReactNode
 }
 
+export interface SingleTraitInput {
+    attribute: string
+    value: string
+}
 
-interface TokenFormFields {
+export interface TokenFormFields {
     title: string,
     description: string
     copies: number,
-    media?: FileList
+    media?: FileList,
+    traits: SingleTraitInput[]
     royalty: {
         account: string,
         percent: number
@@ -40,15 +46,17 @@ const MintTokenForm: React.FC<TAuthProps> = ({
 }) => {
 
     const {collections} = useFetchUserCollections(accountId)
-    const [selectedCollection, setSelectedCollection] = useState<TSelectedItem>({})
+    const [collection, setCollection] = useState<TSelectedCollection>({})
     const [submitProps, setSubmitProps] = useState<TokenSubmitProps>()
     const [previewUrl, setPreviewUrl] = useState('')
 
     const {
         register,
         watch,
+        control,
         handleSubmit,
         setError,
+        setValue,
         resetField,
         formState: {
             errors,
@@ -60,6 +68,7 @@ const MintTokenForm: React.FC<TAuthProps> = ({
             title: "",
             description: "",
             copies: 1,
+            traits: [],
             royalty: {
                 account: accountId,
                 percent: 2
@@ -106,13 +115,13 @@ const MintTokenForm: React.FC<TAuthProps> = ({
             description,
             file: media[0],
             previewUrl,
-            collectionId: selectedCollection.id,
-            collectionName: selectedCollection.name,
+            collectionId: collection.id,
+            collectionName: collection.name,
             copies,
             traits: {},
             payouts,
         })
-    }), [handleSubmit, setError, selectedCollection, previewUrl, accountId])
+    }), [handleSubmit, setError, collection, previewUrl, accountId])
 
     const clearImage = useCallback(() => {
         resetField("media")
@@ -167,12 +176,21 @@ const MintTokenForm: React.FC<TAuthProps> = ({
         }
     }), [register])
 
-    const [title, copies, media] = watch(["title", "copies", "media"])
+    const [title, copies, media, traits] = watch(["title", "copies", "media", "traits"])
 
     useEffect(() => {
         const item = media?.item(0)
         setPreviewUrl(item ? URL.createObjectURL(item) : "")
     }, [media])
+
+    useEffect(() => {
+        if (!collection.id) {
+            setValue("copies", 1)
+        }
+    }, [collection])
+
+    console.log(traits)
+
 
     return (
         <div className="flex flex-col lg:flex-row justify-center px-10 gap-8">
@@ -198,15 +216,16 @@ const MintTokenForm: React.FC<TAuthProps> = ({
                                   inputProps={descriptionValidationRules}
                 />
                 <TokenCollectionInput collections={collections}
-                                      selectedCollection={selectedCollection}
-                                      setSelectedCollection={setSelectedCollection}
+                                      selectedCollection={collection}
+                                      setSelectedCollection={setCollection}
                 />
+                {collection.id && <TraitsInput control={control}/>}
                 <SingleRoyaltyInput accountInputProps={royaltyAccountValidationRules}
                                     percentInputProps={royaltyPercentValidationRules}
                                     accountError={errors.royalty?.account?.message}
                                     percentError={errors.royalty?.percent?.message}
                 />
-                {!selectedCollection.id &&
+                {!collection.id &&
                     <CopiesRangeInput min={1}
                                       max={20}
                                       copies={copies}
@@ -219,7 +238,7 @@ const MintTokenForm: React.FC<TAuthProps> = ({
             </form>
             <PreviewItemCreation title={title}
                                  url={previewUrl}
-                                 collectionName={selectedCollection.name}
+                                 collectionName={collection.name}
             />
             {submitProps &&
                 <SubmittingModal closeModal={() => setSubmitProps(undefined)}

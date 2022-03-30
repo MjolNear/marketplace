@@ -3,13 +3,13 @@ import InputLabel from "../../Common/Forms/InputLabel";
 import BaseListSelect from "../../Common/Forms/BaseListSelect";
 import {Img} from "react-image";
 import MjolLoader from "../../Common/Loaders/MjolLoader";
-import {TSelectedItem} from "../Token/MintTokenForm";
+import {TSelectedCollection} from "../Token/MintTokenForm";
 import {Collection} from "../../../business-logic/models/collection";
 
 interface TokenCollectionInputProps {
     collections: Collection[]
-    selectedCollection: TSelectedItem,
-    setSelectedCollection: React.Dispatch<React.SetStateAction<TSelectedItem>>
+    selectedCollection: TSelectedCollection,
+    setSelectedCollection: React.Dispatch<React.SetStateAction<TSelectedCollection>>
 }
 
 
@@ -23,7 +23,7 @@ const TokenCollectionInput: React.FC<TokenCollectionInputProps> = ({
             if (collections.length === 0) {
                 return []
             }
-            const none: TSelectedItem[] = [{}]
+            const none: TSelectedCollection[] = [{}]
             return none
                 .concat(collections
                     .map(collection => ({
