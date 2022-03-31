@@ -1,5 +1,6 @@
 query collectionTotalStats(
     $contractId: ID!,
+    $collectionId: String,
     $_contractId: String!
 ) {
     stats: totalCollectionStat(
@@ -13,6 +14,7 @@ query collectionTotalStats(
     floar: marketTokens(
         where: {
             contractId: $_contractId
+            collectionId: $collectionId
         },
         orderBy: price,
         orderDirection: asc,

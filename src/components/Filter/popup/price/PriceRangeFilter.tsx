@@ -1,12 +1,12 @@
 import React, {memo, useState} from 'react';
 import PopoverFilter from "../PopupFilter";
 import NearBlackLogo from "../../../Icons/near/NearIcon";
-import GrayInput from "../../../Input/GrayInput";
 import GrayButton from "../../../Common/Buttons/GrayButton";
 import BlueButton from "../../../Common/Buttons/BlueButton";
 import {Popover} from '@headlessui/react';
 import {utils} from "near-api-js";
 import {TokenPriceRange} from "../../../../graphql/utils";
+import BaseInput from "../../../Common/Forms/BaseInput";
 
 interface RangeFilterProps {
     onApply: (range: TokenPriceRange) => void
@@ -41,12 +41,12 @@ const PriceRangeFilter: React.FC<RangeFilterProps> = ({
                             Price
                         </div>
                         <div className="inline-flex max-w-[280px] justify-between gap-2">
-                            <GrayInput placeholder="From"
+                            <BaseInput placeholder="From"
                                        type="number"
                                        value={priceRange.from}
                                        onChange={setFrom}
                             />
-                            <GrayInput placeholder="To"
+                            <BaseInput placeholder="To"
                                        type="number"
                                        value={priceRange.to}
                                        onChange={setTo}

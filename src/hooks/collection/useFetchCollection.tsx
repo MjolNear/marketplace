@@ -30,7 +30,7 @@ export const useFetchCollection = (
         floar,
         sales,
         volume
-    } = useFetchCollectionStats(contractId)
+    } = useFetchCollectionStats(contractId, collectionId)
 
     const {
         fetching: fetchingCollection,

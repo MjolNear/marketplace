@@ -1,4 +1,4 @@
-import {ContractId} from "../../business-logic/models/types";
+import {CollectionId, ContractId} from "../../business-logic/models/types";
 import {useCollectionTotalStatsQuery} from "../../graphql/generated/graphql";
 import {MJOL_CONTRACT_ID} from "../../business-logic/near/enviroment/contract-names";
 
@@ -11,22 +11,24 @@ export interface FetchCollectionStatsHookResult {
 
 
 export const useFetchCollectionStats = (
-    contractId: ContractId
+    contractId: ContractId,
+    collectionId: CollectionId
 ): FetchCollectionStatsHookResult => {
+
+    const _collectionId = contractId === MJOL_CONTRACT_ID ? collectionId : null
 
     const {loading: fetching, data} = useCollectionTotalStatsQuery({
         variables: {
             contractId,
+            collectionId: _collectionId,
             _contractId: contractId
         }
     })
 
-    return contractId === MJOL_CONTRACT_ID
-        ? {fetching}
-        : {
-            fetching,
-            sales: data?.stats?.sales,
-            volume: data?.stats?.volume,
-            floar: data?.floar?.[0]?.price
-        }
+    return {
+        fetching,
+        sales: data?.stats?.sales,
+        volume: data?.stats?.volume,
+        floar: data?.floar?.[0]?.price
+    }
 }

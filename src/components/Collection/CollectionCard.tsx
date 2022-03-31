@@ -27,7 +27,7 @@ const CollectionCard: React.FC<TCollectionCardProps> = ({
     return (
         <Link className="flex flex-col justify-start bg-white rounded-2xl
                       ring-1 ring-blue-300 select-none overflow-hidden
-                      transform hover:shadow-mjol-blue-300-md hover:-translate-y-[1px]"
+                      transform transition-all hover:shadow-mjol-blue hover:-translate-y-[2px]"
               to={itemPreviewLink}
         >
             <CardImage url={media} objectFit="fill" className="bg-white rounded-2xl"/>

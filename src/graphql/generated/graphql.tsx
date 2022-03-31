@@ -1582,6 +1582,7 @@ export type CollectionMarketTokensQuery = { __typename?: 'Query', marketTokens: 
 
 export type CollectionTotalStatsQueryVariables = Exact<{
   contractId: Scalars['ID'];
+  collectionId?: InputMaybe<Scalars['String']>;
   _contractId: Scalars['String'];
 }>;
 
@@ -1705,7 +1706,7 @@ export type CollectionMarketTokensQueryHookResult = ReturnType<typeof useCollect
 export type CollectionMarketTokensLazyQueryHookResult = ReturnType<typeof useCollectionMarketTokensLazyQuery>;
 export type CollectionMarketTokensQueryResult = Apollo.QueryResult<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>;
 export const CollectionTotalStatsDocument = gql`
-    query collectionTotalStats($contractId: ID!, $_contractId: String!) {
+    query collectionTotalStats($contractId: ID!, $collectionId: String, $_contractId: String!) {
   stats: totalCollectionStat(id: $contractId) {
     id
     volume
@@ -1713,7 +1714,7 @@ export const CollectionTotalStatsDocument = gql`
     avg
   }
   floar: marketTokens(
-    where: {contractId: $_contractId}
+    where: {contractId: $_contractId, collectionId: $collectionId}
     orderBy: price
     orderDirection: asc
     first: 1
@@ -1737,6 +1738,7 @@ export const CollectionTotalStatsDocument = gql`
  * const { data, loading, error } = useCollectionTotalStatsQuery({
  *   variables: {
  *      contractId: // value for 'contractId'
+ *      collectionId: // value for 'collectionId'
  *      _contractId: // value for '_contractId'
  *   },
  * });
