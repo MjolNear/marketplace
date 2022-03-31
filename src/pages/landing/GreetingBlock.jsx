@@ -34,10 +34,14 @@ const GreetingBlock = () => {
             </div>
             <div className="grid grid-cols-10">
                 <div className="col-start-1 col-end-4 md:col-start-1 md:col-end-3">
-                    <DarkBlueGradientButton title={"Explore"} link={"/nfts"}/>
+                    <DarkBlueGradientButton title="Explore"
+                                            link="/nfts"
+                    />
                 </div>
                 <div className="col-start-5 col-end-8 md:col-start-4 md:col-end-6">
-                   <BlueGreenGradientButton title={"Create"} link={"/create-nft"}/>
+                   <BlueGreenGradientButton title="Create"
+                                            link="/nfts/nft"
+                   />
                 </div>
             </div>
         </div>
