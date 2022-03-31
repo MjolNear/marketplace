@@ -64,7 +64,7 @@ const TokenCollectionInput: React.FC<TokenCollectionInputProps> = ({
                                             leaveTo="opacity-0"
                                         >
                                             <Listbox.Options
-                                                className="absolute w-full mt-3 overflow-auto text-base bg-white
+                                                className="absolute z-10 w-full mt-3 overflow-auto text-base bg-white
                                                        rounded-lg shadow-mjol-gray max-h-60 ring-[1px] ring-gray-300
                                                        focus:outline-none sm:text-sm"
                                             >
@@ -75,8 +75,13 @@ const TokenCollectionInput: React.FC<TokenCollectionInputProps> = ({
                                                     </div>
                                                     :
                                                     <>
-                                                        <ListOption defaultText="No collection"/>
-                                                        {items.map(item => <ListOption item={item}/>)}
+                                                        <ListOption defaultText="No collection"
+                                                                    useCheckIcon={true}
+                                                        />
+                                                        {items.map(item => <ListOption key={item.id}
+                                                                                       item={item}
+                                                                                       useCheckIcon={true}/>
+                                                        )}
                                                     </>
                                                 }
                                             </Listbox.Options>

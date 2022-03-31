@@ -9,8 +9,10 @@ const PlusButton: React.FC<PlusButtonProps> = ({
     onClick
 }) => {
     return (
-        <button type="button"
-                className="p-3 rounded-lg h-full ring-[1px] ring-gray-300 hover:bg-mjol-hover hover:shadow-mjol-gray"
+        <button className="p-3 rounded-lg w-full
+                           h-full ring-[1px] ring-gray-300 hover:bg-mjol-hover hover:shadow-mjol-gray
+                           flex items-center justify-center"
+                type="button"
                 onClick={onClick}>
             <FaPlus className="fill-gray-600"/>
         </button>

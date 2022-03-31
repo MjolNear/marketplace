@@ -1,9 +1,10 @@
 import {useState, useEffect} from "react";
-import {CollectionId, Optional} from "../../business-logic/models/types";
+import {Optional} from "../../business-logic/models/types";
+import {CollectionTraits} from "../../business-logic/models/collection";
 
 export interface FetchCollectionTraitsHookResult {
     loading: boolean
-    traits: Optional<Record<string, string>>
+    traits: CollectionTraits | null
 }
 
 export const useFetchCollectionTraits = (reference?: Optional<string>) => {

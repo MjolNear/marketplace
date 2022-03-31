@@ -10,13 +10,13 @@ export interface BlockchainCollection {
     reference: Optional<string>
 }
 
-export type CollectionTraits = Record<string, string[]> | null
+export type CollectionTraits = Record<string, string[]>
 
 export interface IPFSCollectionMetadata {
     name: string
     description: string,
     bannerImage: Optional<string>,
-    traits: CollectionTraits,
+    traits: CollectionTraits | null,
     image: string
 }
 

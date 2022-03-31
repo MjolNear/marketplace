@@ -11,7 +11,7 @@ const CopiesRangeInput: React.FC = () => {
     return (
         <div>
             <InputLabel label={`NFT copies: ${watch("copies")}`}
-                        description="The number of items that will be minted."
+                        description="The number of items that will be minted"
                         tooltip={<QuestionIcon
                             dataTip="Will be minted as a series of NFTs. NFTs will differ only in Token ID."
                             dataFor="mintNftCopiesInfoTooltipId"/>

@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
 import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
-import {FormProvider, useForm} from "react-hook-form";
+import {FormProvider, useFieldArray, useForm} from "react-hook-form";
 import InputLabel from "../../Common/Forms/InputLabel";
 import UploadImage from "../Common/UploadImage";
 import TitleInput from "../Common/TitleInput";
@@ -60,7 +60,6 @@ const MintTokenForm: React.FC<TAuthProps> = ({
             }
         }
     })
-
 
     const onSubmit = useCallback(methods.handleSubmit(fields => {
 
@@ -134,7 +133,10 @@ const MintTokenForm: React.FC<TAuthProps> = ({
                     </div>
                 </form>
             </FormProvider>
-            <PreviewItemCreation title={title} url={mediaUrl} collectionName={collection?.name}/>
+            <PreviewItemCreation title={title}
+                                 url={mediaUrl}
+                                 collectionName={collection?.name}
+            />
             {submitProps &&
                 <SubmittingModal closeModal={() => setSubmitProps(undefined)}
                                  data={submitProps}

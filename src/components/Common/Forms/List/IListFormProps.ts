@@ -1,6 +1,6 @@
 import React from "react";
 
-export interface ListItem {
+export type ListItem =  {
     id: string,
     name: string,
     icon?: React.ReactNode

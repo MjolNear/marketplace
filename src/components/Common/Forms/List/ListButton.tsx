@@ -5,7 +5,7 @@ import {ListItem} from "./IListFormProps";
 
 interface ListButtonProps {
     placeholder: string
-    selected: ListItem | null
+    selected: ListItem  | null
 }
 
 const ListButton: React.FC<ListButtonProps> = ({

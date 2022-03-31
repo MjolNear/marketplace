@@ -1,17 +1,29 @@
 import React from 'react';
-import {useFormContext} from "react-hook-form";
-import TraitsInput from "./TraitsInput";
+import {Controller, FieldArrayWithId, UseFieldArrayRemove, useFormContext} from "react-hook-form";
+import {SingleTraitInput} from "../MintTokenForm";
 
-const TraitSelector = () => {
-    // const context = useFormContext<{trait: TraitsInput}>()
+interface TraitSelectorProps {
+    field: FieldArrayWithId<{ traits: SingleTraitInput[] }, "traits">
+    remove: UseFieldArrayRemove
+}
 
-    // console.log(context.)
 
-    return (
-        <div>
+const TraitSelector: React.FC<TraitSelectorProps> = ({
+    field,
+    remove
+}) => {
 
-        </div>
-    );
+    const {control} = useFormContext()
+
+    return <></>
+    // <Controller name={`{${field.id}`}
+    //             control={control}
+    //             render={
+    //                 (field: {onChange, value}) =>
+    //             }
+    // />
+    //
+    // );
 };
 
 export default TraitSelector;
