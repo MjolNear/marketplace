@@ -3,7 +3,7 @@ import React from 'react';
 const UploadMediaIcon = () => {
     return (
         <svg
-            className="mx-auto h-12 w-12 text-gray-400"
+            className="mx-auto h-24 w-24 text-gray-400"
             stroke="currentColor"
             fill="none"
             viewBox="0 0 48 48"

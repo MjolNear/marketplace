@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
 import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
-import {FormProvider, useFieldArray, useForm} from "react-hook-form";
+import {FormProvider, useForm} from "react-hook-form";
 import InputLabel from "../../Common/Forms/InputLabel";
 import UploadImage from "../Common/UploadImage";
 import TitleInput from "../Common/TitleInput";
@@ -61,18 +61,20 @@ const MintTokenForm: React.FC<TAuthProps> = ({
         }
     })
 
-    const onSubmit = useCallback(methods.handleSubmit(fields => {
+    const {handleSubmit, setError, setValue} = methods
+
+    const onSubmit = useCallback(handleSubmit(fields => {
 
         const {royalty, media} = fields
 
         const isValidPercent = !isNaN(royalty.percent)
         if (!isValidPercent && royalty.account) {
-            methods.setError("royalty.percent", {
+            setError("royalty.percent", {
                 message: "Please fill in royalty percent"
             })
             return
         } else if (isValidPercent && !royalty.account) {
-            methods.setError("royalty.account", {
+            setError("royalty.account", {
                 message: "Please fill in royalty account"
             })
             return
@@ -81,7 +83,7 @@ const MintTokenForm: React.FC<TAuthProps> = ({
         const file = media.file
 
         if (!file) {
-            methods.setError("media.file", {
+            setError("media.file", {
                 message: "Media is required."
             })
             return
@@ -97,17 +99,16 @@ const MintTokenForm: React.FC<TAuthProps> = ({
             accountId,
             media: {file, url: media.url}
         })
-    }), [methods, accountId])
+    }), [setError,handleSubmit, accountId])
 
 
     const [title, mediaUrl, collection] = methods.watch(["title", "media.url", "collection"])
 
     useEffect(() => {
         if (!collection) {
-            methods.setValue("copies", 1)
+            setValue("copies", 1)
         }
-    }, [collection])
-
+    }, [collection, setValue])
 
     return (
         <div className="flex flex-col lg:flex-row justify-center px-10 gap-8">

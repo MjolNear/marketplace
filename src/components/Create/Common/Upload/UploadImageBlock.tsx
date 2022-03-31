@@ -8,17 +8,17 @@ const UploadImageBlock = React.forwardRef<HTMLInputElement, NoRefInputProps & { 
         const {error, ...inputProps} = props
         return (
             <>
-                <div className="md:w-[450px] md:h-[300px] flex place-items-center
-                                mt-1 px-6 pt-5 pb-6 border-2 border-dashed rounded-md"
+                <div className="mt-1 p-2 md:w-[380px] md:h-[300px] relative
+                                border-2 border-gray-300 border-dashed rounded-xl"
                 >
-                    <div className="space-y-1 text-center w-full">
-                        <UploadMediaIcon/>
+                    <div className="space-y-1 text-center flex flex-col items-center justify-center h-full w-full">
                         <div className="flex text-sm text-gray-600">
                             <label className="mx-auto cursor-pointer bg-white rounded-md font-medium
-                                   text-blue-500 hover:text-indigo-500
-                                   focus:outline-none
-                                   focus-visible:ring-0"
+                                             text-blue-500 hover:text-indigo-500
+                                             focus:outline-none
+                                             focus-visible:ring-0"
                             >
+                                <UploadMediaIcon/>
                                 Upload image
                                 <input {...inputProps}
                                        ref={ref}

@@ -1,6 +1,5 @@
 import React, {memo} from 'react';
 import PreviewMintedTokenCard from "./PreviewMintedTokenCard";
-import {SingleTraitInput} from "../../Token/MintTokenForm";
 
 interface PreviewMintedTokenProps {
     title: string,

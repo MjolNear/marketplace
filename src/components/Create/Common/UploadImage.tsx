@@ -1,7 +1,6 @@
-import React, {memo, useCallback} from 'react';
+import React, {useCallback} from 'react';
 import UploadImageBlock from "./Upload/UploadImageBlock";
 import QuestionIcon from "../../Icons/QuestionIcon";
-import {NoRefInputProps} from "../../Common/Forms/BaseInput";
 import {useFormContext} from "react-hook-form";
 
 interface UploadImageProps {
@@ -44,23 +43,26 @@ const UploadImage: React.FC<UploadImageProps> = ({
                 </div>
                 {url
                     ?
-                    <div className="flex justify-center items-center mt-1 px-6 py-1 md:w-[450px] md:h-[300px]
-                                    border-2 border-gray-300 border-dashed rounded-lg"
+                    <div className="mt-1 p-2 md:w-[380px] md:h-[300px] relative
+                                    border-2 border-gray-300 border-dashed rounded-xl"
                     >
-                        <div className="relative">
-                            <img src={url} alt="loading.." style={{objectFit: "cover"}}/>
-                            <button type="button"
-                                    className="top-0 right-0 -mx-2 -my-2 bg-gray-900 text-white absolute
-                                               rounded-full hover:bg-gray-500 cursor-pointer"
-                                    onClick={clearImage}
-                            >
-                                <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                     viewBox="0 0 24 24"
-                                     stroke="currentColor" aria-hidden="true">
-                                    <path d="M6 18L18 6M6 6l12 12"/>
-                                </svg>
-                            </button>
+                        <div className="h-full w-full relative overflow-hidden flex items-center justify-center">
+                            <img src={url}
+                                 alt="loading.."
+                                 className="w-full h-full object-cover rounded-xl"
+                            />
                         </div>
+                        <button type="button"
+                                className="-top-3 -right-3 bg-gray-900 text-white absolute z-[50]
+                                           rounded-full hover:bg-gray-500 cursor-pointer"
+                                onClick={clearImage}
+                        >
+                            <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 24 24"
+                                 stroke="currentColor" aria-hidden="true">
+                                <path d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
                     </div>
                     :
                     <UploadImageBlock error={formState.errors.media?.file?.message}

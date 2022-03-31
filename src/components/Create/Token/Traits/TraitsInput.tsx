@@ -1,18 +1,13 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {Fragment, useEffect, useMemo} from 'react';
 import InputLabel from "../../../Common/Forms/InputLabel";
 import {BiDna} from "react-icons/bi";
 import IconText from "../../../Icons/IconText";
-import {Control, Controller, useFieldArray, useFormContext} from 'react-hook-form';
-import {SingleTraitInput, TokenFormFields} from "../MintTokenForm";
+import {useFieldArray, useFormContext} from 'react-hook-form';
+import {SingleTraitInput} from "../MintTokenForm";
 import PlusButton from "../../../Common/Buttons/PlusButton";
-import BaseInput from "../../../Common/Forms/BaseInput";
 import MinusButton from "../../../Common/Buttons/MinusButton";
-import TraitSelector from "./TraitSelector";
 import {useFetchCollectionTraits} from "../../../../hooks/collection/useFetchCollectionTraits";
 import {Optional} from "../../../../business-logic/models/types";
-import ListButton from "../../../Common/Forms/List/ListButton";
-import {Listbox} from '@headlessui/react';
-import ListOption from "../../../Common/Forms/List/ListOption";
 import TraitAttributeSelector from "./TraitAttributeSelector";
 import TraitValueSelector from "./TraitValueSelector";
 
@@ -37,7 +32,7 @@ const TraitsInput: React.FC<TraitsInputProps> = ({
 
     useEffect(() => {
         resetField("traits")
-    }, [ipfsReference])
+    }, [ipfsReference, resetField])
 
     const label = <IconText icon={<BiDna/>} text="Traits"/>
 
@@ -58,7 +53,8 @@ const TraitsInput: React.FC<TraitsInputProps> = ({
             {picked.length !== 0 &&
                 <div className="flex flex-row flex-wrap gap-3 my-3">
                     {picked.map(trait =>
-                        <div className="py-2 px-4 ring-[1px] ring-blue-300 text-xs font-archivo rounded-lg">
+                        <div key={trait.attribute}
+                             className="py-2 px-4 ring-[1px] ring-blue-300 text-xs font-archivo rounded-lg">
                             {trait.attribute}
                             <div className="font-bold text-[15px]">{trait.value}</div>
                         </div>
@@ -73,7 +69,7 @@ const TraitsInput: React.FC<TraitsInputProps> = ({
                                 const values = traits[picked[index].attribute]
                                 const pickedAttribute = picked[index].attribute
                                 return (
-                                    <>
+                                    <Fragment key={field.id}>
                                         <MinusButton onClick={() => remove(index)}/>
                                         <TraitAttributeSelector index={index}
                                                                 selected={pickedAttribute}
@@ -81,7 +77,7 @@ const TraitsInput: React.FC<TraitsInputProps> = ({
                                                                 attributes={possible}
                                         />
                                         <TraitValueSelector index={index} values={values}/>
-                                    </>
+                                    </Fragment>
                                 )
                             })}
                         </div>

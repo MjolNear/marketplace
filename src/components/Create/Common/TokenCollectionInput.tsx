@@ -4,23 +4,14 @@ import {useFormContext, Controller} from "react-hook-form";
 import {useFetchUserCollections} from "../../../hooks/collection/useFetchUserCollections";
 import {Listbox, Transition} from '@headlessui/react';
 import ListButton from "../../Common/Forms/List/ListButton";
-import ListOptions from "../../Common/Forms/List/ListOptions";
 import ListOption from "../../Common/Forms/List/ListOption";
 import {Img} from "react-image";
 import MjolLoader from "../../Common/Loaders/MjolLoader";
-import {ListItem} from "../../Common/Forms/List/IListFormProps";
 import {Optional} from "../../../business-logic/models/types";
 
 interface TokenCollectionInputProps {
     accountId: string
 }
-
-interface ISelectedCollection {
-    id: string,
-    name: string,
-    icon?: React.ReactNode
-}
-
 
 const TokenCollectionInput: React.FC<TokenCollectionInputProps> = ({
     accountId
@@ -48,7 +39,7 @@ const TokenCollectionInput: React.FC<TokenCollectionInputProps> = ({
 
     return (
         <div className="pb-12">
-            <InputLabel label="BlockhainCollection" description="NFT will be minted as part of your collection"/>
+            <InputLabel label="Collection" description="NFT will be minted as part of your collection"/>
             <Controller control={control}
                         render={
                             ({field: {onChange, value}}) =>
