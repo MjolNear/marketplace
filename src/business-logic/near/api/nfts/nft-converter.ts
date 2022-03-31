@@ -154,29 +154,29 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: Respons
             contractId,
             methodName: 'nft_token_uri',
             args: {
-                token_id: nft.id.toString()
+                token_id: nft.token_id.toString()
             }
         }
     )
 
     const jsonNFT = await NftAPI.getJsonByURL(url)
     const media = getRealUrl(jsonNFT.media, jsonNFT.media_hash, contractId)
-    const {approvals = {}} = nft
-    const uid = buildUID(contractId, nft.id.toString())
+    const {approved_account_ids = {}} = nft
+    const uid = buildUID(contractId, nft.token_id.toString())
     const mintSiteInfo = getNftMintedSiteInfo(nft, contractId)
 
     return Promise.resolve({
         contractId,
-        tokenId: nft.id.toString(),
-        ownerId: nft.owner_id.Account,
+        tokenId: nft.token_id,
+        ownerId: nft.owner_id,
         title: jsonNFT.title || '',
         description: jsonNFT.description,
         copies: metadata.copies,
         media: media,
-        ipfsReference: getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId),
-        extra: nft.metadata.extra,
+        ipfsReference: getRealUrl(metadata.reference, metadata.reference_hash, contractId),
+        extra: metadata.extra,
         price: getPrice(uid, tokenPrices),
-        isApproved: MARKET_CONTRACT_ID in approvals,
+        isApproved: MARKET_CONTRACT_ID in approved_account_ids,
         ...mintSiteInfo
     })
 }
@@ -187,7 +187,9 @@ export async function getConvertedNFT(
     tokenPrices: ResponseTokenPrices = {}
 ): Promise<ApprovedToken> {
     if (contractId.endsWith('.mintbase1.near')) {
-        return getMintbaseNFT(contractId, jsonNft, tokenPrices)
+        const nft = await getMintbaseNFT(contractId, jsonNft, tokenPrices)
+        console.log(nft)
+        return nft
     }
     return convertStandardNFT(contractId, jsonNft, tokenPrices)
 }
