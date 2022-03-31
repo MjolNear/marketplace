@@ -1,6 +1,6 @@
 import {AccountId, CollectionId, ContractId, Optional} from "./types";
 
-export interface Collection {
+export interface BlockchainCollection {
     collection_id: CollectionId,
     collection_contract: ContractId,
     owner_id: AccountId,
@@ -12,16 +12,16 @@ export interface Collection {
 
 export type CollectionTraits = Record<string, string[]>
 
-export interface IPFSMetadata {
+export interface IPFSCollectionMetadata {
     name: string
     description: string,
     bannerImage: Optional<string>,
-    traits: CollectionTraits,
+    traits: CollectionTraits | null,
     image: string
 }
 
-export interface CollectionInfo extends Collection {
-    metadata?: IPFSMetadata
+export interface CollectionInfo extends BlockchainCollection {
+    metadata?: IPFSCollectionMetadata
 }
 
 export interface ExternalLinks {

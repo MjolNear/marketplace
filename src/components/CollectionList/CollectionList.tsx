@@ -1,10 +1,10 @@
 import React from 'react';
-import {Collection} from "../../business-logic/models/collection";
+import {BlockchainCollection} from "../../business-logic/models/collection";
 import CollectionCard from "../Collection/CollectionCard";
 import CardsGridContainer from "../Common/Grid/CardsGridContainer";
 
 interface TCollectionListProps {
-    collections: Collection[]
+    collections: BlockchainCollection[]
 }
 
 const CollectionList: React.FC<TCollectionListProps> = ({

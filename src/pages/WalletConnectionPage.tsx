@@ -3,7 +3,7 @@ import NearConnectButton from "../components/Common/Buttons/NearConnectButton";
 
 const WalletConnectionPage = () => {
     return (
-        <div className="flex justify-center pt-[120px] font-archivo">
+        <div className="flex justify-center mt-8 md:mt-12 lg:mt-14 font-archivo">
                 <div className="flex flex-col items-center text-center gap-10">
                     <div className="space-y-1 px-4">
                         <div className="text-4xl font-bold w-full">

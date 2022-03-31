@@ -4,7 +4,7 @@ import {
     CollectionTokensResponse,
     emptyCollectionsBatchResponse,
 } from "../types/response/collection";
-import {Collection, CollectionInfo, IPFSMetadata} from "../../../models/collection";
+import {BlockchainCollection, CollectionInfo, IPFSCollectionMetadata} from "../../../models/collection";
 import {fetchWithTimeout} from "../core";
 import {NearToken} from "../types/token";
 import {MJOL_CONTRACT_ID} from "../../enviroment/contract-names";
@@ -21,8 +21,8 @@ export const collectionAPI = {
      *
      * @param accountId User
      */
-    fetchUserCollections: (accountId: AccountId): Promise<Collection[]> =>
-        mjolViewFunction<Collection[]>({
+    fetchUserCollections: (accountId: AccountId): Promise<BlockchainCollection[]> =>
+        mjolViewFunction<BlockchainCollection[]>({
             methodName: 'get_collections_by_owner_id',
             args: {
                 owner_id: accountId
@@ -120,8 +120,8 @@ export const collectionAPI = {
             return emptyTokensBatchResponse
         }),
 
-    fetchCollection: (collectionId: CollectionId): Promise<Optional<Collection>> =>
-        mjolViewFunction<Optional<Collection>>({
+    fetchCollection: (collectionId: CollectionId): Promise<Optional<BlockchainCollection>> =>
+        mjolViewFunction<Optional<BlockchainCollection>>({
             methodName: 'get_collection_info',
             args: {
                 collection_id: collectionId
@@ -131,7 +131,7 @@ export const collectionAPI = {
             return null
         }),
 
-    fetchCollectionMetadata: (ipfsLink: string): Promise<IPFSMetadata> =>
+    fetchCollectionMetadata: (ipfsLink: string): Promise<IPFSCollectionMetadata> =>
         fetchWithTimeout(
             ipfsLink,
             {timeout: 8000}

@@ -4,7 +4,7 @@ import SingleLineContainer from "./upload/containers/SingleLineContainer";
 import MultiLineContainer from "./upload/containers/MultiLineContainer";
 import OptionInputContainer from "./upload/containers/OptionInputContainer";
 import UploadFileInput from "./upload/UploadFileInput";
-import {makeNftLink, storeNFT} from "../../../business-logic/ipfs/upload";
+import {makeNftLink, uploadTokenMetadataToIpfs} from "../../../business-logic/ipfs/upload";
 import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import {getTraitsFromCollectionsLinks} from "../../../business-logic/near/api/collections/get-collections-traits";
@@ -112,7 +112,7 @@ const CreateNftPage = () => {
         }
 
         setIsLoading(true);
-        storeNFT(title,
+        uploadTokenMetadataToIpfs(title,
             description,
             file,
             preprocessTraits()).then(res => {

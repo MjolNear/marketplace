@@ -20,6 +20,7 @@ import NotFound404Page from "./pages/NotFound404";
 import PreviewNftMatchRouterParams from "./pages/preview/nft/PreviewNftMatchRouterParams";
 import PageLayout from "./components/Layout/PageLayout";
 import PreviewCollectionMatchRouterParams from "./pages/preview/collection/PreviewCollectionMatchRouterParams";
+import MintTokenPage from "./pages/create/nft/MintTokenPage";
 
 
 export default function App() {
@@ -97,7 +98,7 @@ export default function App() {
                     <Route path="nfts">
                         <Route index element={<ExploreNftsPage/>}/>
                         <Route path=":contractId/:tokenId" element={<PreviewNftMatchRouterParams/>}/>
-                        <Route path="new" element={<CreateNftPage/>}/>
+                        <Route path="new" element={<MintTokenPage/>}/>
                     </Route>
                     <Route path="collections">
                         <Route index

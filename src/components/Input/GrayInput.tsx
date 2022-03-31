@@ -9,8 +9,8 @@ const GrayInput: React.FC<React.DetailedHTMLProps<React.InputHTMLAttributes<HTML
     ...props
 }) => {
     return (
-        <div className="px-2 min-h-[48px] focus-within:shadow-mjol-gray ring-gray-200 ring-[1px] rounded-lg w-full">
-            <input className="w-full outline-none border-0 focus:ring-0 h-full text-sm focus:bg-mjol-hover"
+        <div className="min-h-[48px] focus-within:shadow-mjol-gray ring-gray-200 ring-[1px] rounded-lg w-full">
+            <input className="w-full px-2 outline-none border-0 focus:ring-0 h-full text-sm focus:bg-mjol-hover"
                    value={value}
                    {...props}
             />
