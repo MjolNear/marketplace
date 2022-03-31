@@ -99,7 +99,7 @@ const MintTokenForm: React.FC<TAuthProps> = ({
             accountId,
             media: {file, url: media.url}
         })
-    }), [setError,handleSubmit, accountId])
+    }), [setError, handleSubmit, accountId])
 
 
     const [title, mediaUrl, collection] = methods.watch(["title", "media.url", "collection"])
@@ -107,6 +107,7 @@ const MintTokenForm: React.FC<TAuthProps> = ({
     useEffect(() => {
         if (!collection) {
             setValue("copies", 1)
+            setValue("traits", [])
         }
     }, [collection, setValue])
 

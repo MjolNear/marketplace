@@ -23,20 +23,18 @@ const TraitsInput: React.FC<TraitsInputProps> = ({
 
     const attributes = useMemo(() => Object.keys(traits || {}), [traits])
 
-    const {control, resetField, watch} = useFormContext<{ traits: SingleTraitInput[] }>()
+    console.log(attributes)
+
+    const {control, resetField, watch} = useFormContext<{ traits: SingleTraitInput[] | null }>()
 
     const {fields, append, remove} = useFieldArray({
         control,
         name: "traits"
     });
 
-    useEffect(() => {
-        resetField("traits")
-    }, [ipfsReference, resetField])
-
     const label = <IconText icon={<BiDna/>} text="Traits"/>
 
-    const picked = watch("traits")
+    const picked = watch("traits") || []
     const possible = attributes.filter(key => !picked.map(t => t.attribute).includes(key))
     const next = possible.length !== 0 && traits?.[possible[0]].length !== 0
         ? {attribute: possible[0], value: traits?.[possible[0]][0]}
@@ -63,7 +61,7 @@ const TraitsInput: React.FC<TraitsInputProps> = ({
             }
             {traits &&
                 <>
-                    {fields.length !== 0 &&
+                    {picked.length !== 0 &&
                         <div className="grid grid-cols-[45px_1fr_1fr] gap-3">
                             {fields.map((field, index) => {
                                 const values = traits[picked[index].attribute]

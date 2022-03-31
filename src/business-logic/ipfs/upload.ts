@@ -17,7 +17,7 @@ export async function uploadTokenMetadataToIpfs(
         name: title,
         description,
         image,
-        traits
+        traits: traits.length === 0 ? null : traits
     })
 }
 
