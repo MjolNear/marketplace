@@ -124,7 +124,7 @@ const MintTokenForm: React.FC<TAuthProps> = ({
                     <TitleInput placeholder="My NFT"/>
                     <DescriptionInput placeholder="Brief description about your NFT"/>
                     <TokenCollectionInput accountId={accountId}/>
-                    {collection && <TraitsInput ipfsReference={collection.reference}/>}
+                    {collection && <TraitsInput reference={collection.reference}/>}
                     <SingleRoyaltyInput/>
                     {!collection && <CopiesRangeInput/>}
                     <div className="min-w-[300px] max-w-[50%]">

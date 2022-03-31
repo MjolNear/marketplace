@@ -12,20 +12,18 @@ import TraitAttributeSelector from "./TraitAttributeSelector";
 import TraitValueSelector from "./TraitValueSelector";
 
 interface TraitsInputProps {
-    ipfsReference: Optional<string>
+    reference: Optional<string>
 }
 
 const TraitsInput: React.FC<TraitsInputProps> = ({
-    ipfsReference
+    reference
 }) => {
 
-    const {traits} = useFetchCollectionTraits(ipfsReference)
+    const {traits} = useFetchCollectionTraits(reference)
 
     const attributes = useMemo(() => Object.keys(traits || {}), [traits])
 
-    console.log(attributes)
-
-    const {control, resetField, watch} = useFormContext<{ traits: SingleTraitInput[] | null }>()
+    const {control, watch} = useFormContext<{ traits: SingleTraitInput[] | null }>()
 
     const {fields, append, remove} = useFieldArray({
         control,

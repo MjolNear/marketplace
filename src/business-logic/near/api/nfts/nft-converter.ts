@@ -5,9 +5,8 @@ import {buildUID, getPrice} from "../utils";
 import {ResponseTokenPrices} from "../types/response/market";
 import {marketAPI} from "../market";
 import {ContractId} from "../../../models/types";
-import {ContractVerificationStatus} from "../../../models/contract";
 import {getNftMintedSiteInfo} from "../../../whitelisted.contract";
-import {MARKET_CONTRACT_ID, MJOL_CONTRACT_ID} from "../../enviroment/contract-names";
+import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
 import {NearCoreToken} from "../types/token";
 import {parseCollection} from "../../token-parser/parser";
 
@@ -187,9 +186,7 @@ export async function getConvertedNFT(
     tokenPrices: ResponseTokenPrices = {}
 ): Promise<ApprovedToken> {
     if (contractId.endsWith('.mintbase1.near')) {
-        const nft = await getMintbaseNFT(contractId, jsonNft, tokenPrices)
-        console.log(nft)
-        return nft
+        return await getMintbaseNFT(contractId, jsonNft, tokenPrices)
     }
     return convertStandardNFT(contractId, jsonNft, tokenPrices)
 }

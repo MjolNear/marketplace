@@ -13,10 +13,7 @@ const NftNotApproved: React.FC<TNftNotApprovedProps> = ({
 }) => {
 
     useEffect(() => {
-        contractAPI.removeExpiredContract(contractId, tokenId).then(response => {
-            console.log("HERE")
-            console.log(response)
-        })
+        contractAPI.removeExpiredContract(contractId, tokenId).then()
             .catch(e => console.log(e.toString()))
     }, [contractId, tokenId])
 

@@ -51,9 +51,7 @@ export const prettyBalance = (balance: number, decimals = 18, len = 8) => {
     const diff = balance.toString().length - decimals
     const fixedPoint = Math.max(2, len - Math.max(diff, 0))
     const fixedBalance = (balance / 10 ** decimals).toFixed(fixedPoint)
-    console.log(fixedBalance)
     const finalBalance = parseFloat(fixedBalance).toString()
-    console.log(finalBalance)
     const [head, tail] = finalBalance.split('.')
     if (head === '0') {
         if (tail) {
