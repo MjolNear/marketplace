@@ -38,7 +38,7 @@ const TokenCollectionInput: React.FC<TokenCollectionInputProps> = ({
     }>()
 
     return (
-        <div className="pb-12">
+        <div>
             <InputLabel label="Collection" description="NFT will be minted as part of your collection"/>
             <Controller control={control}
                         render={

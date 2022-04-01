@@ -25,7 +25,7 @@ const ListOption: React.FC<ListOptionProps> = ({
                 <>
                       <span className="inline-flex items-center gap-2 truncate">
                           {item?.icon}
-                          <div className={`py-3 ${selected ? 'font-black' : 'font-medium'}`}>
+                          <div className={`py-3 ${selected ? 'font-normal' : 'font-medium'}`}>
                               {item ? item.name : defaultText}
                           </div>
                       </span>

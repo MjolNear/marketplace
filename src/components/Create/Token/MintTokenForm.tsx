@@ -92,14 +92,14 @@ const MintTokenForm: React.FC<TAuthProps> = ({
     useEffect(() => {
         if (!collection) {
             setValue("copies", 1)
-            setValue("traits", [])
         }
+        setValue("traits", [])
     }, [collection, setValue])
 
     return (
         <div className="flex flex-col lg:flex-row justify-center px-10 gap-8">
             <FormProvider {...methods}>
-                <form className="lg:flex-grow-[4] lg:flex-shrink-0 lg:basis-0 lg:w-[15%] space-y-10"
+                <form className="lg:flex-grow-[4] lg:flex-shrink-0 lg:basis-0 lg:w-[15%] space-y-12"
                       onSubmit={onSubmit}
                 >
                     <UploadTokenImage/>
