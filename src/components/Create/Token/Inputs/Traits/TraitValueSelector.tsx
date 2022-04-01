@@ -21,8 +21,8 @@ const TraitValueSelector: React.FC<TraitValueSelectorProps> = ({
         <Controller name={`traits.${index}.value`}
                     control={control}
                     render={({field: {value, onChange}}) =>
-                        <Listbox value={{name: value, id: value}}
-                                 onChange={event => onChange(event ? event.name : null)}
+                        <Listbox value={value}
+                                 onChange={onChange}
                         >
                             <div className="relative font-archivo">
                                 <ListButton placeholder="Select value"

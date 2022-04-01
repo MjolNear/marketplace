@@ -1,6 +1,6 @@
 import React, {Fragment, memo, useMemo} from 'react';
 import InputLabel from "../../../Common/Forms/InputLabel";
-import {useFormContext, Controller} from "react-hook-form";
+import {Controller, useFormContext} from "react-hook-form";
 import {useFetchUserCollections} from "../../../../hooks/collection/useFetchUserCollections";
 import {Listbox, Transition} from '@headlessui/react';
 import ListButton from "../../../Common/Forms/List/ListButton";
@@ -8,6 +8,7 @@ import ListOption from "../../../Common/Forms/List/ListOption";
 import {Img} from "react-image";
 import MjolLoader from "../../../Common/Loaders/MjolLoader";
 import {Optional} from "../../../../business-logic/types/aliases";
+import {ListItem} from "../../../Common/Forms/List/IListFormProps";
 
 interface TokenCollectionInputProps {
     accountId: string
@@ -19,15 +20,21 @@ const TokenCollectionInput: React.FC<TokenCollectionInputProps> = ({
 
     const {collections} = useFetchUserCollections(accountId)
 
-    const items = useMemo(() =>
-        collections.map(collection => ({
+    const {items, map} = useMemo(() => {
+        const items = collections.map(collection => ({
                 id: collection.collection_id,
                 name: collection.title,
                 reference: collection.reference,
                 icon: <Img src={collection.media} alt={collection.title} loader={<MjolLoader size={25}/>}
                            className="rounded-full w-[30px] max-h-[30px] object-contain"/>
             })
-        ), [collections])
+        )
+
+        const map: Record<string, ListItem> =
+            items.reduce((acc, item) => ({...acc, [item.id]: item}), {})
+
+        return {items, map}
+    }, [collections])
 
     const {control} = useFormContext<{
         collection: {
@@ -43,11 +50,13 @@ const TokenCollectionInput: React.FC<TokenCollectionInputProps> = ({
             <Controller control={control}
                         render={
                             ({field: {onChange, value}}) =>
-                                <Listbox value={value}
-                                         onChange={event => onChange(event ? event : null)}
+                                <Listbox value={value?.id || null}
+                                         onChange={e => onChange(e ? map[e] : null)}
                                 >
                                     <div className="relative mt-1 font-archivo">
-                                        <ListButton placeholder="Select collection" selected={value}/>
+                                        <ListButton placeholder="Select collection"
+                                                    selected={value?.id ? map[value?.id] : null}
+                                        />
                                         <Transition
                                             as={Fragment}
                                             leave="transition ease-in duration-100"

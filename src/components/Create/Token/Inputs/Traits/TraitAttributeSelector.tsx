@@ -26,10 +26,10 @@ const TraitAttributeSelector: React.FC<TraitAttributeSelectorProps> = ({
         <Controller name={`traits.${index}.attribute`}
                     control={control}
                     render={({field: {onChange}}) =>
-                        <Listbox value={{name: selected, id: selected}}
+                        <Listbox value={selected}
                                  onChange={event => {
-                                     onChange(event ? event.name : null)
-                                     event.name && setValue(`traits.${index}.value`, traits[event.name][0])
+                                     onChange(event)
+                                     setValue(`traits.${index}.value`, traits[event][0])
                                  }}
                         >
                             <div className="relative font-archivo">
