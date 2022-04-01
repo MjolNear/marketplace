@@ -6,12 +6,14 @@ interface QuestionIconProps {
     dataFor?: string
     dataTip?: string
     dataHTML?: boolean
+    place?: "left" | "right" | "top" | "bottom"
 }
 
 const QuestionIcon: React.FC<QuestionIconProps> = ({
     dataFor,
     dataTip,
-    dataHTML
+    dataHTML,
+    place
 }) => {
     return (
         <>
@@ -20,7 +22,7 @@ const QuestionIcon: React.FC<QuestionIconProps> = ({
                                  data-for={dataFor}
                                  data-html={dataHTML}
             />
-            {dataFor && <Tooltip place="bottom" id={dataFor}/>}
+            {dataFor && <Tooltip place={place} id={dataFor}/>}
         </>
     );
 };

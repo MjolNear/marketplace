@@ -1,4 +1,4 @@
-import {Optional} from "../../../../models/types";
+import {Optional} from "../../../../types/aliases";
 
 /**
  * NFT Token metadata standard

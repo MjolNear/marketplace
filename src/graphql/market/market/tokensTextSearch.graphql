@@ -1,0 +1,18 @@
+query marketTokensSearch(
+    $text: String!,
+    $limit: Int!,
+    $offset: Int!
+) @api(name: market) {
+    marketTokens: marketSearch(text: $text, first: $limit, skip: $offset) {
+        id
+        tokenId
+        contractId
+        collectionId
+        collectionName
+        title
+        media
+        mintSiteName
+        mintSiteLink
+        price
+    }
+}

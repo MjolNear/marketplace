@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
 import PriceContainer from "./PriceContainer";
-import {ContractId, Optional, TokenId, TPayouts} from "../../../../business-logic/models/types";
+import {ContractId, Optional, TokenId, TPayouts} from "../../../../business-logic/types/aliases";
 import {unlistNft, updateNftPrice} from "../../../../business-logic/near/transaction";
 import DarkCyanGradientButton from "../../../Common/Buttons/DarkCyanGradientButton";
 import InputPriceModal from "./sell/InputPriceModal";

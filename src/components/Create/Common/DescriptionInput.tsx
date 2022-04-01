@@ -5,10 +5,12 @@ import {useFormContext} from "react-hook-form";
 
 interface DescriptionInputProps {
     placeholder: string,
+    maxChars?: number
 }
 
 const DescriptionInput: React.FC<DescriptionInputProps> = ({
     placeholder,
+    maxChars = 200
 }) => {
 
     const {register, formState} = useFormContext<{ description: string }>()
@@ -21,8 +23,8 @@ const DescriptionInput: React.FC<DescriptionInputProps> = ({
                           rows={4}
                           {...register("description", {
                               maxLength: {
-                                  value: 200,
-                                  message: "Maximum description length is 200 characters"
+                                  value: maxChars,
+                                  message:` "Maximum description length is ${maxChars} characters"`
                               }
                           })}
             />

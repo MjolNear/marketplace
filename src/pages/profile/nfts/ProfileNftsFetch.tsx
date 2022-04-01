@@ -61,7 +61,7 @@ const ProfileNftsFetch: React.FC<TAuthProps> = ({accountId}) => {
                 ? <CardListLoader/>
                 : tokens.length === 0
                     ? <EmptyCardList/>
-                    : <CardGrid fetching={fetching} tokens={filteredTokens}/>
+                    : <CardGrid loading={fetching} tokens={filteredTokens}/>
             }
         </>
     );

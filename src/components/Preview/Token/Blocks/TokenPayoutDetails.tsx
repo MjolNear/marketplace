@@ -1,7 +1,7 @@
 import React from 'react';
 import {TAttribute} from "../Attributes/AttributeProps";
 import {GrMoney} from "react-icons/gr";
-import {TPayouts} from "../../../../business-logic/models/types";
+import {TPayouts} from "../../../../business-logic/types/aliases";
 import IconDisclosureButton from "../../../Common/Disclosure/IconDisclosureButton";
 import KeyValueAttributeList from "../Attributes/KeyValueAttributeList";
 

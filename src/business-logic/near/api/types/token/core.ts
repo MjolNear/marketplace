@@ -1,4 +1,4 @@
-import {AccountId, TokenId} from "../../../../models/types";
+import {AccountId, TokenId} from "../../../../types/aliases";
 
 /**
  * NFT core standard

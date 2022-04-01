@@ -1,4 +1,4 @@
-import {ContractId, Optional} from "../../models/types";
+import {ContractId, Optional} from "../../types/aliases";
 import {TokenCollectionMetadata} from "../../models/nft";
 import {MJOL_CONTRACT_ID} from "../enviroment/contract-names";
 

@@ -1,4 +1,4 @@
-import {ContractId} from "../../../../models/types";
+import {ContractId} from "../../../../types/aliases";
 import {ContractVerificationStatus} from "../../../../models/contract";
 
 export interface TContractResponse {

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useParams} from "react-router";
 import NotFound404Page from "../../NotFound404";
 import PreviewCollectionPage from "./PreviewCollectionPage";

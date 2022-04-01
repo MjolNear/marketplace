@@ -4,7 +4,7 @@ import {ApprovedToken} from "../../../models/nft";
 import {buildUID, getPrice} from "../utils";
 import {ResponseTokenPrices} from "../types/response/market";
 import {marketAPI} from "../market";
-import {ContractId} from "../../../models/types";
+import {ContractId} from "../../../types/aliases";
 import {getNftMintedSiteInfo} from "../../../whitelisted.contract";
 import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
 import {NearCoreToken} from "../types/token";

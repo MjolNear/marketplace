@@ -1,4 +1,4 @@
-import {AccountId, CollectionId, ContractId, Optional} from "./types";
+import {AccountId, CollectionId, ContractId, Optional} from "../types/aliases";
 
 export interface BlockchainCollection {
     collection_id: CollectionId,

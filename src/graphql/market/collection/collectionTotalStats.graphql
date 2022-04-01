@@ -1,0 +1,26 @@
+query collectionTotalStats(
+    $contractId: ID!,
+    $collectionId: String,
+    $_contractId: String!
+) @api(name: market) {
+    stats: totalCollectionStat(
+        id: $contractId
+    ) {
+        id
+        volume
+        sales,
+        avg,
+    },
+    floar: marketTokens(
+        where: {
+            contractId: $_contractId
+            collectionId: $collectionId
+        },
+        orderBy: price,
+        orderDirection: asc,
+        first: 1
+    ) {
+        id
+        price
+    }
+}

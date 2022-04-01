@@ -1,4 +1,4 @@
-import {AccountId} from "../../business-logic/models/types";
+import {AccountId} from "../../business-logic/types/aliases";
 import {useState, useEffect} from "react";
 import {collectionAPI} from "../../business-logic/near/api/collections";
 import {BlockchainCollection} from "../../business-logic/models/collection";

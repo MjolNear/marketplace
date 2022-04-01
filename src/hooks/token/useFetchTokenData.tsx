@@ -1,4 +1,4 @@
-import {ContractId, TokenId, TPayouts} from "../../business-logic/models/types";
+import {ContractId, TokenId, TPayouts} from "../../business-logic/types/aliases";
 import {useEffect, useState} from "react";
 import {ApprovedToken} from "../../business-logic/models/nft";
 import {marketAPI} from "../../business-logic/near/api/market";

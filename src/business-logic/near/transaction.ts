@@ -3,7 +3,7 @@ import {GAS, SM_DEPOSIT, YOCTO_NEAR} from "./constants";
 import {functionCall, marketFunctionCall} from "./enviroment/rpc";
 import BN from "bn.js";
 import {MARKET_CONTRACT_ID} from "./enviroment/contract-names";
-import {ContractId, StringAmount, TokenId} from "../models/types";
+import {ContractId, StringAmount, TokenId} from "../types/aliases";
 import {Token} from "../models/nft";
 
 

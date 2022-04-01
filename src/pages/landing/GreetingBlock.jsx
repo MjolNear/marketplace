@@ -40,7 +40,7 @@ const GreetingBlock = () => {
                 </div>
                 <div className="col-start-5 col-end-8 md:col-start-4 md:col-end-6">
                    <BlueGreenGradientButton title="Create"
-                                            link="/nfts/nft"
+                                            link="/nfts/new"
                    />
                 </div>
             </div>

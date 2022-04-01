@@ -1,0 +1,8 @@
+query collections @api(name: collections) {
+    collections(first: 5) {
+        id
+        contractId
+        collectionId
+        ownerId
+    }
+}

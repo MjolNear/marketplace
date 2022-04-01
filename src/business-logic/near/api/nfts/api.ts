@@ -1,5 +1,5 @@
 import {viewFunction} from "../../enviroment/rpc";
-import {AccountId, ContractId, StringAmount, TokenId} from "../../../models/types";
+import {AccountId, ContractId, StringAmount, TokenId} from "../../../types/aliases";
 import {getConvertedNFT} from "../nfts";
 import {ApprovedToken} from "../../../models/nft";
 

@@ -5,11 +5,13 @@ import {useFormContext} from "react-hook-form";
 
 
 interface TitleInputProps {
-    placeholder: string
+    placeholder: string,
+    maxChars?: number
 }
 
 const TitleInput: React.FC<TitleInputProps> = ({
     placeholder,
+    maxChars = 50
 }) => {
 
     const {register, formState} = useFormContext<{ title: string }>()
@@ -25,8 +27,8 @@ const TitleInput: React.FC<TitleInputProps> = ({
                                message: "Title is required."
                            },
                            maxLength: {
-                               value: 50,
-                               message: "Maximum title length is 50 characters"
+                               value: maxChars,
+                               message: `Maximum title length is ${maxChars} characters`
                            }
                        })}
             />

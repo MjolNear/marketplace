@@ -1,10 +1,46 @@
-import {ApolloClient, InMemoryCache} from "@apollo/client";
-import {IndexerEndpoint} from "../graphql/config";
+import {ApolloClient, ApolloLink, HttpLink, InMemoryCache, Operation} from "@apollo/client";
+import {CollectionIndexerEndpoint, MarketIndexerEndpoint} from "../graphql/config";
+import {Kind, OperationDefinitionNode, StringValueNode} from "graphql";
+
+
+export const getDirectiveArgumentValueFromOperation = (
+    operation: Operation,
+    directiveName: string,
+    argumentName: string
+) => {
+    const operationDefinition = operation.query.definitions.find(definition =>
+        definition.kind === Kind.OPERATION_DEFINITION
+    ) as OperationDefinitionNode
+
+    const directive = operationDefinition.directives?.find(directive =>
+        directive.name.value === directiveName
+    )
+
+    const argument = directive?.arguments?.find(argument =>
+        argument.name.value === argumentName
+    )?.value
+
+    return argument ? (argument as StringValueNode).value : null
+}
 
 export const setupApolloClient = () => {
     const cache = setupCache()
+
+    const federationLink = ApolloLink.split(
+        operation => {
+            const api = getDirectiveArgumentValueFromOperation(operation, "api", "name")
+            return api === "market"
+        },
+        new HttpLink({
+            uri: MarketIndexerEndpoint.Main
+        }),
+        new HttpLink({
+            uri: CollectionIndexerEndpoint.MAIN
+        })
+    )
+
     return new ApolloClient({
-        uri: IndexerEndpoint.Main,
+        link: federationLink,
         cache
     })
 }

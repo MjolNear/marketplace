@@ -1,5 +1,5 @@
 import React from 'react';
-import {Optional} from "../../../../business-logic/models/types";
+import {Optional} from "../../../../business-logic/types/aliases";
 import {Img} from "react-image";
 import MjolLoader from "../../../Common/Loaders/MjolLoader";
 import brokenImage from "../../../../resources/broken-image.png";

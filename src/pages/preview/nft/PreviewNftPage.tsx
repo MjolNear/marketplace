@@ -1,5 +1,5 @@
 import React from 'react';
-import {ContractId, TokenId} from "../../../business-logic/models/types";
+import {ContractId, TokenId} from "../../../business-logic/types/aliases";
 import {useFetchTokenData} from "../../../hooks/token/useFetchTokenData";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
 import NotFound404Page from "../../NotFound404";

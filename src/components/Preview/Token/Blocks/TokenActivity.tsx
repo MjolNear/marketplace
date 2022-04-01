@@ -2,7 +2,7 @@ import React from 'react';
 import IconDisclosureButton from "../../../Common/Disclosure/IconDisclosureButton";
 import {GiBuyCard} from "react-icons/gi";
 import CardActivity from "../../../Activity/CardActivity";
-import {ContractId, TokenId} from "../../../../business-logic/models/types";
+import {ContractId, TokenId} from "../../../../business-logic/types/aliases";
 import {buildUID} from "../../../../business-logic/near/api/utils";
 
 interface TTokenActivityProps {

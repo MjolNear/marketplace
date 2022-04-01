@@ -1,6 +1,6 @@
 import React from 'react';
 import {shortenString} from "../../utils/string";
-import {Optional} from "../../business-logic/models/types";
+import {Optional} from "../../business-logic/types/aliases";
 
 interface TAccountHrefCellProps {
     accountId?: Optional<string>

@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {GridToken} from "../../../../business-logic/models/nft";
-import {ContractId} from "../../../../business-logic/models/types";
+import {ContractId} from "../../../../business-logic/types/aliases";
 import {TContractResponse} from "../../../../business-logic/near/api/types/response/contracts";
 
 export interface ProfileTokensState {

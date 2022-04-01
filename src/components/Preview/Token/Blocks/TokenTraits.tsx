@@ -1,7 +1,7 @@
 import React from 'react';
 import IconDisclosure from "../../../Common/Disclosure/IconDisclosureButton";
 import {BiDna} from "react-icons/bi";
-import {Optional} from "../../../../business-logic/models/types";
+import {Optional} from "../../../../business-logic/types/aliases";
 
 interface TTokenTraitsProps {
     ipfsReference?: Optional<string>

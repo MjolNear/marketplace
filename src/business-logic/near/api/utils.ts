@@ -1,4 +1,4 @@
-import {ContractId, NumberAmount, Optional, StringAmount, TokenId, TokenUID} from "../../models/types";
+import {ContractId, NumberAmount, Optional, StringAmount, TokenId, TokenUID} from "../../types/aliases";
 import {utils} from "near-api-js";
 import {ResponseTokenPrices} from "./types/response/market";
 

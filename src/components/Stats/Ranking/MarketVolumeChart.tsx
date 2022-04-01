@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Area, AreaChart, ResponsiveContainer, Tooltip, XAxis} from 'recharts';
-import {Optional} from "../../../business-logic/models/types";
+import {Optional} from "../../../business-logic/types/aliases";
 import {unix} from "dayjs";
 
 export interface MarketVolumeChartPoint {

@@ -1,6 +1,6 @@
 import {formatPrice} from "../business-logic/near/api/utils";
 import {getMarketNftVerification, getNftMintedSiteInfo} from "../business-logic/whitelisted.contract";
-import {MarketToken, MarketToken_OrderBy, OrderDirection} from "./generated/graphql";
+import {MarketToken, MarketToken_OrderBy, OrderDirection} from "./generated/market-graphql";
 import {GridToken} from "../business-logic/models/nft";
 
 export const convertToMarketToken = (

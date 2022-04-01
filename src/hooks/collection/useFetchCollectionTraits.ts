@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import {Optional} from "../../business-logic/models/types";
+import {Optional} from "../../business-logic/types/aliases";
 import {CollectionTraits} from "../../business-logic/models/collection";
 
 export interface FetchCollectionTraitsHookResult {

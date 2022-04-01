@@ -1,6 +1,5 @@
-import React, {useCallback} from 'react';
-import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../../../utils/string";
-import {convertToMarketToken, TokenPriceRange, TokenSortOption} from "../../../../graphql/utils";
+import React from 'react';
+import {TokenPriceRange, TokenSortOption} from "../../../../graphql/utils";
 import PaginationCardList from "../../../../components/CardList/PaginationCardList";
 import {useAccountMarketTokens} from "../../../../hooks/graphql";
 

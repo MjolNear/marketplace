@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {Optional} from "../../business-logic/models/types";
+import {Optional} from "../../business-logic/types/aliases";
 import {fromYocto2Near, shortenString} from "../../utils/string";
 import CardActivityCell, {ActivityCellType} from "./CardActivityCell";
-import {ActivityEventType} from "../../graphql/generated/graphql";
+import {ActivityEventType} from "../../graphql/generated/market-graphql";
 import ListingIcon from "../Icons/Activity/ListingIcon";
 import NearBlackLogo from "../Icons/near/NearIcon";
 import BuyIcon from "../Icons/Activity/BuyIcon";

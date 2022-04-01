@@ -4,7 +4,7 @@ import {
     Optional,
     StringAmount,
     TokenUID
-} from "../../../../models/types";
+} from "../../../../types/aliases";
 import {TokensBatchResponse} from "./core";
 import {NearCoreToken} from "../token";
 

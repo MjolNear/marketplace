@@ -1,4 +1,4 @@
-import {AccountId, CollectionId, ContractId, Optional} from "../../../models/types";
+import {AccountId, CollectionId, ContractId, Optional} from "../../../types/aliases";
 import {
     CollectionsBatchResponse,
     CollectionTokensResponse,

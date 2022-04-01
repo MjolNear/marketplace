@@ -1,4 +1,4 @@
-import {ContractId, Optional, StringAmount, TokenId} from "../../business-logic/models/types";
+import {ContractId, Optional, StringAmount, TokenId} from "../../business-logic/types/aliases";
 import {useEffect, useState} from "react";
 import {marketAPI} from "../../business-logic/near/api/market";
 

@@ -2,15 +2,15 @@ import React, {useCallback, useState} from 'react';
 import Modal from "../../Common/Modal/Modal";
 import {AiOutlineClose} from "react-icons/ai";
 import DarkBlueGradientButton from "../../Common/Buttons/DarkBlueGradientButton";
-import PreviewMintedTokenCard from "./PreviewCard/PreviewMintedTokenCard";
+import PreviewTokenCard from "./Preview/PreviewTokenCard";
 import IpfsIcon from "../../Icons/IpfsIcon";
 import MjolLoader from "../../Common/Loaders/MjolLoader";
 import NearIcon from "../../Icons/near/NearIcon";
 import {makeNftLink, uploadTokenMetadataToIpfs} from "../../../business-logic/ipfs/upload";
-import {Optional} from "../../../business-logic/models/types";
+import {Optional} from "../../../business-logic/types/aliases";
 import {mintToCommonCollection} from "../../../business-logic/near/api/nfts/mint";
 import {AiFillCloseCircle} from 'react-icons/ai';
-import {SingleTraitInput} from "../Token/MintTokenForm";
+import {TokenTraitInput} from "../../../business-logic/types/form";
 
 
 interface SubmittingModalProps {
@@ -26,7 +26,7 @@ export interface TokenSubmitProps {
     collection: Optional<{ id: string, name: string }>
     copies: number,
     payouts: Optional<Record<string, string>>
-    traits: SingleTraitInput[]
+    traits: TokenTraitInput[]
 }
 
 const SubmittingModal: React.FC<SubmittingModalProps> = ({
@@ -128,9 +128,9 @@ const SubmittingModal: React.FC<SubmittingModalProps> = ({
                         </div>
                     </div>
                     <div className="max-md:hidden w-full max-w-[240px]">
-                        <PreviewMintedTokenCard title={data.title}
-                                                url={data.media.url}
-                                                collectionName={data.collection?.name}
+                        <PreviewTokenCard title={data.title}
+                                          url={data.media.url}
+                                          collectionName={data.collection?.name}
                         />
                     </div>
                 </div>

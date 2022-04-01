@@ -1,0 +1,23 @@
+query lastMarketTokens(
+    $limit: Int!,
+    $offset: Int!,
+    $orderBy: MarketToken_orderBy!,
+    $orderDirection: OrderDirection!
+) @api(name: market) {
+    marketTokens(
+        first: $limit,
+        skip: $offset,
+        orderBy: $orderBy,
+        orderDirection: $orderDirection
+    ) {
+        id
+        tokenId
+        contractId
+        title
+        description
+        media
+        copies
+        ipfsReference
+        price
+    }
+}

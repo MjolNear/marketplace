@@ -1,8 +1,8 @@
 overwrite: true
-schema: "https://api.thegraph.com/subgraphs/name/mjolnear/indexer"
-documents: "src/graphql/**/*.graphql"
+schema: "https://api.thegraph.com/subgraphs/name/mjolnear/collection-indexer"
+documents: "src/graphql/collections/**/*.graphql"
 generates:
-  src/graphql/generated/graphql.tsx:
+  src/graphql/generated/collections-graphql.tsx:
     plugins:
       - "typescript"
       - "typescript-operations"

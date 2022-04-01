@@ -1,7 +1,7 @@
 import {getConvertedNFT} from "../nfts";
 import {nftAPI} from "./api";
 import {marketAPI} from "../market";
-import {AccountId, ContractId, TokenId, TPayouts} from "../../../models/types";
+import {AccountId, ContractId, TokenId, TPayouts} from "../../../types/aliases";
 import {contractAPI} from "../contracts";
 import {batchRequest} from "../batch-request";
 import {buildUID} from "../utils";

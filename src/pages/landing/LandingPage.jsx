@@ -3,7 +3,7 @@ import GreetingBlock from "./GreetingBlock";
 import nftsImg from "../../resources/nfts-landing.png";
 import CardGrid from "../../components/CardList/CardGrid";
 import {convertToMarketToken, TokenSortName, tokenSortOptions} from "../../graphql/utils";
-import {useMarketTokensQuery} from "../../graphql/generated/graphql";
+import {useMarketTokensQuery} from "../../graphql/generated/market-graphql";
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../utils/string";
 
 const LandingPage = () => {
@@ -39,7 +39,7 @@ const LandingPage = () => {
                     Latest listing
                 </div>
                 <CardGrid tokens={nfts}
-                          fetching={loading}
+                          loading={loading}
                 />
             </div>
         </div>

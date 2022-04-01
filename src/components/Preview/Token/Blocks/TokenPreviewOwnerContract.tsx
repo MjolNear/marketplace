@@ -1,10 +1,10 @@
 import React from 'react';
 import LightBlueGradientText from "../../../Common/Text/LightBlueGradientText";
-import {shortenString} from "../../../../utils/string";
+import {prettyAccount, shortenString} from "../../../../utils/string";
 import Tooltip, {getContractVerificationTooltipContent} from "../../../Layout/Tooltip";
 import {ContractVerificationStatus} from "../../../../business-logic/models/contract";
 import ResolveVerificationIcon from "../../../Common/Verification/Icons/ResolveVerificationIcon";
-import {AccountId, ContractId} from "../../../../business-logic/models/types";
+import {AccountId, ContractId} from "../../../../business-logic/types/aliases";
 
 interface TokenPreviewOwnerContract {
     ownerId: AccountId

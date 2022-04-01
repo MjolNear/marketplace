@@ -1,7 +1,7 @@
 import React from 'react';
 import MjolLoader from "../../Common/Loaders/MjolLoader";
 import {ObjectFit} from "../../../utils/css-utils";
-import {Optional} from "../../../business-logic/models/types";
+import {Optional} from "../../../business-logic/types/aliases";
 import {Img} from 'react-image';
 
 import brokenImage from './../../../resources/broken-image.png'

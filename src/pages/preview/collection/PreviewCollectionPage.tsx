@@ -14,7 +14,7 @@ import {useFetchCollection} from "../../../hooks/collection/useFetchCollection";
 import CollectionStats from "../../../components/Preview/Collection/Stats/CollectionStats";
 import PriceRangeFilter from "../../../components/Filter/popup/price/PriceRangeFilter";
 import SortFilter from "../../../components/Filter/popup/sort/SortFilter";
-import {TokenPriceRange, TokenSortName, tokenSortOptions} from "../../../graphql/utils";
+import {TokenPriceRange, TokenSortName} from "../../../graphql/utils";
 
 type PreviewCollectionProps = {
     contractId: string,

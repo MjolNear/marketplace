@@ -5,7 +5,7 @@ import TitleBlock from "./Blocks/TitleBlock";
 import CollectionBlock from "./Blocks/CollectionBlock";
 import CardPrice from "./Blocks/CardPrice";
 import {Link} from "react-router-dom";
-import {Optional} from "../../business-logic/models/types";
+import {Optional} from "../../business-logic/types/aliases";
 import {ContractVerificationStatus} from "../../business-logic/models/contract";
 import {whitelistedCollections} from "../../business-logic/whitelisted.collections";
 import {TokenCollectionMetadata} from "../../business-logic/models/nft";
