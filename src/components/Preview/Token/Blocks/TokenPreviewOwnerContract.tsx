@@ -2,7 +2,7 @@ import React from 'react';
 import LightBlueGradientText from "../../../Common/Text/LightBlueGradientText";
 import {prettyAccount, shortenString} from "../../../../utils/string";
 import Tooltip, {getContractVerificationTooltipContent} from "../../../Layout/Tooltip";
-import {ContractVerificationStatus} from "../../../../business-logic/models/contract";
+import {ContractVerificationStatus} from "../../../../business-logic/types/contract";
 import ResolveVerificationIcon from "../../../Common/Verification/Icons/ResolveVerificationIcon";
 import {AccountId, ContractId} from "../../../../business-logic/types/aliases";
 

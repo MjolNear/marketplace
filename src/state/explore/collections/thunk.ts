@@ -1,6 +1,6 @@
 import {AppDispatch} from "../../store";
 import {exploreCollectionsSlice} from "./slice";
-import {collectionAPI} from "../../../business-logic/near/api/collections";
+import {collectionAPI} from "../../../near/api/collections";
 
 export const fetchCollections = (from: number, limit: number) =>
     async (dispatch: AppDispatch) => {

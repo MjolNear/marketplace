@@ -1,10 +1,10 @@
-import {AccountId, CollectionId, ContractId, Optional} from "../../../types/aliases";
+import {AccountId, CollectionId, ContractId, Optional} from "../../../business-logic/types/aliases";
 import {
     CollectionsBatchResponse,
     CollectionTokensResponse,
     emptyCollectionsBatchResponse,
 } from "../types/response/collection";
-import {BlockchainCollection, CollectionInfo, IPFSCollectionMetadata} from "../../../models/collection";
+import {BlockchainCollection, CollectionInfo, IPFSCollectionMetadata} from "../../../business-logic/types/collection";
 import {fetchWithTimeout} from "../core";
 import {NearToken} from "../types/token";
 import {MJOL_CONTRACT_ID} from "../../enviroment/contract-names";
@@ -12,7 +12,7 @@ import {emptyTokensBatchResponse} from "../types/response/core";
 import {batchRequest} from "../batch-request";
 import {nftAPI} from "../nfts";
 import {mjolViewFunction, viewFunction} from "../../enviroment/rpc";
-import {DODIK_GET_LIST, DODIK_INDEX_LIST, WhitelistedContract} from "../../../whitelisted.contract";
+import {DODIK_GET_LIST, DODIK_INDEX_LIST, WhitelistedContract} from "../../../business-logic/whitelisted.contract";
 
 export const collectionAPI = {
 

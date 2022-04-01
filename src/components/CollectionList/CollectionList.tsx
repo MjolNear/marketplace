@@ -1,5 +1,5 @@
 import React from 'react';
-import {BlockchainCollection} from "../../business-logic/models/collection";
+import {BlockchainCollection} from "../../business-logic/types/collection";
 import CollectionCard from "../Collection/CollectionCard";
 import CardsGridContainer from "../Common/Grid/CardsGridContainer";
 

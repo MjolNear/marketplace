@@ -3,7 +3,7 @@ import IconDisclosureButton from "../../../Common/Disclosure/IconDisclosureButto
 import {GiBuyCard} from "react-icons/gi";
 import CardActivity from "../../../Activity/CardActivity";
 import {ContractId, TokenId} from "../../../../business-logic/types/aliases";
-import {buildUID} from "../../../../business-logic/near/api/utils";
+import {buildUID} from "../../../../near/api/utils";
 
 interface TTokenActivityProps {
     contractId: ContractId

@@ -1,6 +1,6 @@
 import React from 'react';
 import ResolveVerificationIcon from "../../Common/Verification/Icons/ResolveVerificationIcon";
-import {ContractVerificationStatus} from "../../../business-logic/models/contract";
+import {ContractVerificationStatus} from "../../../business-logic/types/contract";
 import {resolveVerificationText} from "../../Common/Verification/utils";
 import DarkBlueMjolText from "../../Common/Text/DarkBlueMjolText";
 

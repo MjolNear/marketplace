@@ -1,7 +1,7 @@
 import {mjolFunctionCall} from "../../enviroment/rpc";
 import {SM_DEPOSIT} from "../../constants";
 import BN from "bn.js";
-import {AccountId, CollectionId} from "../../../types/aliases";
+import {AccountId, CollectionId} from "../../../business-logic/types/aliases";
 
 export function mintToCommonCollection(
     tokenMetadata: {

@@ -8,7 +8,7 @@ import MjolLoader from "../../Common/Loaders/MjolLoader";
 import NearIcon from "../../Icons/near/NearIcon";
 import {makeNftLink, uploadTokenMetadataToIpfs} from "../../../business-logic/ipfs/upload";
 import {Optional} from "../../../business-logic/types/aliases";
-import {mintToCommonCollection} from "../../../business-logic/near/api/nfts/mint";
+import {mintToCommonCollection} from "../../../near/api/nfts/mint";
 import {AiFillCloseCircle} from 'react-icons/ai';
 import {TokenTraitInput} from "../../../business-logic/types/form";
 

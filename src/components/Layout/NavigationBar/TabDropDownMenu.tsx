@@ -1,7 +1,7 @@
 import {Transition, Menu} from "@headlessui/react";
 import React, {Fragment} from "react";
 import MenuChevronButton from "./MenuChevronButton";
-import {getCurrentWallet} from "../../../business-logic/near/wallet/wallet";
+import {getCurrentWallet} from "../../../near/wallet/wallet";
 import {Link} from "react-router-dom";
 import GradientText from "../../Common/Text/GradientText";
 

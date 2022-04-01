@@ -1,6 +1,6 @@
 import {CollectionId, ContractId} from "../../business-logic/types/aliases";
 import {useCollectionTotalStatsQuery} from "../../graphql/generated/market-graphql";
-import {MJOL_CONTRACT_ID} from "../../business-logic/near/enviroment/contract-names";
+import {MJOL_CONTRACT_ID} from "../../near/enviroment/contract-names";
 
 export interface FetchCollectionStatsHookResult {
     fetching: boolean,

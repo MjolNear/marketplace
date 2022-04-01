@@ -2,7 +2,7 @@ import React, {Fragment} from 'react'
 import {Popover, Transition, Menu} from '@headlessui/react'
 import {OpenMenuButton} from "./MobileButtons";
 import {TabsDropDownMenu} from "./TabDropDownMenu";
-import {getCurrentWallet} from "../../../business-logic/near/wallet/wallet";
+import {getCurrentWallet} from "../../../near/wallet/wallet";
 import {IoIosRocket} from 'react-icons/io'
 import {SiGitbook} from 'react-icons/si'
 import LogoLink from "../../Common/Links/LogoLink";

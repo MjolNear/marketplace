@@ -1,7 +1,7 @@
 import React from 'react';
 import InfiniteScroll from "react-infinite-scroll-component";
 import CardGrid from "./CardGrid";
-import {GridToken} from "../../business-logic/models/nft";
+import {GridToken} from "../../business-logic/types/nft";
 import CardListLoader from "./CardListLoader";
 
 

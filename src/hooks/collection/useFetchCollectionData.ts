@@ -1,7 +1,7 @@
 import {CollectionId, ContractId, Optional} from "../../business-logic/types/aliases";
-import {CollectionInfo} from "../../business-logic/models/collection";
+import {CollectionInfo} from "../../business-logic/types/collection";
 import {useEffect, useState} from "react";
-import {collectionAPI} from "../../business-logic/near/api/collections";
+import {collectionAPI} from "../../near/api/collections";
 
 export interface FetchCollectionDataHookResult {
     fetching: boolean

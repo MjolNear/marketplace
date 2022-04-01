@@ -1,5 +1,5 @@
-import {ContractId, Optional} from "../../types/aliases";
-import {TokenCollectionMetadata} from "../../models/nft";
+import {ContractId, Optional} from "../../business-logic/types/aliases";
+import {TokenCollectionMetadata} from "../../business-logic/types/nft";
 import {MJOL_CONTRACT_ID} from "../enviroment/contract-names";
 
 

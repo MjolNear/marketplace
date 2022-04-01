@@ -1,11 +1,11 @@
-import {getConvertedNFT} from "../nfts";
+import {getConvertedNFT} from "./index";
 import {nftAPI} from "./api";
 import {marketAPI} from "../market";
-import {AccountId, ContractId, TokenId, TPayouts} from "../../../types/aliases";
+import {AccountId, ContractId, TokenId, TPayouts} from "../../../business-logic/types/aliases";
 import {contractAPI} from "../contracts";
 import {batchRequest} from "../batch-request";
 import {buildUID} from "../utils";
-import {ApprovedToken} from "../../../models/nft";
+import {ApprovedToken} from "../../../business-logic/types/nft";
 import {MJOL_CONTRACT_ID} from "../../enviroment/contract-names";
 
 export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenId: TokenId) => {

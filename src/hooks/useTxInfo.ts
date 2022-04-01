@@ -1,6 +1,6 @@
-import {near} from "../business-logic/near/wallet/web-wallet";
+import {near} from "../near/wallet/web-wallet";
 import {JsonRpcProvider} from "near-api-js/lib/providers";
-import {getCurrentWallet} from "../business-logic/near/wallet/wallet";
+import {getCurrentWallet} from "../near/wallet/wallet";
 import {useLocation} from "react-router-dom";
 
 export const checkTransaction = (txHash: string): Promise<{

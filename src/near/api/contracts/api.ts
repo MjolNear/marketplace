@@ -1,4 +1,4 @@
-import {AccountId, ContractId, TokenId} from "../../../types/aliases";
+import {AccountId, ContractId, TokenId} from "../../../business-logic/types/aliases";
 import {fetchWithTimeout} from "../core";
 import {TContractResponse, ContractStatusResponse, ContractStatusResponseCode} from "../types/response/contracts";
 

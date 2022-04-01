@@ -1,11 +1,11 @@
 import {NftAPI} from "../../get-utils";
 import {viewFunction} from "../../enviroment/rpc";
-import {ApprovedToken} from "../../../models/nft";
+import {ApprovedToken} from "../../../business-logic/types/nft";
 import {buildUID, getPrice} from "../utils";
 import {ResponseTokenPrices} from "../types/response/market";
 import {marketAPI} from "../market";
-import {ContractId} from "../../../types/aliases";
-import {getNftMintedSiteInfo} from "../../../whitelisted.contract";
+import {ContractId} from "../../../business-logic/types/aliases";
+import {getNftMintedSiteInfo} from "../../../business-logic/whitelisted.contract";
 import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
 import {NearCoreToken} from "../types/token";
 import {parseCollection} from "../../token-parser/parser";

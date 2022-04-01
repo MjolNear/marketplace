@@ -1,6 +1,6 @@
 import React from 'react';
 import WalletConnectionPage from "../pages/WalletConnectionPage";
-import {getCurrentWallet} from "../business-logic/near/wallet/wallet";
+import {getCurrentWallet} from "../near/wallet/wallet";
 
 
 export default function withAuthRedirect<T>(

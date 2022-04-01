@@ -1,7 +1,7 @@
 import {ContractId} from "../../business-logic/types/aliases";
 import {useEffect, useState} from "react";
-import {contractAPI} from "../../business-logic/near/api/contracts";
-import {TContractResponse} from "../../business-logic/near/api/types/response/contracts";
+import {contractAPI} from "../../near/api/contracts";
+import {TContractResponse} from "../../near/api/types/response/contracts";
 
 export const useTokenParsedContract = (contractId: ContractId) => {
 

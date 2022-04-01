@@ -1,4 +1,4 @@
-import {AccountId, TokenId} from "../../../../types/aliases";
+import {AccountId, TokenId} from "../../../../business-logic/types/aliases";
 
 /**
  * NFT core standard

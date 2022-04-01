@@ -1,7 +1,7 @@
 import {viewFunction} from "../../enviroment/rpc";
-import {AccountId, ContractId, StringAmount, TokenId} from "../../../types/aliases";
-import {getConvertedNFT} from "../nfts";
-import {ApprovedToken} from "../../../models/nft";
+import {AccountId, ContractId, StringAmount, TokenId} from "../../../business-logic/types/aliases";
+import {getConvertedNFT} from "./index";
+import {ApprovedToken} from "../../../business-logic/types/nft";
 
 export interface Payouts {
     payout: Record<AccountId, StringAmount>

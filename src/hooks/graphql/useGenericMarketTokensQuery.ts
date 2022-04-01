@@ -1,5 +1,5 @@
 import {QueryHookOptions, QueryResult} from "@apollo/client/react/types/types";
-import {GridToken} from "../../business-logic/models/nft";
+import {GridToken} from "../../business-logic/types/nft";
 import {useCallback, useEffect, useMemo, useState} from "react";
 import {ApolloQueryResult} from "@apollo/client";
 

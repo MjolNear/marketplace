@@ -1,6 +1,6 @@
 import React from 'react';
 import LightBlueGradientText from "../../../Common/Text/LightBlueGradientText";
-import {ContractVerificationStatus} from "../../../../business-logic/models/contract";
+import {ContractVerificationStatus} from "../../../../business-logic/types/contract";
 import {WhitelistedContract} from "../../../../business-logic/whitelisted.contract";
 import ResolveVerificationIcon from "../../../Common/Verification/Icons/ResolveVerificationIcon";
 import DarkBlueMjolText from "../../../Common/Text/DarkBlueMjolText";

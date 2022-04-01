@@ -1,4 +1,4 @@
-import {Optional, StringAmount} from "../types/aliases";
+import {Optional, StringAmount} from "./aliases";
 import {ContractVerificationStatus} from "./contract";
 
 

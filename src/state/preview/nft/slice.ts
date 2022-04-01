@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ApprovedToken, Token} from "../../../business-logic/models/nft";
-import {TContractResponse} from "../../../business-logic/near/api/types/response/contracts";
+import {ApprovedToken, Token} from "../../../business-logic/types/nft";
+import {TContractResponse} from "../../../near/api/types/response/contracts";
 import {Optional} from "../../../business-logic/types/aliases";
 
 export interface PreviewNftState {

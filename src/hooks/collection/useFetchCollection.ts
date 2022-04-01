@@ -1,5 +1,5 @@
 import {CollectionId, ContractId, Optional} from "../../business-logic/types/aliases";
-import {CollectionInfo} from "../../business-logic/models/collection";
+import {CollectionInfo} from "../../business-logic/types/collection";
 import {useEffect, useState} from "react";
 import {useFetchCollectionStats} from "./useFetchCollectionStats";
 import {useFetchCollectionData} from "./useFetchCollectionData";

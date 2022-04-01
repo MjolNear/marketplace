@@ -1,5 +1,5 @@
 import {ContractId, TPayouts, TokenId} from "../../business-logic/types/aliases";
-import {getNftPayouts} from "../../business-logic/near/api/nfts/get-user-nfts";
+import {getNftPayouts} from "../../near/api/nfts/get-user-nfts";
 import {useEffect, useState} from "react";
 
 export interface TokenPayoutsHookResult {

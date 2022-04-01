@@ -1,6 +1,6 @@
 import React from 'react';
 import {toast} from 'react-toastify';
-import {getConfig} from "../../business-logic/near/enviroment/config";
+import {getConfig} from "../../near/enviroment/config";
 import {TransactionOperation} from "../../hooks/useTxInfo";
 
 

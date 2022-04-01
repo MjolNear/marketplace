@@ -1,4 +1,4 @@
-import {Optional} from "../../../../types/aliases";
+import {Optional} from "../../../../business-logic/types/aliases";
 
 /**
  * NFT Token metadata standard

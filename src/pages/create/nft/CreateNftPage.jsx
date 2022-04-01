@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {mintToCommonCollection} from "../../../business-logic/near/api/nfts/mint";
+import {mintToCommonCollection} from "../../../near/api/nfts/mint";
 import SingleLineContainer from "./upload/containers/SingleLineContainer";
 import MultiLineContainer from "./upload/containers/MultiLineContainer";
 import OptionInputContainer from "./upload/containers/OptionInputContainer";
@@ -7,12 +7,12 @@ import UploadFileInput from "./upload/UploadFileInput";
 import {makeNftLink, uploadTokenMetadataToIpfs} from "../../../business-logic/ipfs/upload";
 import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
-import {getTraitsFromCollectionsLinks} from "../../../business-logic/near/api/collections/get-collections-traits";
+import {getTraitsFromCollectionsLinks} from "../../../near/api/collections/get-collections-traits";
 import OptionInput from "./upload/lines/OptionInput";
-import {collectionAPI} from "../../../business-logic/near/api/collections";
+import {collectionAPI} from "../../../near/api/collections";
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
-import {getCurrentWallet} from "../../../business-logic/near/wallet/wallet";
+import {getCurrentWallet} from "../../../near/wallet/wallet";
 
 const LineAlert = ({state, setState}) => {
     return (

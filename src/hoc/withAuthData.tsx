@@ -1,5 +1,5 @@
 import React from "react";
-import {getCurrentWallet} from "../business-logic/near/wallet/wallet";
+import {getCurrentWallet} from "../near/wallet/wallet";
 
 export interface TAuthProps {
     accountId: string,

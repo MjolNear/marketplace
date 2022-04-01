@@ -3,7 +3,7 @@ import {Menu} from "@headlessui/react";
 import {Link} from "react-router-dom";
 import {ChevronRightIcon} from "@heroicons/react/solid";
 import BlueGreenGradientButton from "../../Common/Buttons/Auth/BlueGreenGradientButton";
-import {getCurrentWallet} from "../../../business-logic/near/wallet/wallet";
+import {getCurrentWallet} from "../../../near/wallet/wallet";
 
 
 interface TabItem {

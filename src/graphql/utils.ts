@@ -1,7 +1,7 @@
-import {formatPrice} from "../business-logic/near/api/utils";
+import {formatPrice} from "../near/api/utils";
 import {getMarketNftVerification, getNftMintedSiteInfo} from "../business-logic/whitelisted.contract";
 import {MarketToken, MarketToken_OrderBy, OrderDirection} from "./generated/market-graphql";
-import {GridToken} from "../business-logic/models/nft";
+import {GridToken} from "../business-logic/types/nft";
 
 export const convertToMarketToken = (
     token: Omit<MarketToken, 'id' | 'listingTimestamp' | 'owner'>
