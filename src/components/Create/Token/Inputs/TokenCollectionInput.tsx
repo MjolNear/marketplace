@@ -25,8 +25,11 @@ const TokenCollectionInput: React.FC<TokenCollectionInputProps> = ({
                 id: collection.collection_id,
                 name: collection.title,
                 reference: collection.reference,
-                icon: <Img src={collection.media} alt={collection.title} loader={<MjolLoader size={25}/>}
-                           className="rounded-full w-[30px] max-h-[30px] object-contain"/>
+                icon: <Img src={collection.media}
+                           alt={collection.title}
+                           loader={<MjolLoader size={30}/>}
+                           className="rounded-full w-[30px] max-h-[30px] object-contain"
+                />
             })
         )
 
