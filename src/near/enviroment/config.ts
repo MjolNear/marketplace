@@ -74,6 +74,6 @@ export const getConfig = (env: NetworkEnv = NetworkEnv.MAINNET): Config => {
                 headers: {}
             };
         default:
-            throw Error(`Unconfigured environment '${env}'. Can be configured in src/config.js.`)
+            throw Error(`Unconfigured environment '${env}'. Can be configured in src/near/environment/config.ts.`)
     }
 }
