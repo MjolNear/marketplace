@@ -5,14 +5,17 @@ import MjolLoader from "../../../Common/Loaders/MjolLoader";
 import brokenImage from "../../../../resources/broken-image.png";
 
 interface TImageProps {
-    link?: Optional<string>,
+    url?: Optional<string>,
 }
 
-const TokenMedia: React.FC<TImageProps> = ({link}) => {
+const TokenMedia: React.FC<TImageProps> = ({
+    url
+}) => {
+    const media = url?.replace(' ', '%20').replace('#', '%23')
     return (
         <div className="flex flex-col ring-[1px] ring-blue-100 rounded-2xl overflow-hidden">
             <div>
-                <Img src={link || ''}
+                <Img src={media || ''}
                      className="object-contain w-full"
                      loader={
                          <div className="py-32 lg:px-20 lg:py-52">

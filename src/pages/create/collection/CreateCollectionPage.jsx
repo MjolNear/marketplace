@@ -4,7 +4,7 @@ import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowCon
 import SingleLineContainer from "../nft/upload/containers/SingleLineContainer";
 import MultiLineContainer from "../nft/upload/containers/MultiLineContainer";
 import UploadFileInput from "../nft/upload/UploadFileInput";
-import {makeNftLink, storeCollection} from "../../../business-logic/ipfs/upload";
+import {normalizeIpfsLink, storeCollection} from "../../../business-logic/ipfs/upload";
 import {createCollection} from "../../../near/api/nfts/mint";
 import classNames from "../../../utils/css-utils";
 import PropertyInput from "../nft/upload/lines/PropertyInput";
@@ -158,7 +158,7 @@ const CreateCollectionPage = () => {
         } else {
             setIsLoading(true);
             storeCollection(title, description, fileIcon, fileBanner, fileTraits).then(res => {
-                prepareCollection(res);
+                prepareCollection(res, fileIcon);
                 setTimeout(() => {
                     setIsLoading(false)
                 }, 2000)
@@ -166,10 +166,10 @@ const CreateCollectionPage = () => {
         }
     }
 
-    const prepareCollection = (res) => {
+    const prepareCollection = (res, fileIcon) => {
         console.log(res);
-        const ipfsMedia = makeNftLink(res.data.image.href);
-        const ipfsRef = makeNftLink(res.url);
+        const ipfsMedia = normalizeIpfsLink(res.data.image.href, fileIcon.name);
+        const ipfsRef = normalizeIpfsLink(res.url);
         const collectionMetadata = {
             title: title,
             contract: CONTRACT,

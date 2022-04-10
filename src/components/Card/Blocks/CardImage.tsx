@@ -21,9 +21,10 @@ const CardImage: React.FC<TCardImageProps> = ({
     width = "100%",
     height = "100%"
 }) => {
+    const media = url?.replace(' ', '%20').replace('#', '%23')
     return (
         <div className="aspect-w-1 aspect-h-1 justify-center z-10">
-            <Img src={url || ''}
+            <Img src={media || ''}
                  className={className}
                  loader={<MjolLoader/>}
                  unloader={

@@ -1,16 +1,15 @@
 import React, {useCallback, useState} from 'react';
 import Modal from "../../Common/Modal/Modal";
-import {AiOutlineClose} from "react-icons/ai";
+import {AiFillCloseCircle, AiOutlineClose} from "react-icons/ai";
 import DarkBlueGradientButton from "../../Common/Buttons/DarkBlueGradientButton";
 import PreviewTokenCard from "./Preview/PreviewTokenCard";
 import IpfsIcon from "../../Icons/IpfsIcon";
 import MjolLoader from "../../Common/Loaders/MjolLoader";
 import NearIcon from "../../Icons/near/NearIcon";
-import {makeNftLink, uploadTokenMetadataToIpfs} from "../../../business-logic/ipfs/upload";
+import {normalizeIpfsLink, uploadTokenMetadataToIpfs} from "../../../business-logic/ipfs/upload";
 import {Optional} from "../../../business-logic/types/aliases";
-import {mintToCommonCollection} from "../../../near/api/nfts/mint";
-import {AiFillCloseCircle} from 'react-icons/ai';
 import {TokenTraitInput} from "../../../business-logic/types/form";
+import {mintToCommonCollection} from "../../../near/api/nfts/mint";
 
 
 interface SubmittingModalProps {
@@ -45,8 +44,8 @@ const SubmittingModal: React.FC<SubmittingModalProps> = ({
         uploadTokenMetadataToIpfs(data.title, data.description, data.media.file, data.traits)
             .then(response => {
                 setLoadingState("near")
-                const ipfsMedia = makeNftLink(response.data.image.href);
-                const ipfsRef = makeNftLink(response.url);
+                const ipfsMedia = normalizeIpfsLink(response.data.image.href, data.media.file.name);
+                const ipfsRef = normalizeIpfsLink(response.url);
                 const token_metadata = {
                     title: data.title,
                     description: data.description,
@@ -63,7 +62,6 @@ const SubmittingModal: React.FC<SubmittingModalProps> = ({
                     .catch(() => setLoadingState("nearFailure"))
             })
             .catch(() => setLoadingState("ipfsFailure"))
-
     }, [data])
 
 

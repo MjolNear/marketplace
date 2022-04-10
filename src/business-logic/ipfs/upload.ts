@@ -42,9 +42,18 @@ export async function storeCollection(
     })
 }
 
-export function makeNftLink(nftIpfsLink: string) {
-    if (nftIpfsLink.startsWith('ipfs://')) {
-        return 'https://ipfs.io/ipfs/' + nftIpfsLink.slice(7)
+export const normalizeIpfsLink = (nftIpfsLink: string, fileName?: string): string => {
+    if (nftIpfsLink.startsWith("ipfs://")) {
+        const pathname = nftIpfsLink.slice(7)
+
+        if (fileName) {
+            const matches = pathname.match(/[a-zA-Z\d]+\//)
+            if (!matches || matches.length === 0) {
+                return ""
+            }
+            return `https://ipfs.io/ipfs/${matches[0]}${encodeURIComponent(fileName)}`
+        }
+        return `https://ipfs.io/ipfs/${pathname}`
     }
     return ""
 }

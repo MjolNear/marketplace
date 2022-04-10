@@ -21,7 +21,7 @@ const MobileTokenPreviewContainer: React.FC<TokenPreviewProps> = ({
                                          contractId={token.contractId}
                                          collectionMeta={token.collection}
             />
-            <TokenMedia link={token.media}/>
+            <TokenMedia url={token.media}/>
             <TokenPreviewOwnerContract ownerId={token.ownerId}
                                        contractId={token.contractId}
                                        mintSiteName={token.mintedSiteName}

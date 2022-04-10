@@ -18,7 +18,7 @@ const TokenPreviewSummaryBlock: React.FC<TPreviewTokenSummaryProps> = ({
 }) => {
     return (
         <div className="flex flex-col flex-grow-[3] flex-shrink-0 basis-0 max-w-[45%] gap-4">
-            <TokenMedia link={media}/>
+            <TokenMedia url={media}/>
             <TokenDescription description={description}/>
             <TokenTraits ipfsReference={ipfsReference}/>
         </div>
