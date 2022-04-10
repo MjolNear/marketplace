@@ -1,14 +1,14 @@
 import React from 'react';
-import {TokenPreviewProps} from './TokenPreviewProps';
-import TokenMedia from "./Blocks/TokenMedia";
-import TokenDetails from "./Blocks/TokenDetails";
-import TokenActivity from "./Blocks/TokenActivity";
-import TokenTraits from "./Blocks/TokenTraits";
-import TokenPayoutDetails from "./Blocks/TokenPayoutDetails";
-import TokenDescription from "./Blocks/TokenDescription";
-import TokenMarketStatus from "./Blocks/TokenMarketStatus";
-import TokenPreviewTitleCollection from "./Blocks/TokenPreviewTitleCollection";
-import TokenPreviewOwnerContract from "./Blocks/TokenPreviewOwnerContract";
+import {TokenPreviewProps} from '../../../components/Preview/Token/TokenPreviewProps';
+import TokenMedia from "../../../components/Preview/Token/Blocks/TokenMedia";
+import TokenDetails from "../../../components/Preview/Token/Blocks/TokenDetails";
+import TokenActivity from "../../../components/Preview/Token/Blocks/TokenActivity";
+import TokenTraits from "../../../components/Preview/Token/Blocks/TokenTraits";
+import TokenPayoutDetails from "../../../components/Preview/Token/Blocks/TokenPayoutDetails";
+import TokenDescription from "../../../components/Preview/Token/Blocks/TokenDescription";
+import TokenMarketStatus from "../../../components/Preview/Token/Blocks/TokenMarketStatus";
+import TokenPreviewTitleCollection from "../../../components/Preview/Token/Blocks/TokenPreviewTitleCollection";
+import TokenPreviewOwnerContract from "../../../components/Preview/Token/Blocks/TokenPreviewOwnerContract";
 
 const MobileTokenPreviewContainer: React.FC<TokenPreviewProps> = ({
     token,

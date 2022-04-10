@@ -2,11 +2,13 @@ import React from 'react';
 import {useFormContext} from "react-hook-form";
 import InputLabel from "../../../Common/Forms/InputLabel";
 import BaseInput from "../../../Common/Forms/BaseInput";
-import {FaDiscord, FaTelegram, FaTwitter} from "react-icons/fa";
 import IconText from "../../../Icons/IconText";
-import WebsiteIcon from '../../../Icons/WebsiteIcon';
+import WebsiteIcon from '../../../Icons/Media/WebsiteIcon';
 import QuestionIcon from "../../../Icons/QuestionIcon";
 import {CollectionMediaLinksInput} from "../../../../business-logic/types/form";
+import TelegramIcon from "../../../Icons/Media/TelegramIcon";
+import TwitterIcon from '../../../Icons/Media/TwitterIcon';
+import DiscordIcon from "../../../Icons/Media/DiscordIcon";
 
 const MediaLinksInput = () => {
 
@@ -24,7 +26,7 @@ const MediaLinksInput = () => {
             <div className="space-y-3">
                 <BaseInput placeholder="website.com"
                            inputPrefix={<div className="mr-1.5">
-                               <WebsiteIcon size={20} fill="fill-blue-400"/>
+                               <WebsiteIcon/>
                            </div>
                            }
                            error={formState.errors.links?.website?.message}
@@ -33,7 +35,7 @@ const MediaLinksInput = () => {
                 <BaseInput placeholder="username"
                            inputPrefix={
                                <IconText text="https://t.me/"
-                                         icon={<FaTelegram size={20} color="#2AABEE"/>}
+                                         icon={<TelegramIcon/>}
                                />
                            }
                            error={formState.errors.links?.telegram?.message}
@@ -42,7 +44,7 @@ const MediaLinksInput = () => {
                 <BaseInput placeholder="username"
                            inputPrefix={
                                <IconText text="https://twitter.com/"
-                                         icon={<FaTwitter size={20} className="fill-blue-500"/>}
+                                         icon={<TwitterIcon/>}
                                />
                            }
                            error={formState.errors.links?.twitter?.message}
@@ -51,7 +53,7 @@ const MediaLinksInput = () => {
                 <BaseInput placeholder="link"
                            inputPrefix={
                                <IconText text="https://discord.gg/"
-                                         icon={<FaDiscord size={20} color="#5865F2"/>}
+                                         icon={<DiscordIcon/>}
                                />
                            }
                            error={formState.errors.links?.discord?.message}

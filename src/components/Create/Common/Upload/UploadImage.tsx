@@ -23,7 +23,7 @@ const UploadImage: React.FC<UploadImageProps> = ({
 
     return (
         <RoundedSizeWrapperContainer classes={wrapperClasses}>
-            <div className="text-[15px] font-bold text-gray-700 w-full h-full inherit-border">
+            <div className="text-[15px] font-bold text-gray-700 w-full h-full inherit-border-radius">
                 {url
                     ? <PreviewUploadedImage imageUrl={url} clear={reset}/>
                     : <UploadImageBlock error={error} {...imageInputProps}/>

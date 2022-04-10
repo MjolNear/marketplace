@@ -1,9 +1,9 @@
 import React from 'react';
-import {IconProps} from "./IconProps";
+import {IconProps} from "../IconProps";
 
 const WebsiteIcon: React.FC<IconProps> = ({
-    size,
-    fill,
+    size = 20,
+    fill = "fill-blue-400",
     mx,
     my
 }) => {

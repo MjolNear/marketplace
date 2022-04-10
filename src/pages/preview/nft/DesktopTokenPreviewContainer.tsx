@@ -1,8 +1,8 @@
 import React from 'react';
-import {TokenPreviewProps} from "./TokenPreviewProps";
-import TokenPreviewSummaryBlock from "./TokenPreviewSummaryBlock";
-import TokenPreviewMainBlock from "./TokenPreviewMainBlock";
-import TokenActivity from "./Blocks/TokenActivity";
+import {TokenPreviewProps} from "../../../components/Preview/Token/TokenPreviewProps";
+import TokenPreviewSummaryBlock from "../../../components/Preview/Token/TokenPreviewSummaryBlock";
+import TokenPreviewMainBlock from "../../../components/Preview/Token/TokenPreviewMainBlock";
+import TokenActivity from "../../../components/Preview/Token/Blocks/TokenActivity";
 
 
 const DesktopTokenPreviewContainer: React.FC<TokenPreviewProps> = ({

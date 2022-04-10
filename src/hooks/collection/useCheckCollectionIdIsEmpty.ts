@@ -9,5 +9,5 @@ export const useCheckCollectionIdIsEmpty = (collectionId: CollectionId) => {
         }
     })
 
-    return {isEmpty: !data?.collection?.id && !error, loading}
+    return {isEmpty: !data?.collection?.id && !error, loading, error}
 }

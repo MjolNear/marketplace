@@ -9,21 +9,25 @@ export interface FetchCollectionDataHookResult {
     supply?: number
 }
 
-export const useFetchCollectionData = (contractId: ContractId, collectionId: CollectionId) => {
+export const useFetchCollectionData = (contractId?: ContractId, collectionId?: CollectionId) => {
     const [result, setResult] = useState<FetchCollectionDataHookResult>({
         fetching: true,
     })
     useEffect(() => {
-        Promise.all([
-                collectionAPI.fetchCollection(collectionId),
-                collectionAPI.fetchTotalSupply(collectionId, contractId)
-            ]
-        ).then(response => {
-            const [collection, supply] = response
-            setResult({fetching: false, collection, supply})
-        }).catch(() => {
+        if (contractId && collectionId) {
+            Promise.all([
+                    collectionAPI.fetchCollection(collectionId),
+                    collectionAPI.fetchTotalSupply(collectionId, contractId)
+                ]
+            ).then(response => {
+                const [collection, supply] = response
+                setResult({fetching: false, collection, supply})
+            }).catch(() => {
+                setResult({fetching: false})
+            })
+        } else {
             setResult({fetching: false})
-        })
+        }
     }, [contractId, collectionId])
 
     return result

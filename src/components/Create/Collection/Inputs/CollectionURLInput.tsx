@@ -20,7 +20,7 @@ const CollectionUrlInput = () => {
     const collectionId = watch("collectionId")
 
     const debounced = useDebounce(collectionId, 2500) || ""
-    const {isEmpty, loading} = useCheckCollectionIdIsEmpty(debounced)
+    const {isEmpty, loading, error: apiError} = useCheckCollectionIdIsEmpty(debounced)
 
     const [typing, setTyping] = useState(false)
 
@@ -29,8 +29,10 @@ const CollectionUrlInput = () => {
     }, [collectionId, error, loading, debounced])
 
     useEffect(() => {
-        if (!typing && !isEmpty && collectionId) {
+        if (!typing && !isEmpty && !apiError && collectionId) {
             setError("collectionId", {message: "Collection URL is already taken"})
+        } else if (!typing && apiError && collectionId) {
+            setError("collectionId", {message: "Unable to check URL"})
         }
     }, [isEmpty, collectionId, typing, setError, clearErrors])
 

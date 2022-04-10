@@ -12,6 +12,7 @@ interface TCardImageProps {
     className?: string,
     width?: number | string
     height?: number | string
+    loader?: JSX.Element | null
 }
 
 const CardImage: React.FC<TCardImageProps> = ({
@@ -19,14 +20,15 @@ const CardImage: React.FC<TCardImageProps> = ({
     objectFit = 'contain',
     className = undefined,
     width = "100%",
-    height = "100%"
+    height = "100%",
+    loader = <MjolLoader/>
 }) => {
     const media = url?.replace(' ', '%20').replace('#', '%23')
     return (
         <div className="aspect-w-1 aspect-h-1 justify-center z-10">
             <Img src={media || ''}
                  className={className}
-                 loader={<MjolLoader/>}
+                 loader={loader}
                  unloader={
                      <div className="flex items-center justify-center">
                          <img src={brokenImage} alt="not found" className="object-contain w-[100px]"/>

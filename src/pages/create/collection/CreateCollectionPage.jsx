@@ -167,7 +167,6 @@ const CreateCollectionPage = () => {
     }
 
     const prepareCollection = (res, fileIcon) => {
-        console.log(res);
         const ipfsMedia = normalizeIpfsLink(res.data.image.href, fileIcon.name);
         const ipfsRef = normalizeIpfsLink(res.url);
         const collectionMetadata = {
