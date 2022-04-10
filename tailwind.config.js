@@ -131,6 +131,7 @@ module.exports = {
             // Colors
             colors: {
                 mjol: {
+                    'tab-blue': '#1890ff',
                     background: '#f7f7f7',
                     black: 'rgb(0, 0, 0)',
                     white: '#f4f7fc',

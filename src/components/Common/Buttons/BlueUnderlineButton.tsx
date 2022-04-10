@@ -14,10 +14,10 @@ const BlueUnderlineButton = React.memo<PropTypes>( ({title, onClick, isActive}) 
         <div className="flex flex-col gap-1">
             <button onClick={onClick}
                     className={
-                        classNames("mx-1 sm:mx-5 my-1 font-archivo text-md font-bold hover:opacity-100",
+                        classNames("m-1 font-archivo text-sm font-bold",
                             isActive
-                                ? "opacity-100"
-                                : "opacity-60"
+                                ? "text-mjol-tab-blue"
+                                : "text-gray-500 hover:text-blue-400"
                         )
                     }
             >
