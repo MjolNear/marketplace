@@ -1,6 +1,7 @@
 import {NFTStorage} from 'nft.storage'
-import {CollectionTraitInput, TokenTraitInput} from "../types/form";
+import {CollectionMediaLinksInput, CollectionTraitInput, TokenTraitInput} from "../types/form";
 import {Optional} from "../types/aliases";
+import {CollectionTraits} from "../types/collection";
 
 const IPFS_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDYzZDFBZDhCMWIzMjQyQjFjMkUwNjE2NzcyOUNmMGEwYmIyNDE1OTUiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY0MDExNjI4NTY3OSwibmFtZSI6InRldHMgZm9yIG9wZW4gbmZ0In0.gU_buy_gF4XUwptAU7Ck5_TSrfhZNLva5h2uWAusHNo'
 
@@ -22,15 +23,22 @@ export async function uploadTokenMetadataToIpfs(
     })
 }
 
-export async function storeCollection(
+export async function uploadCollectionMetadataToIpfs(
     title: string,
     description: string,
     image: File,
-    bannerImage: File,
-    traits: Optional<CollectionTraitInput[]>
+    bannerImage: Optional<File>,
+    traits: Optional<CollectionTraitInput[]>,
+    links: Optional<CollectionMediaLinksInput>
 ) {
     const client = new NFTStorage({
         token: IPFS_TOKEN
+    })
+
+    const processedTraits: CollectionTraits = {}
+
+    traits?.forEach(trait => {
+        processedTraits[trait.attribute] = trait.values.map(v => v.value)
     })
 
     return await client.store({
@@ -38,7 +46,8 @@ export async function storeCollection(
         description,
         image,
         bannerImage,
-        traits
+        traits: traits && traits.length !== 0 ? processedTraits : null,
+        media: links
     })
 }
 

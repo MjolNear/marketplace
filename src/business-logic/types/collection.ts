@@ -30,3 +30,13 @@ export interface ExternalLinks {
     discord?: string,
     instagram?: string
 }
+
+
+
+export interface CreateCollectionMetadataDto {
+    title: string,
+    desc: string,
+    media: string,
+    reference: Optional<String>,
+    custom_collection_id: Optional<String>,
+}

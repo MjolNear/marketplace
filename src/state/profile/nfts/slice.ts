@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export enum ProfileNftsTab {
     All = "ALL NFTs",
-    Listed = "ON MARKET",
+    Listed = "LISTED",
     History = "HISTORY"
 }
 

@@ -22,7 +22,6 @@ const TraitsInput: React.FC<TraitsInputProps> = ({
 
     const {traits, loading} = useFetchCollectionTraits(reference)
 
-
     const attributes = useMemo(() => Object.keys(traits || {}), [traits])
 
     const {control, watch} = useFormContext<{ traits: TokenTraitInput[] | null }>()

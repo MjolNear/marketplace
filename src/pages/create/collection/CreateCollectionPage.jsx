@@ -4,7 +4,7 @@ import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowCon
 import SingleLineContainer from "../nft/upload/containers/SingleLineContainer";
 import MultiLineContainer from "../nft/upload/containers/MultiLineContainer";
 import UploadFileInput from "../nft/upload/UploadFileInput";
-import {normalizeIpfsLink, storeCollection} from "../../../business-logic/ipfs/upload";
+import {normalizeIpfsLink, uploadCollectionMetadataToIpfs} from "../../../business-logic/ipfs/upload";
 import {createCollection} from "../../../near/api/nfts/mint";
 import classNames from "../../../utils/css-utils";
 import PropertyInput from "../nft/upload/lines/PropertyInput";
@@ -126,7 +126,7 @@ const CreateCollectionPage = () => {
                 reader.onload = function (event) {
                     let jsonTraits = JSON.parse(event.target.result);
                     setIsLoading(true);
-                    storeCollection(title, description, fileIcon, fileBanner, jsonTraits).then(res => {
+                    uploadCollectionMetadataToIpfs(title, description, fileIcon, fileBanner, jsonTraits).then(res => {
                         prepareCollection(res)
                         setIsLoading(false);
                     })
@@ -150,14 +150,14 @@ const CreateCollectionPage = () => {
                     jsonTraits[key] = valuesArray;
                 }
                 setIsLoading(true);
-                storeCollection(title, description, fileIcon, fileBanner, jsonTraits).then(res => {
+                uploadCollectionMetadataToIpfs(title, description, fileIcon, fileBanner, jsonTraits).then(res => {
                     prepareCollection(res);
                     setIsLoading(false);
                 })
             }
         } else {
             setIsLoading(true);
-            storeCollection(title, description, fileIcon, fileBanner, fileTraits).then(res => {
+            uploadCollectionMetadataToIpfs(title, description, fileIcon, fileBanner, fileTraits).then(res => {
                 prepareCollection(res, fileIcon);
                 setTimeout(() => {
                     setIsLoading(false)

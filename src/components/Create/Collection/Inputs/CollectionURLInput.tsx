@@ -19,7 +19,7 @@ const CollectionUrlInput = () => {
     const error = formState.errors?.collectionId?.message
     const collectionId = watch("collectionId")
 
-    const debounced = useDebounce(collectionId, 2500) || ""
+    const debounced = useDebounce(collectionId, 2000) || ""
     const {isEmpty, loading, error: apiError} = useCheckCollectionIdIsEmpty(debounced)
 
     const [typing, setTyping] = useState(false)

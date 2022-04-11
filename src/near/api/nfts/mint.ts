@@ -2,6 +2,7 @@ import {mjolFunctionCall} from "../../enviroment/rpc";
 import {SM_DEPOSIT} from "../../constants";
 import BN from "bn.js";
 import {AccountId, CollectionId} from "../../../business-logic/types/aliases";
+import {CreateCollectionMetadataDto} from "../../../business-logic/types/collection";
 
 export function mintToCommonCollection(
     tokenMetadata: {
@@ -48,20 +49,26 @@ export function mintToCommonCollection(
 }
 
 
-export function createCollection(collectionMetadata: any, methodName: any) {
-    let args: {
-        metadata: any
-        owner_id?: string
-    } = {
-        metadata: collectionMetadata,
-    };
-
-    if (methodName === 'add_collection') {
-        args.owner_id = collectionMetadata.contract
-    }
-
+export const createCollection = (metadata: CreateCollectionMetadataDto) => {
     return mjolFunctionCall({
-        methodName,
-        args
+        methodName: "create_collection",
+        args: {
+            metadata
+        }
+    })
+}
+
+export const addWhitelistedCollection = (
+    ownerId: AccountId,
+    contractId: CollectionId,
+    metadata: CreateCollectionMetadataDto
+) => {
+    return mjolFunctionCall({
+        methodName: "add_collection",
+        args: {
+            owner_id: ownerId,
+            contract_id: contractId,
+            metadata
+        }
     })
 }

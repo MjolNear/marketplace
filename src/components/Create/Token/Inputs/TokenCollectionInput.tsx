@@ -9,6 +9,7 @@ import {Img} from "react-image";
 import MjolLoader from "../../../Common/Loaders/MjolLoader";
 import {Optional} from "../../../../business-logic/types/aliases";
 import {ListItem} from "../../../Common/Forms/List/IListFormProps";
+import CircleIconLoader from "../../../Common/Loaders/CircleIconLoader";
 
 interface TokenCollectionInputProps {
     accountId: string
@@ -27,7 +28,7 @@ const TokenCollectionInput: React.FC<TokenCollectionInputProps> = ({
                 reference: collection.reference,
                 icon: <Img src={collection.media}
                            alt={collection.title}
-                           loader={<MjolLoader size={30}/>}
+                           loader={<CircleIconLoader size={30}/>}
                            className="rounded-full w-[30px] max-h-[30px] object-contain"
                 />
             })

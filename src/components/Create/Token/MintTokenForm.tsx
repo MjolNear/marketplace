@@ -81,6 +81,7 @@ const MintTokenForm: React.FC<TAuthProps> = ({
 
         setSubmitProps({
             ...fields,
+            payload: "token",
             payouts,
             accountId,
             media: {file, url: media.url}

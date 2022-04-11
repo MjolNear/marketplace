@@ -5,9 +5,13 @@ export interface TokenTraitInput {
     value: string
 }
 
+export interface SingleValueInput {
+    value: string
+}
+
 export interface CollectionTraitInput {
     attribute: string
-    values: string[]
+    values: SingleValueInput[]
 }
 
 export interface ImageInput {
@@ -16,10 +20,10 @@ export interface ImageInput {
 }
 
 export interface CollectionMediaLinksInput {
-    twitter?: string
-    telegram?: string
-    discord?: string
-    website?: string
+    twitter?: Optional<string>
+    telegram?: Optional<string>
+    discord?: Optional<string>
+    website?: Optional<string>
 }
 
 export interface TokenRoyaltyInput {

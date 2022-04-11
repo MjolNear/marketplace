@@ -6,22 +6,46 @@ import PreviewTokenCard from "./Preview/PreviewTokenCard";
 import IpfsIcon from "../../Icons/IpfsIcon";
 import MjolLoader from "../../Common/Loaders/MjolLoader";
 import NearIcon from "../../Icons/near/NearIcon";
-import {normalizeIpfsLink, uploadTokenMetadataToIpfs} from "../../../business-logic/ipfs/upload";
+import {
+    normalizeIpfsLink,
+    uploadCollectionMetadataToIpfs,
+    uploadTokenMetadataToIpfs
+} from "../../../business-logic/ipfs/upload";
 import {Optional} from "../../../business-logic/types/aliases";
-import {TokenTraitInput} from "../../../business-logic/types/form";
-import {mintToCommonCollection} from "../../../near/api/nfts/mint";
+import {
+    CollectionMediaLinksInput,
+    CollectionTraitInput,
+    ImageInput,
+    TokenTraitInput
+} from "../../../business-logic/types/form";
+import {createCollection, mintToCommonCollection} from "../../../near/api/nfts/mint";
+import {CreateCollectionMetadataDto} from "../../../business-logic/types/collection";
+import PreviewCollectionCard from "./Preview/PreviewCollectionCard";
 
 
 interface SubmittingModalProps {
     closeModal: () => void
-    data: TokenSubmitProps
+    data: TokenSubmitProps | CollectionSubmitProps
+}
+
+export interface CollectionSubmitProps {
+    payload: "collection"
+    accountId: string,
+    title: string
+    description: string
+    media: Required<ImageInput>
+    banner: ImageInput
+    collectionId?: string
+    links: CollectionMediaLinksInput
+    traits: CollectionTraitInput[]
 }
 
 export interface TokenSubmitProps {
+    payload: "token"
     title: string,
     accountId: string,
     description: string,
-    media: { file: File, url: string },
+    media: Required<ImageInput>,
     collection: Optional<{ id: string, name: string }>
     copies: number,
     payouts: Optional<Record<string, string>>
@@ -39,7 +63,7 @@ const SubmittingModal: React.FC<SubmittingModalProps> = ({
         | "ipfsFailure"
         | "nearFailure">("waiting")
 
-    const submit = useCallback(() => {
+    const submitToken = useCallback((data: TokenSubmitProps) => {
         setLoadingState("ipfs")
         uploadTokenMetadataToIpfs(data.title, data.description, data.media.file, data.traits)
             .then(response => {
@@ -62,6 +86,39 @@ const SubmittingModal: React.FC<SubmittingModalProps> = ({
                     .catch(() => setLoadingState("nearFailure"))
             })
             .catch(() => setLoadingState("ipfsFailure"))
+    }, [])
+
+
+    const submitCollection = useCallback((data: CollectionSubmitProps) => {
+        setLoadingState("ipfs")
+        uploadCollectionMetadataToIpfs(data.title,
+            data.description,
+            data.media.file,
+            data.banner.file || null,
+            data.traits,
+            data.links)
+            .then(response => {
+                setLoadingState("near")
+                const ipfsMedia = normalizeIpfsLink(response.data.image.href, data.media.file.name);
+                const ipfsRef = normalizeIpfsLink(response.url);
+                const metadata: CreateCollectionMetadataDto = {
+                    title: data.title,
+                    desc: data.description,
+                    media: ipfsMedia,
+                    reference: ipfsRef,
+                    custom_collection_id: data.collectionId || null
+                }
+                return createCollection(metadata)
+                    .then(() => setLoadingState("success"))
+                    .catch(() => setLoadingState("nearFailure"))
+            })
+            .catch(() => setLoadingState("ipfsFailure"))
+    }, [])
+
+    const submit = useCallback(() => {
+        data.payload === "token"
+            ? submitToken(data)
+            : submitCollection(data)
     }, [data])
 
 
@@ -75,12 +132,9 @@ const SubmittingModal: React.FC<SubmittingModalProps> = ({
                     <div className="flex flex-col justify-between">
                         <div className="font-semibold text-sm text-gray-600">
                             <div className="mb-12">
-                                <div className="inline-flex items-center">
-                                    NFT metadata will be stored on IPFS
-                                    <IpfsIcon size={18}/>
-                                </div>
+                                {data.payload === "token" ? "NFT" : "Collection"} metadata will be stored on IPFS
                                 <div>
-                                    It usually takes from 3-5 minutes to became image visible.
+                                    It usually can take from 3-5 minutes to became image visible.
                                 </div>
                             </div>
                             <div>
@@ -120,16 +174,30 @@ const SubmittingModal: React.FC<SubmittingModalProps> = ({
                                     && "Please don't close the window"
                                 }
                             </div>
-                            <DarkBlueGradientButton title="Mint NFT"
-                                                    isLoading={loadingState === "ipfs" || loadingState === "near"}
-                                                    onClick={submit}/>
+                            <DarkBlueGradientButton
+                                title={
+                                    data.payload === "token"
+                                        ? "Mint NFT"
+                                        : "Create collection"
+                                }
+                                isLoading={loadingState === "ipfs" || loadingState === "near"}
+                                onClick={submit}/>
                         </div>
                     </div>
                     <div className="max-md:hidden w-full max-w-[240px]">
-                        <PreviewTokenCard title={data.title}
-                                          url={data.media.url}
-                                          collectionName={data.collection?.name}
-                        />
+                        {data.payload === "token" &&
+                            <PreviewTokenCard title={data.title}
+                                              url={data.media.url}
+                                              collectionName={data.collection?.name}
+                            />
+                        }
+                        {data.payload === "collection"
+                            && <PreviewCollectionCard title={data.title}
+                                                      description={data.description}
+                                                      ownerId={data.accountId}
+                                                      mediaUrl={data.media.url}
+                            />
+                        }
                     </div>
                 </div>
             </div>

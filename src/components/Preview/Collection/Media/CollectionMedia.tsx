@@ -10,7 +10,7 @@ const CollectionMedia = React.memo(() => {
         <div className="inline-flex absolute bg-white top-0 right-0
                         xs:rounded-tr-2xl xs:rounded-bl-2xl overflow-hidden"
         >
-            <LinkMediaIcon link={"website.com"} icon={<WebsiteIcon/>}/>
+            <LinkMediaIcon link="website.com" icon={<WebsiteIcon/>}/>
             <LinkMediaIcon link="twitter.com" icon={<TwitterIcon/>}/>
             <LinkMediaIcon link="discord.com" icon={<TelegramIcon/>}/>
             <LinkMediaIcon link="discord.com" icon={<DiscordIcon/>}/>
