@@ -1,14 +1,14 @@
 import {NftAPI} from "../../get-utils";
 import {viewFunction} from "../../enviroment/rpc";
-import {ApprovedToken} from "../../../models/nft";
 import {buildUID, getPrice} from "../utils";
 import {ResponseTokenPrices} from "../types/response/market";
 import {marketAPI} from "../market";
-import {ContractId} from "../../../models/types";
-import {ContractVerificationStatus} from "../../../models/contract";
-import {getNftMintedSiteInfo} from "../../../whitelisted.contract";
 import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
 import {NearCoreToken} from "../types/token";
+import {getNftMintedSiteInfo} from "../../../business-logic/whitelisted.contract";
+import {ApprovedToken} from "../../../business-logic/types/nft";
+import {ContractId} from "../../../business-logic/types/aliases";
+import {parseCollection} from "../../token-parser/parser";
 
 const isIPFS = require('is-ipfs')
 
@@ -38,8 +38,8 @@ async function getRealUrl(url: string, urlHash?: string, contractId?: string) {
                     args: {}
                 }
             )
-            if (meta["base_uri"] !== ""){
-                if (meta["base_uri"][meta["base_uri"].length - 1] !== '/'){
+            if (meta["base_uri"] !== "") {
+                if (meta["base_uri"][meta["base_uri"].length - 1] !== '/') {
                     return meta["base_uri"] + '/' + url
                 }
                 return meta["base_uri"] + url
@@ -72,12 +72,15 @@ async function getRealUrl(url: string, urlHash?: string, contractId?: string) {
 //   reference_hash: null
 // },
 // approved_account_ids: {}
-async function convertStandardNFT(contractId: string, nft: any, tokenPrices: ResponseTokenPrices): Promise<ApprovedToken> {
+async function convertStandardNFT(contractId: string,
+    nft: any,
+    tokenPrices: ResponseTokenPrices): Promise<ApprovedToken> {
     const metadata = nft.metadata;
     const {approved_account_ids = {}} = nft
     const media = await getRealUrl(metadata.media, metadata.media_hash, contractId);
     const ipfsRef = await getRealUrl(metadata.reference, metadata.reference_hash, contractId);
     const mintSiteInfo = getNftMintedSiteInfo(nft, contractId)
+    const collection = parseCollection(contractId, metadata)
 
     const uid = buildUID(contractId, nft.token_id)
     return Promise.resolve({
@@ -88,6 +91,7 @@ async function convertStandardNFT(contractId: string, nft: any, tokenPrices: Res
         description: metadata.description,
         copies: metadata.copies,
         media,
+        collection,
         ipfsReference: ipfsRef,
         price: getPrice(uid, tokenPrices),
         extra: metadata.extra,
