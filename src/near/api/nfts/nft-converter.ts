@@ -1,13 +1,14 @@
 import {NftAPI} from "../../get-utils";
 import {viewFunction} from "../../enviroment/rpc";
+import {ApprovedToken} from "../../../models/nft";
 import {buildUID, getPrice} from "../utils";
 import {ResponseTokenPrices} from "../types/response/market";
 import {marketAPI} from "../market";
+import {ContractId} from "../../../models/types";
+import {ContractVerificationStatus} from "../../../models/contract";
+import {getNftMintedSiteInfo} from "../../../whitelisted.contract";
 import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
 import {NearCoreToken} from "../types/token";
-import {getNftMintedSiteInfo} from "../../../business-logic/whitelisted.contract";
-import {ContractId} from "../../../business-logic/types/aliases";
-import {ApprovedToken} from "../../../business-logic/types/nft";
 
 const isIPFS = require('is-ipfs')
 
