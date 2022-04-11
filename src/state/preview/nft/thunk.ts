@@ -1,8 +1,8 @@
 import {AppDispatch} from "../../store";
 import {previewNftSlice} from "./slice";
-import {getNftPayouts} from "../../../business-logic/near/api/nfts/get-user-nfts";
-import {contractAPI} from "../../../business-logic/near/api/contracts";
-import {nftAPI} from "../../../business-logic/near/api/nfts";
+import {getNftPayouts} from "../../../near/api/nfts/get-user-nfts";
+import {contractAPI} from "../../../near/api/contracts";
+import {nftAPI} from "../../../near/api/nfts";
 
 export const fetchNft = (contractId: string, tokenId: string) =>
     async (dispatch: AppDispatch) => {

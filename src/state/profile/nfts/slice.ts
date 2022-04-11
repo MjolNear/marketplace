@@ -1,9 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export enum ProfileNftsTab {
-    All = "All NFTs",
-    Listed = "Listed NFTs",
-    History = "My History"
+    All = "ALL NFTs",
+    Listed = "LISTED",
+    History = "HISTORY"
 }
 
 export interface ProfileState {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PaginationCardList from "../../../components/CardList/PaginationCardList";
 import NotFound404Page from "../../NotFound404";
-import {TokenPriceRange, TokenSortName, TokenSortOption, tokenSortOptions} from "../../../graphql/utils";
+import {TokenPriceRange, TokenSortName, tokenSortOptions} from "../../../graphql/utils";
 import {useCollectionMarketTokens} from "../../../hooks/graphql";
 
 interface CollectionMarketNftListProps {

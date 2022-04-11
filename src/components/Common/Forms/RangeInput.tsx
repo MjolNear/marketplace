@@ -9,7 +9,7 @@ const RangeInput = React.forwardRef<HTMLInputElement, ReactInputProps>((props, r
                        {...props}
                        type="range"
                        defaultValue="1"
-                       className="w-full h-3 bg-blue-100 appearance-none rounded cursor-pointer"
+                       className="w-full h-3 bg-blue-100 appearance-none rounded-3xl cursor-pointer"
                 />
         </div>
     );

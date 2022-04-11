@@ -2,18 +2,18 @@ import React, {useCallback, useEffect, useState} from 'react';
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
 import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
 import {FormProvider, useForm} from "react-hook-form";
-import InputLabel from "../../Common/Forms/InputLabel";
-import UploadImage from "../Common/UploadImage";
 import TitleInput from "../Common/TitleInput";
 import DescriptionInput from "../Common/DescriptionInput";
-import CopiesRangeInput from "./CopiesRangeInput";
+import CopiesRangeInput from "./Inputs/CopiesRangeInput";
 import DarkBlueGradientButton from "../../Common/Buttons/DarkBlueGradientButton";
-import PreviewItemCreation from "../Common/PreviewCard/PreviewMintedToken";
-import TokenCollectionInput from "../Common/TokenCollectionInput";
-import {Optional} from "../../../business-logic/models/types";
-import SingleRoyaltyInput from "./SingleRoyaltyInput";
+import PreviewItemCreation from "../Common/Preview/PreviewToken";
+import TokenCollectionInput from "./Inputs/TokenCollectionInput";
+import {Optional} from "../../../business-logic/types/aliases";
+import SingleRoyaltyInput from "./Inputs/SingleRoyaltyInput";
 import SubmittingModal, {TokenSubmitProps} from "../Common/SubmittingModal";
-import TraitsInput from "./Traits/TraitsInput";
+import TraitsInput from "./Inputs/Traits/TraitsInput";
+import UploadTokenImage from "./Inputs/UploadTokenImage";
+import {TokenFormFields} from "../../../business-logic/types/form";
 
 
 export interface TSelectedCollection {
@@ -23,20 +23,6 @@ export interface TSelectedCollection {
     icon?: React.ReactNode
 }
 
-export interface SingleTraitInput {
-    attribute: string
-    value: string
-}
-
-export interface TokenFormFields {
-    title: string
-    description: string
-    copies: number
-    media: { file?: File, url: string }
-    collection: Optional<{ id: string, name: string, reference: Optional<string> }>
-    royalty: { account: string, percent: number }
-    traits: SingleTraitInput[]
-}
 
 const MintTokenForm: React.FC<TAuthProps> = ({
     accountId
@@ -84,7 +70,7 @@ const MintTokenForm: React.FC<TAuthProps> = ({
 
         if (!file) {
             setError("media.file", {
-                message: "Media is required."
+                message: "Media is required"
             })
             return
         }
@@ -95,32 +81,29 @@ const MintTokenForm: React.FC<TAuthProps> = ({
 
         setSubmitProps({
             ...fields,
+            payload: "token",
             payouts,
             accountId,
             media: {file, url: media.url}
         })
     }), [setError, handleSubmit, accountId])
 
-
     const [title, mediaUrl, collection] = methods.watch(["title", "media.url", "collection"])
 
     useEffect(() => {
         if (!collection) {
             setValue("copies", 1)
-            setValue("traits", [])
         }
+        setValue("traits", [])
     }, [collection, setValue])
 
     return (
         <div className="flex flex-col lg:flex-row justify-center px-10 gap-8">
             <FormProvider {...methods}>
-                <form className="lg:flex-grow-[4] lg:flex-shrink-0 lg:basis-0 lg:w-[15%] space-y-10"
+                <form className="lg:flex-grow-[4] lg:flex-shrink-0 lg:basis-0 lg:w-[15%] space-y-12"
                       onSubmit={onSubmit}
                 >
-                    <div className="space-y-4">
-                        <InputLabel label="Required fields" textSize="xs-2" required={true}/>
-                        <UploadImage label="Upload artwork file"/>
-                    </div>
+                    <UploadTokenImage/>
                     <TitleInput placeholder="My NFT"/>
                     <DescriptionInput placeholder="Brief description about your NFT"/>
                     <TokenCollectionInput accountId={accountId}/>
@@ -130,7 +113,7 @@ const MintTokenForm: React.FC<TAuthProps> = ({
                     <div className="min-w-[300px] max-w-[50%]">
                         <DarkBlueGradientButton title="Mint NFT"
                                                 onClick={onSubmit}
-                                                disabled={!methods.formState.isValid}
+                                                disabled={!methods.formState.isValid || !mediaUrl}
                         />
                     </div>
                 </form>

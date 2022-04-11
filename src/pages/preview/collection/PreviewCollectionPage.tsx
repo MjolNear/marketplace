@@ -14,7 +14,8 @@ import {useFetchCollection} from "../../../hooks/collection/useFetchCollection";
 import CollectionStats from "../../../components/Preview/Collection/Stats/CollectionStats";
 import PriceRangeFilter from "../../../components/Filter/popup/price/PriceRangeFilter";
 import SortFilter from "../../../components/Filter/popup/sort/SortFilter";
-import {TokenPriceRange, TokenSortName, tokenSortOptions} from "../../../graphql/utils";
+import {TokenPriceRange, TokenSortName} from "../../../graphql/utils";
+import {useFetchCollectionMetadata} from "../../../hooks/collection/useFetchCollectionMetadata";
 
 type PreviewCollectionProps = {
     contractId: string,
@@ -31,6 +32,7 @@ const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
     const [marketToggleState, setMarketToggleState] = useState<"init" | "only-market" | "all">("init");
 
     const {fetching, collection, stats} = useFetchCollection(contractId, collectionId)
+    const {metadata, loading} = useFetchCollectionMetadata(collection?.reference)
 
     const [priceRange, setPriceRange] = useState<TokenPriceRange>({})
     const clearPriceRange = useCallback(() => setPriceRange({}), [])
@@ -46,22 +48,24 @@ const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
         return <NotFound404Page/>
     }
 
-    const hasBanner = !!collection.metadata?.bannerImage
+    const hasBanner = !!metadata?.bannerImage
 
     return (
         <div className="max-w-screen-2xl mx-auto">
             <BlueShadowContainer>
-                <div className="flex flex-col items-center">
-                    <CollectionBanner bannerLink={collection?.metadata?.bannerImage}/>
+                <div className="flex flex-col items-center relative">
+                    <CollectionBanner bannerLink={metadata?.bannerImage}
+                                      loading={loading || fetching}
+                    />
                     <CollectionLogo hasBanner={hasBanner}
                                     logoLink={collection.media}
                     />
                     <CollectionTitleDescription title={collection.title}
                                                 description={collection.desc}
                     />
+                    <CollectionMedia/>
                     <div className="flex flex-col items-center gap-6 mt-[20px] justify-start">
                         <CollectionStats {...stats}/>
-                        <CollectionMedia/>
                         <div className="mt-[30px]">
                             <CollectionItemActivityTab prefixLink={`/collections/${contractId}/${collectionId}`}
                                                        activeTab={filterTab}

@@ -1,0 +1,23 @@
+query tokenActivity(
+    $tokenUID: String!
+) @api(name: market) {
+    tokenActivity: activities(
+        where: {
+            token: $tokenUID
+        },
+        orderBy: timestamp,
+        orderDirection: desc
+    ) {
+        id
+        price
+        txHash
+        eventType
+        timestamp
+        owner {
+            id
+        }
+        buyer {
+            id
+        }
+    }
+}

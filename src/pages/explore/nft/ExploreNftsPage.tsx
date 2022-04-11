@@ -24,7 +24,7 @@ const ExploreNftsPage = () => {
     const [sort, setSort] = useState(TokenSortName.RecentlyAdded)
 
     const [textQueryFilter, setTextQueryFilter] = useState('')
-    const debounceQuery = useDebounce(textQueryFilter, 500)
+    const debounceQuery = useDebounce(textQueryFilter, 1000)
 
     // const activeFilters: {name:string, value: string | React.ReactNode}[] = []
 
@@ -96,6 +96,7 @@ const ExploreNftsPage = () => {
             {debounceQuery
                 ?
                 <ExploreSearchTokens limit={LIMIT}
+                                     typing={debounceQuery !== textQueryFilter}
                                      searchQuery={debounceQuery}
                 />
                 :

@@ -1,3 +1,5 @@
+import {ContractId} from "./types/aliases";
+
 interface WhitelistedCollection {
     name: string
     contractId: string
@@ -45,4 +47,8 @@ export const whitelistedCollections: Record<string, WhitelistedCollection> = {
         name: "FreakyElves",
         contractId: "spin-nft-contract.near"
     }
+}
+
+export const getTokenCollection = (contractId: ContractId): WhitelistedCollection | null => {
+    return whitelistedCollections[contractId] || null
 }

@@ -20,7 +20,7 @@ const CollectionStats: React.FC<PropTypes> = ({
 
     return (
         <div className="flex flex-wrap rounded-2xl overflow-hidden
-                        ring-[1px] ring-blue-200 mx-2 shadow-mjol-blue-all-xs"
+                        ring-[1px] ring-blue-200 mx-2 shadow-mjol-blue"
         >
             <StatBox name="items"
                      value={supply || "---"}

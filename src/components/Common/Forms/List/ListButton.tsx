@@ -2,10 +2,11 @@ import React from 'react';
 import {SelectorIcon} from "@heroicons/react/solid";
 import {Listbox} from "@headlessui/react";
 import {ListItem} from "./IListFormProps";
+import {Optional} from "../../../../business-logic/types/aliases";
 
 interface ListButtonProps {
     placeholder: string
-    selected: ListItem  | null
+    selected: Optional<ListItem>
 }
 
 const ListButton: React.FC<ListButtonProps> = ({

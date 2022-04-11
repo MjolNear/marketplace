@@ -3,17 +3,19 @@ import PaginationCardList from "../../../components/CardList/PaginationCardList"
 import {useMarketTokensTextSearching} from "../../../hooks/graphql";
 
 interface ExploreSearchTokensProps {
+    typing: boolean,
     limit: number,
     searchQuery: string
 }
 
 const ExploreSearchTokens: React.FC<ExploreSearchTokensProps> = ({
     limit,
-    searchQuery
+    searchQuery,
+    typing
 }) => {
-    const {tokens, hasMore, loading, onLoadMore} = useMarketTokensTextSearching(searchQuery,limit)
+    const {tokens, hasMore, loading, onLoadMore} = useMarketTokensTextSearching(searchQuery, limit)
     return <PaginationCardList tokens={tokens}
-                               loading={loading}
+                               loading={loading || typing}
                                hasMore={hasMore}
                                onLoadMore={onLoadMore}
     />

@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {BlockchainCollection} from "../../../business-logic/models/collection";
+import {BlockchainCollection} from "../../../business-logic/types/collection";
 
 
 export interface ProfileState {

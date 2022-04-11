@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {BlockchainCollection} from "../../../business-logic/models/collection";
-import {CollectionsBatchResponse} from "../../../business-logic/near/api/types/response/collection";
+import {BlockchainCollection} from "../../../business-logic/types/collection";
+import {CollectionsBatchResponse} from "../../../near/api/types/response/collection";
 
 export interface ExploreCollectionsState {
     collections: BlockchainCollection[],

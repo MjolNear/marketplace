@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {WalletInstance} from "../../business-logic/near/wallet/wallet";
+import {WalletInstance} from "../../near/wallet/wallet";
 
 interface IAuthState {
     wallet?: WalletInstance,

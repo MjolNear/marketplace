@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UploadMediaIcon = () => {
+const UploadMediaIcon: React.FC = () => {
     return (
         <svg
             className="mx-auto h-24 w-24 text-gray-400"

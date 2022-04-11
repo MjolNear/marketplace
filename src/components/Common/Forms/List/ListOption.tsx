@@ -17,7 +17,7 @@ const ListOption: React.FC<ListOptionProps> = ({
     return (
         <Listbox.Option
             key={item?.id || "default-item-id"}
-            value={item || null}
+            value={item?.id || null}
             className={({active}) =>
                 `cursor-pointer transition-all select-none relative px-6 ${active ? 'bg-mjol-hover shadow-mjol-gray' : 'text-gray-900'}`}
         >
@@ -25,7 +25,7 @@ const ListOption: React.FC<ListOptionProps> = ({
                 <>
                       <span className="inline-flex items-center gap-2 truncate">
                           {item?.icon}
-                          <div className={`py-3 ${selected ? 'font-black' : 'font-medium'}`}>
+                          <div className={`py-3 ${selected ? 'font-semibold' : 'font-medium'}`}>
                               {item ? item.name : defaultText}
                           </div>
                       </span>

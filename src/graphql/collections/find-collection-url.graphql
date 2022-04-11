@@ -1,0 +1,5 @@
+query loadCollectionById($id: ID!) @api(name: collections){
+    collection(id: $id) {
+        id
+    }
+}

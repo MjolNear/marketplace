@@ -1,5 +1,5 @@
 import React from 'react';
-import {Optional} from "../../../business-logic/models/types";
+import {Optional} from "../../../business-logic/types/aliases";
 import TokenMedia from "./Blocks/TokenMedia";
 import {TTokenDetailsProps} from "./Blocks/TokenDetails";
 import TokenTraits from "./Blocks/TokenTraits";
@@ -18,7 +18,7 @@ const TokenPreviewSummaryBlock: React.FC<TPreviewTokenSummaryProps> = ({
 }) => {
     return (
         <div className="flex flex-col flex-grow-[3] flex-shrink-0 basis-0 max-w-[45%] gap-4">
-            <TokenMedia link={media}/>
+            <TokenMedia url={media}/>
             <TokenDescription description={description}/>
             <TokenTraits ipfsReference={ipfsReference}/>
         </div>

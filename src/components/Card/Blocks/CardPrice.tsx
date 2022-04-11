@@ -1,7 +1,7 @@
 import React from 'react';
 import NearIcon from "../../Icons/near/NearIcon";
 import LightBlueGradientText from "../../Common/Text/LightBlueGradientText";
-import {Optional} from "../../../business-logic/models/types";
+import {Optional} from "../../../business-logic/types/aliases";
 
 interface TCardPriceProps {
     price?: Optional<string>

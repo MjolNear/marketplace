@@ -1,8 +1,8 @@
 import React from 'react';
-import {TContractResponse} from "../../../../business-logic/near/api/types/response/contracts";
-import {ApprovedToken} from "../../../../business-logic/models/nft";
+import {TContractResponse} from "../../../../near/api/types/response/contracts";
+import {ApprovedToken} from "../../../../business-logic/types/nft";
 import {ItemMarketStatus, useNftMarketStatus} from "../../../../hooks/useNftMarketStatus";
-import {ContractVerificationStatus} from "../../../../business-logic/models/contract";
+import {ContractVerificationStatus} from "../../../../business-logic/types/contract";
 import NftContractNotSupported from "../MarketStatus/NftContractNotSupported";
 import BuyNftContainer from "../MarketStatus/BuyNftContainer";
 import SellNftContainer from "../MarketStatus/SellNftContainer";

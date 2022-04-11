@@ -1,5 +1,5 @@
 import React from 'react';
-import {AccountId, ContractId, Optional, TokenId} from "../../../../business-logic/models/types";
+import {AccountId, ContractId, Optional, TokenId} from "../../../../business-logic/types/aliases";
 import KeyValueDisclosure from "../../../Common/Disclosure/KeyValueDisclosure";
 import {MdAccountBalanceWallet as MdAcc} from "react-icons/md";
 import {TAttribute} from "../Attributes/AttributeProps";

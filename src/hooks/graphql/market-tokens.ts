@@ -13,9 +13,9 @@ import {
     useCollectionMarketTokensQuery,
     useMarketTokensQuery,
     useMarketTokensSearchQuery,
-} from "../../graphql/generated/graphql";
+} from "../../graphql/generated/market-graphql";
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../utils/string";
-import {MJOL_CONTRACT_ID} from "../../business-logic/near/enviroment/contract-names";
+import {MJOL_CONTRACT_ID} from "../../near/enviroment/contract-names";
 
 export type MarketTokens = MarketTokensQuery['marketTokens']
 

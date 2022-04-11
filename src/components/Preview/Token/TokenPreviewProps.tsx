@@ -1,6 +1,6 @@
-import {ApprovedToken} from "../../../business-logic/models/nft";
-import {TContractResponse} from "../../../business-logic/near/api/types/response/contracts";
-import {TPayouts} from "../../../business-logic/models/types";
+import {ApprovedToken} from "../../../business-logic/types/nft";
+import {TContractResponse} from "../../../near/api/types/response/contracts";
+import {TPayouts} from "../../../business-logic/types/aliases";
 
 export interface TokenPreviewProps {
     token: ApprovedToken

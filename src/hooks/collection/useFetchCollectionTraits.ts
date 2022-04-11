@@ -1,10 +1,10 @@
-import {useState, useEffect} from "react";
-import {Optional} from "../../business-logic/models/types";
-import {CollectionTraits} from "../../business-logic/models/collection";
+import {useEffect, useState} from "react";
+import {Optional} from "../../business-logic/types/aliases";
+import {CollectionTraits} from "../../business-logic/types/collection";
 
 export interface FetchCollectionTraitsHookResult {
     loading: boolean
-    traits: CollectionTraits | null
+    traits: Optional<CollectionTraits>
 }
 
 export const useFetchCollectionTraits = (reference?: Optional<string>) => {
@@ -17,8 +17,10 @@ export const useFetchCollectionTraits = (reference?: Optional<string>) => {
         if (reference) {
             fetch(reference)
                 .then(response => response.ok && response.json())
-                .then((data) => setResult({loading: false, traits: data.traits}))
+                .then(data => setResult({loading: false, traits: data.traits}))
                 .catch(() => setResult({loading: false, traits: null}))
+        } else {
+            setResult({loading: false, traits: null})
         }
     }, [reference])
 

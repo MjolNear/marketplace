@@ -35,9 +35,17 @@ input[type=number] {
     line-height: inherit;
 }
 
+input[type="checkbox"]:focus {
+    outline: 0;
+}
+
 
 .mjol-pulse-animation {
     animation: mjol-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.inherit-border-radius {
+    border-radius: inherit;
 }
 
 @keyframes mjol-pulse {

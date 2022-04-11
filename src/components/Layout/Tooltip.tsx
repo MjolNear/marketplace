@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTooltip from "react-tooltip";
 import ReactDOMServer from 'react-dom/server'
-import {ContractVerificationStatus} from "../../business-logic/models/contract";
+import {ContractVerificationStatus} from "../../business-logic/types/contract";
 
 interface TooltipProps {
     id: string

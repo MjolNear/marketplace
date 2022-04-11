@@ -1,20 +1,34 @@
 import React from 'react';
-import {Optional} from "../../../../business-logic/models/types";
+import {Optional} from "../../../../business-logic/types/aliases";
+import CollectionBannerLoader from "../../../Common/Loaders/CollectionBannerLoader";
+import {Img} from "react-image";
 
 interface PropTypes {
+    loading: boolean
     bannerLink?: Optional<string>
 }
 
-const CollectionBanner = React.memo<PropTypes>(({bannerLink}) => {
-    if (!bannerLink) {
-        return <></>
-    }
+const CollectionBanner = React.memo<PropTypes>(({
+    loading,
+    bannerLink
+}) => {
+
+    if (!loading && !bannerLink) return null
+
     return (
-        <img className="w-full xs:w-11/12 h-[250px] object-cover object-top xs:rounded-2xl"
-             alt="loading..."
-             src={`https://ipfs.io/${bannerLink.replace(":/", "")}`
-        }
-        />
+        <div className="h-[250px] w-full overflow-hidden xs:rounded-2xl relative ring-1 ring-gray-300">
+            {loading
+                ? <CollectionBannerLoader/>
+                : bannerLink &&
+                <Img className="object-cover w-full max-h-full"
+                     alt="loading..."
+                     src={
+                         `https://ipfs.io/${bannerLink.replace(":/", "")}`
+                     }
+                     loader={<CollectionBannerLoader/>}
+                />
+            }
+        </div>
     );
 });
 

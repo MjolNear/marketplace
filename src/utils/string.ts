@@ -1,10 +1,22 @@
-import {parseNearAmount, formatNearAmount} from "near-api-js/lib/utils/format";
+import {formatNearAmount, parseNearAmount} from "near-api-js/lib/utils/format";
+import {AccountId} from "../business-logic/types/aliases";
 
 export const shortenString = (string: string, chunkSize = 5, sizeToSplit = 15) => {
     if (string.length > sizeToSplit) {
         return string.slice(0, chunkSize) + '..' + string.slice(-chunkSize)
     }
     return string
+}
+
+export const prettyAccount = (accountId: AccountId, prefixChunk = 12, sizeToSplit = 25) => {
+    if (accountId.length <= sizeToSplit) {
+        return accountId
+    }
+    if (accountId.endsWith(".near")) {
+        return accountId.slice(0, prefixChunk) + ".." + accountId.slice(-7, -5) + ".near"
+    } else {
+        return shortenString(accountId, 8, sizeToSplit)
+    }
 }
 
 export const fromYocto2Near = (yocto: string | undefined | null) => {
