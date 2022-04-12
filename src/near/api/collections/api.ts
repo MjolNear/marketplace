@@ -140,7 +140,7 @@ export const collectionAPI = {
             console.log(e)
         }),
 
-
+    // deprecated
     fetchCollectionInfo: (collectionId: CollectionId): Promise<Optional<CollectionInfo>> =>
         collectionAPI.fetchCollection(collectionId)
             .then(collection => {
@@ -159,6 +159,7 @@ export const collectionAPI = {
                 return null
         }),
 
+    // deprecated
     fetchCollections: (from: number, limit: number): Promise<CollectionsBatchResponse> =>
         mjolViewFunction<CollectionsBatchResponse>({
                 methodName: 'get_collections',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import LightBlueGradientText from "../../../Common/Text/LightBlueGradientText";
 import {prettyAccount, shortenString} from "../../../../utils/string";
 import Tooltip, {getContractVerificationTooltipContent} from "../../../Layout/Tooltip";
@@ -47,4 +47,4 @@ const TokenPreviewOwnerContract: React.FC<TokenPreviewOwnerContract> = ({
     );
 };
 
-export default TokenPreviewOwnerContract;
+export default memo(TokenPreviewOwnerContract);

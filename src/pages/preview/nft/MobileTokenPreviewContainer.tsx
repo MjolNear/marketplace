@@ -9,17 +9,19 @@ import TokenDescription from "../../../components/Preview/Token/Blocks/TokenDesc
 import TokenMarketStatus from "../../../components/Preview/Token/Blocks/TokenMarketStatus";
 import TokenPreviewTitleCollection from "../../../components/Preview/Token/Blocks/TokenPreviewTitleCollection";
 import TokenPreviewOwnerContract from "../../../components/Preview/Token/Blocks/TokenPreviewOwnerContract";
+import {useFetchTokenCollection} from "../../../hooks/collection/useFetchTokenCollection";
 
 const MobileTokenPreviewContainer: React.FC<TokenPreviewProps> = ({
     token,
     contract,
     payouts
 }) => {
+    const collection = useFetchTokenCollection(token.contractId, token.extra)
+
     return (
         <div className="flex flex-col w-full max-w-[600px] px-2 gap-4">
             <TokenPreviewTitleCollection title={token.title}
-                                         contractId={token.contractId}
-                                         collectionMeta={token.collection}
+                                         collection={collection}
             />
             <TokenMedia url={token.media}/>
             <TokenPreviewOwnerContract ownerId={token.ownerId}

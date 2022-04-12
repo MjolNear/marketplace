@@ -33,6 +33,7 @@ export type Collection = {
   bannerImage?: Maybe<Scalars['String']>;
   collectionId: Scalars['String'];
   contractId: Scalars['String'];
+  createdAt: Scalars['BigInt'];
   description: Scalars['String'];
   id: Scalars['ID'];
   image: Scalars['String'];
@@ -331,6 +332,14 @@ export type Collection_Filter = {
   contractId_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   contractId_starts_with?: InputMaybe<Scalars['String']>;
   contractId_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['BigInt']>;
+  createdAt_gt?: InputMaybe<Scalars['BigInt']>;
+  createdAt_gte?: InputMaybe<Scalars['BigInt']>;
+  createdAt_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  createdAt_lt?: InputMaybe<Scalars['BigInt']>;
+  createdAt_lte?: InputMaybe<Scalars['BigInt']>;
+  createdAt_not?: InputMaybe<Scalars['BigInt']>;
+  createdAt_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   description?: InputMaybe<Scalars['String']>;
   description_contains?: InputMaybe<Scalars['String']>;
   description_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -465,6 +474,7 @@ export enum Collection_OrderBy {
   BannerImage = 'bannerImage',
   CollectionId = 'collectionId',
   ContractId = 'contractId',
+  CreatedAt = 'createdAt',
   Description = 'description',
   Id = 'id',
   Image = 'image',
@@ -1004,6 +1014,14 @@ export type CollectionsQueryVariables = Exact<{
 
 export type CollectionsQuery = { __typename?: 'Query', collections: Array<{ __typename?: 'Collection', id: string, ownerId: string, collectionId: string, title: string, description: string, image: string }> };
 
+export type FindCollectionByContractQueryVariables = Exact<{
+  contractId: Scalars['String'];
+  collectionId?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type FindCollectionByContractQuery = { __typename?: 'Query', whitelisted: Array<{ __typename?: 'Collection', id: string, collectionId: string, image: string, title: string }>, mjolnear: Array<{ __typename?: 'Collection', id: string, collectionId: string, image: string, title: string }> };
+
 export type IsCollectionExistsQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
@@ -1151,6 +1169,54 @@ export function useCollectionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type CollectionsQueryHookResult = ReturnType<typeof useCollectionsQuery>;
 export type CollectionsLazyQueryHookResult = ReturnType<typeof useCollectionsLazyQuery>;
 export type CollectionsQueryResult = Apollo.QueryResult<CollectionsQuery, CollectionsQueryVariables>;
+export const FindCollectionByContractDocument = gql`
+    query findCollectionByContract($contractId: String!, $collectionId: String) @api(name: collections) {
+  whitelisted: collections(first: 1, where: {contractId: $contractId}) {
+    id
+    collectionId
+    image
+    title
+  }
+  mjolnear: collections(
+    first: 1
+    where: {contractId: $contractId, collectionId: $collectionId}
+  ) {
+    id
+    collectionId
+    image
+    title
+  }
+}
+    `;
+
+/**
+ * __useFindCollectionByContractQuery__
+ *
+ * To run a query within a React component, call `useFindCollectionByContractQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindCollectionByContractQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFindCollectionByContractQuery({
+ *   variables: {
+ *      contractId: // value for 'contractId'
+ *      collectionId: // value for 'collectionId'
+ *   },
+ * });
+ */
+export function useFindCollectionByContractQuery(baseOptions: Apollo.QueryHookOptions<FindCollectionByContractQuery, FindCollectionByContractQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FindCollectionByContractQuery, FindCollectionByContractQueryVariables>(FindCollectionByContractDocument, options);
+      }
+export function useFindCollectionByContractLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindCollectionByContractQuery, FindCollectionByContractQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FindCollectionByContractQuery, FindCollectionByContractQueryVariables>(FindCollectionByContractDocument, options);
+        }
+export type FindCollectionByContractQueryHookResult = ReturnType<typeof useFindCollectionByContractQuery>;
+export type FindCollectionByContractLazyQueryHookResult = ReturnType<typeof useFindCollectionByContractLazyQuery>;
+export type FindCollectionByContractQueryResult = Apollo.QueryResult<FindCollectionByContractQuery, FindCollectionByContractQueryVariables>;
 export const IsCollectionExistsDocument = gql`
     query isCollectionExists($id: ID!) @api(name: collections) {
   collection(id: $id) {

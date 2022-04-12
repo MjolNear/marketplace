@@ -3,29 +3,30 @@ import {GAS, SM_DEPOSIT, YOCTO_NEAR} from "./constants";
 import {functionCall, marketFunctionCall} from "./enviroment/rpc";
 import BN from "bn.js";
 import {MARKET_CONTRACT_ID} from "./enviroment/contract-names";
-import {ContractId, StringAmount, TokenId} from "../business-logic/types/aliases";
+import {CollectionId, ContractId, Optional, StringAmount, TokenId} from "../business-logic/types/aliases";
 import {Token} from "../business-logic/types/nft";
 
 
 export function giveApprove(
     token: Token,
     stringPrice: StringAmount,
+    collectionMetadata?: Optional<{
+        collectionId: CollectionId,
+        title: string
+    }>
 ) {
     const price = utils.format.parseNearAmount(stringPrice.toString());
 
     const jsonToken = {
-        contract_id: token.contractId,
-        token_id: token.tokenId,
-        owner_id: token.ownerId,
         title: token.title,
         description: token.description,
         copies: token.copies ? (token.copies).toString() : "1",
         media_url: token.media,
         reference_url: token.ipfsReference,
-        collection_metadata: token.collection
+        collection_metadata: collectionMetadata
             ? {
-                collection_id: token.collection.collectionId,
-                collection_name: token.collection.name
+                collection_id: collectionMetadata.collectionId,
+                collection_name: collectionMetadata.title
             }
             :
             null

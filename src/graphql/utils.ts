@@ -16,14 +16,7 @@ export const convertToMarketToken = (
 
     mintedSiteName: token.mintSiteName
         ? token.mintSiteName
-        : getNftMintedSiteInfo(token, token.contractId).mintedSiteName,
-
-    collection: token.collectionId && token.collectionName
-        ? {
-            collectionId: token.collectionId,
-            name: token.collectionName
-        }
-        : null
+        : getNftMintedSiteInfo(token, token.contractId).mintedSiteName
 })
 
 
