@@ -1,28 +1,40 @@
-import {useAppSelector} from "../../../hooks/redux";
-import React from "react";
-import ExploreCollectionList from "../../../components/CollectionList/ExploreCollectionsList";
+import React, {useState} from "react";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
+import useDebounce from "../../../hooks/useDebounce";
 import SearchInput from "../../../components/Filter/search/SearchInput";
+import ExploreSearchCollections from "./ExploreSearchCollections";
+import ExploreFilterCollections from "./ExploreFilterCollections";
+import CollectionListLoader from "../../../components/CollectionList/CollectionListLoader";
 
 const ExploreCollectionsPage = () => {
 
-    const totalCollections = useAppSelector(state => state.explore.collections.total)
+    const [textQueryFilter, setTextQueryFilter] = useState('')
+    const debounceQuery = useDebounce(textQueryFilter, 1000)
 
     return (
         <div className="max-w-screen-2xl mx-auto">
             <BlueShadowContainer>
-                <div className="pb-10 px-4 space-y-8">
+                <div className="flex flex-col pb-10 px-4 space-y-8 items-center">
                     <DarkBlueTitle title="Explore Collections"/>
-                    {/*<div className="flex justify-center">*/}
-                    {/*    <SearchInput placeholder="Search by collection name"/>*/}
-                    {/*</div>*/}
+                    <SearchInput placeholder="Search by Collection name, Owner or Contract"
+                                 searchQueryText={textQueryFilter}
+                                 setSearchQueryText={setTextQueryFilter}
+                    />
                 </div>
             </BlueShadowContainer>
-            <div className="mb-5 font-archivo text-md text-center text-gray-600">
-                Total collections: {totalCollections}
-            </div>
-            <ExploreCollectionList/>
+            {debounceQuery !== textQueryFilter
+                ?
+                <div className="py-5">
+                    <CollectionListLoader/>
+                </div>
+                :
+                debounceQuery
+                    ?
+                    <ExploreSearchCollections searchQuery={debounceQuery}/>
+                    :
+                    <ExploreFilterCollections/>
+            }
         </div>
     )
 };

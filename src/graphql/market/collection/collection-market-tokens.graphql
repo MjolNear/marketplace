@@ -9,14 +9,14 @@ query collectionMarketTokens(
     $priceTo: BigInt!
 ) @api(name: market) {
     marketTokens(
-        first: $limit,
-        skip: $offset,
-        orderBy: $orderBy,
-        orderDirection: $orderDirection,
+        first: $limit
+        skip: $offset
+        orderBy: $orderBy
+        orderDirection: $orderDirection
         where: {
-            contractId: $contractId,
-            collectionId: $collectionId,
-            price_gte: $priceFrom,
+            contractId: $contractId
+            collectionId: $collectionId
+            price_gte: $priceFrom
             price_lte: $priceTo
         }
     ) {

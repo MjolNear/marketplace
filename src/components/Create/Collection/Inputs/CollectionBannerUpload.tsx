@@ -16,6 +16,7 @@ const CollectionBannerUpload = () => {
     return (
         <div>
             <InputLabel label="Banner image"
+                        required={true}
                         description="This image will be used at top of your collection on preview page. 1200 x 300 recommended."
             />
             <UploadImage wrapperClasses="w-full aspect-w-4 aspect-h-1 min-h-[150px] rounded-lg"

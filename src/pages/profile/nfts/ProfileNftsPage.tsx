@@ -1,19 +1,14 @@
 import React, {useCallback, useEffect, useMemo} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
 import {ProfileNftsTab, profileTabsSlice} from "../../../state/profile/nfts/slice";
 import ProfileHistoryFetch from "./ProfileHistoryFetch";
 import ProfileNftsFetch from "./ProfileNftsFetch";
 import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import TabsPanel from "../navbar/TabsPanel";
-import withAuthRedirect from "../../../hoc/withAuthRedirect";
 import ProfileMarketTokens from "./ProfileMarketTokens";
 
-const ProfileNftsPage: React.FC<TAuthProps> = ({
-    accountId,
-    isSignedIn
-}) => {
+const ProfileNftsPage: React.FC = () => {
     const {activeTab, tabs} = useAppSelector(state => state.profile.nfts.tabs)
     const dispatch = useAppDispatch()
 
@@ -25,22 +20,18 @@ const ProfileNftsPage: React.FC<TAuthProps> = ({
         return () => {
             dispatch(profileTabsSlice.actions.reset())
         }
-    }, [accountId, dispatch])
+    }, [dispatch])
 
     const child = useMemo(() => {
         switch (activeTab) {
             case ProfileNftsTab.All:
-                return <ProfileNftsFetch accountId={accountId}
-                                         isSignedIn={isSignedIn}
-                />
+                return <ProfileNftsFetch/>
             case ProfileNftsTab.Listed:
-                return <ProfileMarketTokens accountId={accountId}/>
+                return <ProfileMarketTokens/>
             case ProfileNftsTab.History:
-                return <ProfileHistoryFetch accountId={accountId}
-                                            isSignedIn={isSignedIn}
-                />
+                return <ProfileHistoryFetch/>
         }
-    }, [activeTab, accountId, isSignedIn])
+    }, [activeTab])
 
     return (
         <div className="pb-4 max-w-screen-2xl mx-auto">
@@ -55,4 +46,4 @@ const ProfileNftsPage: React.FC<TAuthProps> = ({
     )
 };
 
-export default withAuthRedirect(withAuthData(ProfileNftsPage));
+export default ProfileNftsPage;

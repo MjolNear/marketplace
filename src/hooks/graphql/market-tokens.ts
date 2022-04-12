@@ -1,5 +1,5 @@
 import {convertToMarketToken, TokenPriceRange, TokenSortOption} from "../../graphql/utils";
-import {useGenericMarketTokensQuery} from "./useGenericMarketTokensQuery";
+import {useGenericListDataQuery} from "./useGenericListDataQuery";
 import {
     AccountMarketTokensQuery,
     AccountMarketTokensQueryVariables,
@@ -16,6 +16,7 @@ import {
 } from "../../graphql/generated/market-graphql";
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../utils/string";
 import {MJOL_CONTRACT_ID} from "../../near/enviroment/contract-names";
+import {GridToken} from "../../business-logic/types/nft";
 
 export type MarketTokens = MarketTokensQuery['marketTokens']
 
@@ -33,7 +34,7 @@ export const useMarketTokens = (
     sort: TokenSortOption,
     priceRange: TokenPriceRange
 ) => {
-    return useGenericMarketTokensQuery<MarketTokensQuery, MarketTokensQueryVariables>(
+    return useGenericListDataQuery<GridToken, MarketTokensQuery, MarketTokensQueryVariables>(
         useMarketTokensQuery, marketTokensResponseMapper, {
             fetchPolicy: "cache-and-network",
             nextFetchPolicy: "cache-and-network",
@@ -56,7 +57,7 @@ export const useCollectionMarketTokens = (
     collectionContract?: string,
     collectionId?: string
 ) => {
-    return useGenericMarketTokensQuery<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>(
+    return useGenericListDataQuery<GridToken, CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>(
         useCollectionMarketTokensQuery, marketTokensResponseMapper, {
             fetchPolicy: "cache-and-network",
             nextFetchPolicy: "cache-and-network",
@@ -78,7 +79,7 @@ export const useMarketTokensTextSearching = (
     text: string,
     limit: number
 ) => {
-    return useGenericMarketTokensQuery<MarketTokensSearchQuery, MarketTokensSearchQueryVariables>(
+    return useGenericListDataQuery<GridToken, MarketTokensSearchQuery, MarketTokensSearchQueryVariables>(
         useMarketTokensSearchQuery, marketTokensResponseMapper, {
             fetchPolicy: "cache-and-network",
             nextFetchPolicy: "cache-and-network",
@@ -98,7 +99,7 @@ export const useAccountMarketTokens = (
     sort: TokenSortOption,
     priceRange: TokenPriceRange
 ) => {
-    return useGenericMarketTokensQuery<AccountMarketTokensQuery, AccountMarketTokensQueryVariables>(
+    return useGenericListDataQuery<GridToken, AccountMarketTokensQuery, AccountMarketTokensQueryVariables>(
         useAccountMarketTokensQuery, profileMarketTokensResponseMapper, {
             fetchPolicy: "cache-and-network",
             nextFetchPolicy: "cache-and-network",

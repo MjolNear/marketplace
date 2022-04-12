@@ -4,7 +4,6 @@ import {GridToken} from "../../business-logic/types/nft";
 import CardsGridContainer from "../Common/Grid/CardsGridContainer";
 import {buildUID} from "../../near/api/utils";
 import EmptyCardList from "./EmptyCardList";
-import {AnimatePresence, motion} from "framer-motion";
 
 interface TGridProps {
     tokens: GridToken[],

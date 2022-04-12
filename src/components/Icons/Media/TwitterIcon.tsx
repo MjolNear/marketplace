@@ -3,10 +3,11 @@ import {IconProps} from "../IconProps";
 import {FaTwitter} from "react-icons/fa";
 
 const TwitterIcon: React.FC<IconProps> = ({
-    size = 20
+    size = 20,
+    fill = "fill-blue-500"
 }) => {
     return (
-        <FaTwitter size={size} className="fill-blue-500"/>
+        <FaTwitter size={size} className={fill}/>
     );
 };
 

@@ -10,11 +10,13 @@ const LinkMediaIcon = React.memo<LinkMediaIconProps>(({
     icon
 }) => {
     return (
-        <div className="cursor-not-allowed inline-flex">
-            <div className="p-3 group rounded-lg">
-                {icon}
-            </div>
-        </div>
+        <a href={link}
+           target="_blank"
+           rel="noreferrer"
+           className="p-3 hover:bg-gray-900"
+        >
+            {icon}
+        </a>
     );
 });
 

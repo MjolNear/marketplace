@@ -1,9 +1,9 @@
 import {CollectionId} from "../../business-logic/types/aliases";
-import {useLoadCollectionByIdQuery} from "../../graphql/generated/collections-graphql";
+import {useIsCollectionExistsQuery} from "../../graphql/generated/collections-graphql";
 
 export const useCheckCollectionIdIsEmpty = (collectionId: CollectionId) => {
 
-    const {data, loading, error} = useLoadCollectionByIdQuery({
+    const {data, loading, error} = useIsCollectionExistsQuery({
         variables: {
             id: collectionId
         }

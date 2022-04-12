@@ -1,37 +1,38 @@
-import React, {useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import {profileCollectionsSlice} from "../../../state/profile/collections/slice";
-import {fetchMyCollections} from "../../../state/profile/collections/thunk";
+import React from 'react';
 import CollectionListLoader from "../../../components/CollectionList/CollectionListLoader";
-import EmptyCollectionList from "../../../components/CollectionList/EmptyCollectionList";
-import CollectionList from "../../../components/CollectionList/CollectionList";
-import {TAuthProps} from "../../../hoc/withAuthData";
+import CollectionsGrid from "../../../components/CollectionList/CollectionsGrid";
+import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
+import EmptyCardList from "../../../components/CardList/EmptyCardList";
+import {useAccountCollections} from "../../../hooks/graphql/collections";
+import withAuthRedirect from "../../../hoc/withAuthRedirect";
 
 
 const ProfileCollectionsFetch: React.FC<TAuthProps> = ({
     accountId
 }) => {
 
-    const {collections, fetching} = useAppSelector(state => state.profile.collections)
-    const dispatch = useAppDispatch()
+    const LIMIT = 12
 
-    useEffect(() => {
-        dispatch(fetchMyCollections(accountId))
-        return () => {
-            dispatch(profileCollectionsSlice.actions.reset())
-        }
-    }, [accountId, dispatch])
+    const {data,loading, hasMore, onLoadMore} = useAccountCollections(LIMIT, accountId)
 
     return (
         <>
-            {fetching
-                ? <CollectionListLoader/>
-                : collections.length === 0
-                    ? <EmptyCollectionList/>
-                    : <CollectionList collections={collections}/>
+            {loading
+                ?
+                <CollectionListLoader/>
+                :
+                data.length === 0
+                    ?
+                    <EmptyCardList mainDescription="You don’t have any collections yet"
+                                   footerDescription="Create the first one"
+                                   footerLinkName="here"
+                                   footerLink="/collections/new"
+                    />
+                    :
+                    <CollectionsGrid collections={data} loading={loading}/>
             }
         </>
     );
 };
 
-export default ProfileCollectionsFetch;
+export default withAuthRedirect(withAuthData(ProfileCollectionsFetch));

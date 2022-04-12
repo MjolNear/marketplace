@@ -2,13 +2,8 @@ import React from 'react';
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
 import ProfileCollectionsFetch from "./ProfileCollectionsFetch";
-import withAuthRedirect from "../../../hoc/withAuthRedirect";
-import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
 
-const ProfileCollectionsPage:React.FC<TAuthProps> = ({
-    accountId,
-    isSignedIn
-}) => {
+const ProfileCollectionsPage:React.FC = () => {
     return (
         <div className="max-w-screen-2xl mx-auto">
             <BlueShadowContainer>
@@ -16,11 +11,9 @@ const ProfileCollectionsPage:React.FC<TAuthProps> = ({
                     <DarkBlueTitle title="My Collections"/>
                 </div>
             </BlueShadowContainer>
-            <ProfileCollectionsFetch accountId={accountId}
-                                     isSignedIn={isSignedIn}
-            />
+            <ProfileCollectionsFetch/>
         </div>
     );
 };
 
-export default withAuthRedirect(withAuthData(ProfileCollectionsPage));
+export default ProfileCollectionsPage;

@@ -1,27 +1,17 @@
 import React from 'react'
-import {
-    configureSenderWallet,
-    removeSenderLoginRes,
-    saveSenderLoginRes,
-    SENDER_WALLET_SIGNED_IN_STATE_KEY
-} from "./near/wallet/sender-wallet";
-import {WalletContext} from './near/wallet/wallet';
 import {HashRouter} from "react-router-dom";
 import {Route, Routes} from "react-router";
 import LandingPage from "./pages/landing/LandingPage";
 import ExploreNftsPage from "./pages/explore/nft/ExploreNftsPage";
 import ExploreCollectionsPage from "./pages/explore/collection/ExploreCollectionsPage";
-import PreviewCollectionPage from "./pages/preview/collection/PreviewCollectionPage";
-import CreateNftPage from "./pages/create/nft/CreateNftPage";
-import CreateCollectionPage from "./pages/create/collection/CreateCollectionPage";
 import ProfileNftsPage from "./pages/profile/nfts/ProfileNftsPage";
 import ProfileCollectionsPage from "./pages/profile/collections/ProfileCollectionsPage";
 import NotFound404Page from "./pages/NotFound404";
 import PreviewNftMatchRouterParams from "./pages/preview/nft/PreviewNftMatchRouterParams";
 import PageLayout from "./components/Layout/PageLayout";
 import PreviewCollectionMatchRouterParams from "./pages/preview/collection/PreviewCollectionMatchRouterParams";
-import MintTokenPage from "./pages/create/nft/MintTokenPage";
-import MintCollectionPage from "./pages/create/collection/MintCollectionPage";
+import MintTokenPage from "./pages/create/MintTokenPage";
+import MintCollectionPage from "./pages/create/MintCollectionPage";
 
 
 export default function App() {
@@ -104,7 +94,7 @@ export default function App() {
                     <Route path="collections">
                         <Route index
                                element={<ExploreCollectionsPage/>}/>
-                        <Route path=":contractId/:collectionId/:filterTab"
+                        <Route path=":collectionId/:filterTab"
                                element={<PreviewCollectionMatchRouterParams/>}/>
                         <Route path="new" element={<MintCollectionPage/>}/>
                     </Route>

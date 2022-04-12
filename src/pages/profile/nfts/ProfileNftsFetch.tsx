@@ -6,10 +6,11 @@ import CardGrid from "../../../components/CardList/CardGrid";
 import CardListLoader from "../../../components/CardList/CardListLoader";
 import EmptyCardList from "../../../components/CardList/EmptyCardList";
 import {profileTokensSlice} from "../../../state/profile/nfts/tokens/slice";
-import {TAuthProps} from "../../../hoc/withAuthData";
+import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
 import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
 import {WhitelistedContract} from "../../../business-logic/whitelisted.contract";
 import {ContractVerificationStatus} from "../../../business-logic/types/contract";
+import withAuthRedirect from "../../../hoc/withAuthRedirect";
 
 
 const ProfileNftsFetch: React.FC<TAuthProps> = ({accountId}) => {
@@ -67,4 +68,4 @@ const ProfileNftsFetch: React.FC<TAuthProps> = ({accountId}) => {
     );
 };
 
-export default ProfileNftsFetch;
+export default withAuthRedirect(withAuthData(ProfileNftsFetch));

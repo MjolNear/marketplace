@@ -1,0 +1,17 @@
+query collection($id: ID!) @api(name: collections) {
+    collection(id: $id) {
+        id
+        ownerId
+        contractId
+        title
+        description
+        image
+        bannerImage
+        media {
+            website
+            telegram
+            twitter
+            discord
+        }
+    }
+}

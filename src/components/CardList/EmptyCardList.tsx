@@ -75,7 +75,7 @@ const EmptyCardList = React.memo<PropTypes>(({
                     <div className="text-gray-700">
                         {footerDescription}
                     </div>
-                    <Link to={footerLink} className="text-blue-600 font-extrabold">
+                    <Link to={footerLink} className="text-blue-500 font-extrabold hover:text-blue-600">
                         {footerLinkName}
                     </Link>
                 </div>

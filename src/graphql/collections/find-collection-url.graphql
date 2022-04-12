@@ -1,4 +1,6 @@
-query loadCollectionById($id: ID!) @api(name: collections){
+query isCollectionExists(
+    $id: ID!
+) @api(name: collections) {
     collection(id: $id) {
         id
     }

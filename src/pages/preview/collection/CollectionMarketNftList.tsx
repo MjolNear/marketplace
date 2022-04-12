@@ -19,17 +19,17 @@ const CollectionMarketNftList: React.FC<CollectionMarketNftListProps> = ({
 }) => {
     const LIMIT = 12
     const {
-        tokens, loading, hasMore, onLoadMore
+        data, loading, hasMore, onLoadMore
     } = useCollectionMarketTokens(LIMIT, tokenSortOptions[sort], priceRange, collectionContract, collectionId)
 
-    console.log(`loading = ${loading}, hasMore = ${hasMore}, length = ${tokens.length}`)
+    console.log(`loading = ${loading}, hasMore = ${hasMore}, length = ${data.length}`)
 
     if (!collectionContract) {
         return <NotFound404Page/>
     }
 
     return (
-        <PaginationCardList tokens={tokens}
+        <PaginationCardList tokens={data}
                             loading={loading}
                             hasMore={hasMore}
                             isCollectionNFTs={true}

@@ -1,13 +1,11 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {combineReducers} from "redux";
 import {previewReducer} from "./preview/reducer";
-import {exploreReducer} from "./explore/reducer";
 import {profileReducer} from "./profile/reducer";
 
 export const rootReducer = combineReducers({
     profile: profileReducer,
     preview: previewReducer,
-    explore: exploreReducer,
 })
 
 export const setupStore = () => {
