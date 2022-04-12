@@ -38,6 +38,8 @@ export type AccountMarketTokensArgs = {
 };
 
 export type Account_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
   earned?: InputMaybe<Scalars['BigDecimal']>;
   earned_gt?: InputMaybe<Scalars['BigDecimal']>;
   earned_gte?: InputMaybe<Scalars['BigDecimal']>;
@@ -93,7 +95,7 @@ export type Activity = {
   __typename?: 'Activity';
   blockHash: Scalars['String'];
   buyer?: Maybe<Account>;
-  collectionId?: Maybe<Scalars['String']>;
+  collection?: Maybe<Collection>;
   contractId: Scalars['String'];
   eventType: ActivityEventType;
   id: Scalars['ID'];
@@ -116,6 +118,8 @@ export enum ActivityEventType {
 }
 
 export type Activity_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
   blockHash?: InputMaybe<Scalars['String']>;
   blockHash_contains?: InputMaybe<Scalars['String']>;
   blockHash_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -156,26 +160,26 @@ export type Activity_Filter = {
   buyer_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   buyer_starts_with?: InputMaybe<Scalars['String']>;
   buyer_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  collectionId?: InputMaybe<Scalars['String']>;
-  collectionId_contains?: InputMaybe<Scalars['String']>;
-  collectionId_contains_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_ends_with?: InputMaybe<Scalars['String']>;
-  collectionId_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_gt?: InputMaybe<Scalars['String']>;
-  collectionId_gte?: InputMaybe<Scalars['String']>;
-  collectionId_in?: InputMaybe<Array<Scalars['String']>>;
-  collectionId_lt?: InputMaybe<Scalars['String']>;
-  collectionId_lte?: InputMaybe<Scalars['String']>;
-  collectionId_not?: InputMaybe<Scalars['String']>;
-  collectionId_not_contains?: InputMaybe<Scalars['String']>;
-  collectionId_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_not_ends_with?: InputMaybe<Scalars['String']>;
-  collectionId_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_not_in?: InputMaybe<Array<Scalars['String']>>;
-  collectionId_not_starts_with?: InputMaybe<Scalars['String']>;
-  collectionId_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_starts_with?: InputMaybe<Scalars['String']>;
-  collectionId_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collection?: InputMaybe<Scalars['String']>;
+  collection_contains?: InputMaybe<Scalars['String']>;
+  collection_contains_nocase?: InputMaybe<Scalars['String']>;
+  collection_ends_with?: InputMaybe<Scalars['String']>;
+  collection_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collection_gt?: InputMaybe<Scalars['String']>;
+  collection_gte?: InputMaybe<Scalars['String']>;
+  collection_in?: InputMaybe<Array<Scalars['String']>>;
+  collection_lt?: InputMaybe<Scalars['String']>;
+  collection_lte?: InputMaybe<Scalars['String']>;
+  collection_not?: InputMaybe<Scalars['String']>;
+  collection_not_contains?: InputMaybe<Scalars['String']>;
+  collection_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  collection_not_ends_with?: InputMaybe<Scalars['String']>;
+  collection_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collection_not_in?: InputMaybe<Array<Scalars['String']>>;
+  collection_not_starts_with?: InputMaybe<Scalars['String']>;
+  collection_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collection_starts_with?: InputMaybe<Scalars['String']>;
+  collection_starts_with_nocase?: InputMaybe<Scalars['String']>;
   contractId?: InputMaybe<Scalars['String']>;
   contractId_contains?: InputMaybe<Scalars['String']>;
   contractId_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -289,7 +293,7 @@ export type Activity_Filter = {
 export enum Activity_OrderBy {
   BlockHash = 'blockHash',
   Buyer = 'buyer',
-  CollectionId = 'collectionId',
+  Collection = 'collection',
   ContractId = 'contractId',
   EventType = 'eventType',
   Id = 'id',
@@ -300,43 +304,69 @@ export enum Activity_OrderBy {
   TxHash = 'txHash'
 }
 
-/** The block at which the query should be executed. */
+export type BlockChangedFilter = {
+  number_gte: Scalars['Int'];
+};
+
 export type Block_Height = {
-  /** Value containing a block hash */
   hash?: InputMaybe<Scalars['Bytes']>;
-  /** Value containing a block number */
   number?: InputMaybe<Scalars['Int']>;
-  /**
-   * Value containing the minimum block number.
-   * In the case of `number_gte`, the query will be executed on the latest block only if
-   * the subgraph has progressed to or past the minimum block number.
-   * Defaults to the latest block when omitted.
-   *
-   */
   number_gte?: InputMaybe<Scalars['Int']>;
 };
 
-export type DailyCollectionStat = {
-  __typename?: 'DailyCollectionStat';
-  avg: Scalars['BigDecimal'];
-  collectionId?: Maybe<Scalars['String']>;
+export type Collection = {
+  __typename?: 'Collection';
+  activities: Array<Activity>;
+  average: Scalars['BigDecimal'];
+  collectionId: Scalars['String'];
+  collectionName: Scalars['String'];
   contractId: Scalars['String'];
-  floor: Scalars['BigInt'];
+  dailyStats: Array<DailyCollectionStat>;
   id: Scalars['ID'];
+  listed: Scalars['BigInt'];
+  marketTokens: Array<MarketToken>;
   sales: Scalars['BigInt'];
-  timestamp: Scalars['BigInt'];
   volume: Scalars['BigInt'];
 };
 
-export type DailyCollectionStat_Filter = {
-  avg?: InputMaybe<Scalars['BigDecimal']>;
-  avg_gt?: InputMaybe<Scalars['BigDecimal']>;
-  avg_gte?: InputMaybe<Scalars['BigDecimal']>;
-  avg_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  avg_lt?: InputMaybe<Scalars['BigDecimal']>;
-  avg_lte?: InputMaybe<Scalars['BigDecimal']>;
-  avg_not?: InputMaybe<Scalars['BigDecimal']>;
-  avg_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+
+export type CollectionActivitiesArgs = {
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Activity_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<Activity_Filter>;
+};
+
+
+export type CollectionDailyStatsArgs = {
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<DailyCollectionStat_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<DailyCollectionStat_Filter>;
+};
+
+
+export type CollectionMarketTokensArgs = {
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<MarketToken_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<MarketToken_Filter>;
+};
+
+export type Collection_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  average?: InputMaybe<Scalars['BigDecimal']>;
+  average_gt?: InputMaybe<Scalars['BigDecimal']>;
+  average_gte?: InputMaybe<Scalars['BigDecimal']>;
+  average_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  average_lt?: InputMaybe<Scalars['BigDecimal']>;
+  average_lte?: InputMaybe<Scalars['BigDecimal']>;
+  average_not?: InputMaybe<Scalars['BigDecimal']>;
+  average_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
   collectionId?: InputMaybe<Scalars['String']>;
   collectionId_contains?: InputMaybe<Scalars['String']>;
   collectionId_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -357,6 +387,26 @@ export type DailyCollectionStat_Filter = {
   collectionId_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   collectionId_starts_with?: InputMaybe<Scalars['String']>;
   collectionId_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionName?: InputMaybe<Scalars['String']>;
+  collectionName_contains?: InputMaybe<Scalars['String']>;
+  collectionName_contains_nocase?: InputMaybe<Scalars['String']>;
+  collectionName_ends_with?: InputMaybe<Scalars['String']>;
+  collectionName_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionName_gt?: InputMaybe<Scalars['String']>;
+  collectionName_gte?: InputMaybe<Scalars['String']>;
+  collectionName_in?: InputMaybe<Array<Scalars['String']>>;
+  collectionName_lt?: InputMaybe<Scalars['String']>;
+  collectionName_lte?: InputMaybe<Scalars['String']>;
+  collectionName_not?: InputMaybe<Scalars['String']>;
+  collectionName_not_contains?: InputMaybe<Scalars['String']>;
+  collectionName_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  collectionName_not_ends_with?: InputMaybe<Scalars['String']>;
+  collectionName_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionName_not_in?: InputMaybe<Array<Scalars['String']>>;
+  collectionName_not_starts_with?: InputMaybe<Scalars['String']>;
+  collectionName_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collectionName_starts_with?: InputMaybe<Scalars['String']>;
+  collectionName_starts_with_nocase?: InputMaybe<Scalars['String']>;
   contractId?: InputMaybe<Scalars['String']>;
   contractId_contains?: InputMaybe<Scalars['String']>;
   contractId_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -377,6 +427,96 @@ export type DailyCollectionStat_Filter = {
   contractId_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   contractId_starts_with?: InputMaybe<Scalars['String']>;
   contractId_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  id_gt?: InputMaybe<Scalars['ID']>;
+  id_gte?: InputMaybe<Scalars['ID']>;
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  id_lt?: InputMaybe<Scalars['ID']>;
+  id_lte?: InputMaybe<Scalars['ID']>;
+  id_not?: InputMaybe<Scalars['ID']>;
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  listed?: InputMaybe<Scalars['BigInt']>;
+  listed_gt?: InputMaybe<Scalars['BigInt']>;
+  listed_gte?: InputMaybe<Scalars['BigInt']>;
+  listed_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  listed_lt?: InputMaybe<Scalars['BigInt']>;
+  listed_lte?: InputMaybe<Scalars['BigInt']>;
+  listed_not?: InputMaybe<Scalars['BigInt']>;
+  listed_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  sales?: InputMaybe<Scalars['BigInt']>;
+  sales_gt?: InputMaybe<Scalars['BigInt']>;
+  sales_gte?: InputMaybe<Scalars['BigInt']>;
+  sales_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  sales_lt?: InputMaybe<Scalars['BigInt']>;
+  sales_lte?: InputMaybe<Scalars['BigInt']>;
+  sales_not?: InputMaybe<Scalars['BigInt']>;
+  sales_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  volume?: InputMaybe<Scalars['BigInt']>;
+  volume_gt?: InputMaybe<Scalars['BigInt']>;
+  volume_gte?: InputMaybe<Scalars['BigInt']>;
+  volume_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  volume_lt?: InputMaybe<Scalars['BigInt']>;
+  volume_lte?: InputMaybe<Scalars['BigInt']>;
+  volume_not?: InputMaybe<Scalars['BigInt']>;
+  volume_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+};
+
+export enum Collection_OrderBy {
+  Activities = 'activities',
+  Average = 'average',
+  CollectionId = 'collectionId',
+  CollectionName = 'collectionName',
+  ContractId = 'contractId',
+  DailyStats = 'dailyStats',
+  Id = 'id',
+  Listed = 'listed',
+  MarketTokens = 'marketTokens',
+  Sales = 'sales',
+  Volume = 'volume'
+}
+
+export type DailyCollectionStat = {
+  __typename?: 'DailyCollectionStat';
+  average: Scalars['BigDecimal'];
+  collection: Collection;
+  floor: Scalars['BigInt'];
+  id: Scalars['ID'];
+  sales: Scalars['BigInt'];
+  timestamp: Scalars['BigInt'];
+  volume: Scalars['BigInt'];
+};
+
+export type DailyCollectionStat_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  average?: InputMaybe<Scalars['BigDecimal']>;
+  average_gt?: InputMaybe<Scalars['BigDecimal']>;
+  average_gte?: InputMaybe<Scalars['BigDecimal']>;
+  average_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  average_lt?: InputMaybe<Scalars['BigDecimal']>;
+  average_lte?: InputMaybe<Scalars['BigDecimal']>;
+  average_not?: InputMaybe<Scalars['BigDecimal']>;
+  average_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  collection?: InputMaybe<Scalars['String']>;
+  collection_contains?: InputMaybe<Scalars['String']>;
+  collection_contains_nocase?: InputMaybe<Scalars['String']>;
+  collection_ends_with?: InputMaybe<Scalars['String']>;
+  collection_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collection_gt?: InputMaybe<Scalars['String']>;
+  collection_gte?: InputMaybe<Scalars['String']>;
+  collection_in?: InputMaybe<Array<Scalars['String']>>;
+  collection_lt?: InputMaybe<Scalars['String']>;
+  collection_lte?: InputMaybe<Scalars['String']>;
+  collection_not?: InputMaybe<Scalars['String']>;
+  collection_not_contains?: InputMaybe<Scalars['String']>;
+  collection_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  collection_not_ends_with?: InputMaybe<Scalars['String']>;
+  collection_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collection_not_in?: InputMaybe<Array<Scalars['String']>>;
+  collection_not_starts_with?: InputMaybe<Scalars['String']>;
+  collection_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collection_starts_with?: InputMaybe<Scalars['String']>;
+  collection_starts_with_nocase?: InputMaybe<Scalars['String']>;
   floor?: InputMaybe<Scalars['BigInt']>;
   floor_gt?: InputMaybe<Scalars['BigInt']>;
   floor_gte?: InputMaybe<Scalars['BigInt']>;
@@ -420,9 +560,8 @@ export type DailyCollectionStat_Filter = {
 };
 
 export enum DailyCollectionStat_OrderBy {
-  Avg = 'avg',
-  CollectionId = 'collectionId',
-  ContractId = 'contractId',
+  Average = 'average',
+  Collection = 'collection',
   Floor = 'floor',
   Id = 'id',
   Sales = 'sales',
@@ -432,6 +571,7 @@ export enum DailyCollectionStat_OrderBy {
 
 export type DailyMarketStat = {
   __typename?: 'DailyMarketStat';
+  average: Scalars['BigDecimal'];
   id: Scalars['ID'];
   sales: Scalars['BigInt'];
   timestamp: Scalars['BigInt'];
@@ -439,6 +579,16 @@ export type DailyMarketStat = {
 };
 
 export type DailyMarketStat_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  average?: InputMaybe<Scalars['BigDecimal']>;
+  average_gt?: InputMaybe<Scalars['BigDecimal']>;
+  average_gte?: InputMaybe<Scalars['BigDecimal']>;
+  average_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  average_lt?: InputMaybe<Scalars['BigDecimal']>;
+  average_lte?: InputMaybe<Scalars['BigDecimal']>;
+  average_not?: InputMaybe<Scalars['BigDecimal']>;
+  average_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
   id?: InputMaybe<Scalars['ID']>;
   id_gt?: InputMaybe<Scalars['ID']>;
   id_gte?: InputMaybe<Scalars['ID']>;
@@ -474,6 +624,7 @@ export type DailyMarketStat_Filter = {
 };
 
 export enum DailyMarketStat_OrderBy {
+  Average = 'average',
   Id = 'id',
   Sales = 'sales',
   Timestamp = 'timestamp',
@@ -482,7 +633,7 @@ export enum DailyMarketStat_OrderBy {
 
 export type MarketToken = {
   __typename?: 'MarketToken';
-  collectionId?: Maybe<Scalars['String']>;
+  collection?: Maybe<Collection>;
   collectionName?: Maybe<Scalars['String']>;
   contractId: Scalars['String'];
   copies?: Maybe<Scalars['BigInt']>;
@@ -500,26 +651,9 @@ export type MarketToken = {
 };
 
 export type MarketToken_Filter = {
-  collectionId?: InputMaybe<Scalars['String']>;
-  collectionId_contains?: InputMaybe<Scalars['String']>;
-  collectionId_contains_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_ends_with?: InputMaybe<Scalars['String']>;
-  collectionId_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_gt?: InputMaybe<Scalars['String']>;
-  collectionId_gte?: InputMaybe<Scalars['String']>;
-  collectionId_in?: InputMaybe<Array<Scalars['String']>>;
-  collectionId_lt?: InputMaybe<Scalars['String']>;
-  collectionId_lte?: InputMaybe<Scalars['String']>;
-  collectionId_not?: InputMaybe<Scalars['String']>;
-  collectionId_not_contains?: InputMaybe<Scalars['String']>;
-  collectionId_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_not_ends_with?: InputMaybe<Scalars['String']>;
-  collectionId_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_not_in?: InputMaybe<Array<Scalars['String']>>;
-  collectionId_not_starts_with?: InputMaybe<Scalars['String']>;
-  collectionId_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_starts_with?: InputMaybe<Scalars['String']>;
-  collectionId_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  collection?: InputMaybe<Scalars['String']>;
   collectionName?: InputMaybe<Scalars['String']>;
   collectionName_contains?: InputMaybe<Scalars['String']>;
   collectionName_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -540,6 +674,25 @@ export type MarketToken_Filter = {
   collectionName_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   collectionName_starts_with?: InputMaybe<Scalars['String']>;
   collectionName_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collection_contains?: InputMaybe<Scalars['String']>;
+  collection_contains_nocase?: InputMaybe<Scalars['String']>;
+  collection_ends_with?: InputMaybe<Scalars['String']>;
+  collection_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collection_gt?: InputMaybe<Scalars['String']>;
+  collection_gte?: InputMaybe<Scalars['String']>;
+  collection_in?: InputMaybe<Array<Scalars['String']>>;
+  collection_lt?: InputMaybe<Scalars['String']>;
+  collection_lte?: InputMaybe<Scalars['String']>;
+  collection_not?: InputMaybe<Scalars['String']>;
+  collection_not_contains?: InputMaybe<Scalars['String']>;
+  collection_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  collection_not_ends_with?: InputMaybe<Scalars['String']>;
+  collection_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collection_not_in?: InputMaybe<Array<Scalars['String']>>;
+  collection_not_starts_with?: InputMaybe<Scalars['String']>;
+  collection_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collection_starts_with?: InputMaybe<Scalars['String']>;
+  collection_starts_with_nocase?: InputMaybe<Scalars['String']>;
   contractId?: InputMaybe<Scalars['String']>;
   contractId_contains?: InputMaybe<Scalars['String']>;
   contractId_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -755,7 +908,7 @@ export type MarketToken_Filter = {
 };
 
 export enum MarketToken_OrderBy {
-  CollectionId = 'collectionId',
+  Collection = 'collection',
   CollectionName = 'collectionName',
   ContractId = 'contractId',
   Copies = 'copies',
@@ -788,6 +941,8 @@ export type Query = {
   activities: Array<Activity>;
   activity?: Maybe<Activity>;
   activitySearch: Array<Activity>;
+  collection?: Maybe<Collection>;
+  collections: Array<Collection>;
   dailyCollectionStat?: Maybe<DailyCollectionStat>;
   dailyCollectionStats: Array<DailyCollectionStat>;
   dailyMarketStat?: Maybe<DailyMarketStat>;
@@ -797,8 +952,6 @@ export type Query = {
   marketTokens: Array<MarketToken>;
   savedToken?: Maybe<SavedToken>;
   savedTokens: Array<SavedToken>;
-  totalCollectionStat?: Maybe<TotalCollectionStat>;
-  totalCollectionStats: Array<TotalCollectionStat>;
   totalMarketStat?: Maybe<TotalMarketStat>;
   totalMarketStats: Array<TotalMarketStat>;
 };
@@ -860,6 +1013,24 @@ export type QueryActivitySearchArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   subgraphError?: _SubgraphErrorPolicy_;
   text: Scalars['String'];
+};
+
+
+export type QueryCollectionArgs = {
+  block?: InputMaybe<Block_Height>;
+  id: Scalars['ID'];
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryCollectionsArgs = {
+  block?: InputMaybe<Block_Height>;
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Collection_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']>;
+  subgraphError?: _SubgraphErrorPolicy_;
+  where?: InputMaybe<Collection_Filter>;
 };
 
 
@@ -944,24 +1115,6 @@ export type QuerySavedTokensArgs = {
 };
 
 
-export type QueryTotalCollectionStatArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QueryTotalCollectionStatsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<TotalCollectionStat_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<TotalCollectionStat_Filter>;
-};
-
-
 export type QueryTotalMarketStatArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
@@ -981,7 +1134,7 @@ export type QueryTotalMarketStatsArgs = {
 
 export type SavedToken = {
   __typename?: 'SavedToken';
-  collectionId?: Maybe<Scalars['String']>;
+  collection?: Maybe<Collection>;
   collectionName?: Maybe<Scalars['String']>;
   contractId: Scalars['String'];
   copies?: Maybe<Scalars['BigInt']>;
@@ -996,26 +1149,9 @@ export type SavedToken = {
 };
 
 export type SavedToken_Filter = {
-  collectionId?: InputMaybe<Scalars['String']>;
-  collectionId_contains?: InputMaybe<Scalars['String']>;
-  collectionId_contains_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_ends_with?: InputMaybe<Scalars['String']>;
-  collectionId_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_gt?: InputMaybe<Scalars['String']>;
-  collectionId_gte?: InputMaybe<Scalars['String']>;
-  collectionId_in?: InputMaybe<Array<Scalars['String']>>;
-  collectionId_lt?: InputMaybe<Scalars['String']>;
-  collectionId_lte?: InputMaybe<Scalars['String']>;
-  collectionId_not?: InputMaybe<Scalars['String']>;
-  collectionId_not_contains?: InputMaybe<Scalars['String']>;
-  collectionId_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_not_ends_with?: InputMaybe<Scalars['String']>;
-  collectionId_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_not_in?: InputMaybe<Array<Scalars['String']>>;
-  collectionId_not_starts_with?: InputMaybe<Scalars['String']>;
-  collectionId_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_starts_with?: InputMaybe<Scalars['String']>;
-  collectionId_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  collection?: InputMaybe<Scalars['String']>;
   collectionName?: InputMaybe<Scalars['String']>;
   collectionName_contains?: InputMaybe<Scalars['String']>;
   collectionName_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -1036,6 +1172,25 @@ export type SavedToken_Filter = {
   collectionName_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   collectionName_starts_with?: InputMaybe<Scalars['String']>;
   collectionName_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collection_contains?: InputMaybe<Scalars['String']>;
+  collection_contains_nocase?: InputMaybe<Scalars['String']>;
+  collection_ends_with?: InputMaybe<Scalars['String']>;
+  collection_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collection_gt?: InputMaybe<Scalars['String']>;
+  collection_gte?: InputMaybe<Scalars['String']>;
+  collection_in?: InputMaybe<Array<Scalars['String']>>;
+  collection_lt?: InputMaybe<Scalars['String']>;
+  collection_lte?: InputMaybe<Scalars['String']>;
+  collection_not?: InputMaybe<Scalars['String']>;
+  collection_not_contains?: InputMaybe<Scalars['String']>;
+  collection_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  collection_not_ends_with?: InputMaybe<Scalars['String']>;
+  collection_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  collection_not_in?: InputMaybe<Array<Scalars['String']>>;
+  collection_not_starts_with?: InputMaybe<Scalars['String']>;
+  collection_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  collection_starts_with?: InputMaybe<Scalars['String']>;
+  collection_starts_with_nocase?: InputMaybe<Scalars['String']>;
   contractId?: InputMaybe<Scalars['String']>;
   contractId_contains?: InputMaybe<Scalars['String']>;
   contractId_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -1215,7 +1370,7 @@ export type SavedToken_Filter = {
 };
 
 export enum SavedToken_OrderBy {
-  CollectionId = 'collectionId',
+  Collection = 'collection',
   CollectionName = 'collectionName',
   ContractId = 'contractId',
   Copies = 'copies',
@@ -1237,6 +1392,8 @@ export type Subscription = {
   accounts: Array<Account>;
   activities: Array<Activity>;
   activity?: Maybe<Activity>;
+  collection?: Maybe<Collection>;
+  collections: Array<Collection>;
   dailyCollectionStat?: Maybe<DailyCollectionStat>;
   dailyCollectionStats: Array<DailyCollectionStat>;
   dailyMarketStat?: Maybe<DailyMarketStat>;
@@ -1245,8 +1402,6 @@ export type Subscription = {
   marketTokens: Array<MarketToken>;
   savedToken?: Maybe<SavedToken>;
   savedTokens: Array<SavedToken>;
-  totalCollectionStat?: Maybe<TotalCollectionStat>;
-  totalCollectionStats: Array<TotalCollectionStat>;
   totalMarketStat?: Maybe<TotalMarketStat>;
   totalMarketStats: Array<TotalMarketStat>;
 };
@@ -1290,6 +1445,24 @@ export type SubscriptionActivityArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionCollectionArgs = {
+  block?: InputMaybe<Block_Height>;
+  id: Scalars['ID'];
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionCollectionsArgs = {
+  block?: InputMaybe<Block_Height>;
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Collection_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']>;
+  subgraphError?: _SubgraphErrorPolicy_;
+  where?: InputMaybe<Collection_Filter>;
 };
 
 
@@ -1365,24 +1538,6 @@ export type SubscriptionSavedTokensArgs = {
 };
 
 
-export type SubscriptionTotalCollectionStatArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionTotalCollectionStatsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<TotalCollectionStat_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<TotalCollectionStat_Filter>;
-};
-
-
 export type SubscriptionTotalMarketStatArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
@@ -1400,108 +1555,25 @@ export type SubscriptionTotalMarketStatsArgs = {
   where?: InputMaybe<TotalMarketStat_Filter>;
 };
 
-export type TotalCollectionStat = {
-  __typename?: 'TotalCollectionStat';
-  avg: Scalars['BigDecimal'];
-  collectionId?: Maybe<Scalars['String']>;
-  contractId: Scalars['String'];
-  id: Scalars['ID'];
-  sales: Scalars['BigInt'];
-  volume: Scalars['BigInt'];
-};
-
-export type TotalCollectionStat_Filter = {
-  avg?: InputMaybe<Scalars['BigDecimal']>;
-  avg_gt?: InputMaybe<Scalars['BigDecimal']>;
-  avg_gte?: InputMaybe<Scalars['BigDecimal']>;
-  avg_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  avg_lt?: InputMaybe<Scalars['BigDecimal']>;
-  avg_lte?: InputMaybe<Scalars['BigDecimal']>;
-  avg_not?: InputMaybe<Scalars['BigDecimal']>;
-  avg_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  collectionId?: InputMaybe<Scalars['String']>;
-  collectionId_contains?: InputMaybe<Scalars['String']>;
-  collectionId_contains_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_ends_with?: InputMaybe<Scalars['String']>;
-  collectionId_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_gt?: InputMaybe<Scalars['String']>;
-  collectionId_gte?: InputMaybe<Scalars['String']>;
-  collectionId_in?: InputMaybe<Array<Scalars['String']>>;
-  collectionId_lt?: InputMaybe<Scalars['String']>;
-  collectionId_lte?: InputMaybe<Scalars['String']>;
-  collectionId_not?: InputMaybe<Scalars['String']>;
-  collectionId_not_contains?: InputMaybe<Scalars['String']>;
-  collectionId_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_not_ends_with?: InputMaybe<Scalars['String']>;
-  collectionId_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_not_in?: InputMaybe<Array<Scalars['String']>>;
-  collectionId_not_starts_with?: InputMaybe<Scalars['String']>;
-  collectionId_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  collectionId_starts_with?: InputMaybe<Scalars['String']>;
-  collectionId_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  contractId?: InputMaybe<Scalars['String']>;
-  contractId_contains?: InputMaybe<Scalars['String']>;
-  contractId_contains_nocase?: InputMaybe<Scalars['String']>;
-  contractId_ends_with?: InputMaybe<Scalars['String']>;
-  contractId_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  contractId_gt?: InputMaybe<Scalars['String']>;
-  contractId_gte?: InputMaybe<Scalars['String']>;
-  contractId_in?: InputMaybe<Array<Scalars['String']>>;
-  contractId_lt?: InputMaybe<Scalars['String']>;
-  contractId_lte?: InputMaybe<Scalars['String']>;
-  contractId_not?: InputMaybe<Scalars['String']>;
-  contractId_not_contains?: InputMaybe<Scalars['String']>;
-  contractId_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  contractId_not_ends_with?: InputMaybe<Scalars['String']>;
-  contractId_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  contractId_not_in?: InputMaybe<Array<Scalars['String']>>;
-  contractId_not_starts_with?: InputMaybe<Scalars['String']>;
-  contractId_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  contractId_starts_with?: InputMaybe<Scalars['String']>;
-  contractId_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  sales?: InputMaybe<Scalars['BigInt']>;
-  sales_gt?: InputMaybe<Scalars['BigInt']>;
-  sales_gte?: InputMaybe<Scalars['BigInt']>;
-  sales_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  sales_lt?: InputMaybe<Scalars['BigInt']>;
-  sales_lte?: InputMaybe<Scalars['BigInt']>;
-  sales_not?: InputMaybe<Scalars['BigInt']>;
-  sales_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  volume?: InputMaybe<Scalars['BigInt']>;
-  volume_gt?: InputMaybe<Scalars['BigInt']>;
-  volume_gte?: InputMaybe<Scalars['BigInt']>;
-  volume_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  volume_lt?: InputMaybe<Scalars['BigInt']>;
-  volume_lte?: InputMaybe<Scalars['BigInt']>;
-  volume_not?: InputMaybe<Scalars['BigInt']>;
-  volume_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-};
-
-export enum TotalCollectionStat_OrderBy {
-  Avg = 'avg',
-  CollectionId = 'collectionId',
-  ContractId = 'contractId',
-  Id = 'id',
-  Sales = 'sales',
-  Volume = 'volume'
-}
-
 export type TotalMarketStat = {
   __typename?: 'TotalMarketStat';
+  average: Scalars['BigDecimal'];
   id: Scalars['ID'];
   sales: Scalars['BigInt'];
   volume: Scalars['BigInt'];
 };
 
 export type TotalMarketStat_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  average?: InputMaybe<Scalars['BigDecimal']>;
+  average_gt?: InputMaybe<Scalars['BigDecimal']>;
+  average_gte?: InputMaybe<Scalars['BigDecimal']>;
+  average_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  average_lt?: InputMaybe<Scalars['BigDecimal']>;
+  average_lte?: InputMaybe<Scalars['BigDecimal']>;
+  average_not?: InputMaybe<Scalars['BigDecimal']>;
+  average_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
   id?: InputMaybe<Scalars['ID']>;
   id_gt?: InputMaybe<Scalars['ID']>;
   id_gte?: InputMaybe<Scalars['ID']>;
@@ -1529,6 +1601,7 @@ export type TotalMarketStat_Filter = {
 };
 
 export enum TotalMarketStat_OrderBy {
+  Average = 'average',
   Id = 'id',
   Sales = 'sales',
   Volume = 'volume'
@@ -1567,8 +1640,7 @@ export enum _SubgraphErrorPolicy_ {
 }
 
 export type CollectionMarketTokensQueryVariables = Exact<{
-  contractId: Scalars['String'];
-  collectionId?: InputMaybe<Scalars['String']>;
+  id: Scalars['String'];
   limit: Scalars['Int'];
   offset: Scalars['Int'];
   orderBy: MarketToken_OrderBy;
@@ -1578,16 +1650,15 @@ export type CollectionMarketTokensQueryVariables = Exact<{
 }>;
 
 
-export type CollectionMarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+export type CollectionMarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
 
 export type CollectionTotalStatsQueryVariables = Exact<{
-  contractId: Scalars['ID'];
-  collectionId?: InputMaybe<Scalars['String']>;
-  _contractId: Scalars['String'];
+  id: Scalars['ID'];
+  stringId: Scalars['String'];
 }>;
 
 
-export type CollectionTotalStatsQuery = { __typename?: 'Query', stats?: { __typename?: 'TotalCollectionStat', id: string, volume: any, sales: any, avg: any } | null, floar: Array<{ __typename?: 'MarketToken', id: string, price: any }> };
+export type CollectionTotalStatsQuery = { __typename?: 'Query', stats?: { __typename?: 'Collection', id: string, volume: any, sales: any, average: any, listed: any } | null, floar: Array<{ __typename?: 'MarketToken', id: string, price: any }> };
 
 export type AccountMarketTokensQueryVariables = Exact<{
   accountId: Scalars['ID'];
@@ -1600,7 +1671,7 @@ export type AccountMarketTokensQueryVariables = Exact<{
 }>;
 
 
-export type AccountMarketTokensQuery = { __typename?: 'Query', account?: { __typename?: 'Account', id: string, marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> } | null };
+export type AccountMarketTokensQuery = { __typename?: 'Query', account?: { __typename?: 'Account', id: string, marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> } | null };
 
 export type LastMarketTokensQueryVariables = Exact<{
   limit: Scalars['Int'];
@@ -1610,7 +1681,7 @@ export type LastMarketTokensQueryVariables = Exact<{
 }>;
 
 
-export type LastMarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, description?: string | null, media?: string | null, copies?: any | null, ipfsReference?: string | null, price: any }> };
+export type LastMarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, description?: string | null, media?: string | null, price: any }> };
 
 export type MarketStatisticsQueryVariables = Exact<{
   fromTimestamp: Scalars['BigInt'];
@@ -1629,7 +1700,7 @@ export type MarketTokensQueryVariables = Exact<{
 }>;
 
 
-export type MarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+export type MarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
 
 export type MarketTokensSearchQueryVariables = Exact<{
   text: Scalars['String'];
@@ -1638,7 +1709,7 @@ export type MarketTokensSearchQueryVariables = Exact<{
 }>;
 
 
-export type MarketTokensSearchQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, collectionId?: string | null, collectionName?: string | null, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+export type MarketTokensSearchQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
 
 export type TokenActivityQueryVariables = Exact<{
   tokenUID: Scalars['String'];
@@ -1649,19 +1720,17 @@ export type TokenActivityQuery = { __typename?: 'Query', tokenActivity: Array<{ 
 
 
 export const CollectionMarketTokensDocument = gql`
-    query collectionMarketTokens($contractId: String!, $collectionId: String, $limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt!, $priceTo: BigInt!) @api(name: market) {
+    query collectionMarketTokens($id: String!, $limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt!, $priceTo: BigInt!) @api(name: market) {
   marketTokens(
     first: $limit
     skip: $offset
     orderBy: $orderBy
     orderDirection: $orderDirection
-    where: {contractId: $contractId, collectionId: $collectionId, price_gte: $priceFrom, price_lte: $priceTo}
+    where: {collection: $id, price_gte: $priceFrom, price_lte: $priceTo}
   ) {
     id
     tokenId
     contractId
-    collectionId
-    collectionName
     title
     media
     mintSiteName
@@ -1683,8 +1752,7 @@ export const CollectionMarketTokensDocument = gql`
  * @example
  * const { data, loading, error } = useCollectionMarketTokensQuery({
  *   variables: {
- *      contractId: // value for 'contractId'
- *      collectionId: // value for 'collectionId'
+ *      id: // value for 'id'
  *      limit: // value for 'limit'
  *      offset: // value for 'offset'
  *      orderBy: // value for 'orderBy'
@@ -1706,15 +1774,16 @@ export type CollectionMarketTokensQueryHookResult = ReturnType<typeof useCollect
 export type CollectionMarketTokensLazyQueryHookResult = ReturnType<typeof useCollectionMarketTokensLazyQuery>;
 export type CollectionMarketTokensQueryResult = Apollo.QueryResult<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>;
 export const CollectionTotalStatsDocument = gql`
-    query collectionTotalStats($contractId: ID!, $collectionId: String, $_contractId: String!) @api(name: market) {
-  stats: totalCollectionStat(id: $contractId) {
+    query collectionTotalStats($id: ID!, $stringId: String!) @api(name: market) {
+  stats: collection(id: $id) {
     id
     volume
     sales
-    avg
+    average
+    listed
   }
   floar: marketTokens(
-    where: {contractId: $_contractId, collectionId: $collectionId}
+    where: {collection: $stringId}
     orderBy: price
     orderDirection: asc
     first: 1
@@ -1737,9 +1806,8 @@ export const CollectionTotalStatsDocument = gql`
  * @example
  * const { data, loading, error } = useCollectionTotalStatsQuery({
  *   variables: {
- *      contractId: // value for 'contractId'
- *      collectionId: // value for 'collectionId'
- *      _contractId: // value for '_contractId'
+ *      id: // value for 'id'
+ *      stringId: // value for 'stringId'
  *   },
  * });
  */
@@ -1768,8 +1836,6 @@ export const AccountMarketTokensDocument = gql`
       id
       tokenId
       contractId
-      collectionId
-      collectionName
       title
       media
       mintSiteName
@@ -1827,8 +1893,6 @@ export const LastMarketTokensDocument = gql`
     title
     description
     media
-    copies
-    ipfsReference
     price
   }
 }
@@ -1914,8 +1978,6 @@ export const MarketTokensDocument = gql`
     id
     tokenId
     contractId
-    collectionId
-    collectionName
     title
     media
     mintSiteName
@@ -1963,8 +2025,6 @@ export const MarketTokensSearchDocument = gql`
     id
     tokenId
     contractId
-    collectionId
-    collectionName
     title
     media
     mintSiteName

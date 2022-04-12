@@ -11,10 +11,10 @@ export const setupApolloClient = () => {
             return api === "market"
         },
         new HttpLink({
-            uri: MarketIndexerEndpoint.Main
+            uri: MarketIndexerEndpoint.BackupV2
         }),
         new HttpLink({
-            uri: CollectionIndexerEndpoint.MAIN
+            uri: CollectionIndexerEndpoint.Main
         })
     )
 

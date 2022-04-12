@@ -5,8 +5,8 @@ import {TokenPriceRange, TokenSortName, tokenSortOptions} from "../../../graphql
 import {useCollectionMarketTokens} from "../../../hooks/graphql";
 
 interface CollectionMarketNftListProps {
-    collectionContract?: string
-    collectionId?: string
+    collectionContract: string
+    collectionId: string
     priceRange: TokenPriceRange,
     sort: TokenSortName
 }

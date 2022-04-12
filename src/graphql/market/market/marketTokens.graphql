@@ -19,8 +19,6 @@ query marketTokens(
         id
         tokenId
         contractId
-        collectionId
-        collectionName
         title
         media
         mintSiteName

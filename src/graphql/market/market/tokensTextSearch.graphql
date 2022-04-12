@@ -7,8 +7,6 @@ query marketTokensSearch(
         id
         tokenId
         contractId
-        collectionId
-        collectionName
         title
         media
         mintSiteName

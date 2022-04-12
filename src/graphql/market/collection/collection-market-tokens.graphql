@@ -1,11 +1,10 @@
 query collectionMarketTokens(
-    $contractId: String!,
-    $collectionId: String,
-    $limit: Int!,
-    $offset: Int!,
-    $orderBy: MarketToken_orderBy!,
-    $orderDirection: OrderDirection!,
-    $priceFrom: BigInt!,
+    $id: String!
+    $limit: Int!
+    $offset: Int!
+    $orderBy: MarketToken_orderBy!
+    $orderDirection: OrderDirection!
+    $priceFrom: BigInt!
     $priceTo: BigInt!
 ) @api(name: market) {
     marketTokens(
@@ -14,8 +13,7 @@ query collectionMarketTokens(
         orderBy: $orderBy
         orderDirection: $orderDirection
         where: {
-            contractId: $contractId
-            collectionId: $collectionId
+            collection: $id
             price_gte: $priceFrom
             price_lte: $priceTo
         }
@@ -23,8 +21,6 @@ query collectionMarketTokens(
         id
         tokenId
         contractId
-        collectionId
-        collectionName
         title
         media
         mintSiteName
