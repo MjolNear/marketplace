@@ -25,7 +25,7 @@ export const whitelistedCollections: Record<string, WhitelistedCollection> = {
     "ayc-nft.near": {
         collectionId: "collection-12",
         name: "TAYC",
-        contractId: "ayc-nft.near"
+        contractId: "tayc-nft.near"
     },
     "grimms.secretskelliessociety.near": {
         collectionId: "collection-13",

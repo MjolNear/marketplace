@@ -1,10 +1,10 @@
-import Card from "../Card/Card";
 import React, {memo} from "react";
 import {GridToken} from "../../business-logic/types/nft";
-import CardsGridContainer from "../Common/Grid/CardsGridContainer";
-import {buildUID} from "../../near/api/utils";
 import EmptyCardList from "./EmptyCardList";
-import {AnimatePresence, motion} from "framer-motion";
+import VirtualGrid from "../Common/Grid/VirtualGrid";
+import Card from "../Card/Card";
+import {buildUID} from "../../near/api/utils";
+
 
 interface TGridProps {
     tokens: GridToken[],
@@ -24,30 +24,31 @@ const CardGrid: React.FC<TGridProps> = ({
     loading,
     isCollectionNFTs = false
 }) => {
+
+    const columns = 3
+    const rows = Math.ceil(tokens.length / columns)
+
+    console.log(columns, rows)
+
+    console.log(tokens)
+
     return (
         <>
-            {tokens.length === 0 && !loading
-                ? isCollectionNFTs
-                    ? <EmptyCardList mainDescription="No items for this collection on sale"/>
-                    : <EmptyCardList/>
-                : <CardsGridContainer>
-                    {tokens.map(token => {
-                            const uid = buildUID(token.contractId, token.tokenId)
-                            return <Card key={uid}
-                                         tokenId={token.tokenId}
-                                         contractId={token.contractId}
-                                         title={token.title}
-                                         media={token.media}
-                                         price={token.price}
-                                         collectionMeta={token.collection}
-                                         mintedSiteLink={token.mintedSiteLink}
-                                         mintedSiteName={token.mintedSiteName}
-                                         verification={token.verification}
-                            />
-                        }
-                    )}
-                </CardsGridContainer>
-            }
+            {/*{tokens.length === 0 && !loading*/}
+            {/*    ? isCollectionNFTs*/}
+            {/*        ? <EmptyCardList mainDescription="No items for this collection on sale"/>*/}
+            {/*        : <EmptyCardList/>*/}
+            {/*    :*/}
+                <VirtualGrid columnWidth={300}
+                             columnCount={3}
+                             rowHeight={400}
+                             rowCount={1000}
+                             cell={props => {
+                                 const token = tokens[props.rowIndex * rows + props.columnIndex]
+                                 const uid = buildUID(token.contractId, token.tokenId)
+                                 return <div>"Amazing"</div>
+                             }}/>
+            {/*}*/}
         </>
     )
 };

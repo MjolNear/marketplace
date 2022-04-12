@@ -1,8 +1,8 @@
 import React from 'react';
-import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
-import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
-import MintTokenForm from "../../../components/Create/Token/MintTokenForm";
-import MaxWidthWrapper from "../../../hoc/MaxWidthWrapper";
+import BlueShadowContainer from "../../components/Common/Shadow/BlueShadowContainer";
+import DarkBlueTitle from "../../components/Common/Text/DarkBlueTitle";
+import MintTokenForm from "../../components/Create/Token/MintTokenForm";
+import MaxWidthWrapper from "../../hoc/MaxWidthWrapper";
 
 
 const MintTokenPage: React.FC = () => {

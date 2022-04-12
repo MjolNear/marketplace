@@ -70,7 +70,7 @@ const ExploreNftsPage = () => {
     // }, [])
 
     return (
-        <div className="max-w-screen-2xl mx-auto">
+        <div className="max-w-screen-2xl mx-auto h-auto">
             <BlueShadowContainer>
                 <div className="flex flex-col pb-10 px-4 space-y-8 items-center">
                     <DarkBlueTitle title="Explore NFTs"/>

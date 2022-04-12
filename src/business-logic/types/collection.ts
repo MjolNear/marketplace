@@ -14,10 +14,11 @@ export type CollectionTraits = Record<string, string[]>
 
 export interface IPFSCollectionMetadata {
     name: string
-    description: string,
-    bannerImage: Optional<string>,
-    traits: CollectionTraits | null,
     image: string
+    description: string,
+    bannerImage?: Optional<string>,
+    traits?: Optional<CollectionTraits>,
+    media?: Optional<ExternalLinks>,
 }
 
 export interface CollectionInfo extends BlockchainCollection {
@@ -30,7 +31,6 @@ export interface ExternalLinks {
     discord?: string,
     instagram?: string
 }
-
 
 
 export interface CreateCollectionMetadataDto {
