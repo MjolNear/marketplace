@@ -8,44 +8,49 @@ interface WhitelistedCollection {
 
 export const whitelistedCollections: Record<string, WhitelistedCollection> = {
     "near-punks.near": {
-        collectionId: "collection-9",
+        collectionId: "npunks",
         name: "Near Punks",
         contractId: "near-punks.near"
     },
     "nearnautnft.near": {
-        collectionId: "collection-10",
+        collectionId: "nearnauts",
         name: "NEARNauts",
         contractId: "nearnautnft.near"
     },
     "asac.near": {
-        collectionId: "collection-11",
+        collectionId: "asac",
         name: "AntisocialApeClub",
         contractId: "asac.near"
     },
-    "ayc-nft.near": {
-        collectionId: "collection-12",
+    "tayc-nft.near": {
+        collectionId: "tayc",
         name: "TAYC",
         contractId: "ayc-nft.near"
     },
     "grimms.secretskelliessociety.near": {
-        collectionId: "collection-13",
+        collectionId: "grimmsarmy",
         name: "GrimmsArmy",
         contractId: "grimms.secretskelliessociety.near"
     },
     "nearton_nft.near": {
-        collectionId: "collection-14",
+        collectionId: "nearton",
         name: "NEARton",
         contractId: "nearton_nft.near"
     },
     "billionairebullsclub.near": {
-        collectionId: "collection-15",
+        collectionId: "billionairebullsclub",
         name: "BillionaireBullsClub",
         contractId: "billionairebullsclub.near"
     },
     "spin-nft-contract.near": {
-        collectionId: "collection-16",
+        collectionId: "freaky-elves",
         name: "FreakyElves",
         contractId: "spin-nft-contract.near"
+    },
+    "nymphs.near": {
+        collectionId: "nymphs",
+        name: "Near Nymphs",
+        contractId: "nymphs.near"
     }
 }
 

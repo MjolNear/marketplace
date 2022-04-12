@@ -20,7 +20,7 @@ const CollectionBanner = React.memo<PropTypes>(({
             {loading
                 ? <CollectionBannerLoader/>
                 : bannerLink &&
-                <Img className="object-cover w-full max-h-full"
+                <Img className="object-cover w-full h-full"
                      alt="loading..."
                      src={
                          `https://ipfs.io/${bannerLink.replace(":/", "")}`
