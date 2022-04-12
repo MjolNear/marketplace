@@ -9,13 +9,15 @@ interface PaginationCollectionListProps {
     hasMore: boolean,
     loading: boolean,
     onLoadMore: () => any,
+    isProfileCollections?: boolean
 }
 
-const PaginationCollectionList: React.FC<PaginationCollectionListProps>= ({
+const PaginationCollectionList: React.FC<PaginationCollectionListProps> = ({
     collections,
     hasMore,
     loading,
-    onLoadMore
+    onLoadMore,
+    isProfileCollections
 }) => {
     return (
         <InfiniteScroll
@@ -26,7 +28,10 @@ const PaginationCollectionList: React.FC<PaginationCollectionListProps>= ({
             loader={<></>}
             dataLength={collections.length}
         >
-            <CollectionsGrid collections={collections} loading={loading}/>
+            <CollectionsGrid collections={collections}
+                             loading={loading}
+                             isProfileCollections={isProfileCollections}
+            />
             {loading && hasMore && <CollectionListLoader/>}
         </InfiniteScroll>
     );
