@@ -11,7 +11,7 @@ const CollectionLogo: React.FC<TCollectionLogoProps> = ({logoLink, hasBanner}) =
     return (
         <div className={hasBanner ? "w-[130px] h-[130px] relative -mt-[70px]" : "w-[250px] h-[250px]"}>
             <CardImage url={logoLink}
-                       className="ring-[4px] ring-white rounded-2xl bg-white w-full"
+                       className="ring-[6px] ring-white rounded-2xl bg-white w-full"
                        objectFit="cover"
                        loader={<CollectionBannerLoader/>}
             />

@@ -1,21 +1,29 @@
-import React from 'react';
+import React, {memo} from 'react';
 import LinkMediaIcon from "./LinkMediaIcon";
 import TwitterIcon from "../../../Icons/Media/TwitterIcon";
 import DiscordIcon from "../../../Icons/Media/DiscordIcon";
 import WebsiteIcon from "../../../Icons/Media/WebsiteIcon";
 import TelegramIcon from "../../../Icons/Media/TelegramIcon";
+import {CollectionMediaLinks} from "../../../../business-logic/types/collection";
 
-const CollectionMedia = React.memo(() => {
+
+
+const CollectionMedia: React.FC<CollectionMediaLinks> = ({
+    website,
+    telegram,
+    twitter,
+    discord
+}) => {
     return (
-        <div className="inline-flex absolute bg-white top-0 right-0
+        <div className="inline-flex absolute bg-white top-0 right-0 ring-gray-300 ring-1
                         xs:rounded-tr-2xl xs:rounded-bl-2xl overflow-hidden"
         >
-            <LinkMediaIcon link="website.com" icon={<WebsiteIcon/>}/>
-            <LinkMediaIcon link="twitter.com" icon={<TwitterIcon/>}/>
-            <LinkMediaIcon link="discord.com" icon={<TelegramIcon/>}/>
-            <LinkMediaIcon link="discord.com" icon={<DiscordIcon/>}/>
+            {website && <LinkMediaIcon link={website} icon={<WebsiteIcon/>}/>}
+            {telegram && <LinkMediaIcon link={telegram} icon={<TelegramIcon/>}/>}
+            {twitter && <LinkMediaIcon link={twitter} icon={<TwitterIcon/>}/>}
+            {discord && <LinkMediaIcon link={discord} icon={<DiscordIcon/>}/>}
         </div>
     );
-});
+};
 
-export default CollectionMedia;
+export default memo(CollectionMedia);

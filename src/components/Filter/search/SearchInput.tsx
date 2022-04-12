@@ -23,9 +23,10 @@ const SearchInput: React.FC<SearchInputProps> = ({
         >
             <FaSearch size={18} className="fill-blue-400 mr-2"/>
             <input className="w-full xxs:w-64 xs:w-72 sm:w-80
+                              bg-transparent
                               outline-none border-0 outline-none border-0
                               focus:ring-0
-                              text-[12px] xs:text-[14px]
+                              text-[12px] xs:text-[13px]
                               font-semibold
                               "
                    type="text"

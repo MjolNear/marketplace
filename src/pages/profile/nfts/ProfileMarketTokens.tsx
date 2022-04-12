@@ -3,12 +3,11 @@ import {TokenPriceRange, TokenSortName, tokenSortOptions} from "../../../graphql
 import PriceRangeFilter from "../../../components/Filter/popup/price/PriceRangeFilter";
 import SortFilter from "../../../components/Filter/popup/sort/SortFilter";
 import ProfileFilterMarketTokens from "./market/ProfileFilterMarketTokens";
+import withAuthRedirect from "../../../hoc/withAuthRedirect";
+import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
 
-interface ProfileMarketTokensProps  {
-    accountId: string
-}
 
-const ProfileMarketTokens: React.FC<ProfileMarketTokensProps> = ({
+const ProfileMarketTokens: React.FC<TAuthProps> = ({
     accountId
 }) => {
     const limit = 12
@@ -41,4 +40,4 @@ const ProfileMarketTokens: React.FC<ProfileMarketTokensProps> = ({
     );
 };
 
-export default ProfileMarketTokens;
+export default withAuthRedirect(withAuthData(ProfileMarketTokens));

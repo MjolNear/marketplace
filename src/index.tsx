@@ -8,10 +8,11 @@ import App from "./App";
 import {ApolloProvider} from '@apollo/client';
 
 import {setupStore} from "./state/store";
-import {setupApolloClient} from "./state/apollo";
+import {setupApolloClient} from "./apollo";
 
 // Needed for near-api-js lib
 import {Buffer} from "buffer"
+
 (window as any).Buffer = Buffer;
 
 

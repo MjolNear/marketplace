@@ -10,29 +10,34 @@ import CollectionMedia from "../../../components/Preview/Collection/Media/Collec
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
 import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
 import CollectionMarketNftList from "./CollectionMarketNftList";
-import {useFetchCollection} from "../../../hooks/collection/useFetchCollection";
 import CollectionStats from "../../../components/Preview/Collection/Stats/CollectionStats";
 import PriceRangeFilter from "../../../components/Filter/popup/price/PriceRangeFilter";
 import SortFilter from "../../../components/Filter/popup/sort/SortFilter";
 import {TokenPriceRange, TokenSortName} from "../../../graphql/utils";
-import {useFetchCollectionMetadata} from "../../../hooks/collection/useFetchCollectionMetadata";
+import {useCollectionQuery} from "../../../graphql/generated/collections-graphql";
+import {useFetchCollectionTokensSupply} from "../../../hooks/collection/useFetchCollectionTokensSupply";
 
 type PreviewCollectionProps = {
-    contractId: string,
     collectionId: string,
     filterTab: "items" | "activity"
 }
 
 const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
-    contractId,
     collectionId,
     filterTab
 }) => {
 
     const [marketToggleState, setMarketToggleState] = useState<"init" | "only-market" | "all">("init");
 
-    const {fetching, collection, stats} = useFetchCollection(contractId, collectionId)
-    const {metadata, loading} = useFetchCollectionMetadata(collection?.reference)
+    const {loading, data} = useCollectionQuery({
+        variables: {
+            id: collectionId
+        }
+    })
+
+    const collection = data?.collection
+
+    const {supply} = useFetchCollectionTokensSupply(collection?.contractId, collectionId)
 
     const [priceRange, setPriceRange] = useState<TokenPriceRange>({})
     const clearPriceRange = useCallback(() => setPriceRange({}), [])
@@ -40,7 +45,7 @@ const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
     const [sort, setSort] = useState(TokenSortName.RecentlyAdded)
 
 
-    if (fetching && marketToggleState === "init") {
+    if (loading && marketToggleState === "init") {
         return <CreateLoader/>
     }
 
@@ -48,26 +53,28 @@ const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
         return <NotFound404Page/>
     }
 
-    const hasBanner = !!metadata?.bannerImage
+    const hasBanner = !!collection.bannerImage
 
     return (
         <div className="max-w-screen-2xl mx-auto">
             <BlueShadowContainer>
                 <div className="flex flex-col items-center relative">
-                    <CollectionBanner bannerLink={metadata?.bannerImage}
-                                      loading={loading || fetching}
+                    <CollectionBanner bannerLink={collection.bannerImage}
+                                      loading={loading}
                     />
                     <CollectionLogo hasBanner={hasBanner}
-                                    logoLink={collection.media}
+                                    logoLink={collection.image}
                     />
                     <CollectionTitleDescription title={collection.title}
-                                                description={collection.desc}
+                                                description={collection.description}
                     />
-                    <CollectionMedia/>
+                    <CollectionMedia {...collection.media}/>
                     <div className="flex flex-col items-center gap-6 mt-[20px] justify-start">
-                        <CollectionStats {...stats}/>
+                        <CollectionStats contractId={collection.contractId}
+                                         collectionId={collectionId}
+                        />
                         <div className="mt-[30px]">
-                            <CollectionItemActivityTab prefixLink={`/collections/${contractId}/${collectionId}`}
+                            <CollectionItemActivityTab prefixLink={`/collections/${collectionId}`}
                                                        activeTab={filterTab}
                             />
                         </div>
@@ -118,11 +125,11 @@ const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
                         {marketToggleState === "all"
                             ?
                             <CollectionNftList contractId={collectionId}
-                                               collectionId={contractId}
-                                               total={stats.supply || 0}
+                                               collectionId={collection.contractId}
+                                               total={supply || 0}
                             />
                             :
-                            <CollectionMarketNftList collectionContract={contractId}
+                            <CollectionMarketNftList collectionContract={collection.contractId}
                                                      collectionId={collectionId}
                                                      sort={sort}
                                                      priceRange={priceRange}

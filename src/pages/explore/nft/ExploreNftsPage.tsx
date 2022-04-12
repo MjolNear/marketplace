@@ -13,6 +13,10 @@ import ActiveFilters from "../../../components/Filter/ActiveFilters";
 import {formatNearAmount} from "near-api-js/lib/utils/format";
 import NearIcon from "../../../components/Icons/near/NearIcon";
 import activeFilters from "../../../components/Filter/ActiveFilters";
+import CollectionListLoader from "../../../components/CollectionList/CollectionListLoader";
+import ExploreSearchCollections from "../collection/ExploreSearchCollections";
+import ExploreFilterCollections from "../collection/ExploreFilterCollections";
+import CardListLoader from "../../../components/CardList/CardListLoader";
 
 
 const ExploreNftsPage = () => {
@@ -70,7 +74,7 @@ const ExploreNftsPage = () => {
     // }, [])
 
     return (
-        <div className="max-w-screen-2xl mx-auto h-auto">
+        <div className="max-w-screen-2xl mx-auto">
             <BlueShadowContainer>
                 <div className="flex flex-col pb-10 px-4 space-y-8 items-center">
                     <DarkBlueTitle title="Explore NFTs"/>
@@ -93,17 +97,18 @@ const ExploreNftsPage = () => {
                     />
                 </div>
             </div>
-            {debounceQuery
+            {debounceQuery !== textQueryFilter
                 ?
-                <ExploreSearchTokens limit={LIMIT}
-                                     typing={debounceQuery !== textQueryFilter}
-                                     searchQuery={debounceQuery}
-                />
+                <div className="py-5">
+                    <CardListLoader/>
+                </div>
                 :
-                <ExploreFilterTokens limit={LIMIT}
-                                     priceRange={priceRange}
-                                     sort={sort}
-                />
+                debounceQuery
+                    ?
+                    <ExploreSearchTokens searchQuery={debounceQuery}
+                    />
+                    :
+                    <ExploreFilterTokens priceRange={priceRange} sort={sort}/>
             }
         </div>
     )

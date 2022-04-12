@@ -2,28 +2,19 @@ import React from 'react';
 import CardImage from "../Card/Blocks/CardImage";
 import {Link} from "react-router-dom";
 import DarkBlueMjolText from "../Common/Text/DarkBlueMjolText";
-import {ContractId, AccountId, Optional,} from "../../business-logic/types/aliases";
-import {prettyAccount, shortenString} from "../../utils/string";
+import {prettyAccount} from "../../utils/string";
+import {GridCollection} from "../../business-logic/types/collection";
 
-interface TCollectionCardProps {
-    ownerId: AccountId,
-    contractId: ContractId,
-    collectionId: string,
-    title?: string,
-    description?: Optional<string>,
-    media?: Optional<string>
-}
 
-const CollectionCard: React.FC<TCollectionCardProps> = ({
+const CollectionCard: React.FC<GridCollection> = ({
     ownerId,
-    contractId,
     collectionId,
     title,
     description,
-    media
+    image
 }) => {
 
-    const itemPreviewLink = `/collections/${contractId}/${collectionId}/items`
+    const itemPreviewLink = `/collections/${collectionId}/items`
 
     return (
         <Link className="flex flex-col justify-start bg-white rounded-2xl
@@ -31,7 +22,7 @@ const CollectionCard: React.FC<TCollectionCardProps> = ({
                       transform transition-all hover:shadow-mjol-blue hover:-translate-y-[2px]"
               to={itemPreviewLink}
         >
-            <CardImage url={media} objectFit="fill" className="bg-white rounded-2xl"/>
+            <CardImage url={image} objectFit="fill" className="bg-white rounded-2xl"/>
             <div className="flex flex-col pt-3 px-6 justify-between w-full">
                 <div className="font-black font-archivo text-lg text-center truncate">
                     {title}

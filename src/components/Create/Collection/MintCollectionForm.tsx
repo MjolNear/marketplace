@@ -41,19 +41,27 @@ const MintCollectionForm: React.FC<TAuthProps> = ({
 
 
     const onSubmit = useCallback(handleSubmit(fields => {
-        const file = fields.media.file
 
-        const {media, links} = fields
+        const {media, banner, links} = fields
 
-        if (!file) {
-            setError("media.file", {message: "Media is required."})
+        const iconFile = media.file
+        const bannerFile = banner.file
+
+        if (!iconFile) {
+            setError("media.file", {message: "Icon image is required."})
+            return
+        }
+
+        if (!bannerFile) {
+            setError("banner.file", {message: "Banner image is required"})
             return
         }
 
         setSubmitProps({
             ...fields,
             accountId,
-            media: {file, url: media.url},
+            banner: {file: bannerFile, url: banner.url},
+            media: {file: iconFile, url: media.url},
             payload: "collection",
             links: {
                 website: links.website || null,
@@ -64,7 +72,7 @@ const MintCollectionForm: React.FC<TAuthProps> = ({
         })
     }), [handleSubmit, setError, accountId])
 
-    const [title, description, mediaUrl] = methods.watch(["title", "description", "media.url"])
+    const [title, description, mediaUrl, bannerUrl] = methods.watch(["title", "description", "media.url", "banner.url"])
 
     return (
         <div className="flex flex-col lg:flex-row justify-center px-10 gap-8">
@@ -84,7 +92,7 @@ const MintCollectionForm: React.FC<TAuthProps> = ({
                     <div className="min-w-[300px] max-w-[50%]">
                         <DarkBlueGradientButton title="Create collection"
                                                 onClick={onSubmit}
-                                                disabled={!methods.formState.isValid || !mediaUrl}
+                                                disabled={!methods.formState.isValid || !mediaUrl || !bannerUrl}
                         />
                     </div>
                 </form>

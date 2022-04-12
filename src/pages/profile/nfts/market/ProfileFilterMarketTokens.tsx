@@ -16,8 +16,8 @@ const ProfileFilterMarketTokens: React.FC<ExploreFilterTokens> = ({
     priceRange,
     sort
 }) => {
-    const {tokens, loading, hasMore, onLoadMore} = useAccountMarketTokens(accountId, limit, sort, priceRange)
-    return <PaginationCardList tokens={tokens}
+    const {data, loading, hasMore, onLoadMore} = useAccountMarketTokens(accountId, limit, sort, priceRange)
+    return <PaginationCardList tokens={data}
                                loading={loading}
                                hasMore={hasMore}
                                onLoadMore={onLoadMore}

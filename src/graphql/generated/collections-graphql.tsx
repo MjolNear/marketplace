@@ -18,19 +18,13 @@ export type Scalars = {
   Bytes: any;
 };
 
-/** The block at which the query should be executed. */
+export type BlockChangedFilter = {
+  number_gte: Scalars['Int'];
+};
+
 export type Block_Height = {
-  /** Value containing a block hash */
   hash?: InputMaybe<Scalars['Bytes']>;
-  /** Value containing a block number */
   number?: InputMaybe<Scalars['Int']>;
-  /**
-   * Value containing the minimum block number.
-   * In the case of `number_gte`, the query will be executed on the latest block only if
-   * the subgraph has progressed to or past the minimum block number.
-   * Defaults to the latest block when omitted.
-   *
-   */
   number_gte?: InputMaybe<Scalars['Int']>;
 };
 
@@ -79,6 +73,8 @@ export type CollectionMedia = {
 };
 
 export type CollectionMedia_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
   collection?: InputMaybe<Scalars['String']>;
   collection_contains?: InputMaybe<Scalars['String']>;
   collection_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -207,6 +203,8 @@ export type CollectionTrait = {
 };
 
 export type CollectionTrait_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
   attribute?: InputMaybe<Scalars['String']>;
   attribute_contains?: InputMaybe<Scalars['String']>;
   attribute_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -271,6 +269,8 @@ export enum CollectionTrait_OrderBy {
 }
 
 export type Collection_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
   bannerImage?: InputMaybe<Scalars['String']>;
   bannerImage_contains?: InputMaybe<Scalars['String']>;
   bannerImage_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -484,6 +484,8 @@ export type MjolNearStats = {
 };
 
 export type MjolNearStats_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
   createdCollections?: InputMaybe<Scalars['BigInt']>;
   createdCollections_gt?: InputMaybe<Scalars['BigInt']>;
   createdCollections_gte?: InputMaybe<Scalars['BigInt']>;
@@ -753,6 +755,8 @@ export type Token = {
 };
 
 export type Token_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
   collection?: InputMaybe<Scalars['String']>;
   collection_contains?: InputMaybe<Scalars['String']>;
   collection_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -976,26 +980,145 @@ export enum _SubgraphErrorPolicy_ {
   Deny = 'deny'
 }
 
-export type CollectionsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type CollectionsQuery = { __typename?: 'Query', collections: Array<{ __typename?: 'Collection', id: string, contractId: string, collectionId: string, ownerId: string }> };
-
-export type LoadCollectionByIdQueryVariables = Exact<{
+export type CollectionQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type LoadCollectionByIdQuery = { __typename?: 'Query', collection?: { __typename?: 'Collection', id: string } | null };
+export type CollectionQuery = { __typename?: 'Query', collection?: { __typename?: 'Collection', id: string, ownerId: string, contractId: string, title: string, description: string, image: string, bannerImage?: string | null, media?: { __typename?: 'CollectionMedia', website?: string | null, telegram?: string | null, twitter?: string | null, discord?: string | null } | null } | null };
+
+export type CollectionsTextSearchQueryVariables = Exact<{
+  text: Scalars['String'];
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+}>;
 
 
-export const CollectionsDocument = gql`
-    query collections @api(name: collections) {
-  collections(first: 5) {
+export type CollectionsTextSearchQuery = { __typename?: 'Query', collections: Array<{ __typename?: 'Collection', id: string, ownerId: string, collectionId: string, title: string, description: string, image: string }> };
+
+export type CollectionsQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+}>;
+
+
+export type CollectionsQuery = { __typename?: 'Query', collections: Array<{ __typename?: 'Collection', id: string, ownerId: string, collectionId: string, title: string, description: string, image: string }> };
+
+export type IsCollectionExistsQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type IsCollectionExistsQuery = { __typename?: 'Query', collection?: { __typename?: 'Collection', id: string } | null };
+
+export type UserCollectionsQueryVariables = Exact<{
+  ownerId: Scalars['String'];
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+}>;
+
+
+export type UserCollectionsQuery = { __typename?: 'Query', collections: Array<{ __typename?: 'Collection', id: string, ownerId: string, collectionId: string, title: string, description: string, image: string }> };
+
+
+export const CollectionDocument = gql`
+    query collection($id: ID!) @api(name: collections) {
+  collection(id: $id) {
     id
-    contractId
-    collectionId
     ownerId
+    contractId
+    title
+    description
+    image
+    bannerImage
+    media {
+      website
+      telegram
+      twitter
+      discord
+    }
+  }
+}
+    `;
+
+/**
+ * __useCollectionQuery__
+ *
+ * To run a query within a React component, call `useCollectionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCollectionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCollectionQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useCollectionQuery(baseOptions: Apollo.QueryHookOptions<CollectionQuery, CollectionQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, options);
+      }
+export function useCollectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CollectionQuery, CollectionQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, options);
+        }
+export type CollectionQueryHookResult = ReturnType<typeof useCollectionQuery>;
+export type CollectionLazyQueryHookResult = ReturnType<typeof useCollectionLazyQuery>;
+export type CollectionQueryResult = Apollo.QueryResult<CollectionQuery, CollectionQueryVariables>;
+export const CollectionsTextSearchDocument = gql`
+    query collectionsTextSearch($text: String!, $limit: Int!, $offset: Int!) @api(name: collections) {
+  collections: collectionsSearch(text: $text, first: $limit, skip: $offset) {
+    id
+    ownerId
+    collectionId
+    title
+    description
+    image
+  }
+}
+    `;
+
+/**
+ * __useCollectionsTextSearchQuery__
+ *
+ * To run a query within a React component, call `useCollectionsTextSearchQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCollectionsTextSearchQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCollectionsTextSearchQuery({
+ *   variables: {
+ *      text: // value for 'text'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *   },
+ * });
+ */
+export function useCollectionsTextSearchQuery(baseOptions: Apollo.QueryHookOptions<CollectionsTextSearchQuery, CollectionsTextSearchQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CollectionsTextSearchQuery, CollectionsTextSearchQueryVariables>(CollectionsTextSearchDocument, options);
+      }
+export function useCollectionsTextSearchLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CollectionsTextSearchQuery, CollectionsTextSearchQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CollectionsTextSearchQuery, CollectionsTextSearchQueryVariables>(CollectionsTextSearchDocument, options);
+        }
+export type CollectionsTextSearchQueryHookResult = ReturnType<typeof useCollectionsTextSearchQuery>;
+export type CollectionsTextSearchLazyQueryHookResult = ReturnType<typeof useCollectionsTextSearchLazyQuery>;
+export type CollectionsTextSearchQueryResult = Apollo.QueryResult<CollectionsTextSearchQuery, CollectionsTextSearchQueryVariables>;
+export const CollectionsDocument = gql`
+    query collections($limit: Int!, $offset: Int!) @api(name: collections) {
+  collections(first: $limit, skip: $offset) {
+    id
+    ownerId
+    collectionId
+    title
+    description
+    image
   }
 }
     `;
@@ -1012,10 +1135,12 @@ export const CollectionsDocument = gql`
  * @example
  * const { data, loading, error } = useCollectionsQuery({
  *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
  *   },
  * });
  */
-export function useCollectionsQuery(baseOptions?: Apollo.QueryHookOptions<CollectionsQuery, CollectionsQueryVariables>) {
+export function useCollectionsQuery(baseOptions: Apollo.QueryHookOptions<CollectionsQuery, CollectionsQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<CollectionsQuery, CollectionsQueryVariables>(CollectionsDocument, options);
       }
@@ -1026,8 +1151,8 @@ export function useCollectionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type CollectionsQueryHookResult = ReturnType<typeof useCollectionsQuery>;
 export type CollectionsLazyQueryHookResult = ReturnType<typeof useCollectionsLazyQuery>;
 export type CollectionsQueryResult = Apollo.QueryResult<CollectionsQuery, CollectionsQueryVariables>;
-export const LoadCollectionByIdDocument = gql`
-    query loadCollectionById($id: ID!) @api(name: collections) {
+export const IsCollectionExistsDocument = gql`
+    query isCollectionExists($id: ID!) @api(name: collections) {
   collection(id: $id) {
     id
   }
@@ -1035,29 +1160,71 @@ export const LoadCollectionByIdDocument = gql`
     `;
 
 /**
- * __useLoadCollectionByIdQuery__
+ * __useIsCollectionExistsQuery__
  *
- * To run a query within a React component, call `useLoadCollectionByIdQuery` and pass it any options that fit your needs.
- * When your component renders, `useLoadCollectionByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useIsCollectionExistsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useIsCollectionExistsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useLoadCollectionByIdQuery({
+ * const { data, loading, error } = useIsCollectionExistsQuery({
  *   variables: {
  *      id: // value for 'id'
  *   },
  * });
  */
-export function useLoadCollectionByIdQuery(baseOptions: Apollo.QueryHookOptions<LoadCollectionByIdQuery, LoadCollectionByIdQueryVariables>) {
+export function useIsCollectionExistsQuery(baseOptions: Apollo.QueryHookOptions<IsCollectionExistsQuery, IsCollectionExistsQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<LoadCollectionByIdQuery, LoadCollectionByIdQueryVariables>(LoadCollectionByIdDocument, options);
+        return Apollo.useQuery<IsCollectionExistsQuery, IsCollectionExistsQueryVariables>(IsCollectionExistsDocument, options);
       }
-export function useLoadCollectionByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LoadCollectionByIdQuery, LoadCollectionByIdQueryVariables>) {
+export function useIsCollectionExistsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<IsCollectionExistsQuery, IsCollectionExistsQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<LoadCollectionByIdQuery, LoadCollectionByIdQueryVariables>(LoadCollectionByIdDocument, options);
+          return Apollo.useLazyQuery<IsCollectionExistsQuery, IsCollectionExistsQueryVariables>(IsCollectionExistsDocument, options);
         }
-export type LoadCollectionByIdQueryHookResult = ReturnType<typeof useLoadCollectionByIdQuery>;
-export type LoadCollectionByIdLazyQueryHookResult = ReturnType<typeof useLoadCollectionByIdLazyQuery>;
-export type LoadCollectionByIdQueryResult = Apollo.QueryResult<LoadCollectionByIdQuery, LoadCollectionByIdQueryVariables>;
+export type IsCollectionExistsQueryHookResult = ReturnType<typeof useIsCollectionExistsQuery>;
+export type IsCollectionExistsLazyQueryHookResult = ReturnType<typeof useIsCollectionExistsLazyQuery>;
+export type IsCollectionExistsQueryResult = Apollo.QueryResult<IsCollectionExistsQuery, IsCollectionExistsQueryVariables>;
+export const UserCollectionsDocument = gql`
+    query userCollections($ownerId: String!, $limit: Int!, $offset: Int!) @api(name: collections) {
+  collections(first: $limit, skip: $offset, where: {ownerId: $ownerId}) {
+    id
+    ownerId
+    collectionId
+    title
+    description
+    image
+  }
+}
+    `;
+
+/**
+ * __useUserCollectionsQuery__
+ *
+ * To run a query within a React component, call `useUserCollectionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserCollectionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserCollectionsQuery({
+ *   variables: {
+ *      ownerId: // value for 'ownerId'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *   },
+ * });
+ */
+export function useUserCollectionsQuery(baseOptions: Apollo.QueryHookOptions<UserCollectionsQuery, UserCollectionsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UserCollectionsQuery, UserCollectionsQueryVariables>(UserCollectionsDocument, options);
+      }
+export function useUserCollectionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserCollectionsQuery, UserCollectionsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UserCollectionsQuery, UserCollectionsQueryVariables>(UserCollectionsDocument, options);
+        }
+export type UserCollectionsQueryHookResult = ReturnType<typeof useUserCollectionsQuery>;
+export type UserCollectionsLazyQueryHookResult = ReturnType<typeof useUserCollectionsLazyQuery>;
+export type UserCollectionsQueryResult = Apollo.QueryResult<UserCollectionsQuery, UserCollectionsQueryVariables>;

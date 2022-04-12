@@ -1,8 +1,10 @@
-query collections(
-    $limit: Int!,
+query collectionsTextSearch(
+    $text: String!
+    $limit: Int!
     $offset: Int!
 ) @api(name: collections) {
-    collections(
+    collections: collectionsSearch(
+        text: $text,
         first: $limit
         skip: $offset
     ) {

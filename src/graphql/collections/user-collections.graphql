@@ -1,10 +1,14 @@
-query collections(
+query userCollections(
+    $ownerId: String!
     $limit: Int!,
     $offset: Int!
 ) @api(name: collections) {
     collections(
         first: $limit
         skip: $offset
+        where: {
+            ownerId: $ownerId
+        }
     ) {
         id
         ownerId

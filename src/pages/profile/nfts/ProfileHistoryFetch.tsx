@@ -1,5 +1,6 @@
 import React from 'react';
-import {TAuthProps} from "../../../hoc/withAuthData";
+import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
+import withAuthRedirect from "../../../hoc/withAuthRedirect";
 
 
 interface PropTypes extends TAuthProps {
@@ -48,4 +49,4 @@ const ProfileHistoryFetch: React.FC<PropTypes> = ({accountId}) => {
     // );
 };
 
-export default ProfileHistoryFetch;
+export default withAuthRedirect(withAuthData(ProfileHistoryFetch));

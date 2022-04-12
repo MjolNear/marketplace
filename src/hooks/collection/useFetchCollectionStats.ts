@@ -1,14 +1,15 @@
 import {CollectionId, ContractId} from "../../business-logic/types/aliases";
 import {useCollectionTotalStatsQuery} from "../../graphql/generated/market-graphql";
 import {MJOL_CONTRACT_ID} from "../../near/enviroment/contract-names";
+import {useFetchCollectionTokensSupply} from "./useFetchCollectionTokensSupply";
 
 export interface FetchCollectionStatsHookResult {
-    fetching: boolean,
+    loading: boolean,
+    supply?: number
     floar?: string
     volume?: string
     sales?: string
 }
-
 
 export const useFetchCollectionStats = (
     contractId: ContractId,
@@ -17,7 +18,7 @@ export const useFetchCollectionStats = (
 
     const _collectionId = contractId === MJOL_CONTRACT_ID ? collectionId : null
 
-    const {loading: fetching, data} = useCollectionTotalStatsQuery({
+    const {loading: loadingStats, data} = useCollectionTotalStatsQuery({
         variables: {
             contractId,
             collectionId: _collectionId,
@@ -25,8 +26,12 @@ export const useFetchCollectionStats = (
         }
     })
 
+    const {loading: loadingSupply, supply} = useFetchCollectionTokensSupply(contractId, collectionId)
+
+
     return {
-        fetching,
+        loading: loadingStats || loadingSupply,
+        supply,
         sales: data?.stats?.sales,
         volume: data?.stats?.volume,
         floar: data?.floar?.[0]?.price

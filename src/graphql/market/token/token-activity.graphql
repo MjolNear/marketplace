@@ -5,7 +5,7 @@ query tokenActivity(
         where: {
             token: $tokenUID
         },
-        orderBy: timestamp,
+        orderBy: timestamp
         orderDirection: desc
     ) {
         id
