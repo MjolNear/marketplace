@@ -53,7 +53,7 @@ const Card: React.FC<TCardProps> = ({
             <div className="px-2 xxs:px-5">
                 <div className="mb-3">
                     {collection &&
-                        <Link to={`/collections/${contractId}/${collection.collectionId}/items`}>
+                        <Link to={`/collections/${collection.collectionId}/items`}>
                             <CollectionBlock name={collection.name}/>
                         </Link>
                     }
