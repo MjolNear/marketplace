@@ -8,7 +8,6 @@ import {NearCoreToken} from "../types/token";
 import {getNftMintedSiteInfo} from "../../../business-logic/whitelisted.contract";
 import {ApprovedToken} from "../../../business-logic/types/nft";
 import {ContractId} from "../../../business-logic/types/aliases";
-import {parseCollection} from "../../token-parser/parser";
 
 const isIPFS = require('is-ipfs')
 
@@ -78,9 +77,8 @@ async function convertStandardNFT(contractId: string,
     const metadata = nft.metadata;
     const {approved_account_ids = {}} = nft
     const media = await getRealUrl(metadata.media, metadata.media_hash, contractId);
-    const ipfsRef = await getRealUrl(metadata.reference, metadata.reference_hash, contractId);
+    const ipfsReference = await getRealUrl(metadata.reference, metadata.reference_hash, contractId);
     const mintSiteInfo = getNftMintedSiteInfo(nft, contractId)
-    const collection = parseCollection(contractId, metadata)
 
     const uid = buildUID(contractId, nft.token_id)
     return Promise.resolve({
@@ -91,8 +89,7 @@ async function convertStandardNFT(contractId: string,
         description: metadata.description,
         copies: metadata.copies,
         media,
-        collection,
-        ipfsReference: ipfsRef,
+        ipfsReference,
         price: getPrice(uid, tokenPrices),
         extra: metadata.extra,
         isApproved: MARKET_CONTRACT_ID in approved_account_ids,

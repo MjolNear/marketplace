@@ -16,8 +16,6 @@ query lastMarketTokens(
         title
         description
         media
-        copies
-        ipfsReference
         price
     }
 }

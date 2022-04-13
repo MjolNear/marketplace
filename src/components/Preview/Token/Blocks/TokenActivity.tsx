@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import IconDisclosureButton from "../../../Common/Disclosure/IconDisclosureButton";
 import {GiBuyCard} from "react-icons/gi";
 import CardActivity from "../../../Activity/CardActivity";
@@ -24,4 +24,4 @@ const TokenActivity: React.FC<TTokenActivityProps> = ({
     );
 };
 
-export default TokenActivity;
+export default memo(TokenActivity);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import IconDisclosure from "../../../Common/Disclosure/IconDisclosureButton";
 import {BiDna} from "react-icons/bi";
 import {Optional} from "../../../../business-logic/types/aliases";
@@ -46,4 +46,4 @@ const TokenTraits: React.FC<TTokenTraitsProps> = ({
     );
 };
 
-export default TokenTraits;
+export default memo(TokenTraits);

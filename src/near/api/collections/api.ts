@@ -12,7 +12,7 @@ import {emptyTokensBatchResponse} from "../types/response/core";
 import {batchRequest} from "../batch-request";
 import {nftAPI} from "../nfts";
 import {mjolViewFunction, viewFunction} from "../../enviroment/rpc";
-import {DODIK_GET_LIST, DODIK_INDEX_LIST, WhitelistedContract} from "../../../business-logic/whitelisted.contract";
+import {DODIK_GET_LIST, DODIK_INDEX_LIST} from "../../../business-logic/whitelisted.contract";
 
 export const collectionAPI = {
 
@@ -140,7 +140,7 @@ export const collectionAPI = {
             console.log(e)
         }),
 
-
+    // deprecated
     fetchCollectionInfo: (collectionId: CollectionId): Promise<Optional<CollectionInfo>> =>
         collectionAPI.fetchCollection(collectionId)
             .then(collection => {
@@ -159,6 +159,7 @@ export const collectionAPI = {
                 return null
         }),
 
+    // deprecated
     fetchCollections: (from: number, limit: number): Promise<CollectionsBatchResponse> =>
         mjolViewFunction<CollectionsBatchResponse>({
                 methodName: 'get_collections',

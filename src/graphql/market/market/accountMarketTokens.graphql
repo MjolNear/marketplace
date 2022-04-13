@@ -28,8 +28,6 @@ query accountMarketTokens(
             id
             tokenId
             contractId
-            collectionId
-            collectionName
             title
             media
             mintSiteName

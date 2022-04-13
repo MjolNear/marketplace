@@ -5,17 +5,17 @@ import {ContractVerificationStatus} from "./contract";
 export interface TokenCollectionMetadata {
     collectionId: string
     name: string
-} 
+}
 
 export interface CoreToken {
-    contractId: string,
-    tokenId: string,
-    ownerId: string,
-    title: string,
-    media?: Optional<string>,
-    description?: Optional<string>,
-    collection?: Optional<TokenCollectionMetadata>,
-    price?: Optional<StringAmount>,
+    contractId: string
+    tokenId: string
+    ownerId: string
+    title: string
+    media?: Optional<string>
+    description?: Optional<string>
+    extra?: Optional<string>
+    price?: Optional<StringAmount>
 }
 
 export interface TokenMintedInfo {
@@ -29,7 +29,7 @@ export interface TokenApproveInfo {
 }
 
 export interface TokensReferenceInfo {
-    ipfsReference?: Optional<string>,
+    ipfsReference?: Optional<string>
     copies?: Optional<number>
 }
 

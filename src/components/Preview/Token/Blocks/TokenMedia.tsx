@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {Optional} from "../../../../business-logic/types/aliases";
 import {Img} from "react-image";
 import MjolLoader from "../../../Common/Loaders/MjolLoader";
@@ -33,4 +33,4 @@ const TokenMedia: React.FC<TImageProps> = ({
     );
 };
 
-export default TokenMedia;
+export default memo(TokenMedia);

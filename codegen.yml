@@ -1,8 +1,8 @@
 overwrite: true
-schema: "https://api.thegraph.com/subgraphs/name/mjolnear/collection-indexer"
-documents: "src/graphql/collections/**/*.graphql"
+schema: "https://api.thegraph.com/subgraphs/name/mjolnear/backupv2"
+documents: "src/graphql/market/**/*.graphql"
 generates:
-  src/graphql/generated/collections-graphql.tsx:
+  src/graphql/generated/market-graphql.tsx:
     plugins:
       - "typescript"
       - "typescript-operations"

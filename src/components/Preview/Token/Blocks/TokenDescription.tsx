@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {Optional} from '../../../../business-logic/types/aliases';
 import {MdDescription} from "react-icons/md";
 import IconDisclosureButton from "../../../Common/Disclosure/IconDisclosureButton";
@@ -22,4 +22,4 @@ const TokenDescription: React.FC<TTokenDescription> = ({
     )
 };
 
-export default TokenDescription;
+export default memo(TokenDescription);

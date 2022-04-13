@@ -7,18 +7,17 @@ import CardPrice from "./Blocks/CardPrice";
 import {Link} from "react-router-dom";
 import {Optional} from "../../business-logic/types/aliases";
 import {ContractVerificationStatus} from "../../business-logic/types/contract";
-import {whitelistedCollections} from "../../business-logic/whitelisted.collections";
-import {TokenCollectionMetadata} from "../../business-logic/types/nft";
+import {useFetchTokenCollection} from "../../hooks/collection/useFetchTokenCollection";
 
 interface TCardProps {
     contractId: string,
     tokenId: string
-    title: string,
-    media?: Optional<string>,
-    price?: Optional<string>,
-    mintedSiteName: string,
-    mintedSiteLink: string,
-    collectionMeta?: Optional<TokenCollectionMetadata>
+    title: string
+    media?: Optional<string>
+    price?: Optional<string>
+    mintedSiteName: string
+    mintedSiteLink: string
+    extra?: Optional<string>
     verification: ContractVerificationStatus
 }
 
@@ -30,11 +29,11 @@ const Card: React.FC<TCardProps> = ({
     price,
     mintedSiteName,
     mintedSiteLink,
-    collectionMeta,
+    extra,
     verification
 }) => {
     const previewLink = `/nfts/${contractId}/${tokenId}`
-    const collection = collectionMeta ? collectionMeta : whitelistedCollections[contractId]
+    const collection = useFetchTokenCollection(contractId, extra)
     return (
         <div className="flex flex-col justify-between overflow-hidden w-full rounded-xl
                         ring-1 ring-blue-300 select-none
@@ -52,11 +51,7 @@ const Card: React.FC<TCardProps> = ({
             </div>
             <div className="px-2 xxs:px-5">
                 <div className="mb-3">
-                    {collection &&
-                        <Link to={`/collections/${collection.collectionId}/items`}>
-                            <CollectionBlock name={collection.name}/>
-                        </Link>
-                    }
+                    <CollectionBlock data={collection.data}/>
                 </div>
                 <MintedBlock mintedSiteName={mintedSiteName}
                              mintedSiteLink={mintedSiteLink}

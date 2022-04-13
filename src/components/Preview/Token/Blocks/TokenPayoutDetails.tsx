@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {TAttribute} from "../Attributes/AttributeProps";
 import {GrMoney} from "react-icons/gr";
 import {TPayouts} from "../../../../business-logic/types/aliases";
@@ -35,4 +35,4 @@ const TokenPayoutDetails: React.FC<TTokenPayoutsProps> = ({
     );
 };
 
-export default TokenPayoutDetails;
+export default memo(TokenPayoutDetails);

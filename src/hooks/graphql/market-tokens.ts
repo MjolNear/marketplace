@@ -15,7 +15,6 @@ import {
     useMarketTokensSearchQuery,
 } from "../../graphql/generated/market-graphql";
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../utils/string";
-import {MJOL_CONTRACT_ID} from "../../near/enviroment/contract-names";
 import {GridToken} from "../../business-logic/types/nft";
 
 export type MarketTokens = MarketTokensQuery['marketTokens']
@@ -54,16 +53,15 @@ export const useCollectionMarketTokens = (
     limit: number,
     sort: TokenSortOption,
     priceRange: TokenPriceRange,
-    collectionContract?: string,
-    collectionId?: string
+    contractId: string,
+    collectionId: string
 ) => {
     return useGenericListDataQuery<GridToken, CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>(
         useCollectionMarketTokensQuery, marketTokensResponseMapper, {
             fetchPolicy: "cache-and-network",
             nextFetchPolicy: "cache-and-network",
             variables: {
-                contractId: collectionContract || "",
-                collectionId: collectionContract === MJOL_CONTRACT_ID ? collectionId : null,
+                id: `${contractId}-${collectionId}`,
                 limit,
                 offset: 0,
                 orderBy: sort.by,

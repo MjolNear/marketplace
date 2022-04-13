@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {TContractResponse} from "../../../../near/api/types/response/contracts";
 import {ApprovedToken} from "../../../../business-logic/types/nft";
 import {ItemMarketStatus, useNftMarketStatus} from "../../../../hooks/useNftMarketStatus";
@@ -62,4 +62,4 @@ const TokenMarketStatus: React.FC<TTokenMarketStatusBlockProps & TAuthProps> = (
     }
 };
 
-export default withAuthData(TokenMarketStatus);
+export default memo(withAuthData(TokenMarketStatus));

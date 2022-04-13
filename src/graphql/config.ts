@@ -5,6 +5,6 @@ export enum MarketIndexerEndpoint {
 }
 
 export enum CollectionIndexerEndpoint {
-    MAIN = 'https://api.thegraph.com/subgraphs/name/mjolnear/collection-indexer',
-    BACKUP = 'ff'
+    Main = 'https://api.thegraph.com/subgraphs/name/mjolnear/collection-indexer',
+    Backup = 'ff'
 }

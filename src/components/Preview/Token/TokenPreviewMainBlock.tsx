@@ -6,20 +6,23 @@ import {TokenPreviewProps} from "./TokenPreviewProps";
 import SharePopup from "../../Common/Share/SharePopup";
 import TokenPreviewTitleCollection from "./Blocks/TokenPreviewTitleCollection";
 import TokenPreviewOwnerContract from "./Blocks/TokenPreviewOwnerContract";
+import {useFetchTokenCollection} from "../../../hooks/collection/useFetchTokenCollection";
 
 const TokenPreviewMainBlock: React.FC<TokenPreviewProps> = ({
     token,
     contract,
     payouts
 }) => {
+
+    const collection = useFetchTokenCollection(token.contractId, token.extra)
+
     return (
         <div className="flex flex-col flex-grow-[4] flex-shrink-0 basis-0 gap-4">
             <div className="self-end">
                 <SharePopup link={`mjolnear.com/#/nfts/${token.contractId}/${token.tokenId}`}/>
             </div>
             <TokenPreviewTitleCollection title={token.title}
-                                         contractId={token.contractId}
-                                         collectionMeta={token.collection}
+                                         collection={collection}
             />
             <TokenPreviewOwnerContract ownerId={token.ownerId}
                                        contractId={token.contractId}
