@@ -19,7 +19,7 @@ const TokenPreviewMainBlock: React.FC<TokenPreviewProps> = ({
     return (
         <div className="flex flex-col flex-grow-[4] flex-shrink-0 basis-0 gap-4">
             <div className="self-end">
-                <SharePopup link={`mjolnear.com/#/nfts/${token.contractId}/${token.tokenId}`}/>
+                <SharePopup link={`mjolnear.com/nfts/${token.contractId}/${token.tokenId}`}/>
             </div>
             <TokenPreviewTitleCollection title={token.title}
                                          collection={collection}
