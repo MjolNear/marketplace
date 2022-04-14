@@ -177,7 +177,7 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: Respons
     const {approved_account_ids = {}} = nft
     const uid = buildUID(contractId, nft.token_id)
     const mintSiteInfo = getNftMintedSiteInfo(nft, contractId)
-    const ipfsReference = await getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId);
+    const ipfsReference = url;
 
     return Promise.resolve({
         contractId,
@@ -187,7 +187,7 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: Respons
         description: jsonNFT.description,
         copies: metadata.copies,
         media: media,
-        ipfsReference: ipfsReference,
+        ipfsReference,
         extra: metadata.extra,
         price: getPrice(uid, tokenPrices),
         isApproved: MARKET_CONTRACT_ID in approved_account_ids,

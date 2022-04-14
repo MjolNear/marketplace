@@ -21,8 +21,8 @@ const CollectionBlock: React.FC<TCollectionBlockProps> = ({
                       className="inline-flex items-center gap-1">
                     <Img src={data.image}
                          alt={data.title}
-                         className="h-5 w-5 rounded-full"
-                         loader={<CircleIconLoader size={20}/>}
+                         className="h-4 w-4 rounded-full"
+                         loader={<CircleIconLoader size={16}/>}
                     />
                     <div
                         className="text-[13px] font-bold font-archivo truncate text-gray-800 opacity-75
