@@ -73,7 +73,8 @@ async function getRealUrl(url: string, urlHash?: string, contractId?: string) {
 // approved_account_ids: {}
 async function convertStandardNFT(contractId: string,
     nft: any,
-    tokenPrices: ResponseTokenPrices): Promise<ApprovedToken> {
+    tokenPrices: ResponseTokenPrices
+): Promise<ApprovedToken> {
     const metadata = nft.metadata;
     const {approved_account_ids = {}} = nft
     const media = await getRealUrl(metadata.media, metadata.media_hash, contractId);
@@ -166,30 +167,30 @@ async function getMintbaseNFT(contractId: string, nft: any, tokenPrices: Respons
             contractId,
             methodName: 'nft_token_uri',
             args: {
-                token_id: nft.id.toString()
+                token_id: nft.token_id
             }
         }
     )
 
     const jsonNFT = await NftAPI.getJsonByURL(url)
     const media = await getRealUrl(jsonNFT.media, jsonNFT.media_hash, contractId)
-    const {approvals = {}} = nft
-    const uid = buildUID(contractId, nft.id.toString())
+    const {approved_account_ids = {}} = nft
+    const uid = buildUID(contractId, nft.token_id)
     const mintSiteInfo = getNftMintedSiteInfo(nft, contractId)
     const ipfsReference = await getRealUrl(nft.metadata.reference, nft.metadata.reference_hash, contractId);
 
     return Promise.resolve({
         contractId,
-        tokenId: nft.id.toString(),
-        ownerId: nft.owner_id.Account,
+        tokenId: nft.token_id,
+        ownerId: nft.owner_id,
         title: jsonNFT.title || '',
         description: jsonNFT.description,
         copies: metadata.copies,
         media: media,
         ipfsReference: ipfsReference,
-        extra: nft.metadata.extra,
+        extra: metadata.extra,
         price: getPrice(uid, tokenPrices),
-        isApproved: MARKET_CONTRACT_ID in approvals,
+        isApproved: MARKET_CONTRACT_ID in approved_account_ids,
         ...mintSiteInfo
     })
 }
