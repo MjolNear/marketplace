@@ -31,16 +31,14 @@ export const useTokenTxToast = () => {
                 })
                 .then(result => {
                     if (!isError && result !== TransactionOperation.Unknown) {
-                        // successToast(txHash, result)
-                        // window.location.search = ''
-                        // navigate(pathname)
+                        successToast(txHash, result)
+                        navigate(pathname)
                     }
                 })
         }
         if (isError) {
-            // window.location.search = ''
-            // failToast()
-            // navigate(pathname)
+            failToast()
+            navigate(pathname)
         }
     }, [txHash, isError])
 

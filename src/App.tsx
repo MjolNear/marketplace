@@ -1,5 +1,5 @@
 import React from 'react'
-import {HashRouter} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import {Route, Routes} from "react-router";
 import LandingPage from "./pages/landing/LandingPage";
 import ExploreNftsPage from "./pages/explore/nft/ExploreNftsPage";
@@ -82,7 +82,7 @@ export default function App() {
 
 
     return (
-        <HashRouter>
+        <BrowserRouter>
             <Routes>
                 <Route path="/" element={<PageLayout/>}>
                     <Route index element={<LandingPage/>}/>
@@ -106,6 +106,6 @@ export default function App() {
                     <Route path="*" element={<NotFound404Page/>}/>
                 </Route>
             </Routes>
-        </HashRouter>
+        </BrowserRouter>
     )
 }

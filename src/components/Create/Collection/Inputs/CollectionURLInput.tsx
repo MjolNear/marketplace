@@ -47,7 +47,7 @@ const CollectionUrlInput = () => {
                         description="Must only contain lowercase letters, numbers, and hyphens."
             />
             <BaseInput placeholder="flowers-by-satoshi"
-                       inputPrefix="https://mjolnear.com/#/collections/"
+                       inputPrefix="https://mjolnear.com/collections/"
                        typing={typing}
                        okMessage={typing || error || !collectionId ? "" : "Collection URL is free"}
                        error={error}
