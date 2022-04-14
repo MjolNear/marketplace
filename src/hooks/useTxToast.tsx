@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {checkTransaction, TransactionOperation, useTxInfo} from "./useTxInfo";
 import {failToast, successToast} from "../components/Layout/Toast";
 
-export const useTokenTxToast = () => {
+export const useTxToast = () => {
     const {txHash, pathname, isError} = useTxInfo();
 
     const navigate = useNavigate()
@@ -13,6 +13,7 @@ export const useTokenTxToast = () => {
         if (txHash) {
             checkTransaction(txHash)
                 .then(response => {
+                    // console.log(response)
                     const actions = response.transaction?.actions || []
 
                     for (const action of actions) {
@@ -26,21 +27,34 @@ export const useTokenTxToast = () => {
                         if (methodName === "buy") {
                             return TransactionOperation.Buy
                         }
+                        if (methodName === "nft_mint") {
+                            // console.log(action)
+                            return TransactionOperation.MintToken
+                        }
+                        if (methodName === "create_collection") {
+                            return TransactionOperation.MintCollection
+                        }
                     }
                     return TransactionOperation.Unknown
                 })
                 .then(result => {
+                    // console.log(result)
+                    // if (!isError && result === TransactionOperation.MintToken) {
+                    //
+                    // }
                     if (!isError && result !== TransactionOperation.Unknown) {
                         successToast(txHash, result)
                         navigate(pathname)
+                    } else {
+                        navigate(pathname)
                     }
-                })
+                }).catch(() => navigate(pathname))
         }
         if (isError) {
             failToast()
             navigate(pathname)
         }
-    }, [txHash, isError])
+    }, [txHash, isError, navigate, pathname])
 
     return null
 };

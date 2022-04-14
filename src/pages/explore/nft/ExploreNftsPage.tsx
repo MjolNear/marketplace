@@ -20,8 +20,6 @@ import CardListLoader from "../../../components/CardList/CardListLoader";
 
 
 const ExploreNftsPage = () => {
-    const LIMIT = 12
-
     const [priceRange, setPriceRange] = useState<TokenPriceRange>({})
     const clearPriceRange = useCallback(() => setPriceRange({}), [])
 

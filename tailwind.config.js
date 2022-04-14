@@ -64,6 +64,7 @@ module.exports = {
 
         boxShadow: {
             "mjol-blue": "0px 0px 8px 1px #93c5fd",
+            "mjol-base-blue-drop-xl": "0px 15px 14px 0px rgba(120, 192, 233, 0.3)",
             "mjol-gray": "0px 0px 8px 0px rgba(4, 17, 29, 0.25)",
             "mjol-gray-lg": "0px 0px 8px 1px rgba(4, 17, 29, 0.5)",
             "mjol-gray-xs": "0px 0px 3px 3px rgba(0, 0, 0, 0.1)",

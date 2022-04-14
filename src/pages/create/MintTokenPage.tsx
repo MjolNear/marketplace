@@ -3,9 +3,13 @@ import BlueShadowContainer from "../../components/Common/Shadow/BlueShadowContai
 import DarkBlueTitle from "../../components/Common/Text/DarkBlueTitle";
 import MintTokenForm from "../../components/Create/Token/MintTokenForm";
 import MaxWidthWrapper from "../../hoc/MaxWidthWrapper";
+import {useTxToast} from "../../hooks/useTxToast";
 
 
 const MintTokenPage: React.FC = () => {
+
+    useTxToast()
+
     return (
         <div>
             <BlueShadowContainer>

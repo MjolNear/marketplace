@@ -28,8 +28,8 @@ export enum TransactionOperation {
 }
 
 export enum TRANSACTION_WALLET_TYPE {
-    NEAR_WALLET = 'transactionHashes',
-    SENDER_WALLET = 'transactionHashesSender',
+    NEAR_WALLET = "transactionHashes",
+    SENDER_WALLET = "transactionHashesSender",
 }
 
 export const useTxInfo = () => {
@@ -37,10 +37,10 @@ export const useTxInfo = () => {
     const {pathname} = useLocation()
     const search = window.location.search
 
-    const errorType = new URLSearchParams(search).get('errorType');
+    const errorType = new URLSearchParams(search).get("errorType");
     const errorCode = new URLSearchParams(search).get("errorCode")
 
-    const signInErrorType = new URLSearchParams(search).get('signInErrorType');
+    const signInErrorType = new URLSearchParams(search).get("signInErrorType");
 
     const txHashes = (
         new URLSearchParams(search).get(TRANSACTION_WALLET_TYPE.NEAR_WALLET) ||

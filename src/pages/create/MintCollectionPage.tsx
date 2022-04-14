@@ -3,8 +3,12 @@ import BlueShadowContainer from "../../components/Common/Shadow/BlueShadowContai
 import DarkBlueTitle from "../../components/Common/Text/DarkBlueTitle";
 import MaxWidthWrapper from "../../hoc/MaxWidthWrapper";
 import MintCollectionForm from "../../components/Create/Collection/MintCollectionForm";
+import {useTxToast} from "../../hooks/useTxToast";
 
 const MintCollectionPage = () => {
+
+    useTxToast()
+
     return (
         <div>
             <BlueShadowContainer>

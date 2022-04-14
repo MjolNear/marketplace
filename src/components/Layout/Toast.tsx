@@ -23,6 +23,12 @@ export const successToast = (txHash: string, transaction: TransactionOperation) 
         case TransactionOperation.Buy:
             text = "NFT successfully purchased."
             break
+        case TransactionOperation.MintToken:
+            text = "Token minted successfully."
+            break
+        case TransactionOperation.MintCollection:
+            text = "Collection created successfully."
+            break
     }
 
     if (!text) {

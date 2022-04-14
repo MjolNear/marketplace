@@ -7,7 +7,7 @@ import TokenPreviewContainer from "./TokenPreviewContainer";
 import MobileTokenPreviewContainer from "./MobileTokenPreviewContainer";
 import DesktopTokenPreviewContainer from "./DesktopTokenPreviewContainer";
 import {useIsMobile} from "../../../hooks/useIsMobile";
-import {useTokenTxToast} from "../../../hooks/useTokenTxToast";
+import {useTxToast} from "../../../hooks/useTxToast";
 
 
 interface TPreviewNftProps {
@@ -22,7 +22,7 @@ const PreviewNftPage: React.FC<TPreviewNftProps> = ({
     const {fetching, token, contract, payouts} = useFetchTokenData(contractId, tokenId)
     const isMobile = useIsMobile()
 
-    useTokenTxToast()
+    useTxToast()
 
     if (fetching) return <CreateLoader/>
     if (!token) return <NotFound404Page/>
