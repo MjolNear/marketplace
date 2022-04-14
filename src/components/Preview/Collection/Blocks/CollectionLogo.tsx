@@ -9,9 +9,12 @@ interface TCollectionLogoProps {
 
 const CollectionLogo: React.FC<TCollectionLogoProps> = ({logoLink, hasBanner}) => {
     return (
-        <div className={hasBanner ? "w-[130px] h-[130px] relative -mt-[70px]" : "w-[250px] h-[250px]"}>
+        <div className={
+            "ring-[6px] ring-white rounded-2xl bg-white " +
+            (hasBanner ? "w-[130px] h-[130px] relative -mt-[70px]" : "w-[250px] h-[250px]")
+        }>
             <CardImage url={logoLink}
-                       className="ring-[6px] ring-white rounded-2xl bg-white w-full"
+                       className="w-full rounded-2xl"
                        objectFit="cover"
                        loader={<CollectionBannerLoader/>}
             />

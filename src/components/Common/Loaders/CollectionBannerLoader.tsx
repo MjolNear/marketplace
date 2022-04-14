@@ -10,7 +10,7 @@ const CollectionBannerLoader = () => {
             backgroundColor="#dfe1e2"
             foregroundColor="#f5f5f5"
         >
-            <rect x="0" y="0" rx="3" ry="3" width="100%" height="100%"/>
+            <rect x="0" y="0" rx="12" ry="12" width="100%" height="100%"/>
         </ContentLoader>
     );
 };
