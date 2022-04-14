@@ -18,7 +18,7 @@ const CollectionBlock: React.FC<TCollectionBlockProps> = ({
         <>
             {data &&
                 <Link to={`/collections/${data.collectionId}/items`}
-                      className="inline-flex items-center gap-1">
+                      className="flex items-center gap-1 mb-3">
                     <Img src={data.image}
                          alt={data.title}
                          className="h-4 w-4 rounded-full"

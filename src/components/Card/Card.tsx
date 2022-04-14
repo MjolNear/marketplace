@@ -37,7 +37,7 @@ const Card: React.FC<TCardProps> = ({
     return (
         <div className="flex flex-col justify-between overflow-hidden w-full rounded-xl
                         ring-1 ring-blue-300 select-none
-                        transform transition-all hover:shadow-mjol-blue hover:-translate-y-[2px]"
+                        transform transition hover:shadow-mjol-blue hover:-translate-y-[2px]"
         >
             <div>
                 <Link to={previewLink}>
@@ -50,9 +50,7 @@ const Card: React.FC<TCardProps> = ({
                 </div>
             </div>
             <div className="px-2 xxs:px-5">
-                <div className="mb-3">
-                    <CollectionBlock data={collection.data}/>
-                </div>
+                <CollectionBlock data={collection.data}/>
                 <MintedBlock mintedSiteName={mintedSiteName}
                              mintedSiteLink={mintedSiteLink}
                              verification={verification}
