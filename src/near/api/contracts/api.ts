@@ -1,9 +1,19 @@
 import {AccountId, ContractId, TokenId} from "../../../business-logic/types/aliases";
 import {fetchWithTimeout} from "../core";
-import {TContractResponse, ContractStatusResponse, ContractStatusResponseCode} from "../types/response/contracts";
+import {ContractStatusResponseCode, TContractResponse} from "../types/response/contracts";
+import {viewFunction} from "../../enviroment/rpc";
+import {ContractMetadata} from "../types/contract";
 
 
 export const contractAPI = {
+
+    contractMetadata: (contractId: ContractId): Promise<ContractMetadata> => {
+        return viewFunction<ContractMetadata>({
+            contractId,
+            methodName: "nft_metadata",
+            args: {}
+        })
+    },
     /**
      * Fetches all NFT stores (contracts) for given users.
      *

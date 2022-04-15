@@ -4,10 +4,10 @@ import {buildUID, getPrice} from "../utils";
 import {ResponseTokenPrices} from "../types/response/market";
 import {marketAPI} from "../market";
 import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
-import {NearCoreToken} from "../types/token";
+import {NearCoreToken, NearToken} from "../types/token";
 import {getNftMintedSiteInfo} from "../../../business-logic/whitelisted.contract";
 import {ApprovedToken} from "../../../business-logic/types/nft";
-import {ContractId} from "../../../business-logic/types/aliases";
+import {ContractId, Optional} from "../../../business-logic/types/aliases";
 
 const isIPFS = require('is-ipfs')
 
@@ -19,7 +19,7 @@ const DODIK_MEDIA_LIST: Map<string, string> = new Map([
     ["pgonft.crayonlabs.near", "https://ipfs.io/ipfs/QmVEnyy59WGCLLsDMrqHkRf1cm8FwSrEVqQJEqm2ug65pg/"]
 ]);
 
-async function getRealUrl(url: string, urlHash?: string, contractId?: string) {
+async function getRealUrl(url?: Optional<string>, urlHash?: Optional<string>, contractId?: string) {
     const storageLink = contractId?.endsWith(".mintbase1.near")
         ? 'https://arweave.net/'
         : 'https://ipfs.fleek.co/ipfs/'
@@ -72,19 +72,22 @@ async function getRealUrl(url: string, urlHash?: string, contractId?: string) {
 // },
 // approved_account_ids: {}
 async function convertStandardNFT(contractId: string,
-    nft: any,
+    nft: NearToken,
     tokenPrices: ResponseTokenPrices
 ): Promise<ApprovedToken> {
-    const metadata = nft.metadata;
+    const metadata = nft?.metadata;
     const {approved_account_ids = {}} = nft
-    const media = await getRealUrl(metadata.media, metadata.media_hash, contractId);
-    const ipfsReference = await getRealUrl(metadata.reference, metadata.reference_hash, contractId);
+
+    const media = await getRealUrl(metadata?.media, metadata.media_hash, contractId);
+
+    const ipfsReference = await getRealUrl(metadata?.reference, metadata?.reference_hash, contractId);
     const mintSiteInfo = getNftMintedSiteInfo(nft, contractId)
+
 
     const uid = buildUID(contractId, nft.token_id)
     return Promise.resolve({
         contractId,
-        tokenId: nft.token_id || nft.id,
+        tokenId: nft.token_id,
         ownerId: nft.owner_id,
         title: metadata.title || '',
         description: metadata.description,
@@ -93,7 +96,7 @@ async function convertStandardNFT(contractId: string,
         ipfsReference,
         price: getPrice(uid, tokenPrices),
         extra: metadata.extra,
-        isApproved: MARKET_CONTRACT_ID in approved_account_ids,
+        isApproved: MARKET_CONTRACT_ID in (approved_account_ids || {}),
         ...mintSiteInfo
     })
 }

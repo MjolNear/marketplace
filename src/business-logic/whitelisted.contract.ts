@@ -1,6 +1,7 @@
-import {ContractId} from "./types/aliases";
+import {ContractId, Optional} from "./types/aliases";
 import {ContractVerificationStatus} from "./types/contract";
 import {TokenMintedInfo} from "./types/nft";
+import {contractAPI} from "../near/api/contracts";
 
 export enum WhitelistedContract {
     MjolNear = "mjol.near",
@@ -42,7 +43,7 @@ export const getMarketNftVerification = (contractId: ContractId): ContractVerifi
     }
 }
 
-export const getMintbaseSiteInfo = (contractId: ContractId, reference?: string): TokenMintedInfo => {
+export const getMintbaseSiteInfo = (contractId: ContractId, reference?: Optional<string>): TokenMintedInfo => {
     const name = contractId.split(".mintbase1.near")[0]
     return {
         mintedSiteName: name ? name : "Mintbase",
@@ -58,7 +59,7 @@ export const getNftMintedSiteInfo = (
         tokenId?: string,
         token_id?: string,
         metadata?: {
-            reference?: string
+            reference?: Optional<string>
         }
     },
     contractId: ContractId
