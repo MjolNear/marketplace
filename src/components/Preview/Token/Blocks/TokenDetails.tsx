@@ -24,7 +24,7 @@ const TokenDetails: React.FC<TTokenDetailsProps> = ({
         {name: "Token", value: tokenId, tooltip: true},
         {name: "Owner", value: ownerId, tooltip: true},
         {name: "Copies", value: copies?.toString() || "1", tooltip: true},
-        {name: "Reference", value: ipfsReference || "---", tooltip: true}
+        {name: "Reference", value: ipfsReference || "---", tooltip: !!ipfsReference}
     ]
     return (
         <KeyValueDisclosure name="Token details"
