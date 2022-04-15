@@ -17,7 +17,7 @@ const MintedBlock: React.FC<TMintedInfoProps> = ({
 }) => {
     return (
         <>
-            <div className="flex gap-1 items-center">
+            <div className="flex gap-1 items-center mt-3">
                 <ResolveVerificationIcon verification={verification} iconProps={{size: 13}}/>
                 {verification === ContractVerificationStatus.Verified
                     ?
