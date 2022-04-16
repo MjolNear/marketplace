@@ -35,7 +35,7 @@ const CollectionStats: React.FC<PropTypes> = ({
                     <StatBox name="items" value={supply || "---"}/>
                     <StatBox name="listed" value={listed || "0"}/>
                     <StatBox name="sales" value={sales || "0"}/>
-                    <StatBox name="floar price" value={floarPrice === "0" ? "---" : floarPrice} priceValue={true}/>
+                    <StatBox name="floor price" value={floarPrice === "0" ? "---" : floarPrice} priceValue={true}/>
                     <StatBox name="average price" value={averagePrice} priceValue={true}/>
                     <StatBox name="volume traded" value={volumeTraded} priceValue={true}/>
                 </div>
