@@ -34,7 +34,7 @@ const CollectionUrlInput = () => {
         } else if (!typing && apiError && collectionId) {
             setError("collectionId", {message: "Unable to check URL"})
         }
-    }, [isEmpty, collectionId, typing, setError, clearErrors])
+    }, [isEmpty, collectionId, typing, setError, clearErrors, apiError])
 
     return (
         <div>

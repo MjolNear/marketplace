@@ -1,6 +1,5 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import UploadImageBlock from "./UploadImageBlock";
-import {useFormContext} from "react-hook-form";
 import PreviewUploadedImage from "./PreviewUploadedImage";
 import RoundedSizeWrapperContainer from "./RoundedSizeWrapperContainer";
 import {NoRefInputProps} from "../../../Common/Forms/BaseInput";

@@ -1,9 +1,9 @@
 import React, {memo} from 'react';
-import StatBox from "./StatBox";
+import CollectionStatBox from "./CollectionStatBox";
 import {formatNearAmount} from "near-api-js/lib/utils/format";
 import {useFetchCollectionStats} from "../../../../hooks/collection/useFetchCollectionStats";
 import {CollectionId, ContractId} from "../../../../business-logic/types/aliases";
-import CollectionBannerLoader from "../../../Common/Loaders/CollectionBannerLoader";
+import RectLoader from "../../../Common/Loaders/RectLoader";
 
 interface PropTypes {
     contractId: ContractId
@@ -15,29 +15,28 @@ const CollectionStats: React.FC<PropTypes> = ({
     collectionId
 }) => {
 
-    const {loading, floar, volume, supply, sales, listed, average} = useFetchCollectionStats(contractId, collectionId)
+    const {loading, floor, volume, supply, sales, listed, average} = useFetchCollectionStats(contractId, collectionId)
 
-    const floarPrice = formatNearAmount(floar || "", 3)
-    const volumeTraded = formatNearAmount(volume || "", 3)
-    const averagePrice = formatNearAmount(average || "", 3)
+    const floorPrice = formatNearAmount(floor || "", 4)
+    const volumeTraded = formatNearAmount(volume || "", 4)
+    const averagePrice = formatNearAmount(average || "", 4)
 
     return (
         <>
             {loading
                 ?
-                <div className="h-[80px] rounded-2xl overflow-hidden">
-                    <CollectionBannerLoader/>
+                <div className="h-[150px] rounded-xl overflow-hidden">
+                    <RectLoader/>
                 </div>
                 :
-                <div className="flex flex-wrap rounded-2xl overflow-hidden
-                                ring-[1px] ring-blue-200 mx-2 shadow-mjol-blue"
+                <div className="grid grid-cols-3 ring-[1.5px] ring-blue-200 rounded-xl shadow-mjol-blue overflow-hidden"
                 >
-                    <StatBox name="items" value={supply || "---"}/>
-                    <StatBox name="listed" value={listed || "0"}/>
-                    <StatBox name="sales" value={sales || "0"}/>
-                    <StatBox name="floar price" value={floarPrice === "0" ? "---" : floarPrice} priceValue={true}/>
-                    <StatBox name="average price" value={averagePrice} priceValue={true}/>
-                    <StatBox name="volume traded" value={volumeTraded} priceValue={true}/>
+                    <CollectionStatBox name="items" value={supply || "---"}/>
+                    <CollectionStatBox name="listed" value={listed || "0"}/>
+                    <CollectionStatBox name="sales" value={sales || "0"}/>
+                    <CollectionStatBox name="floor price" value={floorPrice === "0" ? "---" : floorPrice} priceValue={true}/>
+                    <CollectionStatBox name="average price" value={averagePrice} priceValue={true}/>
+                    <CollectionStatBox name="volume traded" value={volumeTraded} priceValue={true}/>
                 </div>
             }
         </>

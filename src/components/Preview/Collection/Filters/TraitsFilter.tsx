@@ -1,23 +1,20 @@
 import React, {Fragment, useState} from 'react'
 import {Dialog, Disclosure, Transition} from '@headlessui/react'
 import {XIcon} from '@heroicons/react/outline'
-import {
-    ChevronDownIcon,
-    ChevronLeftIcon, ChevronRightIcon,
-    ChevronUpIcon,
-} from '@heroicons/react/solid'
+import {ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon,} from '@heroicons/react/solid'
 
 import MobileFilterButton from "./Blocks/MobileFilterButton";
 import OptionsPanel from "./Blocks/OptionsPanel";
 import SectionDisclosure from "./Blocks/SectionDisclosure";
 import {CollectionTraits} from "../../../../business-logic/types/collection";
+import {PropsWithChildren} from "../../../types";
 
 
 interface TTraitsFilterProps {
     traits: CollectionTraits
 }
 
-const TraitsFilter: React.FC<TTraitsFilterProps> = ({
+const TraitsFilter: React.FC<PropsWithChildren<TTraitsFilterProps>> = ({
     traits,
     children
 }) => {
@@ -27,7 +24,6 @@ const TraitsFilter: React.FC<TTraitsFilterProps> = ({
     return (
         <div className="bg-white">
             <div>
-
 
                 {/* Mobile filter dialog */}
 

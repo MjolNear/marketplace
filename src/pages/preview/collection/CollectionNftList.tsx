@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import PaginationCardList from "../../../components/CardList/PaginationCardList";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {fetchCollectionNfts} from "../../../state/preview/collection/thunk";

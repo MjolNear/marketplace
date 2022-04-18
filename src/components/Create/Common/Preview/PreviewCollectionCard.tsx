@@ -1,8 +1,7 @@
 import React from 'react';
-import CardImage from "../../../Card/Blocks/CardImage";
 import DarkBlueMjolText from "../../../Common/Text/DarkBlueMjolText";
 import {Img} from "react-image";
-import {prettyAccount, shortenString} from "../../../../utils/string";
+import {prettyAccount} from "../../../../utils/string";
 
 interface PreviewCollectionCardProps {
     title: string,

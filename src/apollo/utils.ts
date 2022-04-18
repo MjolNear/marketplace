@@ -1,6 +1,5 @@
-import {FieldFunctionOptions, Operation} from "@apollo/client";
+import {FieldPolicy, Operation, Reference} from "@apollo/client";
 import {Kind, OperationDefinitionNode, StringValueNode} from "graphql";
-import {SafeReadonly} from "@apollo/client/cache/core/types/common";
 
 export const getDirectiveArgumentValueFromOperation = (
     operation: Operation,
@@ -22,26 +21,24 @@ export const getDirectiveArgumentValueFromOperation = (
     return argument ? (argument as StringValueNode).value : null
 }
 
-export interface MergeProps {
-    existing: (SafeReadonly<any> | undefined),
-    incoming: SafeReadonly<any>
-    options: FieldFunctionOptions
-}
+type KeyArgs = FieldPolicy["keyArgs"];
 
-
-export const offsetLimitMerge = (props: MergeProps): SafeReadonly<any> | boolean => {
-    const {existing, incoming, options: {args}} = props
-
-    if (!args) {
-        return [...existing, ...incoming]
-    }
-
-    const {skip = 0} = args
-
-    const merged = existing ? [...existing] : [];
-    for (let i = 0; i < incoming.length; ++i) {
-        merged[skip + i] = incoming[i];
-    }
-
-    return merged;
+export function offsetLimitPagination<T = Reference>(
+    keyArgs: KeyArgs = false,
+): FieldPolicy<T[]> {
+    return {
+        keyArgs,
+        merge(existing, incoming, {variables}) {
+            const merged = existing ? existing.slice(0) : [];
+            if (variables) {
+                const {offset = 0} = variables;
+                for (let i = 0; i < incoming.length; ++i) {
+                    merged[offset + i] = incoming[i];
+                }
+            } else {
+                return [...merged, ...incoming]
+            }
+            return merged;
+        },
+    };
 }

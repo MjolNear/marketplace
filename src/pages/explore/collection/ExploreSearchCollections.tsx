@@ -9,7 +9,7 @@ interface ExploreSearchCollectionsProps {
 const ExploreSearchCollections: React.FC<ExploreSearchCollectionsProps> = ({
     searchQuery
 }) => {
-    const LIMIT = 24
+    const LIMIT = 12
     const {data, loading, hasMore, onLoadMore} = useCollectionsTextSearch(searchQuery, LIMIT)
 
     return (

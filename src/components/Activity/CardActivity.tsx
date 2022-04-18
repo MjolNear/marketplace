@@ -1,25 +1,18 @@
 import React from 'react';
-import CardActivityRow, {TCardActivityRowProps} from "./CardActivityRow";
-import {useTokenActivityQuery} from "../../graphql/generated/market-graphql";
-import CardActivityCell, {ActivityCellType} from "./CardActivityCell";
+import CardActivityRow from "./Common/CardActivityRow";
+import {TokenActivityQuery} from "../../graphql/generated/market-graphql";
+import CardActivityCell, {ActivityCellType} from "./Common/CardActivityCell";
 import MjolLoader from "../Common/Loaders/MjolLoader";
 
 interface TCardActivityProps {
-    tokenUID: string
-    activities: TCardActivityRowProps[]
+    loading: boolean
+    activities: TokenActivityQuery['tokenActivity']
 }
 
 const CardActivity: React.FC<TCardActivityProps> = ({
-    tokenUID,
+    loading,
+    activities
 }) => {
-
-    const {data, loading} = useTokenActivityQuery({
-        variables: {
-            tokenUID
-        }
-    })
-
-    const activities = data?.tokenActivity || []
 
     const columns = ["Event", "Price", "From", "To", "Date", "Tx Hash"]
 

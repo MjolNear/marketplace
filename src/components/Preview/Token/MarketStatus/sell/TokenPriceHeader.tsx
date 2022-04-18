@@ -1,8 +1,6 @@
 import React, {memo} from 'react';
 import {AiOutlineClose} from "react-icons/ai";
-import DarkBlueMjolText from "../../../../Common/Text/DarkBlueMjolText";
 import GradientText from "../../../../Common/Text/GradientText";
-import LightBlueGradientText from "../../../../Common/Text/LightBlueGradientText";
 
 interface TTokenPriceHeaderProps {
     headerText: string,

@@ -13,12 +13,6 @@ import {
 } from "../../graphql/generated/collections-graphql";
 import {AccountId} from "../../business-logic/types/aliases";
 
-// export type x = Array<{ __typename?: "Collection", id: string, ownerId: string, collectionId: string, title: string, description: string }>
-//
-// const gridCollectionsMapper = (
-//     data: {}
-// )
-
 
 export const useCollections = (
     limit: number

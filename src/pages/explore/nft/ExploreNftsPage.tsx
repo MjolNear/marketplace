@@ -2,20 +2,13 @@ import React, {useCallback, useState} from 'react';
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
 
-import {TokenPriceRange, TokenSortName} from "../../../graphql/utils";
+import {TokenPriceRange, TokenSortName} from "../../../graphql/types";
 import PriceRangeFilter from "../../../components/Filter/popup/price/PriceRangeFilter";
-import SortFilter from "../../../components/Filter/popup/sort/SortFilter";
+import {TokenSortFilter} from "../../../components/Filter/popup/sort/SortFilter";
 import SearchInput from "../../../components/Filter/search/SearchInput";
 import useDebounce from "../../../hooks/useDebounce";
 import ExploreSearchTokens from "./ExploreSearchTokens";
 import ExploreFilterTokens from "./ExploreFilterTokens";
-import ActiveFilters from "../../../components/Filter/ActiveFilters";
-import {formatNearAmount} from "near-api-js/lib/utils/format";
-import NearIcon from "../../../components/Icons/near/NearIcon";
-import activeFilters from "../../../components/Filter/ActiveFilters";
-import CollectionListLoader from "../../../components/CollectionList/CollectionListLoader";
-import ExploreSearchCollections from "../collection/ExploreSearchCollections";
-import ExploreFilterCollections from "../collection/ExploreFilterCollections";
 import CardListLoader from "../../../components/CardList/CardListLoader";
 
 
@@ -89,9 +82,9 @@ const ExploreNftsPage = () => {
                         onClear={clearPriceRange}
                         onApply={setPriceRange}
                     />
-                    <SortFilter disabled={!!textQueryFilter}
-                                picked={sort}
-                                setSort={setSort}
+                    <TokenSortFilter disabled={!!textQueryFilter}
+                                     picked={sort}
+                                     setSort={setSort}
                     />
                 </div>
             </div>

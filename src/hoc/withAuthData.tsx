@@ -11,6 +11,7 @@ export default function withAuthData<T>(
 ): React.FC<T> {
     const wallet = getCurrentWallet()
     return (props) =>
+        // @ts-ignore
         <Child {...props}
                accountId={wallet.getAccountId()}
                isSignedIn={wallet.isSignedIn()}

@@ -15,13 +15,11 @@ const CollectionMedia: React.FC<CollectionMediaLinks> = ({
     discord
 }) => {
     return (
-        <div className="inline-flex absolute bg-white top-0 right-0 ring-gray-300 ring-1
-                        xs:rounded-tr-2xl xs:rounded-bl-2xl overflow-hidden"
-        >
-            {website && <LinkMediaIcon link={website} icon={<WebsiteIcon/>}/>}
-            {telegram && <LinkMediaIcon link={telegram} icon={<TelegramIcon/>}/>}
-            {twitter && <LinkMediaIcon link={twitter} icon={<TwitterIcon/>}/>}
-            {discord && <LinkMediaIcon link={discord} icon={<DiscordIcon/>}/>}
+        <div className="inline-flex gap-5 max-lg:self-center">
+            {website && <LinkMediaIcon link={website} icon={<WebsiteIcon size={22}/>}/>}
+            {twitter && <LinkMediaIcon link={twitter} icon={<TwitterIcon size={22}/>}/>}
+            {telegram && <LinkMediaIcon link={telegram} icon={<TelegramIcon size={22}/>}/>}
+            {discord && <LinkMediaIcon link={discord} icon={<DiscordIcon size={22}/>}/>}
         </div>
     );
 };

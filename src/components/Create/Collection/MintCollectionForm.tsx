@@ -70,7 +70,7 @@ const MintCollectionForm: React.FC<TAuthProps> = ({
                 discord: links.discord ? `https://discord.gg/${links.discord}` : null
             }
         })
-    }), [handleSubmit, setError, accountId])
+    }), [handleSubmit, setError, accountId, setSubmitProps])
 
     const [title, description, mediaUrl, bannerUrl] = methods.watch(["title", "description", "media.url", "banner.url"])
 

@@ -1,6 +1,5 @@
 query collectionTotalStats(
     $id: ID!
-    $stringId: String!
 ) @api(name: market) {
     stats: collection(id: $id) {
         id
@@ -8,16 +7,13 @@ query collectionTotalStats(
         sales
         average
         listed
-    },
-    floar: marketTokens(
-        where: {
-            collection: $stringId
-        },
-        orderBy: price
-        orderDirection: asc
-        first: 1
-    ) {
-        id
-        price
+        floor: marketTokens(
+            orderBy: price
+            orderDirection: asc
+            first: 1
+        ) {
+            id
+            price
+        }
     }
 }

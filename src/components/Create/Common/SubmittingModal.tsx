@@ -119,7 +119,7 @@ const SubmittingModal: React.FC<SubmittingModalProps> = ({
         data.payload === "token"
             ? submitToken(data)
             : submitCollection(data)
-    }, [data])
+    }, [data, submitToken, submitCollection])
 
 
     return (

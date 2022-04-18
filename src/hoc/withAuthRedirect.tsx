@@ -10,5 +10,6 @@ export default function withAuthRedirect<T>(
     if (!isSignedIn) {
         return () => <WalletConnectionPage/>
     }
+    // @ts-ignore
     return (props) => <Child {...props}/>
 }

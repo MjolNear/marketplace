@@ -2,9 +2,8 @@ import React, {useCallback, useState} from 'react';
 import NotFound404Page from "../../NotFound404";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import CollectionNftList from "./CollectionNftList";
-import CollectionLogo from "../../../components/Preview/Collection/Blocks/CollectionLogo";
-import CollectionTitleDescription from "../../../components/Preview/Collection/Blocks/CollectionTitleDescription";
-import CollectionBanner from "../../../components/Preview/Collection/Blocks/CollectionBanner";
+import CollectionTitleOwner from "../../../components/Preview/Collection/Blocks/CollectionTitleOwner";
+import CollectionLogoAndBanner from "../../../components/Preview/Collection/Blocks/CollectionLogoAndBanner";
 import CollectionItemActivityTab from "../../../components/Preview/Collection/Filters/CollectionItemActivityTab";
 import CollectionMedia from "../../../components/Preview/Collection/Media/CollectionMedia";
 import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
@@ -12,10 +11,12 @@ import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
 import CollectionMarketNftList from "./CollectionMarketNftList";
 import CollectionStats from "../../../components/Preview/Collection/Stats/CollectionStats";
 import PriceRangeFilter from "../../../components/Filter/popup/price/PriceRangeFilter";
-import SortFilter from "../../../components/Filter/popup/sort/SortFilter";
-import {TokenPriceRange, TokenSortName} from "../../../graphql/utils";
+import {TokenSortFilter} from "../../../components/Filter/popup/sort/SortFilter";
+import {TokenPriceRange, TokenSortName} from "../../../graphql/types";
 import {useCollectionQuery} from "../../../graphql/generated/collections-graphql";
 import {useFetchCollectionTokensSupply} from "../../../hooks/collection/useFetchCollectionTokensSupply";
+import CollectionActivity from "./CollectionActivity";
+import CollectionDescription from "../../../components/Preview/Collection/Blocks/CollectionDescription";
 
 type PreviewCollectionProps = {
     collectionId: string,
@@ -53,32 +54,25 @@ const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
         return <NotFound404Page/>
     }
 
-    const hasBanner = !!collection.bannerImage
-
     return (
         <div className="max-w-screen-2xl mx-auto">
             <BlueShadowContainer>
-                <div className="flex flex-col items-center relative">
-                    <CollectionBanner bannerLink={collection.bannerImage}
-                                      loading={loading}
+                <div className="flex flex-col items-center">
+                    <CollectionLogoAndBanner bannerLink={collection.bannerImage}
+                                             logoLink={collection.image}
+                                             loading={loading}
                     />
-                    <CollectionLogo hasBanner={hasBanner}
-                                    logoLink={collection.image}
-                    />
-                    <CollectionTitleDescription title={collection.title}
-                                                description={collection.description}
-                    />
-                    <CollectionMedia {...collection.media}/>
-                    <div className="flex flex-col items-center gap-6 mt-[20px] justify-start">
-                        <CollectionStats contractId={collection.contractId}
-                                         collectionId={collectionId}
-                        />
-                        <div className="mt-[30px]">
-                            <CollectionItemActivityTab prefixLink={`/collections/${collectionId}`}
-                                                       activeTab={filterTab}
-                            />
+                    <div className="flex w-full max-lg:flex-col lg:flex-row
+                                    lg:items-start items-center lg:justify-between gap-8 mt-16 mb-12 px-8"
+                    >
+                        <div className="lg:min-w-[50%] flex flex-col gap-5 grow">
+                            <CollectionTitleOwner title={collection.title} ownerId={collection.ownerId}/>
+                            <CollectionDescription description={collection.description}/>
+                            <CollectionMedia {...collection.media}/>
                         </div>
+                        <CollectionStats contractId={collection.contractId} collectionId={collection.id}/>
                     </div>
+                    <CollectionItemActivityTab prefixLink={`/collections/${collectionId}`} activeTab={filterTab}/>
                 </div>
             </BlueShadowContainer>
             {filterTab === 'items' ?
@@ -101,26 +95,12 @@ const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
                                 onClear={clearPriceRange}
                                 onApply={setPriceRange}
                             />
-                            <SortFilter disabled={marketToggleState === "all"}
-                                        picked={sort}
-                                        setSort={setSort}
+                            <TokenSortFilter disabled={marketToggleState === "all"}
+                                             picked={sort}
+                                             setSort={setSort}
                             />
                         </div>
                     </div>
-
-                    {/*{collection.metadata?.traits*/}
-                    {/*    ?*/}
-                    {/*    <>*/}
-                    {/*        <TraitsFilter traits={collection.metadata?.traits}>*/}
-                    {/*            <div className="w-full">*/}
-                    {/*                {marketToggleState === "all" || collection.collection_contract === "mjol.near"*/}
-                    {/*                    ? <CollectionNftList/>*/}
-                    {/*                    : <CollectionMarketNftList collectionContract={collection.collection_contract}/>*/}
-                    {/*                }*/}
-                    {/*            </div>*/}
-                    {/*        </TraitsFilter>*/}
-                    {/*    </>*/}
-                    {/*    :*/}
                     <>
                         {marketToggleState === "all"
                             ?
@@ -138,9 +118,10 @@ const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
                     </>
                 </>
                 :
-                <div className="text-center text-xl font-archivo font-semibold text-blue-500">
-                    Collections activity will be added soon!
-                </div>
+                <CollectionActivity contractId={collection.contractId}
+                                    collectionId={collection.id}
+                                    collectionName={collection.title}
+                />
             }
         </div>
     );

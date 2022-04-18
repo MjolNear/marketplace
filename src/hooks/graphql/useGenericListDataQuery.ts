@@ -45,8 +45,8 @@ export const useGenericListDataQuery = <R, TData, TVariables extends { limit: nu
 
     return {
         data: listData,
-        loading: loading || loadingMore && dataLength !== 0,
-        hasMore: hasMore || loading && dataLength % limit === 0,
+        loading: loading || (loadingMore && dataLength !== 0),
+        hasMore: hasMore || (loading && dataLength % limit === 0),
         onLoadMore
     }
 }

@@ -1,17 +1,17 @@
 import {ApolloClient, ApolloLink, HttpLink, InMemoryCache} from "@apollo/client";
-import {CollectionIndexerEndpoint, MarketIndexerEndpoint} from "../graphql/config";
-import {getDirectiveArgumentValueFromOperation, offsetLimitMerge} from "./utils";
+import {CollectionIndexerEndpoint, MarketIndexerEndpoint} from "./config";
+import {getDirectiveArgumentValueFromOperation, offsetLimitPagination} from "./utils";
 
 export const setupApolloClient = () => {
     const cache = setupCache()
 
-    const federationLink = ApolloLink.split(
+    const link = ApolloLink.split(
         operation => {
             const api = getDirectiveArgumentValueFromOperation(operation, "api", "name")
             return api === "market"
         },
         new HttpLink({
-            uri: MarketIndexerEndpoint.BackupV2
+            uri: MarketIndexerEndpoint.Backup
         }),
         new HttpLink({
             uri: CollectionIndexerEndpoint.Main
@@ -19,7 +19,7 @@ export const setupApolloClient = () => {
     )
 
     return new ApolloClient({
-        link: federationLink,
+        link,
         cache
     })
 }
@@ -27,6 +27,12 @@ export const setupApolloClient = () => {
 const setupCache = () => {
     return new InMemoryCache({
             typePolicies: {
+                Account: {
+                    keyFields: ["id"]
+                },
+                Activity: {
+                    keyFields: ["id"]
+                },
                 Collection: {
                     keyFields: ["id"]
                 },
@@ -35,18 +41,20 @@ const setupCache = () => {
                 },
                 Query: {
                     fields: {
-                        collections: {
-                            keyArgs: ["where"],
-                            merge(existing, incoming, options) {
-                                return offsetLimitMerge({existing, incoming, options})
-                            }
+                        activities: {
+                            ...offsetLimitPagination(["orderBy", "orderDirection", "where"])
                         },
-
+                        collections: {
+                            ...offsetLimitPagination(["where"])
+                        },
+                        collectionsSearch: {
+                          ...offsetLimitPagination(["text"])
+                        },
                         marketTokens: {
-                            keyArgs: ["orderBy", "orderDirection", "where"],
-                            merge(existing, incoming, options) {
-                                return offsetLimitMerge({existing, incoming, options})
-                            }
+                            ...offsetLimitPagination(["orderBy", "orderDirection", "where"])
+                        },
+                        marketSearch: {
+                            ...offsetLimitPagination(["text"])
                         }
                     },
                 }

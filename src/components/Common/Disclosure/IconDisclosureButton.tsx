@@ -1,6 +1,7 @@
 import React from 'react';
 import IconText from "../../Icons/IconText";
 import LightBlueDisclosure from "./LightBlueDisclosure";
+import {PropsWithChildren} from "../../types";
 
 export interface TIconDisclosureProps {
     name: string,
@@ -8,7 +9,7 @@ export interface TIconDisclosureProps {
     defaultOpen?: boolean
 }
 
-const IconDisclosureButton: React.FC<TIconDisclosureProps> = ({
+const IconDisclosureButton: React.FC<PropsWithChildren<TIconDisclosureProps>> = ({
     name,
     icon,
     defaultOpen,

@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from "../../utils/css-utils";
+import classNames from "../../../utils/css-utils";
 
 export enum ActivityCellType {
     Event,

@@ -1,4 +1,5 @@
-query marketTokens(
+query accountMarketTokens(
+    $accountId: String!,
     $limit: Int!,
     $offset: Int!,
     $orderBy: MarketToken_orderBy!,
@@ -6,12 +7,13 @@ query marketTokens(
     $priceFrom: BigInt!,
     $priceTo: BigInt!
 ) @api(name: market) {
-    marketTokens(
+    tokens: marketTokens(
         first: $limit,
         skip: $offset,
         orderBy: $orderBy,
         orderDirection: $orderDirection,
         where: {
+            owner: $accountId
             price_gte: $priceFrom,
             price_lte: $priceTo
         }

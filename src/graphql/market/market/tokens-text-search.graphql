@@ -1,9 +1,9 @@
-query marketTokensSearch(
+query tokensTextSearch(
     $text: String!,
     $limit: Int!,
     $offset: Int!
 ) @api(name: market) {
-    marketTokens: marketSearch(text: $text, first: $limit, skip: $offset) {
+    tokens: marketSearch(text: $text, first: $limit, skip: $offset) {
         id
         tokenId
         contractId

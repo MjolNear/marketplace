@@ -1,19 +1,19 @@
 import React, {memo} from 'react';
 import LightBlueGradientText from "../../../Common/Text/LightBlueGradientText";
-import {prettyAccount, shortenString} from "../../../../utils/string";
+import {shortenString} from "../../../../utils/string";
 import Tooltip, {getContractVerificationTooltipContent} from "../../../Layout/Tooltip";
 import {ContractVerificationStatus} from "../../../../business-logic/types/contract";
 import ResolveVerificationIcon from "../../../Common/Verification/Icons/ResolveVerificationIcon";
 import {AccountId, ContractId} from "../../../../business-logic/types/aliases";
 
-interface TokenPreviewOwnerContract {
+interface TokenPreviewOwnerContractProps {
     ownerId: AccountId
     contractId: ContractId
     mintSiteName?: string
     verification?: ContractVerificationStatus
 }
 
-const TokenPreviewOwnerContract: React.FC<TokenPreviewOwnerContract> = ({
+const TokenPreviewOwnerContract: React.FC<TokenPreviewOwnerContractProps> = ({
     ownerId,
     contractId,
     mintSiteName,

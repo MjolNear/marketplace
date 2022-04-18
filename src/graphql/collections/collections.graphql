@@ -5,6 +5,8 @@ query collections(
     collections(
         first: $limit
         skip: $offset
+        orderBy: createdAt
+        orderDirection: desc
     ) {
         id
         ownerId

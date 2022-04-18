@@ -1,5 +1,5 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
-import {AnimatePresence, motion} from "framer-motion";
 
 interface PropTypes {
     isActive: boolean
@@ -19,7 +19,8 @@ const AnimatedBlueUnderline = React.memo<PropTypes>(({isActive}) => {
                     transition={{
                         duration: 0.15
                     }}
-                    className="hidden sm:block h-[2.5px] bg-mjol-tab-blue rounded-t-[3px]"
+                    className="h-1 bg-gradient-to-r
+                               from-mjol-gradient-blue-from to-mjol-gradient-blue-to rounded-t-[2px]"
                 />
             }
         </AnimatePresence>

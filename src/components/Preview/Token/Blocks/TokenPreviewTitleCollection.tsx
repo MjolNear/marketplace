@@ -20,7 +20,7 @@ const TokenPreviewTitleCollection: React.FC<TokenPreviewTitleCollection> = ({
                 {title}
             </div>
             {data &&
-                <Link to={`/collections/${data.collectionId}/items`}
+                <Link to={`/collections/${data.collectionId}`}
                       className="group"
                 >
                     <div className="inline-flex gap-2 items-center my-2">

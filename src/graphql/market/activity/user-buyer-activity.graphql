@@ -1,0 +1,38 @@
+query buyerAccountActivity(
+    $accountId: String!
+    $limit: Int!
+    $offset: Int!
+#    $eventType: ActivityEventType!
+    $orderBy: Activity_orderBy!
+    $orderDirection: OrderDirection!
+) @api(name: market) {
+    activities(
+        first: $limit
+        skip: $offset
+        orderBy: $orderBy
+        orderDirection: $orderDirection
+        where: {
+#            eventType: $eventType
+            buyer: $accountId
+        }
+    ) {
+        id
+        eventType
+        timestamp
+        price
+        txHash
+        owner {
+            id
+        }
+        buyer {
+            id
+        }
+        token {
+            id
+            tokenId
+            contractId
+            title
+            media
+        }
+    }
+}
