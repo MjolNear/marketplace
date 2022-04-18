@@ -1,6 +1,6 @@
 import React from 'react';
 import InfiniteScroll from "react-infinite-scroll-component";
-import MjolLoader from "../Common/Loaders/MjolLoader";
+import ActivityRowLoader from "./Common/ActivityRowLoader";
 
 interface PaginatedActivityListProps {
     dataLength: number,
@@ -20,8 +20,8 @@ const PaginationActivityList: React.FC<PaginatedActivityListProps> = ({
         <InfiniteScroll next={onLoadMore}
                         scrollThreshold="200px"
                         hasMore={hasMore}
-                        className="py-2"
-                        loader={<MjolLoader mt={5}/>}
+                        className="py-3"
+                        loader={<ActivityRowLoader mt={dataLength === 0 ? 0 : 10}/>}
                         dataLength={dataLength}
         >
             <div className="grid grid-cols-1 justify-center max-w-[1050px] mx-auto px-2 sm:px-4">

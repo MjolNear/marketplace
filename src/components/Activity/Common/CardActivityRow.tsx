@@ -50,10 +50,10 @@ const CardActivityRow: React.FC<TCardActivityRowProps> = ({
                 <div className="text-black font-bold">{fromYocto2Near(price)}</div>
             </CardActivityCell>
             <CardActivityCell type={ActivityCellType.Basic}>
-                <ActivityAccountCell accountId={from}/>
+                <ActivityAccountCell accountId={from} description={""}/>
             </CardActivityCell>
             <CardActivityCell type={ActivityCellType.Basic}>
-                <ActivityAccountCell accountId={to}/>
+                <ActivityAccountCell accountId={to} description={""}/>
             </CardActivityCell>
             <CardActivityCell type={ActivityCellType.Basic}>
                 {getRelativeTimestamp(timestamp)}

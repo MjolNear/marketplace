@@ -28,8 +28,12 @@ const TokenActivityRow: React.FC<TokenActivityRowProps & { collectionId: string,
                                        collectionName={collectionName}
                     />
                     <ActivityPriceCell price={price}/>
-                    <ActivityAccountCell accountId={owner.id}/>
-                    <ActivityAccountCell accountId={buyer?.id}/>
+                    <ActivityAccountCell accountId={owner.id}
+                                         description="from"
+                    />
+                    <ActivityAccountCell accountId={buyer?.id}
+                                         description="to"
+                    />
                     <ActivityTimestampCell timestamp={timestamp} txHash={txHash} blockHash={blockHash}/>
                 </div>
                 <div className="lg:hidden grid grid-cols-4">
