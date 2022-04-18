@@ -17,6 +17,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     effect = "solid"
 }) => {
     return (
+        // @ts-ignore
         <ReactTooltip effect={effect}
                       place={place}
                       className={className + " tooltip"}

@@ -22,6 +22,7 @@ export type Account = {
   __typename?: 'Account';
   earned: Scalars['BigDecimal'];
   id: Scalars['ID'];
+  listed: Scalars['BigInt'];
   marketTokens: Array<MarketToken>;
   purchases: Scalars['BigInt'];
   sales: Scalars['BigInt'];
@@ -56,6 +57,14 @@ export type Account_Filter = {
   id_lte?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  listed?: InputMaybe<Scalars['BigInt']>;
+  listed_gt?: InputMaybe<Scalars['BigInt']>;
+  listed_gte?: InputMaybe<Scalars['BigInt']>;
+  listed_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  listed_lt?: InputMaybe<Scalars['BigInt']>;
+  listed_lte?: InputMaybe<Scalars['BigInt']>;
+  listed_not?: InputMaybe<Scalars['BigInt']>;
+  listed_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   purchases?: InputMaybe<Scalars['BigInt']>;
   purchases_gt?: InputMaybe<Scalars['BigInt']>;
   purchases_gte?: InputMaybe<Scalars['BigInt']>;
@@ -85,6 +94,7 @@ export type Account_Filter = {
 export enum Account_OrderBy {
   Earned = 'earned',
   Id = 'id',
+  Listed = 'listed',
   MarketTokens = 'marketTokens',
   Purchases = 'purchases',
   Sales = 'sales',
@@ -318,8 +328,8 @@ export type Collection = {
   __typename?: 'Collection';
   activities: Array<Activity>;
   average: Scalars['BigDecimal'];
-  collectionId: Scalars['String'];
-  collectionName: Scalars['String'];
+  collectionId?: Maybe<Scalars['String']>;
+  collectionName?: Maybe<Scalars['String']>;
   contractId: Scalars['String'];
   dailyStats: Array<DailyCollectionStat>;
   id: Scalars['ID'];
@@ -473,6 +483,100 @@ export enum Collection_OrderBy {
   MarketTokens = 'marketTokens',
   Sales = 'sales',
   Volume = 'volume'
+}
+
+export type DailyAccountStat = {
+  __typename?: 'DailyAccountStat';
+  account: Account;
+  earned: Scalars['BigDecimal'];
+  id: Scalars['ID'];
+  purchases: Scalars['BigInt'];
+  sales: Scalars['BigInt'];
+  spent: Scalars['BigDecimal'];
+  timestamp: Scalars['BigInt'];
+};
+
+export type DailyAccountStat_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  account?: InputMaybe<Scalars['String']>;
+  account_contains?: InputMaybe<Scalars['String']>;
+  account_contains_nocase?: InputMaybe<Scalars['String']>;
+  account_ends_with?: InputMaybe<Scalars['String']>;
+  account_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  account_gt?: InputMaybe<Scalars['String']>;
+  account_gte?: InputMaybe<Scalars['String']>;
+  account_in?: InputMaybe<Array<Scalars['String']>>;
+  account_lt?: InputMaybe<Scalars['String']>;
+  account_lte?: InputMaybe<Scalars['String']>;
+  account_not?: InputMaybe<Scalars['String']>;
+  account_not_contains?: InputMaybe<Scalars['String']>;
+  account_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  account_not_ends_with?: InputMaybe<Scalars['String']>;
+  account_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  account_not_in?: InputMaybe<Array<Scalars['String']>>;
+  account_not_starts_with?: InputMaybe<Scalars['String']>;
+  account_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  account_starts_with?: InputMaybe<Scalars['String']>;
+  account_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  earned?: InputMaybe<Scalars['BigDecimal']>;
+  earned_gt?: InputMaybe<Scalars['BigDecimal']>;
+  earned_gte?: InputMaybe<Scalars['BigDecimal']>;
+  earned_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  earned_lt?: InputMaybe<Scalars['BigDecimal']>;
+  earned_lte?: InputMaybe<Scalars['BigDecimal']>;
+  earned_not?: InputMaybe<Scalars['BigDecimal']>;
+  earned_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  id?: InputMaybe<Scalars['ID']>;
+  id_gt?: InputMaybe<Scalars['ID']>;
+  id_gte?: InputMaybe<Scalars['ID']>;
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  id_lt?: InputMaybe<Scalars['ID']>;
+  id_lte?: InputMaybe<Scalars['ID']>;
+  id_not?: InputMaybe<Scalars['ID']>;
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  purchases?: InputMaybe<Scalars['BigInt']>;
+  purchases_gt?: InputMaybe<Scalars['BigInt']>;
+  purchases_gte?: InputMaybe<Scalars['BigInt']>;
+  purchases_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  purchases_lt?: InputMaybe<Scalars['BigInt']>;
+  purchases_lte?: InputMaybe<Scalars['BigInt']>;
+  purchases_not?: InputMaybe<Scalars['BigInt']>;
+  purchases_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  sales?: InputMaybe<Scalars['BigInt']>;
+  sales_gt?: InputMaybe<Scalars['BigInt']>;
+  sales_gte?: InputMaybe<Scalars['BigInt']>;
+  sales_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  sales_lt?: InputMaybe<Scalars['BigInt']>;
+  sales_lte?: InputMaybe<Scalars['BigInt']>;
+  sales_not?: InputMaybe<Scalars['BigInt']>;
+  sales_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  spent?: InputMaybe<Scalars['BigDecimal']>;
+  spent_gt?: InputMaybe<Scalars['BigDecimal']>;
+  spent_gte?: InputMaybe<Scalars['BigDecimal']>;
+  spent_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  spent_lt?: InputMaybe<Scalars['BigDecimal']>;
+  spent_lte?: InputMaybe<Scalars['BigDecimal']>;
+  spent_not?: InputMaybe<Scalars['BigDecimal']>;
+  spent_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  timestamp?: InputMaybe<Scalars['BigInt']>;
+  timestamp_gt?: InputMaybe<Scalars['BigInt']>;
+  timestamp_gte?: InputMaybe<Scalars['BigInt']>;
+  timestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  timestamp_lt?: InputMaybe<Scalars['BigInt']>;
+  timestamp_lte?: InputMaybe<Scalars['BigInt']>;
+  timestamp_not?: InputMaybe<Scalars['BigInt']>;
+  timestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+};
+
+export enum DailyAccountStat_OrderBy {
+  Account = 'account',
+  Earned = 'earned',
+  Id = 'id',
+  Purchases = 'purchases',
+  Sales = 'sales',
+  Spent = 'spent',
+  Timestamp = 'timestamp'
 }
 
 export type DailyCollectionStat = {
@@ -943,6 +1047,8 @@ export type Query = {
   activitySearch: Array<Activity>;
   collection?: Maybe<Collection>;
   collections: Array<Collection>;
+  dailyAccountStat?: Maybe<DailyAccountStat>;
+  dailyAccountStats: Array<DailyAccountStat>;
   dailyCollectionStat?: Maybe<DailyCollectionStat>;
   dailyCollectionStats: Array<DailyCollectionStat>;
   dailyMarketStat?: Maybe<DailyMarketStat>;
@@ -1031,6 +1137,24 @@ export type QueryCollectionsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   subgraphError?: _SubgraphErrorPolicy_;
   where?: InputMaybe<Collection_Filter>;
+};
+
+
+export type QueryDailyAccountStatArgs = {
+  block?: InputMaybe<Block_Height>;
+  id: Scalars['ID'];
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryDailyAccountStatsArgs = {
+  block?: InputMaybe<Block_Height>;
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<DailyAccountStat_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']>;
+  subgraphError?: _SubgraphErrorPolicy_;
+  where?: InputMaybe<DailyAccountStat_Filter>;
 };
 
 
@@ -1394,6 +1518,8 @@ export type Subscription = {
   activity?: Maybe<Activity>;
   collection?: Maybe<Collection>;
   collections: Array<Collection>;
+  dailyAccountStat?: Maybe<DailyAccountStat>;
+  dailyAccountStats: Array<DailyAccountStat>;
   dailyCollectionStat?: Maybe<DailyCollectionStat>;
   dailyCollectionStats: Array<DailyCollectionStat>;
   dailyMarketStat?: Maybe<DailyMarketStat>;
@@ -1463,6 +1589,24 @@ export type SubscriptionCollectionsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   subgraphError?: _SubgraphErrorPolicy_;
   where?: InputMaybe<Collection_Filter>;
+};
+
+
+export type SubscriptionDailyAccountStatArgs = {
+  block?: InputMaybe<Block_Height>;
+  id: Scalars['ID'];
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type SubscriptionDailyAccountStatsArgs = {
+  block?: InputMaybe<Block_Height>;
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<DailyAccountStat_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']>;
+  subgraphError?: _SubgraphErrorPolicy_;
+  where?: InputMaybe<DailyAccountStat_Filter>;
 };
 
 
@@ -1559,6 +1703,7 @@ export type TotalMarketStat = {
   __typename?: 'TotalMarketStat';
   average: Scalars['BigDecimal'];
   id: Scalars['ID'];
+  listed: Scalars['BigInt'];
   sales: Scalars['BigInt'];
   volume: Scalars['BigInt'];
 };
@@ -1582,6 +1727,14 @@ export type TotalMarketStat_Filter = {
   id_lte?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  listed?: InputMaybe<Scalars['BigInt']>;
+  listed_gt?: InputMaybe<Scalars['BigInt']>;
+  listed_gte?: InputMaybe<Scalars['BigInt']>;
+  listed_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  listed_lt?: InputMaybe<Scalars['BigInt']>;
+  listed_lte?: InputMaybe<Scalars['BigInt']>;
+  listed_not?: InputMaybe<Scalars['BigInt']>;
+  listed_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   sales?: InputMaybe<Scalars['BigInt']>;
   sales_gt?: InputMaybe<Scalars['BigInt']>;
   sales_gte?: InputMaybe<Scalars['BigInt']>;
@@ -1603,6 +1756,7 @@ export type TotalMarketStat_Filter = {
 export enum TotalMarketStat_OrderBy {
   Average = 'average',
   Id = 'id',
+  Listed = 'listed',
   Sales = 'sales',
   Volume = 'volume'
 }
@@ -1639,77 +1793,17 @@ export enum _SubgraphErrorPolicy_ {
   Deny = 'deny'
 }
 
-export type CollectionMarketTokensQueryVariables = Exact<{
+export type CollectionActivityQueryVariables = Exact<{
   id: Scalars['String'];
   limit: Scalars['Int'];
   offset: Scalars['Int'];
-  orderBy: MarketToken_OrderBy;
+  orderBy: Activity_OrderBy;
   orderDirection: OrderDirection;
-  priceFrom: Scalars['BigInt'];
-  priceTo: Scalars['BigInt'];
+  events: Array<ActivityEventType> | ActivityEventType;
 }>;
 
 
-export type CollectionMarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
-
-export type CollectionTotalStatsQueryVariables = Exact<{
-  id: Scalars['ID'];
-  stringId: Scalars['String'];
-}>;
-
-
-export type CollectionTotalStatsQuery = { __typename?: 'Query', stats?: { __typename?: 'Collection', id: string, volume: any, sales: any, average: any, listed: any } | null, floar: Array<{ __typename?: 'MarketToken', id: string, price: any }> };
-
-export type AccountMarketTokensQueryVariables = Exact<{
-  accountId: Scalars['ID'];
-  limit: Scalars['Int'];
-  offset: Scalars['Int'];
-  orderBy: MarketToken_OrderBy;
-  orderDirection: OrderDirection;
-  priceFrom: Scalars['BigInt'];
-  priceTo: Scalars['BigInt'];
-}>;
-
-
-export type AccountMarketTokensQuery = { __typename?: 'Query', account?: { __typename?: 'Account', id: string, marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> } | null };
-
-export type LastMarketTokensQueryVariables = Exact<{
-  limit: Scalars['Int'];
-  offset: Scalars['Int'];
-  orderBy: MarketToken_OrderBy;
-  orderDirection: OrderDirection;
-}>;
-
-
-export type LastMarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, description?: string | null, media?: string | null, price: any }> };
-
-export type MarketStatisticsQueryVariables = Exact<{
-  fromTimestamp: Scalars['BigInt'];
-}>;
-
-
-export type MarketStatisticsQuery = { __typename?: 'Query', dailyMarketStats: Array<{ __typename?: 'DailyMarketStat', id: string, volume: any, sales: any, timestamp: any }> };
-
-export type MarketTokensQueryVariables = Exact<{
-  limit: Scalars['Int'];
-  offset: Scalars['Int'];
-  orderBy: MarketToken_OrderBy;
-  orderDirection: OrderDirection;
-  priceFrom: Scalars['BigInt'];
-  priceTo: Scalars['BigInt'];
-}>;
-
-
-export type MarketTokensQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
-
-export type MarketTokensSearchQueryVariables = Exact<{
-  text: Scalars['String'];
-  limit: Scalars['Int'];
-  offset: Scalars['Int'];
-}>;
-
-
-export type MarketTokensSearchQuery = { __typename?: 'Query', marketTokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+export type CollectionActivityQuery = { __typename?: 'Query', activities: Array<{ __typename?: 'Activity', id: string, price?: any | null, txHash: string, blockHash: string, eventType: ActivityEventType, timestamp: any, token: { __typename?: 'SavedToken', id: string, tokenId: string, contractId: string, media?: string | null, title: string }, owner: { __typename?: 'Account', id: string }, buyer?: { __typename?: 'Account', id: string } | null }> };
 
 export type TokenActivityQueryVariables = Exact<{
   tokenUID: Scalars['String'];
@@ -1718,351 +1812,160 @@ export type TokenActivityQueryVariables = Exact<{
 
 export type TokenActivityQuery = { __typename?: 'Query', tokenActivity: Array<{ __typename?: 'Activity', id: string, price?: any | null, txHash: string, eventType: ActivityEventType, timestamp: any, owner: { __typename?: 'Account', id: string }, buyer?: { __typename?: 'Account', id: string } | null }> };
 
+export type BuyerAccountActivityQueryVariables = Exact<{
+  accountId: Scalars['String'];
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+  orderBy: Activity_OrderBy;
+  orderDirection: OrderDirection;
+}>;
 
-export const CollectionMarketTokensDocument = gql`
-    query collectionMarketTokens($id: String!, $limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt!, $priceTo: BigInt!) @api(name: market) {
-  marketTokens(
+
+export type BuyerAccountActivityQuery = { __typename?: 'Query', activities: Array<{ __typename?: 'Activity', id: string, eventType: ActivityEventType, timestamp: any, price?: any | null, txHash: string, owner: { __typename?: 'Account', id: string }, buyer?: { __typename?: 'Account', id: string } | null, token: { __typename?: 'SavedToken', id: string, tokenId: string, contractId: string, title: string, media?: string | null } }> };
+
+export type OwnerAccountActivityQueryVariables = Exact<{
+  accountId: Scalars['String'];
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+  eventType: ActivityEventType;
+  orderBy: Activity_OrderBy;
+  orderDirection: OrderDirection;
+}>;
+
+
+export type OwnerAccountActivityQuery = { __typename?: 'Query', activities: Array<{ __typename?: 'Activity', id: string, eventType: ActivityEventType, timestamp: any, price?: any | null, txHash: string, owner: { __typename?: 'Account', id: string }, buyer?: { __typename?: 'Account', id: string } | null, token: { __typename?: 'SavedToken', id: string, tokenId: string, contractId: string, title: string, media?: string | null } }> };
+
+export type CollectionMarketTokensQueryVariables = Exact<{
+  collection: Scalars['String'];
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+  orderBy: MarketToken_OrderBy;
+  orderDirection: OrderDirection;
+  priceFrom: Scalars['BigInt'];
+  priceTo: Scalars['BigInt'];
+}>;
+
+
+export type CollectionMarketTokensQuery = { __typename?: 'Query', tokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+
+export type CollectionTotalStatsQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type CollectionTotalStatsQuery = { __typename?: 'Query', stats?: { __typename?: 'Collection', id: string, volume: any, sales: any, average: any, listed: any, floor: Array<{ __typename?: 'MarketToken', id: string, price: any }> } | null };
+
+export type AccountMarketTokensQueryVariables = Exact<{
+  accountId: Scalars['String'];
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+  orderBy: MarketToken_OrderBy;
+  orderDirection: OrderDirection;
+  priceFrom: Scalars['BigInt'];
+  priceTo: Scalars['BigInt'];
+}>;
+
+
+export type AccountMarketTokensQuery = { __typename?: 'Query', tokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+
+export type MarketStatisticsQueryVariables = Exact<{
+  fromTimestamp: Scalars['BigInt'];
+}>;
+
+
+export type MarketStatisticsQuery = { __typename?: 'Query', dailyMarketStats: Array<{ __typename?: 'DailyMarketStat', id: string, volume: any, sales: any, timestamp: any }> };
+
+export type NewMarketTokensQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type NewMarketTokensQuery = { __typename?: 'Query', tokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, description?: string | null, media?: string | null, price: any }> };
+
+export type TokensFilterQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+  orderBy: MarketToken_OrderBy;
+  orderDirection: OrderDirection;
+  priceFrom: Scalars['BigInt'];
+  priceTo: Scalars['BigInt'];
+}>;
+
+
+export type TokensFilterQuery = { __typename?: 'Query', tokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+
+export type TokensTextSearchQueryVariables = Exact<{
+  text: Scalars['String'];
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+}>;
+
+
+export type TokensTextSearchQuery = { __typename?: 'Query', tokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
+
+
+export const CollectionActivityDocument = gql`
+    query collectionActivity($id: String!, $limit: Int!, $offset: Int!, $orderBy: Activity_orderBy!, $orderDirection: OrderDirection!, $events: [ActivityEventType!]!) @api(name: market) {
+  activities(
     first: $limit
     skip: $offset
     orderBy: $orderBy
     orderDirection: $orderDirection
-    where: {collection: $id, price_gte: $priceFrom, price_lte: $priceTo}
-  ) {
-    id
-    tokenId
-    contractId
-    title
-    media
-    mintSiteName
-    mintSiteLink
-    price
-  }
-}
-    `;
-
-/**
- * __useCollectionMarketTokensQuery__
- *
- * To run a query within a React component, call `useCollectionMarketTokensQuery` and pass it any options that fit your needs.
- * When your component renders, `useCollectionMarketTokensQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useCollectionMarketTokensQuery({
- *   variables: {
- *      id: // value for 'id'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      orderBy: // value for 'orderBy'
- *      orderDirection: // value for 'orderDirection'
- *      priceFrom: // value for 'priceFrom'
- *      priceTo: // value for 'priceTo'
- *   },
- * });
- */
-export function useCollectionMarketTokensQuery(baseOptions: Apollo.QueryHookOptions<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>(CollectionMarketTokensDocument, options);
-      }
-export function useCollectionMarketTokensLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>(CollectionMarketTokensDocument, options);
-        }
-export type CollectionMarketTokensQueryHookResult = ReturnType<typeof useCollectionMarketTokensQuery>;
-export type CollectionMarketTokensLazyQueryHookResult = ReturnType<typeof useCollectionMarketTokensLazyQuery>;
-export type CollectionMarketTokensQueryResult = Apollo.QueryResult<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>;
-export const CollectionTotalStatsDocument = gql`
-    query collectionTotalStats($id: ID!, $stringId: String!) @api(name: market) {
-  stats: collection(id: $id) {
-    id
-    volume
-    sales
-    average
-    listed
-  }
-  floar: marketTokens(
-    where: {collection: $stringId}
-    orderBy: price
-    orderDirection: asc
-    first: 1
+    where: {collection: $id, eventType_in: $events}
   ) {
     id
     price
-  }
-}
-    `;
-
-/**
- * __useCollectionTotalStatsQuery__
- *
- * To run a query within a React component, call `useCollectionTotalStatsQuery` and pass it any options that fit your needs.
- * When your component renders, `useCollectionTotalStatsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useCollectionTotalStatsQuery({
- *   variables: {
- *      id: // value for 'id'
- *      stringId: // value for 'stringId'
- *   },
- * });
- */
-export function useCollectionTotalStatsQuery(baseOptions: Apollo.QueryHookOptions<CollectionTotalStatsQuery, CollectionTotalStatsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CollectionTotalStatsQuery, CollectionTotalStatsQueryVariables>(CollectionTotalStatsDocument, options);
-      }
-export function useCollectionTotalStatsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CollectionTotalStatsQuery, CollectionTotalStatsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CollectionTotalStatsQuery, CollectionTotalStatsQueryVariables>(CollectionTotalStatsDocument, options);
-        }
-export type CollectionTotalStatsQueryHookResult = ReturnType<typeof useCollectionTotalStatsQuery>;
-export type CollectionTotalStatsLazyQueryHookResult = ReturnType<typeof useCollectionTotalStatsLazyQuery>;
-export type CollectionTotalStatsQueryResult = Apollo.QueryResult<CollectionTotalStatsQuery, CollectionTotalStatsQueryVariables>;
-export const AccountMarketTokensDocument = gql`
-    query accountMarketTokens($accountId: ID!, $limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt!, $priceTo: BigInt!) @api(name: market) {
-  account(id: $accountId) {
-    id
-    marketTokens(
-      first: $limit
-      skip: $offset
-      orderBy: $orderBy
-      orderDirection: $orderDirection
-      where: {price_gte: $priceFrom, price_lte: $priceTo}
-    ) {
+    txHash
+    blockHash
+    eventType
+    timestamp
+    token {
       id
       tokenId
       contractId
-      title
       media
-      mintSiteName
-      mintSiteLink
-      price
+      title
+    }
+    owner {
+      id
+    }
+    buyer {
+      id
     }
   }
 }
     `;
 
 /**
- * __useAccountMarketTokensQuery__
+ * __useCollectionActivityQuery__
  *
- * To run a query within a React component, call `useAccountMarketTokensQuery` and pass it any options that fit your needs.
- * When your component renders, `useAccountMarketTokensQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useCollectionActivityQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCollectionActivityQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useAccountMarketTokensQuery({
+ * const { data, loading, error } = useCollectionActivityQuery({
  *   variables: {
- *      accountId: // value for 'accountId'
+ *      id: // value for 'id'
  *      limit: // value for 'limit'
  *      offset: // value for 'offset'
  *      orderBy: // value for 'orderBy'
  *      orderDirection: // value for 'orderDirection'
- *      priceFrom: // value for 'priceFrom'
- *      priceTo: // value for 'priceTo'
+ *      events: // value for 'events'
  *   },
  * });
  */
-export function useAccountMarketTokensQuery(baseOptions: Apollo.QueryHookOptions<AccountMarketTokensQuery, AccountMarketTokensQueryVariables>) {
+export function useCollectionActivityQuery(baseOptions: Apollo.QueryHookOptions<CollectionActivityQuery, CollectionActivityQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<AccountMarketTokensQuery, AccountMarketTokensQueryVariables>(AccountMarketTokensDocument, options);
+        return Apollo.useQuery<CollectionActivityQuery, CollectionActivityQueryVariables>(CollectionActivityDocument, options);
       }
-export function useAccountMarketTokensLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AccountMarketTokensQuery, AccountMarketTokensQueryVariables>) {
+export function useCollectionActivityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CollectionActivityQuery, CollectionActivityQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<AccountMarketTokensQuery, AccountMarketTokensQueryVariables>(AccountMarketTokensDocument, options);
+          return Apollo.useLazyQuery<CollectionActivityQuery, CollectionActivityQueryVariables>(CollectionActivityDocument, options);
         }
-export type AccountMarketTokensQueryHookResult = ReturnType<typeof useAccountMarketTokensQuery>;
-export type AccountMarketTokensLazyQueryHookResult = ReturnType<typeof useAccountMarketTokensLazyQuery>;
-export type AccountMarketTokensQueryResult = Apollo.QueryResult<AccountMarketTokensQuery, AccountMarketTokensQueryVariables>;
-export const LastMarketTokensDocument = gql`
-    query lastMarketTokens($limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!) @api(name: market) {
-  marketTokens(
-    first: $limit
-    skip: $offset
-    orderBy: $orderBy
-    orderDirection: $orderDirection
-  ) {
-    id
-    tokenId
-    contractId
-    title
-    description
-    media
-    price
-  }
-}
-    `;
-
-/**
- * __useLastMarketTokensQuery__
- *
- * To run a query within a React component, call `useLastMarketTokensQuery` and pass it any options that fit your needs.
- * When your component renders, `useLastMarketTokensQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useLastMarketTokensQuery({
- *   variables: {
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      orderBy: // value for 'orderBy'
- *      orderDirection: // value for 'orderDirection'
- *   },
- * });
- */
-export function useLastMarketTokensQuery(baseOptions: Apollo.QueryHookOptions<LastMarketTokensQuery, LastMarketTokensQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<LastMarketTokensQuery, LastMarketTokensQueryVariables>(LastMarketTokensDocument, options);
-      }
-export function useLastMarketTokensLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LastMarketTokensQuery, LastMarketTokensQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<LastMarketTokensQuery, LastMarketTokensQueryVariables>(LastMarketTokensDocument, options);
-        }
-export type LastMarketTokensQueryHookResult = ReturnType<typeof useLastMarketTokensQuery>;
-export type LastMarketTokensLazyQueryHookResult = ReturnType<typeof useLastMarketTokensLazyQuery>;
-export type LastMarketTokensQueryResult = Apollo.QueryResult<LastMarketTokensQuery, LastMarketTokensQueryVariables>;
-export const MarketStatisticsDocument = gql`
-    query marketStatistics($fromTimestamp: BigInt!) @api(name: market) {
-  dailyMarketStats(where: {timestamp_gte: $fromTimestamp}, orderBy: timestamp) {
-    id
-    volume
-    sales
-    timestamp
-  }
-}
-    `;
-
-/**
- * __useMarketStatisticsQuery__
- *
- * To run a query within a React component, call `useMarketStatisticsQuery` and pass it any options that fit your needs.
- * When your component renders, `useMarketStatisticsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useMarketStatisticsQuery({
- *   variables: {
- *      fromTimestamp: // value for 'fromTimestamp'
- *   },
- * });
- */
-export function useMarketStatisticsQuery(baseOptions: Apollo.QueryHookOptions<MarketStatisticsQuery, MarketStatisticsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<MarketStatisticsQuery, MarketStatisticsQueryVariables>(MarketStatisticsDocument, options);
-      }
-export function useMarketStatisticsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MarketStatisticsQuery, MarketStatisticsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<MarketStatisticsQuery, MarketStatisticsQueryVariables>(MarketStatisticsDocument, options);
-        }
-export type MarketStatisticsQueryHookResult = ReturnType<typeof useMarketStatisticsQuery>;
-export type MarketStatisticsLazyQueryHookResult = ReturnType<typeof useMarketStatisticsLazyQuery>;
-export type MarketStatisticsQueryResult = Apollo.QueryResult<MarketStatisticsQuery, MarketStatisticsQueryVariables>;
-export const MarketTokensDocument = gql`
-    query marketTokens($limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt!, $priceTo: BigInt!) @api(name: market) {
-  marketTokens(
-    first: $limit
-    skip: $offset
-    orderBy: $orderBy
-    orderDirection: $orderDirection
-    where: {price_gte: $priceFrom, price_lte: $priceTo}
-  ) {
-    id
-    tokenId
-    contractId
-    title
-    media
-    mintSiteName
-    mintSiteLink
-    price
-  }
-}
-    `;
-
-/**
- * __useMarketTokensQuery__
- *
- * To run a query within a React component, call `useMarketTokensQuery` and pass it any options that fit your needs.
- * When your component renders, `useMarketTokensQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useMarketTokensQuery({
- *   variables: {
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      orderBy: // value for 'orderBy'
- *      orderDirection: // value for 'orderDirection'
- *      priceFrom: // value for 'priceFrom'
- *      priceTo: // value for 'priceTo'
- *   },
- * });
- */
-export function useMarketTokensQuery(baseOptions: Apollo.QueryHookOptions<MarketTokensQuery, MarketTokensQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<MarketTokensQuery, MarketTokensQueryVariables>(MarketTokensDocument, options);
-      }
-export function useMarketTokensLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MarketTokensQuery, MarketTokensQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<MarketTokensQuery, MarketTokensQueryVariables>(MarketTokensDocument, options);
-        }
-export type MarketTokensQueryHookResult = ReturnType<typeof useMarketTokensQuery>;
-export type MarketTokensLazyQueryHookResult = ReturnType<typeof useMarketTokensLazyQuery>;
-export type MarketTokensQueryResult = Apollo.QueryResult<MarketTokensQuery, MarketTokensQueryVariables>;
-export const MarketTokensSearchDocument = gql`
-    query marketTokensSearch($text: String!, $limit: Int!, $offset: Int!) @api(name: market) {
-  marketTokens: marketSearch(text: $text, first: $limit, skip: $offset) {
-    id
-    tokenId
-    contractId
-    title
-    media
-    mintSiteName
-    mintSiteLink
-    price
-  }
-}
-    `;
-
-/**
- * __useMarketTokensSearchQuery__
- *
- * To run a query within a React component, call `useMarketTokensSearchQuery` and pass it any options that fit your needs.
- * When your component renders, `useMarketTokensSearchQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useMarketTokensSearchQuery({
- *   variables: {
- *      text: // value for 'text'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *   },
- * });
- */
-export function useMarketTokensSearchQuery(baseOptions: Apollo.QueryHookOptions<MarketTokensSearchQuery, MarketTokensSearchQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<MarketTokensSearchQuery, MarketTokensSearchQueryVariables>(MarketTokensSearchDocument, options);
-      }
-export function useMarketTokensSearchLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MarketTokensSearchQuery, MarketTokensSearchQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<MarketTokensSearchQuery, MarketTokensSearchQueryVariables>(MarketTokensSearchDocument, options);
-        }
-export type MarketTokensSearchQueryHookResult = ReturnType<typeof useMarketTokensSearchQuery>;
-export type MarketTokensSearchLazyQueryHookResult = ReturnType<typeof useMarketTokensSearchLazyQuery>;
-export type MarketTokensSearchQueryResult = Apollo.QueryResult<MarketTokensSearchQuery, MarketTokensSearchQueryVariables>;
+export type CollectionActivityQueryHookResult = ReturnType<typeof useCollectionActivityQuery>;
+export type CollectionActivityLazyQueryHookResult = ReturnType<typeof useCollectionActivityLazyQuery>;
+export type CollectionActivityQueryResult = Apollo.QueryResult<CollectionActivityQuery, CollectionActivityQueryVariables>;
 export const TokenActivityDocument = gql`
     query tokenActivity($tokenUID: String!) @api(name: market) {
   tokenActivity: activities(
@@ -2112,3 +2015,459 @@ export function useTokenActivityLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type TokenActivityQueryHookResult = ReturnType<typeof useTokenActivityQuery>;
 export type TokenActivityLazyQueryHookResult = ReturnType<typeof useTokenActivityLazyQuery>;
 export type TokenActivityQueryResult = Apollo.QueryResult<TokenActivityQuery, TokenActivityQueryVariables>;
+export const BuyerAccountActivityDocument = gql`
+    query buyerAccountActivity($accountId: String!, $limit: Int!, $offset: Int!, $orderBy: Activity_orderBy!, $orderDirection: OrderDirection!) @api(name: market) {
+  activities(
+    first: $limit
+    skip: $offset
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: {buyer: $accountId}
+  ) {
+    id
+    eventType
+    timestamp
+    price
+    txHash
+    owner {
+      id
+    }
+    buyer {
+      id
+    }
+    token {
+      id
+      tokenId
+      contractId
+      title
+      media
+    }
+  }
+}
+    `;
+
+/**
+ * __useBuyerAccountActivityQuery__
+ *
+ * To run a query within a React component, call `useBuyerAccountActivityQuery` and pass it any options that fit your needs.
+ * When your component renders, `useBuyerAccountActivityQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useBuyerAccountActivityQuery({
+ *   variables: {
+ *      accountId: // value for 'accountId'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      orderBy: // value for 'orderBy'
+ *      orderDirection: // value for 'orderDirection'
+ *   },
+ * });
+ */
+export function useBuyerAccountActivityQuery(baseOptions: Apollo.QueryHookOptions<BuyerAccountActivityQuery, BuyerAccountActivityQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<BuyerAccountActivityQuery, BuyerAccountActivityQueryVariables>(BuyerAccountActivityDocument, options);
+      }
+export function useBuyerAccountActivityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BuyerAccountActivityQuery, BuyerAccountActivityQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<BuyerAccountActivityQuery, BuyerAccountActivityQueryVariables>(BuyerAccountActivityDocument, options);
+        }
+export type BuyerAccountActivityQueryHookResult = ReturnType<typeof useBuyerAccountActivityQuery>;
+export type BuyerAccountActivityLazyQueryHookResult = ReturnType<typeof useBuyerAccountActivityLazyQuery>;
+export type BuyerAccountActivityQueryResult = Apollo.QueryResult<BuyerAccountActivityQuery, BuyerAccountActivityQueryVariables>;
+export const OwnerAccountActivityDocument = gql`
+    query ownerAccountActivity($accountId: String!, $limit: Int!, $offset: Int!, $eventType: ActivityEventType!, $orderBy: Activity_orderBy!, $orderDirection: OrderDirection!) @api(name: market) {
+  activities(
+    first: $limit
+    skip: $offset
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: {eventType: $eventType, owner: $accountId}
+  ) {
+    id
+    eventType
+    timestamp
+    price
+    txHash
+    owner {
+      id
+    }
+    buyer {
+      id
+    }
+    token {
+      id
+      tokenId
+      contractId
+      title
+      media
+    }
+  }
+}
+    `;
+
+/**
+ * __useOwnerAccountActivityQuery__
+ *
+ * To run a query within a React component, call `useOwnerAccountActivityQuery` and pass it any options that fit your needs.
+ * When your component renders, `useOwnerAccountActivityQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOwnerAccountActivityQuery({
+ *   variables: {
+ *      accountId: // value for 'accountId'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      eventType: // value for 'eventType'
+ *      orderBy: // value for 'orderBy'
+ *      orderDirection: // value for 'orderDirection'
+ *   },
+ * });
+ */
+export function useOwnerAccountActivityQuery(baseOptions: Apollo.QueryHookOptions<OwnerAccountActivityQuery, OwnerAccountActivityQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<OwnerAccountActivityQuery, OwnerAccountActivityQueryVariables>(OwnerAccountActivityDocument, options);
+      }
+export function useOwnerAccountActivityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OwnerAccountActivityQuery, OwnerAccountActivityQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<OwnerAccountActivityQuery, OwnerAccountActivityQueryVariables>(OwnerAccountActivityDocument, options);
+        }
+export type OwnerAccountActivityQueryHookResult = ReturnType<typeof useOwnerAccountActivityQuery>;
+export type OwnerAccountActivityLazyQueryHookResult = ReturnType<typeof useOwnerAccountActivityLazyQuery>;
+export type OwnerAccountActivityQueryResult = Apollo.QueryResult<OwnerAccountActivityQuery, OwnerAccountActivityQueryVariables>;
+export const CollectionMarketTokensDocument = gql`
+    query collectionMarketTokens($collection: String!, $limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt!, $priceTo: BigInt!) @api(name: market) {
+  tokens: marketTokens(
+    first: $limit
+    skip: $offset
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: {collection: $collection, price_gte: $priceFrom, price_lte: $priceTo}
+  ) {
+    id
+    tokenId
+    contractId
+    title
+    media
+    mintSiteName
+    mintSiteLink
+    price
+  }
+}
+    `;
+
+/**
+ * __useCollectionMarketTokensQuery__
+ *
+ * To run a query within a React component, call `useCollectionMarketTokensQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCollectionMarketTokensQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCollectionMarketTokensQuery({
+ *   variables: {
+ *      collection: // value for 'collection'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      orderBy: // value for 'orderBy'
+ *      orderDirection: // value for 'orderDirection'
+ *      priceFrom: // value for 'priceFrom'
+ *      priceTo: // value for 'priceTo'
+ *   },
+ * });
+ */
+export function useCollectionMarketTokensQuery(baseOptions: Apollo.QueryHookOptions<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>(CollectionMarketTokensDocument, options);
+      }
+export function useCollectionMarketTokensLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>(CollectionMarketTokensDocument, options);
+        }
+export type CollectionMarketTokensQueryHookResult = ReturnType<typeof useCollectionMarketTokensQuery>;
+export type CollectionMarketTokensLazyQueryHookResult = ReturnType<typeof useCollectionMarketTokensLazyQuery>;
+export type CollectionMarketTokensQueryResult = Apollo.QueryResult<CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>;
+export const CollectionTotalStatsDocument = gql`
+    query collectionTotalStats($id: ID!) @api(name: market) {
+  stats: collection(id: $id) {
+    id
+    volume
+    sales
+    average
+    listed
+    floor: marketTokens(orderBy: price, orderDirection: asc, first: 1) {
+      id
+      price
+    }
+  }
+}
+    `;
+
+/**
+ * __useCollectionTotalStatsQuery__
+ *
+ * To run a query within a React component, call `useCollectionTotalStatsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCollectionTotalStatsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCollectionTotalStatsQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useCollectionTotalStatsQuery(baseOptions: Apollo.QueryHookOptions<CollectionTotalStatsQuery, CollectionTotalStatsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CollectionTotalStatsQuery, CollectionTotalStatsQueryVariables>(CollectionTotalStatsDocument, options);
+      }
+export function useCollectionTotalStatsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CollectionTotalStatsQuery, CollectionTotalStatsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CollectionTotalStatsQuery, CollectionTotalStatsQueryVariables>(CollectionTotalStatsDocument, options);
+        }
+export type CollectionTotalStatsQueryHookResult = ReturnType<typeof useCollectionTotalStatsQuery>;
+export type CollectionTotalStatsLazyQueryHookResult = ReturnType<typeof useCollectionTotalStatsLazyQuery>;
+export type CollectionTotalStatsQueryResult = Apollo.QueryResult<CollectionTotalStatsQuery, CollectionTotalStatsQueryVariables>;
+export const AccountMarketTokensDocument = gql`
+    query accountMarketTokens($accountId: String!, $limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt!, $priceTo: BigInt!) @api(name: market) {
+  tokens: marketTokens(
+    first: $limit
+    skip: $offset
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: {owner: $accountId, price_gte: $priceFrom, price_lte: $priceTo}
+  ) {
+    id
+    tokenId
+    contractId
+    title
+    media
+    mintSiteName
+    mintSiteLink
+    price
+  }
+}
+    `;
+
+/**
+ * __useAccountMarketTokensQuery__
+ *
+ * To run a query within a React component, call `useAccountMarketTokensQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAccountMarketTokensQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAccountMarketTokensQuery({
+ *   variables: {
+ *      accountId: // value for 'accountId'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      orderBy: // value for 'orderBy'
+ *      orderDirection: // value for 'orderDirection'
+ *      priceFrom: // value for 'priceFrom'
+ *      priceTo: // value for 'priceTo'
+ *   },
+ * });
+ */
+export function useAccountMarketTokensQuery(baseOptions: Apollo.QueryHookOptions<AccountMarketTokensQuery, AccountMarketTokensQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AccountMarketTokensQuery, AccountMarketTokensQueryVariables>(AccountMarketTokensDocument, options);
+      }
+export function useAccountMarketTokensLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AccountMarketTokensQuery, AccountMarketTokensQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AccountMarketTokensQuery, AccountMarketTokensQueryVariables>(AccountMarketTokensDocument, options);
+        }
+export type AccountMarketTokensQueryHookResult = ReturnType<typeof useAccountMarketTokensQuery>;
+export type AccountMarketTokensLazyQueryHookResult = ReturnType<typeof useAccountMarketTokensLazyQuery>;
+export type AccountMarketTokensQueryResult = Apollo.QueryResult<AccountMarketTokensQuery, AccountMarketTokensQueryVariables>;
+export const MarketStatisticsDocument = gql`
+    query marketStatistics($fromTimestamp: BigInt!) @api(name: market) {
+  dailyMarketStats(where: {timestamp_gte: $fromTimestamp}, orderBy: timestamp) {
+    id
+    volume
+    sales
+    timestamp
+  }
+}
+    `;
+
+/**
+ * __useMarketStatisticsQuery__
+ *
+ * To run a query within a React component, call `useMarketStatisticsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMarketStatisticsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMarketStatisticsQuery({
+ *   variables: {
+ *      fromTimestamp: // value for 'fromTimestamp'
+ *   },
+ * });
+ */
+export function useMarketStatisticsQuery(baseOptions: Apollo.QueryHookOptions<MarketStatisticsQuery, MarketStatisticsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MarketStatisticsQuery, MarketStatisticsQueryVariables>(MarketStatisticsDocument, options);
+      }
+export function useMarketStatisticsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MarketStatisticsQuery, MarketStatisticsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MarketStatisticsQuery, MarketStatisticsQueryVariables>(MarketStatisticsDocument, options);
+        }
+export type MarketStatisticsQueryHookResult = ReturnType<typeof useMarketStatisticsQuery>;
+export type MarketStatisticsLazyQueryHookResult = ReturnType<typeof useMarketStatisticsLazyQuery>;
+export type MarketStatisticsQueryResult = Apollo.QueryResult<MarketStatisticsQuery, MarketStatisticsQueryVariables>;
+export const NewMarketTokensDocument = gql`
+    query newMarketTokens @api(name: market) {
+  tokens: marketTokens(
+    first: 12
+    skip: 0
+    orderBy: listingTimestamp
+    orderDirection: desc
+  ) {
+    id
+    tokenId
+    contractId
+    title
+    description
+    media
+    price
+  }
+}
+    `;
+
+/**
+ * __useNewMarketTokensQuery__
+ *
+ * To run a query within a React component, call `useNewMarketTokensQuery` and pass it any options that fit your needs.
+ * When your component renders, `useNewMarketTokensQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useNewMarketTokensQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useNewMarketTokensQuery(baseOptions?: Apollo.QueryHookOptions<NewMarketTokensQuery, NewMarketTokensQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<NewMarketTokensQuery, NewMarketTokensQueryVariables>(NewMarketTokensDocument, options);
+      }
+export function useNewMarketTokensLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NewMarketTokensQuery, NewMarketTokensQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<NewMarketTokensQuery, NewMarketTokensQueryVariables>(NewMarketTokensDocument, options);
+        }
+export type NewMarketTokensQueryHookResult = ReturnType<typeof useNewMarketTokensQuery>;
+export type NewMarketTokensLazyQueryHookResult = ReturnType<typeof useNewMarketTokensLazyQuery>;
+export type NewMarketTokensQueryResult = Apollo.QueryResult<NewMarketTokensQuery, NewMarketTokensQueryVariables>;
+export const TokensFilterDocument = gql`
+    query tokensFilter($limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt!, $priceTo: BigInt!) @api(name: market) {
+  tokens: marketTokens(
+    first: $limit
+    skip: $offset
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: {price_gte: $priceFrom, price_lte: $priceTo}
+  ) {
+    id
+    tokenId
+    contractId
+    title
+    media
+    mintSiteName
+    mintSiteLink
+    price
+  }
+}
+    `;
+
+/**
+ * __useTokensFilterQuery__
+ *
+ * To run a query within a React component, call `useTokensFilterQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTokensFilterQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTokensFilterQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      orderBy: // value for 'orderBy'
+ *      orderDirection: // value for 'orderDirection'
+ *      priceFrom: // value for 'priceFrom'
+ *      priceTo: // value for 'priceTo'
+ *   },
+ * });
+ */
+export function useTokensFilterQuery(baseOptions: Apollo.QueryHookOptions<TokensFilterQuery, TokensFilterQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TokensFilterQuery, TokensFilterQueryVariables>(TokensFilterDocument, options);
+      }
+export function useTokensFilterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TokensFilterQuery, TokensFilterQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TokensFilterQuery, TokensFilterQueryVariables>(TokensFilterDocument, options);
+        }
+export type TokensFilterQueryHookResult = ReturnType<typeof useTokensFilterQuery>;
+export type TokensFilterLazyQueryHookResult = ReturnType<typeof useTokensFilterLazyQuery>;
+export type TokensFilterQueryResult = Apollo.QueryResult<TokensFilterQuery, TokensFilterQueryVariables>;
+export const TokensTextSearchDocument = gql`
+    query tokensTextSearch($text: String!, $limit: Int!, $offset: Int!) @api(name: market) {
+  tokens: marketSearch(text: $text, first: $limit, skip: $offset) {
+    id
+    tokenId
+    contractId
+    title
+    media
+    mintSiteName
+    mintSiteLink
+    price
+  }
+}
+    `;
+
+/**
+ * __useTokensTextSearchQuery__
+ *
+ * To run a query within a React component, call `useTokensTextSearchQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTokensTextSearchQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTokensTextSearchQuery({
+ *   variables: {
+ *      text: // value for 'text'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *   },
+ * });
+ */
+export function useTokensTextSearchQuery(baseOptions: Apollo.QueryHookOptions<TokensTextSearchQuery, TokensTextSearchQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TokensTextSearchQuery, TokensTextSearchQueryVariables>(TokensTextSearchDocument, options);
+      }
+export function useTokensTextSearchLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TokensTextSearchQuery, TokensTextSearchQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TokensTextSearchQuery, TokensTextSearchQueryVariables>(TokensTextSearchDocument, options);
+        }
+export type TokensTextSearchQueryHookResult = ReturnType<typeof useTokensTextSearchQuery>;
+export type TokensTextSearchLazyQueryHookResult = ReturnType<typeof useTokensTextSearchLazyQuery>;
+export type TokensTextSearchQueryResult = Apollo.QueryResult<TokensTextSearchQuery, TokensTextSearchQueryVariables>;

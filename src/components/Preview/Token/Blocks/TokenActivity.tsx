@@ -1,16 +1,16 @@
 import React, {memo} from 'react';
 import IconDisclosureButton from "../../../Common/Disclosure/IconDisclosureButton";
 import {GiBuyCard} from "react-icons/gi";
-import CardActivity from "../../../Activity/CardActivity";
 import {ContractId, TokenId} from "../../../../business-logic/types/aliases";
 import {buildUID} from "../../../../near/api/utils";
+import TokenActivity from "../../../Activity/TokenActivity";
 
 interface TTokenActivityProps {
     contractId: ContractId
     tokenId: TokenId
 }
 
-const TokenActivity: React.FC<TTokenActivityProps> = ({
+const TokenActivityDisclosure: React.FC<TTokenActivityProps> = ({
     contractId,
     tokenId
 }) => {
@@ -19,9 +19,9 @@ const TokenActivity: React.FC<TTokenActivityProps> = ({
         <IconDisclosureButton icon={<GiBuyCard/>}
                               name="Activity"
         >
-            <CardActivity tokenUID={uid} activities={[]}/>
+            <TokenActivity tokenUID={uid}/>
         </IconDisclosureButton>
     );
 };
 
-export default memo(TokenActivity);
+export default memo(TokenActivityDisclosure);

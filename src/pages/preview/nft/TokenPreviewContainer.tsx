@@ -1,6 +1,7 @@
 import React from 'react';
+import {PropsWithChildren} from "../../../components/types";
 
-const TokenPreviewContainer: React.FC = ({
+const TokenPreviewContainer: React.FC<PropsWithChildren> = ({
     children
 }) => {
     return (

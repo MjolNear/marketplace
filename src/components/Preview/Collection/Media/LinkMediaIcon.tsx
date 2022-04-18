@@ -10,11 +10,7 @@ const LinkMediaIcon = React.memo<LinkMediaIconProps>(({
     icon
 }) => {
     return (
-        <a href={link}
-           target="_blank"
-           rel="noreferrer"
-           className="p-3 hover:bg-gray-900"
-        >
+        <a href={link} target="_blank" rel="noreferrer" className="hover:opacity-60">
             {icon}
         </a>
     );

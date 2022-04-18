@@ -1,15 +1,15 @@
-import React, {useCallback} from 'react';
-import {TokenPriceRange, TokenSortName, tokenSortOptions} from "../../../graphql/utils";
+import React from 'react';
+import {TokenPriceRange, TokenSortName, tokenSortOptions} from "../../../graphql/types";
 import PaginationCardList from "../../../components/CardList/PaginationCardList";
 import {useMarketTokens} from "../../../hooks/graphql";
 
 
-interface ExploreFilterTokens {
+interface ExploreFilterTokensProps {
     priceRange: TokenPriceRange,
     sort: TokenSortName
 }
 
-const ExploreFilterTokens: React.FC<ExploreFilterTokens> = ({
+const ExploreFilterTokens: React.FC<ExploreFilterTokensProps> = ({
     priceRange,
     sort
 }) => {

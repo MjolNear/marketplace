@@ -1,5 +1,5 @@
 import React from 'react';
-import {TokenPriceRange, TokenSortOption} from "../../../../graphql/utils";
+import {TokenPriceRange, TokenSortOption} from "../../../../graphql/types";
 import PaginationCardList from "../../../../components/CardList/PaginationCardList";
 import {useAccountMarketTokens} from "../../../../hooks/graphql";
 

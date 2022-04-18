@@ -2,20 +2,28 @@ import React from 'react';
 import {useParams} from "react-router";
 import NotFound404Page from "../../NotFound404";
 import PreviewCollectionPage from "./PreviewCollectionPage";
+import {useSearchParams} from "react-router-dom";
 
 type CollectionRouteParams = {
-    collectionId: string,
-    filterTab: "items" | "activity"
+    collectionId: string
 }
 
 const PreviewCollectionMatchRouterParams = () => {
-    const {collectionId, filterTab} = useParams<CollectionRouteParams>()
+    const {collectionId} = useParams<CollectionRouteParams>()
+    const [searchParams] = useSearchParams();
 
-    if (!collectionId || !filterTab) {
+    const tab = searchParams.get("tab")
+
+    if (!collectionId ||(tab !== "activity" && tab)) {
         return <NotFound404Page/>
     }
 
-    return <PreviewCollectionPage collectionId={collectionId} filterTab={filterTab}/>
+    return <PreviewCollectionPage collectionId={collectionId}
+                                  filterTab={tab === "activity"
+                                      ? "activity"
+                                      : "items"
+                                  }
+    />
 };
 
 export default PreviewCollectionMatchRouterParams;

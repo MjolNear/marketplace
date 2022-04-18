@@ -1,6 +1,7 @@
 import React from 'react';
+import {PropsWithChildren} from "../../../types";
 
-const RoundedSizeWrapperContainer: React.FC<{ classes?: string }> = ({
+const RoundedSizeWrapperContainer: React.FC<PropsWithChildren<{ classes?: string }>> = ({
     classes,
     children
 }) => {

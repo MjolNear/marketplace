@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
-import {Optional} from "../../business-logic/types/aliases";
-import {fromYocto2Near, shortenString} from "../../utils/string";
+import {Optional} from "../../../business-logic/types/aliases";
+import {fromYocto2Near, shortenString} from "../../../utils/string";
 import CardActivityCell, {ActivityCellType} from "./CardActivityCell";
-import {ActivityEventType} from "../../graphql/generated/market-graphql";
-import ListingIcon from "../Icons/Activity/ListingIcon";
-import NearBlackLogo from "../Icons/near/NearIcon";
-import BuyIcon from "../Icons/Activity/BuyIcon";
-import {getRelativeTimestamp} from "../../utils/time";
-import UnlistIcon from "../Icons/Activity/UnlistIcon";
+import {ActivityEventType} from "../../../graphql/generated/market-graphql";
+import ListingIcon from "../../Icons/Activity/ListingIcon";
+import NearBlackLogo from "../../Icons/near/NearIcon";
+import BuyIcon from "../../Icons/Activity/BuyIcon";
+import {getRelativeTimestamp} from "../../../utils/time";
+import UnlistIcon from "../../Icons/Activity/UnlistIcon";
 import {BsCheck} from "react-icons/bs";
-import {BiMerge} from 'react-icons/bi'
-import AccountHrefCell from "./AccountHrefCell";
-import CopyIcon from "../Icons/CopyIcon";
-import Tooltip from "../Layout/Tooltip";
-import {copiedToast} from "../Layout/Toast";
+import ActivityAccountCell from "../Cells/ActivityAccountCell";
+import CopyIcon from "../../Icons/CopyIcon";
+import Tooltip from "../../Layout/Tooltip";
+import {copiedToast} from "../../Layout/Toast";
+import TransferIcon from "../../Icons/Activity/TransferIcon";
 
 export interface TCardActivityRowProps {
     event: ActivityEventType,
@@ -42,6 +42,7 @@ const CardActivityRow: React.FC<TCardActivityRowProps> = ({
                 {event === ActivityEventType.List && <ListingIcon size={14}/>}
                 {event === ActivityEventType.Buy && <BuyIcon size={14}/>}
                 {event === ActivityEventType.Unlist && <UnlistIcon size={14}/>}
+                {event === ActivityEventType.Transferred && <TransferIcon size={14}/>}
                 {event}
             </CardActivityCell>
             <CardActivityCell type={ActivityCellType.Price}>
@@ -49,10 +50,10 @@ const CardActivityRow: React.FC<TCardActivityRowProps> = ({
                 <div className="text-black font-bold">{fromYocto2Near(price)}</div>
             </CardActivityCell>
             <CardActivityCell type={ActivityCellType.Basic}>
-                <AccountHrefCell accountId={from}/>
+                <ActivityAccountCell accountId={from}/>
             </CardActivityCell>
             <CardActivityCell type={ActivityCellType.Basic}>
-                <AccountHrefCell accountId={to}/>
+                <ActivityAccountCell accountId={to}/>
             </CardActivityCell>
             <CardActivityCell type={ActivityCellType.Basic}>
                 {getRelativeTimestamp(timestamp)}

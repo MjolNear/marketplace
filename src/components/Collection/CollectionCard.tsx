@@ -14,7 +14,7 @@ const CollectionCard: React.FC<GridCollection> = ({
     image
 }) => {
 
-    const itemPreviewLink = `/collections/${collectionId}/items`
+    const itemPreviewLink = `/collections/${collectionId}`
 
     return (
         <Link className="flex flex-col justify-start bg-white rounded-2xl

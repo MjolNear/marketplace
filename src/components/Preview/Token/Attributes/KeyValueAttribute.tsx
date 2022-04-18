@@ -1,6 +1,4 @@
 import React from 'react';
-import {render} from 'react-dom'
-import ReactTooltip from 'react-tooltip';
 import {shortenString} from "../../../../utils/string";
 import {TAttribute} from "./AttributeProps";
 import {copiedToast} from "../../../Layout/Toast";

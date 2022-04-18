@@ -5,7 +5,7 @@ import GrayButton from "../../../Common/Buttons/GrayButton";
 import BlueButton from "../../../Common/Buttons/BlueButton";
 import {Popover} from '@headlessui/react';
 import {utils} from "near-api-js";
-import {TokenPriceRange} from "../../../../graphql/utils";
+import {TokenPriceRange} from "../../../../graphql/types";
 import BaseInput from "../../../Common/Forms/BaseInput";
 
 interface RangeFilterProps {
@@ -31,7 +31,7 @@ const PriceRangeFilter: React.FC<RangeFilterProps> = ({
     return (
         <PopoverFilter name="Price range"
                        disabled={disabled}
-                       icon={<NearBlackLogo size={11}/>}
+                       icon={<NearBlackLogo size={12}/>}
         >
             <Popover.Panel className="flex flex-col items-center p-3 gap-4 w-[280px]">
                 {props =>

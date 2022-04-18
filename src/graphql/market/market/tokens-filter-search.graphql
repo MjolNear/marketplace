@@ -1,0 +1,28 @@
+query tokensFilter(
+    $limit: Int!,
+    $offset: Int!,
+    $orderBy: MarketToken_orderBy!,
+    $orderDirection: OrderDirection!,
+    $priceFrom: BigInt!,
+    $priceTo: BigInt!
+) @api(name: market) {
+    tokens: marketTokens(
+        first: $limit,
+        skip: $offset,
+        orderBy: $orderBy,
+        orderDirection: $orderDirection,
+        where: {
+            price_gte: $priceFrom,
+            price_lte: $priceTo
+        }
+    ) {
+        id
+        tokenId
+        contractId
+        title
+        media
+        mintSiteName
+        mintSiteLink
+        price
+    }
+}

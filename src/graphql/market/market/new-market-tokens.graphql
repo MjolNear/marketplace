@@ -1,0 +1,16 @@
+query newMarketTokens @api(name: market) {
+    tokens: marketTokens(
+        first: 12,
+        skip: 0,
+        orderBy: listingTimestamp,
+        orderDirection: desc
+    ) {
+        id
+        tokenId
+        contractId
+        title
+        description
+        media
+        price
+    }
+}

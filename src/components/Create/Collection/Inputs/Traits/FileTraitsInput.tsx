@@ -26,7 +26,7 @@ const FileTraitsInput = () => {
         resetField("traits")
         setError('')
         setFile(undefined)
-    }, [])
+    }, [resetField, setError, setFile])
 
     const handleUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files
@@ -58,7 +58,7 @@ const FileTraitsInput = () => {
                 }
             }
         }
-    }, [])
+    }, [setFile, setError, resetField, setValue])
 
     return (
         <div>

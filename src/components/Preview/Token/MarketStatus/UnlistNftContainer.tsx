@@ -2,10 +2,7 @@ import React, {useState} from 'react';
 import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
 import PriceContainer from "./PriceContainer";
 import {ContractId, Optional, TokenId, TPayouts} from "../../../../business-logic/types/aliases";
-import {unlistNft, updateNftPrice} from "../../../../near/transaction";
-import DarkCyanGradientButton from "../../../Common/Buttons/DarkCyanGradientButton";
-import InputPriceModal from "./sell/InputPriceModal";
-import Tooltip from "../../../Layout/Tooltip";
+import {unlistNft} from "../../../../near/transaction";
 
 interface TUnlistNftProps {
     tokenPrice?: Optional<string>
@@ -25,7 +22,6 @@ const UnlistNftContainer: React.FC<TUnlistNftProps> = ({
 
     const [isUnlisting, setIsUnlisting] = useState(false)
     const [isUpdating, setIsUpdating] = useState(false)
-    const [visible, setVisible] = useState(false)
 
     const unlist = () => {
         setIsUnlisting(true)

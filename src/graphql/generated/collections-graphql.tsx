@@ -1130,7 +1130,12 @@ export type CollectionsTextSearchLazyQueryHookResult = ReturnType<typeof useColl
 export type CollectionsTextSearchQueryResult = Apollo.QueryResult<CollectionsTextSearchQuery, CollectionsTextSearchQueryVariables>;
 export const CollectionsDocument = gql`
     query collections($limit: Int!, $offset: Int!) @api(name: collections) {
-  collections(first: $limit, skip: $offset) {
+  collections(
+    first: $limit
+    skip: $offset
+    orderBy: createdAt
+    orderDirection: desc
+  ) {
     id
     ownerId
     collectionId

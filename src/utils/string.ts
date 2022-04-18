@@ -1,5 +1,5 @@
 import {formatNearAmount, parseNearAmount} from "near-api-js/lib/utils/format";
-import {AccountId} from "../business-logic/types/aliases";
+import {AccountId, Optional} from "../business-logic/types/aliases";
 
 export const shortenString = (string: string, chunkSize = 5, sizeToSplit = 15) => {
     if (string.length > sizeToSplit) {
@@ -19,8 +19,8 @@ export const prettyAccount = (accountId: AccountId, prefixChunk = 12, sizeToSpli
     }
 }
 
-export const fromYocto2Near = (yocto: string | undefined | null) => {
-    const nearAmount = formatNearAmount(yocto || '', 6)
+export const fromYocto2Near = (yocto?: Optional<string>, fracDigits?: number) => {
+    const nearAmount = formatNearAmount(yocto || '', fracDigits || 6)
     if (!nearAmount || !yocto) {
         return "---"
     }

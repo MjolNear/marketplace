@@ -1,5 +1,5 @@
 query collectionMarketTokens(
-    $id: String!
+    $collection: String!
     $limit: Int!
     $offset: Int!
     $orderBy: MarketToken_orderBy!
@@ -7,13 +7,13 @@ query collectionMarketTokens(
     $priceFrom: BigInt!
     $priceTo: BigInt!
 ) @api(name: market) {
-    marketTokens(
+    tokens: marketTokens(
         first: $limit
         skip: $offset
         orderBy: $orderBy
         orderDirection: $orderDirection
         where: {
-            collection: $id
+            collection: $collection
             price_gte: $priceFrom
             price_lte: $priceTo
         }

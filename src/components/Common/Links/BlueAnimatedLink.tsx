@@ -9,7 +9,11 @@ interface LinkPropTypes {
     isActive: boolean
 }
 
-const BlackLink = React.memo<LinkPropTypes>(({to, text, isActive}) => {
+const BlueAnimatedLink = React.memo<LinkPropTypes>(({
+    to,
+    text,
+    isActive
+}) => {
 
     return (
         <Link to={to}
@@ -18,10 +22,12 @@ const BlackLink = React.memo<LinkPropTypes>(({to, text, isActive}) => {
                       isActive ? "opacity-100" : "opacity-60",
                   )}
         >
-            <div className="px-5">{text}</div>
+            <div className="px-2">
+                {text}
+            </div>
             <AnimatedBlueUnderline isActive={isActive}/>
         </Link>
     );
 });
 
-export default BlackLink;
+export default BlueAnimatedLink;

@@ -2,26 +2,17 @@ import React from 'react';
 import GreetingBlock from "./GreetingBlock";
 import nftsImg from "../../resources/nfts-landing.png";
 import CardGrid from "../../components/CardList/CardGrid";
-import {convertToMarketToken, TokenSortName, tokenSortOptions} from "../../graphql/utils";
-import {useMarketTokensQuery} from "../../graphql/generated/market-graphql";
-import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../utils/string";
+import {convertToMarketToken} from "../../graphql/types";
+import {useNewMarketTokensQuery} from "../../graphql/generated/market-graphql";
 
 const LandingPage = () => {
-    const initialSort = tokenSortOptions[TokenSortName.RecentlyAdded]
-    const {data, loading} = useMarketTokensQuery({
+    const {data, loading} = useNewMarketTokensQuery({
         fetchPolicy: "network-only",
         nextFetchPolicy: "network-only",
-        variables: {
-            offset: 0,
-            limit: 4,
-            orderBy: initialSort.by,
-            orderDirection: initialSort.direction,
-            priceFrom: MIN_ITEM_YOCTO_PRICE,
-            priceTo: MAX_ITEM_YOCTO_PRICE
-        }
     })
 
-    const nfts = data?.marketTokens.map(convertToMarketToken) || [];
+    const nfts = data?.tokens.map(convertToMarketToken) || [];
+
     return (
         <div className="max-w-screen-2xl mx-auto">
             <div className="max-w-7xl mx-auto py-8 px-8">

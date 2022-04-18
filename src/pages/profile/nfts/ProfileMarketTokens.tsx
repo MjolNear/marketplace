@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
-import {TokenPriceRange, TokenSortName, tokenSortOptions} from "../../../graphql/utils";
+import {TokenPriceRange, TokenSortName, tokenSortOptions} from "../../../graphql/types";
 import PriceRangeFilter from "../../../components/Filter/popup/price/PriceRangeFilter";
-import SortFilter from "../../../components/Filter/popup/sort/SortFilter";
+import {TokenSortFilter} from "../../../components/Filter/popup/sort/SortFilter";
 import ProfileFilterMarketTokens from "./market/ProfileFilterMarketTokens";
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
 import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
@@ -25,9 +25,9 @@ const ProfileMarketTokens: React.FC<TAuthProps> = ({
                         onClear={clearPriceRange}
                         onApply={setPriceRange}
                     />
-                    <SortFilter disabled={false}
-                                picked={sort}
-                                setSort={setSort}
+                    <TokenSortFilter disabled={false}
+                                     picked={sort}
+                                     setSort={setSort}
                     />
                 </div>
             </div>

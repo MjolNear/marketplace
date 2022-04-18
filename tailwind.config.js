@@ -142,10 +142,10 @@ module.exports = {
                     gray: {
                         border: 'rgb(229,231,235)'
                     },
-                    purple: {
-                        base: '#7e22ce',
-                        dark: '#251552',
-                        'dark-t': '#25155299'
+                    'blue-light-grad': 'rgb(0, 130, 255)',
+                    gradient: {
+                        'blue-from': 'rgb(0, 163, 255)',
+                        'blue-to': 'rgb(0, 102, 255)'
                     },
                     blue: {
                         'card-property': 'rgb(239, 246, 255)',

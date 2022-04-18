@@ -11,6 +11,8 @@ import BlueGreenGradientButton from "../../Common/Buttons/Auth/BlueGreenGradient
 import BetaHeader from "../BetaHeader";
 import Tooltip from "../Tooltip";
 import {routesConfig} from "./routes-config";
+import {Indicator} from "../../../context/fallback-progress";
+import {Line} from "rc-progress";
 
 const NavigationBar = React.memo(() => {
     const exploreTabs = routesConfig.explore
@@ -21,7 +23,8 @@ const NavigationBar = React.memo(() => {
     return (
         <Popover
             className="bg-white fixed top-0 z-[100] w-full bg-opacity-80 backdrop-blur-2xl drop-shadow-md lg:drop-shadow-none">
-            <BetaHeader/>
+            {/*<BetaHeader/>*/}
+            <Indicator/>
             <div className="hidden lg:block max-w-7xl mx-auto px-5">
                 <div className="flex justify-between items-center py-3 lg:justify-start lg:space-x-10">
                     <div className="flex justify-start lg:w-0 lg:flex-1">

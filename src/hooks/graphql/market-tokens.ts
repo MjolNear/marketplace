@@ -1,40 +1,35 @@
-import {convertToMarketToken, TokenPriceRange, TokenSortOption} from "../../graphql/utils";
+import {convertToMarketToken, TokenPriceRange, TokenSortOption} from "../../graphql/types";
 import {useGenericListDataQuery} from "./useGenericListDataQuery";
 import {
     AccountMarketTokensQuery,
     AccountMarketTokensQueryVariables,
     CollectionMarketTokensQuery,
     CollectionMarketTokensQueryVariables,
-    MarketTokensQuery,
-    MarketTokensQueryVariables,
-    MarketTokensSearchQuery,
-    MarketTokensSearchQueryVariables,
+    TokensFilterQuery,
+    TokensFilterQueryVariables,
+    TokensTextSearchQuery,
+    TokensTextSearchQueryVariables,
     useAccountMarketTokensQuery,
     useCollectionMarketTokensQuery,
-    useMarketTokensQuery,
-    useMarketTokensSearchQuery,
+    useTokensFilterQuery, useTokensTextSearchQuery,
 } from "../../graphql/generated/market-graphql";
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../utils/string";
 import {GridToken} from "../../business-logic/types/nft";
+import {Optional} from "../../business-logic/types/aliases";
 
-export type MarketTokens = MarketTokensQuery['marketTokens']
+export type MarketTokens = TokensFilterQuery['tokens']
 
 const marketTokensResponseMapper = (data?: {
-    marketTokens: MarketTokens
-}) => data?.marketTokens.map(convertToMarketToken) || []
-
-const profileMarketTokensResponseMapper = (
-    data?: AccountMarketTokensQuery | undefined
-) => data?.account?.marketTokens.map(convertToMarketToken) || []
-
+    tokens: MarketTokens
+}) => data?.tokens.map(convertToMarketToken) || []
 
 export const useMarketTokens = (
     limit: number,
     sort: TokenSortOption,
     priceRange: TokenPriceRange
 ) => {
-    return useGenericListDataQuery<GridToken, MarketTokensQuery, MarketTokensQueryVariables>(
-        useMarketTokensQuery, marketTokensResponseMapper, {
+    return useGenericListDataQuery<GridToken, TokensFilterQuery, TokensFilterQueryVariables>(
+        useTokensFilterQuery, marketTokensResponseMapper, {
             fetchPolicy: "cache-and-network",
             nextFetchPolicy: "cache-and-network",
             variables: {
@@ -54,14 +49,14 @@ export const useCollectionMarketTokens = (
     sort: TokenSortOption,
     priceRange: TokenPriceRange,
     contractId: string,
-    collectionId: string
+    collectionId: Optional<string>
 ) => {
     return useGenericListDataQuery<GridToken, CollectionMarketTokensQuery, CollectionMarketTokensQueryVariables>(
         useCollectionMarketTokensQuery, marketTokensResponseMapper, {
             fetchPolicy: "cache-and-network",
             nextFetchPolicy: "cache-and-network",
             variables: {
-                id: `${contractId}-${collectionId}`,
+                collection: collectionId ? `${contractId}-${collectionId}` : contractId,
                 limit,
                 offset: 0,
                 orderBy: sort.by,
@@ -77,8 +72,8 @@ export const useMarketTokensTextSearching = (
     text: string,
     limit: number
 ) => {
-    return useGenericListDataQuery<GridToken, MarketTokensSearchQuery, MarketTokensSearchQueryVariables>(
-        useMarketTokensSearchQuery, marketTokensResponseMapper, {
+    return useGenericListDataQuery<GridToken, TokensTextSearchQuery, TokensTextSearchQueryVariables>(
+        useTokensTextSearchQuery, marketTokensResponseMapper, {
             fetchPolicy: "cache-and-network",
             nextFetchPolicy: "cache-and-network",
             variables: {
@@ -98,7 +93,7 @@ export const useAccountMarketTokens = (
     priceRange: TokenPriceRange
 ) => {
     return useGenericListDataQuery<GridToken, AccountMarketTokensQuery, AccountMarketTokensQueryVariables>(
-        useAccountMarketTokensQuery, profileMarketTokensResponseMapper, {
+        useAccountMarketTokensQuery, marketTokensResponseMapper, {
             fetchPolicy: "cache-and-network",
             nextFetchPolicy: "cache-and-network",
             variables: {

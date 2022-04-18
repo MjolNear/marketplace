@@ -3,6 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {BrowserRouter} from 'react-router-dom';
 import {Provider as ReduxProvider} from "react-redux";
 import App from "./App";
 import {ApolloProvider} from '@apollo/client';
@@ -23,7 +24,9 @@ ReactDOM.render(
     <React.StrictMode>
         <ApolloProvider client={client}>
             <ReduxProvider store={store}>
-                <App/>
+                <BrowserRouter>
+                    <App/>
+                </BrowserRouter>
             </ReduxProvider>
         </ApolloProvider>
     </React.StrictMode>,

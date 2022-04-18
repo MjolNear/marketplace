@@ -86,7 +86,7 @@ const MintTokenForm: React.FC<TAuthProps> = ({
             accountId,
             media: {file, url: media.url}
         })
-    }), [setError, handleSubmit, accountId])
+    }), [setError, handleSubmit, accountId, setSubmitProps])
 
     const [title, mediaUrl, collection] = methods.watch(["title", "media.url", "collection"])
 

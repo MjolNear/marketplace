@@ -1,6 +1,7 @@
 import React from 'react';
+import {PropsWithChildren} from "../../../types";
 
-const PreviewCreatedItemContainer: React.FC = ({
+const PreviewCreatedItemContainer: React.FC<PropsWithChildren> = ({
     children
 }) => {
     return (
