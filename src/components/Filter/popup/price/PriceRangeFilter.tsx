@@ -10,7 +10,7 @@ import BaseInput from "../../../Common/Forms/BaseInput";
 
 interface RangeFilterProps {
     onApply: (range: TokenPriceRange) => void
-
+    current: TokenPriceRange,
     onClear: () => void,
     disabled?: boolean
 }
@@ -18,15 +18,18 @@ interface RangeFilterProps {
 const PriceRangeFilter: React.FC<RangeFilterProps> = ({
     onApply,
     onClear,
+    current,
     disabled
 }) => {
-    const [priceRange, setPriceRange] = useState<TokenPriceRange>({})
+    const [priceRange, setPriceRange] = useState<TokenPriceRange>(current)
 
     const setFrom = (e: React.ChangeEvent<HTMLInputElement>) =>
         setPriceRange({...priceRange, from: e.target.value})
 
     const setTo = (e: React.ChangeEvent<HTMLInputElement>) =>
         setPriceRange({...priceRange, to: e.target.value})
+
+    const text = current.from && current.to
 
     return (
         <PopoverFilter name="Price range"

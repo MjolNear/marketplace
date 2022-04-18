@@ -1,6 +1,5 @@
 import React from 'react';
 import InfiniteScroll from "react-infinite-scroll-component";
-import ActivityRowLoader from "./Loader/ActivityRowLoader";
 import ActivityListLoader from "./Loader/ActivityListLoader";
 
 interface PaginatedActivityListProps {

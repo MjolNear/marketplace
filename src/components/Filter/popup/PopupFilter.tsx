@@ -21,8 +21,8 @@ const PopupFilter: React.FC<PropsWithChildren<PopupFilterProps>> = ({
             {({open}) =>
                 <>
                     <Popover.Button className={
-                        "inline-flex items-center justify-between gap-2 rounded-xl px-4 py-2 " +
-                        "font-archivo text-[13px] ring-[1.5px] font-semibold hover:ring-blue-300 " +
+                        "inline-flex items-center justify-between gap-3 rounded-xl px-5 py-2 " +
+                        "font-archivo text-[14px] ring-[1.5px] font-semibold hover:ring-blue-300 " +
                         "focus:outline-none focus-visible:ring-blue-300 disabled:opacity-40 " +
                         (open ? "ring-blue-300" : "ring-blue-200")
                     }

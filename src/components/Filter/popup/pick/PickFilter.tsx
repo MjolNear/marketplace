@@ -7,6 +7,7 @@ import PickOption from "./PickOption";
 import GrayButton from "../../../Common/Buttons/GrayButton";
 import BlueButton from "../../../Common/Buttons/BlueButton";
 import {activityEvents} from '../../../../graphql/types';
+import { MdOutlineEventNote } from 'react-icons/md';
 
 
 interface PickFilterProps<T> {
@@ -30,7 +31,7 @@ function PickFilter<T extends { toString: () => string }>({
 
     return (
         <PopupFilter name={picked.length === 0 ? name : picked.join(" , ")}
-                     icon={<BiSortAlt2 size={18}/>}
+                     icon={<MdOutlineEventNote size={18}/>}
         >
             <Popover.Panel>
                 {({close}) => (

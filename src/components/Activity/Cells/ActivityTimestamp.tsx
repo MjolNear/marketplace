@@ -2,6 +2,7 @@ import React from 'react';
 import {dateFromUNIX, getRelativeTimestamp} from "../../../utils/time";
 import BaseActivityCell from "./BaseActivityCell";
 import Tooltip from "../../Layout/Tooltip";
+import moment from "moment/moment";
 
 interface ActivityTimestampCellProps {
     timestamp: string
@@ -17,7 +18,7 @@ const ActivityTimestampCell: React.FC<ActivityTimestampCellProps> = ({
     return (
         <BaseActivityCell>
             <div className="text-sm text-gray-700 cursor-pointer"
-                 data-tip={dateFromUNIX(timestamp).toLocaleDateString()}
+                 data-tip={moment(dateFromUNIX(timestamp)).format("LLL")}
                  data-for={`tokenActivityTimestamp-${timestamp}`}
             >
                 {getRelativeTimestamp(timestamp)}

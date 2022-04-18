@@ -70,7 +70,7 @@ export const TokenSortFilter: React.FC<SortFilterProps<TokenSortName>> = ({
     ]
 
     return <SortFilter options={options}
-                       width={170}
+                       width={190}
                        setSort={setSort}
                        picked={picked}
                        disabled={disabled}
@@ -90,7 +90,7 @@ export const ActivitySortFilter: React.FC<SortFilterProps<ActivitySortName>> = (
     ]
 
     return <SortFilter options={options}
-                       width={170}
+                       width={190}
                        setSort={setSort}
                        picked={picked}
                        disabled={disabled}

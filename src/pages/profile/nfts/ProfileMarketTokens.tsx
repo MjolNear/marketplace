@@ -19,9 +19,10 @@ const ProfileMarketTokens: React.FC<TAuthProps> = ({
     return (
         <>
             <div className="flex flex-col items-center gap-6">
-                <div className="inline-flex flex-wrap gap-4 w-full justify-center mb-2">
+                <div className="inline-flex flex-wrap gap-5 w-full justify-center mb-2">
                     <PriceRangeFilter
                         disabled={false}
+                        current={priceRange}
                         onClear={clearPriceRange}
                         onApply={setPriceRange}
                     />

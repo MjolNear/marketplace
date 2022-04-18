@@ -94,6 +94,7 @@ const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
                             <PriceRangeFilter
                                 disabled={marketToggleState === "all"}
                                 onClear={clearPriceRange}
+                                current={priceRange}
                                 onApply={setPriceRange}
                             />
                             <TokenSortFilter disabled={marketToggleState === "all"}

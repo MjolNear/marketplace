@@ -75,18 +75,17 @@ const ExploreNftsPage = () => {
                     />
                 </div>
             </BlueShadowContainer>
-            <div className="flex flex-col items-center gap-6">
-                <div className="inline-flex flex-wrap gap-4 w-full justify-center mb-2">
-                    <PriceRangeFilter
-                        disabled={!!textQueryFilter}
-                        onClear={clearPriceRange}
-                        onApply={setPriceRange}
-                    />
-                    <TokenSortFilter disabled={!!textQueryFilter}
-                                     picked={sort}
-                                     setSort={setSort}
-                    />
-                </div>
+            <div className="inline-flex gap-5 justify-center mb-2 w-full">
+                <PriceRangeFilter
+                    disabled={!!textQueryFilter}
+                    onClear={clearPriceRange}
+                    current={priceRange}
+                    onApply={setPriceRange}
+                />
+                <TokenSortFilter disabled={!!textQueryFilter}
+                                 picked={sort}
+                                 setSort={setSort}
+                />
             </div>
             {debounceQuery !== textQueryFilter
                 ?
