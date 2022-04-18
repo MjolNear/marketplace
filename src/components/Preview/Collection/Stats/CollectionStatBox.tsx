@@ -20,24 +20,24 @@ const CollectionStatBox: React.FC<CollectionStatProps> = ({
         >
             {priceValue
                 ?
-                <div className="inline-flex gap-3 w-full items-center justify-center cursor-pointer"
+                <div className="inline-flex gap-2 w-full items-center justify-center cursor-pointer"
                    data-for={`collectionStat-${name}Id`}
                    data-tip={`${value}  Ⓝ`}
                 >
-                    <div className="w-fit">
-                        <NearIcon size={14}/>
+                    <div className="w-[12px] lg:w-[14px]">
+                        <NearIcon fill="w-[12px] lg:w-[14px]" size=""/>
                     </div>
-                    <div className="truncate font-extrabold text-[12px] xs:text-sm md:text-md lg:text-xl">
+                    <div className="truncate font-extrabold text-sm sm:text-md md:text-lg">
                         {value}
                     </div>
                     <Tooltip id={`collectionStat-${name}Id`} place="bottom"/>
                 </div>
                 :
-                <span className="truncate font-extrabold text-[12px] xs:text-sm md:text-md lg:text-xl">
+                <span className="truncate font-extrabold text-sm sm:text-md md:text-lg">
                     {value}
                 </span>
             }
-            <span className="text-[9px] xs:text-[11px] lg:text-[13px] text-gray-700">
+            <span className="text-[11px] lg:text-[13px] text-gray-700">
                 {name}
             </span>
         </div>

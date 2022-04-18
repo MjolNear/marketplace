@@ -39,14 +39,14 @@ const ActivityTokenCell: React.FC<ActivityTokenCellProps> = ({
                      }
                 />
             </Link>
-            <div className="flex flex-col">
+            <div className="flex flex-col pl-4">
                 <Link to={path}
-                      className="pl-4 font-bold truncate hover:underline"
+                      className="font-bold truncate hover:underline"
                 >
                     {title}
                 </Link>
                 <Link to={`/collections/${collectionId}`}
-                      className="text-[12px] pl-4 truncate text-gray-700 hover:underline"
+                      className="text-[12px] truncate text-gray-700 hover:underline"
                 >
                     {collectionName}
                 </Link>

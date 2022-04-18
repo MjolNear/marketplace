@@ -63,7 +63,8 @@ const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
                                              loading={loading}
                     />
                     <div className="flex w-full max-lg:flex-col lg:flex-row
-                                    lg:items-start items-center lg:justify-between gap-8 mt-16 mb-12 px-8"
+                                    lg:items-start items-center lg:justify-between
+                                    gap-8 mt-16 mb-12 px-3 xs:px-8"
                     >
                         <div className="lg:min-w-[50%] flex flex-col gap-5 grow">
                             <CollectionTitleOwner title={collection.title} ownerId={collection.ownerId}/>

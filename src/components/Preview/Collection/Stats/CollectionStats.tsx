@@ -29,7 +29,8 @@ const CollectionStats: React.FC<PropTypes> = ({
                     <RectLoader/>
                 </div>
                 :
-                <div className="grid grid-cols-3 ring-[1.5px] ring-blue-200 rounded-xl shadow-mjol-blue overflow-hidden"
+                <div className="max-md:w-full max-w-[550px]
+                                grid grid-cols-3 ring-[1.5px] ring-blue-200 rounded-xl shadow-mjol-blue overflow-hidden"
                 >
                     <CollectionStatBox name="items" value={supply || "---"}/>
                     <CollectionStatBox name="listed" value={listed || "0"}/>
