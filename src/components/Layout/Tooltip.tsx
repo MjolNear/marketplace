@@ -8,13 +8,15 @@ interface TooltipProps {
     className?: string
     place?: "left" | "right" | "top" | "bottom"
     effect?: "solid" | "float"
+    delayShow?: number
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
     id,
     className = "font-extrabold",
     place = "right",
-    effect = "solid"
+    effect = "solid",
+    delayShow = 50
 }) => {
     return (
         // @ts-ignore
@@ -23,7 +25,7 @@ const Tooltip: React.FC<TooltipProps> = ({
                       className={className + " tooltip"}
                       id={id}
                       backgroundColor="rgb(5, 17, 29)"
-                      delayShow={50}/>
+                      delayShow={delayShow}/>
     );
 };
 

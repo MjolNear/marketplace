@@ -22,7 +22,7 @@ const PaginationCollectionList: React.FC<PaginationCollectionListProps> = ({
     return (
         <InfiniteScroll
             next={onLoadMore}
-            scrollThreshold="100px"
+            scrollThreshold="250px"
             hasMore={hasMore}
             className={"py-5 " + (collections.length !== 0 ? "space-y-6 lg:space-y-7 2xl:space-y-10" : "")}
             loader={<></>}

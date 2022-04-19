@@ -47,7 +47,7 @@ export const CardSizeSwitcher: React.FC = () => {
                     data-tip="Large display"
             >
                 <BsFillGridFill size={20} className={size === CardSize.Big ? "fill-white" : ""}/>
-                {size === CardSize.Small && <Tooltip id="bigCardSizeTooltipId" place="top"/>}
+                {size === CardSize.Small && <Tooltip id="bigCardSizeTooltipId" place="top" delayShow={500}/>}
             </button>
             <div className="h-full w-[1.5px] bg-blue-200"/>
             <button onClick={() => setSize(CardSize.Small)}
@@ -59,7 +59,7 @@ export const CardSizeSwitcher: React.FC = () => {
                     data-tip="Small display"
             >
                 <BsFillGrid3X3GapFill size={20} className={size === CardSize.Small ? "fill-white" : ""}/>
-                {size === CardSize.Big && <Tooltip id="smallCardSizeTooltipId" place="top"/>}
+                {size === CardSize.Big && <Tooltip id="smallCardSizeTooltipId" place="top" delayShow={500}/>}
             </button>
         </div>
     )
