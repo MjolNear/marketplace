@@ -14,14 +14,15 @@ const PreviewCollectionMatchRouterParams = () => {
 
     const tab = searchParams.get("tab")
 
-    if (!collectionId ||(tab !== "activity" && tab)) {
+    if (!collectionId || !!tab && tab !== "activity") {
         return <NotFound404Page/>
     }
 
     return <PreviewCollectionPage collectionId={collectionId}
-                                  filterTab={tab === "activity"
-                                      ? "activity"
-                                      : "items"
+                                  filterTab={
+                                      tab === "activity"
+                                          ? "activity"
+                                          : "items"
                                   }
     />
 };

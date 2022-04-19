@@ -10,7 +10,7 @@ interface PropTypes {
     collectionId: CollectionId
 }
 
-const CollectionStats: React.FC<PropTypes> = ({
+const CollectionStatsBox: React.FC<PropTypes> = ({
     contractId,
     collectionId
 }) => {
@@ -44,4 +44,4 @@ const CollectionStats: React.FC<PropTypes> = ({
     );
 };
 
-export default memo(CollectionStats);
+export default memo(CollectionStatsBox);

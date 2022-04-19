@@ -3,10 +3,10 @@ import BlueAnimatedLink from "../../../Common/Links/BlueAnimatedLink";
 
 interface CollectionItemActivityTabProps {
     prefixLink: string
-    activeTab: "items" | "activity"
+    activeTab: "items" | "activity" | "stats"
 }
 
-const CollectionItemActivityTab: React.FC<CollectionItemActivityTabProps> = ({
+const CollectionTabSwitcher: React.FC<CollectionItemActivityTabProps> = ({
     prefixLink,
     activeTab
 }) => {
@@ -18,10 +18,14 @@ const CollectionItemActivityTab: React.FC<CollectionItemActivityTabProps> = ({
             />
             <BlueAnimatedLink to={`${prefixLink}?tab=activity`}
                               text="Activity"
-                              isActive={activeTab === 'activity'}
+                              isActive={activeTab === "activity"}
             />
+            {/*<BlueAnimatedLink to={`${prefixLink}?tab=stats`}*/}
+            {/*                  text="Stats"*/}
+            {/*                  isActive={activeTab === "stats"}*/}
+            {/*/>*/}
         </div>
     );
 };
 
-export default CollectionItemActivityTab;
+export default CollectionTabSwitcher;

@@ -1901,6 +1901,13 @@ export type TokensTextSearchQueryVariables = Exact<{
 
 export type TokensTextSearchQuery = { __typename?: 'Query', tokens: Array<{ __typename?: 'MarketToken', id: string, tokenId: string, contractId: string, title: string, media?: string | null, mintSiteName?: string | null, mintSiteLink?: string | null, price: any }> };
 
+export type DailyCollectionStatsQueryVariables = Exact<{
+  collection: Scalars['String'];
+}>;
+
+
+export type DailyCollectionStatsQuery = { __typename?: 'Query', dailyCollectionStats: Array<{ __typename?: 'DailyCollectionStat', id: string, timestamp: any, sales: any, average: any, floor: any, volume: any }> };
+
 
 export const CollectionActivityDocument = gql`
     query collectionActivity($id: String!, $limit: Int!, $offset: Int!, $orderBy: Activity_orderBy!, $orderDirection: OrderDirection!, $events: [ActivityEventType!]!) @api(name: market) {
@@ -2471,3 +2478,43 @@ export function useTokensTextSearchLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type TokensTextSearchQueryHookResult = ReturnType<typeof useTokensTextSearchQuery>;
 export type TokensTextSearchLazyQueryHookResult = ReturnType<typeof useTokensTextSearchLazyQuery>;
 export type TokensTextSearchQueryResult = Apollo.QueryResult<TokensTextSearchQuery, TokensTextSearchQueryVariables>;
+export const DailyCollectionStatsDocument = gql`
+    query dailyCollectionStats($collection: String!) @api(name: market) {
+  dailyCollectionStats(where: {collection: $collection}) {
+    id
+    timestamp
+    sales
+    average
+    floor
+    volume
+  }
+}
+    `;
+
+/**
+ * __useDailyCollectionStatsQuery__
+ *
+ * To run a query within a React component, call `useDailyCollectionStatsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDailyCollectionStatsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useDailyCollectionStatsQuery({
+ *   variables: {
+ *      collection: // value for 'collection'
+ *   },
+ * });
+ */
+export function useDailyCollectionStatsQuery(baseOptions: Apollo.QueryHookOptions<DailyCollectionStatsQuery, DailyCollectionStatsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<DailyCollectionStatsQuery, DailyCollectionStatsQueryVariables>(DailyCollectionStatsDocument, options);
+      }
+export function useDailyCollectionStatsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DailyCollectionStatsQuery, DailyCollectionStatsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<DailyCollectionStatsQuery, DailyCollectionStatsQueryVariables>(DailyCollectionStatsDocument, options);
+        }
+export type DailyCollectionStatsQueryHookResult = ReturnType<typeof useDailyCollectionStatsQuery>;
+export type DailyCollectionStatsLazyQueryHookResult = ReturnType<typeof useDailyCollectionStatsLazyQuery>;
+export type DailyCollectionStatsQueryResult = Apollo.QueryResult<DailyCollectionStatsQuery, DailyCollectionStatsQueryVariables>;
