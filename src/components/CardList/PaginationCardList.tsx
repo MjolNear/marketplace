@@ -23,7 +23,7 @@ const PaginationCardList: React.FC<PaginationCardListProps> = ({
     return (
         <InfiniteScroll
             next={onLoadMore}
-            scrollThreshold="100px"
+            scrollThreshold="150px"
             hasMore={hasMore}
             className={"py-5 " + (tokens.length !== 0 ? "space-y-6 lg:space-y-7 2xl:space-y-10" : "")}
             loader={<></>}

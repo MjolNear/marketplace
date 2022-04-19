@@ -3,6 +3,8 @@ import ResolveVerificationIcon from "../../Common/Verification/Icons/ResolveVeri
 import {ContractVerificationStatus} from "../../../business-logic/types/contract";
 import {resolveVerificationText} from "../../Common/Verification/utils";
 import DarkBlueMjolText from "../../Common/Text/DarkBlueMjolText";
+import classNames from "../../../utils/css-utils";
+import {CardSize, useCardSize} from "../../../context/CardSizeContext";
 
 interface TMintedInfoProps {
     mintedSiteName: string
@@ -15,13 +17,19 @@ const MintedBlock: React.FC<TMintedInfoProps> = ({
     mintedSiteName,
     verification
 }) => {
+    const size = useCardSize()
     return (
         <>
-            <div className="flex gap-1 items-center mt-3">
-                <ResolveVerificationIcon verification={verification} iconProps={{size: 13}}/>
+            <div className={classNames("flex gap-1 items-center", size === CardSize.Big ? "mt-3" : "mt-2")}>
+                <ResolveVerificationIcon verification={verification}
+                                         iconProps={{size: size === CardSize.Big ? 13 : 9}}
+                />
                 {verification === ContractVerificationStatus.Verified
                     ?
-                    <a className="text-black opacity-80 font-bold font-archivo text-xs group hover:opacity-100"
+                    <a className={classNames(
+                        "text-black opacity-80 font-bold font-archivo group hover:opacity-100",
+                        size === CardSize.Big ? "text-xs" : "text-[9px]"
+                    )}
                        href={mintedSiteLink}
                        target="_blank"
                        rel="noreferrer"
@@ -32,7 +40,10 @@ const MintedBlock: React.FC<TMintedInfoProps> = ({
                         </div>
                     </a>
                     :
-                    <div className="text-black opacity-80 font-archivo font-archivo font-bold text-xs">
+                    <div className={classNames(
+                        "text-black opacity-80 font-bold font-archivo group hover:opacity-100",
+                        size === CardSize.Big ? "text-xs" : "text-[9px]"
+                    )}>
                         {resolveVerificationText(verification)}
                     </div>
                 }

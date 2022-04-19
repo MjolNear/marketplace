@@ -11,6 +11,7 @@ import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
 import {WhitelistedContract} from "../../../business-logic/whitelisted.contract";
 import {ContractVerificationStatus} from "../../../business-logic/types/contract";
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
+import {CardSizeSwitcher} from "../../../context/CardSizeContext";
 
 
 const ProfileNftsFetch: React.FC<TAuthProps> = ({accountId}) => {
@@ -56,6 +57,7 @@ const ProfileNftsFetch: React.FC<TAuthProps> = ({accountId}) => {
                 <BlueToggle text="MjolNear"
                             handleToggle={checked => setFilters({...filters, mjolNear: checked})}
                             defaultChecked={filters.mjolNear}/>
+                <CardSizeSwitcher/>
             </div>
             {/*<MobileFilter/>*/}
             {fetching

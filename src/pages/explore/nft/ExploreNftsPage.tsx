@@ -10,6 +10,7 @@ import useDebounce from "../../../hooks/useDebounce";
 import ExploreSearchTokens from "./ExploreSearchTokens";
 import ExploreFilterTokens from "./ExploreFilterTokens";
 import CardListLoader from "../../../components/CardList/CardListLoader";
+import {CardSizeSwitcher} from "../../../context/CardSizeContext";
 
 
 const ExploreNftsPage = () => {
@@ -86,6 +87,7 @@ const ExploreNftsPage = () => {
                                  picked={sort}
                                  setSort={setSort}
                 />
+                <CardSizeSwitcher/>
             </div>
             {debounceQuery !== textQueryFilter
                 ?

@@ -13,6 +13,7 @@ import {setupApolloClient} from "./apollo";
 
 // Needed for near-api-js lib
 import {Buffer} from "buffer"
+import {CardSizeProvider} from "./context/CardSizeContext";
 
 (window as any).Buffer = Buffer;
 
@@ -25,7 +26,9 @@ ReactDOM.render(
         <ApolloProvider client={client}>
             <ReduxProvider store={store}>
                 <BrowserRouter>
-                    <App/>
+                    <CardSizeProvider>
+                        <App/>
+                    </CardSizeProvider>
                 </BrowserRouter>
             </ReduxProvider>
         </ApolloProvider>

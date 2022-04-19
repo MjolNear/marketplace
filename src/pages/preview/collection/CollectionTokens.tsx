@@ -6,6 +6,7 @@ import CollectionNftList from "./CollectionNftList";
 import CollectionMarketNftList from "./CollectionMarketNftList";
 import {TokenPriceRange, TokenSortName} from "../../../graphql/types";
 import {CollectionId, ContractId} from "../../../business-logic/types/aliases";
+import {CardSizeSwitcher} from "../../../context/CardSizeContext";
 
 interface CollectionTokensProps {
     contractId: ContractId
@@ -31,7 +32,6 @@ const CollectionTokens: React.FC<CollectionTokensProps> = ({
     return (
         <>
             <div className="inline-flex flex-wrap gap-20 w-full justify-center mb-2">
-
                 <BlueToggle text="Buy now"
                             handleToggle={(() => {
                                 setPageState(
@@ -53,6 +53,7 @@ const CollectionTokens: React.FC<CollectionTokensProps> = ({
                                      picked={sort}
                                      setSort={setSort}
                     />
+                    <CardSizeSwitcher/>
                 </div>
             </div>
             <>

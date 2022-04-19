@@ -6,6 +6,7 @@ import SearchInput from "../../../components/Filter/search/SearchInput";
 import ExploreSearchCollections from "./ExploreSearchCollections";
 import ExploreFilterCollections from "./ExploreFilterCollections";
 import CollectionListLoader from "../../../components/CollectionList/CollectionListLoader";
+import {CardSizeSwitcher} from "../../../context/CardSizeContext";
 
 const ExploreCollectionsPage = () => {
 
@@ -23,6 +24,9 @@ const ExploreCollectionsPage = () => {
                     />
                 </div>
             </BlueShadowContainer>
+            <div className="inline-flex gap-5 justify-center mb-2 w-full">
+                <CardSizeSwitcher/>
+            </div>
             {debounceQuery !== textQueryFilter
                 ?
                 <div className="py-5">
