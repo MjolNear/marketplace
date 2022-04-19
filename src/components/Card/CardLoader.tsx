@@ -65,7 +65,7 @@ const CardLoader = React.memo<TCardLoaderProps>(({size = 300, className}) => {
                 {/* Price block */}
                 <div className={classNames(
                     "w-full px-5",
-                    cardSize === CardSize.Big ? "mt-4 pt-3 pb-1" : "mt-0.5"
+                    cardSize === CardSize.Big ? "mt-4 pt-3 pb-1" : "py-1 mt-[0.5]"
                 )}
                      style={{
                          background: "linear-gradient(rgba(229, 232, 235, 0.392) 0%, rgb(255, 255, 255) 20%)"
