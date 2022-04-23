@@ -1,6 +1,6 @@
 import {BatchResponse, TokensBatchResponse} from "./core";
 import {NearToken} from "../token";
-import {BlockchainCollection} from "../../../../business-logic/types/collection";
+import {BlockchainCollection} from "../../../../@types/Collection";
 
 export type CollectionTokensResponse = TokensBatchResponse<NearToken>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {GridCollection} from "../../business-logic/types/collection";
+import {GridCollection} from "../../@types/Collection";
 import CollectionCard from "../Collection/CollectionCard";
 import CardsGridContainer from "../Common/Grid/CardsGridContainer";
 import EmptyCardList from "../CardList/EmptyCardList";

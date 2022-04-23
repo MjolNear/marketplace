@@ -1,5 +1,5 @@
 import React from 'react';
-import {GridCollection} from "../../business-logic/types/collection";
+import {GridCollection} from "../../@types/Collection";
 import CollectionListLoader from "./CollectionListLoader";
 import CollectionsGrid from "./CollectionsGrid";
 import InfiniteScroll from "react-infinite-scroll-component";

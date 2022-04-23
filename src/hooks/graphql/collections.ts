@@ -1,5 +1,5 @@
 import {useGenericListDataQuery} from "./useGenericListDataQuery";
-import {GridCollection} from "../../business-logic/types/collection";
+import {GridCollection} from "../../@types/Collection";
 import {
     CollectionsQuery,
     CollectionsQueryVariables,
@@ -11,7 +11,7 @@ import {
     UserCollectionsQueryVariables,
     useUserCollectionsQuery
 } from "../../graphql/generated/collections-graphql";
-import {AccountId} from "../../business-logic/types/aliases";
+import {AccountId} from "../../@types/Aliases";
 
 
 export const useCollections = (

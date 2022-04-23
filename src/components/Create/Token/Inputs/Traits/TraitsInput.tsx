@@ -6,10 +6,10 @@ import {useFieldArray, useFormContext} from 'react-hook-form';
 import PlusButton from "../../../../Common/Buttons/PlusButton";
 import MinusButton from "../../../../Common/Buttons/MinusButton";
 import {useFetchCollectionTraits} from "../../../../../hooks/collection/useFetchCollectionTraits";
-import {Optional} from "../../../../../business-logic/types/aliases";
+import {Optional} from "../../../../../@types/Aliases";
 import TraitAttributeSelector from "./TraitAttributeSelector";
 import TraitValueSelector from "./TraitValueSelector";
-import {TokenTraitInput} from "../../../../../business-logic/types/form";
+import {TokenTraitInput} from "../../../../../@types/Form";
 import MjolLoader from "../../../../Common/Loaders/MjolLoader";
 
 interface TraitsInputProps {

@@ -1,22 +1,24 @@
 import React from 'react';
 import BlueUnderlineButton from "../../../components/Common/Buttons/BlueUnderlineButton";
-import {ProfileNftsTab} from "../../../state/profile/nfts/slice";
 
-interface PropTypes {
-    tabs: ProfileNftsTab[],
-    activeTab: ProfileNftsTab,
-    changeTab: (tab: ProfileNftsTab) => void
+interface TabsPanelProps {
+    activeTab: "all" | "listed" | "history",
+    setActiveTab: (key: ("all" | "listed" | "history")) => void
 }
 
-const TabsPanel: React.FC<PropTypes> = ({tabs, activeTab, changeTab}) => {
+const TabsPanel: React.FC<TabsPanelProps> = ({
+    activeTab,
+    setActiveTab
+}) => {
+    const tabs: ("all" | "listed" | "history")[] = ["all", "listed", "history"]
     return (
         <div className="inline-flex flex-col gap-2 sm:flex-row sm:gap-5 md:text-lg sm:justify-center">
             {tabs.map(item => (
                 <BlueUnderlineButton
                     key={item}
-                    title={item}
+                    title={item === "all" ? "OWNED" : item === "listed" ? "ON SALE" : "HISTORY"}
                     isActive={item === activeTab}
-                    onClick={() => changeTab(item)}
+                    onClick={() => setActiveTab(item)}
                 />)
             )}
         </div>

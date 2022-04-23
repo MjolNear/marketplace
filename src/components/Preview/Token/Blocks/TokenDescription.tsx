@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import {Optional} from '../../../../business-logic/types/aliases';
+import {Optional} from '../../../../@types/Aliases';
 import {MdDescription} from "react-icons/md";
 import IconDisclosureButton from "../../../Common/Disclosure/IconDisclosureButton";
 

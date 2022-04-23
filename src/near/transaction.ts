@@ -3,13 +3,13 @@ import {GAS, SM_DEPOSIT, YOCTO_NEAR} from "./constants";
 import {functionCall, marketFunctionCall} from "./enviroment/rpc";
 import BN from "bn.js";
 import {MARKET_CONTRACT_ID} from "./enviroment/contract-names";
-import {CollectionId, ContractId, Optional, StringAmount, TokenId} from "../business-logic/types/aliases";
-import {Token} from "../business-logic/types/nft";
+import {CollectionId, ContractId, Optional, StringPrice, TokenId} from "../@types/Aliases";
+import {Token} from "../@types/Token";
 
 
 export function giveApprove(
     token: Token,
-    stringPrice: StringAmount,
+    stringPrice: StringPrice,
     collectionMetadata?: Optional<{
         collectionId: CollectionId,
         title: string
@@ -31,10 +31,6 @@ export function giveApprove(
             :
             null
         ,
-        mint_site: {
-            name: token.mintedSiteName,
-            nft_link: token.mintedSiteLink
-        },
         price
     }
 
@@ -54,7 +50,7 @@ export function giveApprove(
 export function buyNftWithPayouts(
     contractId: ContractId,
     tokenId: TokenId,
-    price: StringAmount,
+    price: StringPrice,
     hasPayouts: boolean = false
 ) {
     const nearAmount = utils.format.parseNearAmount(price) || "0";
@@ -83,13 +79,13 @@ export function unlistNft(contractId: ContractId, tokenId: TokenId) {
 }
 
 export const updateNftPrice = (contractId: ContractId, tokenId: TokenId, newPrice: string) => {
-    const newPriceInYocto = utils.format.parseNearAmount(newPrice)
+    const price = utils.format.parseNearAmount(newPrice)
     return marketFunctionCall({
         methodName: "update_token_price",
         args: {
             nft_contract_id: contractId,
             token_id: tokenId,
-            price: newPriceInYocto
+            price
         },
         gas: GAS,
         attachedDeposit: YOCTO_NEAR

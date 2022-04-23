@@ -29,6 +29,9 @@ export const successToast = (txHash: string, transaction: TransactionOperation) 
         case TransactionOperation.MintCollection:
             text = "Collection created successfully."
             break
+        case TransactionOperation.UpdatePrice:
+            text = "Token price updated successfully."
+            break
     }
 
     if (!text) {

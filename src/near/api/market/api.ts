@@ -1,5 +1,5 @@
 import {marketViewFunction} from "../../enviroment/rpc";
-import {AccountId, ContractId, NumberAmount, Optional, StringAmount, TokenId} from "../../../business-logic/types/aliases";
+import {AccountId, ContractId, NumberPrice, Optional, StringPrice, TokenId} from "../../../@types/Aliases";
 import {buildUID, formatOptionalPrice, formatPrice} from "../utils";
 import {MarketResponseTokens, MarketResponseToken, ResponseTokenPrices} from "../types/response/market";
 
@@ -59,9 +59,9 @@ export const marketAPI = {
     /**
      * Retrieves NFT price if NFT listed on market, otherwise returns null
      */
-    fetchTokenPrice: (contractId: ContractId, tokenId: TokenId): Promise<Optional<StringAmount>> => {
+    fetchTokenPrice: (contractId: ContractId, tokenId: TokenId): Promise<Optional<StringPrice>> => {
         const tokenUID = buildUID(contractId, tokenId)
-        return marketViewFunction<Optional<NumberAmount>>({
+        return marketViewFunction<Optional<NumberPrice>>({
                 methodName: 'get_nft_price',
                 args: {
                     token_uid: tokenUID

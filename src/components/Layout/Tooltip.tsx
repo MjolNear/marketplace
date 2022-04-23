@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTooltip from "react-tooltip";
 import ReactDOMServer from 'react-dom/server'
-import {ContractVerificationStatus} from "../../business-logic/types/contract";
+import {ContractVerificationStatus} from "../../@types/Contract";
 
 interface TooltipProps {
     id: string
@@ -13,7 +13,7 @@ interface TooltipProps {
 
 const Tooltip: React.FC<TooltipProps> = ({
     id,
-    className = "font-extrabold",
+    className = "font-bold",
     place = "right",
     effect = "solid",
     delayShow = 50

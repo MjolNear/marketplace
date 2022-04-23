@@ -1,5 +1,5 @@
-import {ContractId} from "../../../../business-logic/types/aliases";
-import {ContractVerificationStatus} from "../../../../business-logic/types/contract";
+import {ContractId} from "../../../../@types/Aliases";
+import {ContractVerificationStatus} from "../../../../@types/Contract";
 
 export interface TContractResponse {
     contractId: ContractId,

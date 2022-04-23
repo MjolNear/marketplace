@@ -1,9 +1,9 @@
-import {ApprovedToken} from "../../../business-logic/types/nft";
+import {ApprovedToken} from "../../../@types/Token";
 import {TContractResponse} from "../../../near/api/types/response/contracts";
-import {TPayouts} from "../../../business-logic/types/aliases";
+import {TokenPayouts} from "../../../@types/Aliases";
 
 export interface TokenPreviewProps {
     token: ApprovedToken
     contract?: TContractResponse
-    payouts?: TPayouts
+    payouts?: TokenPayouts
 }

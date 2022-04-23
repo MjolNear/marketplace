@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useReducer} from 'react';
 import MjolLoader from "../../Common/Loaders/MjolLoader";
 import {ObjectFit} from "../../../utils/css-utils";
-import {Optional} from "../../../business-logic/types/aliases";
-import {Img} from 'react-image';
-
-import brokenImage from './../../../resources/broken-image.png'
+import {Optional} from "../../../@types/Aliases";
+import {Img, useImage} from 'react-image';
+import LightBlueGradientText from "../../Common/Text/LightBlueGradientText";
+import {IoMdRefresh} from "react-icons/io";
 
 interface TCardImageProps {
     url?: Optional<string>,
@@ -23,6 +23,7 @@ const CardImage: React.FC<TCardImageProps> = ({
     height = "100%",
     loader = <MjolLoader/>
 }) => {
+    const [, forceUpdate] = useReducer(x => x + 1, 0);
     const media = url?.replace(' ', '%20').replace('#', '%23')
     return (
         <div className="aspect-w-1 aspect-h-1 justify-center z-10">
@@ -31,7 +32,7 @@ const CardImage: React.FC<TCardImageProps> = ({
                  loader={loader}
                  unloader={
                      <div className="flex items-center justify-center">
-                         <img src={brokenImage} alt="not found" className="object-contain w-[100px]"/>
+                         {/*<img src={brokenImage} alt="not found" className="object-contain w-[100px]"/>*/}
                      </div>
                  }
                  style={{

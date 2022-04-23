@@ -1,6 +1,6 @@
-import {ContractId, Optional} from "./types/aliases";
-import {ContractVerificationStatus} from "./types/contract";
-import {TokenMintedInfo} from "./types/nft";
+import {ContractId, Optional} from "../@types/Aliases";
+import {ContractVerificationStatus} from "../@types/Contract";
+import {TokenContractInfo} from "../@types/Token";
 
 export enum WhitelistedContract {
     MjolNear = "mjol.near",
@@ -28,9 +28,9 @@ export const DODIK_INDEX_LIST = new Map<string, number>([
 
 export const verifiedContracts = new Set(Object.values(WhitelistedContract) as string[])
 
-const UNVERIFIED_STATUS: TokenMintedInfo = {
-    mintedSiteName: '',
-    mintedSiteLink: '',
+const UNVERIFIED_STATUS: TokenContractInfo = {
+    contractName: '',
+    // mintedSiteLink: '',
     verification: ContractVerificationStatus.Unverified
 }
 
@@ -42,14 +42,14 @@ export const getMarketNftVerification = (contractId: ContractId): ContractVerifi
     }
 }
 
-export const getMintbaseSiteInfo = (contractId: ContractId, reference?: Optional<string>): TokenMintedInfo => {
+export const getMintbaseSiteInfo = (contractId: ContractId, reference?: Optional<string>): TokenContractInfo => {
     const name = contractId.split(".mintbase1.near")[0]
     return {
-        mintedSiteName: name ? name : "Mintbase",
+        contractName: name ? name : "Mintbase",
         verification: ContractVerificationStatus.Verified,
-        mintedSiteLink: reference
-            ? `https://www.mintbase.io/thing/${reference}:${contractId}`
-            : `https://www.mintbase.io/`
+        // mintedSiteLink: reference
+        //     ? `https://www.mintbase.io/thing/${reference}:${contractId}`
+        //     : `https://www.mintbase.io/`
     }
 }
 
@@ -62,7 +62,7 @@ export const getNftMintedSiteInfo = (
         }
     },
     contractId: ContractId
-): TokenMintedInfo => {
+): TokenContractInfo => {
     const tokenId = nft.token_id || nft.tokenId
 
     if (contractId.endsWith(".mintbase1.near")) {
@@ -76,70 +76,60 @@ export const getNftMintedSiteInfo = (
     switch (contractId) {
         case WhitelistedContract.MjolNear:
             return {
-                mintedSiteName: 'MjolNear',
-                mintedSiteLink: `https://mjolnear.com/#/nfts/${contractId}/${tokenId}`,
+                contractName: 'MjolNear',
+                // mintedSiteLink: `https://mjolnear.com/#/nfts/${contractId}/${tokenId}`,
                 verification: ContractVerificationStatus.Verified
             }
         case WhitelistedContract.Paras:
             const holder = tokenId.split(':')[0]
             return {
-                mintedSiteName: 'Paras',
-                mintedSiteLink: `https://paras.id/token/x.paras.near::${holder}/${tokenId}`,
+                contractName: 'Paras',
                 verification: ContractVerificationStatus.Verified
 
             }
         case WhitelistedContract.NearPunks:
             return {
-                mintedSiteName: "Near Punks",
-                mintedSiteLink: `https://npunks.io/punk/${tokenId}`,
+                contractName: "Near Punks",
                 verification: ContractVerificationStatus.Verified
             }
         case WhitelistedContract.NEARNauts:
             return {
-                mintedSiteName: "NEARNauts",
-                mintedSiteLink: "https://www.nearnauts.io/#/nautview",
+                contractName: "NEARNauts",
                 verification: ContractVerificationStatus.Verified
             }
         case WhitelistedContract.AntisocialApeClub:
             return {
-                mintedSiteName: "AntisocialApeClub",
-                mintedSiteLink: "https://antisocialape.club",
+                contractName: "AntisocialApeClub",
                 verification: ContractVerificationStatus.Verified
             }
         case WhitelistedContract.TAYC:
             return {
-                mintedSiteName: "TAYC",
-                mintedSiteLink: "https://tayc.app",
+                contractName: "TAYC",
                 verification: ContractVerificationStatus.Verified
             }
         case WhitelistedContract.GrimmsArmy:
             return {
-                mintedSiteName: "GrimmsArmy",
-                mintedSiteLink: "https://secretskelliessociety.com",
+                contractName: "GrimmsArmy",
                 verification: ContractVerificationStatus.Verified
             }
         case WhitelistedContract.NEARton:
             return {
-                mintedSiteName: "NEARton",
-                mintedSiteLink: `https://nearton.org/house/${tokenId}`,
+                contractName: "NEARton",
                 verification: ContractVerificationStatus.Verified
             }
         case WhitelistedContract.BillionaireBullsClub:
             return {
-                mintedSiteName: "BillionaireBullsClub",
-                mintedSiteLink: "http://billionaire-bulls.club",
+                contractName: "BillionaireBullsClub",
                 verification: ContractVerificationStatus.Verified
             }
         case WhitelistedContract.FreakyElves:
             return {
-                mintedSiteName: "FreakyElves",
-                mintedSiteLink: "https://nft.spin.fi",
+                contractName: "FreakyElves",
                 verification: ContractVerificationStatus.Verified
             }
         case WhitelistedContract.NearNymphs:
             return {
-                mintedSiteName: "NearNymphs",
-                mintedSiteLink: "https://twitter.com/NearNymphs",
+                contractName: "NearNymphs",
                 verification: ContractVerificationStatus.Verified
             }
         default:

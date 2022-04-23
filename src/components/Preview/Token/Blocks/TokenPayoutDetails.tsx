@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
 import {TAttribute} from "../Attributes/AttributeProps";
 import {GrMoney} from "react-icons/gr";
-import {TPayouts} from "../../../../business-logic/types/aliases";
+import {TokenPayouts} from "../../../../@types/Aliases";
 import IconDisclosureButton from "../../../Common/Disclosure/IconDisclosureButton";
 import KeyValueAttributeList from "../Attributes/KeyValueAttributeList";
 
 interface TTokenPayoutsProps {
-    payouts?: TPayouts
+    payouts?: TokenPayouts
 }
 
 const TokenPayoutDetails: React.FC<TTokenPayoutsProps> = ({

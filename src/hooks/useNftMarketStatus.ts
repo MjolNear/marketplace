@@ -1,4 +1,4 @@
-import {AccountId, Optional} from "../business-logic/types/aliases";
+import {AccountId, Optional} from "../@types/Aliases";
 
 export enum ItemMarketStatus {
     // Item is owned by current user and listed on transaction.

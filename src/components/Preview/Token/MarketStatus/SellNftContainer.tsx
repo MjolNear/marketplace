@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
 import InputPriceModal from "./sell/InputPriceModal";
-import {ApprovedToken} from "../../../../business-logic/types/nft";
+import {ApprovedToken} from "../../../../@types/Token";
 import {giveApprove} from "../../../../near/transaction";
 import {useFetchTokenCollection} from "../../../../hooks/collection/useFetchTokenCollection";
 

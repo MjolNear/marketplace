@@ -1,4 +1,4 @@
-import {ContractVerificationStatus} from "../../../business-logic/types/contract";
+import {ContractVerificationStatus} from "../../../@types/Contract";
 
 export const resolveVerificationText = (verification: ContractVerificationStatus, onVerify: string = '') => {
     switch (verification) {

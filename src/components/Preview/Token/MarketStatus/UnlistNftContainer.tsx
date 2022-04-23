@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
 import PriceContainer from "./PriceContainer";
-import {ContractId, Optional, TokenId, TPayouts} from "../../../../business-logic/types/aliases";
-import {unlistNft} from "../../../../near/transaction";
+import {ContractId, Optional, TokenId, TokenPayouts} from "../../../../@types/Aliases";
+import {unlistNft, updateNftPrice} from "../../../../near/transaction";
+import DarkCyanGradientButton from "../../../Common/Buttons/DarkCyanGradientButton";
+import InputPriceModal from "./sell/InputPriceModal";
 
 interface TUnlistNftProps {
     tokenPrice?: Optional<string>
     tokenId: TokenId,
     contractId: ContractId,
-    payouts: TPayouts,
+    payouts: TokenPayouts,
     media?: Optional<string>
 }
 
@@ -22,15 +24,17 @@ const UnlistNftContainer: React.FC<TUnlistNftProps> = ({
 
     const [isUnlisting, setIsUnlisting] = useState(false)
     const [isUpdating, setIsUpdating] = useState(false)
+    const [visible, setVisible] = useState(false)
 
-    const unlist = () => {
+    const unlist = useCallback(() => {
         setIsUnlisting(true)
-        unlistNft(contractId, tokenId).finally(() => setIsUnlisting(false))
-    }
-    // const updatePrice = (price: string) => {
-    //     setIsUpdating(true)
-    //     return updateNftPrice(contractId, tokenId, price).finally(() => setIsUpdating(false))
-    // }
+        return unlistNft(contractId, tokenId).finally(() => setIsUnlisting(false))
+    }, [contractId, tokenId, unlistNft])
+
+    const updatePrice = useCallback((price: string) => {
+        setIsUpdating(true)
+        return updateNftPrice(contractId, tokenId, price).finally(() => setIsUpdating(false))
+    }, [contractId, tokenId, updateNftPrice])
 
 
     return (
@@ -41,19 +45,19 @@ const UnlistNftContainer: React.FC<TUnlistNftProps> = ({
                                         isLoading={isUnlisting}
                                         disabled={isUpdating}
                 />
-                {/*<DarkCyanGradientButton title="Update Price"*/}
-                {/*                        onClick={() => setVisible(true)}*/}
-                {/*                        isLoading={isUpdating}*/}
-                {/*                        disabled={isUnlisting}*/}
-                {/*/>*/}
-                {/*{visible &&*/}
-                {/*    <InputPriceModal close={() => setVisible(false)}*/}
-                {/*                     onClick={updatePrice}*/}
-                {/*                     payouts={payouts}*/}
-                {/*                     imgSrc={media}*/}
-                {/*                     headerText="Update NFT price"*/}
-                {/*    />*/}
-                {/*}*/}
+                <DarkCyanGradientButton title="Update Price"
+                                        onClick={() => setVisible(true)}
+                                        isLoading={isUpdating}
+                                        disabled={isUnlisting}
+                />
+                {visible &&
+                    <InputPriceModal close={() => setVisible(false)}
+                                     onClick={updatePrice}
+                                     payouts={payouts}
+                                     imgSrc={media}
+                                     headerText="Update NFT price"
+                    />
+                }
             </div>
         </PriceContainer>
     )

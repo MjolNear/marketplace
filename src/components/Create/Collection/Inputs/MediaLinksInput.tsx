@@ -5,7 +5,7 @@ import BaseInput from "../../../Common/Forms/BaseInput";
 import IconText from "../../../Icons/IconText";
 import WebsiteIcon from '../../../Icons/Media/WebsiteIcon';
 import QuestionIcon from "../../../Icons/QuestionIcon";
-import {CollectionMediaLinksInput} from "../../../../business-logic/types/form";
+import {CollectionMediaLinksInput} from "../../../../@types/Form";
 import TelegramIcon from "../../../Icons/Media/TelegramIcon";
 import TwitterIcon from '../../../Icons/Media/TwitterIcon';
 import DiscordIcon from "../../../Icons/Media/DiscordIcon";

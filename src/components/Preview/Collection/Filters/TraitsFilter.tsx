@@ -6,7 +6,7 @@ import {ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon,} from
 import MobileFilterButton from "./Blocks/MobileFilterButton";
 import OptionsPanel from "./Blocks/OptionsPanel";
 import SectionDisclosure from "./Blocks/SectionDisclosure";
-import {CollectionTraits} from "../../../../business-logic/types/collection";
+import {CollectionTraits} from "../../../../@types/Collection";
 import {PropsWithChildren} from "../../../types";
 
 

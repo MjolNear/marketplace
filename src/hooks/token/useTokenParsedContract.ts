@@ -1,4 +1,4 @@
-import {ContractId} from "../../business-logic/types/aliases";
+import {ContractId} from "../../@types/Aliases";
 import {useEffect, useState} from "react";
 import {contractAPI} from "../../near/api/contracts";
 import {TContractResponse} from "../../near/api/types/response/contracts";

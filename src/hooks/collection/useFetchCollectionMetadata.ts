@@ -1,5 +1,5 @@
-import {Optional} from "../../business-logic/types/aliases";
-import {IPFSCollectionMetadata} from "../../business-logic/types/collection";
+import {Optional} from "../../@types/Aliases";
+import {IPFSCollectionMetadata} from "../../@types/Collection";
 import {useEffect, useState} from "react";
 import {collectionAPI} from "../../near/api/collections";
 

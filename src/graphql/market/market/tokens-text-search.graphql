@@ -6,11 +6,13 @@ query tokensTextSearch(
     tokens: marketSearch(text: $text, first: $limit, skip: $offset) {
         id
         tokenId
-        contractId
         title
         media
-        mintSiteName
-        mintSiteLink
         price
+        contract {
+            id
+            name
+            isVerified
+        }
     }
 }

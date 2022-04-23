@@ -133,6 +133,10 @@ module.exports = {
             // Colors
             colors: {
                 mjol: {
+                    "main" : "rgb(4, 4, 4)",
+                    "secondary": 'rgb(100, 100, 110)',
+                    "secondary-selected": "rgb(70, 70, 70)",
+
                     'tab-blue': '#1890ff',
                     background: '#f7f7f7',
                     black: 'rgb(0, 0, 0)',

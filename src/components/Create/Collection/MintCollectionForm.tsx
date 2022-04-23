@@ -10,7 +10,7 @@ import MediaLinksInput from "./Inputs/MediaLinksInput";
 import CollectionImageUpload from "./Inputs/CollectionImageUpload";
 import CollectionBannerUpload from "./Inputs/CollectionBannerUpload";
 import CollectionURLInput from "./Inputs/CollectionURLInput";
-import {CollectionFormFields} from "../../../business-logic/types/form";
+import {CollectionFormFields} from "../../../@types/Form";
 import CollectionTraitsInput from "./Inputs/Traits/CollectionTraitsInput";
 import SubmittingModal, {CollectionSubmitProps} from "../Common/SubmittingModal";
 

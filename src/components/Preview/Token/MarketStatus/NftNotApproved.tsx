@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {contractAPI} from "../../../../near/api/contracts";
-import {ContractId, TokenId} from "../../../../business-logic/types/aliases";
+import {ContractId, TokenId} from "../../../../@types/Aliases";
 
 interface TNftNotApprovedProps {
     contractId: ContractId,

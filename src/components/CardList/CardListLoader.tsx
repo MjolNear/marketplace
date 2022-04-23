@@ -1,7 +1,6 @@
 import CardLoader from "../Card/CardLoader";
 import React from "react";
 import CardsGridContainer from "../Common/Grid/CardsGridContainer";
-import {CardSize, useCardSize} from "../../context/CardSizeContext";
 
 /**
  * Returns NFT card skeleton loader component

@@ -1,5 +1,5 @@
 import React from 'react';
-import {ContractVerificationStatus} from "../../../../business-logic/types/contract";
+import {ContractVerificationStatus} from "../../../../@types/Contract";
 import {IconProps} from "../../../Icons/IconProps";
 import VerifiedIcon from "./VerifiedIcon";
 import UnverifiedIcon from "./UnverifiedIcon";

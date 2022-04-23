@@ -1,5 +1,5 @@
 import React from 'react';
-import {CollectionId, ContractId} from "../../../business-logic/types/aliases";
+import {CollectionId, ContractId} from "../../../@types/Aliases";
 import {useDailyCollectionStatsQuery} from "../../../graphql/generated/market-graphql";
 import {MJOL_CONTRACT_ID} from "../../../near/enviroment/contract-names";
 

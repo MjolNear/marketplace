@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import {useFormContext} from "react-hook-form";
 import InputLabel from "../../../Common/Forms/InputLabel";
 import UploadImage from "../../Common/Upload/UploadImage";
-import {ImageInput} from "../../../../business-logic/types/form";
+import {ImageInput} from "../../../../@types/Form";
 
 const CollectionBannerUpload = () => {
     const {register, formState, resetField, watch, setValue} = useFormContext<{ banner: ImageInput }>()

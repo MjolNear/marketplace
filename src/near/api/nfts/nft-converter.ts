@@ -6,12 +6,13 @@ import {marketAPI} from "../market";
 import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
 import {NearCoreToken, NearToken} from "../types/token";
 import {getNftMintedSiteInfo} from "../../../business-logic/whitelisted.contract";
-import {ApprovedToken} from "../../../business-logic/types/nft";
-import {ContractId, Optional} from "../../../business-logic/types/aliases";
+import {ApprovedToken} from "../../../@types/Token";
+import {ContractId, Optional} from "../../../@types/Aliases";
 
 const isIPFS = require('is-ipfs')
 
-const DODIK_MEDIA_LIST: Map<string, string> = new Map([
+const CACHE: Map<string, string> = new Map([
+    // ["kokumokongz.near", "https://bafybeic6xpqfeirsmfszjjonassdwaif56focrxw44n4gabqippnn4tjuq.ipfs.dweb.link/"],
     ["asac.near", 'https://ipfs.io/ipfs/bafybeicj5zfhe3ytmfleeiindnqlj7ydkpoyitxm7idxdw2kucchojf7v4/'],
     ["tayc-nft.near", 'https://ipfs.io/ipfs/QmXQEfLTs8W3968eVZrAwfY6oTN4UphyADdvbV2jop6S89/'],
     ["nearton_nft.near", "https://bafybeidunfr6lhn3v6a3xvjlczhhhzfielkq4vjpc5clplue63lfpm536q.ipfs.dweb.link/"],
@@ -20,6 +21,11 @@ const DODIK_MEDIA_LIST: Map<string, string> = new Map([
 ]);
 
 async function getRealUrl(url?: Optional<string>, urlHash?: Optional<string>, contractId?: string) {
+
+    if (!contractId) {
+        return null
+    }
+
     const storageLink = contractId?.endsWith(".mintbase1.near")
         ? 'https://arweave.net/'
         : 'https://ipfs.fleek.co/ipfs/'
@@ -28,22 +34,29 @@ async function getRealUrl(url?: Optional<string>, urlHash?: Optional<string>, co
         if (url.startsWith("http")) {
             return url;
         } else {
-            if (contractId && DODIK_MEDIA_LIST.has(contractId)) {
-                return DODIK_MEDIA_LIST.get(contractId) + url;
+            if (CACHE.has(contractId)) {
+                return CACHE.get(contractId) + url;
             }
             const meta = await viewFunction({
-                    contractId: (contractId || ''),
+                    contractId,
                     methodName: 'nft_metadata',
                     args: {}
                 }
             )
-            if (meta["base_uri"] !== "") {
-                if (meta["base_uri"][meta["base_uri"].length - 1] !== '/') {
-                    return meta["base_uri"] + '/' + url
+
+            const baseURI: string = meta["base_uri"] || ""
+
+            if (!baseURI) {
+                return storageLink + url
+            } else {
+                if (!baseURI.endsWith("/")) {
+                    CACHE.set(contractId, `${baseURI}/`)
+                    return `${baseURI}/${url}`
+                } else {
+                    CACHE.set(contractId, baseURI)
+                    return `${baseURI}${url}`
                 }
-                return meta["base_uri"] + url
             }
-            return storageLink + url;
         }
     }
     if (urlHash && isIPFS.cid(urlHash)) {

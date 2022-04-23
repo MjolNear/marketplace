@@ -1,4 +1,4 @@
-import {CollectionId, ContractId, Optional} from "../../business-logic/types/aliases";
+import {CollectionId, ContractId, Optional} from "../../@types/Aliases";
 import {useFindCollectionByContractQuery} from "../../graphql/generated/collections-graphql";
 import {MJOL_CONTRACT_ID} from "../../near/enviroment/contract-names";
 import {parseMjolCollection} from "../../near/token-parser/parser";

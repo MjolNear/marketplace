@@ -11,7 +11,7 @@ export const setupApolloClient = () => {
             return api === "market"
         },
         new HttpLink({
-            uri: MarketIndexerEndpoint.Backup
+            uri: MarketIndexerEndpoint.Main
         }),
         new HttpLink({
             uri: CollectionIndexerEndpoint.Main
@@ -27,6 +27,9 @@ export const setupApolloClient = () => {
 const setupCache = () => {
     return new InMemoryCache({
             typePolicies: {
+                Contract: {
+                    keyFields: ["id"]
+                },
                 Account: {
                     keyFields: ["id"]
                 },

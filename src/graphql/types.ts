@@ -1,32 +1,9 @@
-import {formatPrice} from "../near/api/utils";
-import {getMarketNftVerification, getNftMintedSiteInfo} from "../business-logic/whitelisted.contract";
 import {
     Activity_OrderBy,
     ActivityEventType,
-    MarketToken,
     MarketToken_OrderBy,
     OrderDirection
 } from "./generated/market-graphql";
-import {GridToken} from "../business-logic/types/nft";
-import BuyIcon from "../components/Icons/Activity/BuyIcon";
-import React from "react";
-
-export const convertToMarketToken = (
-    token: Omit<MarketToken, 'id' | 'listingTimestamp' | 'owner'>
-): GridToken => ({
-    ...token,
-    price: formatPrice(token.price),
-    verification: getMarketNftVerification(token.contractId),
-
-    mintedSiteLink: token.mintSiteLink
-        ? token.mintSiteLink
-        : getNftMintedSiteInfo(token, token.contractId).mintedSiteLink,
-
-    mintedSiteName: token.mintSiteName
-        ? token.mintSiteName
-        : getNftMintedSiteInfo(token, token.contractId).mintedSiteName
-})
-
 
 export interface TokenPriceRange {
     from?: string,

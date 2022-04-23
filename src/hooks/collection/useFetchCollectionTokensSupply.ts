@@ -1,4 +1,4 @@
-import {CollectionId, ContractId} from "../../business-logic/types/aliases";
+import {CollectionId, ContractId} from "../../@types/Aliases";
 import {useEffect, useState} from "react";
 import {collectionAPI} from "../../near/api/collections";
 

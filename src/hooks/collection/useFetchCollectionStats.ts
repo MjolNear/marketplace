@@ -1,4 +1,4 @@
-import {CollectionId, ContractId} from "../../business-logic/types/aliases";
+import {CollectionId, ContractId} from "../../@types/Aliases";
 import {useCollectionTotalStatsQuery} from "../../graphql/generated/market-graphql";
 import {useFetchCollectionTokensSupply} from "./useFetchCollectionTokensSupply";
 import {MJOL_CONTRACT_ID} from "../../near/enviroment/contract-names";
@@ -11,6 +11,7 @@ export interface FetchCollectionStatsHookResult {
     sales?: string
     listed?: string
     average?: string
+    highestSale?: string
 }
 
 export const useFetchCollectionStats = (
@@ -38,6 +39,7 @@ export const useFetchCollectionStats = (
         listed: data?.stats?.listed,
         average: data?.stats?.average,
         volume: data?.stats?.volume,
+        highestSale: data?.stats?.highestSale,
         floor: data?.stats?.floor?.[0]?.price
     }
 }

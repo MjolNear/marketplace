@@ -1,7 +1,7 @@
 import React, {useCallback, useMemo, useState} from 'react';
 import exampleJSON from "../../../../../resources/traits_example.json";
 import {useFormContext} from "react-hook-form";
-import {CollectionTraitInput} from "../../../../../business-logic/types/form";
+import {CollectionTraitInput} from "../../../../../@types/Form";
 import UploadFileIcon from "../../../../Icons/Forms/UploadFileIcon";
 import {BiErrorCircle} from "react-icons/bi";
 

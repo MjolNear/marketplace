@@ -1,5 +1,5 @@
 import {formatNearAmount, parseNearAmount} from "near-api-js/lib/utils/format";
-import {AccountId, Optional} from "../business-logic/types/aliases";
+import {AccountId, Optional} from "../@types/Aliases";
 
 export const shortenString = (string: string, chunkSize = 5, sizeToSplit = 15) => {
     if (string.length > sizeToSplit) {

@@ -11,15 +11,16 @@ export type TokenId = string
 export type CollectionId = string
 
 // string alias for NEAR amount
-export type StringAmount = string
+export type StringPrice = string
 
 // number alias for NEAR amount
-export type NumberAmount = number
+export type NumberPrice = number
 
 // string alias for Token UID
 export type TokenUID = string
 
-export type TPayouts = Record<string, number>
+// token payouts
+export type TokenPayouts = Record<string, number>
 
 // wrapper value to optional
 export type Optional<T> = T | null

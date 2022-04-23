@@ -3,7 +3,7 @@ import {useFormContext} from "react-hook-form";
 import InputLabel from "../../../Common/Forms/InputLabel";
 import BaseInput from "../../../Common/Forms/BaseInput";
 import QuestionIcon from "../../../Icons/QuestionIcon";
-import {COLLECTION_ID_REGEX} from "../../../../business-logic/types/form";
+import {COLLECTION_ID_REGEX} from "../../../../@types/Form";
 import useDebounce from "../../../../hooks/useDebounce";
 import {useCheckCollectionIdIsEmpty} from "../../../../hooks/collection/useCheckCollectionIdIsEmpty";
 

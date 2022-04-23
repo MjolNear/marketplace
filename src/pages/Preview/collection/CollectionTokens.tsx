@@ -5,7 +5,7 @@ import {TokenSortFilter} from "../../../components/Filter/popup/sort/SortFilter"
 import CollectionNftList from "./CollectionNftList";
 import CollectionMarketNftList from "./CollectionMarketNftList";
 import {TokenPriceRange, TokenSortName} from "../../../graphql/types";
-import {CollectionId, ContractId} from "../../../business-logic/types/aliases";
+import {CollectionId, ContractId} from "../../../@types/Aliases";
 import {CardSizeSwitcher} from "../../../context/CardSizeContext";
 
 interface CollectionTokensProps {

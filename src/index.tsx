@@ -10,10 +10,11 @@ import {ApolloProvider} from '@apollo/client';
 
 import {setupStore} from "./state/store";
 import {setupApolloClient} from "./apollo";
+import {CardSizeProvider} from "./context/CardSizeContext";
+
 
 // Needed for near-api-js lib
 import {Buffer} from "buffer"
-import {CardSizeProvider} from "./context/CardSizeContext";
 
 (window as any).Buffer = Buffer;
 

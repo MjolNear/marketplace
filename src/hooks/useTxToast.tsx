@@ -24,6 +24,9 @@ export const useTxToast = () => {
                         if (methodName === "nft_approve") {
                             return TransactionOperation.Sell
                         }
+                        if (methodName === "update_token_price") {
+                            return TransactionOperation.UpdatePrice
+                        }
                         if (methodName === "buy") {
                             return TransactionOperation.Buy
                         }
@@ -38,10 +41,6 @@ export const useTxToast = () => {
                     return TransactionOperation.Unknown
                 })
                 .then(result => {
-                    // console.log(result)
-                    // if (!isError && result === TransactionOperation.MintToken) {
-                    //
-                    // }
                     if (!isError && result !== TransactionOperation.Unknown) {
                         successToast(txHash, result)
                         navigate(pathname)

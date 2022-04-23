@@ -11,15 +11,15 @@ import {
     uploadCollectionMetadataToIpfs,
     uploadTokenMetadataToIpfs
 } from "../../../business-logic/ipfs/upload";
-import {Optional} from "../../../business-logic/types/aliases";
+import {Optional} from "../../../@types/Aliases";
 import {
     CollectionMediaLinksInput,
     CollectionTraitInput,
     ImageInput,
     TokenTraitInput
-} from "../../../business-logic/types/form";
+} from "../../../@types/Form";
 import {createCollection, mintToCommonCollection} from "../../../near/api/nfts/mint";
-import {CreateCollectionMetadataDto} from "../../../business-logic/types/collection";
+import {CreateCollectionMetadataDto} from "../../../@types/Collection";
 import PreviewCollectionCard from "./Preview/PreviewCollectionCard";
 
 

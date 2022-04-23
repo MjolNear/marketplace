@@ -1,9 +1,9 @@
 import React from 'react';
-import NearIcon from "../../Icons/near/NearIcon";
 import LightBlueGradientText from "../../Common/Text/LightBlueGradientText";
-import {Optional} from "../../../business-logic/types/aliases";
+import {Optional} from "../../../@types/Aliases";
 import {CardSize, useCardSize} from "../../../context/CardSizeContext";
 import classNames from "../../../utils/css-utils";
+import NearIcon from "../../Icons/near/NearIcon";
 
 interface TCardPriceProps {
     price?: Optional<string>

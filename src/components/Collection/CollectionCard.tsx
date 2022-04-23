@@ -3,7 +3,7 @@ import CardImage from "../Card/Blocks/CardImage";
 import {Link} from "react-router-dom";
 import DarkBlueMjolText from "../Common/Text/DarkBlueMjolText";
 import {prettyAccount} from "../../utils/string";
-import {GridCollection} from "../../business-logic/types/collection";
+import {GridCollection} from "../../@types/Collection";
 import {CardSize, useCardSize} from "../../context/CardSizeContext";
 import classNames from "../../utils/css-utils";
 

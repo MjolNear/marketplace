@@ -1,6 +1,6 @@
 import React from 'react';
 import {useFieldArray, useFormContext} from "react-hook-form";
-import {CollectionTraitInput} from "../../../../../business-logic/types/form";
+import {CollectionTraitInput} from "../../../../../@types/Form";
 import BaseInput from "../../../../Common/Forms/BaseInput";
 import PlusButton from "../../../../Common/Buttons/PlusButton";
 import MinusButton from "../../../../Common/Buttons/MinusButton";

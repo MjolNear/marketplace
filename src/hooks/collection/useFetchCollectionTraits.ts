@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import {Optional} from "../../business-logic/types/aliases";
-import {CollectionTraits} from "../../business-logic/types/collection";
+import {Optional} from "../../@types/Aliases";
+import {CollectionTraits} from "../../@types/Collection";
 
 export interface FetchCollectionTraitsHookResult {
     loading: boolean

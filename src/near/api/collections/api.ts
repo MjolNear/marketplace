@@ -1,10 +1,10 @@
-import {AccountId, CollectionId, ContractId, Optional} from "../../../business-logic/types/aliases";
+import {AccountId, CollectionId, ContractId, Optional} from "../../../@types/Aliases";
 import {
     CollectionsBatchResponse,
     CollectionTokensResponse,
     emptyCollectionsBatchResponse,
 } from "../types/response/collection";
-import {BlockchainCollection, CollectionInfo, IPFSCollectionMetadata} from "../../../business-logic/types/collection";
+import {BlockchainCollection, CollectionInfo, IPFSCollectionMetadata} from "../../../@types/Collection";
 import {fetchWithTimeout} from "../core";
 import {NearToken} from "../types/token";
 import {MJOL_CONTRACT_ID} from "../../enviroment/contract-names";

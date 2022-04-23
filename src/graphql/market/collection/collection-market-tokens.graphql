@@ -20,11 +20,13 @@ query collectionMarketTokens(
     ) {
         id
         tokenId
-        contractId
         title
         media
-        mintSiteName
-        mintSiteLink
         price
+        contract {
+            id
+            name
+            isVerified
+        }
     }
 }

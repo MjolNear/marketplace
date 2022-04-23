@@ -18,15 +18,14 @@ const TokenPreviewMainBlock: React.FC<TokenPreviewProps> = ({
 
     return (
         <div className="flex flex-col flex-grow-[4] flex-shrink-0 basis-0 gap-4">
-            <div className="self-end">
-                <SharePopup link={`mjolnear.com/nfts/${token.contractId}/${token.tokenId}`}/>
-            </div>
             <TokenPreviewTitleCollection title={token.title}
+                                         tokenId={token.tokenId}
+                                         contractId={token.contractId}
                                          collection={collection}
             />
             <TokenPreviewOwnerContract ownerId={token.ownerId}
                                        contractId={token.contractId}
-                                       mintSiteName={token.mintedSiteName}
+                                       mintSiteName={token.contractName}
                                        verification={contract?.verification}
             />
             <TokenMarketStatus token={token}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Optional} from "../../../../business-logic/types/aliases";
+import {Optional} from "../../../../@types/Aliases";
 import {Img} from "react-image";
 import CardImage from "../../../Card/Blocks/CardImage";
 import RectLoader from "../../../Common/Loaders/RectLoader";

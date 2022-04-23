@@ -1,10 +1,10 @@
 import {viewFunction} from "../../enviroment/rpc";
-import {AccountId, ContractId, StringAmount, TokenId} from "../../../business-logic/types/aliases";
+import {AccountId, ContractId, StringPrice, TokenId} from "../../../@types/Aliases";
 import {getConvertedNFT} from "./index";
-import {ApprovedToken} from "../../../business-logic/types/nft";
+import {ApprovedToken} from "../../../@types/Token";
 
 export interface Payouts {
-    payout: Record<AccountId, StringAmount>
+    payout: Record<AccountId, StringPrice>
 }
 
 export const nftAPI = {

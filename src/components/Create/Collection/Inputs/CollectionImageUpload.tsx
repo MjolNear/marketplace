@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import InputLabel from "../../../Common/Forms/InputLabel";
 import UploadImage from "../../Common/Upload/UploadImage";
 import {useFormContext} from "react-hook-form";
-import {ImageInput} from "../../../../business-logic/types/form";
+import {ImageInput} from "../../../../@types/Form";
 
 const CollectionImageUpload: React.FC = () => {
 

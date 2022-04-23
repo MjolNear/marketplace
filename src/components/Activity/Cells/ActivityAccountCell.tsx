@@ -1,6 +1,6 @@
 import React from 'react';
 import {shortenString} from "../../../utils/string";
-import {Optional} from "../../../business-logic/types/aliases";
+import {Optional} from "../../../@types/Aliases";
 import BaseActivityCell from "./BaseActivityCell";
 
 interface ActivityAccountCellProps {

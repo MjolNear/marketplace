@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {Token} from "../../../business-logic/types/nft";
+import {Token} from "../../../@types/Token";
 import {TokensBatch} from "../../../near/api/market/get-nfts-market";
 
 export interface CollectionNftsState {

@@ -2,9 +2,9 @@ import React, {memo} from 'react';
 import LightBlueGradientText from "../../../Common/Text/LightBlueGradientText";
 import {shortenString} from "../../../../utils/string";
 import Tooltip, {getContractVerificationTooltipContent} from "../../../Layout/Tooltip";
-import {ContractVerificationStatus} from "../../../../business-logic/types/contract";
+import {ContractVerificationStatus} from "../../../../@types/Contract";
 import ResolveVerificationIcon from "../../../Common/Verification/Icons/ResolveVerificationIcon";
-import {AccountId, ContractId} from "../../../../business-logic/types/aliases";
+import {AccountId, ContractId} from "../../../../@types/Aliases";
 
 interface TokenPreviewOwnerContractProps {
     ownerId: AccountId
@@ -22,7 +22,7 @@ const TokenPreviewOwnerContract: React.FC<TokenPreviewOwnerContractProps> = ({
     return (
         <section className="font-archivo mb-2">
             <div className="flex flex-row gap-1 mt-1 text-[15px]">
-                <label className="text-gray-600">Owned by</label>
+                <label className="text-mjol-secondary-selected">Owned by</label>
                 <LightBlueGradientText text={
                     ownerId.endsWith(".near")
                         ? ownerId
@@ -30,9 +30,9 @@ const TokenPreviewOwnerContract: React.FC<TokenPreviewOwnerContractProps> = ({
                 }/>
             </div>
             <div className="flex flex-row items-center gap-2 text-[15px]">
-                <div className="inline-flex gap-1 text-gray-600">
+                <div className="inline-flex gap-1 text-mjol-secondary-selected">
                     Minted on
-                    <label className="font-semibold">{mintSiteName || contractId}</label>
+                    <label className="font-bold">{mintSiteName || contractId}</label>
                 </div>
                 <p data-tip={getContractVerificationTooltipContent(verification || ContractVerificationStatus.Unverified)}
                    data-html={true}

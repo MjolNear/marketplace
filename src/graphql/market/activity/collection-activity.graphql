@@ -25,9 +25,11 @@ query collectionActivity(
         token {
             id
             tokenId
-            contractId
-            media
             title
+            media
+        }
+        contract {
+            id
         }
         owner {
             id

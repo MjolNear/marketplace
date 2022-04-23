@@ -1,7 +1,7 @@
 import React from 'react';
 import PriceContainer from "./PriceContainer";
 import ConnectWalletButton from "./ConnectWalletButton";
-import {Optional} from "../../../../business-logic/types/aliases";
+import {Optional} from "../../../../@types/Aliases";
 
 interface PriceConnectWalletProps {
     tokenPrice?: Optional<string>

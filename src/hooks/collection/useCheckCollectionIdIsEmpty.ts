@@ -1,4 +1,4 @@
-import {CollectionId} from "../../business-logic/types/aliases";
+import {CollectionId} from "../../@types/Aliases";
 import {useIsCollectionExistsQuery} from "../../graphql/generated/collections-graphql";
 
 export const useCheckCollectionIdIsEmpty = (collectionId: CollectionId) => {

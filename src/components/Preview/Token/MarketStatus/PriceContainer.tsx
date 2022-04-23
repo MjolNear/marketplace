@@ -1,6 +1,6 @@
 import React from 'react';
 import NearIcon from "../../../Icons/near/NearIcon";
-import {Optional} from "../../../../business-logic/types/aliases";
+import {Optional} from "../../../../@types/Aliases";
 import {useNearUsdPrice} from "../../../../hooks/useNearUsdPrice";
 
 export interface TPriceContainerProps {

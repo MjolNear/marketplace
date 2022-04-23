@@ -1,5 +1,5 @@
 import React from 'react';
-import {CollectionId} from "../../business-logic/types/aliases";
+import {CollectionId} from "../../@types/Aliases";
 import TokenActivityRow from "./Common/TokenActivityRow";
 import {TokenActivityRowProps} from "./types";
 

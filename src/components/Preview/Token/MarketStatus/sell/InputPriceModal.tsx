@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react';
 import Modal from "../../../../Common/Modal/Modal";
 import {useForm} from "react-hook-form";
 import PayoutsPreview from "./PayoutsPreview";
-import {Optional} from "../../../../../business-logic/types/aliases";
+import {Optional} from "../../../../../@types/Aliases";
 import TokenFormImagePreview from "./TokenFormImagePreview";
 import TokenPriceHeader from "./TokenPriceHeader";
 import TokenPriceFooter from "./TokenPriceFooter";

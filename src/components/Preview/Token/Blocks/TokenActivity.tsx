@@ -1,7 +1,7 @@
 import React, {memo} from 'react';
 import IconDisclosureButton from "../../../Common/Disclosure/IconDisclosureButton";
 import {GiBuyCard} from "react-icons/gi";
-import {ContractId, TokenId} from "../../../../business-logic/types/aliases";
+import {ContractId, TokenId} from "../../../../@types/Aliases";
 import {buildUID} from "../../../../near/api/utils";
 import TokenActivity from "../../../Activity/TokenActivity";
 

@@ -6,7 +6,7 @@ import {CardSize, useCardSize} from "../../../context/CardSizeContext";
 import classNames from '../../../utils/css-utils';
 
 
-interface TCollectionBlockProps {
+interface CollectionBlockProps {
     data?: {
         collectionId: string
         title: string
@@ -14,7 +14,7 @@ interface TCollectionBlockProps {
     }
 }
 
-const CollectionBlock: React.FC<TCollectionBlockProps> = ({
+const CollectionBlock: React.FC<CollectionBlockProps> = ({
     data
 }) => {
     const size = useCardSize()
@@ -33,8 +33,8 @@ const CollectionBlock: React.FC<TCollectionBlockProps> = ({
                     />
                     <div
                         className={classNames(
-                            "font-bold font-archivo truncate text-gray-800 opacity-75 " +
-                            "hover:opacity-90 hover:underline",
+                            "font-bold font-archivo truncate text-mjol-secondary " +
+                            "hover:text-mjol-secondary-selected",
                             size === CardSize.Big ? "text-[13px]" : "text-[10px]"
                         )}
                     >

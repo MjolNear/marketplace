@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {CollectionId, ContractId} from "../../../business-logic/types/aliases";
+import {CollectionId, ContractId} from "../../../@types/Aliases";
 import {useCollectionActivity} from "../../../hooks/graphql/activities";
 import {ActivityEventType} from "../../../graphql/generated/market-graphql";
 import PaginationActivityList from "../../../components/Activity/PaginationActivityList";

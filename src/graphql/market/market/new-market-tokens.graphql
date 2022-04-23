@@ -7,10 +7,14 @@ query newMarketTokens @api(name: market) {
     ) {
         id
         tokenId
-        contractId
         title
         description
         media
         price
+        contract {
+            id
+            name
+            isVerified
+        }
     }
 }

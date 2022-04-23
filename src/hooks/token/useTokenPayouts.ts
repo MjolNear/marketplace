@@ -1,10 +1,10 @@
-import {ContractId, TPayouts, TokenId} from "../../business-logic/types/aliases";
+import {ContractId, TokenPayouts, TokenId} from "../../@types/Aliases";
 import {getNftPayouts} from "../../near/api/nfts/get-user-nfts";
 import {useEffect, useState} from "react";
 
 export interface TokenPayoutsHookResult {
     fetching: boolean
-    payouts?: TPayouts
+    payouts?: TokenPayouts
 }
 
 export const useTokenPayouts = (

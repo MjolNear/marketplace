@@ -9,7 +9,7 @@ const CollectionDescription: React.FC<CollectionDescriptionProps> = ({
     description
 }) => {
     return (
-        <div className="font-archivo text-gray-700 text-[16px] max-w-[600px] lg:max-w-[450px]">
+        <div className="font-archivo text-mjol-secondary text-[15px] max-w-[600px] lg:max-w-[450px]">
             <ShowMoreText
                 lines={3}
                 more="read more"

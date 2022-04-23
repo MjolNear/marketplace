@@ -18,8 +18,8 @@ const BlueAnimatedLink = React.memo<LinkPropTypes>(({
     return (
         <Link to={to}
               className={
-                  classNames("text-black hover:opacity-100 flex flex-col gap-1",
-                      isActive ? "opacity-100" : "opacity-60",
+                  classNames("flex flex-col gap-1",
+                      isActive ? "text-mjol-secondary-selected" : "hover:text-mjol-secondary-selected text-mjol-secondary",
                   )}
         >
             <div className="px-2">

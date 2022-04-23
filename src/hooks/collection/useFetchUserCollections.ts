@@ -1,7 +1,7 @@
-import {AccountId} from "../../business-logic/types/aliases";
+import {AccountId} from "../../@types/Aliases";
 import {useState, useEffect} from "react";
 import {collectionAPI} from "../../near/api/collections";
-import {BlockchainCollection} from "../../business-logic/types/collection";
+import {BlockchainCollection} from "../../@types/Collection";
 
 export interface UserCollectionsHookResult {
     loading: boolean,

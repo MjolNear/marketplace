@@ -1,6 +1,6 @@
 import Card from "../Card/Card";
 import React, {memo} from "react";
-import {GridToken} from "../../business-logic/types/nft";
+import {GridToken} from "../../@types/Token";
 import CardsGridContainer from "../Common/Grid/CardsGridContainer";
 import {buildUID} from "../../near/api/utils";
 import EmptyCardList from "./EmptyCardList";
@@ -39,8 +39,7 @@ const CardGrid: React.FC<TGridProps> = ({
                                          media={token.media}
                                          price={token.price}
                                          extra={token.extra}
-                                         mintedSiteLink={token.mintedSiteLink}
-                                         mintedSiteName={token.mintedSiteName}
+                                         contractName={token.contractName}
                                          verification={token.verification}
                             />
                         }

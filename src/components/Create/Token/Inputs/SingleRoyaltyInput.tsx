@@ -5,7 +5,7 @@ import IconText from "../../../Icons/IconText";
 import {GrMoney} from "react-icons/gr";
 import QuestionIcon from "../../../Icons/QuestionIcon";
 import {useFormContext} from "react-hook-form";
-import {NEAR_ACCOUNT_REGEX, TokenRoyaltyInput} from "../../../../business-logic/types/form";
+import {NEAR_ACCOUNT_REGEX, TokenRoyaltyInput} from "../../../../@types/Form";
 
 
 const SingleRoyaltyInput: React.FC = () => {

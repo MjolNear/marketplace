@@ -1,5 +1,5 @@
-import {Optional, StringAmount} from "./aliases";
-import {ContractVerificationStatus} from "./contract";
+import {Optional, StringPrice} from "./Aliases";
+import {ContractVerificationStatus} from "./Contract";
 
 
 export interface TokenCollectionMetadata {
@@ -15,12 +15,11 @@ export interface CoreToken {
     media?: Optional<string>
     description?: Optional<string>
     extra?: Optional<string>
-    price?: Optional<StringAmount>
+    price?: Optional<StringPrice>
 }
 
-export interface TokenMintedInfo {
-    mintedSiteName: string,
-    mintedSiteLink: string,
+export interface TokenContractInfo {
+    contractName: string,
     verification: ContractVerificationStatus
 }
 
@@ -34,10 +33,10 @@ export interface TokensReferenceInfo {
 }
 
 // Grid token contains all fields without reference and approval info
-export type GridToken = Omit<CoreToken, 'ownerId'> & TokenMintedInfo
+export type GridToken = Omit<CoreToken, 'ownerId'> & TokenContractInfo
 
 // Contains fields as metadata, price
-export type Token = CoreToken & TokensReferenceInfo & TokenMintedInfo
+export type Token = CoreToken & TokensReferenceInfo & TokenContractInfo
 
 // Contains all fields and approval status
 export type ApprovedToken = Token & TokenApproveInfo

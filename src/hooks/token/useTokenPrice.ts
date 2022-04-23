@@ -1,9 +1,9 @@
-import {ContractId, Optional, StringAmount, TokenId} from "../../business-logic/types/aliases";
+import {ContractId, Optional, StringPrice, TokenId} from "../../@types/Aliases";
 import {useEffect, useState} from "react";
 import {marketAPI} from "../../near/api/market";
 
 export interface TokenPriceHookResult {
-    price: Optional<StringAmount>
+    price: Optional<StringPrice>
     fetching: boolean
 }
 

@@ -15,6 +15,7 @@ const TokenActivityRow: React.FC<TokenActivityRowProps & { collectionId: string,
     eventType,
     price,
     token,
+    contract,
     collectionId,
     collectionName,
 }) => {
@@ -24,6 +25,7 @@ const TokenActivityRow: React.FC<TokenActivityRowProps & { collectionId: string,
             <div className="max-lg:hidden grid lg:grid-cols-7 md:gap-5 lg:gap-10 lg:h-19">
                 <ActivityEventCell event={eventType}/>
                 <ActivityTokenCell {...token}
+                                   contractId={contract.id}
                                    collectionId={collectionId}
                                    collectionName={collectionName}
                 />
@@ -38,6 +40,7 @@ const TokenActivityRow: React.FC<TokenActivityRowProps & { collectionId: string,
             </div>
             <div className="lg:hidden grid grid-cols-4">
                 <ActivityTokenCell {...token}
+                                   contractId={contract.id}
                                    collectionId={collectionId}
                                    collectionName={collectionName}
                 />

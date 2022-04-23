@@ -1,4 +1,4 @@
-import {convertToMarketToken, TokenPriceRange, TokenSortOption} from "../../graphql/types";
+import {TokenPriceRange, TokenSortOption} from "../../graphql/types";
 import {useGenericListDataQuery} from "./useGenericListDataQuery";
 import {
     AccountMarketTokensQuery,
@@ -11,17 +11,31 @@ import {
     TokensTextSearchQueryVariables,
     useAccountMarketTokensQuery,
     useCollectionMarketTokensQuery,
-    useTokensFilterQuery, useTokensTextSearchQuery,
+    useTokensFilterQuery,
+    useTokensTextSearchQuery,
 } from "../../graphql/generated/market-graphql";
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../utils/string";
-import {GridToken} from "../../business-logic/types/nft";
-import {Optional} from "../../business-logic/types/aliases";
+import {GridToken} from "../../@types/Token";
+import {Optional} from "../../@types/Aliases";
+import {formatPrice} from "../../near/api/utils";
+import {ContractVerificationStatus} from "../../@types/Contract";
 
 export type MarketTokens = TokensFilterQuery['tokens']
 
 const marketTokensResponseMapper = (data?: {
     tokens: MarketTokens
-}) => data?.tokens.map(convertToMarketToken) || []
+}) => {
+    const tokens: GridToken[] = data?.tokens.map(token => ({
+        ...token,
+        contractId: token.contract.id,
+        price: formatPrice(token.price),
+        verification: token.contract.isVerified
+            ? ContractVerificationStatus.Verified
+            : ContractVerificationStatus.Unverified,
+        contractName: token.contract.name || token.contract.id
+    })) || []
+    return tokens
+}
 
 export const useMarketTokens = (
     limit: number,

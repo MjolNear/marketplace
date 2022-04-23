@@ -1,45 +1,49 @@
 import React, {memo} from 'react';
 import NearIcon from "../../../Icons/near/NearIcon";
 import Tooltip from "../../../Layout/Tooltip";
-import LightBlueGradientText from "../../../Common/Text/LightBlueGradientText";
 
 interface CollectionStatProps {
-    name: string,
-    value: string | number,
+    name: string
+    value: string | number
     priceValue?: boolean
+    dataFor: string
+    dataTip: string
+    place: "top" | "bottom"
 }
 
 const CollectionStatBox: React.FC<CollectionStatProps> = ({
     name,
     value,
-    priceValue
+    priceValue,
+    dataFor,
+    dataTip,
+    place
 }) => {
     return (
-        <div className="flex flex-col items-center ring-blue-200 ring-[0.75px]
-                        font-archivo px-5 py-3 text-black"
+        <div className="flex flex-col items-start bg-white
+                        font-archivo px-5 py-3 text-black cursor-pointer"
+             data-for={dataFor}
+             data-tip={dataTip}
         >
             {priceValue
                 ?
-                <div className="inline-flex gap-2 w-full items-center justify-center cursor-pointer"
-                   data-for={`collectionStat-${name}Id`}
-                   data-tip={`${value}  Ⓝ`}
-                >
+                <div className="inline-flex gap-2 w-full items-center justify-start">
                     <div className="w-[12px] lg:w-[14px]">
                         <NearIcon fill="w-[12px] lg:w-[14px]" size=""/>
                     </div>
-                    <div className="truncate font-extrabold text-sm sm:text-md md:text-lg">
+                    <div className="truncate font-black text-md sm:text-lg md:text-xl">
                         {value}
                     </div>
-                    <Tooltip id={`collectionStat-${name}Id`} place="bottom"/>
                 </div>
                 :
-                <span className="truncate font-extrabold text-sm sm:text-md md:text-lg">
+                <span className="truncate font-black text-md sm:text-lg md:text-xl">
                     {value}
                 </span>
             }
-            <span className="text-[11px] lg:text-[13px] text-gray-700">
+            <span className="text-[11px] lg:text-[13px] text-mjol-secondary">
                 {name}
             </span>
+            <Tooltip id={dataFor} place={place} delayShow={250}/>
         </div>
     );
 };

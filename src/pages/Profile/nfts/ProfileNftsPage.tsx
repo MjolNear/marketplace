@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {ProfileNftsTab, profileTabsSlice} from "../../../state/profile/nfts/slice";
 import ProfileHistoryFetch from "./ProfileHistoryFetch";
@@ -9,12 +9,9 @@ import TabsPanel from "../navbar/TabsPanel";
 import ProfileMarketTokens from "./ProfileMarketTokens";
 
 const ProfileNftsPage: React.FC = () => {
-    const {activeTab, tabs} = useAppSelector(state => state.profile.nfts.tabs)
-    const dispatch = useAppDispatch()
+    const [activeTab, setActiveTab] = useState<"all" | "listed" | "history">("all")
 
-    const changeTab = useCallback((tab: ProfileNftsTab) => {
-        dispatch(profileTabsSlice.actions.changeTab(tab))
-    }, [dispatch])
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
         return () => {
@@ -24,11 +21,11 @@ const ProfileNftsPage: React.FC = () => {
 
     const child = useMemo(() => {
         switch (activeTab) {
-            case ProfileNftsTab.All:
+            case "all":
                 return <ProfileNftsFetch/>
-            case ProfileNftsTab.Listed:
+            case "listed":
                 return <ProfileMarketTokens/>
-            case ProfileNftsTab.History:
+            case "history":
                 return <ProfileHistoryFetch/>
         }
     }, [activeTab])
@@ -38,7 +35,7 @@ const ProfileNftsPage: React.FC = () => {
             <BlueShadowContainer>
                 <div className="space-y-10 text-center">
                     <DarkBlueTitle title="My NFTs"/>
-                    <TabsPanel tabs={tabs} activeTab={activeTab} changeTab={changeTab}/>
+                    <TabsPanel activeTab={activeTab} setActiveTab={setActiveTab}/>
                 </div>
             </BlueShadowContainer>
             {child}

@@ -1,5 +1,5 @@
-import {Optional} from "../../business-logic/types/aliases";
-import {TokenCollectionMetadata} from "../../business-logic/types/nft";
+import {Optional} from "../../@types/Aliases";
+import {TokenCollectionMetadata} from "../../@types/Token";
 
 
 export const parseMjolCollection = (

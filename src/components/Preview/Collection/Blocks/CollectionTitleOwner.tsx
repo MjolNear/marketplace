@@ -19,8 +19,8 @@ const CollectionTitleOwner: React.FC<CollectionTitleOwnerProps> = ({
                  }}>
                 {title}
             </div>
-            <span className="flex flex-row gap-1 text-[15px]">
-                <label className="text-gray-600">
+            <span className="flex flex-row gap-1 text-md">
+                <label className="text-mjol-secondary-selected">
                     Created by
                 </label>
                 <LightBlueGradientText fontWeight="medium"

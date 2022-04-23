@@ -1,5 +1,5 @@
-import {CollectionId, ContractId, Optional} from "../../business-logic/types/aliases";
-import {CollectionInfo} from "../../business-logic/types/collection";
+import {CollectionId, ContractId, Optional} from "../../@types/Aliases";
+import {CollectionInfo} from "../../@types/Collection";
 import {useEffect, useState} from "react";
 import {collectionAPI} from "../../near/api/collections";
 

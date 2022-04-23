@@ -1,11 +1,11 @@
 import {getConvertedNFT} from "./index";
 import {nftAPI} from "./api";
 import {marketAPI} from "../market";
-import {AccountId, ContractId, TokenId, TPayouts} from "../../../business-logic/types/aliases";
+import {AccountId, ContractId, TokenId, TokenPayouts} from "../../../@types/Aliases";
 import {contractAPI} from "../contracts";
 import {batchRequest} from "../batch-request";
 import {buildUID} from "../utils";
-import {ApprovedToken} from "../../../business-logic/types/nft";
+import {ApprovedToken} from "../../../@types/Token";
 import {MJOL_CONTRACT_ID} from "../../enviroment/contract-names";
 
 export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenId: TokenId) => {
@@ -17,10 +17,10 @@ export const getNFTsByContractAndTokenId = async (contractId: ContractId, tokenI
 }
 
 
-export async function getNftPayouts(contractId: string, tokenId: string): Promise<TPayouts> {
+export async function getNftPayouts(contractId: string, tokenId: string): Promise<TokenPayouts> {
 
     const TREASURY_PERCENT = 2;
-    let royalties: TPayouts = {
+    let royalties: TokenPayouts = {
         fee: TREASURY_PERCENT
     }
 
@@ -86,11 +86,7 @@ export async function getUserNfts(accountId: AccountId, limit: number = 20) {
                 }
             )
 
-    return Promise.all([
-            batchRequest(contractIds, fetchNfts).then(result => result.values.flat()),
-            batchRequest(contractIds, contractAPI.fetchContract).then(result => result.values)
-        ]
-    )
+    return batchRequest(contractIds, fetchNfts).then(result => result.values.flat())
 }
 
 

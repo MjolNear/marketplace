@@ -1,5 +1,5 @@
 import {AppDispatch} from "../../store";
-import {CollectionId, ContractId} from "../../../business-logic/types/aliases";
+import {CollectionId, ContractId} from "../../../@types/Aliases";
 import {collectionAPI} from "../../../near/api/collections";
 import {collectionTokensSlice} from "./slice";
 import {mapTokenToNFT} from "../../../near/api/nfts/nft-converter";

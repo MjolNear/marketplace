@@ -11,15 +11,15 @@ const SharePopup: React.FC<TShareProps> = ({
 }) => {
     return (
         <Popover className="relative">
-            <p data-for="shareTokenTooltipId"
+            <div data-for="shareTokenTooltipId"
                data-tip="Share"
                className="cursor-pointer"
             >
-                <Popover.Button>
+                <Popover.Button className="flex items-center">
                     <ShareIcon size={20}/>
                 </Popover.Button>
                 <Tooltip id="shareTokenTooltipId" place="top"/>
-            </p>
+            </div>
             <Transition
                 as={Fragment}
                 enter="transition ease-out duration-100"

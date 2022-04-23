@@ -1,6 +1,6 @@
-import {ContractId, TokenId, TPayouts} from "../../business-logic/types/aliases";
+import {ContractId, TokenId, TokenPayouts} from "../../@types/Aliases";
 import {useEffect, useState} from "react";
-import {ApprovedToken} from "../../business-logic/types/nft";
+import {ApprovedToken} from "../../@types/Token";
 import {marketAPI} from "../../near/api/market";
 import {TContractResponse} from "../../near/api/types/response/contracts";
 import {contractAPI} from "../../near/api/contracts";
@@ -11,7 +11,7 @@ export interface FetchTokenHookResult {
     fetching: boolean
     token?: ApprovedToken
     contract?: TContractResponse
-    payouts?: TPayouts
+    payouts?: TokenPayouts
 }
 
 export const useFetchTokenData = (

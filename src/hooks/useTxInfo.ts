@@ -20,6 +20,7 @@ export const checkTransaction = (txHash: string): Promise<{
 
 export enum TransactionOperation {
     Unlist,
+    UpdatePrice,
     Buy,
     Sell,
     MintToken,

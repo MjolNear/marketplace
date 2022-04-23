@@ -1,4 +1,4 @@
-import {AccountId, CollectionId, ContractId, Optional} from "./aliases";
+import {AccountId, CollectionId, ContractId, Optional} from "./Aliases";
 
 export interface BlockchainCollection {
     collection_id: CollectionId

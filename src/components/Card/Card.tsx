@@ -5,8 +5,8 @@ import TitleBlock from "./Blocks/TitleBlock";
 import CollectionBlock from "./Blocks/CollectionBlock";
 import CardPrice from "./Blocks/CardPrice";
 import {Link} from "react-router-dom";
-import {Optional} from "../../business-logic/types/aliases";
-import {ContractVerificationStatus} from "../../business-logic/types/contract";
+import {Optional} from "../../@types/Aliases";
+import {ContractVerificationStatus} from "../../@types/Contract";
 import {useFetchTokenCollection} from "../../hooks/collection/useFetchTokenCollection";
 import {CardSize, useCardSize} from "../../context/CardSizeContext";
 import classNames from "../../utils/css-utils";
@@ -17,8 +17,7 @@ interface TCardProps {
     title: string
     media?: Optional<string>
     price?: Optional<string>
-    mintedSiteName: string
-    mintedSiteLink: string
+    contractName: string
     extra?: Optional<string>
     verification: ContractVerificationStatus
 }
@@ -29,8 +28,7 @@ const Card: React.FC<TCardProps> = ({
     title,
     media,
     price,
-    mintedSiteName,
-    mintedSiteLink,
+    contractName,
     extra,
     verification,
 }) => {
@@ -40,7 +38,7 @@ const Card: React.FC<TCardProps> = ({
     return (
         <div className={classNames(
             "flex flex-col justify-between overflow-hidden w-full ring-1 ring-blue-300" +
-            " select-none transform transition hover:shadow-mjol-blue hover:-translate-y-[2px]",
+            " select-none transform transition-all hover:shadow-mjol-blue group hover:-translate-y-[2px]",
             size === CardSize.Big ? "rounded-xl" : "rounded-lg"
         )}
         >
@@ -56,8 +54,8 @@ const Card: React.FC<TCardProps> = ({
             </div>
             <div className={size === CardSize.Big ? "px-2 xxs:px-5" : "px-2"}>
                 <CollectionBlock data={collection.data}/>
-                <MintedBlock mintedSiteName={mintedSiteName}
-                             mintedSiteLink={mintedSiteLink}
+                <MintedBlock contractId={contractId}
+                             contractName={contractName}
                              verification={verification}
                 />
                 <CardPrice price={price}/>

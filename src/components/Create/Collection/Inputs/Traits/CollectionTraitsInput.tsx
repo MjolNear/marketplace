@@ -5,7 +5,7 @@ import InputLabel from "../../../../Common/Forms/InputLabel";
 import classNames from "../../../../../utils/css-utils";
 import ManualCollectionTraitsInput from "./ManualCollectionTraitsInput";
 import {useFormContext} from "react-hook-form";
-import {CollectionTraitInput} from "../../../../../business-logic/types/form";
+import {CollectionTraitInput} from "../../../../../@types/Form";
 import FileTraitsInput from "./FileTraitsInput";
 
 const CollectionTraitsInput = () => {

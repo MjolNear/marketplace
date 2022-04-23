@@ -1,6 +1,6 @@
 import {NearCoreToken} from "./core";
 import {NearTokenMetadata} from "./metadata";
-import {Optional} from "../../../../business-logic/types/aliases";
+import {Optional} from "../../../../@types/Aliases";
 
 export interface NearToken extends NearCoreToken {
     metadata: NearTokenMetadata

@@ -1,0 +1,11 @@
+query contracts(
+    $contracts: [ID!]
+) @api(name: market) {
+    contracts(where: {
+        id_in: $contracts
+    }) {
+        id
+        name
+        isVerified
+    }
+}

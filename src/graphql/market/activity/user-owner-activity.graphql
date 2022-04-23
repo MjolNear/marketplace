@@ -21,18 +21,20 @@ query ownerAccountActivity(
         timestamp
         price
         txHash
+        token {
+            id
+            tokenId
+            title
+            media
+        }
+        contract {
+            id
+        }
         owner {
             id
         }
         buyer {
             id
-        }
-        token {
-            id
-            tokenId
-            contractId
-            title
-            media
         }
     }
 }

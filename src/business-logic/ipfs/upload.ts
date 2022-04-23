@@ -1,7 +1,7 @@
 import {NFTStorage} from 'nft.storage'
-import {CollectionMediaLinksInput, CollectionTraitInput, TokenTraitInput} from "../types/form";
-import {Optional} from "../types/aliases";
-import {CollectionTraits} from "../types/collection";
+import {CollectionMediaLinksInput, CollectionTraitInput, TokenTraitInput} from "../../@types/Form";
+import {Optional} from "../../@types/Aliases";
+import {CollectionTraits} from "../../@types/Collection";
 
 const IPFS_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDYzZDFBZDhCMWIzMjQyQjFjMkUwNjE2NzcyOUNmMGEwYmIyNDE1OTUiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY0MDExNjI4NTY3OSwibmFtZSI6InRldHMgZm9yIG9wZW4gbmZ0In0.gU_buy_gF4XUwptAU7Ck5_TSrfhZNLva5h2uWAusHNo'
 

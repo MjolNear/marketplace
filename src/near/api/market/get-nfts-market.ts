@@ -3,7 +3,7 @@ import {viewFunction} from "../../enviroment/rpc";
 import {marketAPI} from "./api";
 import {buildUID, formatOptionalPrice} from "../utils";
 import {batchRequest} from "../batch-request";
-import {ApprovedToken} from "../../../business-logic/types/nft";
+import {ApprovedToken} from "../../../@types/Token";
 import {MarketResponseToken} from "../types/response/market";
 
 export interface TokensBatch {

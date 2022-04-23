@@ -1,4 +1,4 @@
-import {Optional} from "../../../business-logic/types/aliases";
+import {Optional} from "../../../@types/Aliases";
 
 
 export interface ContractMetadata {

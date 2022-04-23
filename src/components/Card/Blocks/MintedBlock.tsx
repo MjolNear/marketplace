@@ -1,20 +1,20 @@
 import React from 'react';
 import ResolveVerificationIcon from "../../Common/Verification/Icons/ResolveVerificationIcon";
-import {ContractVerificationStatus} from "../../../business-logic/types/contract";
-import {resolveVerificationText} from "../../Common/Verification/utils";
-import DarkBlueMjolText from "../../Common/Text/DarkBlueMjolText";
+import {ContractVerificationStatus} from "../../../@types/Contract";
 import classNames from "../../../utils/css-utils";
 import {CardSize, useCardSize} from "../../../context/CardSizeContext";
+import {ContractId} from "../../../@types/Aliases";
+import {shortenString} from "../../../utils/string";
 
 interface TMintedInfoProps {
-    mintedSiteName: string
-    mintedSiteLink: string
+    contractId: ContractId
+    contractName: string
     verification: ContractVerificationStatus
 }
 
 const MintedBlock: React.FC<TMintedInfoProps> = ({
-    mintedSiteLink,
-    mintedSiteName,
+    contractId,
+    contractName,
     verification
 }) => {
     const size = useCardSize()
@@ -24,31 +24,21 @@ const MintedBlock: React.FC<TMintedInfoProps> = ({
                 <ResolveVerificationIcon verification={verification}
                                          iconProps={{size: size === CardSize.Big ? 13 : 9}}
                 />
-                {verification === ContractVerificationStatus.Verified
-                    ?
-                    <a className={classNames(
-                        "text-black opacity-80 font-bold font-archivo group hover:opacity-100",
-                        size === CardSize.Big ? "text-xs" : "text-[9px]"
-                    )}
-                       href={mintedSiteLink}
-                       target="_blank"
-                       rel="noreferrer"
-                    >
-                        <div className="inline-flex gap-[3px]">
-                            Minted on
-                            <DarkBlueMjolText text={mintedSiteName} classes="text-center font-bold"/>
-                        </div>
-                    </a>
-                    :
-                    <div className={classNames(
-                        "text-black opacity-80 font-bold font-archivo group hover:opacity-100",
-                        size === CardSize.Big ? "text-xs" : "text-[9px]"
-                    )}>
-                        {resolveVerificationText(verification)}
-                    </div>
-                }
+                <div className={classNames(
+                    "text-mjol-secondary font-semibold font-archivo inline-flex gap-1",
+                    size === CardSize.Big ? "text-xs" : "text-[9px]"
+                )}
+                >
+                    Minted on
+                    <span className="text-blue-400">{
+                        verification === ContractVerificationStatus.Verified
+                            ? contractName
+                            : shortenString(contractId, 7, 15)
+                    }
+                    </span>
+                </div>
             </div>
-            <div className="h-[1px] bg-blue-200 mt-[3px] rounded-lg"/>
+            <div className="h-[1px] mt-[3px] rounded-2xl bg-blue-300"/>
         </>
     );
 };

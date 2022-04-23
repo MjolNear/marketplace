@@ -4,7 +4,7 @@ import TwitterIcon from "../../../Icons/Media/TwitterIcon";
 import DiscordIcon from "../../../Icons/Media/DiscordIcon";
 import WebsiteIcon from "../../../Icons/Media/WebsiteIcon";
 import TelegramIcon from "../../../Icons/Media/TelegramIcon";
-import {CollectionMediaLinks} from "../../../../business-logic/types/collection";
+import {CollectionMediaLinks} from "../../../../@types/Collection";
 
 
 

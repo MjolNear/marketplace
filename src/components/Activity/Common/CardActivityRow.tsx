@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Optional} from "../../../business-logic/types/aliases";
+import {Optional} from "../../../@types/Aliases";
 import {fromYocto2Near, shortenString} from "../../../utils/string";
 import CardActivityCell, {ActivityCellType} from "./CardActivityCell";
 import {ActivityEventType} from "../../../graphql/generated/market-graphql";

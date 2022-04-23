@@ -8,8 +8,8 @@ query marketStatistics(
         orderBy: timestamp
     ) {
         id
-        volume,
+        volume
         sales
-        timestamp,
+        timestamp
     }
 }

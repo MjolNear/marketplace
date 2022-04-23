@@ -6,7 +6,7 @@ import {Listbox, Transition} from '@headlessui/react';
 import ListButton from "../../../Common/Forms/List/ListButton";
 import ListOption from "../../../Common/Forms/List/ListOption";
 import {Img} from "react-image";
-import {Optional} from "../../../../business-logic/types/aliases";
+import {Optional} from "../../../../@types/Aliases";
 import {ListItem} from "../../../Common/Forms/List/IListFormProps";
 import CircleIconLoader from "../../../Common/Loaders/CircleIconLoader";
 

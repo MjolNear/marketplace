@@ -1,5 +1,5 @@
 import {ActivityEventType} from "../../graphql/generated/market-graphql";
-import {AccountId, ContractId, Optional, TokenId} from "../../business-logic/types/aliases";
+import {AccountId, ContractId, Optional, TokenId} from "../../@types/Aliases";
 
 export interface TokenActivityRowProps {
     id: string
@@ -17,7 +17,9 @@ export interface TokenActivityRowProps {
     token: {
         title: string
         tokenId: TokenId
-        contractId: ContractId
         media?: Optional<string>
+    }
+    contract: {
+        id: ContractId
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {CollectionId, ContractId, Optional, TokenId} from "../../../business-logic/types/aliases";
+import {CollectionId, ContractId, Optional, TokenId} from "../../../@types/Aliases";
 import {Img} from "react-image";
 import RectLoader from "../../Common/Loaders/RectLoader";
 import {Link} from "react-router-dom";

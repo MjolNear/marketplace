@@ -3,7 +3,7 @@ import PaginationCardList from "../../../components/CardList/PaginationCardList"
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {fetchCollectionNfts} from "../../../state/preview/collection/thunk";
 import {collectionTokensSlice} from "../../../state/preview/collection/slice";
-import {CollectionId, ContractId} from "../../../business-logic/types/aliases";
+import {CollectionId, ContractId} from "../../../@types/Aliases";
 import {getCollectionTokens} from "../../../state/store";
 
 interface TCollectionNftListProps {

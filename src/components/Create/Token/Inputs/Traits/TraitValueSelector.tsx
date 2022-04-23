@@ -3,7 +3,7 @@ import {Listbox} from "@headlessui/react";
 import ListButton from "../../../../Common/Forms/List/ListButton";
 import ListOption from "../../../../Common/Forms/List/ListOption";
 import {Controller, useFormContext} from "react-hook-form";
-import {TokenTraitInput} from "../../../../../business-logic/types/form";
+import {TokenTraitInput} from "../../../../../@types/Form";
 
 interface TraitValueSelectorProps {
     index: number

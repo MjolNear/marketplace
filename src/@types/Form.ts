@@ -1,4 +1,4 @@
-import {Optional} from "./aliases";
+import {Optional} from "./Aliases";
 
 export interface TokenTraitInput {
     attribute: string

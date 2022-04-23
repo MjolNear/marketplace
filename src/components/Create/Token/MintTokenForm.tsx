@@ -8,12 +8,12 @@ import CopiesRangeInput from "./Inputs/CopiesRangeInput";
 import DarkBlueGradientButton from "../../Common/Buttons/DarkBlueGradientButton";
 import PreviewItemCreation from "../Common/Preview/PreviewToken";
 import TokenCollectionInput from "./Inputs/TokenCollectionInput";
-import {Optional} from "../../../business-logic/types/aliases";
+import {Optional} from "../../../@types/Aliases";
 import SingleRoyaltyInput from "./Inputs/SingleRoyaltyInput";
 import SubmittingModal, {TokenSubmitProps} from "../Common/SubmittingModal";
 import TraitsInput from "./Inputs/Traits/TraitsInput";
 import UploadTokenImage from "./Inputs/UploadTokenImage";
-import {TokenFormFields} from "../../../business-logic/types/form";
+import {TokenFormFields} from "../../../@types/Form";
 
 
 export interface TSelectedCollection {
