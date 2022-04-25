@@ -1,12 +1,6 @@
 import React from 'react';
 import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
-import {
-    Activity_OrderBy,
-    OrderDirection,
-    useBuyerAccountActivityQuery
-} from "../../../graphql/generated/market-graphql";
-import CardActivity from "../../../components/Activity/CardActivity";
 
 
 interface PropTypes extends TAuthProps {

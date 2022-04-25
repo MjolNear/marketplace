@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {FetchWhitelistedCollectionIdHookResult} from "../../../../hooks/collection/useFetchTokenCollection";
 import {Img} from "react-image";
-import CircleIconLoader from "../../../Common/Loaders/CircleIconLoader";
+import CircleIconLoader from "../../../../@UI/Loaders/CircleIconLoader";
 import SharePopup from '../../../Common/Share/SharePopup';
 import {ContractId, TokenId} from "../../../../@types/Aliases";
 

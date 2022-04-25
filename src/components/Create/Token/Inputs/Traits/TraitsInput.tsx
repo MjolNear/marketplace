@@ -10,7 +10,7 @@ import {Optional} from "../../../../../@types/Aliases";
 import TraitAttributeSelector from "./TraitAttributeSelector";
 import TraitValueSelector from "./TraitValueSelector";
 import {TokenTraitInput} from "../../../../../@types/Form";
-import MjolLoader from "../../../../Common/Loaders/MjolLoader";
+import MjolLoader from "../../../../../@UI/Loaders/MjolLoader";
 
 interface TraitsInputProps {
     reference: Optional<string>

@@ -2,7 +2,7 @@ import React from 'react';
 import CardActivityRow from "./Common/CardActivityRow";
 import {TokenActivityQuery} from "../../graphql/generated/market-graphql";
 import CardActivityCell, {ActivityCellType} from "./Common/CardActivityCell";
-import MjolLoader from "../Common/Loaders/MjolLoader";
+import MjolLoader from "../../@UI/Loaders/MjolLoader";
 
 interface TCardActivityProps {
     loading: boolean

@@ -5,7 +5,7 @@ import CollectionTitleOwner from "../../../components/Preview/Collection/Blocks/
 import CollectionLogoAndBanner from "../../../components/Preview/Collection/Blocks/CollectionLogoAndBanner";
 import CollectionTabSwitcher from "../../../components/Preview/Collection/Filters/CollectionTabSwitcher";
 import CollectionMedia from "../../../components/Preview/Collection/Media/CollectionMedia";
-import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
+import CreateLoader from "../../../@UI/Loaders/CreateLoader";
 import CollectionStatsBox from "../../../components/Preview/Collection/Stats/CollectionStatsBox";
 import {useCollectionQuery} from "../../../graphql/generated/collections-graphql";
 import {useFetchCollectionTokensSupply} from "../../../hooks/collection/useFetchCollectionTokensSupply";

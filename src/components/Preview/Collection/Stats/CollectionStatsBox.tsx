@@ -3,7 +3,7 @@ import CollectionStatBox from "./CollectionStatBox";
 import {formatNearAmount} from "near-api-js/lib/utils/format";
 import {useFetchCollectionStats} from "../../../../hooks/collection/useFetchCollectionStats";
 import {CollectionId, ContractId} from "../../../../@types/Aliases";
-import RectLoader from "../../../Common/Loaders/RectLoader";
+import RectLoader from "../../../../@UI/Loaders/RectLoader";
 
 interface CollectionStatsProps {
     contractId: ContractId

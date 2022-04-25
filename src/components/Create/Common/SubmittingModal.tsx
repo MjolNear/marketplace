@@ -4,7 +4,7 @@ import {AiFillCloseCircle, AiOutlineClose} from "react-icons/ai";
 import DarkBlueGradientButton from "../../Common/Buttons/DarkBlueGradientButton";
 import PreviewTokenCard from "./Preview/PreviewTokenCard";
 import IpfsIcon from "../../Icons/IpfsIcon";
-import MjolLoader from "../../Common/Loaders/MjolLoader";
+import MjolLoader from "../../../@UI/Loaders/MjolLoader";
 import NearIcon from "../../Icons/near/NearIcon";
 import {
     normalizeIpfsLink,

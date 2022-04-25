@@ -1,11 +1,15 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import {AnimatePresence, motion} from 'framer-motion';
 import React from 'react';
 
-interface PropTypes {
+interface AnimatedUnderlineProps {
     isActive: boolean
+    height?: number | string
 }
 
-const AnimatedBlueUnderline = React.memo<PropTypes>(({isActive}) => {
+const AnimatedBlueUnderline = React.memo<AnimatedUnderlineProps>(({
+    isActive,
+    height = 4
+}) => {
     return (
         <AnimatePresence initial={false}>
             {
@@ -19,8 +23,10 @@ const AnimatedBlueUnderline = React.memo<PropTypes>(({isActive}) => {
                     transition={{
                         duration: 0.15
                     }}
-                    className="h-1 bg-gradient-to-r
-                               from-mjol-gradient-blue-from to-mjol-gradient-blue-to rounded-t-[2px]"
+                    style={{
+                        height
+                    }}
+                    className="bg-gradient-to-r from-mjol-gradient-blue-from to-mjol-gradient-blue-to rounded-t-[2px]"
                 />
             }
         </AnimatePresence>

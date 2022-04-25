@@ -1,15 +1,15 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import {ProfileNftsTab, profileTabsSlice} from "../../../state/profile/nfts/slice";
+import React, {useEffect, useMemo, useState} from 'react';
+import {useAppDispatch} from "../../../hooks/redux";
+import {profileTabsSlice} from "../../../state/profile/nfts/slice";
 import ProfileHistoryFetch from "./ProfileHistoryFetch";
-import ProfileNftsFetch from "./ProfileNftsFetch";
+import ProfileTokensBlockchainFetch from "./ProfileTokensBlockchainFetch";
 import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
-import TabsPanel from "../navbar/TabsPanel";
 import ProfileMarketTokens from "./ProfileMarketTokens";
+import {TabBar} from "../../../@UI";
 
-const ProfileNftsPage: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<"all" | "listed" | "history">("all")
+const ProfileTokensPage: React.FC = () => {
+    const [activeTab, setActiveTab] = useState("ALL")
 
     const dispatch = useAppDispatch()
 
@@ -21,11 +21,11 @@ const ProfileNftsPage: React.FC = () => {
 
     const child = useMemo(() => {
         switch (activeTab) {
-            case "all":
-                return <ProfileNftsFetch/>
-            case "listed":
+            case "ALL":
+                return <ProfileTokensBlockchainFetch/>
+            case "ON SALE":
                 return <ProfileMarketTokens/>
-            case "history":
+            case "HISTORY":
                 return <ProfileHistoryFetch/>
         }
     }, [activeTab])
@@ -35,7 +35,7 @@ const ProfileNftsPage: React.FC = () => {
             <BlueShadowContainer>
                 <div className="space-y-10 text-center">
                     <DarkBlueTitle title="My NFTs"/>
-                    <TabsPanel activeTab={activeTab} setActiveTab={setActiveTab}/>
+                    <TabBar tabs={["ALL", "ON SALE", "HISTORY"]} activeTab={activeTab} setActiveTab={setActiveTab}/>
                 </div>
             </BlueShadowContainer>
             {child}
@@ -43,4 +43,4 @@ const ProfileNftsPage: React.FC = () => {
     )
 };
 
-export default ProfileNftsPage;
+export default ProfileTokensPage;

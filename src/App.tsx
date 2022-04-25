@@ -7,7 +7,7 @@ import {IndicatorFallback, IndicatorProvider} from "./context/fallback-progress"
 
 const ExploreNftsPage = React.lazy(() => import("./pages/Explore/nft/ExploreNftsPage"))
 const ExploreCollectionsPage = React.lazy(() => import("./pages/Explore/collection/ExploreCollectionsPage"))
-const ProfileNftsPage = React.lazy(() => import("./pages/Profile/nfts/ProfileNftsPage"))
+const ProfileTokensPage = React.lazy(() => import("./pages/Profile/nfts/ProfileTokensPage"))
 const ProfileCollectionsPage = React.lazy(() => import("./pages/Profile/collections/ProfileCollectionsPage"))
 const PreviewCollectionPage = React.lazy(() => import("./pages/Preview/collection/PreviewCollectionMatchRouterParams"))
 const PreviewNftPage = React.lazy(() => import("./pages/Preview/nft/PreviewNftMatchRouterParams"))
@@ -37,7 +37,7 @@ export const App: React.FC = () => {
                             </Route>
                             <Route path="profile">
                                 <Route index element={<NotFound404Page/>}/>
-                                <Route path="nfts" element={<ProfileNftsPage/>}/>
+                                <Route path="nfts" element={<ProfileTokensPage/>}/>
                                 <Route path="collections" element={<ProfileCollectionsPage/>}/>
                             </Route>
                             <Route path="*" element={<NotFound404Page/>}/>

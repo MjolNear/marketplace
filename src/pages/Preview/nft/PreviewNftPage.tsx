@@ -1,14 +1,13 @@
 import React from 'react';
 import {ContractId, TokenId} from "../../../@types/Aliases";
 import {useFetchTokenData} from "../../../hooks/token/useFetchTokenData";
-import CreateLoader from "../../../components/Common/Loaders/CreateLoader";
 import NotFound404Page from "../../NotFound404";
 import TokenPreviewContainer from "./TokenPreviewContainer";
 import MobileTokenPreviewContainer from "./MobileTokenPreviewContainer";
 import DesktopTokenPreviewContainer from "./DesktopTokenPreviewContainer";
 import {useIsMobile} from "../../../hooks/useIsMobile";
 import {useTxToast} from "../../../hooks/useTxToast";
-import {useFetchTokenMetadata} from "../../../hooks/token/useFetchTokenMetadata";
+import {CreateLoader} from "../../../@UI/Loaders";
 
 
 interface TPreviewNftProps {

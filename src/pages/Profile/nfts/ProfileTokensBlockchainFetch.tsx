@@ -16,7 +16,7 @@ import {useFetchUserContracts} from "../../../hooks/contracts/useFetchUserContra
 import {Optional} from "../../../@types/Aliases";
 
 
-const ProfileNftsFetch: React.FC<TAuthProps> = ({accountId}) => {
+const ProfileTokensBlockchainFetch: React.FC<TAuthProps> = ({accountId}) => {
     const activeTab = useAppSelector(state => state.profile.nfts.tabs.activeTab)
     const {tokens, fetching} = useAppSelector(state => state.profile.nfts.tokens)
     const dispatch = useAppDispatch()
@@ -84,4 +84,4 @@ const ProfileNftsFetch: React.FC<TAuthProps> = ({accountId}) => {
     );
 };
 
-export default withAuthRedirect(withAuthData(ProfileNftsFetch));
+export default withAuthRedirect(withAuthData(ProfileTokensBlockchainFetch));

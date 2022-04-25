@@ -8,7 +8,7 @@ import ListOption from "../../../Common/Forms/List/ListOption";
 import {Img} from "react-image";
 import {Optional} from "../../../../@types/Aliases";
 import {ListItem} from "../../../Common/Forms/List/IListFormProps";
-import CircleIconLoader from "../../../Common/Loaders/CircleIconLoader";
+import CircleIconLoader from "../../../../@UI/Loaders/CircleIconLoader";
 
 interface TokenCollectionInputProps {
     accountId: string
