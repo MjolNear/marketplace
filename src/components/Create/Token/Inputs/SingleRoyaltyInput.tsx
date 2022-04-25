@@ -1,6 +1,5 @@
 import React, {memo} from 'react';
-import BaseInput from "../../../Common/Forms/BaseInput";
-import InputLabel from "../../../Common/Forms/InputLabel";
+import {InputLabel, BaseInput} from "../../../../@UI/Forms";
 import IconText from "../../../Icons/IconText";
 import {GrMoney} from "react-icons/gr";
 import QuestionIcon from "../../../Icons/QuestionIcon";

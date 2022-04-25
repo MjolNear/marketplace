@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import {BiDna} from "react-icons/bi";
 import IconText from "../../../../Icons/IconText";
-import InputLabel from "../../../../Common/Forms/InputLabel";
+import InputLabel from "../../../../../@UI/Forms/InputLabel";
 import classNames from "../../../../../utils/css-utils";
 import ManualCollectionTraitsInput from "./ManualCollectionTraitsInput";
 import {useFormContext} from "react-hook-form";

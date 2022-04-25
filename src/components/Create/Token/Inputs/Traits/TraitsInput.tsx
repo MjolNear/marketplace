@@ -1,5 +1,5 @@
 import React, {Fragment, useMemo} from 'react';
-import InputLabel from "../../../../Common/Forms/InputLabel";
+import InputLabel from "../../../../../@UI/Forms/InputLabel";
 import {BiDna} from "react-icons/bi";
 import IconText from "../../../../Icons/IconText";
 import {useFieldArray, useFormContext} from 'react-hook-form';

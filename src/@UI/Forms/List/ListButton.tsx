@@ -2,7 +2,7 @@ import React from 'react';
 import {SelectorIcon} from "@heroicons/react/solid";
 import {Listbox} from "@headlessui/react";
 import {ListItem} from "./IListFormProps";
-import {Optional} from "../../../../@types/Aliases";
+import {Optional} from "../../../@types/Aliases";
 
 interface ListButtonProps {
     placeholder: string

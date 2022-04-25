@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from "../../utils/css-utils";
-import AnimatedBlueUnderline from "../../components/Common/Animation/AnimatedBlueUnderline";
+import AnimatedBlueUnderline from "../Animation/AnimatedBlueUnderline";
 import {TabButtonProps} from "./types";
 
 

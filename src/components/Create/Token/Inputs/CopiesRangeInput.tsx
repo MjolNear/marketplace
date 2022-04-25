@@ -1,12 +1,11 @@
 import React from 'react';
-import InputLabel from "../../../Common/Forms/InputLabel";
-import RangeInput from "../../../Common/Forms/RangeInput";
+import {InputLabel, RangeInput} from "../../../../@UI/Forms";
 import QuestionIcon from "../../../Icons/QuestionIcon";
 import {useFormContext} from "react-hook-form";
 
 const CopiesRangeInput: React.FC = () => {
 
-    const {register, watch} = useFormContext<{copies: number}>()
+    const {register, watch} = useFormContext<{ copies: number }>()
 
     return (
         <div>

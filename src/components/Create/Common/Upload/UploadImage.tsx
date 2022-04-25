@@ -2,7 +2,7 @@ import React from 'react';
 import UploadImageBlock from "./UploadImageBlock";
 import PreviewUploadedImage from "./PreviewUploadedImage";
 import RoundedSizeWrapperContainer from "./RoundedSizeWrapperContainer";
-import {NoRefInputProps} from "../../../Common/Forms/BaseInput";
+import {NoRefInputProps} from "../../../../@UI/Forms/BaseInput";
 
 interface UploadImageProps {
     imageInputProps: NoRefInputProps

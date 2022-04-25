@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 import {useFormContext} from "react-hook-form";
-import InputLabel from "../../../Common/Forms/InputLabel";
+import {InputLabel} from "../../../../@UI/Forms";
 import UploadImage from "../../Common/Upload/UploadImage";
 import {ImageInput} from "../../../../@types/Form";
 

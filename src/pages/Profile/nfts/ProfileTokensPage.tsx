@@ -35,7 +35,10 @@ const ProfileTokensPage: React.FC = () => {
             <BlueShadowContainer>
                 <div className="space-y-10 text-center">
                     <DarkBlueTitle title="My NFTs"/>
-                    <TabBar tabs={["ALL", "ON SALE", "HISTORY"]} activeTab={activeTab} setActiveTab={setActiveTab}/>
+                    <TabBar.TabBar tabs={["ALL", "ON SALE", "HISTORY"]}
+                                   activeTab={activeTab}
+                                   setActiveTab={setActiveTab}
+                    />
                 </div>
             </BlueShadowContainer>
             {child}

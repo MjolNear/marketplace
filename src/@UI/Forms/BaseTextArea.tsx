@@ -1,6 +1,6 @@
 import React from 'react';
 import {BiErrorCircle} from "react-icons/bi";
-import classNames from "../../../utils/css-utils";
+import classNames from "../../utils/css-utils";
 
 export type ReactTextAreaProps = React.DetailedHTMLProps<React.TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>
 export type NoRefTextAreaProps = Omit<ReactTextAreaProps, 'ref'>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import classNames from "../../../utils/css-utils";
-import AnimatedBlueUnderline from "../Animation/AnimatedBlueUnderline";
+import AnimatedBlueUnderline from "../../../@UI/Animation/AnimatedBlueUnderline";
 
 interface LinkPropTypes {
     to: string,

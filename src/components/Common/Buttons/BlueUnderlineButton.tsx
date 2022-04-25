@@ -1,6 +1,6 @@
 import React, {MouseEventHandler} from 'react';
 import classNames from "../../../utils/css-utils";
-import AnimatedBlueUnderline from "../Animation/AnimatedBlueUnderline";
+import AnimatedBlueUnderline from "../../../@UI/Animation/AnimatedBlueUnderline";
 
 interface PropTypes {
     title: string,

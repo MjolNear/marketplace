@@ -64,7 +64,7 @@ const ProfileTokensBlockchainFetch: React.FC<TAuthProps> = ({accountId}) => {
 
     return (
         <>
-            <div className="w-full inline-flex justify-center gap-10 mb-10">
+            <div className="w-full inline-flex justify-center gap-10 mb-7">
                 <BlueToggle text="Verified"
                             handleToggle={checked => setFilters({...filters, verified: checked})}
                             defaultChecked={filters.verified}/>
@@ -73,7 +73,6 @@ const ProfileTokensBlockchainFetch: React.FC<TAuthProps> = ({accountId}) => {
                             defaultChecked={filters.mjolNear}/>
                 <CardSizeSwitcher/>
             </div>
-            {/*<MobileFilter/>*/}
             {fetching
                 ? <CardListLoader/>
                 : tokens.length === 0

@@ -6,7 +6,7 @@ import BlueButton from "../../../Common/Buttons/BlueButton";
 import {Popover} from '@headlessui/react';
 import {utils} from "near-api-js";
 import {TokenPriceRange} from "../../../../graphql/types";
-import BaseInput from "../../../Common/Forms/BaseInput";
+import BaseInput from "../../../../@UI/Forms/BaseInput";
 
 interface RangeFilterProps {
     onApply: (range: TokenPriceRange) => void

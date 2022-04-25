@@ -1,5 +1,6 @@
-import {TabBar} from "./TabBar";
+import * as TabBar from "./TabBar";
 import * as Loaders from "./Loaders"
+import * as Animation from "./Animation"
 
 
-export {TabBar, Loaders}
+export {TabBar, Loaders, Animation}

@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import {TextSize} from "../../../utils/css-utils";
+import {TextSize} from "../../utils/css-utils";
 
 interface RequiredFiledLabelProps {
     label: string | React.ReactNode,

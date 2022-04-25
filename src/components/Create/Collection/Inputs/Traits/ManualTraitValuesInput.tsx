@@ -2,7 +2,7 @@ import React from 'react';
 import {useFieldArray, useFormContext} from "react-hook-form";
 import {CollectionTraitInput} from "../../../../../@types/Form";
 import PlusButton from "../../../../Common/Buttons/PlusButton";
-import BaseInput from "../../../../Common/Forms/BaseInput";
+import BaseInput from "../../../../../@UI/Forms/BaseInput";
 import MinusButton from "../../../../Common/Buttons/MinusButton";
 
 interface ManualTraitValuesInputProps {

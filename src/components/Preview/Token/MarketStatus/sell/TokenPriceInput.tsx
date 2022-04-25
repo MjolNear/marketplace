@@ -2,7 +2,7 @@ import React, {memo} from 'react';
 import {UseFormRegister} from "react-hook-form";
 import {MAX_ITEM_NEAR_PRICE} from "../../../../../utils/string";
 import NearIcon from "../../../../Icons/near/NearIcon";
-import BaseInput from "../../../../Common/Forms/BaseInput";
+import BaseInput from "../../../../../@UI/Forms/BaseInput";
 
 interface TInputPriceFormProps {
     register: UseFormRegister<{ price: number }>

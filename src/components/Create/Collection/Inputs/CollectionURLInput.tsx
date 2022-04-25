@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useFormContext} from "react-hook-form";
-import InputLabel from "../../../Common/Forms/InputLabel";
-import BaseInput from "../../../Common/Forms/BaseInput";
+import {InputLabel, BaseInput} from "../../../../@UI/Forms";
 import QuestionIcon from "../../../Icons/QuestionIcon";
 import {COLLECTION_ID_REGEX} from "../../../../@types/Form";
 import useDebounce from "../../../../hooks/useDebounce";

@@ -1,8 +1,8 @@
 import React from 'react';
-import classNames from "../../../utils/css-utils";
+import classNames from "../../utils/css-utils";
 import {BiErrorCircle} from 'react-icons/bi'
 import {BsCheckLg} from "react-icons/bs";
-import MjolLoader from "../../../@UI/Loaders/MjolLoader";
+import MjolLoader from "../Loaders/MjolLoader";
 
 export type ReactInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 export type NoRefInputProps = Omit<ReactInputProps, 'ref'>
