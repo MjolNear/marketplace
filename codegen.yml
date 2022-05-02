@@ -1,9 +1,0 @@
-overwrite: true
-schema: "https://api.thegraph.com/subgraphs/name/mjolnear/indexer"
-documents: "src/graphql/**/*.graphql"
-generates:
-  src/graphql/generated/graphql.tsx:
-    plugins:
-      - "typescript"
-      - "typescript-operations"
-      - "typescript-react-apollo"
