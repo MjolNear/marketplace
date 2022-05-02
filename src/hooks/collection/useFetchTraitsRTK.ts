@@ -1,5 +1,5 @@
 // import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query";
-// import {IPFSCollectionMetadata} from "../../business-logic/models/collection";
+// import {IPFSCollectionMetadata} from "../../ipfs/models/collection";
 // import {BaseQueryResult} from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 //
 // export const pokemonApi = createApi({

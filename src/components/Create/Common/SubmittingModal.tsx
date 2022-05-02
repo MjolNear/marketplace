@@ -5,11 +5,7 @@ import PreviewTokenCard from "./Preview/PreviewTokenCard";
 import IpfsIcon from "../../Icons/IpfsIcon";
 import MjolLoader from "../../../@ui/Loaders/MjolLoader";
 import NearIcon from "../../Icons/near/NearIcon";
-import {
-    normalizeIpfsLink,
-    uploadCollectionMetadataToIpfs,
-    uploadTokenMetadataToIpfs
-} from "../../../business-logic/ipfs/upload";
+
 import {Optional} from "../../../@types/Aliases";
 import {
     CollectionMediaLinksInput,
@@ -21,6 +17,7 @@ import {createCollection, mintToCommonCollection} from "../../../near/api/nfts/m
 import {CreateCollectionMetadataDto} from "../../../@types/Collection";
 import PreviewCollectionCard from "./Preview/PreviewCollectionCard";
 import DarkBlueGradientButton from "../../../@ui/Buttons/DarkBlueGradientButton";
+import {normalizeIpfsLink, uploadCollectionMetadataToIpfs, uploadTokenMetadataToIpfs} from "../../../ipfs/upload";
 
 
 interface SubmittingModalProps {

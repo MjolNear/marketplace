@@ -8,7 +8,7 @@ import EmptyCardList from "../../../components/CardList/EmptyCardList";
 import {profileTokensSlice} from "../../../state/profile/nfts/tokens/slice";
 import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
 import BlueToggle from "../../../components/Common/Filters/Toggle/BlueToggle";
-import {WhitelistedContract} from "../../../business-logic/whitelisted.contract";
+import {WhitelistedContract} from "../../../ipfs/whitelisted.contract";
 import {ContractVerificationStatus} from "../../../@types/Contract";
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
 import {CardSizeSwitcher} from "../../../context/CardSizeContext";

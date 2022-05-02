@@ -5,9 +5,9 @@ import {ResponseTokenPrices} from "../types/response/market";
 import {marketAPI} from "../market";
 import {MARKET_CONTRACT_ID} from "../../enviroment/contract-names";
 import {NearCoreToken, NearToken} from "../types/token";
-import {getNftMintedSiteInfo} from "../../../business-logic/whitelisted.contract";
 import {ApprovedToken} from "../../../@types/Token";
 import {ContractId, Optional} from "../../../@types/Aliases";
+import {getNftMintedSiteInfo} from "../../../ipfs/whitelisted.contract";
 
 const isIPFS = require('is-ipfs')
 
