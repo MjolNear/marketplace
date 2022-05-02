@@ -1,29 +1,29 @@
 import React, {memo} from 'react';
 import CollectionStatBox from "./CollectionStatBox";
 import {formatNearAmount} from "near-api-js/lib/utils/format";
-import {useFetchCollectionStats} from "../../../../hooks/collection/useFetchCollectionStats";
-import {CollectionId, ContractId} from "../../../../@types/Aliases";
-import RectLoader from "../../../../@UI/Loaders/RectLoader";
+import {Optional} from "../../../../@types/Aliases";
+import RectLoader from "../../../../@ui/Loaders/RectLoader";
 
 interface CollectionStatsProps {
-    contractId: ContractId
-    collectionId: CollectionId
+    loading: boolean
+    floor?: Optional<string>
+    highestSale?: Optional<string>
+    volume: string
+    average: string
+    sales: string
+    supply?: number
 }
 
 const CollectionStatsBox: React.FC<CollectionStatsProps> = ({
-    contractId,
-    collectionId
+    loading,
+    floor,
+    highestSale,
+    volume,
+    average,
+    sales,
+    supply
 }) => {
 
-    const {
-        loading,
-        floor,
-        volume,
-        supply,
-        sales,
-        average,
-        highestSale
-    } = useFetchCollectionStats(contractId, collectionId)
 
     const floorPrice = formatNearAmount(floor || "", 2)
     const volumeTraded = formatNearAmount(volume || "", 2)

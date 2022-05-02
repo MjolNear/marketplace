@@ -1,0 +1,15 @@
+query marketStatistics(
+    $fromTimestamp: BigInt!
+) {
+    dailyMarketStats(
+        where: {
+            timestamp_gte: $fromTimestamp
+        },
+        orderBy: timestamp
+    ) {
+        id
+        volume
+        sales
+        timestamp
+    }
+}

@@ -1,14 +1,14 @@
 import React, {Fragment, memo, useMemo} from 'react';
-import {InputLabel} from "../../../../@UI/Forms";
+import {InputLabel} from "../../../../@ui/Forms";
 import {Controller, useFormContext} from "react-hook-form";
 import {useFetchUserCollections} from "../../../../hooks/collection/useFetchUserCollections";
 import {Listbox, Transition} from '@headlessui/react';
-import ListButton from "../../../../@UI/Forms/List/ListButton";
-import ListOption from "../../../../@UI/Forms/List/ListOption";
+import ListButton from "../../../../@ui/Forms/List/ListButton";
+import ListOption from "../../../../@ui/Forms/List/ListOption";
 import {Img} from "react-image";
 import {Optional} from "../../../../@types/Aliases";
-import {ListItem} from "../../../../@UI/Forms/List/IListFormProps";
-import {CircleIconLoader} from "../../../../@UI/Loaders";
+import {ListItem} from "../../../../@ui/Forms/List/IListFormProps";
+import {CircleIconLoader} from "../../../../@ui/Loaders";
 
 interface TokenCollectionInputProps {
     accountId: string

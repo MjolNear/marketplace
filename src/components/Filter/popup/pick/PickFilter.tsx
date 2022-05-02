@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import PopupFilter from "../PopupFilter";
-import {BiSortAlt2} from "react-icons/bi";
 import {Popover} from "@headlessui/react";
-import {ActivityEventType} from "../../../../graphql/generated/market-graphql";
+import {ActivityEventType} from "../../../../graphql/generated/graphql";
 import PickOption from "./PickOption";
-import GrayButton from "../../../Common/Buttons/GrayButton";
-import BlueButton from "../../../Common/Buttons/BlueButton";
 import {activityEvents} from '../../../../graphql/types';
 import { MdOutlineEventNote } from 'react-icons/md';
+import BlueButton from "../../../../@ui/Buttons/BlueButton";
+import GrayButton from "../../../../@ui/Buttons/GrayButton";
 
 
 interface PickFilterProps<T> {

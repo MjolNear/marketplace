@@ -7,7 +7,7 @@ import MobileTokenPreviewContainer from "./MobileTokenPreviewContainer";
 import DesktopTokenPreviewContainer from "./DesktopTokenPreviewContainer";
 import {useIsMobile} from "../../../hooks/useIsMobile";
 import {useTxToast} from "../../../hooks/useTxToast";
-import {CreateLoader} from "../../../@UI/Loaders";
+import {CreateLoader} from "../../../@ui/Loaders";
 
 
 interface TPreviewNftProps {

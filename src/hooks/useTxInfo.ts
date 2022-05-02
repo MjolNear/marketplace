@@ -8,6 +8,7 @@ export const checkTransaction = (txHash: string): Promise<{
         actions?: {
             FunctionCall?: {
                 method_name?: string
+                args?: string
             }
         }[]
     }

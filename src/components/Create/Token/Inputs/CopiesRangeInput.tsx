@@ -1,5 +1,5 @@
 import React from 'react';
-import {InputLabel, RangeInput} from "../../../../@UI/Forms";
+import {InputLabel, RangeInput} from "../../../../@ui/Forms";
 import QuestionIcon from "../../../Icons/QuestionIcon";
 import {useFormContext} from "react-hook-form";
 

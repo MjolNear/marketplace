@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
 import InputPriceModal from "./sell/InputPriceModal";
 import {ApprovedToken} from "../../../../@types/Token";
 import {giveApprove} from "../../../../near/transaction";
 import {useFetchTokenCollection} from "../../../../hooks/collection/useFetchTokenCollection";
+import DarkBlueGradientButton from "../../../../@ui/Buttons/DarkBlueGradientButton";
 
 interface TSellNftProps {
     token: ApprovedToken

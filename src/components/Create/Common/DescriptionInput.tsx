@@ -1,6 +1,6 @@
 import React from 'react';
-import InputLabel from "../../../@UI/Forms/InputLabel";
-import BaseTextArea from "../../../@UI/Forms/BaseTextArea";
+import InputLabel from "../../../@ui/Forms/InputLabel";
+import BaseTextArea from "../../../@ui/Forms/BaseTextArea";
 import {useFormContext} from "react-hook-form";
 
 interface DescriptionInputProps {

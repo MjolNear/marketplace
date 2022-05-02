@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Optional} from "../../../@types/Aliases";
 import {fromYocto2Near, shortenString} from "../../../utils/string";
 import CardActivityCell, {ActivityCellType} from "./CardActivityCell";
-import {ActivityEventType} from "../../../graphql/generated/market-graphql";
+import {ActivityEventType} from "../../../graphql/generated/graphql";
 import ListingIcon from "../../Icons/Activity/ListingIcon";
 import NearBlackLogo from "../../Icons/near/NearIcon";
 import BuyIcon from "../../Icons/Activity/BuyIcon";
@@ -14,6 +14,7 @@ import CopyIcon from "../../Icons/CopyIcon";
 import Tooltip from "../../Layout/Tooltip";
 import {copiedToast} from "../../Layout/Toast";
 import TransferIcon from "../../Icons/Activity/TransferIcon";
+import {IoMdSwap} from "react-icons/io";
 
 export interface TCardActivityRowProps {
     event: ActivityEventType,
@@ -43,7 +44,8 @@ const CardActivityRow: React.FC<TCardActivityRowProps> = ({
                 {event === ActivityEventType.Buy && <BuyIcon size={14}/>}
                 {event === ActivityEventType.Unlist && <UnlistIcon size={14}/>}
                 {event === ActivityEventType.Transferred && <TransferIcon size={14}/>}
-                {event}
+                {event === ActivityEventType.UpdatePrice && <IoMdSwap size={14}/>}
+                {event === ActivityEventType.UpdatePrice ? "Update price" : event}
             </CardActivityCell>
             <CardActivityCell type={ActivityCellType.Price}>
                 <NearBlackLogo size={12} fill="fill-gray-700"/>

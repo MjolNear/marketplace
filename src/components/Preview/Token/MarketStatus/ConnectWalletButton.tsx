@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
 import {getCurrentWallet} from "../../../../near/wallet/wallet";
+import DarkBlueGradientButton from "../../../../@ui/Buttons/DarkBlueGradientButton";
 
 const ConnectWalletButton = () => {
 

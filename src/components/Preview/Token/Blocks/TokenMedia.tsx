@@ -1,7 +1,7 @@
 import React, {memo} from 'react';
 import {Optional} from "../../../../@types/Aliases";
 import {Img} from "react-image";
-import MjolLoader from "../../../../@UI/Loaders/MjolLoader";
+import MjolLoader from "../../../../@ui/Loaders/MjolLoader";
 import brokenImage from "../../../../resources/broken-image.png";
 
 interface TImageProps {

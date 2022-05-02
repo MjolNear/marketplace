@@ -1,6 +1,6 @@
 import React, {memo} from 'react';
-import DarkBlueGradientButton from "../../../../Common/Buttons/DarkBlueGradientButton";
 import Hr from "../../../../Common/Borders/Hr";
+import DarkBlueGradientButton from "../../../../../@ui/Buttons/DarkBlueGradientButton";
 
 interface TTokenPriceFooterProps {
     isPriceValid: boolean,

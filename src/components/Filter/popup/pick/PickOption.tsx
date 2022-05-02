@@ -1,7 +1,7 @@
 import React from 'react';
-import {ButtonProps} from "../../../Common/Buttons/ButtonProps";
 import ActivityEventIcon from "../../../Activity/Common/ActivityEventIcon";
-import {ActivityEventType} from "../../../../graphql/generated/market-graphql";
+import {ActivityEventType} from "../../../../graphql/generated/graphql";
+import {ButtonProps} from "../../../../@ui/Buttons/ButtonProps";
 
 interface PickOptionProps {
     text: string

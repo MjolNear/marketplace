@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {Img} from "react-image";
-import CircleIconLoader from "../../../@UI/Loaders/CircleIconLoader";
+import CircleIconLoader from "../../../@ui/Loaders/CircleIconLoader";
 import {CardSize, useCardSize} from "../../../context/CardSizeContext";
 import classNames from '../../../utils/css-utils';
 

@@ -1,0 +1,20 @@
+query collectionsTextSearch(
+    $text: String!
+    $limit: Int!
+    $offset: Int!
+) {
+    collections: collectionsSearch(
+        text: $text,
+        first: $limit
+        skip: $offset
+    ) {
+        id
+        owner {
+            id
+        }
+        collectionId
+        title
+        description
+        image
+    }
+}

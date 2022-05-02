@@ -1,10 +1,9 @@
 import React, {useCallback, useState} from 'react';
 import Modal from "../../Common/Modal/Modal";
 import {AiFillCloseCircle, AiOutlineClose} from "react-icons/ai";
-import DarkBlueGradientButton from "../../Common/Buttons/DarkBlueGradientButton";
 import PreviewTokenCard from "./Preview/PreviewTokenCard";
 import IpfsIcon from "../../Icons/IpfsIcon";
-import MjolLoader from "../../../@UI/Loaders/MjolLoader";
+import MjolLoader from "../../../@ui/Loaders/MjolLoader";
 import NearIcon from "../../Icons/near/NearIcon";
 import {
     normalizeIpfsLink,
@@ -21,6 +20,7 @@ import {
 import {createCollection, mintToCommonCollection} from "../../../near/api/nfts/mint";
 import {CreateCollectionMetadataDto} from "../../../@types/Collection";
 import PreviewCollectionCard from "./Preview/PreviewCollectionCard";
+import DarkBlueGradientButton from "../../../@ui/Buttons/DarkBlueGradientButton";
 
 
 interface SubmittingModalProps {

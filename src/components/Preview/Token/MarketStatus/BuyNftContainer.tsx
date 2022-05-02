@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
 import PriceContainer from "./PriceContainer";
 import {ContractId, Optional, TokenId} from "../../../../@types/Aliases";
 import {buyNftWithPayouts} from "../../../../near/transaction";
+import DarkBlueGradientButton from "../../../../@ui/Buttons/DarkBlueGradientButton";
 
 interface TBuyNftProps {
     tokenPrice?: Optional<string>

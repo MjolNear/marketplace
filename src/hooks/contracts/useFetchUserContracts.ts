@@ -2,7 +2,7 @@ import {AccountId, ContractId} from "../../@types/Aliases";
 import {useEffect, useState} from "react";
 import {contractAPI} from "../../near/api/contracts";
 import {MJOL_CONTRACT_ID, PARAS_CONTRACT_ID} from "../../near/enviroment/contract-names";
-import {useContractsQuery} from "../../graphql/generated/market-graphql";
+import {useContractsQuery} from "../../graphql/generated/graphql";
 
 
 export const useFetchUserContracts = (

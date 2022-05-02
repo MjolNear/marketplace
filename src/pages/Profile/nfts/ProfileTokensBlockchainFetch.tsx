@@ -28,7 +28,7 @@ const ProfileTokensBlockchainFetch: React.FC<TAuthProps> = ({accountId}) => {
         id: string
     }> = useMemo(() => {
         const contracts = data?.contracts || []
-        return contracts.reduce((acc, next) => ({...acc, [next.id]: next}), {})
+        return contracts.reduce((acc: any, next: any) => ({...acc, [next.id]: next}), {})
     }, [data])
 
     useEffect(() => {

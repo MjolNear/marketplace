@@ -1,8 +1,8 @@
 import React from 'react';
 import {Controller, useFormContext} from "react-hook-form";
 import {Listbox} from "@headlessui/react";
-import ListButton from "../../../../../@UI/Forms/List/ListButton";
-import ListOption from "../../../../../@UI/Forms/List/ListOption";
+import ListButton from "../../../../../@ui/Forms/List/ListButton";
+import ListOption from "../../../../../@ui/Forms/List/ListOption";
 import {CollectionTraits} from "../../../../../@types/Collection";
 import {TokenTraitInput} from "../../../../../@types/Form";
 

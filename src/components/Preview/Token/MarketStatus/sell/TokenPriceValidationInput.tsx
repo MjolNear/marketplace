@@ -1,6 +1,6 @@
 import React, {memo} from 'react';
 import {UseFormRegister} from "react-hook-form";
-import BaseInput from "../../../../../@UI/Forms/BaseInput";
+import BaseInput from "../../../../../@ui/Forms/BaseInput";
 import {MAX_ITEM_NEAR_PRICE} from "../../../../../utils/string";
 import NearIcon from "../../../../Icons/near/NearIcon";
 

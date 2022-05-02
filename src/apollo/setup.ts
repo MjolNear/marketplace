@@ -1,25 +1,13 @@
-import {ApolloClient, ApolloLink, HttpLink, InMemoryCache} from "@apollo/client";
-import {CollectionIndexerEndpoint, MarketIndexerEndpoint} from "./config";
-import {getDirectiveArgumentValueFromOperation, offsetLimitPagination} from "./utils";
+import {ApolloClient, InMemoryCache} from "@apollo/client";
+import {MarketIndexerEndpoint} from "./config";
+import {offsetLimitPagination} from "./utils";
 
 export const setupApolloClient = () => {
     const cache = setupCache()
-
-    const link = ApolloLink.split(
-        operation => {
-            const api = getDirectiveArgumentValueFromOperation(operation, "api", "name")
-            return api === "market"
-        },
-        new HttpLink({
-            uri: MarketIndexerEndpoint.Main
-        }),
-        new HttpLink({
-            uri: CollectionIndexerEndpoint.Main
-        })
-    )
+    const uri = MarketIndexerEndpoint.BackupV2
 
     return new ApolloClient({
-        link,
+        uri,
         cache
     })
 }
@@ -51,7 +39,7 @@ const setupCache = () => {
                             ...offsetLimitPagination(["where"])
                         },
                         collectionsSearch: {
-                          ...offsetLimitPagination(["text"])
+                            ...offsetLimitPagination(["text"])
                         },
                         marketTokens: {
                             ...offsetLimitPagination(["orderBy", "orderDirection", "where"])

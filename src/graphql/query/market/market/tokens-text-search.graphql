@@ -1,0 +1,18 @@
+query tokensTextSearch(
+    $text: String!,
+    $limit: Int!,
+    $offset: Int!
+) {
+    tokens: marketSearch(text: $text, first: $limit, skip: $offset) {
+        id
+        tokenId
+        title
+        media
+        price
+        contract {
+            id
+            name
+            isVerified
+        }
+    }
+}

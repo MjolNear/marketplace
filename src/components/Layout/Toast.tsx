@@ -10,7 +10,7 @@ export const mintedSuccessFullToast = (txHash: string, transaction: TransactionO
 
 export const successToast = (txHash: string, transaction: TransactionOperation) => {
     const explorerURL = getConfig().explorerUrl
-    const txURL = `${explorerURL}/transactions/${txHash}`
+    const txURL = `${explorerURL}/txns/${txHash}`
 
     let text
     switch (transaction) {
@@ -101,7 +101,7 @@ export const copiedToast = (text: string = "Link copied") => {
                 background: "#4391ff"
             },
             position: "bottom-right",
-            autoClose: 3000,
-            hideProgressBar: false
+            autoClose: 300,
+            hideProgressBar: true
         })
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import {ButtonProps} from "../../../Common/Buttons/ButtonProps";
 import {BsCheckLg} from 'react-icons/bs'
+import {ButtonProps} from "../../../../@ui/Buttons/ButtonProps";
 
 interface SortOptionProps {
     text: string,

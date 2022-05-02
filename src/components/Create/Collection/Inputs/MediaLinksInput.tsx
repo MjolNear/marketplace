@@ -1,6 +1,6 @@
 import React from 'react';
 import {useFormContext} from "react-hook-form";
-import {InputLabel, BaseInput} from "../../../../@UI/Forms";
+import {InputLabel, BaseInput} from "../../../../@ui/Forms";
 import IconText from "../../../Icons/IconText";
 import QuestionIcon from "../../../Icons/QuestionIcon";
 import {CollectionMediaLinksInput} from "../../../../@types/Form";

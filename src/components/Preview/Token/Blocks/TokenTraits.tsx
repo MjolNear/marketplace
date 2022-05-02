@@ -3,7 +3,7 @@ import IconDisclosure from "../../../Common/Disclosure/IconDisclosureButton";
 import {BiDna} from "react-icons/bi";
 import {Optional} from "../../../../@types/Aliases";
 import TokenAttributes from "../../../TokenAttributes/TokenAttributes";
-import MjolLoader from "../../../../@UI/Loaders/MjolLoader";
+import MjolLoader from "../../../../@ui/Loaders/MjolLoader";
 
 interface TTokenTraitsProps {
     loading: boolean

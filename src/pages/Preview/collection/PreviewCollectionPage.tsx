@@ -5,14 +5,13 @@ import CollectionTitleOwner from "../../../components/Preview/Collection/Blocks/
 import CollectionLogoAndBanner from "../../../components/Preview/Collection/Blocks/CollectionLogoAndBanner";
 import CollectionTabSwitcher from "../../../components/Preview/Collection/Filters/CollectionTabSwitcher";
 import CollectionMedia from "../../../components/Preview/Collection/Media/CollectionMedia";
-import CreateLoader from "../../../@UI/Loaders/CreateLoader";
+import CreateLoader from "../../../@ui/Loaders/CreateLoader";
 import CollectionStatsBox from "../../../components/Preview/Collection/Stats/CollectionStatsBox";
-import {useCollectionQuery} from "../../../graphql/generated/collections-graphql";
+import {useCollectionQuery} from "../../../graphql/generated/graphql";
 import {useFetchCollectionTokensSupply} from "../../../hooks/collection/useFetchCollectionTokensSupply";
 import CollectionActivity from "./CollectionActivity";
 import CollectionDescription from "../../../components/Preview/Collection/Blocks/CollectionDescription";
 import CollectionTokens from "./CollectionTokens";
-import CollectionStats from "./CollectionStats";
 
 type PreviewCollectionProps = {
     collectionId: string,
@@ -28,11 +27,11 @@ const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
 
     const {loading, data} = useCollectionQuery({
         variables: {
-            id: collectionId
+            collectionId
         }
     })
 
-    const collection = data?.collection
+    const collection = data?.collections[0]
 
     const {supply} = useFetchCollectionTokensSupply(collection?.contractId, collectionId)
 
@@ -43,6 +42,10 @@ const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
     if (!collection) {
         return <NotFound404Page/>
     }
+
+    const floor = collection.floor.length === 0
+        ? null
+        : collection.floor[0].price
 
     return (
         <div className="max-w-screen-2xl mx-auto">
@@ -57,11 +60,15 @@ const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
                                     gap-8 mt-16 mb-12 px-3 xs:px-8"
                     >
                         <div className="lg:min-w-[50%] flex flex-col gap-5 grow">
-                            <CollectionTitleOwner title={collection.title} ownerId={collection.ownerId}/>
+                            <CollectionTitleOwner title={collection.title} ownerId={collection.owner.id}/>
                             <CollectionDescription description={collection.description}/>
                             <CollectionMedia {...collection.media}/>
                         </div>
-                        <CollectionStatsBox contractId={collection.contractId} collectionId={collection.id}/>
+                        <CollectionStatsBox loading={loading}
+                                            floor={floor}
+                                            supply={supply}
+                                            {...collection.statistics}
+                        />
                     </div>
                     <CollectionTabSwitcher prefixLink={`/collections/${collectionId}`} activeTab={filterTab}/>
                 </div>
@@ -76,7 +83,7 @@ const PreviewCollectionPage: React.FC<PreviewCollectionProps> = ({
             }
             {filterTab === "activity" &&
                 <CollectionActivity contractId={collection.contractId}
-                                    collectionId={collection.id}
+                                    collectionId={collection.collectionId}
                                     collectionName={collection.title}
                 />
 

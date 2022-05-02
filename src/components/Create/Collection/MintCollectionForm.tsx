@@ -2,7 +2,6 @@ import React, {useCallback, useState} from 'react';
 import {FormProvider, useForm} from "react-hook-form";
 import TitleInput from "../Common/TitleInput";
 import DescriptionInput from "../Common/DescriptionInput";
-import DarkBlueGradientButton from "../../Common/Buttons/DarkBlueGradientButton";
 import PreviewCollection from "../Common/Preview/PreviewCollection";
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
 import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
@@ -13,6 +12,7 @@ import CollectionURLInput from "./Inputs/CollectionURLInput";
 import {CollectionFormFields} from "../../../@types/Form";
 import CollectionTraitsInput from "./Inputs/Traits/CollectionTraitsInput";
 import SubmittingModal, {CollectionSubmitProps} from "../Common/SubmittingModal";
+import DarkBlueGradientButton from "../../../@ui/Buttons/DarkBlueGradientButton";
 
 
 const MintCollectionForm: React.FC<TAuthProps> = ({

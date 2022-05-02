@@ -5,7 +5,6 @@ import {FormProvider, useForm} from "react-hook-form";
 import TitleInput from "../Common/TitleInput";
 import DescriptionInput from "../Common/DescriptionInput";
 import CopiesRangeInput from "./Inputs/CopiesRangeInput";
-import DarkBlueGradientButton from "../../Common/Buttons/DarkBlueGradientButton";
 import PreviewItemCreation from "../Common/Preview/PreviewToken";
 import TokenCollectionInput from "./Inputs/TokenCollectionInput";
 import {Optional} from "../../../@types/Aliases";
@@ -14,6 +13,7 @@ import SubmittingModal, {TokenSubmitProps} from "../Common/SubmittingModal";
 import TraitsInput from "./Inputs/Traits/TraitsInput";
 import UploadTokenImage from "./Inputs/UploadTokenImage";
 import {TokenFormFields} from "../../../@types/Form";
+import DarkBlueGradientButton from "../../../@ui/Buttons/DarkBlueGradientButton";
 
 
 export interface TSelectedCollection {

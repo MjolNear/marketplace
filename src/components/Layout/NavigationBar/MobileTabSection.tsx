@@ -2,8 +2,8 @@ import React from 'react';
 import {Menu} from "@headlessui/react";
 import {Link} from "react-router-dom";
 import {ChevronRightIcon} from "@heroicons/react/solid";
-import BlueGreenGradientButton from "../../Common/Buttons/Auth/BlueGreenGradientButton";
 import {getCurrentWallet} from "../../../near/wallet/wallet";
+import BlueGreenGradientButton from "../../../@ui/Buttons/Auth/BlueGreenGradientButton";
 
 
 interface TabItem {

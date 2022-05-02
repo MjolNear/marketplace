@@ -33,7 +33,9 @@ export interface CollectionMediaLinks {
 }
 
 export interface GridCollection {
-    ownerId: AccountId
+    owner: {
+        id: AccountId
+    }
     collectionId: CollectionId
     title: string,
     description: string

@@ -2,7 +2,7 @@ import React from 'react';
 import {Optional} from "../../../../@types/Aliases";
 import {Img} from "react-image";
 import CardImage from "../../../Card/Blocks/CardImage";
-import RectLoader from "../../../../@UI/Loaders/RectLoader";
+import RectLoader from "../../../../@ui/Loaders/RectLoader";
 
 interface PropTypes {
     loading: boolean

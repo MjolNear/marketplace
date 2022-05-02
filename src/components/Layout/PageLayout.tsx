@@ -1,10 +1,10 @@
 import React from 'react';
 import NavigationBar from "./NavigationBar/NavigationBar";
 import ScrollToTop from "../../hoc/ScrollToTop";
-import ScrollToTopButton from "../Common/Buttons/ScrollToTopButton";
 import {ToastContainer} from "react-toastify";
 import Footer from "./Footer";
 import {PropsWithChildren} from "../types";
+import ScrollToTopButton from "../../@ui/Buttons/ScrollToTopButton";
 
 const PageLayout: React.FC<PropsWithChildren> = ({
     children

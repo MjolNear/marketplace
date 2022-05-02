@@ -6,7 +6,7 @@ import ProfileTokensBlockchainFetch from "./ProfileTokensBlockchainFetch";
 import DarkBlueTitle from "../../../components/Common/Text/DarkBlueTitle";
 import BlueShadowContainer from "../../../components/Common/Shadow/BlueShadowContainer";
 import ProfileMarketTokens from "./ProfileMarketTokens";
-import {TabBar} from "../../../@UI";
+import {TabBar} from "../../../@ui";
 
 const ProfileTokensPage: React.FC = () => {
     const [activeTab, setActiveTab] = useState("ALL")

@@ -1,0 +1,22 @@
+query userCollections(
+    $owner: String!
+    $limit: Int!,
+    $offset: Int!
+) {
+    collections(
+        first: $limit
+        skip: $offset
+        where: {
+            owner: $owner
+        }
+    ) {
+        id
+        owner {
+            id
+        }
+        collectionId
+        title
+        description
+        image
+    }
+}

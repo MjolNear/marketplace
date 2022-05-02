@@ -13,11 +13,10 @@ export const useTxToast = () => {
         if (txHash) {
             checkTransaction(txHash)
                 .then(response => {
-                    // console.log(response)
                     const actions = response.transaction?.actions || []
-
                     for (const action of actions) {
                         const methodName = action.FunctionCall?.method_name
+                        const args = action.FunctionCall?.args
                         if (methodName === "remove_from_market") {
                             return TransactionOperation.Unlist
                         }
@@ -31,7 +30,6 @@ export const useTxToast = () => {
                             return TransactionOperation.Buy
                         }
                         if (methodName === "nft_mint") {
-                            // console.log(action)
                             return TransactionOperation.MintToken
                         }
                         if (methodName === "create_collection") {

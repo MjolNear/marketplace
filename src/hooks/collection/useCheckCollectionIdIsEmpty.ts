@@ -1,5 +1,5 @@
 import {CollectionId} from "../../@types/Aliases";
-import {useIsCollectionExistsQuery} from "../../graphql/generated/collections-graphql";
+import {useIsCollectionExistsQuery} from "../../graphql/generated/graphql";
 
 export const useCheckCollectionIdIsEmpty = (collectionId: CollectionId) => {
 
@@ -9,5 +9,7 @@ export const useCheckCollectionIdIsEmpty = (collectionId: CollectionId) => {
         }
     })
 
-    return {isEmpty: !data?.collection?.id && !error, loading, error}
+    const isEmpty = data?.collections.length === 0
+
+    return {isEmpty: isEmpty && !error, loading, error}
 }

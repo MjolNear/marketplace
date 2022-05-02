@@ -1,6 +1,6 @@
 import React from 'react';
 import UploadMediaIcon from "../../../Icons/Forms/UploadMediaIcon";
-import {NoRefInputProps} from "../../../../@UI/Forms/BaseInput";
+import {NoRefInputProps} from "../../../../@ui/Forms/BaseInput";
 import {BiErrorCircle} from "react-icons/bi";
 
 const UploadImageBlock = React.forwardRef<HTMLInputElement, NoRefInputProps & { error?: string }>(

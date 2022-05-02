@@ -1,10 +1,10 @@
 import React, {useCallback, useState} from 'react';
-import DarkBlueGradientButton from "../../../Common/Buttons/DarkBlueGradientButton";
 import PriceContainer from "./PriceContainer";
 import {ContractId, Optional, TokenId, TokenPayouts} from "../../../../@types/Aliases";
 import {unlistNft, updateNftPrice} from "../../../../near/transaction";
-import DarkCyanGradientButton from "../../../Common/Buttons/DarkCyanGradientButton";
 import InputPriceModal from "./sell/InputPriceModal";
+import DarkBlueGradientButton from "../../../../@ui/Buttons/DarkBlueGradientButton";
+import DarkCyanGradientButton from "../../../../@ui/Buttons/DarkCyanGradientButton";
 
 interface TUnlistNftProps {
     tokenPrice?: Optional<string>

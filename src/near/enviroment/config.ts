@@ -23,7 +23,7 @@ export const getConfig = (env: NetworkEnv = NetworkEnv.MAINNET): Config => {
                 contractName: MARKET_CONTRACT_ID,
                 walletUrl: 'https://wallet.near.org',
                 helperUrl: 'https://helper.mainnet.near.org',
-                explorerUrl: 'https://explorer.mainnet.near.org',
+                explorerUrl: 'https://nearblocks.io/',
                 headers: {}
             };
         case NetworkEnv.DEVELOPMENT:

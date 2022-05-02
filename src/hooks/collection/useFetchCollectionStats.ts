@@ -1,5 +1,5 @@
 import {CollectionId, ContractId} from "../../@types/Aliases";
-import {useCollectionTotalStatsQuery} from "../../graphql/generated/market-graphql";
+import {useCollectionTotalStatsQuery} from "../../graphql/generated/graphql";
 import {useFetchCollectionTokensSupply} from "./useFetchCollectionTokensSupply";
 import {MJOL_CONTRACT_ID} from "../../near/enviroment/contract-names";
 
@@ -19,7 +19,7 @@ export const useFetchCollectionStats = (
     collectionId: CollectionId
 ): FetchCollectionStatsHookResult => {
 
-    const id = contractId == MJOL_CONTRACT_ID
+    const id = contractId === MJOL_CONTRACT_ID
         ? `${contractId}-${collectionId}`
         : contractId
 
@@ -40,6 +40,6 @@ export const useFetchCollectionStats = (
         average: data?.stats?.average,
         volume: data?.stats?.volume,
         highestSale: data?.stats?.highestSale,
-        floor: data?.stats?.floor?.[0]?.price
+        floor: data?.floor?.marketTokens[0].price
     }
 }

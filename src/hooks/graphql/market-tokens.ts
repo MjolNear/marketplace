@@ -13,7 +13,7 @@ import {
     useCollectionMarketTokensQuery,
     useTokensFilterQuery,
     useTokensTextSearchQuery,
-} from "../../graphql/generated/market-graphql";
+} from "../../graphql/generated/graphql";
 import {MAX_ITEM_YOCTO_PRICE, MIN_ITEM_YOCTO_PRICE} from "../../utils/string";
 import {GridToken} from "../../@types/Token";
 import {Optional} from "../../@types/Aliases";

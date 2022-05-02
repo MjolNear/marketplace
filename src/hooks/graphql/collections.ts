@@ -10,7 +10,7 @@ import {
     UserCollectionsQuery,
     UserCollectionsQueryVariables,
     useUserCollectionsQuery
-} from "../../graphql/generated/collections-graphql";
+} from "../../graphql/generated/graphql";
 import {AccountId} from "../../@types/Aliases";
 
 
@@ -31,14 +31,14 @@ export const useCollections = (
 
 export const useAccountCollections = (
     limit: number,
-    ownerId: AccountId
+    owner: AccountId
 ) => {
     return useGenericListDataQuery<GridCollection, UserCollectionsQuery, UserCollectionsQueryVariables>(
         useUserCollectionsQuery, data => data?.collections || [], {
             fetchPolicy: "cache-and-network",
             nextFetchPolicy: "cache-and-network",
             variables: {
-                ownerId,
+                owner,
                 limit,
                 offset: 0,
             }

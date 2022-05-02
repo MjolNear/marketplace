@@ -1,4 +1,4 @@
-import {ActivityEventType} from "../../graphql/generated/market-graphql";
+import {ActivityEventType} from "../../graphql/generated/graphql";
 import {AccountId, ContractId, Optional, TokenId} from "../../@types/Aliases";
 
 export interface TokenActivityRowProps {

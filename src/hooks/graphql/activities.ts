@@ -6,8 +6,9 @@ import {
     CollectionActivityQuery,
     OrderDirection,
     useCollectionActivityQuery
-} from "../../graphql/generated/market-graphql";
+} from "../../graphql/generated/graphql";
 import {MJOL_CONTRACT_ID} from "../../near/enviroment/contract-names";
+import {collectionUID} from "../../@types/utils";
 
 const collectionActivitiesMapper = (
     data?: CollectionActivityQuery
@@ -26,9 +27,7 @@ export const useCollectionActivity = (
             fetchPolicy: "cache-and-network",
             nextFetchPolicy: "cache-and-network",
             variables: {
-                id: contractId === MJOL_CONTRACT_ID
-                    ? `${contractId}-${collectionId}`
-                    : contractId,
+                id: collectionUID(contractId, collectionId),
                 limit,
                 offset: 0,
                 orderBy,

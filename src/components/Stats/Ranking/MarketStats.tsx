@@ -1,8 +1,7 @@
 import React from 'react';
-import {useMarketStatisticsQuery} from "../../../graphql/generated/market-graphql";
+import {useMarketStatisticsQuery} from "../../../graphql/generated/graphql";
 import MarketVolumeChart, {MarketVolumeChartPoint} from "./MarketVolumeChart";
 import {utils} from "near-api-js";
-import dayjs from "dayjs";
 
 const MarketStats = () => {
 

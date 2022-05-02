@@ -9,7 +9,7 @@ import classNames from "../../utils/css-utils";
 
 
 const CollectionCard: React.FC<GridCollection> = ({
-    ownerId,
+    owner,
     collectionId,
     title,
     description,
@@ -28,12 +28,13 @@ const CollectionCard: React.FC<GridCollection> = ({
               to={itemPreviewLink}
         >
             <CardImage url={image}
-                       objectFit="fill"
+                       objectFit="contain"
                        className="bg-white"
             />
             <div className={classNames(
                 "flex flex-col justify-between w-full",
-                size === CardSize.Big ? "pt-3 px-6" : "mt-2 px-3")}>
+                size === CardSize.Big ? "pt-3 px-6" : "mt-2 px-3"
+            )}>
                 <div className={classNames(
                     "font-black font-archivo text-center truncate",
                     size === CardSize.Big ? "text-lg" : "text-sm"
@@ -42,14 +43,15 @@ const CollectionCard: React.FC<GridCollection> = ({
                 </div>
                 <div className={classNames(
                     "font-bold font-archivo mt-1 opacity-80 text-center truncate",
-                    size === CardSize.Big ? "text-tiny-5 mb-3" : "text-tiny-4 mb-2")}>
+                    size === CardSize.Big ? "text-tiny-5 mb-3" : "text-tiny-4 mb-2"
+                )}>
                     {description && description.length !== 0
                         ? description
                         : "Collection has no description"
                     }
                 </div>
             </div>
-            <DarkBlueMjolText text={prettyAccount(ownerId)}
+            <DarkBlueMjolText text={prettyAccount(owner.id)}
                               classes={classNames(
                                   "w-full font-archivo pr-4 mb-0.5 text-right font-bold",
                                   size === CardSize.Big ? "text-tiny-4" : "text-tiny-3"

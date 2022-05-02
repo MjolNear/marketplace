@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react';
-import MjolLoader from "../../../@UI/Loaders/MjolLoader";
+import MjolLoader from "../../../@ui/Loaders/MjolLoader";
 import {ObjectFit} from "../../../utils/css-utils";
 import {Optional} from "../../../@types/Aliases";
 import {Img, useImage} from 'react-image';

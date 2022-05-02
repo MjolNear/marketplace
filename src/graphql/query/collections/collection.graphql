@@ -1,0 +1,43 @@
+query collection($collectionId: String!) {
+    collections(
+        first: 1
+        where: {
+            collectionId: $collectionId
+        }
+    ) {
+        id
+        owner {
+            id
+        }
+        collectionId
+        contractId
+        title
+        description
+        image
+        bannerImage
+        reference
+        media {
+            website
+            telegram
+            twitter
+            discord
+        }
+        statistics {
+            id
+            volume
+            sales
+            average
+            listed
+            highestSale
+        }
+
+        floor: marketTokens(
+            orderBy: price
+            orderDirection: asc
+            first: 1
+        ) {
+            id
+            price
+        }
+    }
+}

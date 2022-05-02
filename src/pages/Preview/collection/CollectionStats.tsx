@@ -1,6 +1,6 @@
 import React from 'react';
 import {CollectionId, ContractId} from "../../../@types/Aliases";
-import {useDailyCollectionStatsQuery} from "../../../graphql/generated/market-graphql";
+import {useDailyCollectionStatsQuery} from "../../../graphql/generated/graphql";
 import {MJOL_CONTRACT_ID} from "../../../near/enviroment/contract-names";
 
 interface CollectionStatsProps {
@@ -25,7 +25,7 @@ const CollectionStats: React.FC<CollectionStatsProps> = ({
 
     return (
         <div>
-            {stats.map(s => <div>{s.average} {s.floor} {s.sales}</div>)}
+            {/*{stats.map(s => <div>{s.average} {s.floor} {s.sales}</div>)}*/}
         </div>
     );
 };

@@ -3,7 +3,7 @@ import {
     ActivityEventType,
     MarketToken_OrderBy,
     OrderDirection
-} from "./generated/market-graphql";
+} from "./generated/graphql";
 
 export interface TokenPriceRange {
     from?: string,

@@ -1,16 +1,16 @@
 import React, {Fragment, useMemo} from 'react';
-import InputLabel from "../../../../../@UI/Forms/InputLabel";
+import InputLabel from "../../../../../@ui/Forms/InputLabel";
 import {BiDna} from "react-icons/bi";
 import IconText from "../../../../Icons/IconText";
 import {useFieldArray, useFormContext} from 'react-hook-form';
-import PlusButton from "../../../../Common/Buttons/PlusButton";
-import MinusButton from "../../../../Common/Buttons/MinusButton";
 import {useFetchCollectionTraits} from "../../../../../hooks/collection/useFetchCollectionTraits";
 import {Optional} from "../../../../../@types/Aliases";
 import TraitAttributeSelector from "./TraitAttributeSelector";
 import TraitValueSelector from "./TraitValueSelector";
 import {TokenTraitInput} from "../../../../../@types/Form";
-import MjolLoader from "../../../../../@UI/Loaders/MjolLoader";
+import MjolLoader from "../../../../../@ui/Loaders/MjolLoader";
+import PlusButton from "../../../../../@ui/Buttons/PlusButton";
+import MinusButton from "../../../../../@ui/Buttons/MinusButton";
 
 interface TraitsInputProps {
     reference: Optional<string>

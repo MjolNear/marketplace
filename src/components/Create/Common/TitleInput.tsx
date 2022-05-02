@@ -1,6 +1,6 @@
 import React from 'react';
-import BaseInput from "../../../@UI/Forms/BaseInput";
-import InputLabel from "../../../@UI/Forms/InputLabel";
+import BaseInput from "../../../@ui/Forms/BaseInput";
+import InputLabel from "../../../@ui/Forms/InputLabel";
 import {useFormContext} from "react-hook-form";
 
 

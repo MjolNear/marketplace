@@ -1,7 +1,7 @@
 import React from 'react';
 import {CollectionId, ContractId, Optional, TokenId} from "../../../@types/Aliases";
 import {Img} from "react-image";
-import RectLoader from "../../../@UI/Loaders/RectLoader";
+import RectLoader from "../../../@ui/Loaders/RectLoader";
 import {Link} from "react-router-dom";
 import brokenImage from "../../../resources/broken-image.png";
 

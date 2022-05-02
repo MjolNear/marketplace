@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityEventType} from "../../../graphql/generated/market-graphql";
+import {ActivityEventType} from "../../../graphql/generated/graphql";
 import TransferIcon from "../../Icons/Activity/TransferIcon";
 import ListingIcon from "../../Icons/Activity/ListingIcon";
 import UnlistIcon from "../../Icons/Activity/UnlistIcon";

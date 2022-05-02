@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {useTokenActivityQuery} from "../../graphql/generated/market-graphql";
+import {useTokenActivityQuery} from "../../graphql/generated/graphql";
 import CardActivity from "./CardActivity";
 
 interface TokenActivityProps {

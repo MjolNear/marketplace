@@ -1,6 +1,6 @@
 import React from 'react';
 import IconDisclosureButton, {TIconDisclosureProps} from "./IconDisclosureButton";
-import MjolLoader from "../../../@UI/Loaders/MjolLoader";
+import MjolLoader from "../../../@ui/Loaders/MjolLoader";
 
 const LoadingDisclosure: React.FC<TIconDisclosureProps> = ({
     icon,
