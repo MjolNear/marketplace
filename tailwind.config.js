@@ -136,6 +136,7 @@ module.exports = {
                     "main" : "rgb(4, 4, 4)",
                     "secondary": 'rgb(100, 100, 110)',
                     "secondary-selected": "rgb(70, 70, 70)",
+                    "rarible-blue": "rgb(0, 102, 255)",
 
                     'tab-blue': '#1890ff',
                     background: '#f7f7f7',

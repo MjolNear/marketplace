@@ -7,12 +7,11 @@ import {IoIosRocket} from 'react-icons/io'
 import {SiGitbook} from 'react-icons/si'
 import LogoLink from "../../Common/Links/LogoLink";
 import MobileTabSection from "./MobileTabSection";
-import BetaHeader from "../BetaHeader";
 import Tooltip from "../Tooltip";
 import {routesConfig} from "./routes-config";
 import {Indicator} from "../../../context/fallback-progress";
-import {Line} from "rc-progress";
 import BlueGreenGradientButton from "../../../@ui/Buttons/Auth/BlueGreenGradientButton";
+import ProfileSettings from "../../../pages/Profile/Settings/ProfileSettings";
 
 const NavigationBar = React.memo(() => {
     const exploreTabs = routesConfig.explore
