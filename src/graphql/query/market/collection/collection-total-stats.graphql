@@ -1,0 +1,23 @@
+query collectionTotalStats(
+    $id: ID!
+) {
+    stats: collectionStatistic(id: $id) {
+        id
+        volume
+        sales
+        average
+        listed
+        highestSale
+    }
+
+    floor: collection(id: $id) {
+        marketTokens(
+            orderBy: price
+            orderDirection: asc
+            first: 1
+        ) {
+            id
+            price
+        }
+    }
+}

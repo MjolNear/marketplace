@@ -1,0 +1,11 @@
+query contracts(
+    $contracts: [ID!]
+) {
+    contracts(where: {
+        id_in: $contracts
+    }) {
+        id
+        name
+        isVerified
+    }
+}

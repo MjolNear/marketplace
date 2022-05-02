@@ -1,0 +1,16 @@
+query dailyCollectionStats(
+    $collection: String!
+) {
+    dailyCollectionStats(
+        where: {
+            collection: $collection
+        }
+    ) {
+        id
+        timestamp
+        sales
+        average
+        floor
+        volume
+    }
+}

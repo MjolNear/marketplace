@@ -1,0 +1,20 @@
+query collections(
+    $limit: Int!,
+    $offset: Int!
+) {
+    collections(
+        first: $limit
+        skip: $offset
+        orderBy: createdAt
+        orderDirection: desc
+    ) {
+        id
+        owner {
+            id
+        }
+        collectionId
+        title
+        description
+        image
+    }
+}

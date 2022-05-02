@@ -1,0 +1,11 @@
+query isCollectionExists(
+    $id: String!
+) {
+    collections(
+        where: {
+            collectionId: $id
+        }
+    ) {
+        id
+    }
+}
