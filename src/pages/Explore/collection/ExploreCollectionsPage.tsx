@@ -7,6 +7,7 @@ import ExploreSearchCollections from "./ExploreSearchCollections";
 import ExploreFilterCollections from "./ExploreFilterCollections";
 import CollectionListLoader from "../../../components/CollectionList/CollectionListLoader";
 import {CardSizeSwitcher} from "../../../context/CardSizeContext";
+import FilterWrapper from "../../../components/Filter/FilterWrapper";
 
 const ExploreCollectionsPage = () => {
 
@@ -24,9 +25,9 @@ const ExploreCollectionsPage = () => {
                     />
                 </div>
             </BlueShadowContainer>
-            <div className="inline-flex gap-5 justify-center mb-2 w-full">
+            <FilterWrapper>
                 <CardSizeSwitcher/>
-            </div>
+            </FilterWrapper>
             {debounceQuery !== textQueryFilter
                 ?
                 <div className="py-5">

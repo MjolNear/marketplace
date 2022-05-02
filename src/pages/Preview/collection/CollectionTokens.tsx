@@ -7,6 +7,7 @@ import CollectionMarketNftList from "./CollectionMarketNftList";
 import {TokenPriceRange, TokenSortName} from "../../../graphql/types";
 import {CollectionId, ContractId} from "../../../@types/Aliases";
 import {CardSizeSwitcher} from "../../../context/CardSizeContext";
+import FilterWrapper from "../../../components/Filter/FilterWrapper";
 
 interface CollectionTokensProps {
     contractId: ContractId
@@ -42,7 +43,7 @@ const CollectionTokens: React.FC<CollectionTokensProps> = ({
                             })}
                             defaultChecked={pageState === "init" || pageState === "only-market"}
                 />
-                <div className="inline-flex gap-5">
+                <FilterWrapper>
                     <PriceRangeFilter
                         disabled={pageState === "all"}
                         onClear={clearPriceRange}
@@ -54,7 +55,7 @@ const CollectionTokens: React.FC<CollectionTokensProps> = ({
                                      setSort={setSort}
                     />
                     <CardSizeSwitcher/>
-                </div>
+                </FilterWrapper>
             </div>
             <>
                 {pageState === "all"

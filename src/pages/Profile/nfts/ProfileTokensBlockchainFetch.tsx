@@ -14,6 +14,7 @@ import withAuthRedirect from "../../../hoc/withAuthRedirect";
 import {CardSizeSwitcher} from "../../../context/CardSizeContext";
 import {useFetchUserContracts} from "../../../hooks/contracts/useFetchUserContracts";
 import {Optional} from "../../../@types/Aliases";
+import FilterWrapper from "../../../components/Filter/FilterWrapper";
 
 
 const ProfileTokensBlockchainFetch: React.FC<TAuthProps> = ({accountId}) => {
@@ -64,14 +65,16 @@ const ProfileTokensBlockchainFetch: React.FC<TAuthProps> = ({accountId}) => {
 
     return (
         <>
-            <div className="w-full inline-flex justify-center gap-10 mb-7">
-                <BlueToggle text="Verified"
-                            handleToggle={checked => setFilters({...filters, verified: checked})}
-                            defaultChecked={filters.verified}/>
-                <BlueToggle text="MjolNear"
-                            handleToggle={checked => setFilters({...filters, mjolNear: checked})}
-                            defaultChecked={filters.mjolNear}/>
-                <CardSizeSwitcher/>
+            <div className="mb-7">
+                <FilterWrapper>
+                    <BlueToggle text="Verified"
+                                handleToggle={checked => setFilters({...filters, verified: checked})}
+                                defaultChecked={filters.verified}/>
+                    <BlueToggle text="MjolNear"
+                                handleToggle={checked => setFilters({...filters, mjolNear: checked})}
+                                defaultChecked={filters.mjolNear}/>
+                    <CardSizeSwitcher/>
+                </FilterWrapper>
             </div>
             {fetching
                 ? <CardListLoader/>
