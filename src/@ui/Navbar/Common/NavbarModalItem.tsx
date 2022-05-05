@@ -8,7 +8,7 @@ interface NavbarModelLinkProps {
     icon?: React.ReactNode
 }
 
-const NavbarModalLink: React.FC<NavbarModelLinkProps> = ({
+const NavbarModalItem: React.FC<NavbarModelLinkProps> = ({
     path,
     name,
     close,
@@ -33,4 +33,4 @@ const NavbarModalLink: React.FC<NavbarModelLinkProps> = ({
     );
 };
 
-export default NavbarModalLink;
+export default NavbarModalItem;

@@ -2,8 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {getCurrentWallet} from "../../../near/wallet/wallet";
 import BlurSliderModal from "../../Modal/BlurSliderModal";
 import DefaultUserIcon from "../../../components/Icons/DefaultUserIcon";
-import {useNavigate} from "react-router-dom";
-import NavbarModalLink from "../Common/NavbarModalLink";
+import NavbarModalItem from "../Common/NavbarModalItem";
 import {MdCollections} from "react-icons/md";
 import {AiOutlineAppstore} from "react-icons/ai";
 import {GiPaintBrush, GiPalette} from "react-icons/gi";
@@ -73,12 +72,12 @@ const Profile = () => {
                                         Assets
                                     </div>
                                     <div className="flex flex-col justify-start">
-                                        <NavbarModalLink path="/profile/nfts"
+                                        <NavbarModalItem path="/profile/nfts"
                                                          name="My NFTs"
                                                          close={close}
                                                          icon={<AiOutlineAppstore size={18}/>}
                                         />
-                                        <NavbarModalLink path="/profile/collections"
+                                        <NavbarModalItem path="/profile/collections"
                                                          name="My Collections"
                                                          close={close}
                                                          icon={<MdCollections size={18}/>}
@@ -88,12 +87,12 @@ const Profile = () => {
                                         Create
                                     </div>
                                     <div className="flex flex-col justify-start mb-4">
-                                        <NavbarModalLink path="/nfts/new"
+                                        <NavbarModalItem path="/nfts/new"
                                                          name="Create NFT"
                                                          close={close}
                                                          icon={<GiPaintBrush size={18}/>}
                                         />
-                                        <NavbarModalLink path="/collections/new"
+                                        <NavbarModalItem path="/collections/new"
                                                          name="Create Collection"
                                                          close={close}
                                                          icon={<GiPalette size={18}/>}
