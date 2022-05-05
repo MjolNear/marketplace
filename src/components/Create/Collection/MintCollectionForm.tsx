@@ -102,11 +102,10 @@ const MintCollectionForm: React.FC<TAuthProps> = ({
                                description={description}
                                ownerId={accountId}
             />
-            {submitProps &&
-                <SubmittingModal closeModal={() => setSubmitProps(undefined)}
-                                 data={submitProps}
-                />
-            }
+            <SubmittingModal closeModal={() => setSubmitProps(undefined)}
+                             isOpen={!!submitProps}
+                             data={submitProps}
+            />
         </div>
     );
 };

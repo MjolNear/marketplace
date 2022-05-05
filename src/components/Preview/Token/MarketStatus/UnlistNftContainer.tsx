@@ -50,14 +50,13 @@ const UnlistNftContainer: React.FC<TUnlistNftProps> = ({
                                         isLoading={isUpdating}
                                         disabled={isUnlisting}
                 />
-                {visible &&
-                    <InputPriceModal close={() => setVisible(false)}
-                                     onClick={updatePrice}
-                                     payouts={payouts}
-                                     imgSrc={media}
-                                     headerText="Update NFT price"
-                    />
-                }
+                <InputPriceModal close={() => setVisible(false)}
+                                 isOpen={visible}
+                                 onClick={updatePrice}
+                                 payouts={payouts}
+                                 imgSrc={media}
+                                 headerText="Update NFT price"
+                />
             </div>
         </PriceContainer>
     )

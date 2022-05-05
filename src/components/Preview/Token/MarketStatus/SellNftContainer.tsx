@@ -26,13 +26,12 @@ const SellNftContainer: React.FC<TSellNftProps> = ({
     return (
         <div>
             <DarkBlueGradientButton title="Sell NFT" onClick={() => setVisible(true)}/>
-            {visible &&
-                <InputPriceModal close={() => setVisible(false)}
-                                 onClick={sell}
-                                 payouts={payouts}
-                                 imgSrc={token.media}
-                />
-            }
+            <InputPriceModal isOpen={visible}
+                             close={() => setVisible(false)}
+                             onClick={sell}
+                             payouts={payouts}
+                             imgSrc={token.media}
+            />
         </div>
     );
 };

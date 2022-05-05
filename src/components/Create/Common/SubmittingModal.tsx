@@ -1,6 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import Modal from "../../Common/Modal/Modal";
-import {AiFillCloseCircle, AiOutlineClose} from "react-icons/ai";
+import {AiFillCloseCircle} from "react-icons/ai";
 import PreviewTokenCard from "./Preview/PreviewTokenCard";
 import IpfsIcon from "../../Icons/IpfsIcon";
 import MjolLoader from "../../../@ui/Loaders/MjolLoader";
@@ -18,11 +17,13 @@ import {CreateCollectionMetadataDto} from "../../../@types/Collection";
 import PreviewCollectionCard from "./Preview/PreviewCollectionCard";
 import DarkBlueGradientButton from "../../../@ui/Buttons/DarkBlueGradientButton";
 import {normalizeIpfsLink, uploadCollectionMetadataToIpfs, uploadTokenMetadataToIpfs} from "../../../ipfs/upload";
+import {BlurModal} from "../../../@ui/Modal";
 
 
 interface SubmittingModalProps {
+    isOpen: boolean,
     closeModal: () => void
-    data: TokenSubmitProps | CollectionSubmitProps
+    data?: TokenSubmitProps | CollectionSubmitProps
 }
 
 export interface CollectionSubmitProps {
@@ -50,6 +51,7 @@ export interface TokenSubmitProps {
 }
 
 const SubmittingModal: React.FC<SubmittingModalProps> = ({
+    isOpen,
     closeModal,
     data
 }) => {
@@ -88,12 +90,14 @@ const SubmittingModal: React.FC<SubmittingModalProps> = ({
 
     const submitCollection = useCallback((data: CollectionSubmitProps) => {
         setLoadingState("ipfs")
-        uploadCollectionMetadataToIpfs(data.title,
+        uploadCollectionMetadataToIpfs(
+            data.title,
             data.description,
             data.media.file,
             data.banner.file || null,
             data.traits,
-            data.links)
+            data.links
+        )
             .then(response => {
                 setLoadingState("near")
                 const ipfsMedia = normalizeIpfsLink(response.data.image.href, data.media.file.name);
@@ -113,19 +117,20 @@ const SubmittingModal: React.FC<SubmittingModalProps> = ({
     }, [])
 
     const submit = useCallback(() => {
-        data.payload === "token"
-            ? submitToken(data)
-            : submitCollection(data)
+        if (data) {
+            data.payload === "token"
+                ? submitToken(data)
+                : submitCollection(data)
+        }
     }, [data, submitToken, submitCollection])
 
 
+    if (!data) return null
+
     return (
-        <Modal closeOnBgClick={false} closeOnEscape={false}>
-            <div className="mx-auto w-full max-w-[600px] p-7 bg-white rounded-2xl relative font-archivo">
-                <div className="absolute right-0 top-0 pr-4 pt-4">
-                    <AiOutlineClose onClick={closeModal} className="cursor-pointer" size={20}/>
-                </div>
-                <div className="flex flex-row gap-8 mt-4">
+        <BlurModal close={closeModal} isOpen={isOpen}>
+            <div className="mx-auto w-full max-w-[600px] p-4 bg-white rounded-2xl relative font-archivo">
+                <div className="flex flex-row gap-8">
                     <div className="flex flex-col justify-between">
                         <div className="font-semibold text-sm text-gray-600">
                             <div className="mb-12">
@@ -198,7 +203,7 @@ const SubmittingModal: React.FC<SubmittingModalProps> = ({
                     </div>
                 </div>
             </div>
-        </Modal>
+        </BlurModal>
     );
 };
 

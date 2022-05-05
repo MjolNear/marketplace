@@ -1,5 +1,4 @@
 import React, {useCallback, useState} from 'react';
-import Modal from "../../../../Common/Modal/Modal";
 import {useForm} from "react-hook-form";
 import PayoutsPreview from "./PayoutsPreview";
 import {Optional} from "../../../../../@types/Aliases";
@@ -7,9 +6,11 @@ import TokenFormImagePreview from "./TokenFormImagePreview";
 import TokenPriceHeader from "./TokenPriceHeader";
 import TokenPriceFooter from "./TokenPriceFooter";
 import TokenPriceValidationInput from "./TokenPriceValidationInput";
+import {BlurModal} from "../../../../../@ui/Modal";
 
 interface TInputTokenPriceProps {
-    close: any,
+    isOpen: boolean,
+    close: () => void,
     onClick: (price: string) => Promise<any>,
     headerText?: string
     payouts: Record<string, number>
@@ -17,6 +18,7 @@ interface TInputTokenPriceProps {
 }
 
 const InputPriceModal: React.FC<TInputTokenPriceProps> = ({
+        isOpen,
         close,
         onClick,
         payouts,
@@ -49,11 +51,11 @@ const InputPriceModal: React.FC<TInputTokenPriceProps> = ({
         const price = watch("price")
 
         return (
-            <Modal close={closeModal}>
-                <div className="mx-auto w-full max-w-[400px] md:max-w-lg py-4 px-5 bg-white rounded-2xl relative">
+            <BlurModal close={closeModal} isOpen={isOpen}>
+                <div className="mx-auto w-full max-w-[400px] md:max-w-lg px-5 bg-white rounded-2xl relative">
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <TokenPriceHeader closeModal={closeModal} headerText={headerText}/>
-                        <div className="grid grid-cols-1 md:grid-cols-[4fr_3fr] gap-6">
+                        <TokenPriceHeader headerText={headerText}/>
+                        <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-6">
                             <div className="flex flex-col justify-between">
                                 <TokenPriceValidationInput register={register}
                                                            isPriceValid={formState.isValid}
@@ -68,7 +70,7 @@ const InputPriceModal: React.FC<TInputTokenPriceProps> = ({
                         <TokenPriceFooter isPriceValid={formState.isValid} isLoading={isSigningTx}/>
                     </form>
                 </div>
-            </Modal>
+            </BlurModal>
         );
     }
 ;

@@ -122,11 +122,10 @@ const MintTokenForm: React.FC<TAuthProps> = ({
                                  url={mediaUrl}
                                  collectionName={collection?.name}
             />
-            {submitProps &&
-                <SubmittingModal closeModal={() => setSubmitProps(undefined)}
-                                 data={submitProps}
-                />
-            }
+            <SubmittingModal closeModal={() => setSubmitProps(undefined)}
+                             isOpen={!!submitProps}
+                             data={submitProps}
+            />
         </div>
     );
 };
