@@ -18,14 +18,8 @@ const TokenPriceFooter: React.FC<TTokenPriceFooterProps> = ({
                 You will be redirected to
                 NEAR Web Wallet to confirm your transaction.
             </p>
-            <div className="mt-4">
-                <DarkBlueGradientButton title="Complete"
-                                        isLoading={isLoading}
-                                        disabled={!isPriceValid}
-                                        style={{
-                                            width: 300
-                                        }}
-                />
+            <div className="mt-4 w-full max-w-[350px]">
+                <DarkBlueGradientButton title="Complete" isLoading={isLoading} disabled={!isPriceValid}/>
             </div>
         </div>
     );

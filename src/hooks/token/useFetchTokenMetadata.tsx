@@ -22,6 +22,8 @@ export const useFetchTokenMetadata = (
                         setResult({loading: false, ...meta})
                     } else if ("extra" in meta) {
                         setResult({loading: false, ...meta})
+                    } else {
+                        setResult({loading: false})
                     }
                 })
                 .catch(() => setResult({loading: false}))

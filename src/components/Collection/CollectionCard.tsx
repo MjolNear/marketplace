@@ -28,12 +28,12 @@ const CollectionCard: React.FC<GridCollection> = ({
               to={itemPreviewLink}
         >
             <CardImage url={image}
-                       objectFit="contain"
+                       objectFit="cover"
                        className="bg-white"
             />
             <div className={classNames(
                 "flex flex-col justify-between w-full",
-                size === CardSize.Big ? "pt-3 px-6" : "mt-2 px-3"
+                size === CardSize.Big ? "mt-3 px-6" : "mt-2 px-3"
             )}>
                 <div className={classNames(
                     "font-black font-archivo text-center truncate",

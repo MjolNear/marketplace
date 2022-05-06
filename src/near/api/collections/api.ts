@@ -12,7 +12,7 @@ import {emptyTokensBatchResponse} from "../types/response/core";
 import {batchRequest} from "../batch-request";
 import {nftAPI} from "../nfts";
 import {mjolViewFunction, viewFunction} from "../../enviroment/rpc";
-import {DODIK_GET_LIST, DODIK_INDEX_LIST} from "../../../business-logic/whitelisted.contract";
+import {DODIK_GET_LIST, DODIK_INDEX_LIST} from "../../../ipfs/whitelisted.contract";
 
 export const collectionAPI = {
 

@@ -6,6 +6,7 @@ import ProfileFilterMarketTokens from "./market/ProfileFilterMarketTokens";
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
 import withAuthData, {TAuthProps} from "../../../hoc/withAuthData";
 import {CardSizeSwitcher} from "../../../context/CardSizeContext";
+import FilterWrapper from "../../../components/Filter/FilterWrapper";
 
 
 const ProfileMarketTokens: React.FC<TAuthProps> = ({
@@ -19,7 +20,7 @@ const ProfileMarketTokens: React.FC<TAuthProps> = ({
 
     return (
         <>
-            <div className="inline-flex flex-wrap gap-5 w-full justify-center mb-2">
+            <FilterWrapper>
                 <PriceRangeFilter
                     disabled={false}
                     current={priceRange}
@@ -31,7 +32,7 @@ const ProfileMarketTokens: React.FC<TAuthProps> = ({
                                  setSort={setSort}
                 />
                 <CardSizeSwitcher/>
-            </div>
+            </FilterWrapper>
             <ProfileFilterMarketTokens accountId={accountId}
                                        limit={limit}
                                        priceRange={priceRange}

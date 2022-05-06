@@ -195,6 +195,8 @@ export const configureSenderWallet = (window: Window): Wallet | undefined => {
             return near.signAndSendTransaction(tx);
         },
 
+        account: () => near.account(),
+
         viewFunction: (contractId: string, methodsName: string, args: any) => {
             throw Error()
             // account_id: "mjol.near"

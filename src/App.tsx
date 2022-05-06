@@ -4,6 +4,7 @@ import LandingPage from "./pages/Landing/LandingPage";
 import NotFound404Page from "./pages/NotFound404";
 import PageLayout from "./components/Layout/PageLayout";
 import {IndicatorFallback, IndicatorProvider} from "./context/fallback-progress";
+import Logout from "./hoc/Logout";
 
 const ExploreNftsPage = React.lazy(() => import("./pages/Explore/nft/ExploreNftsPage"))
 const ExploreCollectionsPage = React.lazy(() => import("./pages/Explore/collection/ExploreCollectionsPage"))
@@ -23,6 +24,7 @@ export const App: React.FC = () => {
                     <Routes>
                         <Route path="/">
                             <Route index element={<LandingPage/>}/>
+                            <Route path="logout" element={<Logout/>}/>
                             <Route path="nfts">
                                 <Route index element={<ExploreNftsPage/>}/>
                                 <Route path=":contractId/:tokenId" element={<PreviewNftPage/>}/>

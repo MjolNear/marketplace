@@ -21,7 +21,7 @@ const MobileTokenPreviewContainer: React.FC<TokenPreviewProps> = ({
     const {loading, ...metadata} = useFetchTokenMetadata(token.ipfsReference)
 
     return (
-        <div className="flex flex-col w-full max-w-[600px] px-2 gap-4">
+        <div className="flex flex-col w-full max-w-[600px] px-4 gap-4">
             <TokenPreviewTitleCollection title={token.title}
                                          tokenId={token.tokenId}
                                          contractId={token.contractId}

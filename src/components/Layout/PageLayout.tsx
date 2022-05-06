@@ -1,22 +1,22 @@
 import React from 'react';
-import NavigationBar from "./NavigationBar/NavigationBar";
-import ScrollToTop from "../../hoc/ScrollToTop";
+import ScrollToTopObserver from "../../hoc/ScrollToTopObserver";
 import {ToastContainer} from "react-toastify";
 import Footer from "./Footer";
 import {PropsWithChildren} from "../types";
 import ScrollToTopButton from "../../@ui/Buttons/ScrollToTopButton";
+import NavbarLayout from "../../@ui/Navbar/NavbarLayout";
 
 const PageLayout: React.FC<PropsWithChildren> = ({
     children
 }) => {
     return (
         <>
-            <NavigationBar/>
-            <ScrollToTop/>
+            <NavbarLayout/>
+            <ScrollToTopObserver/>
             <ScrollToTopButton/>
-            <ToastContainer className="mt-24"/>
+            <ToastContainer className="md:mt-24"/>
 
-            <main className="mt-24 min-h-[calc(100vh-96px)] pb-32">
+            <main className="mt-5 mb-10 min-h-[calc(100vh-60px)]">
                 {children}
             </main>
 

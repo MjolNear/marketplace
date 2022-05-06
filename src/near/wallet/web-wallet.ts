@@ -20,12 +20,14 @@ export const webWallet: Wallet = {
 
     signOut: () => {
         wallet.signOut();
-        window.location.replace(window.location.origin)
+        // window.location.replace(window.location.origin)
     },
 
     getAccountId: () => wallet.getAccountId(),
 
     functionCall: options => wallet.account().functionCall(options),
+
+    account: () => wallet.account(),
 
     viewFunction: <T>(contractId: string, methodName: string, args: any) => wallet
         .account()

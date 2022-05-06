@@ -10,12 +10,12 @@ const MenuChevronButton = React.memo<NavMenuButtonProps>(({
     name
 }) => {
     return (
-        <div className="px-5 py-2">
+        <div className="py-2">
             <Menu.Button
                 className="text-md font-archivo font-bold group
-                      inline-flex justify-center items-center w-full text-gray-600
-                      focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75
-                      hover:text-black
+                           inline-flex justify-center items-center w-full text-gray-600
+                           focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75
+                           hover:text-black
                       "
             >
                 {name}
