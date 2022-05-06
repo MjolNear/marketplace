@@ -21,31 +21,33 @@ const BlurModal: React.FC<BlurModalProps> = ({
                         as={Fragment}
                         enter="ease-out duration-100"
                         enterFrom="opacity-0"
-                        enterTo="opacity-100"
-                        leave="ease-in duration-100"
+                        enterTo="opacity-300"
+                        leave="ease-in duration-300"
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
                         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-xl"/>
                     </Transition.Child>
 
-                    <div className="fixed inset-0 overflow-hidden">
-                        <div className="flex justify-center min-h-full items-center p-5 text-center">
-                            <Transition.Child
-                                as={Fragment}
-                                enter="transition ease-out duration-100"
-                                enterFrom="transform opacity-0"
-                                enterTo="transform opacity-100"
-                                leave="transition ease-in duration-100"
-                                leaveFrom="transform opacity-100"
-                                leaveTo="transform opacity-0"
-                            >
+                    <Transition.Child
+                        as={Fragment}
+                        enter="transition ease-in-out duration-300"
+                        enterFrom="transform opacity-0 translate-y-full"
+                        enterTo="transform opacity-300 translate-y-0"
+                        leave="transition ease-in-out duration-100"
+                        leaveFrom="transform opacity-300 translate-y-0"
+                        leaveTo="transform opacity-0 translate-y-full"
+                    >
+                        <div className="fixed inset-0 overflow-y-auto">
+                            <div className="flex justify-center items-end sm:items-center min-h-full sm:p-5">
                                 <Dialog.Panel
-                                    className="transform overflow-hidden rounded-2xl bg-white
-                                               p-4 text-left transition-all shadow-2xl"
+                                    className="w-full sm:w-fit
+                                               transform rounded-t-2xl sm:rounded-b-2xl bg-white
+                                               p-4 text-left transition-all"
                                 >
                                     <div className="w-full flex justify-end">
-                                        <button type="button" onClick={close} className="p-1 hover:bg-gray-100 rounded-full">
+                                        <button type="button" onClick={close}
+                                                className="p-1 hover:bg-gray-100 rounded-full">
                                             <XIcon height={20} width={20}/>
                                         </button>
                                     </div>
@@ -53,9 +55,9 @@ const BlurModal: React.FC<BlurModalProps> = ({
                                         {children}
                                     </div>
                                 </Dialog.Panel>
-                            </Transition.Child>
+                            </div>
                         </div>
-                    </div>
+                    </Transition.Child>
                 </Dialog>
             </Transition>
         </>

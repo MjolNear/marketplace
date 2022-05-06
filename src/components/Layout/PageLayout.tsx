@@ -14,7 +14,7 @@ const PageLayout: React.FC<PropsWithChildren> = ({
             <NavbarLayout/>
             <ScrollToTopObserver/>
             <ScrollToTopButton/>
-            <ToastContainer className="mt-24"/>
+            <ToastContainer className="md:mt-24"/>
 
             <main className="mt-5 mb-10 min-h-[calc(100vh-60px)]">
                 {children}

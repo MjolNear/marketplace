@@ -52,10 +52,10 @@ const InputPriceModal: React.FC<TInputTokenPriceProps> = ({
 
         return (
             <BlurModal close={closeModal} isOpen={isOpen}>
-                <div className="mx-auto w-full max-w-[400px] md:max-w-lg px-5 bg-white rounded-2xl relative">
+                <div className="mx-auto w-full max-w-[450px] md:max-w-lg px-5 bg-white rounded-2xl relative">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <TokenPriceHeader headerText={headerText}/>
-                        <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] gap-6">
                             <div className="flex flex-col justify-between">
                                 <TokenPriceValidationInput register={register}
                                                            isPriceValid={formState.isValid}
