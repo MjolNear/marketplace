@@ -1,6 +1,6 @@
 import {Menu, Transition} from '@headlessui/react';
 import React, {Fragment} from 'react';
-import MenuChevronButton from "../../../components/Layout/NavigationBar/MenuChevronButton";
+import MenuChevronButton from './MenuChevronButton';
 
 interface ChevronButtonProps {
     name: string

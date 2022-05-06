@@ -15,6 +15,7 @@ import {FaWallet} from "react-icons/fa";
 const Profile = () => {
 
     const isSignedIn = getCurrentWallet().isSignedIn()
+    const accountId = getCurrentWallet().getAccountId()
 
 
     const [isProfileOpened, setIsProfileOpened] = useState(false)
@@ -46,8 +47,8 @@ const Profile = () => {
                                        focus-visible:ring-white focus-visible:ring-opacity-75
                                        hover:text-black"
                     >
-                        Profile
-                        <FaWallet size={16}/>
+                        <div className="hidden lg:block">Profile</div>
+                        <FaWallet className="w-6 h-6 lg:w-4 lg:h-4"/>
                     </button>
                     <BlurSliderModal isOpen={isProfileOpened}
                                      close={close}
@@ -58,9 +59,9 @@ const Profile = () => {
                                     <div className="inline-flex items-center gap-2">
                                         <DefaultUserIcon size={20}/>
                                         <div className="font-extrabold text-2xl">
-                                            {prettyAccount(getCurrentWallet().getAccountId())}
+                                            {prettyAccount(accountId, 6, 15)}
                                         </div>
-                                        <a href={`https://nearblocks.io/address/${getCurrentWallet().getAccountId()}`}
+                                        <a href={`https://nearblocks.io/address/${accountId}`}
                                            target="_blank"
                                            rel="noreferrer"
                                         >

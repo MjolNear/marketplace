@@ -18,7 +18,7 @@ const NavbarModalItem: React.FC<NavbarModelLinkProps> = ({
     const navigate = useNavigate()
 
     return (
-        <button className="flex flex-row transition-all p-4 gap-3 text-[15px] rounded-lg items-center
+        <button className="flex flex-row transition-all py-3 lg:px-4 gap-3 lg:text-[15px] rounded-lg items-center
                            font-archivo hover:shadow-mjol-gray-xs hover:bg-mjol-hover"
                 onClick={() => {
                     close()
