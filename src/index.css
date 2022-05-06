@@ -39,6 +39,10 @@ input[type="checkbox"]:focus {
     outline: 0;
 }
 
+.background-blur {
+    backdrop-filter: blur(20px);
+}
+
 
 .mjol-pulse-animation {
     animation: mjol-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;

@@ -19,33 +19,35 @@ const BlurSliderModal: React.FC<BlurSliderProps> = ({
                 <Dialog as="div" className="fixed inset-0 z-[150]" onClose={close}>
                     <Transition.Child
                         as={Fragment}
-                        enter="ease-out duration-300"
+                        enter="ease-in duration-300"
                         enterFrom="opacity-0"
                         enterTo="opacity-100"
-                        leave="ease-in duration-300"
+                        leave="ease-out duration-300"
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-xl"/>
+                        <div className="fixed inset-0 bg-black bg-opacity-25 background-blur"/>
                     </Transition.Child>
 
-                    <div className="fixed inset-0 overflow-hidden">
-                        <div className="flex justify-end p-5 text-center">
-                            <Transition.Child
-                                as={Fragment}
-                                enter="transition ease-out duration-300"
-                                enterFrom="transform translate-x-[50px]"
-                                enterTo="transform translate-x-0"
-                                leave="transition ease-in duration-300"
-                                leaveFrom="transform translate-x-0"
-                                leaveTo="transform translate-x-full"
-                            >
+                    <Transition.Child
+                        as={Fragment}
+                        enter="transition ease-out duration-300"
+                        enterFrom="transform opacity-0 translate-x-[400px]"
+                        enterTo="transform opacity-100 translate-x-0"
+                        leave="transition ease-in duration-300"
+                        leaveFrom="transform opacity-100 translate-x-0"
+                        leaveTo="transform opacity-0 translate-x-[400px]"
+                    >
+                        <div className="fixed inset-0 overflow-hidden">
+                            <div className="flex justify-end p-5 text-center">
+
                                 <Dialog.Panel
-                                    className="w-[400px] transform overflow-hidden rounded-2xl bg-white
-                                               p-4 text-left transition-all shadow-2xl"
+                                    className="w-[350px] overflow-hidden rounded-2xl bg-white
+                                               p-4 text-left shadow-2xl"
                                 >
                                     <div className="w-full flex justify-end">
-                                        <button type="button" onClick={close} className="p-1 hover:bg-gray-100 rounded-full">
+                                        <button type="button" onClick={close}
+                                                className="p-1 hover:bg-gray-100 rounded-full">
                                             <XIcon height={20} width={20}/>
                                         </button>
                                     </div>
@@ -53,9 +55,10 @@ const BlurSliderModal: React.FC<BlurSliderProps> = ({
                                         {children}
                                     </div>
                                 </Dialog.Panel>
-                            </Transition.Child>
+
+                            </div>
                         </div>
-                    </div>
+                    </Transition.Child>
                 </Dialog>
             </Transition>
         </>

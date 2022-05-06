@@ -17,7 +17,7 @@ const NavbarMenuItem: React.FC<NavbarMenuItemProps> = ({
         <Menu.Item>
             <Link to={path}
                   className="flex flex-row transition-all p-4 gap-3 text-[15px]
-                         font-archivo hover:shadow-mjol-gray-xs hover:bg-mjol-hover">
+                             font-archivo hover:shadow-mjol-gray-xs hover:bg-mjol-hover">
                 {icon}
                 <div className="font-bold text-gray-800">
                     {name}

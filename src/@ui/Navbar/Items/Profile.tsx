@@ -10,6 +10,7 @@ import {prettyAccount} from "../../../utils/string";
 import {formatNearAmount} from "near-api-js/lib/utils/format";
 import NearIcon from "../../../components/Icons/near/NearIcon";
 import {RiExternalLinkLine} from "react-icons/ri";
+import {FaWallet} from "react-icons/fa";
 
 const Profile = () => {
 
@@ -37,8 +38,16 @@ const Profile = () => {
             {isSignedIn
                 ?
                 <>
-                    <button onClick={() => setIsProfileOpened(!isProfileOpened)}>
-                        <DefaultUserIcon size={36}/>
+                    <button onClick={() => setIsProfileOpened(!isProfileOpened)}
+                            className="text-md font-archivo font-bold group
+                                       inline-flex justify-end items-center text-gray-600
+                                       gap-2
+                                       focus:outline-none focus-visible:ring-2
+                                       focus-visible:ring-white focus-visible:ring-opacity-75
+                                       hover:text-black"
+                    >
+                        Profile
+                        <FaWallet size={16}/>
                     </button>
                     <BlurSliderModal isOpen={isProfileOpened}
                                      close={close}
@@ -47,7 +56,7 @@ const Profile = () => {
                             <div className="font-archivo flex flex-col">
                                 <div className="flex flex-col gap-2 mb-3">
                                     <div className="inline-flex items-center gap-2">
-                                        <DefaultUserIcon size={25}/>
+                                        <DefaultUserIcon size={20}/>
                                         <div className="font-extrabold text-2xl">
                                             {prettyAccount(getCurrentWallet().getAccountId())}
                                         </div>
