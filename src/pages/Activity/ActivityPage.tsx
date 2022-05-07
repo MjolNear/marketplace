@@ -8,6 +8,7 @@ import {activityEvents, ActivitySortName, activitySortOptions} from "../../graph
 import {ActivityEventType} from "../../graphql/generated/graphql";
 import {useActivities} from "../../hooks/graphql/activities";
 import TokenActivityRow from "../../components/Activity/Common/TokenActivityRow";
+import ActivityListLoader from "../../components/Activity/Loader/ActivityListLoader";
 
 
 const ActivityPage = () => {
