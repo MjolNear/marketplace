@@ -6,7 +6,7 @@ import ActivityAccountCell from "../Cells/ActivityAccountCell";
 import ActivityPriceCell from "../Cells/ActivityPriceCell";
 import ActivityTimestampCell from "../Cells/ActivityTimestamp";
 
-const TokenActivityRow: React.FC<TokenActivityRowProps & { collectionId: string, collectionName: string }> = ({
+const TokenActivityRow: React.FC<TokenActivityRowProps & { collectionId?: string, collectionName?: string }> = ({
     owner,
     buyer,
     txHash,
@@ -22,7 +22,7 @@ const TokenActivityRow: React.FC<TokenActivityRowProps & { collectionId: string,
     return (
         <div
             className="py-3 px-4 hover:bg-mjol-hover rounded-2xl hover:shadow-mjol-gray">
-            <div className="max-lg:hidden grid lg:grid-cols-7 md:gap-5 lg:gap-10 lg:h-19">
+            <div className="max-lg:hidden grid lg:grid-cols-7 gap-10 lg:h-19">
                 <ActivityEventCell event={eventType}/>
                 <ActivityTokenCell {...token}
                                    contractId={contract.id}

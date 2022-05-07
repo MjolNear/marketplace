@@ -4,15 +4,34 @@ import {
     Activity_OrderBy,
     ActivityEventType,
     CollectionActivityQuery,
-    OrderDirection,
+    OrderDirection, useActivitiesQuery,
     useCollectionActivityQuery
 } from "../../graphql/generated/graphql";
-import {MJOL_CONTRACT_ID} from "../../near/enviroment/contract-names";
 import {collectionUID} from "../../@types/utils";
 
 const collectionActivitiesMapper = (
     data?: CollectionActivityQuery
 ) => data?.activities || []
+
+
+export const useActivities = (
+    limit: number,
+    orderBy: Activity_OrderBy,
+    orderDirection: OrderDirection,
+    events: ActivityEventType[]
+) => {
+    return useGenericListDataQuery(useActivitiesQuery, data => data?.activities || [], {
+        fetchPolicy: "cache-and-network",
+        nextFetchPolicy: "cache-and-network",
+        variables: {
+            limit,
+            offset: 0,
+            orderBy,
+            orderDirection,
+            events
+        }
+    })
+}
 
 export const useCollectionActivity = (
     limit: number,

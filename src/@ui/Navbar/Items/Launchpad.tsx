@@ -7,8 +7,7 @@ const Launchpad = () => {
     return (
         <NavbarSingleButton>
             <p className="text-transparent bg-clip-text font-archivo bg-gradient-to-r
-                          from-mjol-blue-base to-blue-600 group-hover:text-blue-500 text-md
-                          font-archivo font-bold opacity-50"
+                          from-mjol-blue-base to-blue-600 group-hover:text-blue-500 opacity-50"
                data-tip="Coming soon!"
                data-for="launchpadTooltip"
             >

@@ -5,6 +5,7 @@ import ListingIcon from "../../Icons/Activity/ListingIcon";
 import UnlistIcon from "../../Icons/Activity/UnlistIcon";
 import BuyIcon from "../../Icons/Activity/BuyIcon";
 import BaseActivityCell from "./BaseActivityCell";
+import {IoMdSwap} from "react-icons/io";
 
 interface ActivityEventCellProps {
     event: ActivityEventType
@@ -16,13 +17,14 @@ const ActivityEventCell: React.FC<ActivityEventCellProps> = ({
     size = 14
 }) => {
     return (
-        <BaseActivityCell>
-            {event === ActivityEventType.Transferred && <TransferIcon size={size}/>}
-            {event === ActivityEventType.List && <ListingIcon size={size}/>}
-            {event === ActivityEventType.Unlist && <UnlistIcon size={size}/>}
-            {event === ActivityEventType.Buy && <BuyIcon size={size}/>}
-            {event.toString()}
-        </BaseActivityCell>
+            <BaseActivityCell>
+                {event === ActivityEventType.Transferred && <TransferIcon size={size}/>}
+                {event === ActivityEventType.List && <ListingIcon size={size}/>}
+                {event === ActivityEventType.Unlist && <UnlistIcon size={size}/>}
+                {event === ActivityEventType.Buy && <BuyIcon size={size}/>}
+                {event === ActivityEventType.UpdatePrice && <IoMdSwap size={14}/>}
+                {event === ActivityEventType.UpdatePrice ? "Update price" : event}
+            </BaseActivityCell>
     );
 };
 
