@@ -20,8 +20,8 @@ const PaginationActivityList: React.FC<PaginatedActivityListProps> = ({
         <InfiniteScroll next={onLoadMore}
                         scrollThreshold="200px"
                         hasMore={hasMore}
-                        className="py-3 grid-grid-cols-1 gap-1 justify-center max-w-[1050px] mx-auto px-2 sm:px-4"
-                        loader={<ActivityListLoader length={12}/>}
+                        className="py-3 grid-grid-cols-1 gap-1 justify-center max-w-screen-1200px mx-auto px-2 sm:px-4"
+                        loader={<ActivityListLoader length={1}/>}
                         dataLength={dataLength}
         >
             {children}

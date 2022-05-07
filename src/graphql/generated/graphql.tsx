@@ -2575,6 +2575,59 @@ export enum _SubgraphErrorPolicy_ {
   Deny = 'deny'
 }
 
+export type ActivitiesQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+  orderBy: Activity_OrderBy;
+  orderDirection: OrderDirection;
+  events: Array<ActivityEventType> | ActivityEventType;
+}>;
+
+
+export type ActivitiesQuery = { __typename?: 'Query', activities: Array<{ __typename?: 'Activity', id: string, price?: any | null, txHash: string, blockHash: string, eventType: ActivityEventType, timestamp: any, token: { __typename?: 'SavedToken', id: string, tokenId: string, title: string, media?: string | null }, collection?: { __typename?: 'Collection', id: string, title: string, collectionId: string } | null, contract: { __typename?: 'Contract', id: string }, owner: { __typename?: 'Account', id: string }, buyer?: { __typename?: 'Account', id: string } | null }> };
+
+export type CollectionActivityQueryVariables = Exact<{
+  id: Scalars['String'];
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+  orderBy: Activity_OrderBy;
+  orderDirection: OrderDirection;
+  events: Array<ActivityEventType> | ActivityEventType;
+}>;
+
+
+export type CollectionActivityQuery = { __typename?: 'Query', activities: Array<{ __typename?: 'Activity', id: string, price?: any | null, txHash: string, blockHash: string, eventType: ActivityEventType, timestamp: any, token: { __typename?: 'SavedToken', id: string, tokenId: string, title: string, media?: string | null }, contract: { __typename?: 'Contract', id: string }, owner: { __typename?: 'Account', id: string }, buyer?: { __typename?: 'Account', id: string } | null }> };
+
+export type TokenActivityQueryVariables = Exact<{
+  tokenUID: Scalars['String'];
+}>;
+
+
+export type TokenActivityQuery = { __typename?: 'Query', tokenActivity: Array<{ __typename?: 'Activity', id: string, price?: any | null, txHash: string, eventType: ActivityEventType, timestamp: any, owner: { __typename?: 'Account', id: string }, buyer?: { __typename?: 'Account', id: string } | null }> };
+
+export type BuyerAccountActivityQueryVariables = Exact<{
+  accountId: Scalars['String'];
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+  orderBy: Activity_OrderBy;
+  orderDirection: OrderDirection;
+}>;
+
+
+export type BuyerAccountActivityQuery = { __typename?: 'Query', activities: Array<{ __typename?: 'Activity', id: string, eventType: ActivityEventType, timestamp: any, price?: any | null, txHash: string, token: { __typename?: 'SavedToken', id: string, tokenId: string, title: string, media?: string | null }, contract: { __typename?: 'Contract', id: string }, owner: { __typename?: 'Account', id: string }, buyer?: { __typename?: 'Account', id: string } | null }> };
+
+export type OwnerAccountActivityQueryVariables = Exact<{
+  accountId: Scalars['String'];
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+  eventType: ActivityEventType;
+  orderBy: Activity_OrderBy;
+  orderDirection: OrderDirection;
+}>;
+
+
+export type OwnerAccountActivityQuery = { __typename?: 'Query', activities: Array<{ __typename?: 'Activity', id: string, eventType: ActivityEventType, timestamp: any, price?: any | null, txHash: string, token: { __typename?: 'SavedToken', id: string, tokenId: string, title: string, media?: string | null }, contract: { __typename?: 'Contract', id: string }, owner: { __typename?: 'Account', id: string }, buyer?: { __typename?: 'Account', id: string } | null }> };
+
 export type CollectionQueryVariables = Exact<{
   collectionId: Scalars['String'];
 }>;
@@ -2622,48 +2675,6 @@ export type UserCollectionsQueryVariables = Exact<{
 
 
 export type UserCollectionsQuery = { __typename?: 'Query', collections: Array<{ __typename?: 'Collection', id: string, collectionId: string, title: string, description: string, image: string, owner: { __typename?: 'Account', id: string } }> };
-
-export type CollectionActivityQueryVariables = Exact<{
-  id: Scalars['String'];
-  limit: Scalars['Int'];
-  offset: Scalars['Int'];
-  orderBy: Activity_OrderBy;
-  orderDirection: OrderDirection;
-  events: Array<ActivityEventType> | ActivityEventType;
-}>;
-
-
-export type CollectionActivityQuery = { __typename?: 'Query', activities: Array<{ __typename?: 'Activity', id: string, price?: any | null, txHash: string, blockHash: string, eventType: ActivityEventType, timestamp: any, token: { __typename?: 'SavedToken', id: string, tokenId: string, title: string, media?: string | null }, contract: { __typename?: 'Contract', id: string }, owner: { __typename?: 'Account', id: string }, buyer?: { __typename?: 'Account', id: string } | null }> };
-
-export type TokenActivityQueryVariables = Exact<{
-  tokenUID: Scalars['String'];
-}>;
-
-
-export type TokenActivityQuery = { __typename?: 'Query', tokenActivity: Array<{ __typename?: 'Activity', id: string, price?: any | null, txHash: string, eventType: ActivityEventType, timestamp: any, owner: { __typename?: 'Account', id: string }, buyer?: { __typename?: 'Account', id: string } | null }> };
-
-export type BuyerAccountActivityQueryVariables = Exact<{
-  accountId: Scalars['String'];
-  limit: Scalars['Int'];
-  offset: Scalars['Int'];
-  orderBy: Activity_OrderBy;
-  orderDirection: OrderDirection;
-}>;
-
-
-export type BuyerAccountActivityQuery = { __typename?: 'Query', activities: Array<{ __typename?: 'Activity', id: string, eventType: ActivityEventType, timestamp: any, price?: any | null, txHash: string, token: { __typename?: 'SavedToken', id: string, tokenId: string, title: string, media?: string | null }, contract: { __typename?: 'Contract', id: string }, owner: { __typename?: 'Account', id: string }, buyer?: { __typename?: 'Account', id: string } | null }> };
-
-export type OwnerAccountActivityQueryVariables = Exact<{
-  accountId: Scalars['String'];
-  limit: Scalars['Int'];
-  offset: Scalars['Int'];
-  eventType: ActivityEventType;
-  orderBy: Activity_OrderBy;
-  orderDirection: OrderDirection;
-}>;
-
-
-export type OwnerAccountActivityQuery = { __typename?: 'Query', activities: Array<{ __typename?: 'Activity', id: string, eventType: ActivityEventType, timestamp: any, price?: any | null, txHash: string, token: { __typename?: 'SavedToken', id: string, tokenId: string, title: string, media?: string | null }, contract: { __typename?: 'Contract', id: string }, owner: { __typename?: 'Account', id: string }, buyer?: { __typename?: 'Account', id: string } | null }> };
 
 export type CollectionMarketTokensQueryVariables = Exact<{
   collection: Scalars['String'];
@@ -2746,6 +2757,320 @@ export type DailyCollectionStatsQueryVariables = Exact<{
 export type DailyCollectionStatsQuery = { __typename?: 'Query', dailyCollectionStats: Array<{ __typename?: 'DailyCollectionStat', id: string, timestamp: any, sales: any, average: any, floor: any, volume: any }> };
 
 
+export const ActivitiesDocument = gql`
+    query activities($limit: Int!, $offset: Int!, $orderBy: Activity_orderBy!, $orderDirection: OrderDirection!, $events: [ActivityEventType!]!) {
+  activities(
+    first: $limit
+    skip: $offset
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: {eventType_in: $events}
+  ) {
+    id
+    price
+    txHash
+    blockHash
+    eventType
+    timestamp
+    token {
+      id
+      tokenId
+      title
+      media
+    }
+    collection {
+      id
+      title
+      collectionId
+    }
+    contract {
+      id
+    }
+    owner {
+      id
+    }
+    buyer {
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __useActivitiesQuery__
+ *
+ * To run a query within a React component, call `useActivitiesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useActivitiesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useActivitiesQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      orderBy: // value for 'orderBy'
+ *      orderDirection: // value for 'orderDirection'
+ *      events: // value for 'events'
+ *   },
+ * });
+ */
+export function useActivitiesQuery(baseOptions: Apollo.QueryHookOptions<ActivitiesQuery, ActivitiesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ActivitiesQuery, ActivitiesQueryVariables>(ActivitiesDocument, options);
+      }
+export function useActivitiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ActivitiesQuery, ActivitiesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ActivitiesQuery, ActivitiesQueryVariables>(ActivitiesDocument, options);
+        }
+export type ActivitiesQueryHookResult = ReturnType<typeof useActivitiesQuery>;
+export type ActivitiesLazyQueryHookResult = ReturnType<typeof useActivitiesLazyQuery>;
+export type ActivitiesQueryResult = Apollo.QueryResult<ActivitiesQuery, ActivitiesQueryVariables>;
+export const CollectionActivityDocument = gql`
+    query collectionActivity($id: String!, $limit: Int!, $offset: Int!, $orderBy: Activity_orderBy!, $orderDirection: OrderDirection!, $events: [ActivityEventType!]!) {
+  activities(
+    first: $limit
+    skip: $offset
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: {collection: $id, eventType_in: $events}
+  ) {
+    id
+    price
+    txHash
+    blockHash
+    eventType
+    timestamp
+    token {
+      id
+      tokenId
+      title
+      media
+    }
+    contract {
+      id
+    }
+    owner {
+      id
+    }
+    buyer {
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __useCollectionActivityQuery__
+ *
+ * To run a query within a React component, call `useCollectionActivityQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCollectionActivityQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCollectionActivityQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      orderBy: // value for 'orderBy'
+ *      orderDirection: // value for 'orderDirection'
+ *      events: // value for 'events'
+ *   },
+ * });
+ */
+export function useCollectionActivityQuery(baseOptions: Apollo.QueryHookOptions<CollectionActivityQuery, CollectionActivityQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CollectionActivityQuery, CollectionActivityQueryVariables>(CollectionActivityDocument, options);
+      }
+export function useCollectionActivityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CollectionActivityQuery, CollectionActivityQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CollectionActivityQuery, CollectionActivityQueryVariables>(CollectionActivityDocument, options);
+        }
+export type CollectionActivityQueryHookResult = ReturnType<typeof useCollectionActivityQuery>;
+export type CollectionActivityLazyQueryHookResult = ReturnType<typeof useCollectionActivityLazyQuery>;
+export type CollectionActivityQueryResult = Apollo.QueryResult<CollectionActivityQuery, CollectionActivityQueryVariables>;
+export const TokenActivityDocument = gql`
+    query tokenActivity($tokenUID: String!) {
+  tokenActivity: activities(
+    where: {token: $tokenUID}
+    orderBy: timestamp
+    orderDirection: desc
+  ) {
+    id
+    price
+    txHash
+    eventType
+    timestamp
+    owner {
+      id
+    }
+    buyer {
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __useTokenActivityQuery__
+ *
+ * To run a query within a React component, call `useTokenActivityQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTokenActivityQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTokenActivityQuery({
+ *   variables: {
+ *      tokenUID: // value for 'tokenUID'
+ *   },
+ * });
+ */
+export function useTokenActivityQuery(baseOptions: Apollo.QueryHookOptions<TokenActivityQuery, TokenActivityQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TokenActivityQuery, TokenActivityQueryVariables>(TokenActivityDocument, options);
+      }
+export function useTokenActivityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TokenActivityQuery, TokenActivityQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TokenActivityQuery, TokenActivityQueryVariables>(TokenActivityDocument, options);
+        }
+export type TokenActivityQueryHookResult = ReturnType<typeof useTokenActivityQuery>;
+export type TokenActivityLazyQueryHookResult = ReturnType<typeof useTokenActivityLazyQuery>;
+export type TokenActivityQueryResult = Apollo.QueryResult<TokenActivityQuery, TokenActivityQueryVariables>;
+export const BuyerAccountActivityDocument = gql`
+    query buyerAccountActivity($accountId: String!, $limit: Int!, $offset: Int!, $orderBy: Activity_orderBy!, $orderDirection: OrderDirection!) {
+  activities(
+    first: $limit
+    skip: $offset
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: {buyer: $accountId}
+  ) {
+    id
+    eventType
+    timestamp
+    price
+    txHash
+    token {
+      id
+      tokenId
+      title
+      media
+    }
+    contract {
+      id
+    }
+    owner {
+      id
+    }
+    buyer {
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __useBuyerAccountActivityQuery__
+ *
+ * To run a query within a React component, call `useBuyerAccountActivityQuery` and pass it any options that fit your needs.
+ * When your component renders, `useBuyerAccountActivityQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useBuyerAccountActivityQuery({
+ *   variables: {
+ *      accountId: // value for 'accountId'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      orderBy: // value for 'orderBy'
+ *      orderDirection: // value for 'orderDirection'
+ *   },
+ * });
+ */
+export function useBuyerAccountActivityQuery(baseOptions: Apollo.QueryHookOptions<BuyerAccountActivityQuery, BuyerAccountActivityQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<BuyerAccountActivityQuery, BuyerAccountActivityQueryVariables>(BuyerAccountActivityDocument, options);
+      }
+export function useBuyerAccountActivityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BuyerAccountActivityQuery, BuyerAccountActivityQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<BuyerAccountActivityQuery, BuyerAccountActivityQueryVariables>(BuyerAccountActivityDocument, options);
+        }
+export type BuyerAccountActivityQueryHookResult = ReturnType<typeof useBuyerAccountActivityQuery>;
+export type BuyerAccountActivityLazyQueryHookResult = ReturnType<typeof useBuyerAccountActivityLazyQuery>;
+export type BuyerAccountActivityQueryResult = Apollo.QueryResult<BuyerAccountActivityQuery, BuyerAccountActivityQueryVariables>;
+export const OwnerAccountActivityDocument = gql`
+    query ownerAccountActivity($accountId: String!, $limit: Int!, $offset: Int!, $eventType: ActivityEventType!, $orderBy: Activity_orderBy!, $orderDirection: OrderDirection!) {
+  activities(
+    first: $limit
+    skip: $offset
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: {eventType: $eventType, owner: $accountId}
+  ) {
+    id
+    eventType
+    timestamp
+    price
+    txHash
+    token {
+      id
+      tokenId
+      title
+      media
+    }
+    contract {
+      id
+    }
+    owner {
+      id
+    }
+    buyer {
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __useOwnerAccountActivityQuery__
+ *
+ * To run a query within a React component, call `useOwnerAccountActivityQuery` and pass it any options that fit your needs.
+ * When your component renders, `useOwnerAccountActivityQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOwnerAccountActivityQuery({
+ *   variables: {
+ *      accountId: // value for 'accountId'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      eventType: // value for 'eventType'
+ *      orderBy: // value for 'orderBy'
+ *      orderDirection: // value for 'orderDirection'
+ *   },
+ * });
+ */
+export function useOwnerAccountActivityQuery(baseOptions: Apollo.QueryHookOptions<OwnerAccountActivityQuery, OwnerAccountActivityQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<OwnerAccountActivityQuery, OwnerAccountActivityQueryVariables>(OwnerAccountActivityDocument, options);
+      }
+export function useOwnerAccountActivityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OwnerAccountActivityQuery, OwnerAccountActivityQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<OwnerAccountActivityQuery, OwnerAccountActivityQueryVariables>(OwnerAccountActivityDocument, options);
+        }
+export type OwnerAccountActivityQueryHookResult = ReturnType<typeof useOwnerAccountActivityQuery>;
+export type OwnerAccountActivityLazyQueryHookResult = ReturnType<typeof useOwnerAccountActivityLazyQuery>;
+export type OwnerAccountActivityQueryResult = Apollo.QueryResult<OwnerAccountActivityQuery, OwnerAccountActivityQueryVariables>;
 export const CollectionDocument = gql`
     query collection($collectionId: String!) {
   collections(first: 1, where: {collectionId: $collectionId}) {
@@ -3028,250 +3353,6 @@ export function useUserCollectionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
 export type UserCollectionsQueryHookResult = ReturnType<typeof useUserCollectionsQuery>;
 export type UserCollectionsLazyQueryHookResult = ReturnType<typeof useUserCollectionsLazyQuery>;
 export type UserCollectionsQueryResult = Apollo.QueryResult<UserCollectionsQuery, UserCollectionsQueryVariables>;
-export const CollectionActivityDocument = gql`
-    query collectionActivity($id: String!, $limit: Int!, $offset: Int!, $orderBy: Activity_orderBy!, $orderDirection: OrderDirection!, $events: [ActivityEventType!]!) {
-  activities(
-    first: $limit
-    skip: $offset
-    orderBy: $orderBy
-    orderDirection: $orderDirection
-    where: {collection: $id, eventType_in: $events}
-  ) {
-    id
-    price
-    txHash
-    blockHash
-    eventType
-    timestamp
-    token {
-      id
-      tokenId
-      title
-      media
-    }
-    contract {
-      id
-    }
-    owner {
-      id
-    }
-    buyer {
-      id
-    }
-  }
-}
-    `;
-
-/**
- * __useCollectionActivityQuery__
- *
- * To run a query within a React component, call `useCollectionActivityQuery` and pass it any options that fit your needs.
- * When your component renders, `useCollectionActivityQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useCollectionActivityQuery({
- *   variables: {
- *      id: // value for 'id'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      orderBy: // value for 'orderBy'
- *      orderDirection: // value for 'orderDirection'
- *      events: // value for 'events'
- *   },
- * });
- */
-export function useCollectionActivityQuery(baseOptions: Apollo.QueryHookOptions<CollectionActivityQuery, CollectionActivityQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CollectionActivityQuery, CollectionActivityQueryVariables>(CollectionActivityDocument, options);
-      }
-export function useCollectionActivityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CollectionActivityQuery, CollectionActivityQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CollectionActivityQuery, CollectionActivityQueryVariables>(CollectionActivityDocument, options);
-        }
-export type CollectionActivityQueryHookResult = ReturnType<typeof useCollectionActivityQuery>;
-export type CollectionActivityLazyQueryHookResult = ReturnType<typeof useCollectionActivityLazyQuery>;
-export type CollectionActivityQueryResult = Apollo.QueryResult<CollectionActivityQuery, CollectionActivityQueryVariables>;
-export const TokenActivityDocument = gql`
-    query tokenActivity($tokenUID: String!) {
-  tokenActivity: activities(
-    where: {token: $tokenUID}
-    orderBy: timestamp
-    orderDirection: desc
-  ) {
-    id
-    price
-    txHash
-    eventType
-    timestamp
-    owner {
-      id
-    }
-    buyer {
-      id
-    }
-  }
-}
-    `;
-
-/**
- * __useTokenActivityQuery__
- *
- * To run a query within a React component, call `useTokenActivityQuery` and pass it any options that fit your needs.
- * When your component renders, `useTokenActivityQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useTokenActivityQuery({
- *   variables: {
- *      tokenUID: // value for 'tokenUID'
- *   },
- * });
- */
-export function useTokenActivityQuery(baseOptions: Apollo.QueryHookOptions<TokenActivityQuery, TokenActivityQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<TokenActivityQuery, TokenActivityQueryVariables>(TokenActivityDocument, options);
-      }
-export function useTokenActivityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TokenActivityQuery, TokenActivityQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<TokenActivityQuery, TokenActivityQueryVariables>(TokenActivityDocument, options);
-        }
-export type TokenActivityQueryHookResult = ReturnType<typeof useTokenActivityQuery>;
-export type TokenActivityLazyQueryHookResult = ReturnType<typeof useTokenActivityLazyQuery>;
-export type TokenActivityQueryResult = Apollo.QueryResult<TokenActivityQuery, TokenActivityQueryVariables>;
-export const BuyerAccountActivityDocument = gql`
-    query buyerAccountActivity($accountId: String!, $limit: Int!, $offset: Int!, $orderBy: Activity_orderBy!, $orderDirection: OrderDirection!) {
-  activities(
-    first: $limit
-    skip: $offset
-    orderBy: $orderBy
-    orderDirection: $orderDirection
-    where: {buyer: $accountId}
-  ) {
-    id
-    eventType
-    timestamp
-    price
-    txHash
-    token {
-      id
-      tokenId
-      title
-      media
-    }
-    contract {
-      id
-    }
-    owner {
-      id
-    }
-    buyer {
-      id
-    }
-  }
-}
-    `;
-
-/**
- * __useBuyerAccountActivityQuery__
- *
- * To run a query within a React component, call `useBuyerAccountActivityQuery` and pass it any options that fit your needs.
- * When your component renders, `useBuyerAccountActivityQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useBuyerAccountActivityQuery({
- *   variables: {
- *      accountId: // value for 'accountId'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      orderBy: // value for 'orderBy'
- *      orderDirection: // value for 'orderDirection'
- *   },
- * });
- */
-export function useBuyerAccountActivityQuery(baseOptions: Apollo.QueryHookOptions<BuyerAccountActivityQuery, BuyerAccountActivityQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<BuyerAccountActivityQuery, BuyerAccountActivityQueryVariables>(BuyerAccountActivityDocument, options);
-      }
-export function useBuyerAccountActivityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BuyerAccountActivityQuery, BuyerAccountActivityQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<BuyerAccountActivityQuery, BuyerAccountActivityQueryVariables>(BuyerAccountActivityDocument, options);
-        }
-export type BuyerAccountActivityQueryHookResult = ReturnType<typeof useBuyerAccountActivityQuery>;
-export type BuyerAccountActivityLazyQueryHookResult = ReturnType<typeof useBuyerAccountActivityLazyQuery>;
-export type BuyerAccountActivityQueryResult = Apollo.QueryResult<BuyerAccountActivityQuery, BuyerAccountActivityQueryVariables>;
-export const OwnerAccountActivityDocument = gql`
-    query ownerAccountActivity($accountId: String!, $limit: Int!, $offset: Int!, $eventType: ActivityEventType!, $orderBy: Activity_orderBy!, $orderDirection: OrderDirection!) {
-  activities(
-    first: $limit
-    skip: $offset
-    orderBy: $orderBy
-    orderDirection: $orderDirection
-    where: {eventType: $eventType, owner: $accountId}
-  ) {
-    id
-    eventType
-    timestamp
-    price
-    txHash
-    token {
-      id
-      tokenId
-      title
-      media
-    }
-    contract {
-      id
-    }
-    owner {
-      id
-    }
-    buyer {
-      id
-    }
-  }
-}
-    `;
-
-/**
- * __useOwnerAccountActivityQuery__
- *
- * To run a query within a React component, call `useOwnerAccountActivityQuery` and pass it any options that fit your needs.
- * When your component renders, `useOwnerAccountActivityQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useOwnerAccountActivityQuery({
- *   variables: {
- *      accountId: // value for 'accountId'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      eventType: // value for 'eventType'
- *      orderBy: // value for 'orderBy'
- *      orderDirection: // value for 'orderDirection'
- *   },
- * });
- */
-export function useOwnerAccountActivityQuery(baseOptions: Apollo.QueryHookOptions<OwnerAccountActivityQuery, OwnerAccountActivityQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<OwnerAccountActivityQuery, OwnerAccountActivityQueryVariables>(OwnerAccountActivityDocument, options);
-      }
-export function useOwnerAccountActivityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OwnerAccountActivityQuery, OwnerAccountActivityQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<OwnerAccountActivityQuery, OwnerAccountActivityQueryVariables>(OwnerAccountActivityDocument, options);
-        }
-export type OwnerAccountActivityQueryHookResult = ReturnType<typeof useOwnerAccountActivityQuery>;
-export type OwnerAccountActivityLazyQueryHookResult = ReturnType<typeof useOwnerAccountActivityLazyQuery>;
-export type OwnerAccountActivityQueryResult = Apollo.QueryResult<OwnerAccountActivityQuery, OwnerAccountActivityQueryVariables>;
 export const CollectionMarketTokensDocument = gql`
     query collectionMarketTokens($collection: String!, $limit: Int!, $offset: Int!, $orderBy: MarketToken_orderBy!, $orderDirection: OrderDirection!, $priceFrom: BigInt!, $priceTo: BigInt!) {
   tokens: marketTokens(

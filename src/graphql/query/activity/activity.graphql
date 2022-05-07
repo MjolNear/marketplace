@@ -1,0 +1,44 @@
+query activities(
+    $limit: Int!
+    $offset: Int!
+    $orderBy: Activity_orderBy!
+    $orderDirection: OrderDirection!
+    $events: [ActivityEventType!]!
+) {
+    activities(
+        first: $limit
+        skip: $offset
+        orderBy: $orderBy
+        orderDirection: $orderDirection
+        where: {
+            eventType_in: $events
+        }
+    ) {
+        id
+        price
+        txHash
+        blockHash
+        eventType
+        timestamp
+        token {
+            id
+            tokenId
+            title
+            media
+        }
+        collection {
+            id
+            title
+            collectionId
+        }
+        contract {
+            id
+        }
+        owner {
+            id
+        }
+        buyer {
+            id
+        }
+    }
+}

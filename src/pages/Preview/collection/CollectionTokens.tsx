@@ -32,31 +32,31 @@ const CollectionTokens: React.FC<CollectionTokensProps> = ({
 
     return (
         <>
-            <div className="inline-flex flex-wrap gap-20 w-full justify-center mb-2">
-                <BlueToggle text="Buy now"
-                            handleToggle={(() => {
-                                setPageState(
-                                    pageState === "init" || pageState === "only-market"
-                                        ? "all"
-                                        : "only-market"
-                                )
-                            })}
-                            defaultChecked={pageState === "init" || pageState === "only-market"}
+            <FilterWrapper>
+                <div className="mr-8 flex items-center">
+                    <BlueToggle text="Buy now"
+                                handleToggle={(() => {
+                                    setPageState(
+                                        pageState === "init" || pageState === "only-market"
+                                            ? "all"
+                                            : "only-market"
+                                    )
+                                })}
+                                defaultChecked={pageState === "init" || pageState === "only-market"}
+                    />
+                </div>
+                <PriceRangeFilter
+                    disabled={pageState === "all"}
+                    onClear={clearPriceRange}
+                    current={priceRange}
+                    onApply={setPriceRange}
                 />
-                <FilterWrapper>
-                    <PriceRangeFilter
-                        disabled={pageState === "all"}
-                        onClear={clearPriceRange}
-                        current={priceRange}
-                        onApply={setPriceRange}
-                    />
-                    <TokenSortFilter disabled={pageState === "all"}
-                                     picked={sort}
-                                     setSort={setSort}
-                    />
-                    <CardSizeSwitcher/>
-                </FilterWrapper>
-            </div>
+                <TokenSortFilter disabled={pageState === "all"}
+                                 picked={sort}
+                                 setSort={setSort}
+                />
+                <CardSizeSwitcher/>
+            </FilterWrapper>
             <>
                 {pageState === "all"
                     ?

@@ -1,9 +1,4 @@
-import {
-    Activity_OrderBy,
-    ActivityEventType,
-    MarketToken_OrderBy,
-    OrderDirection
-} from "./generated/graphql";
+import {Activity_OrderBy, ActivityEventType, MarketToken_OrderBy, OrderDirection} from "./generated/graphql";
 
 export interface TokenPriceRange {
     from?: string,
@@ -81,5 +76,6 @@ export const activityEvents: ActivityEventType[] = [
     ActivityEventType.Buy,
     ActivityEventType.List,
     ActivityEventType.Unlist,
-    ActivityEventType.Transferred
+    ActivityEventType.Transferred,
+    ActivityEventType.UpdatePrice
 ]

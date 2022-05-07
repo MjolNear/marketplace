@@ -10,6 +10,7 @@ import {AiOutlineAppstore} from "react-icons/ai";
 import {MdCollections} from "react-icons/md";
 import {GiPaintBrush, GiPalette} from "react-icons/gi";
 import Docs from "./Items/Docs";
+import Activity from "./Items/Activity";
 
 const MobileNavbarContent = () => {
     const exploreTabs = routesConfig.explore
@@ -86,6 +87,7 @@ const MobileNavbarContent = () => {
                                                                  close={closeMenu}
                                                                  icon={<GiPalette size={18}/>}
                                                 />
+                                                <Activity/>
                                                 <Launchpad/>
                                                 <Docs/>
                                             </div>

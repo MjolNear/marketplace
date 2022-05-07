@@ -1,10 +1,10 @@
 import {ApolloClient, InMemoryCache} from "@apollo/client";
-import {MarketIndexerEndpoint} from "./config";
+import {IndexerEndpoint} from "./config";
 import {offsetLimitPagination} from "./utils";
 
 export const setupApolloClient = () => {
     const cache = setupCache()
-    const uri = MarketIndexerEndpoint.BackupV2
+    const uri = IndexerEndpoint.Main
 
     return new ApolloClient({
         uri,
