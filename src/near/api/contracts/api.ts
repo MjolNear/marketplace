@@ -19,12 +19,12 @@ export const contractAPI = {
      *
      * @param accountId NEAR valid account
      */
-    fetchUserTokenContracts: (accountId: AccountId): Promise<ContractId[]> =>
-        fetchWithTimeout(
-            `https://helper.mainnet.near.org/account/${accountId}/likelyNFts`,
-            {timeout: 8000}
-        ).then(response => response.json()
-        ).catch(() => []),
+    fetchUserTokenContracts: (accountId: AccountId): Promise<ContractId[]> => {
+        const url = `https://api.kitwallet.app/account/${accountId}/likelyNFTs`
+        return fetchWithTimeout(url, {timeout: 8000})
+            .then(response => response.json())
+            .catch(() => [])
+    },
 
     fetchContract: (contractId: ContractId): Promise<TContractResponse | undefined> => {
         // const url = `http://localhost:7010/api.mjolnear.com/contracts/${contractId}`
